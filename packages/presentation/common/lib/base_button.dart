@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 
 class BaseButton extends StatelessWidget {
   final VoidCallback onPressed;
-  String title;
+  final String title;
 
-  BaseButton({super.key, required this.onPressed, required this.title});
+  const BaseButton({
+    super.key,
+    required this.onPressed,
+    required this.title,
+  });
 
   @override
   Widget build(BuildContext context) {
