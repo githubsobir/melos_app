@@ -1,0 +1,21 @@
+name: splash
+description: "A new Flutter package project."
+
+environment:
+  sdk: ^3.5.4
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_bloc: ^8.1.5
+  domain:
+    path: ../../domain
+  common:
+    path: ../common
+  intent_launcher:
+    path: ../../core/intent_launcher
+  navigation:
+    path: ../../core/navigation
+  dependency:
+    path: ../../core/dependency
