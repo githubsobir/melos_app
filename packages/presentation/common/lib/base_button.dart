@@ -28,7 +28,6 @@ class BaseButton extends StatelessWidget {
                       : Colors.white,
             ),
       ),
-      // child: Text(title),
     );
   }
 }
