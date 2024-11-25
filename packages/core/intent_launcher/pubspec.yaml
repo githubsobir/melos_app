@@ -1,0 +1,10 @@
+name: intent_launcher
+description: "Intent launcher"
+
+environment:
+  sdk: ^3.5.4
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter

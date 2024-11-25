@@ -1,0 +1,9 @@
+name: dependency
+description: "Dependency"
+
+environment:
+  sdk: ^3.5.4
+  flutter: ">=1.17.0"
+
+dependencies:
+  get_it: ^8.0.2

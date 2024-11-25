@@ -1,0 +1,10 @@
+name: main
+description: "A new Flutter package project."
+
+environment:
+  sdk: ^3.5.4
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter

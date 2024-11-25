@@ -1,0 +1,17 @@
+name: data
+description: "Data layer"
+
+environment:
+  sdk: ^3.5.4
+  flutter: ">=1.17.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  get_it: ^8.0.2
+  dio: ^5.7.0
+  shared_preferences: ^2.3.3
+  domain:
+    path: ../../packages/domain
+  dependency:
+    path: ../../packages/core/dependency

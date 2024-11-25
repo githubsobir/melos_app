@@ -1,0 +1,4 @@
+# melos_managed_dependency_overrides: intent_launcher
+dependency_overrides:
+  intent_launcher:
+    path: ../intent_launcher
