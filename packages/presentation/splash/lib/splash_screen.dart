@@ -15,7 +15,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    Timer( Duration(seconds: 5), () {
+    Timer( Duration(seconds: 3), () {
       context.openScreen(OnboardingIntent());
     });
     super.initState();

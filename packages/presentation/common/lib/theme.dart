@@ -30,7 +30,7 @@ ThemeData _themeData(ColorScheme colorScheme, Color focusColor) {
     colorScheme: colorScheme,
     textTheme: _textTheme,
     // Matches manifest.json colors and background color.
-    primaryColor: const Color(0xFF030303),
+    primaryColor: Colors.greenAccent,
     appBarTheme: AppBarTheme(
       backgroundColor: colorScheme.background,
       elevation: 0,
@@ -53,13 +53,9 @@ ThemeData _themeData(ColorScheme colorScheme, Color focusColor) {
 }
 
 const ColorScheme _lightColorScheme = ColorScheme(
-  primary: Color(0xFFB93C5D),
-  // primaryVariant: Color(0xFF117378),
-  secondary: Color(0xFFEFF3F3),
-  // secondaryVariant: Color(0xFFFAFBFB),
-  background: Color(0xFFE6EBEB),
+  primary: Color(0xFF3563E9),
+  secondary: Colors.green,
   surface: Color(0xFFFAFBFB),
-  onBackground: Colors.white,
   error: _lightFillColor,
   onError: _lightFillColor,
   onPrimary: _lightFillColor,
@@ -69,14 +65,9 @@ const ColorScheme _lightColorScheme = ColorScheme(
 );
 
 const ColorScheme _darkColorScheme = ColorScheme(
-  primary: Color(0xFFFF8383),
-  // primaryVariant: Color(0xFF1CDEC9),
-  secondary: Color(0xFF4D1F7C),
-  // secondaryVariant: Color(0xFF451B6F),
-  background: Color(0xFF241E30),
+  primary: Colors.red,
+  secondary: Colors.blue,
   surface: Color(0xFF1F1929),
-  onBackground: Color(0x0DFFFFFF),
-  // White with 0.05 opacity
   error: _darkFillColor,
   onError: _darkFillColor,
   onPrimary: _darkFillColor,
@@ -91,6 +82,8 @@ const _semiBold = FontWeight.w600;
 const _bold = FontWeight.w700;
 
 const TextTheme _textTheme = TextTheme(
+
   bodySmall: TextStyle(fontWeight: _regular, fontSize: 14.0,),
+  bodyMedium: TextStyle(fontWeight: _regular, fontSize: 16.0,),
   bodyLarge: TextStyle(fontWeight: _medium, fontSize: 18.0),
 );
