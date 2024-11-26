@@ -8,6 +8,7 @@
 // Let's not care about deprecated theme variables right now...
 // ignore_for_file: deprecated_member_use
 
+import 'package:common/font_family.dart';
 import 'package:flutter/material.dart';
 
 const _lightFillColor = Colors.black;
@@ -81,9 +82,14 @@ const _medium = FontWeight.w500;
 const _semiBold = FontWeight.w600;
 const _bold = FontWeight.w700;
 
-const TextTheme _textTheme = TextTheme(
-
-  bodySmall: TextStyle(fontWeight: _regular, fontSize: 14.0,),
-  bodyMedium: TextStyle(fontWeight: _regular, fontSize: 16.0,),
-  bodyLarge: TextStyle(fontWeight: _medium, fontSize: 18.0),
+TextTheme _textTheme = TextTheme(
+  bodySmall: TextStyle(
+    fontFamily: "packages/common/${FontFamily.ROBOTO_REGULAR.name}",
+  ),
+  bodyMedium: TextStyle(
+    fontFamily: "packages/common/${FontFamily.ROBOTO_MEDIUM.name}",
+  ),
+  bodyLarge: TextStyle(
+    fontFamily: "packages/common/${FontFamily.ROBOTO_BOLD.name}",
+  ),
 );

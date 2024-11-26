@@ -14,4 +14,24 @@ dependencies:
   equatable: ^2.0.7
 
 flutter:
+  uses-material-design: true
   generate: true # Add this line
+  assets:
+    - assets/images/
+
+  fonts:
+    - family: ROBOTO_BOLD
+      fonts:
+        - asset: assets/fonts/roboto_bold.ttf
+    - family: ROBOTO_BLACK
+      fonts:
+        - asset: assets/fonts/Roboto-Black.ttf
+    - family: ROBOTO_REGULAR
+      fonts:
+        - asset: assets/fonts/Roboto-Regular.ttf
+    - family: ROBOTO_LIGHT
+      fonts:
+        - asset: assets/fonts/Roboto-Light.ttf
+    - family: ROBOTO_MEDIUM
+      fonts:
+        - asset: assets/fonts/Roboto-Medium.ttf

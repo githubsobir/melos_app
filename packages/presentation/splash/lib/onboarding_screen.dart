@@ -1,4 +1,5 @@
 import 'package:common/base_button.dart';
+import 'package:common/font_family.dart';
 import 'package:common/l10n/build_context_extension.dart';
 import 'package:dependency/dependencies/injector.dart';
 import 'package:domain/utils/app_state_notifier.dart';
@@ -26,11 +27,22 @@ class OnboardingScreen extends StatelessWidget {
           children: [
             Text(
               "Hello",
-              style: Theme.of(context).textTheme.bodyLarge,
+              style: Theme.of(context).textTheme.bodySmall!,
             ),
             Text(
+              "Hello",
+              style: Theme.of(context).textTheme.bodyMedium!,
+            ),
+            Text(
+              "Hello",
+              style: Theme.of(context).textTheme.bodyLarge!,
+            ),
+
+            Text(
               "Grey",
-              style: Theme.of(context).textTheme.bodySmall,
+              style: Theme.of(context).textTheme.bodyLarge!.copyWith(
+                fontFamily: FontFamily.ROBOTO_BOLD.name,
+              ),
             ),
             const SizedBox(
               height: 16,
