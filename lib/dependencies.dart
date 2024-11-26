@@ -1,8 +1,10 @@
 import 'package:data/di/app_state_dependency_configurator.dart';
+import 'package:data/di/shared_pref_dependency_configurator.dart';
 import 'package:dependency/dependencies.dart';
 import 'package:get_it/get_it.dart';
 
 final configurators = [
+  SharedPrefDependencyConfigurator(),
   AppStateDependencyConfigurator()
   // NetBaseDependencyConfigurator(),
   // AuthDependencyConfigurator(),
