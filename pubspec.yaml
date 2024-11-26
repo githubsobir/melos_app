@@ -25,6 +25,8 @@ dependencies:
     path: packages/core/intent_launcher
   data:
     path: packages/data
+  domain:
+    path: packages/domain
   common:
     path: packages/presentation/common
   splash:

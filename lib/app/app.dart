@@ -1,11 +1,11 @@
-import 'package:carbnb/app/bloc/app_cubit.dart';
+import 'package:carbnb/app/app_cubit.dart';
+import 'package:carbnb/navigation.dart';
 import 'package:common/l10n/localizations.dart';
 import 'package:common/theme.dart';
+import 'package:dependency/dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-
-import '../navigation.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => AppCubit(),
+      create: (context) => AppCubit(inject()),
       child: BlocBuilder<AppCubit, AppState>(
         builder: (context, state) {
           return MaterialApp(

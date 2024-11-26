@@ -46,7 +46,7 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
   if (SplashIntent.path == settings.name) {
     return _route((_) => const SplashScreen().wrapWith(_launcher));
   }else if (OnboardingIntent.path == settings.name) {
-    return _route((_) => const OnboardingScreen().wrapWith(_launcher));
+    return _route((_) => OnboardingScreen().wrapWith(_launcher));
   }
   // else if (LoginIntent.path == settings.name) {
   //   return _route((_) => LoginScreen().wrapWith(_launcher));
