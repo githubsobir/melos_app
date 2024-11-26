@@ -27,7 +27,9 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Center(
         child: Padding(
           padding: EdgeInsets.all(24.0),
-          child: Icon(Icons.ac_unit),
+          child: Text("CarB&B",style: TextStyle(
+            color: Color(0xFF3563E9)
+          ),),
         ),
       ),
     );

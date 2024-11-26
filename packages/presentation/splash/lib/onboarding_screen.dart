@@ -1,4 +1,5 @@
 import 'package:common/base_button.dart';
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:flutter/material.dart';
 
 class OnboardingScreen extends StatelessWidget {
@@ -8,7 +9,7 @@ class OnboardingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Toast"),
+        title: const Text("Title"),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -16,21 +17,20 @@ class OnboardingScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              "SSSSSSSSSSSSS",
+              "Hello",
               style: Theme.of(context).textTheme.bodyLarge,
             ),
             Text(
-              "EEEEEEEEEEE",
+              "Grey",
               style: Theme.of(context).textTheme.bodySmall,
             ),
             const SizedBox(
               height: 16,
             ),
             BaseButton(
-              title: "Next",
+              title: context.translations.next,
               onPressed: () {},
             ),
-
           ],
         ),
       ),

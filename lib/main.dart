@@ -1,7 +1,7 @@
 import 'package:dependency/dependencies.dart';
 import 'package:flutter/material.dart';
 
-import 'app.dart';
+import 'app/app.dart';
 import 'dependencies.dart';
 
 void main() {
