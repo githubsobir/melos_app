@@ -31,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
             "CarB&B",
             style: TextStyle(
               color: Color(0xFF3563E9),
-              fontFamily: FontFamily.ROBOTO_BOLD.name,
+              fontFamily: FontFamily.BOLD.name,
               fontSize: 24
             ),
           ),

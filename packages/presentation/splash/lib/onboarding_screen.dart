@@ -41,7 +41,7 @@ class OnboardingScreen extends StatelessWidget {
             Text(
               "Grey",
               style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                fontFamily: FontFamily.ROBOTO_BOLD.name,
+                fontFamily: FontFamily.BOLD.name,
               ),
             ),
             const SizedBox(

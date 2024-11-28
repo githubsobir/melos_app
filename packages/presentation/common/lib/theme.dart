@@ -84,12 +84,12 @@ const _bold = FontWeight.w700;
 
 TextTheme _textTheme = TextTheme(
   bodySmall: TextStyle(
-    fontFamily: "packages/common/${FontFamily.ROBOTO_REGULAR.name}",
+    fontFamily: "packages/common/${FontFamily.REGULAR.name}",
   ),
   bodyMedium: TextStyle(
-    fontFamily: "packages/common/${FontFamily.ROBOTO_MEDIUM.name}",
+    fontFamily: "packages/common/${FontFamily.MEDIUM.name}",
   ),
   bodyLarge: TextStyle(
-    fontFamily: "packages/common/${FontFamily.ROBOTO_BOLD.name}",
+    fontFamily: "packages/common/${FontFamily.BOLD.name}",
   ),
 );

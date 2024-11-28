@@ -20,18 +20,15 @@ flutter:
     - assets/images/
 
   fonts:
-    - family: ROBOTO_BOLD
+    - family: BOLD
       fonts:
-        - asset: assets/fonts/roboto_bold.ttf
-    - family: ROBOTO_BLACK
+        - asset: assets/fonts/PlusJakartaSans-Bold.ttf
+    - family: REGULAR
       fonts:
-        - asset: assets/fonts/Roboto-Black.ttf
-    - family: ROBOTO_REGULAR
+        - asset: assets/fonts/PlusJakartaSans-Regular.ttf
+    - family: LIGHT
       fonts:
-        - asset: assets/fonts/Roboto-Regular.ttf
-    - family: ROBOTO_LIGHT
+        - asset: assets/fonts/PlusJakartaSans-Light.ttf
+    - family: MEDIUM
       fonts:
-        - asset: assets/fonts/Roboto-Light.ttf
-    - family: ROBOTO_MEDIUM
-      fonts:
-        - asset: assets/fonts/Roboto-Medium.ttf
+        - asset: assets/fonts/PlusJakartaSans-Medium.ttf
