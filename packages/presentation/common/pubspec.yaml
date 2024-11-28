@@ -18,6 +18,7 @@ flutter:
   generate: true # Add this line
   assets:
     - assets/images/
+    - assets/onboarding/
 
   fonts:
     - family: BOLD

@@ -3,8 +3,8 @@ import 'package:intent_launcher/intent_launcher.dart';
 import 'package:navigation/auth_navigation_intents.dart';
 import 'package:navigation/splash_navigation_intents.dart';
 import 'package:navigation/main_navigation_intents.dart';
-import 'package:splash/onboarding_screen.dart';
-import 'package:splash/splash_screen.dart';
+import 'package:splash/onboarding/onboarding_screen.dart';
+import 'package:splash/splash/splash_screen.dart';
 
 final _launcher = IntentLauncher()
   ..onNavigationIntent<OnboardingIntent>((context, intent) {
@@ -44,7 +44,7 @@ final _launcher = IntentLauncher()
 
 Route<dynamic>? onGenerateRoute(RouteSettings settings) {
   if (SplashIntent.path == settings.name) {
-    return _route((_) => const SplashScreen().wrapWith(_launcher));
+    return _route((_) =>  SplashScreen().wrapWith(_launcher));
   }else if (OnboardingIntent.path == settings.name) {
     return _route((_) => OnboardingScreen().wrapWith(_launcher));
   }

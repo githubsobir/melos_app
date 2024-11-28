@@ -11,4 +11,7 @@ class L10NUz extends L10N {
 
   @override
   String get change => 'O\'zgartirish';
+
+  @override
+  String get begin => 'Boshlash';
 }

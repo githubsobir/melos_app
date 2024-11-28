@@ -106,6 +106,12 @@ abstract class L10N {
   /// In ru, this message translates to:
   /// **'Изменять'**
   String get change;
+
+  /// No description provided for @begin.
+  ///
+  /// In ru, this message translates to:
+  /// **'Начать'**
+  String get begin;
 }
 
 class _L10NDelegate extends LocalizationsDelegate<L10N> {

@@ -88,8 +88,10 @@ TextTheme _textTheme = TextTheme(
   ),
   bodyMedium: TextStyle(
     fontFamily: "packages/common/${FontFamily.MEDIUM.name}",
+    fontSize: 16
   ),
   bodyLarge: TextStyle(
     fontFamily: "packages/common/${FontFamily.BOLD.name}",
+    fontSize: 14
   ),
 );

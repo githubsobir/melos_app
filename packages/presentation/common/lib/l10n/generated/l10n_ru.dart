@@ -11,4 +11,7 @@ class L10NRu extends L10N {
 
   @override
   String get change => 'Изменять';
+
+  @override
+  String get begin => 'Начать';
 }
