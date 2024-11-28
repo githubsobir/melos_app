@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
       child: BlocBuilder<AppCubit, AppState>(
         builder: (context, state) {
           return MaterialApp(
-            title: 'Barber',
+            title: 'CARBNB',
             debugShowCheckedModeBanner: false,
             onGenerateRoute: onGenerateRoute,
             themeMode: state.themeMode,

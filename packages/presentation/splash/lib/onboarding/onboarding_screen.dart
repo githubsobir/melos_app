@@ -3,6 +3,8 @@ import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/path_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intent_launcher/intent_launcher.dart';
+import 'package:navigation/auth_navigation_intents.dart';
 import 'package:splash/onboarding/onboarding_cubit.dart';
 
 class OnboardingScreen extends StatelessWidget {
@@ -14,12 +16,56 @@ class OnboardingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0,
+        toolbarHeight: 0,
+      ),
       body: BlocBuilder(
         bloc: cubit,
         builder: (context, state) {
           return Column(
             children: [
-              Expanded(child: Container()),
+              Expanded(
+                  child: Padding(
+                padding: const EdgeInsets.only(right: 24, top: 36),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Expanded(child: Container()),
+                        GestureDetector(
+                          onTap: () {
+                            openNextScreen(context);
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(18),
+                                border: Border.all(
+                                    color:
+                                        Theme.of(context).colorScheme.primary),
+                                color: const Color(0xFFC1DCFF)),
+                            child: Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 8, right: 8, top: 2, bottom: 2),
+                              child: Text(
+                                "Skip",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .labelMedium!
+                                    .copyWith(
+                                      color:
+                                          Theme.of(context).colorScheme.primary,
+                                    ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  ],
+                ),
+              )),
               SizedBox(
                 height: 400,
                 child: PageView(
@@ -136,10 +182,10 @@ class OnboardingScreen extends StatelessWidget {
                             curve: Curves.linear,
                           );
                         } else {
-                          print("next screen");
+                          openNextScreen(context);
                         }
                       },
-                      title: cubit.position<2
+                      title: cubit.position < 2
                           ? context.translations.next
                           : context.translations.begin,
                     ),
@@ -151,5 +197,9 @@ class OnboardingScreen extends StatelessWidget {
         },
       ),
     );
+  }
+
+  void openNextScreen(BuildContext context) {
+    context.openScreen(LoginIntent());
   }
 }

@@ -84,14 +84,16 @@ const _bold = FontWeight.w700;
 
 TextTheme _textTheme = TextTheme(
   bodySmall: TextStyle(
-    fontFamily: "packages/common/${FontFamily.REGULAR.name}",
-  ),
+      fontFamily: "packages/common/${FontFamily.REGULAR.name}", fontSize: 14),
   bodyMedium: TextStyle(
-    fontFamily: "packages/common/${FontFamily.MEDIUM.name}",
-    fontSize: 16
-  ),
+      fontFamily: "packages/common/${FontFamily.MEDIUM.name}", fontSize: 16),
   bodyLarge: TextStyle(
-    fontFamily: "packages/common/${FontFamily.BOLD.name}",
-    fontSize: 14
-  ),
+      fontFamily: "packages/common/${FontFamily.BOLD.name}", fontSize: 18),
+//   ----------------------- //
+  labelSmall: TextStyle(
+      fontFamily: "packages/common/${FontFamily.REGULAR.name}", fontSize: 14),
+  labelMedium: TextStyle(
+      fontFamily: "packages/common/${FontFamily.MEDIUM.name}", fontSize: 12),
+  labelLarge: TextStyle(
+      fontFamily: "packages/common/${FontFamily.REGULAR.name}", fontSize: 14),
 );

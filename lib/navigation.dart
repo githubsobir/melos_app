@@ -1,3 +1,4 @@
+import 'package:authentication/login/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:navigation/auth_navigation_intents.dart';
@@ -48,9 +49,9 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
   }else if (OnboardingIntent.path == settings.name) {
     return _route((_) => OnboardingScreen().wrapWith(_launcher));
   }
-  // else if (LoginIntent.path == settings.name) {
-  //   return _route((_) => LoginScreen().wrapWith(_launcher));
-  // }
+  else if (LoginIntent.path == settings.name) {
+    return _route((_) => LoginScreen().wrapWith(_launcher));
+  }
   // else if (RegisterIntent.path == settings.name) {
   //   return _route((_) => RegisterScreen().wrapWith(_launcher));
   // } else if (MainIntent.path == settings.name) {
