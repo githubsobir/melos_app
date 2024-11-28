@@ -17,11 +17,11 @@ class MyApp extends StatelessWidget {
       child: BlocBuilder<AppCubit, AppState>(
         builder: (context, state) {
           return MaterialApp(
-            title: 'CARBNB',
+            title: 'CarBNB',
             debugShowCheckedModeBanner: false,
             onGenerateRoute: onGenerateRoute,
             themeMode: state.themeMode,
-            theme: lightThemeData,
+            theme: lightThemeData..textTheme.apply(bodyColor: const Color(0xFF050E2B)),
             darkTheme: darkThemeData,
             supportedLocales: AppLocalizations.supportedLocales,
             locale: Locale(state.languageCode),

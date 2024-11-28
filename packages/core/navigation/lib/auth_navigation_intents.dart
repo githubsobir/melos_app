@@ -7,3 +7,7 @@ class LoginIntent implements NavigationIntent {
 class RegisterIntent implements NavigationIntent {
   static String path="/register";
 }
+
+class PhoneNumberIntent implements NavigationIntent {
+  static String path="/phone_number";
+}

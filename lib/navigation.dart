@@ -1,9 +1,11 @@
+import 'package:authentication/forgot_password/phone_number_screen.dart';
 import 'package:authentication/login/login_screen.dart';
+import 'package:authentication/register/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:navigation/auth_navigation_intents.dart';
-import 'package:navigation/splash_navigation_intents.dart';
 import 'package:navigation/main_navigation_intents.dart';
+import 'package:navigation/splash_navigation_intents.dart';
 import 'package:splash/onboarding/onboarding_screen.dart';
 import 'package:splash/splash/splash_screen.dart';
 
@@ -16,6 +18,9 @@ final _launcher = IntentLauncher()
   })
   ..onNavigationIntent<RegisterIntent>((context, intent) {
     return Navigator.pushReplacementNamed(context, RegisterIntent.path);
+  })
+  ..onNavigationIntent<PhoneNumberIntent>((context, intent) {
+    return Navigator.pushReplacementNamed(context, PhoneNumberIntent.path);
   })
   ..onNavigationIntent<MainIntent>((context, intent) {
     return Navigator.pushReplacementNamed(context, MainIntent.path);
@@ -45,16 +50,17 @@ final _launcher = IntentLauncher()
 
 Route<dynamic>? onGenerateRoute(RouteSettings settings) {
   if (SplashIntent.path == settings.name) {
-    return _route((_) =>  SplashScreen().wrapWith(_launcher));
-  }else if (OnboardingIntent.path == settings.name) {
+    return _route((_) => SplashScreen().wrapWith(_launcher));
+  } else if (OnboardingIntent.path == settings.name) {
     return _route((_) => OnboardingScreen().wrapWith(_launcher));
-  }
-  else if (LoginIntent.path == settings.name) {
+  } else if (LoginIntent.path == settings.name) {
     return _route((_) => LoginScreen().wrapWith(_launcher));
+  } else if (RegisterIntent.path == settings.name) {
+    return _route((_) => RegisterScreen().wrapWith(_launcher));
+  } else if (PhoneNumberIntent.path == settings.name) {
+    return _route((_) => PhoneNumberScreen().wrapWith(_launcher));
   }
-  // else if (RegisterIntent.path == settings.name) {
-  //   return _route((_) => RegisterScreen().wrapWith(_launcher));
-  // } else if (MainIntent.path == settings.name) {
+  // else if (MainIntent.path == settings.name) {
   //   return _route((_) => MainScreen().wrapWith(_launcher));
   // } else if (CreateUserScreenIntent.path == settings.name) {
   //   return _route((_) => CreateUserScreen().wrapWith(_launcher));

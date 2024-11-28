@@ -17,39 +17,55 @@ const _darkFillColor = Colors.white;
 final Color _lightFocusColor = Colors.black.withOpacity(0.12);
 final Color _darkFocusColor = Colors.white.withOpacity(0.12);
 
-final ThemeData lightThemeData = _themeData(
+final ThemeData lightThemeData = _themeDataLight(
   _lightColorScheme,
   _lightFocusColor,
 );
-final ThemeData darkThemeData = _themeData(
+final ThemeData darkThemeData = _themeDataDark(
   _darkColorScheme,
   _darkFocusColor,
 );
 
-ThemeData _themeData(ColorScheme colorScheme, Color focusColor) {
+ThemeData _themeDataLight(ColorScheme colorScheme, Color focusColor) {
   return ThemeData(
     colorScheme: colorScheme,
     textTheme: _textTheme,
-    // Matches manifest.json colors and background color.
     primaryColor: Colors.greenAccent,
     appBarTheme: AppBarTheme(
       backgroundColor: colorScheme.background,
       elevation: 0,
       iconTheme: IconThemeData(color: colorScheme.primary),
+      centerTitle: true,
+      titleTextStyle: _textTheme.titleSmall?.copyWith(
+        color: const Color(0xFF050E2B),
+        fontWeight: FontWeight.w700,
+      ),
     ),
     iconTheme: IconThemeData(color: colorScheme.onPrimary),
     canvasColor: colorScheme.background,
     scaffoldBackgroundColor: colorScheme.background,
     highlightColor: Colors.transparent,
     focusColor: focusColor,
-    snackBarTheme: SnackBarThemeData(
-      behavior: SnackBarBehavior.floating,
-      backgroundColor: Color.alphaBlend(
-        _lightFillColor.withOpacity(0.8),
-        _darkFillColor,
-      ),
-      // contentTextStyle: _textTheme.subtitle1!.apply(color: _darkFillColor),
+  );
+}
+
+ThemeData _themeDataDark(ColorScheme colorScheme, Color focusColor) {
+  return ThemeData(
+    colorScheme: colorScheme,
+    textTheme: _textTheme,
+    primaryColor: Colors.greenAccent,
+    appBarTheme: AppBarTheme(
+      backgroundColor: colorScheme.background,
+      elevation: 0,
+      iconTheme: IconThemeData(color: colorScheme.primary),
+      centerTitle: true,
+      titleTextStyle: _textTheme.titleSmall,
     ),
+    iconTheme: IconThemeData(color: colorScheme.onPrimary),
+    canvasColor: colorScheme.background,
+    scaffoldBackgroundColor: colorScheme.background,
+    highlightColor: Colors.transparent,
+    focusColor: focusColor,
   );
 }
 
@@ -96,4 +112,7 @@ TextTheme _textTheme = TextTheme(
       fontFamily: "packages/common/${FontFamily.MEDIUM.name}", fontSize: 12),
   labelLarge: TextStyle(
       fontFamily: "packages/common/${FontFamily.REGULAR.name}", fontSize: 14),
+  //   ----------------------- //
+  titleSmall: TextStyle(
+      fontFamily: "packages/common/${FontFamily.BOLD.name}", fontSize: 20),
 );
