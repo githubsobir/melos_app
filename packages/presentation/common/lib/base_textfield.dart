@@ -1,3 +1,4 @@
+import 'package:common/masked_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 
 enum TextFieldType { BASE, PHONE, PASSWORD }
@@ -70,6 +71,7 @@ class _BaseTextFieldState extends State<BaseTextField> {
           TextField(
             controller: widget.controller,
             obscureText: isSecured,
+            obscuringCharacter: "*",
             maxLines: 1,
             style: Theme.of(context).textTheme.labelMedium,
             decoration: InputDecoration(
@@ -112,11 +114,15 @@ class _BaseTextFieldState extends State<BaseTextField> {
               ),
             ),
           )
-        else
+        else if (widget.type == TextFieldType.PHONE)
           TextField(
             controller: widget.controller,
             maxLines: 1,
             style: Theme.of(context).textTheme.labelMedium,
+            keyboardType: TextInputType.phone,
+            inputFormatters: [
+              MaskedTextInputFormatter(mask: "xx xxx xx xx", separator: " "),
+            ],
             decoration: InputDecoration(
               contentPadding:
                   const EdgeInsets.only(left: 12, top: 0, bottom: 0, right: 12),
