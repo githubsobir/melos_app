@@ -12,33 +12,24 @@ import 'package:splash/splash/splash_screen.dart';
 final _launcher = IntentLauncher()
   ..onNavigationIntent<OnboardingIntent>((context, intent) {
     return Navigator.pushReplacementNamed(context, OnboardingIntent.path);
-  })
-  ..onNavigationIntent<LoginIntent>((context, intent) {
+  })..onNavigationIntent<LoginIntent>((context, intent) {
     return Navigator.pushReplacementNamed(context, LoginIntent.path);
-  })
-  ..onNavigationIntent<RegisterIntent>((context, intent) {
+  })..onNavigationIntent<RegisterIntent>((context, intent) {
     return Navigator.pushReplacementNamed(context, RegisterIntent.path);
-  })
-  ..onNavigationIntent<PhoneNumberIntent>((context, intent) {
-    return Navigator.pushReplacementNamed(context, PhoneNumberIntent.path);
-  })
-  ..onNavigationIntent<MainIntent>((context, intent) {
+  })..onNavigationIntent<PhoneNumberIntent>((context, intent) {
+    return Navigator.pushNamed(context, PhoneNumberIntent.path);
+  })..onNavigationIntent<MainIntent>((context, intent) {
     return Navigator.pushReplacementNamed(context, MainIntent.path);
-  })
-  ..onNavigationIntent<CreateUserScreenIntent>((context, intent) {
+  })..onNavigationIntent<CreateUserScreenIntent>((context, intent) {
     return Navigator.pushNamed(context, CreateUserScreenIntent.path);
-  })
-  ..onNavigationIntent<EditUserScreenIntent>((context, intent) {
+  })..onNavigationIntent<EditUserScreenIntent>((context, intent) {
     return Navigator.pushNamed(context, EditUserScreenIntent.path,
         arguments: intent.id);
-  })
-  ..onNavigationIntent<CreateTemplateScreenIntent>((context, intent) {
+  })..onNavigationIntent<CreateTemplateScreenIntent>((context, intent) {
     return Navigator.pushNamed(context, CreateTemplateScreenIntent.path);
-  })
-  ..onNavigationIntent<CreateHistoryIntent>((context, intent) {
+  })..onNavigationIntent<CreateHistoryIntent>((context, intent) {
     return Navigator.pushNamed(context, CreateHistoryIntent.path);
-  })
-  ..onNavigationIntent<EditTemplateIntent>((context, intent) {
+  })..onNavigationIntent<EditTemplateIntent>((context, intent) {
     return Navigator.pushNamed(context, EditTemplateIntent.path, arguments: {
       "id": intent.id,
       "language": intent.language,
@@ -50,15 +41,15 @@ final _launcher = IntentLauncher()
 
 Route<dynamic>? onGenerateRoute(RouteSettings settings) {
   if (SplashIntent.path == settings.name) {
-    return _route((_) => SplashScreen().wrapWith(_launcher));
+    return _createRoute(SplashScreen().wrapWith(_launcher));
   } else if (OnboardingIntent.path == settings.name) {
-    return _route((_) => OnboardingScreen().wrapWith(_launcher));
+    return _createRoute(OnboardingScreen().wrapWith(_launcher));
   } else if (LoginIntent.path == settings.name) {
-    return _route((_) => LoginScreen().wrapWith(_launcher));
+    return _createRoute(LoginScreen().wrapWith(_launcher));
   } else if (RegisterIntent.path == settings.name) {
-    return _route((_) => RegisterScreen().wrapWith(_launcher));
+    return _createRoute(RegisterScreen().wrapWith(_launcher));
   } else if (PhoneNumberIntent.path == settings.name) {
-    return _route((_) => PhoneNumberScreen().wrapWith(_launcher));
+    return _createRoute(PhoneNumberScreen().wrapWith(_launcher));
   }
   // else if (MainIntent.path == settings.name) {
   //   return _route((_) => MainScreen().wrapWith(_launcher));
@@ -85,6 +76,27 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
   return null;
 }
 
-Route<dynamic> _route(WidgetBuilder builder) {
-  return MaterialPageRoute(builder: builder);
+Route<dynamic> _createRoute(Widget builder) {
+  return PageRouteBuilder(
+    pageBuilder: (context, animation, secondaryAnimation) => builder,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      // const begin = Offset(1.0, 0.0);
+      // const end = Offset.zero;
+      // const curve = Curves.ease;
+      //
+      // var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+      //
+      // // return SlideTransition(
+      // //   position: animation.drive(tween),
+      // //   child: child,
+      // // );
+      return FadeTransition(opacity: animation, child: child,);
+    },
+  );
 }
+
+// Route<dynamic> _route(WidgetBuilder builder) {
+//   return MaterialPageRoute(
+//     builder: builder,
+//   );
+// }
