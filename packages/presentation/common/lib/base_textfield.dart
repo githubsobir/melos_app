@@ -39,7 +39,7 @@ class BaseTextField extends StatelessWidget {
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8.0),
               borderSide: BorderSide(
-                color: Theme.of(context).colorScheme.primary,
+                color: Color(0xFFC0D8FF),
               ),
             ),
             focusedBorder: OutlineInputBorder(
@@ -51,7 +51,7 @@ class BaseTextField extends StatelessWidget {
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(8.0),
               borderSide: BorderSide(
-                color: Theme.of(context).colorScheme.primary,
+                color: Color(0xFFC0D8FF),
               ),
             ),
           ),
