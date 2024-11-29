@@ -31,6 +31,7 @@ ThemeData _themeDataLight(ColorScheme colorScheme, Color focusColor) {
     colorScheme: colorScheme,
     textTheme: _textTheme,
     primaryColor: Colors.greenAccent,
+    hintColor: Color(0xFF596780),
     appBarTheme: AppBarTheme(
       backgroundColor: colorScheme.background,
       elevation: 0,
@@ -54,6 +55,7 @@ ThemeData _themeDataDark(ColorScheme colorScheme, Color focusColor) {
     colorScheme: colorScheme,
     textTheme: _textTheme,
     primaryColor: Colors.greenAccent,
+    hintColor: Color(0xFF596780),
     appBarTheme: AppBarTheme(
       backgroundColor: colorScheme.background,
       elevation: 0,
