@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home/home_screen.dart';
+import 'package:locations/locations_screen.dart';
 import 'package:main/main_cubit.dart';
 
 class MainScreen extends StatelessWidget {
@@ -11,9 +12,7 @@ class MainScreen extends StatelessWidget {
 
   static final List<Widget> _mainScreens = <Widget>[
     HomeScreen(),
-    Container(
-      color: Colors.green,
-    ),
+    LocationsScreen(),
     Container(
       color: Colors.blue,
     ),
@@ -46,7 +45,7 @@ class MainScreen extends StatelessWidget {
                   padding: EdgeInsets.all(8.0),
                   child: Icon(Icons.home_outlined),
                 ),
-                label: "Home",
+                label: "Основной",
               ),
               BottomNavigationBarItem(
                 icon: Padding(
@@ -57,16 +56,16 @@ class MainScreen extends StatelessWidget {
                   padding: EdgeInsets.all(8.0),
                   child: Icon(Icons.notifications_outlined),
                 ),
-                label: "History",
+                label: "Рядом со мной",
               ),
               BottomNavigationBarItem(
                 icon: Padding(
                   padding: EdgeInsets.all(8.0),
-                  child: Icon(Icons.info),
+                  child: Icon(Icons.add_circle_outline),
                 ),
                 activeIcon: Padding(
                   padding: EdgeInsets.all(8.0),
-                  child: Icon(Icons.info_outlined),
+                  child: Icon(Icons.add_circle_outline),
                 ),
                 label: "Templates",
               ),
@@ -105,6 +104,10 @@ class MainScreen extends StatelessWidget {
   }
 
   void _onItemTapped(int index) {
-    cubit.changeMenuPosition(index);
+    if (index!=2) {
+      cubit.changeMenuPosition(index);
+    } else {
+      print("addd");
+    }
   }
 }
