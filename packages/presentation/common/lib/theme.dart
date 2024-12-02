@@ -35,7 +35,7 @@ ThemeData _themeDataLight(ColorScheme colorScheme, Color focusColor) {
     appBarTheme: AppBarTheme(
       backgroundColor: colorScheme.background,
       elevation: 0,
-      iconTheme: IconThemeData(color: colorScheme.primary),
+      iconTheme: IconThemeData(color: Color(0xFF192960)),
       centerTitle: true,
       titleTextStyle: _textTheme.titleSmall?.copyWith(
         color: const Color(0xFF050E2B),

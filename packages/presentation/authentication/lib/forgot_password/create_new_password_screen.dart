@@ -12,7 +12,7 @@ class CreateNewPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppbar(),
+      appBar: CustomAppbar(context: context),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
@@ -45,7 +45,7 @@ class CreateNewPasswordScreen extends StatelessWidget {
               SizedBox(height: 32),
               BaseButton(
                   onPressed: () {
-                    context.openScreen(ForgotPasswordIntent());
+                    context.openScreen(LoginIntent());
                   },
                   title: "Отправлять"),
             ],

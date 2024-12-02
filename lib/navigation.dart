@@ -15,6 +15,7 @@ final _launcher = IntentLauncher()
         return Navigator.pushReplacementNamed(context, OnboardingIntent.path);
       })
       ..onNavigationIntent<LoginIntent>((context, intent) {
+        Navigator.of(context).popUntil((route) => route.isFirst);
         return Navigator.pushReplacementNamed(context, LoginIntent.path);
       })
       ..onNavigationIntent<RegisterIntent>((context, intent) {
