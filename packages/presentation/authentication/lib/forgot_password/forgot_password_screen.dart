@@ -40,7 +40,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                   onPressed: () {
                     context.openScreen(CreateNewPasswordIntent());
                   },
-                  title: "Войти"),
+                  title: "Отправлять"),
               const SizedBox(height: 32),
               GestureDetector(
                 onTap: () {

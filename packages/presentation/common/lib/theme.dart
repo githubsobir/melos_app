@@ -84,7 +84,7 @@ const ColorScheme _lightColorScheme = ColorScheme(
 );
 
 const ColorScheme _darkColorScheme = ColorScheme(
-  primary: Colors.red,
+  primary: Color(0xFF3563E9),
   secondary: Colors.blue,
   surface: Color(0xFF1F1929),
   error: _darkFillColor,

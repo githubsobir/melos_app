@@ -10,7 +10,7 @@ class AppCubit extends Cubit<AppState> {
 
   AppCubit(this.appStateNotifier, this.sharedPref)
       : super(const AppState(languageCode: "ru", themeMode: ThemeMode.system)) {
-    // _changeState();
+    _changeState();
     appStateNotifier.languageCode.addListener(
       () {
         _changeState(languageCode: appStateNotifier.languageCode.value);
@@ -45,7 +45,8 @@ class AppCubit extends Cubit<AppState> {
     emit(
       AppState(
         languageCode: currentLanguageCode,
-        themeMode: currentThemeMode,
+        // themeMode: currentThemeMode,
+        themeMode: ThemeMode.dark,
       ),
     );
   }

@@ -47,7 +47,7 @@ class CreateNewPasswordScreen extends StatelessWidget {
                   onPressed: () {
                     context.openScreen(LoginIntent());
                   },
-                  title: "Отправлять"),
+                  title: "Изменить пароль"),
             ],
           ),
         ),
