@@ -117,4 +117,6 @@ TextTheme _textTheme = TextTheme(
   //   ----------------------- //
   titleSmall: TextStyle(
       fontFamily: "packages/common/${FontFamily.BOLD.name}", fontSize: 20),
+  titleMedium: TextStyle(
+      fontFamily: "packages/common/${FontFamily.BOLD.name}", fontSize: 24,fontWeight: _bold),
 );

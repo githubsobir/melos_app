@@ -1,43 +1,56 @@
+import 'package:authentication/forgot_password/forgot_password_screen.dart';
 import 'package:authentication/forgot_password/phone_number_screen.dart';
 import 'package:authentication/login/login_screen.dart';
 import 'package:authentication/register/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:navigation/auth_navigation_intents.dart';
-import 'package:navigation/main_navigation_intents.dart';
 import 'package:navigation/splash_navigation_intents.dart';
 import 'package:splash/onboarding/onboarding_screen.dart';
 import 'package:splash/splash/splash_screen.dart';
 
 final _launcher = IntentLauncher()
-  ..onNavigationIntent<OnboardingIntent>((context, intent) {
-    return Navigator.pushReplacementNamed(context, OnboardingIntent.path);
-  })..onNavigationIntent<LoginIntent>((context, intent) {
-    return Navigator.pushReplacementNamed(context, LoginIntent.path);
-  })..onNavigationIntent<RegisterIntent>((context, intent) {
-    return Navigator.pushReplacementNamed(context, RegisterIntent.path);
-  })..onNavigationIntent<PhoneNumberIntent>((context, intent) {
-    return Navigator.pushNamed(context, PhoneNumberIntent.path);
-  })..onNavigationIntent<MainIntent>((context, intent) {
-    return Navigator.pushReplacementNamed(context, MainIntent.path);
-  })..onNavigationIntent<CreateUserScreenIntent>((context, intent) {
-    return Navigator.pushNamed(context, CreateUserScreenIntent.path);
-  })..onNavigationIntent<EditUserScreenIntent>((context, intent) {
-    return Navigator.pushNamed(context, EditUserScreenIntent.path,
-        arguments: intent.id);
-  })..onNavigationIntent<CreateTemplateScreenIntent>((context, intent) {
-    return Navigator.pushNamed(context, CreateTemplateScreenIntent.path);
-  })..onNavigationIntent<CreateHistoryIntent>((context, intent) {
-    return Navigator.pushNamed(context, CreateHistoryIntent.path);
-  })..onNavigationIntent<EditTemplateIntent>((context, intent) {
-    return Navigator.pushNamed(context, EditTemplateIntent.path, arguments: {
-      "id": intent.id,
-      "language": intent.language,
-      "name": intent.name,
-      "message": intent.message,
-      "status": intent.status
-    });
-  });
+      ..onNavigationIntent<OnboardingIntent>((context, intent) {
+        return Navigator.pushReplacementNamed(context, OnboardingIntent.path);
+      })
+      ..onNavigationIntent<LoginIntent>((context, intent) {
+        return Navigator.pushReplacementNamed(context, LoginIntent.path);
+      })
+      ..onNavigationIntent<RegisterIntent>((context, intent) {
+        return Navigator.pushReplacementNamed(context, RegisterIntent.path);
+      })
+      ..onNavigationIntent<PhoneNumberIntent>((context, intent) {
+        return Navigator.pushNamed(context, PhoneNumberIntent.path);
+      })
+      ..onNavigationIntent<ForgotPasswordIntent>((context, intent) {
+        return Navigator.pushNamed(context, ForgotPasswordIntent.path);
+      })
+// ..onNavigationIntent<MainIntent>((context, intent) {
+//   return Navigator.pushReplacementNamed(context, MainIntent.path);
+// })
+// ..onNavigationIntent<CreateUserScreenIntent>((context, intent) {
+//   return Navigator.pushNamed(context, CreateUserScreenIntent.path);
+// })
+// ..onNavigationIntent<EditUserScreenIntent>((context, intent) {
+//   return Navigator.pushNamed(context, EditUserScreenIntent.path,
+//       arguments: intent.id);
+// })
+// ..onNavigationIntent<CreateTemplateScreenIntent>((context, intent) {
+//   return Navigator.pushNamed(context, CreateTemplateScreenIntent.path);
+// })
+// ..onNavigationIntent<CreateHistoryIntent>((context, intent) {
+//   return Navigator.pushNamed(context, CreateHistoryIntent.path);
+// })
+// ..onNavigationIntent<EditTemplateIntent>((context, intent) {
+//   return Navigator.pushNamed(context, EditTemplateIntent.path, arguments: {
+//     "id": intent.id,
+//     "language": intent.language,
+//     "name": intent.name,
+//     "message": intent.message,
+//     "status": intent.status
+//   });
+// })
+    ;
 
 Route<dynamic>? onGenerateRoute(RouteSettings settings) {
   if (SplashIntent.path == settings.name) {
@@ -50,6 +63,8 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     return _createRoute(RegisterScreen().wrapWith(_launcher));
   } else if (PhoneNumberIntent.path == settings.name) {
     return _createRoute(PhoneNumberScreen().wrapWith(_launcher));
+  } else if (ForgotPasswordIntent.path == settings.name) {
+    return _createRoute(ForgotPasswordScreen().wrapWith(_launcher));
   }
   // else if (MainIntent.path == settings.name) {
   //   return _route((_) => MainScreen().wrapWith(_launcher));
@@ -90,7 +105,10 @@ Route<dynamic> _createRoute(Widget builder) {
       // //   position: animation.drive(tween),
       // //   child: child,
       // // );
-      return FadeTransition(opacity: animation, child: child,);
+      return FadeTransition(
+        opacity: animation,
+        child: child,
+      );
     },
   );
 }

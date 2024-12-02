@@ -26,7 +26,7 @@ class SplashScreen extends StatelessWidget {
             child: Text(
               "CarB&B",
               style: TextStyle(
-                color: Color(0xFF3563E9),
+                color: Theme.of(context).colorScheme.primary,
                 fontFamily: FontFamily.BOLD.name,
                 fontSize: 24,
               ),

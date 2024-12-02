@@ -1,9 +1,7 @@
 import 'package:common/base_button.dart';
 import 'package:common/base_textfield.dart';
-import 'package:common/masked_text_input_formatter.dart';
 import 'package:common/path_images.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:navigation/auth_navigation_intents.dart';
 
@@ -40,7 +38,7 @@ class LoginScreen extends StatelessWidget {
               ),
               SizedBox(height: 16),
               GestureDetector(
-                onTap: (){
+                onTap: () {
                   context.openScreen(PhoneNumberIntent());
                 },
                 child: Text(

@@ -11,3 +11,7 @@ class RegisterIntent implements NavigationIntent {
 class PhoneNumberIntent implements NavigationIntent {
   static String path="/phone_number";
 }
+
+class ForgotPasswordIntent implements NavigationIntent {
+  static String path="/forgot_password";
+}
