@@ -5,7 +5,9 @@ import 'package:authentication/login/login_screen.dart';
 import 'package:authentication/register/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intent_launcher/intent_launcher.dart';
+import 'package:main/main_screen.dart';
 import 'package:navigation/auth_navigation_intents.dart';
+import 'package:navigation/main_navigation_intents.dart';
 import 'package:navigation/splash_navigation_intents.dart';
 import 'package:splash/onboarding/onboarding_screen.dart';
 import 'package:splash/splash/splash_screen.dart';
@@ -30,9 +32,9 @@ final _launcher = IntentLauncher()
       ..onNavigationIntent<CreateNewPasswordIntent>((context, intent) {
         return Navigator.pushNamed(context, CreateNewPasswordIntent.path);
       })
-// ..onNavigationIntent<MainIntent>((context, intent) {
-//   return Navigator.pushReplacementNamed(context, MainIntent.path);
-// })
+      ..onNavigationIntent<MainIntent>((context, intent) {
+        return Navigator.pushReplacementNamed(context, MainIntent.path);
+      })
 // ..onNavigationIntent<CreateUserScreenIntent>((context, intent) {
 //   return Navigator.pushNamed(context, CreateUserScreenIntent.path);
 // })
@@ -72,10 +74,10 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     return _createRoute(ForgotPasswordScreen().wrapWith(_launcher));
   } else if (CreateNewPasswordIntent.path == settings.name) {
     return _createRoute(CreateNewPasswordScreen().wrapWith(_launcher));
+  } else if (MainIntent.path == settings.name) {
+    return _createRoute(MainScreen().wrapWith(_launcher));
   }
-  // else if (MainIntent.path == settings.name) {
-  //   return _route((_) => MainScreen().wrapWith(_launcher));
-  // } else if (CreateUserScreenIntent.path == settings.name) {
+  // else if (CreateUserScreenIntent.path == settings.name) {
   //   return _route((_) => CreateUserScreen().wrapWith(_launcher));
   // } else if (EditUserScreenIntent.path == settings.name) {
   //   var id = settings.arguments as num;

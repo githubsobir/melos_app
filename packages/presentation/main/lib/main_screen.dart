@@ -1,0 +1,108 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:main/main_cubit.dart';
+
+class MainScreen extends StatelessWidget {
+  MainScreen({super.key});
+
+  // final cubit = MainCubit(inject());
+  final cubit = MainCubit();
+
+  static final List<Widget> _mainScreens = <Widget>[
+    Container(
+      color: Colors.red,
+    ),
+    Container(
+      color: Colors.green,
+    ),
+    Container(
+      color: Colors.blue,
+    ),
+    Container(
+      color: Colors.greenAccent,
+    ),
+    Container(
+      color: Colors.yellow,
+    ),
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder(
+      bloc: cubit,
+      builder: (context, state) {
+        return Scaffold(
+          body: _mainScreens[cubit.currentMenuPosition],
+          bottomNavigationBar: BottomNavigationBar(
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(Icons.home),
+                ),
+                activeIcon: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(Icons.home_outlined),
+                ),
+                label: "Home",
+              ),
+              BottomNavigationBarItem(
+                icon: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(Icons.notifications),
+                ),
+                activeIcon: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(Icons.notifications_outlined),
+                ),
+                label: "History",
+              ),
+              BottomNavigationBarItem(
+                icon: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(Icons.info),
+                ),
+                activeIcon: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(Icons.info_outlined),
+                ),
+                label: "Templates",
+              ),
+              BottomNavigationBarItem(
+                icon: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(Icons.settings),
+                ),
+                activeIcon: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(Icons.settings_outlined),
+                ),
+                label: "Sms",
+              ),
+              BottomNavigationBarItem(
+                icon: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(Icons.settings),
+                ),
+                activeIcon: Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: Icon(Icons.account_circle),
+                ),
+                label: "Sms",
+              ),
+            ],
+            currentIndex: cubit.currentMenuPosition,
+            showSelectedLabels: true,
+            showUnselectedLabels: true,
+            type: BottomNavigationBarType.fixed,
+            onTap: _onItemTapped,
+          ),
+        );
+      },
+    );
+  }
+
+  void _onItemTapped(int index) {
+    cubit.changeMenuPosition(index);
+  }
+}

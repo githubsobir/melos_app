@@ -31,7 +31,7 @@ packages:
       path: "packages/presentation/authentication"
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.0.0"
   bloc:
     dependency: transitive
     description:
