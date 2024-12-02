@@ -1,8 +1,10 @@
+import 'package:favourites/favourites_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home/home_screen.dart';
 import 'package:locations/locations_screen.dart';
 import 'package:main/main_cubit.dart';
+import 'package:profile/profile_screen.dart';
 
 class MainScreen extends StatelessWidget {
   MainScreen({super.key});
@@ -14,14 +16,10 @@ class MainScreen extends StatelessWidget {
     HomeScreen(),
     LocationsScreen(),
     Container(
-      color: Colors.blue,
-    ),
-    Container(
       color: Colors.greenAccent,
     ),
-    Container(
-      color: Colors.yellow,
-    ),
+    FavouritesScreen(),
+    ProfileScreen(),
   ];
 
   @override
@@ -104,6 +102,7 @@ class MainScreen extends StatelessWidget {
   }
 
   void _onItemTapped(int index) {
+    print("position: ${index}");
     if (index!=2) {
       cubit.changeMenuPosition(index);
     } else {
