@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:home/home_screen.dart';
 import 'package:main/main_cubit.dart';
 
 class MainScreen extends StatelessWidget {
@@ -9,9 +10,7 @@ class MainScreen extends StatelessWidget {
   final cubit = MainCubit();
 
   static final List<Widget> _mainScreens = <Widget>[
-    Container(
-      color: Colors.red,
-    ),
+    HomeScreen(),
     Container(
       color: Colors.green,
     ),
@@ -32,6 +31,9 @@ class MainScreen extends StatelessWidget {
       bloc: cubit,
       builder: (context, state) {
         return Scaffold(
+          appBar: AppBar(
+            title: Text("Сохранено"),
+          ),
           body: _mainScreens[cubit.currentMenuPosition],
           bottomNavigationBar: BottomNavigationBar(
             items: const <BottomNavigationBarItem>[

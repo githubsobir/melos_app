@@ -1,4 +1,4 @@
-# melos_managed_dependency_overrides: common,dependency,domain,intent_launcher,navigation
+# melos_managed_dependency_overrides: common,dependency,domain,intent_launcher,navigation,favourites,home,locations,profile
 dependency_overrides:
   common:
     path: ../common
@@ -6,7 +6,15 @@ dependency_overrides:
     path: ../../core/dependency
   domain:
     path: ../../domain
+  favourites:
+    path: ../favourites
+  home:
+    path: ../home
   intent_launcher:
     path: ../../core/intent_launcher
+  locations:
+    path: ../locations
   navigation:
     path: ../../core/navigation
+  profile:
+    path: ../profile

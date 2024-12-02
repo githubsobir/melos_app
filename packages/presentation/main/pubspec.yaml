@@ -19,3 +19,11 @@ dependencies:
     path: ../../core/navigation
   dependency:
     path: ../../core/dependency
+  home:
+    path: ../../presentation/home
+  locations:
+    path: ../../presentation/locations
+  favourites:
+    path: ../../presentation/favourites
+  profile:
+    path: ../../presentation/profile
