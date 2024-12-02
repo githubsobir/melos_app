@@ -1,4 +1,4 @@
-import 'package:authentication/forgot_password/custom_otp.dart';
+import 'package:common/custom_otp.dart';
 import 'package:common/base_button.dart';
 import 'package:flutter/material.dart';
 import 'package:intent_launcher/intent_launcher.dart';
