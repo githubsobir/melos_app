@@ -15,3 +15,7 @@ class PhoneNumberIntent implements NavigationIntent {
 class ForgotPasswordIntent implements NavigationIntent {
   static String path="/forgot_password";
 }
+
+class CreateNewPasswordIntent implements NavigationIntent {
+  static String path="/create_new_password";
+}

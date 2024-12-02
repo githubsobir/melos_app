@@ -1,3 +1,4 @@
+import 'package:authentication/forgot_password/create_new_password_screen.dart';
 import 'package:authentication/forgot_password/forgot_password_screen.dart';
 import 'package:authentication/forgot_password/phone_number_screen.dart';
 import 'package:authentication/login/login_screen.dart';
@@ -24,6 +25,9 @@ final _launcher = IntentLauncher()
       })
       ..onNavigationIntent<ForgotPasswordIntent>((context, intent) {
         return Navigator.pushNamed(context, ForgotPasswordIntent.path);
+      })
+      ..onNavigationIntent<CreateNewPasswordIntent>((context, intent) {
+        return Navigator.pushNamed(context, CreateNewPasswordIntent.path);
       })
 // ..onNavigationIntent<MainIntent>((context, intent) {
 //   return Navigator.pushReplacementNamed(context, MainIntent.path);
@@ -65,6 +69,8 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     return _createRoute(PhoneNumberScreen().wrapWith(_launcher));
   } else if (ForgotPasswordIntent.path == settings.name) {
     return _createRoute(ForgotPasswordScreen().wrapWith(_launcher));
+  } else if (CreateNewPasswordIntent.path == settings.name) {
+    return _createRoute(CreateNewPasswordScreen().wrapWith(_launcher));
   }
   // else if (MainIntent.path == settings.name) {
   //   return _route((_) => MainScreen().wrapWith(_launcher));

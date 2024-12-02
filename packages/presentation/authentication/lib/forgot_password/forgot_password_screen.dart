@@ -1,5 +1,5 @@
-import 'package:common/custom_otp.dart';
 import 'package:common/base_button.dart';
+import 'package:common/custom_otp.dart';
 import 'package:flutter/material.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:navigation/auth_navigation_intents.dart';
@@ -10,16 +10,14 @@ class ForgotPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          // title: Text("Регистрация"),
-          ),
+      appBar: AppBar(),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 150,
               ),
               Text(
@@ -27,44 +25,33 @@ class ForgotPasswordScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.titleMedium,
               ),
-              SizedBox(height: 8),
+              const SizedBox(height: 8),
               Text(
                 "Пожалуйста, введите код аутентификации, отправленный на вашу электронную почту",
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
-              SizedBox(height: 32),
+              const SizedBox(height: 32),
               CustomOtp(
-                onPinEntered: (String code) {
-
-                },
+                onPinEntered: (String code) {},
               ),
-              SizedBox(height: 32),
-              BaseButton(onPressed: () {}, title: "Войти"),
-              SizedBox(height: 32),
+              const SizedBox(height: 32),
+              BaseButton(
+                  onPressed: () {
+                    context.openScreen(CreateNewPasswordIntent());
+                  },
+                  title: "Войти"),
+              const SizedBox(height: 32),
               GestureDetector(
                 onTap: () {
-                  context.openScreen(RegisterIntent());
+
                 },
-                child: RichText(
+                child: Text(
+                  "Не получили код?",
                   textAlign: TextAlign.center,
-                  text: TextSpan(
-                    text: 'У меня нет аккаунта ',
-                    style: Theme.of(context).textTheme.bodyMedium,
-                    children: [
-                      TextSpan(
-                        text: 'Регистрация',
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                            color: Theme.of(context).colorScheme.primary),
-                      ),
-                      TextSpan(
-                        text: '?!',
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                    ],
-                  ),
+                  style: Theme.of(context).textTheme.bodyMedium,
                 ),
-              )
+              ),
             ],
           ),
         ),
