@@ -1,3 +1,4 @@
+import 'package:common/path_images.dart';
 import 'package:favourites/favourites_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -5,6 +6,7 @@ import 'package:home/home_screen.dart';
 import 'package:locations/locations_screen.dart';
 import 'package:main/main_cubit.dart';
 import 'package:profile/profile_screen.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class MainScreen extends StatelessWidget {
   MainScreen({super.key});
@@ -33,7 +35,7 @@ class MainScreen extends StatelessWidget {
           ),
           body: _mainScreens[cubit.currentMenuPosition],
           bottomNavigationBar: BottomNavigationBar(
-            items: const <BottomNavigationBarItem>[
+            items: <BottomNavigationBarItem>[
               BottomNavigationBarItem(
                 icon: Padding(
                   padding: EdgeInsets.all(8.0),
@@ -81,13 +83,18 @@ class MainScreen extends StatelessWidget {
               BottomNavigationBarItem(
                 icon: Padding(
                   padding: EdgeInsets.all(8.0),
-                  child: Icon(Icons.settings),
+                  child: SvgPicture.asset(
+                    PathImages.menuProfile,
+                  ),
                 ),
                 activeIcon: Padding(
                   padding: EdgeInsets.all(8.0),
-                  child: Icon(Icons.account_circle),
+                  child: SvgPicture.asset(
+                    PathImages.menuProfile,
+                    colorFilter: const ColorFilter.mode(Colors.red, BlendMode.srcIn),
+                  ),
                 ),
-                label: "Sms",
+                label: "Профиль",
               ),
             ],
             currentIndex: cubit.currentMenuPosition,
