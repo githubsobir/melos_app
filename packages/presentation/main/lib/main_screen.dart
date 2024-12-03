@@ -123,7 +123,7 @@ class MainScreen extends StatelessWidget {
                   height: 24,
                   colorFilter: ColorFilter.mode(
                     Theme.of(context).colorScheme.brightness == Brightness.light
-                        ? Color(0xFF050E2B)
+                        ? const Color(0xFF050E2B)
                         : Colors.white,
                     BlendMode.srcIn,
                   ),
