@@ -9,6 +9,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_bloc: ^8.1.5
+  flutter_svg: ^2.0.16
   domain:
     path: ../../domain
   common:

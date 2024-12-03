@@ -6,10 +6,10 @@ class MainCubit extends Cubit<MainState> {
   // MainCubit(this._mainUseCase) : super(MainInitial());
   MainCubit() : super(MainInitial());
 
-  var currentMenuPosition = 0;
+  var pageIndex = 0;
 
   changeMenuPosition(int index) {
-    currentMenuPosition = index;
+    pageIndex = index;
     emit(MenuPositionState(index));
   }
 }
