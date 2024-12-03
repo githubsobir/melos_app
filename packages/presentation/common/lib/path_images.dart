@@ -6,5 +6,6 @@ class PathImages {
   static var carRegister = "packages/common/assets/images/car_register.png";
   static var forgotPassword = "packages/common/assets/images/forgot_password.png";
   static var myPassword = "packages/common/assets/images/my_password.png";
+  static var image11 = "packages/common/assets/images/image_11.png";
 
 }

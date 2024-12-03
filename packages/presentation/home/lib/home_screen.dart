@@ -8,6 +8,9 @@ class HomeScreen extends StatelessWidget {
     return Scaffold(
       body: Container(
         color: Colors.red,
+        child: Center(
+          child: Text("home"),
+        ),
       ),
     );
   }

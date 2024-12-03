@@ -7,6 +7,9 @@ class LocationsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       color: Colors.green,
+      child: Center(
+        child: Text("Locations"),
+      ),
     );
   }
 }

@@ -29,7 +29,7 @@ class MainScreen extends StatelessWidget {
       builder: (context, state) {
         return Scaffold(
           appBar: AppBar(
-            title: Text("Сохранено"),
+            title: Text(_getTitleFromPosition(cubit.currentMenuPosition)),
           ),
           body: _mainScreens[cubit.currentMenuPosition],
           bottomNavigationBar: BottomNavigationBar(
@@ -102,11 +102,27 @@ class MainScreen extends StatelessWidget {
   }
 
   void _onItemTapped(int index) {
-    print("position: ${index}");
-    if (index!=2) {
+    if (index != 2) {
       cubit.changeMenuPosition(index);
     } else {
       print("addd");
+    }
+  }
+
+  String _getTitleFromPosition(int currentMenuPosition) {
+    switch (currentMenuPosition) {
+      case 0:
+        return "CARbnb";
+      case 1:
+        return "Рядом со мной";
+      case 2:
+        return "";
+      case 3:
+        return "Сохранено";
+      case 4:
+        return "Ваш аккаунт";
+      default:
+        return "";
     }
   }
 }

@@ -177,7 +177,7 @@ packages:
       path: "../profile"
       relative: true
     source: path
-    version: "0.0.1"
+    version: "0.0.0"
   provider:
     dependency: transitive
     description:

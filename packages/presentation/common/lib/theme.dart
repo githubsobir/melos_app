@@ -31,6 +31,9 @@ ThemeData _themeDataLight(ColorScheme colorScheme, Color focusColor) {
     colorScheme: colorScheme,
     textTheme: _textTheme,
     primaryColor: Colors.greenAccent,
+    dividerTheme: const DividerThemeData(
+      color: Color(0xFFD9D9D9),
+    ),
     hintColor: Color(0xFF596780),
     appBarTheme: AppBarTheme(
       backgroundColor: colorScheme.background,
@@ -55,6 +58,9 @@ ThemeData _themeDataDark(ColorScheme colorScheme, Color focusColor) {
     colorScheme: colorScheme,
     textTheme: _textTheme,
     primaryColor: Colors.greenAccent,
+    dividerTheme: const DividerThemeData(
+      color: Color(0xFFD9D9D9),
+    ),
     hintColor: Color(0xFF596780),
     appBarTheme: AppBarTheme(
       backgroundColor: colorScheme.background,
