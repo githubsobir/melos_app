@@ -165,7 +165,7 @@ packages:
     source: hosted
     version: "1.3.1"
   favourites:
-    dependency: transitive
+    dependency: "direct main"
     description:
       path: "packages/presentation/favourites"
       relative: true
@@ -256,7 +256,7 @@ packages:
     source: hosted
     version: "2.3.2"
   home:
-    dependency: transitive
+    dependency: "direct main"
     description:
       path: "packages/presentation/home"
       relative: true
@@ -342,7 +342,7 @@ packages:
     source: hosted
     version: "4.0.0"
   locations:
-    dependency: transitive
+    dependency: "direct main"
     description:
       path: "packages/presentation/locations"
       relative: true
@@ -491,7 +491,7 @@ packages:
     source: hosted
     version: "5.0.3"
   profile:
-    dependency: transitive
+    dependency: "direct main"
     description:
       path: "packages/presentation/profile"
       relative: true

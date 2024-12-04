@@ -1,6 +1,8 @@
 import 'package:common/base_button.dart';
 import 'package:common/path_images.dart';
 import 'package:flutter/material.dart';
+import 'package:intent_launcher/intent_launcher.dart';
+import 'package:navigation/profile_navigation_intents.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -212,7 +214,9 @@ class ProfileScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(top: 24,bottom: 24),
-            child: BaseButton(onPressed: (){}, title: "Редактировать"),
+            child: BaseButton(onPressed: (){
+              context.openScreen(EditProfileIntent());
+            }, title: "Редактировать"),
           )
         ],
       ),

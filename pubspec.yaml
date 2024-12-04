@@ -35,6 +35,14 @@ dependencies:
     path: packages/presentation/authentication
   main:
     path: packages/presentation/main
+  home:
+    path: packages/presentation/home
+  locations:
+    path: packages/presentation/locations
+  favourites:
+    path: packages/presentation/favourites
+  profile:
+    path: packages/presentation/profile
 
 dev_dependencies:
   flutter_test:

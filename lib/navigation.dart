@@ -8,7 +8,9 @@ import 'package:intent_launcher/intent_launcher.dart';
 import 'package:main/main_screen.dart';
 import 'package:navigation/auth_navigation_intents.dart';
 import 'package:navigation/main_navigation_intents.dart';
+import 'package:navigation/profile_navigation_intents.dart';
 import 'package:navigation/splash_navigation_intents.dart';
+import 'package:profile/edit_profile/edit_profile_screen.dart';
 import 'package:splash/onboarding/onboarding_screen.dart';
 import 'package:splash/splash/splash_screen.dart';
 
@@ -35,18 +37,12 @@ final _launcher = IntentLauncher()
       ..onNavigationIntent<MainIntent>((context, intent) {
         return Navigator.pushReplacementNamed(context, MainIntent.path);
       })
-// ..onNavigationIntent<CreateUserScreenIntent>((context, intent) {
-//   return Navigator.pushNamed(context, CreateUserScreenIntent.path);
-// })
+      ..onNavigationIntent<EditProfileIntent>((context, intent) {
+        return Navigator.pushNamed(context, EditProfileIntent.path);
+      })
 // ..onNavigationIntent<EditUserScreenIntent>((context, intent) {
 //   return Navigator.pushNamed(context, EditUserScreenIntent.path,
 //       arguments: intent.id);
-// })
-// ..onNavigationIntent<CreateTemplateScreenIntent>((context, intent) {
-//   return Navigator.pushNamed(context, CreateTemplateScreenIntent.path);
-// })
-// ..onNavigationIntent<CreateHistoryIntent>((context, intent) {
-//   return Navigator.pushNamed(context, CreateHistoryIntent.path);
 // })
 // ..onNavigationIntent<EditTemplateIntent>((context, intent) {
 //   return Navigator.pushNamed(context, EditTemplateIntent.path, arguments: {
@@ -76,16 +72,12 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     return _createRoute(CreateNewPasswordScreen().wrapWith(_launcher));
   } else if (MainIntent.path == settings.name) {
     return _createRoute(MainScreen().wrapWith(_launcher));
+  } else if (EditProfileIntent.path == settings.name) {
+    return _createRoute(EditProfileScreen().wrapWith(_launcher));
   }
-  // else if (CreateUserScreenIntent.path == settings.name) {
-  //   return _route((_) => CreateUserScreen().wrapWith(_launcher));
   // } else if (EditUserScreenIntent.path == settings.name) {
   //   var id = settings.arguments as num;
   //   return _route((_) => EditUserScreen(id: id).wrapWith(_launcher));
-  // } else if (CreateTemplateScreenIntent.path == settings.name) {
-  //   return _route((_) => CreateTemplateScreen().wrapWith(_launcher));
-  // } else if (CreateHistoryIntent.path == settings.name) {
-  //   return _route((_) => CreateHistoryScreen().wrapWith(_launcher));
   // } else if (EditTemplateIntent.path == settings.name) {
   //   var map = settings.arguments as Map;
   //
