@@ -15,13 +15,13 @@ class MainScreen extends StatelessWidget {
   final cubit = MainCubit();
 
   static final List<Widget> _mainScreens = <Widget>[
-    HomeScreen(),
-    LocationsScreen(),
+    const HomeScreen(),
+    const LocationsScreen(),
     Container(
       color: Colors.greenAccent,
     ),
-    FavouritesScreen(),
-    ProfileScreen(),
+    const FavouritesScreen(),
+    const ProfileScreen(),
   ];
 
   @override
