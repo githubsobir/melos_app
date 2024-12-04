@@ -21,14 +21,18 @@ class BaseButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(8), // <-- Radius
         ),
       ),
-      child: Text(
-        title,
-        style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-              color:
-                  Theme.of(context).colorScheme.brightness == Brightness.light
-                      ? Colors.white
-                      : Colors.white,
-            ),
+      child: Padding(
+        padding: const EdgeInsets.all(4.0),
+        child: Text(
+          title,
+          textAlign: TextAlign.center,
+          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                color:
+                    Theme.of(context).colorScheme.brightness == Brightness.light
+                        ? Colors.white
+                        : Colors.white,
+              ),
+        ),
       ),
     );
   }

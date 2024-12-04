@@ -20,6 +20,7 @@ flutter:
     - assets/images/
     - assets/onboarding/
     - assets/menu/
+    - assets/favourites/
 
   fonts:
     - family: BOLD
