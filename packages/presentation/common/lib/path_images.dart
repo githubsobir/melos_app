@@ -25,5 +25,8 @@ class PathImages {
       "packages/common/assets/favourites/management_icon.svg";
   static var peoplesCount =
       "packages/common/assets/favourites/peoples_count_icon.svg";
+//---------------- home ----------------//
+  static var search = "packages/common/assets/home/search_icon.svg";
+  static var filter = "packages/common/assets/home/filter.svg";
 //--------------------------------------------//
 }

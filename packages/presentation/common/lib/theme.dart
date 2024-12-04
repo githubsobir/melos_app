@@ -80,7 +80,7 @@ ThemeData _themeDataDark(ColorScheme colorScheme, Color focusColor) {
 const ColorScheme _lightColorScheme = ColorScheme(
   primary: Color(0xFF3563E9),
   secondary: Colors.green,
-  surface: Color(0xFFFAFBFB),
+  surface: Color(0xFFFFFFFF),
   error: _lightFillColor,
   onError: _lightFillColor,
   onPrimary: _lightFillColor,
