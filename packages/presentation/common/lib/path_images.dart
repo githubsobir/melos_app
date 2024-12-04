@@ -30,5 +30,7 @@ class PathImages {
   static var filter = "packages/common/assets/home/filter.svg";
 //---------------- locations ----------------//
   static var locationPin = "packages/common/assets/locations/location_pin.svg";
+  static var location1 = "packages/common/assets/locations/location1.svg";
+  static var locationFilled = "packages/common/assets/locations/location_filled.svg";
 //--------------------------------------------//
 }

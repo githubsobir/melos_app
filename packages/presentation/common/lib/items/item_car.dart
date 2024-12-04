@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class ItemCarBase extends StatelessWidget {
   final VoidCallback onPressed;
+  final String carImage;
   final String carName;
   final String carType;
   final double price;
@@ -14,6 +15,7 @@ class ItemCarBase extends StatelessWidget {
   const ItemCarBase({
     super.key,
     required this.onPressed,
+    required this.carImage,
     required this.carName,
     required this.carType,
     required this.price,
@@ -61,8 +63,7 @@ class ItemCarBase extends StatelessWidget {
               children: [
                 Expanded(
                   child: CachedNetworkImage(
-                    imageUrl:
-                        "https://www.hyundai.com/content/dam/hyundai/in/en/data/find-a-car/i20/Highlights/pc/i20_Modelpc.png",
+                    imageUrl:carImage,
                     progressIndicatorBuilder:
                         (context, url, downloadProgress) => SizedBox(
                             width: 24,

@@ -1,21 +1,25 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:common/base_button.dart';
+import 'package:common/path_images.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class ItemCarMap extends StatelessWidget {
   final VoidCallback onPressed;
+  final String carImage;
   final String carName;
-  final String carType;
-  final double price;
-  final double fullPrice;
+  final String carStatus;
+  final String carLocation;
+  final double carRating;
 
   const ItemCarMap({
     super.key,
     required this.onPressed,
+    required this.carImage,
     required this.carName,
-    required this.carType,
-    required this.price,
-    required this.fullPrice,
+    required this.carStatus,
+    required this.carRating,
+    required this.carLocation,
   });
 
   @override
@@ -29,14 +33,13 @@ class ItemCarMap extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
               CachedNetworkImage(
                 height: 60,
                 width: 100,
-                imageUrl:
-                    "https://www.hyundai.com/content/dam/hyundai/in/en/data/find-a-car/i20/Highlights/pc/i20_Modelpc.png",
+                imageUrl: carImage,
                 progressIndicatorBuilder: (context, url, downloadProgress) =>
                     SizedBox(
                   width: 24,
@@ -52,23 +55,73 @@ class ItemCarMap extends StatelessWidget {
                 style: Theme.of(context).textTheme.labelMedium,
                 textAlign: TextAlign.center,
               ),
-              SizedBox(
+              const SizedBox(
                 height: 4,
               ),
-              Text(
-                carName,
-                style: Theme.of(context).textTheme.labelMedium,
-                textAlign: TextAlign.center,
+              Row(
+                children: [
+                  Container(
+                    height: 4,
+                    width: 4,
+                    decoration: const BoxDecoration(
+                      color: Color(0xFF16ED38),
+                      borderRadius: BorderRadius.all(Radius.circular(6)),
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 4,
+                  ),
+                  Expanded(
+                    child: Text(
+                      carStatus,
+                      style: Theme.of(context)
+                          .textTheme
+                          .labelMedium
+                          ?.copyWith(fontSize: 8),
+                    ),
+                  ),
+                  Container(
+                    padding: const EdgeInsets.only(
+                        left: 4, right: 4, bottom: 2, top: 2),
+                    decoration: const BoxDecoration(
+                      color: Color(0xFF3563E9),
+                      borderRadius: BorderRadius.all(Radius.circular(2)),
+                    ),
+                    child: Text(
+                      '$carRating',
+                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                            fontSize: 8,
+                            color: Theme.of(context).colorScheme.brightness ==
+                                    Brightness.light
+                                ? Colors.white
+                                : Colors.white,
+                          ),
+                    ),
+                  ),
+                ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 4,
               ),
-              Text(
-                carName,
-                style: Theme.of(context).textTheme.labelMedium,
-                textAlign: TextAlign.center,
+              Row(
+                children: [
+                  SvgPicture.asset(PathImages.location1),
+                  const SizedBox(
+                    width: 4,
+                  ),
+                  Expanded(
+                    child: Text(
+                    carLocation,
+                      maxLines: 1,
+                      style: Theme.of(context)
+                          .textTheme
+                          .labelMedium
+                          ?.copyWith(fontSize: 8),
+                    ),
+                  ),
+                ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 12,
               ),
               BaseButton(

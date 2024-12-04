@@ -76,6 +76,7 @@ class HomeScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 24),
                 child: ItemCarPopular(
                   onPressed: () {},
+                  carImage: "https://www.hyundai.com/content/dam/hyundai/in/en/data/find-a-car/i20/Highlights/pc/i20_Modelpc.png",
                   carName: "carName",
                   carType: "carType",
                   price: 100,
@@ -98,6 +99,8 @@ class HomeScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 24, right: 24),
               child: ItemCarBase(
+                carImage:
+                    "https://www.hyundai.com/content/dam/hyundai/in/en/data/find-a-car/i20/Highlights/pc/i20_Modelpc.png",
                 carName: "Chevrolet Captiva wd",
                 carType: "SUVVVV",
                 price: 89,

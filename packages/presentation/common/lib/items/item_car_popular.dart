@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class ItemCarPopular extends StatelessWidget {
   final VoidCallback onPressed;
+  final String carImage;
   final String carName;
   final String carType;
   final double price;
@@ -14,6 +15,7 @@ class ItemCarPopular extends StatelessWidget {
   const ItemCarPopular({
     super.key,
     required this.onPressed,
+    required this.carImage,
     required this.carName,
     required this.carType,
     required this.price,
@@ -62,8 +64,7 @@ class ItemCarPopular extends StatelessWidget {
             Expanded(
               child: CachedNetworkImage(
                 height: 90,
-                imageUrl:
-                    "https://www.hyundai.com/content/dam/hyundai/in/en/data/find-a-car/i20/Highlights/pc/i20_Modelpc.png",
+                imageUrl: carImage,
                 progressIndicatorBuilder: (context, url, downloadProgress) =>
                     SizedBox(
                   width: 24,
@@ -152,14 +153,14 @@ class ItemCarPopular extends StatelessWidget {
                         style: Theme.of(context)
                             .textTheme
                             .bodyMedium
-                            ?.copyWith(fontWeight: FontWeight.w700),
+                            ?.copyWith(fontWeight: FontWeight.w700,fontSize: 14),
                         children: [
                           TextSpan(
                             text: "день",
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium
-                                ?.copyWith(color: const Color(0xFF90A3BF)),
+                                ?.copyWith(color: const Color(0xFF90A3BF),fontSize: 14),
                           ),
                         ],
                       ),
@@ -169,12 +170,15 @@ class ItemCarPopular extends StatelessWidget {
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium
-                          ?.copyWith(color: const Color(0xFF90A3BF)),
+                          ?.copyWith(color: const Color(0xFF90A3BF),fontSize: 14),
                     ),
                   ],
                 )),
                 BaseButton(
-                    onPressed: onPressed, title: "Забронировать\nсейчас",fontSize: 12,),
+                  onPressed: onPressed,
+                  title: "Забронировать\nсейчас",
+                  fontSize: 12,
+                ),
               ],
             )
           ],

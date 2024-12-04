@@ -15,26 +15,26 @@ class BaseButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FilledButton(
-      onPressed: onPressed,
-      style: ElevatedButton.styleFrom(
-        backgroundColor: background,
+    return GestureDetector(
+      onTap: onPressed,
+      child: Card(
+        color: Theme.of(context).colorScheme.primary,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8), // <-- Radius
+          borderRadius: BorderRadius.circular(8.0), // Adjust radius as needed
         ),
-      ),
-      child: Padding(
-        padding: const EdgeInsets.all(4.0),
-        child: Text(
-          title,
-          textAlign: TextAlign.center,
-          style: Theme.of(context).textTheme.bodyMedium!.copyWith(
-                fontSize: fontSize,
-                color:
-                    Theme.of(context).colorScheme.brightness == Brightness.light
-                        ? Colors.white
-                        : Colors.white,
-              ),
+        child: Padding(
+          padding: const EdgeInsets.all(4.0),
+          child: Text(
+            title,
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                  fontSize: fontSize,
+                  color: Theme.of(context).colorScheme.brightness ==
+                          Brightness.light
+                      ? Colors.white
+                      : Colors.white,
+                ),
+          ),
         ),
       ),
     );
