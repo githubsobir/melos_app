@@ -16,7 +16,7 @@ class MainScreen extends StatelessWidget {
 
   static final List<Widget> _mainScreens = <Widget>[
     const HomeScreen(),
-    const LocationsScreen(),
+    LocationsScreen(),
     Container(
       color: Colors.greenAccent,
     ),
