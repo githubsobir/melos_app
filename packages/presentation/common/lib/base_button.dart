@@ -18,7 +18,7 @@ class BaseButton extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Card(
-        color: Theme.of(context).colorScheme.primary,
+        color: background,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0), // Adjust radius as needed
         ),
