@@ -11,13 +11,13 @@ class EditProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Регистрация"),
+        title: const Text("Регистрация"),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(24.0),
+            const Padding(
+              padding: EdgeInsets.all(24.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
@@ -90,6 +90,9 @@ class EditProfileScreen extends StatelessWidget {
                           alignment: Alignment.center,
                           PathImages.image11,
                         ),
+                        const SizedBox(
+                          height: 8,
+                        ),
                         BaseButton(onPressed: () {}, title: "Изменить")
                       ],
                     ),
@@ -109,6 +112,9 @@ class EditProfileScreen extends StatelessWidget {
                         Image.asset(
                           alignment: Alignment.center,
                           PathImages.image11,
+                        ),
+                        const SizedBox(
+                          height: 8,
                         ),
                         BaseButton(onPressed: () {}, title: "Изменить")
                       ],
