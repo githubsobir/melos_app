@@ -4,11 +4,13 @@ class BaseButton extends StatelessWidget {
   final VoidCallback onPressed;
   final String title;
   final Color background;
+  final double fontSize;
 
   const BaseButton(
       {super.key,
       required this.onPressed,
       required this.title,
+      this.fontSize = 18,
       this.background = const Color(0xFF3563E9)});
 
   @override
@@ -27,6 +29,7 @@ class BaseButton extends StatelessWidget {
           title,
           textAlign: TextAlign.center,
           style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                fontSize: fontSize,
                 color:
                     Theme.of(context).colorScheme.brightness == Brightness.light
                         ? Colors.white

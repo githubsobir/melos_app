@@ -17,7 +17,7 @@ class FavouritesScreen extends StatelessWidget {
           itemCount: 10,
           padding: const EdgeInsets.only(top: 16),
           itemBuilder: (context, index) {
-            return ItemCar(
+            return ItemCarBase(
               carName: "Chevrolet Captiva wd",
               carType: "SUVVVV",
               price: 89,

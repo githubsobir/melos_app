@@ -4,14 +4,14 @@ import 'package:common/path_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class ItemCarBase extends StatelessWidget {
+class ItemCarPopular extends StatelessWidget {
   final VoidCallback onPressed;
   final String carName;
   final String carType;
   final double price;
   final double fullPrice;
 
-  const ItemCarBase({
+  const ItemCarPopular({
     super.key,
     required this.onPressed,
     required this.carName,
@@ -24,8 +24,10 @@ class ItemCarBase extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       margin: const EdgeInsets.only(bottom: 16),
-      child: Padding(
+      child: Container(
         padding: const EdgeInsets.all(16.0),
+        width: 260,
+        height: 280,
         child: Column(
           children: [
             Row(
@@ -57,90 +59,88 @@ class ItemCarBase extends StatelessWidget {
                 )
               ],
             ),
-            Row(
-              children: [
-                Expanded(
-                  child: CachedNetworkImage(
-                    imageUrl:
-                        "https://www.hyundai.com/content/dam/hyundai/in/en/data/find-a-car/i20/Highlights/pc/i20_Modelpc.png",
-                    progressIndicatorBuilder:
-                        (context, url, downloadProgress) => SizedBox(
-                            width: 24,
-                            height: 24,
-                            child: CircularProgressIndicator(
-                              value: downloadProgress.progress,
-                            )),
-                    errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
+            Expanded(
+              child: CachedNetworkImage(
+                height: 90,
+                imageUrl:
+                    "https://www.hyundai.com/content/dam/hyundai/in/en/data/find-a-car/i20/Highlights/pc/i20_Modelpc.png",
+                progressIndicatorBuilder: (context, url, downloadProgress) =>
+                    SizedBox(
+                  width: 24,
+                  height: 24,
+                  child: CircularProgressIndicator(
+                    value: downloadProgress.progress,
                   ),
                 ),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                errorWidget: (context, url, error) => const Icon(Icons.error),
+              ),
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                Row(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        SvgPicture.asset(PathImages.capacity),
-                        const SizedBox(
-                          width: 4,
-                        ),
-                        Text(
-                          "70L",
-                          style: Theme.of(context)
-                              .textTheme
-                              .labelMedium
-                              ?.copyWith(color: const Color(0xFF90A3BF)),
-                        ),
-                      ],
-                    ),
+                    SvgPicture.asset(PathImages.capacity),
                     const SizedBox(
-                      height: 8,
+                      width: 4,
                     ),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        SvgPicture.asset(PathImages.management),
-                        const SizedBox(
-                          width: 4,
-                        ),
-                        Text(
-                          "Руководство",
-                          style: Theme.of(context)
-                              .textTheme
-                              .labelMedium
-                              ?.copyWith(color: const Color(0xFF90A3BF)),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        SvgPicture.asset(PathImages.peoplesCount),
-                        const SizedBox(
-                          width: 4,
-                        ),
-                        Text(
-                          "6 Люди",
-                          style: Theme.of(context)
-                              .textTheme
-                              .labelMedium
-                              ?.copyWith(color: const Color(0xFF90A3BF)),
-                        ),
-                      ],
+                    Text(
+                      "70L",
+                      style: Theme.of(context)
+                          .textTheme
+                          .labelMedium
+                          ?.copyWith(color: const Color(0xFF90A3BF)),
                     ),
                   ],
-                )
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SvgPicture.asset(PathImages.management),
+                    const SizedBox(
+                      width: 4,
+                    ),
+                    Text(
+                      "Руководство",
+                      style: Theme.of(context)
+                          .textTheme
+                          .labelMedium
+                          ?.copyWith(color: const Color(0xFF90A3BF)),
+                    ),
+                  ],
+                ),
+                const SizedBox(
+                  height: 8,
+                ),
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    SvgPicture.asset(PathImages.peoplesCount),
+                    const SizedBox(
+                      width: 4,
+                    ),
+                    Text(
+                      "6 Люди",
+                      style: Theme.of(context)
+                          .textTheme
+                          .labelMedium
+                          ?.copyWith(color: const Color(0xFF90A3BF)),
+                    ),
+                  ],
+                ),
               ],
             ),
             const SizedBox(
-              height: 48,
+              height: 16,
             ),
             Row(
-              // mainAxisAlignment: MainAxisAlignment.center,
-              // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Expanded(
                     child: Column(
@@ -174,10 +174,7 @@ class ItemCarBase extends StatelessWidget {
                   ],
                 )),
                 BaseButton(
-                  onPressed: onPressed,
-                  title: "Забронировать\nсейчас",
-                  fontSize: 12,
-                ),
+                    onPressed: onPressed, title: "Забронировать\nсейчас",fontSize: 12,),
               ],
             )
           ],
