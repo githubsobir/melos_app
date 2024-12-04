@@ -136,7 +136,7 @@ class MainScreen extends StatelessWidget {
   String _getTitleFromPosition(int currentMenuPosition) {
     switch (currentMenuPosition) {
       case 0:
-        return "CARbnb";
+        return "";
       case 1:
         return "Рядом сомной";
       case 2:
