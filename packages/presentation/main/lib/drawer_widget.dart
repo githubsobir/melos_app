@@ -8,11 +8,10 @@ class DrawerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListView(
-      // Important: Remove any padding from the ListView.
       padding: EdgeInsets.zero,
       children: [
         Padding(
-          padding: const EdgeInsets.only(left: 24, top: 60),
+          padding: const EdgeInsets.only(left: 16, top: 60),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
@@ -25,24 +24,85 @@ class DrawerWidget extends StatelessWidget {
             ],
           ),
         ),
-        ListTile(
-          title: Text(
-            'Bookings',
-            style: Theme.of(context).textTheme.headlineMedium,
-          ),
-          leading: SvgPicture.asset(PathImages.logo),
+        const Divider(),
+        item(
+          icon: PathImages.booking,
+          title: "Booking",
+          context: context,
           onTap: () {
             Scaffold.of(context).closeDrawer();
           },
         ),
-        ListTile(
-          title: const Text('Item 2'),
+        item(
+          icon: PathImages.bookingHistory,
+          title: "Booking history",
+          context: context,
           onTap: () {
-            // Update the state of the app.
-            // ...
+            Scaffold.of(context).closeDrawer();
+          },
+        ),
+        item(
+          icon: PathImages.paymentDetails,
+          title: "Payment details",
+          context: context,
+          onTap: () {
+            Scaffold.of(context).closeDrawer();
+          },
+        ),
+        item(
+          icon: PathImages.myCars,
+          title: "My cars",
+          context: context,
+          onTap: () {
+            Scaffold.of(context).closeDrawer();
+          },
+        ),
+        const SizedBox(
+          height: 16,
+        ),
+        const Divider(),
+        item(
+          icon: PathImages.help,
+          title: "Help",
+          context: context,
+          onTap: () {
+            Scaffold.of(context).closeDrawer();
+          },
+        ),
+        item(
+          icon: PathImages.logout,
+          title: "Logout",
+          context: context,
+          onTap: () {
+            Scaffold.of(context).closeDrawer();
           },
         ),
       ],
+    );
+  }
+
+  Widget item(
+      {required String icon,
+      required String title,
+      required BuildContext context,
+      required VoidCallback onTap}) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
+        child: Row(
+          children: [
+            SvgPicture.asset(icon),
+            const SizedBox(
+              width: 16,
+            ),
+            Text(
+              title,
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

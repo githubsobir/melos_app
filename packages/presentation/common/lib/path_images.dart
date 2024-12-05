@@ -34,5 +34,12 @@ class PathImages {
   static var locationFilled = "packages/common/assets/locations/location_filled.svg";
 //---------------- home ----------------//
   static var logo = "packages/common/assets/main/logo.svg";
+  static var booking = "packages/common/assets/main/booking.svg";
+  static var bookingHistory = "packages/common/assets/main/booking_history.svg";
+  static var darkMode = "packages/common/assets/main/dark_mode.svg";
+  static var help = "packages/common/assets/main/help.svg";
+  static var logout = "packages/common/assets/main/logout.svg";
+  static var myCars = "packages/common/assets/main/my_cars.svg";
+  static var paymentDetails = "packages/common/assets/main/payment_details.svg";
 //--------------------------------------------//
 }
