@@ -34,6 +34,40 @@ class MainScreen extends StatelessWidget {
           appBar: cubit.pageIndex != 1
               ? AppBar(
                   title: _getTitleFromPosition(cubit.pageIndex),
+                  actions: [
+                    Container(
+                      margin: const EdgeInsets.only(right: 24),
+                      width: 38,
+                      height: 38,
+                      child: Stack(
+                        children: [
+                          Container(
+                            width: 38,
+                            height: 38,
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(18),
+                              border: Border.all(color: const Color(0xFFC0D8FF)),
+                            ),
+
+                            padding: const EdgeInsets.all(8),
+                            child: SvgPicture.asset(PathImages.notification),
+                          ),
+                         Align(
+                           child:  Container(
+                             height: 11,
+                             width: 11,
+                             decoration: BoxDecoration(
+                                 borderRadius: BorderRadius.circular(11),
+                                 color: const Color(0xFFFF3636)
+                               // border: Border.all(color: const Color(0xFFC0D8FF)),
+                             ),
+                           ),
+                           alignment: Alignment.topRight,
+                         )
+                        ],
+                      ),
+                    )
+                  ],
                 )
               : null,
           drawer: const Drawer(

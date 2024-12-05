@@ -32,7 +32,7 @@ class PathImages {
   static var locationPin = "packages/common/assets/locations/location_pin.svg";
   static var location1 = "packages/common/assets/locations/location1.svg";
   static var locationFilled = "packages/common/assets/locations/location_filled.svg";
-//---------------- home ----------------//
+//---------------- main ----------------//
   static var logo = "packages/common/assets/main/logo.svg";
   static var booking = "packages/common/assets/main/booking.svg";
   static var bookingHistory = "packages/common/assets/main/booking_history.svg";
@@ -41,5 +41,6 @@ class PathImages {
   static var logout = "packages/common/assets/main/logout.svg";
   static var myCars = "packages/common/assets/main/my_cars.svg";
   static var paymentDetails = "packages/common/assets/main/payment_details.svg";
+  static var notification = "packages/common/assets/main/notification.svg";
 //--------------------------------------------//
 }
