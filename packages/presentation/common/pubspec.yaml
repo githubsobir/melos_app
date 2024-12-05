@@ -23,6 +23,7 @@ flutter:
     - assets/onboarding/
     - assets/menu/
     - assets/favourites/
+    - assets/main/
     - assets/home/
     - assets/locations/
 

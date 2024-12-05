@@ -125,4 +125,6 @@ TextTheme _textTheme = TextTheme(
       fontFamily: "packages/common/${FontFamily.BOLD.name}", fontSize: 20),
   titleMedium: TextStyle(
       fontFamily: "packages/common/${FontFamily.BOLD.name}", fontSize: 24,fontWeight: _bold),
+  headlineMedium: TextStyle(
+      fontFamily: "packages/common/${FontFamily.MEDIUM.name}", fontSize: 20,fontWeight: _regular),
 );
