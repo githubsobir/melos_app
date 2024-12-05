@@ -19,20 +19,10 @@ class HomeScreen extends StatelessWidget {
             elevation: 0,
             margin: const EdgeInsets.all(0),
             child: Container(
-              padding: const EdgeInsets.all(24),
+              padding: const EdgeInsets.only(left: 24, right: 24, bottom: 24),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text(
-                    'CARbnb',
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium
-                        ?.copyWith(color: const Color(0xFF54A6FF)),
-                  ),
-                  const SizedBox(
-                    height: 24,
-                  ),
                   SearchEdittext(
                     onTextChange: (productName) {},
                   ),
@@ -76,7 +66,8 @@ class HomeScreen extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 24),
                 child: ItemCarPopular(
                   onPressed: () {},
-                  carImage: "https://www.hyundai.com/content/dam/hyundai/in/en/data/find-a-car/i20/Highlights/pc/i20_Modelpc.png",
+                  carImage:
+                      "https://www.hyundai.com/content/dam/hyundai/in/en/data/find-a-car/i20/Highlights/pc/i20_Modelpc.png",
                   carName: "carName",
                   carType: "carType",
                   price: 100,

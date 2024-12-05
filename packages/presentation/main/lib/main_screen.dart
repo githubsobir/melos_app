@@ -31,9 +31,11 @@ class MainScreen extends StatelessWidget {
       bloc: cubit,
       builder: (context, state) {
         return Scaffold(
-          appBar: AppBar(
-            title: Text(_getTitleFromPosition(cubit.pageIndex)),
-          ),
+          appBar: cubit.pageIndex != 1
+              ? AppBar(
+                  title: _getTitleFromPosition(cubit.pageIndex),
+                )
+              : null,
           drawer: const Drawer(
             child: DrawerWidget(),
           ),
@@ -137,20 +139,26 @@ class MainScreen extends StatelessWidget {
     );
   }
 
-  String _getTitleFromPosition(int currentMenuPosition) {
+  Widget _getTitleFromPosition(int currentMenuPosition) {
     switch (currentMenuPosition) {
       case 0:
-        return "";
+        return SvgPicture.asset(
+          PathImages.logo,
+          // colorFilter: const ColorFilter.mode(
+          //   Color(0xFF54A6FF),
+          //   BlendMode.srcIn,
+          // ),
+        );
       case 1:
-        return "Рядом сомной";
+        return Text("Рядом сомной");
       case 2:
-        return "";
+        return Text("");
       case 3:
-        return "Сохранено";
+        return Text("Сохранено");
       case 4:
-        return "Ваш аккаунт";
+        return Text("Ваш аккаунт");
       default:
-        return "";
+        return Text("");
     }
   }
 }
