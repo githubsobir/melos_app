@@ -13,7 +13,20 @@ class LocationsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Row(
+          children: [
+            SvgPicture.asset(PathImages.locationRed),
+            SizedBox(
+              width: 4,
+            ),
+            Text(
+              "Коратош, 35, Шайхантохур",
+              style: Theme.of(context).textTheme.bodyMedium,
+            )
+          ],
+        ),
+      ),
       body: Stack(
         children: [
           FlutterMap(
@@ -54,10 +67,12 @@ class LocationsScreen extends StatelessWidget {
                   margin: const EdgeInsets.all(16),
                   padding: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
-                    border: Border.all(color: Theme.of(context).colorScheme.brightness ==
-                        Brightness.light
-                        ? const Color(0xFF3563E9)
-                        : const Color(0xFF3563E9),),
+                    border: Border.all(
+                      color: Theme.of(context).colorScheme.brightness ==
+                              Brightness.light
+                          ? const Color(0xFF3563E9)
+                          : const Color(0xFF3563E9),
+                    ),
                     color: Theme.of(context).colorScheme.brightness ==
                             Brightness.light
                         ? const Color(0xFFFFFFFF)
