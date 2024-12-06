@@ -5,8 +5,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:home/home_screen.dart';
 import 'package:locations/locations_screen.dart';
-import 'package:main/drawer_widget.dart';
-import 'package:main/main_cubit.dart';
+import 'package:main/main/drawer_widget.dart';
+import 'package:main/main/main_cubit.dart';
 import 'package:profile/profile/profile_screen.dart';
 
 class MainScreen extends StatelessWidget {

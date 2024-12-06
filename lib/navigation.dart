@@ -5,7 +5,8 @@ import 'package:authentication/login/login_screen.dart';
 import 'package:authentication/register/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intent_launcher/intent_launcher.dart';
-import 'package:main/main_screen.dart';
+import 'package:main/booking/booking_screen.dart';
+import 'package:main/main/main_screen.dart';
 import 'package:navigation/auth_navigation_intents.dart';
 import 'package:navigation/main_navigation_intents.dart';
 import 'package:navigation/profile_navigation_intents.dart';
@@ -15,6 +16,7 @@ import 'package:splash/onboarding/onboarding_screen.dart';
 import 'package:splash/splash/splash_screen.dart';
 
 final _launcher = IntentLauncher()
+// login
       ..onNavigationIntent<OnboardingIntent>((context, intent) {
         return Navigator.pushReplacementNamed(context, OnboardingIntent.path);
       })
@@ -34,8 +36,12 @@ final _launcher = IntentLauncher()
       ..onNavigationIntent<CreateNewPasswordIntent>((context, intent) {
         return Navigator.pushNamed(context, CreateNewPasswordIntent.path);
       })
+// main
       ..onNavigationIntent<MainIntent>((context, intent) {
         return Navigator.pushReplacementNamed(context, MainIntent.path);
+      })
+      ..onNavigationIntent<BookingIntent>((context, intent) {
+        return Navigator.pushNamed(context, BookingIntent.path);
       })
       ..onNavigationIntent<EditProfileIntent>((context, intent) {
         return Navigator.pushNamed(context, EditProfileIntent.path);
@@ -72,6 +78,8 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     return _createRoute(CreateNewPasswordScreen().wrapWith(_launcher));
   } else if (MainIntent.path == settings.name) {
     return _createRoute(MainScreen().wrapWith(_launcher));
+  } else if (BookingIntent.path == settings.name) {
+    return _createRoute(BookingScreen().wrapWith(_launcher));
   } else if (EditProfileIntent.path == settings.name) {
     return _createRoute(EditProfileScreen().wrapWith(_launcher));
   }

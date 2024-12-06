@@ -1,6 +1,8 @@
 import 'package:common/path_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intent_launcher/intent_launcher.dart';
+import 'package:navigation/main_navigation_intents.dart';
 
 class DrawerWidget extends StatelessWidget {
   const DrawerWidget({super.key});
@@ -30,6 +32,7 @@ class DrawerWidget extends StatelessWidget {
           title: "Booking",
           context: context,
           onTap: () {
+            context.openScreen(BookingIntent());
             Scaffold.of(context).closeDrawer();
           },
         ),
