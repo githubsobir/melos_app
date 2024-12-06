@@ -7,7 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:main/booking/booking_screen.dart';
 import 'package:main/booking_history/booking_history_screen.dart';
+import 'package:main/help/help_screen.dart';
 import 'package:main/main/main_screen.dart';
+import 'package:main/my_cars/my_cars_screen.dart';
+import 'package:main/payment_details/payment_details_screen.dart';
 import 'package:navigation/auth_navigation_intents.dart';
 import 'package:navigation/main_navigation_intents.dart';
 import 'package:navigation/profile_navigation_intents.dart';
@@ -46,6 +49,15 @@ final _launcher = IntentLauncher()
       })
       ..onNavigationIntent<BookingHistoryIntent>((context, intent) {
         return Navigator.pushNamed(context, BookingHistoryIntent.path);
+      })
+      ..onNavigationIntent<HelpIntent>((context, intent) {
+        return Navigator.pushNamed(context, HelpIntent.path);
+      })
+      ..onNavigationIntent<MyCarsIntent>((context, intent) {
+        return Navigator.pushNamed(context, MyCarsIntent.path);
+      })
+      ..onNavigationIntent<PaymentDetailsIntent>((context, intent) {
+        return Navigator.pushNamed(context, PaymentDetailsIntent.path);
       })
 //profile
       ..onNavigationIntent<EditProfileIntent>((context, intent) {
@@ -87,6 +99,12 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     return _createRoute(BookingScreen().wrapWith(_launcher));
   } else if (BookingHistoryIntent.path == settings.name) {
     return _createRoute(BookingHistoryScreen().wrapWith(_launcher));
+  } else if (HelpIntent.path == settings.name) {
+    return _createRoute(HelpScreen().wrapWith(_launcher));
+  } else if (MyCarsIntent.path == settings.name) {
+    return _createRoute(MyCarsScreen().wrapWith(_launcher));
+  } else if (PaymentDetailsIntent.path == settings.name) {
+    return _createRoute(PaymentDetailsScreen().wrapWith(_launcher));
   } else if (EditProfileIntent.path == settings.name) {
     return _createRoute(EditProfileScreen().wrapWith(_launcher));
   }

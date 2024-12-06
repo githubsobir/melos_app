@@ -50,6 +50,7 @@ class DrawerWidget extends StatelessWidget {
           title: "Payment details",
           context: context,
           onTap: () {
+            context.openScreen(PaymentDetailsIntent());
             Scaffold.of(context).closeDrawer();
           },
         ),
@@ -58,6 +59,7 @@ class DrawerWidget extends StatelessWidget {
           title: "My cars",
           context: context,
           onTap: () {
+            context.openScreen(MyCarsIntent());
             Scaffold.of(context).closeDrawer();
           },
         ),
@@ -70,6 +72,7 @@ class DrawerWidget extends StatelessWidget {
           title: "Help",
           context: context,
           onTap: () {
+            context.openScreen(HelpIntent());
             Scaffold.of(context).closeDrawer();
           },
         ),
@@ -78,6 +81,7 @@ class DrawerWidget extends StatelessWidget {
           title: "Logout",
           context: context,
           onTap: () {
+
             Scaffold.of(context).closeDrawer();
           },
         ),

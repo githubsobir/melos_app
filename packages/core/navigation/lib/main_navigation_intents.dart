@@ -11,3 +11,14 @@ class BookingIntent implements NavigationIntent {
 class BookingHistoryIntent implements NavigationIntent {
   static String path = "/booking_history";
 }
+
+class HelpIntent implements NavigationIntent {
+  static String path = "/help";
+}
+
+class MyCarsIntent implements NavigationIntent {
+  static String path = "/my_cars";
+}
+class PaymentDetailsIntent implements NavigationIntent {
+  static String path = "/payment_details";
+}
