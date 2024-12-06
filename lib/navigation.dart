@@ -6,6 +6,7 @@ import 'package:authentication/register/register_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:main/booking/booking_screen.dart';
+import 'package:main/booking_history/booking_history_screen.dart';
 import 'package:main/main/main_screen.dart';
 import 'package:navigation/auth_navigation_intents.dart';
 import 'package:navigation/main_navigation_intents.dart';
@@ -43,6 +44,10 @@ final _launcher = IntentLauncher()
       ..onNavigationIntent<BookingIntent>((context, intent) {
         return Navigator.pushNamed(context, BookingIntent.path);
       })
+      ..onNavigationIntent<BookingHistoryIntent>((context, intent) {
+        return Navigator.pushNamed(context, BookingHistoryIntent.path);
+      })
+//profile
       ..onNavigationIntent<EditProfileIntent>((context, intent) {
         return Navigator.pushNamed(context, EditProfileIntent.path);
       })
@@ -80,6 +85,8 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     return _createRoute(MainScreen().wrapWith(_launcher));
   } else if (BookingIntent.path == settings.name) {
     return _createRoute(BookingScreen().wrapWith(_launcher));
+  } else if (BookingHistoryIntent.path == settings.name) {
+    return _createRoute(BookingHistoryScreen().wrapWith(_launcher));
   } else if (EditProfileIntent.path == settings.name) {
     return _createRoute(EditProfileScreen().wrapWith(_launcher));
   }

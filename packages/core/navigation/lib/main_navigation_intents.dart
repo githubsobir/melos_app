@@ -7,3 +7,7 @@ class MainIntent implements NavigationIntent {
 class BookingIntent implements NavigationIntent {
   static String path = "/booking";
 }
+
+class BookingHistoryIntent implements NavigationIntent {
+  static String path = "/booking_history";
+}

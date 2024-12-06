@@ -41,6 +41,7 @@ class DrawerWidget extends StatelessWidget {
           title: "Booking history",
           context: context,
           onTap: () {
+            context.openScreen(BookingHistoryIntent());
             Scaffold.of(context).closeDrawer();
           },
         ),
