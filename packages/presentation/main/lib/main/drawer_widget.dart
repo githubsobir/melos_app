@@ -2,6 +2,7 @@ import 'package:common/path_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intent_launcher/intent_launcher.dart';
+import 'package:navigation/auth_navigation_intents.dart';
 import 'package:navigation/main_navigation_intents.dart';
 
 class DrawerWidget extends StatelessWidget {
@@ -81,8 +82,7 @@ class DrawerWidget extends StatelessWidget {
           title: "Logout",
           context: context,
           onTap: () {
-
-            Scaffold.of(context).closeDrawer();
+            context.openScreen(LoginIntent());
           },
         ),
       ],
