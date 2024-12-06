@@ -30,7 +30,7 @@ class DrawerWidget extends StatelessWidget {
         const Divider(),
         item(
           icon: PathImages.booking,
-          title: "Booking",
+          title: "Бронирование",
           context: context,
           onTap: () {
             context.openScreen(BookingIntent());
@@ -39,7 +39,7 @@ class DrawerWidget extends StatelessWidget {
         ),
         item(
           icon: PathImages.bookingHistory,
-          title: "Booking history",
+          title: "История бронирования",
           context: context,
           onTap: () {
             context.openScreen(BookingHistoryIntent());
@@ -48,7 +48,7 @@ class DrawerWidget extends StatelessWidget {
         ),
         item(
           icon: PathImages.paymentDetails,
-          title: "Payment details",
+          title: "Реквизиты для оплаты",
           context: context,
           onTap: () {
             context.openScreen(PaymentDetailsIntent());
@@ -57,7 +57,7 @@ class DrawerWidget extends StatelessWidget {
         ),
         item(
           icon: PathImages.myCars,
-          title: "My cars",
+          title: "Мои машины",
           context: context,
           onTap: () {
             context.openScreen(MyCarsIntent());
@@ -70,7 +70,7 @@ class DrawerWidget extends StatelessWidget {
         const Divider(),
         item(
           icon: PathImages.help,
-          title: "Help",
+          title: "Помощь",
           context: context,
           onTap: () {
             context.openScreen(HelpIntent());
@@ -79,7 +79,7 @@ class DrawerWidget extends StatelessWidget {
         ),
         item(
           icon: PathImages.logout,
-          title: "Logout",
+          title: "Выйти",
           context: context,
           onTap: () {
             context.openScreen(LoginIntent());

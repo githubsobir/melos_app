@@ -28,6 +28,8 @@ class PathImages {
 //---------------- home ----------------//
   static var search = "packages/common/assets/home/search_icon.svg";
   static var filter = "packages/common/assets/home/filter.svg";
+  static var mark = "packages/common/assets/home/mark_icon.svg";
+  static var swap = "packages/common/assets/home/swap.svg";
 //---------------- locations ----------------//
   static var locationPin = "packages/common/assets/locations/location_pin.svg";
   static var location1 = "packages/common/assets/locations/location1.svg";

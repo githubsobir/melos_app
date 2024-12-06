@@ -2,6 +2,7 @@ import 'package:common/items/item_car.dart';
 import 'package:common/items/item_car_popular.dart';
 import 'package:common/search_edittext.dart';
 import 'package:flutter/material.dart';
+import 'package:home/widgets/date_selector_widget.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
@@ -29,6 +30,16 @@ class HomeScreen extends StatelessWidget {
                 ],
               ),
             ),
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          Padding(
+            padding: const EdgeInsets.only(
+              left: 16,
+              right: 16,
+            ),
+            child: DateSelectorWidget(),
           ),
           const SizedBox(
             height: 16,
