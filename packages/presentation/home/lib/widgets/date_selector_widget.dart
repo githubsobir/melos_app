@@ -25,9 +25,9 @@ class DateSelectorWidget extends StatelessWidget {
             child: Container(
               height: 60,
               width: 60,
-              padding: EdgeInsets.all(16),
+              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(18),
+                  borderRadius: BorderRadius.circular(10),
                   color: Theme.of(context).colorScheme.primary),
               child: SvgPicture.asset(PathImages.swap),
             ),
