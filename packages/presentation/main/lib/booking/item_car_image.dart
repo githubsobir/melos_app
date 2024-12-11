@@ -8,20 +8,28 @@ class ItemCarImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(8.0),
-      child: CachedNetworkImage(
-        imageUrl: imagePath,
-        fit: BoxFit.fill,
-        progressIndicatorBuilder: (context, url, downloadProgress) =>
-            SizedBox(
-          width: 24,
-          height: 24,
-          child: CircularProgressIndicator(
-            value: downloadProgress.progress,
+    return Container(
+      width: double.infinity,
+      decoration: const BoxDecoration(
+        color: Colors.red,
+        borderRadius: BorderRadius.all(Radius.circular(6)),
+      ),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(8.0),
+        child: CachedNetworkImage(
+          imageUrl: imagePath,
+          fit: BoxFit.fill,
+
+          progressIndicatorBuilder: (context, url, downloadProgress) =>
+              SizedBox(
+            width: 24,
+            height: 24,
+            child: CircularProgressIndicator(
+              value: downloadProgress.progress,
+            ),
           ),
+          errorWidget: (context, url, error) => const Icon(Icons.error),
         ),
-        errorWidget: (context, url, error) => const Icon(Icons.error),
       ),
     );
   }

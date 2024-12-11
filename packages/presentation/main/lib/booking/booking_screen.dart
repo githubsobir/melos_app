@@ -1,3 +1,4 @@
+import 'package:common/l10n/decorations.dart';
 import 'package:flutter/material.dart';
 import 'package:main/booking/item_car_image.dart';
 import 'package:main/booking/item_left_right.dart';
@@ -134,12 +135,16 @@ class BookingScreen extends StatelessWidget {
                         height: 12,
                       ),
                       ItemLeftRight(
-                        leftText: "Дата получения", rightText: "12 нояб. 2024 г.",),
+                        leftText: "Дата получения",
+                        rightText: "12 нояб. 2024 г.",
+                      ),
                       SizedBox(
                         height: 12,
                       ),
                       ItemLeftRight(
-                        leftText: "Дата возврата", rightText: "13 нояб. 2024 г.",),
+                        leftText: "Дата возврата",
+                        rightText: "13 нояб. 2024 г.",
+                      ),
                     ],
                   ),
                 ),
@@ -166,17 +171,23 @@ class BookingScreen extends StatelessWidget {
                         height: 12,
                       ),
                       ItemLeftRight(
-                        leftText: "Депозит", rightText: "\$55.00",),
+                        leftText: "Депозит",
+                        rightText: "\$55.00",
+                      ),
                       SizedBox(
                         height: 12,
                       ),
                       ItemLeftRight(
-                        leftText: "Оставшийся", rightText: "\$44.00",),
+                        leftText: "Оставшийся",
+                        rightText: "\$44.00",
+                      ),
                       SizedBox(
                         height: 12,
                       ),
                       ItemLeftRight(
-                        leftText: "Общая сумма оплаты", rightText: "\$99.00",),
+                        leftText: "Общая сумма оплаты",
+                        rightText: "\$99.00",
+                      ),
                     ],
                   ),
                 ),
@@ -185,7 +196,7 @@ class BookingScreen extends StatelessWidget {
                 ),
                 Expanded(
                   child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         "Статус бронирования",
@@ -196,14 +207,55 @@ class BookingScreen extends StatelessWidget {
                       SizedBox(
                         height: 12,
                       ),
-                      Text(
-                        "Статус",
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelMedium
-                            ?.copyWith(color: const Color(0xFF90A3BF)),
+                      Row(
+                        children: [
+                          Text(
+                            "Статус",
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelMedium
+                                ?.copyWith(color: const Color(0xFF90A3BF)),
+                          ),
+                          SizedBox(
+                            width: 8,
+                          ),
+                          Container(
+                            decoration: Decorations.basicDecoration(
+                              background: const Color(0xFF16ED38),
+                              radius: 4,
+                            ),
+                            padding: const EdgeInsets.only(
+                              left: 6,
+                              right: 6,
+                            ),
+                            child: Text(
+                              "Завершенный",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelMedium
+                                  ?.copyWith(color: Colors.white),
+                            ),
+                          ),
+                        ],
                       ),
-
+                      SizedBox(
+                        height: 8,
+                      ),
+                      Container(
+                        decoration: Decorations.basicDecoration(
+                            background: Theme.of(context).colorScheme.primary, radius: 4),
+                        padding: const EdgeInsets.only(
+                          left: 6,
+                          right: 6,
+                        ),
+                        child: Text(
+                          "Extend booking time",
+                          style: Theme.of(context)
+                              .textTheme
+                              .labelMedium
+                              ?.copyWith(color: Colors.white),
+                        ),
+                      ),
                     ],
                   ),
                 ),
