@@ -1,4 +1,4 @@
-import 'package:common/l10n/decorations.dart';
+import 'package:common/decorations.dart';
 import 'package:flutter/material.dart';
 import 'package:main/booking/item_car_image.dart';
 import 'package:main/booking/item_left_right.dart';
