@@ -29,11 +29,10 @@ class BookingScreen extends StatelessWidget {
                 height: 8,
               ),
               SizedBox(
-                height: 180,
+                // height: 180,
                 child: Wrap(
                   spacing: 8.0, // gap between adjacent chips
                   runSpacing: 8.0,
-                  // crossAxisAlignment: WrapCrossAlignment.center,
                   children: [
                     "",
                     "",
