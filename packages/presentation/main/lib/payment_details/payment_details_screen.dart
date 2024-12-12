@@ -1,3 +1,4 @@
+import 'package:common/custom_appbar.dart';
 import 'package:flutter/material.dart';
 
 class PaymentDetailsScreen extends StatelessWidget {
@@ -6,9 +7,8 @@ class PaymentDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Оплата"),
-      ),
+      appBar: CustomAppbar(context: context,title: Text("Payment"),),
+      // body: ,
     );
   }
 }
