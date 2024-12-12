@@ -82,7 +82,9 @@ class DrawerWidget extends StatelessWidget {
         itemTheme(
           context: context,
           onTap: () {
-            getIt.get<AppStateNotifier>().setValue(isNightMode: (Theme.of(context).colorScheme.brightness == Brightness.light));
+            getIt.get<AppStateNotifier>().setValue(
+                isNightMode: (Theme.of(context).colorScheme.brightness ==
+                    Brightness.light));
           },
         ),
         item(
@@ -113,7 +115,7 @@ class DrawerWidget extends StatelessWidget {
               icon,
               colorFilter: ColorFilter.mode(
                 Theme.of(context).colorScheme.brightness == Brightness.light
-                    ? Theme.of(context).colorScheme.primary
+                    ? const Color(0xFF050E2B)
                     : Colors.white,
                 BlendMode.srcIn,
               ),
@@ -145,19 +147,14 @@ class DrawerWidget extends StatelessWidget {
               Theme.of(context).colorScheme.brightness == Brightness.light
                   ? PathImages.darkMode
                   : PathImages.lightMode,
-              colorFilter: ColorFilter.mode(
-                Theme.of(context).colorScheme.brightness == Brightness.light
-                    ? Theme.of(context).colorScheme.primary
-                    : Colors.white,
-                BlendMode.srcIn,
-              ),
             ),
             const SizedBox(
               width: 16,
             ),
             Text(
               Theme.of(context).colorScheme.brightness == Brightness.light
-                  ?"Dark":"Light",
+                  ? "Dark"
+                  : "Light",
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
