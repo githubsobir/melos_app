@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-class CustomAppbar extends AppBar {
+class CustomAppBar extends AppBar {
   final Widget? title;
   final BuildContext context;
 
-  CustomAppbar({super.key, required this.context, this.title})
+  CustomAppBar({super.key, required this.context, this.title})
       : super(
             elevation: 0.0,
             title: title,

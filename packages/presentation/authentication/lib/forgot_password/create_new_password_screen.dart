@@ -12,7 +12,7 @@ class CreateNewPasswordScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppbar(context: context),
+      appBar: CustomAppBar(context: context),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
