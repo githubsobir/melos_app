@@ -20,8 +20,7 @@ class MyApp extends StatelessWidget {
             title: 'CarBNB',
             debugShowCheckedModeBanner: false,
             onGenerateRoute: onGenerateRoute,
-            // themeMode: state.themeMode,
-            themeMode: ThemeMode.system,
+            themeMode: state.themeMode,
             theme: lightThemeData
               ..textTheme.apply(bodyColor: const Color(0xFF050E2B)),
             darkTheme: darkThemeData,

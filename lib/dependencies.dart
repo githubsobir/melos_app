@@ -4,9 +4,8 @@ import 'package:dependency/dependencies.dart';
 import 'package:get_it/get_it.dart';
 
 final configurators = [
-  AppStateDependencyConfigurator(),
   SharedPrefDependencyConfigurator(),
-
+  AppStateDependencyConfigurator(),
   // NetBaseDependencyConfigurator(),
   // AuthDependencyConfigurator(),
   // MainDependencyConfigurator(),

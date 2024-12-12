@@ -1,4 +1,6 @@
 import 'package:common/path_images.dart';
+import 'package:dependency/dependencies/injector.dart';
+import 'package:domain/utils/app_state_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intent_launcher/intent_launcher.dart';
@@ -77,6 +79,12 @@ class DrawerWidget extends StatelessWidget {
             Scaffold.of(context).closeDrawer();
           },
         ),
+        itemTheme(
+          context: context,
+          onTap: () {
+            getIt.get<AppStateNotifier>().setValue(isNightMode: (Theme.of(context).colorScheme.brightness == Brightness.light));
+          },
+        ),
         item(
           icon: PathImages.logout,
           title: "Выйти",
@@ -89,23 +97,67 @@ class DrawerWidget extends StatelessWidget {
     );
   }
 
-  Widget item(
-      {required String icon,
-      required String title,
-      required BuildContext context,
-      required VoidCallback onTap}) {
+  Widget item({
+    required String icon,
+    required String title,
+    required BuildContext context,
+    required VoidCallback onTap,
+  }) {
     return GestureDetector(
       onTap: onTap,
       child: Padding(
         padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
         child: Row(
           children: [
-            SvgPicture.asset(icon),
+            SvgPicture.asset(
+              icon,
+              colorFilter: ColorFilter.mode(
+                Theme.of(context).colorScheme.brightness == Brightness.light
+                    ? Theme.of(context).colorScheme.primary
+                    : Colors.white,
+                BlendMode.srcIn,
+              ),
+            ),
             const SizedBox(
               width: 16,
             ),
             Text(
               title,
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget itemTheme({
+    required BuildContext context,
+    required VoidCallback onTap,
+  }) {
+    return GestureDetector(
+      onTap: onTap,
+      child: Padding(
+        padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
+        child: Row(
+          children: [
+            SvgPicture.asset(
+              Theme.of(context).colorScheme.brightness == Brightness.light
+                  ? PathImages.darkMode
+                  : PathImages.lightMode,
+              colorFilter: ColorFilter.mode(
+                Theme.of(context).colorScheme.brightness == Brightness.light
+                    ? Theme.of(context).colorScheme.primary
+                    : Colors.white,
+                BlendMode.srcIn,
+              ),
+            ),
+            const SizedBox(
+              width: 16,
+            ),
+            Text(
+              Theme.of(context).colorScheme.brightness == Brightness.light
+                  ?"Dark":"Light",
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],

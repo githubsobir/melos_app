@@ -65,7 +65,7 @@ ThemeData _themeDataDark(ColorScheme colorScheme, Color focusColor) {
     appBarTheme: AppBarTheme(
       backgroundColor: colorScheme.background,
       elevation: 0,
-      iconTheme: IconThemeData(color: colorScheme.primary),
+      iconTheme: IconThemeData(color: Colors.white),
       centerTitle: true,
       titleTextStyle: _textTheme.titleSmall,
     ),

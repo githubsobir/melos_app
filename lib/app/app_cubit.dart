@@ -45,8 +45,7 @@ class AppCubit extends Cubit<AppState> {
     emit(
       AppState(
         languageCode: currentLanguageCode,
-        // themeMode: currentThemeMode,
-        themeMode: ThemeMode.dark,
+        themeMode: currentThemeMode,
       ),
     );
   }

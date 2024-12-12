@@ -22,7 +22,7 @@ class MySharedPref {
     return prefs.clear();
   }
 
-  Future<bool> saveAccessToken(String token) async {
+  Future<bool> setAccessToken(String token) async {
     SharedPreferences prefs = await _getInstance();
     myPrint("saveAccessToken: $token");
     return prefs.setString('ACCESS_TOKEN', token);
@@ -33,18 +33,6 @@ class MySharedPref {
     String token = prefs.getString('ACCESS_TOKEN') ?? "";
     return token;
   }
-
-  // Future<bool> saveUserId(int id) async {
-  //   SharedPreferences prefs = await getInstance();
-  //   debugPrint("saveUserId: $id");
-  //   return prefs.setInt('USER_ID', id);
-  // }
-  //
-  // Future<int> getUserId() async {
-  //   SharedPreferences prefs = await getInstance();
-  //   int id = prefs.getInt('USER_ID') ?? -1;
-  //   return id;
-  // }
 
   Future<bool> setLanguageCode(String languageCode) async {
     SharedPreferences prefs = await _getInstance();
@@ -60,7 +48,7 @@ class MySharedPref {
 
   Future<bool> setThemeMode(ThemeMode mode) async {
     SharedPreferences prefs = await _getInstance();
-    myPrint("saveEmail: $mode");
+    myPrint("setThemeMode: $mode");
     return prefs.setString('THEME_MODE', mode.name);
   }
 

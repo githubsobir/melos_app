@@ -40,6 +40,7 @@ class PathImages {
   static var booking = "packages/common/assets/main/booking.svg";
   static var bookingHistory = "packages/common/assets/main/booking_history.svg";
   static var darkMode = "packages/common/assets/main/dark_mode.svg";
+  static var lightMode = "packages/common/assets/main/light_mode.svg";
   static var help = "packages/common/assets/main/help.svg";
   static var logout = "packages/common/assets/main/logout.svg";
   static var myCars = "packages/common/assets/main/my_cars.svg";
