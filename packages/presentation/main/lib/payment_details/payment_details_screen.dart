@@ -9,7 +9,39 @@ class PaymentDetailsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("Payment"),
       ),
-      // body: ,
+      body: Column(
+        children: [
+          Card(
+            child: Column(
+              children: [
+                Text(
+                  "Резюме аренды",
+                  style: Theme.of(context).textTheme.bodyMedium!,
+                ),
+                Text(
+                  "Резюме аренды",
+                  style: Theme.of(context).textTheme.bodyMedium!,
+                )
+              ],
+            ),
+          ),
+          SizedBox(height: 24,),
+          Card(
+            child: Column(
+              children: [
+                Text(
+                  "Резюме аренды",
+                  style: Theme.of(context).textTheme.bodyMedium!,
+                ),
+                Text(
+                  "Резюме аренды",
+                  style: Theme.of(context).textTheme.bodyMedium!,
+                )
+              ],
+            ),
+          )
+        ],
+      ),
     );
   }
 }
