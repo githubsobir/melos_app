@@ -34,11 +34,12 @@ ThemeData _themeDataLight(ColorScheme colorScheme, Color focusColor) {
     dividerTheme: const DividerThemeData(
       color: Color(0xFFD9D9D9),
     ),
-    hintColor: Color(0xFF596780),
+    hintColor: const Color(0xFF596780),
     appBarTheme: AppBarTheme(
       backgroundColor: colorScheme.background,
+      surfaceTintColor: Colors.transparent,
       elevation: 0,
-      iconTheme: IconThemeData(color: Color(0xFF192960)),
+      iconTheme: const IconThemeData(color: Color(0xFF192960)),
       centerTitle: true,
       titleTextStyle: _textTheme.titleSmall?.copyWith(
         color: const Color(0xFF050E2B),
@@ -61,9 +62,10 @@ ThemeData _themeDataDark(ColorScheme colorScheme, Color focusColor) {
     dividerTheme: const DividerThemeData(
       color: Color(0xFFD9D9D9),
     ),
-    hintColor: Color(0xFF596780),
+    hintColor: const Color(0xFF596780),
     appBarTheme: AppBarTheme(
       backgroundColor: colorScheme.background,
+      surfaceTintColor: Colors.transparent,
       elevation: 0,
       iconTheme: IconThemeData(color: Colors.white),
       centerTitle: true,

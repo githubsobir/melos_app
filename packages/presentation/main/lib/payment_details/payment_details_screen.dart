@@ -1,4 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:common/base_button.dart';
+import 'package:common/decorations.dart';
 import 'package:common/textfield2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -55,39 +57,47 @@ class PaymentDetailsScreen extends StatelessWidget {
                       ),
                       Row(
                         children: [
-                          ClipRRect(
-                            borderRadius: BorderRadius.circular(8.0),
-                            child: CachedNetworkImage(
-                              imageUrl:
-                                  "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?cs=srgb&dl=pexels-mikebirdy-170811.jpg&fm=jpg",
-                              width: 116,
-                              height: 80,
-                              fit: BoxFit.fill,
-                              progressIndicatorBuilder:
-                                  (context, url, downloadProgress) => SizedBox(
+                          Container(
+                            decoration: const BoxDecoration(
+                              color: Colors.grey,
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(8)),
+                            ),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: CachedNetworkImage(
+                                imageUrl:
+                                    "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?cs=srgb&dl=pexels-mikebirdy-170811.jpg&fm=jpg",
                                 width: 116,
                                 height: 80,
-                                child: Stack(
-                                  children: [
-                                    Align(
-                                      alignment: Alignment.center,
-                                      child: SizedBox(
-                                        width: 24,
-                                        height: 24,
-                                        child: CircularProgressIndicator(
-                                          value: downloadProgress.progress,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .primary,
-                                          strokeWidth: 1,
+                                fit: BoxFit.fill,
+                                progressIndicatorBuilder:
+                                    (context, url, downloadProgress) =>
+                                        SizedBox(
+                                  width: 116,
+                                  height: 80,
+                                  child: Stack(
+                                    children: [
+                                      Align(
+                                        alignment: Alignment.center,
+                                        child: SizedBox(
+                                          width: 24,
+                                          height: 24,
+                                          child: CircularProgressIndicator(
+                                            value: downloadProgress.progress,
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .primary,
+                                            strokeWidth: 1,
+                                          ),
                                         ),
-                                      ),
-                                    )
-                                  ],
+                                      )
+                                    ],
+                                  ),
                                 ),
+                                errorWidget: (context, url, error) =>
+                                    const Icon(Icons.error),
                               ),
-                              errorWidget: (context, url, error) =>
-                                  const Icon(Icons.error),
                             ),
                           ),
                           SizedBox(
@@ -254,12 +264,194 @@ class PaymentDetailsScreen extends StatelessWidget {
                         height: 16,
                       ),
                       TextField2(
-                        title: "Адрес",
-                        hint: "Адрес",
-                      )
+                        title: "Номер телефона",
+                        hint: "Номер телефона",
+                      ),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      TextField2(
+                        title: "Город / Город",
+                        hint: "Город или местечко",
+                      ),
                     ],
                   ),
                 ),
+              ),
+              const SizedBox(
+                height: 24,
+              ),
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        "Способ оплаты",
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium
+                            ?.copyWith(fontWeight: FontWeight.w700),
+                      ),
+                      SizedBox(
+                        height: 4,
+                      ),
+                      Text(
+                        "Пожалуйста, введите способ оплаты",
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelMedium
+                            ?.copyWith(
+                                color: Theme.of(context).colorScheme.secondary),
+                      ),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      TextField2(
+                        title: "Номер карты",
+                        hint: "Номер карты",
+                      ),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      TextField2(
+                        title: "Дата окончания срока",
+                        hint: "ММ / ГГ",
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 24,
+              ),
+              Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        "Подтверждение",
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium
+                            ?.copyWith(fontWeight: FontWeight.w700),
+                      ),
+                      SizedBox(
+                        height: 4,
+                      ),
+                      Text(
+                        "Мы приближаемся к концу. Всего несколько кликов и ваша аренда готова!",
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelMedium
+                            ?.copyWith(
+                                color: Theme.of(context).colorScheme.secondary),
+                      ),
+                      SizedBox(
+                        height: 24,
+                      ),
+                      Container(
+                        decoration: Decorations.basicDecoration(
+                          radius: 10,
+                          background:
+                              Theme.of(context).colorScheme.brightness ==
+                                      Brightness.light
+                                  ? const Color(0xFFF6F7F9)
+                                  : const Color(0xFF061136),
+                        ),
+                        padding: EdgeInsets.all(16),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                                width: 24.0,
+                                height: 24.0,
+                                child: Checkbox(
+                                    value: false, onChanged: (value) {})),
+                            SizedBox(
+                              width: 8,
+                            ),
+                            Flexible(
+                                child: Text(
+                                    "Я согласен на отправку СМС-уведомлений.",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelMedium
+                                        ?.copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .secondary,
+                                        )))
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      Container(
+                        decoration: Decorations.basicDecoration(
+                          radius: 10,
+                          background:
+                          Theme.of(context).colorScheme.brightness ==
+                              Brightness.light
+                              ? const Color(0xFFF6F7F9)
+                              : const Color(0xFF061136),
+                        ),
+                        padding: EdgeInsets.all(16),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                                width: 24.0,
+                                height: 24.0,
+                                child: Checkbox(
+                                    value: false, onChanged: (value) {})),
+                            SizedBox(
+                              width: 8,
+                            ),
+                            Flexible(
+                                child: Text(
+                                    "Я согласен с нашими условиями и политикой конфиденциальности!",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelMedium
+                                        ?.copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondary,
+                                    )))
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      BaseButton(onPressed: () {}, title: "Арендовать сейчас"),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      Text(
+                        "Подтверждение",
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium
+                            ?.copyWith(fontWeight: FontWeight.w700),
+                      ),
+                      Text(
+                        "Мы используем самые передовые средства безопасности, чтобы обеспечить вам наилучшие впечатления.",
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelMedium
+                            ?.copyWith(
+                            color: Theme.of(context).colorScheme.secondary),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 24,
               ),
             ],
           ),
