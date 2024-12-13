@@ -52,7 +52,9 @@ class HomeScreen extends StatelessWidget {
                 Text(
                   "Рекомендация Автомобиль",
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: const Color(0xFF90A3BF),
+                        color: Theme.of(context)
+                        .colorScheme
+                        .secondary,
                         fontWeight: FontWeight.w700,
                       ),
                 ),
@@ -92,7 +94,9 @@ class HomeScreen extends StatelessWidget {
             child: Text(
               "Рекомендация Автомобиль",
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: const Color(0xFF90A3BF),
+                    color: Theme.of(context)
+                        .colorScheme
+                        .secondary,
                     fontWeight: FontWeight.w700,
                   ),
             ),

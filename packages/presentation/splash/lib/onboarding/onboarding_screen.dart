@@ -98,7 +98,9 @@ class OnboardingScreen extends StatelessWidget {
                               style: Theme.of(context)
                                   .textTheme
                                   .bodySmall!
-                                  .copyWith(color: const Color(0xFF90A3BF)),
+                                  .copyWith(color: Theme.of(context)
+                        .colorScheme
+                        .secondary),
                               textAlign: TextAlign.center,
                             ),
                           ],
@@ -127,7 +129,9 @@ class OnboardingScreen extends StatelessWidget {
                               style: Theme.of(context)
                                   .textTheme
                                   .bodySmall!
-                                  .copyWith(color: const Color(0xFF90A3BF)),
+                                  .copyWith(color: Theme.of(context)
+                        .colorScheme
+                        .secondary),
                               textAlign: TextAlign.center,
                             ),
                           ],
@@ -156,7 +160,9 @@ class OnboardingScreen extends StatelessWidget {
                               style: Theme.of(context)
                                   .textTheme
                                   .bodySmall!
-                                  .copyWith(color: const Color(0xFF90A3BF)),
+                                  .copyWith(color: Theme.of(context)
+                        .colorScheme
+                        .secondary),
                               textAlign: TextAlign.center,
                             ),
                           ],

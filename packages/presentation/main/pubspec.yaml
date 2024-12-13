@@ -12,6 +12,7 @@ dependencies:
   flutter_svg: ^2.0.16
   cached_network_image: ^3.4.1
   skeletonizer: ^1.4.2
+  flutter_rating_bar: ^4.0.1
   domain:
     path: ../../domain
   common:

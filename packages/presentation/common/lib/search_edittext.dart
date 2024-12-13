@@ -64,7 +64,9 @@ class _SearchEdittextState extends State<SearchEdittext> {
                   hintStyle: Theme.of(context)
                       .textTheme
                       .labelMedium
-                      ?.copyWith(color: const Color(0xFF90A3BF)),
+                      ?.copyWith(color: Theme.of(context)
+                        .colorScheme
+                        .secondary),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
                     borderSide: const BorderSide(
