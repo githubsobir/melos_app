@@ -25,7 +25,7 @@ class SplashScreen extends StatelessWidget {
           child: Padding(
             padding: const EdgeInsets.all(24.0),
             child: Text(
-              "CarB&B",
+              "CarBNB",
               style: TextStyle(
                 color: Theme.of(context).colorScheme.primary,
                 fontFamily: FontFamily.BOLD.name,

@@ -48,9 +48,8 @@ class ItemCarBase extends StatelessWidget {
                         style: Theme.of(context)
                             .textTheme
                             .labelMedium
-                            ?.copyWith(color: Theme.of(context)
-                        .colorScheme
-                        .secondary),
+                            ?.copyWith(
+                                color: Theme.of(context).colorScheme.secondary),
                       ),
                     ],
                   ),
@@ -65,14 +64,15 @@ class ItemCarBase extends StatelessWidget {
               children: [
                 Expanded(
                   child: CachedNetworkImage(
-                    imageUrl:carImage,
+                    imageUrl: carImage,
                     progressIndicatorBuilder:
                         (context, url, downloadProgress) => SizedBox(
-                            width: 24,
-                            height: 24,
-                            child: CircularProgressIndicator(
-                              value: downloadProgress.progress,
-                            )),
+                      width: 24,
+                      height: 24,
+                      child: CircularProgressIndicator(
+                        value: downloadProgress.progress,
+                      ),
+                    ),
                     errorWidget: (context, url, error) =>
                         const Icon(Icons.error),
                   ),
@@ -92,9 +92,9 @@ class ItemCarBase extends StatelessWidget {
                           style: Theme.of(context)
                               .textTheme
                               .labelMedium
-                              ?.copyWith(color: Theme.of(context)
-                        .colorScheme
-                        .secondary),
+                              ?.copyWith(
+                                  color:
+                                      Theme.of(context).colorScheme.secondary),
                         ),
                       ],
                     ),
@@ -113,9 +113,9 @@ class ItemCarBase extends StatelessWidget {
                           style: Theme.of(context)
                               .textTheme
                               .labelMedium
-                              ?.copyWith(color: Theme.of(context)
-                        .colorScheme
-                        .secondary),
+                              ?.copyWith(
+                                  color:
+                                      Theme.of(context).colorScheme.secondary),
                         ),
                       ],
                     ),
@@ -134,9 +134,9 @@ class ItemCarBase extends StatelessWidget {
                           style: Theme.of(context)
                               .textTheme
                               .labelMedium
-                              ?.copyWith(color: Theme.of(context)
-                        .colorScheme
-                        .secondary),
+                              ?.copyWith(
+                                  color:
+                                      Theme.of(context).colorScheme.secondary),
                         ),
                       ],
                     ),
@@ -168,21 +168,18 @@ class ItemCarBase extends StatelessWidget {
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium
-                                ?.copyWith(color: Theme.of(context)
-                        .colorScheme
-                        .secondary),
+                                ?.copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .secondary),
                           ),
                         ],
                       ),
                     ),
                     Text(
                       "\$$fullPrice",
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium
-                          ?.copyWith(color: Theme.of(context)
-                        .colorScheme
-                        .secondary),
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: Theme.of(context).colorScheme.secondary),
                     ),
                   ],
                 )),
