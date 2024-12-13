@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:common/textfield2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
@@ -43,8 +44,11 @@ class PaymentDetailsScreen extends StatelessWidget {
                       ),
                       Text(
                         "Цены могут меняться в зависимости от длительности аренды и стоимости арендованного вами автомобиля.",
-                        style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                            color: Theme.of(context).colorScheme.secondary),
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelMedium
+                            ?.copyWith(
+                                color: Theme.of(context).colorScheme.secondary),
                       ),
                       SizedBox(
                         height: 24,
@@ -226,13 +230,33 @@ class PaymentDetailsScreen extends StatelessWidget {
                       ),
                       Text(
                         "Пожалуйста, введите ваши платежные данные",
-                        style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                            color: Theme.of(context).colorScheme.secondary),
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelMedium
+                            ?.copyWith(
+                                color: Theme.of(context).colorScheme.secondary),
                       ),
                       SizedBox(
-                        height: 24,
+                        height: 16,
                       ),
-
+                      TextField2(
+                        title: "Имя",
+                        hint: "Ваше имя",
+                      ),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      TextField2(
+                        title: "Адрес",
+                        hint: "Адрес",
+                      ),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      TextField2(
+                        title: "Адрес",
+                        hint: "Адрес",
+                      )
                     ],
                   ),
                 ),
