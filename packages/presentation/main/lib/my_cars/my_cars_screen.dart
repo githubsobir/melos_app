@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:main/my_cars/item_my_car.dart';
 
 class MyCarsScreen extends StatelessWidget {
   const MyCarsScreen({super.key});
@@ -9,6 +10,16 @@ class MyCarsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text("Мои машины"),
       ),
+      body: ListView.separated(
+          itemBuilder: (context, index) {
+            return ItemMyCar(
+                carImage:
+                    "https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?cs=srgb&dl=pexels-pixabay-210019.jpg&fm=jpg");
+          },
+          separatorBuilder: (context, index) {
+            return Divider();
+          },
+          itemCount: 4),
     );
   }
 }
