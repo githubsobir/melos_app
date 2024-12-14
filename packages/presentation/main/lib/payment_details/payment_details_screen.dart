@@ -427,7 +427,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                       SizedBox(
                         height: 16,
                       ),
-                      BaseButton(onPressed: () {}, title: "Арендовать сейчас"),
+                      BaseButton(onPressed: null, title: "Арендовать сейчас"),
                       SizedBox(
                         height: 16,
                       ),
