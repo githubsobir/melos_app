@@ -1,22 +1,36 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:common/base_button.dart';
 import 'package:flutter/material.dart';
 
-class ItemMyCar extends StatelessWidget {
+class ItemMyCar extends StatefulWidget {
   const ItemMyCar({super.key, required this.carImage});
 
   final String carImage;
 
   @override
+  State<ItemMyCar> createState() => _ItemMyCarState();
+}
+
+class _ItemMyCarState extends State<ItemMyCar> {
+  bool isVisible = false;
+
+  @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(left: 24, right: 24),
-      child: Column(
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Row(
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          isVisible = !isVisible;
+        });
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(left: 24, right: 24),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Container(
@@ -32,7 +46,7 @@ class ItemMyCar extends StatelessWidget {
                           fit: BoxFit.fill,
                           height: 48,
                           width: 78,
-                          imageUrl: carImage,
+                          imageUrl: widget.carImage,
                           progressIndicatorBuilder:
                               (context, url, downloadProgress) => SizedBox(
                             height: 48,
@@ -46,8 +60,9 @@ class ItemMyCar extends StatelessWidget {
                                     height: 24,
                                     child: CircularProgressIndicator(
                                       value: downloadProgress.progress,
-                                      color:
-                                          Theme.of(context).colorScheme.primary,
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .primary,
                                       strokeWidth: 1,
                                     ),
                                   ),
@@ -82,8 +97,9 @@ class ItemMyCar extends StatelessWidget {
                               .textTheme
                               .labelMedium
                               ?.copyWith(
-                                  color:
-                                      Theme.of(context).colorScheme.secondary),
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .secondary),
                         ),
                         const SizedBox(
                           height: 2,
@@ -92,37 +108,124 @@ class ItemMyCar extends StatelessWidget {
                           "90 416 UZS",
                           style: Theme.of(context)
                               .textTheme
-                              .labelMedium
-                              ?.copyWith(fontSize: 10),
+                              .labelSmall,
                         ),
                       ],
                     ),
                   ],
                 ),
-              ),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Text(
+                        "Статус",
+                        style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                            color: Theme.of(context).colorScheme.secondary),
+                      ),
+                      const SizedBox(
+                        height: 2,
+                      ),
+                      Text(
+                        "Не сдается в аренду",
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelSmall?.copyWith(
+                            color: const Color(0xFFFFAA17)),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+            Visibility(
+              visible: isVisible,
+              child: Column(
                 children: [
-                  Text(
-                    "Малибу 2 Турбо",
-                    style: Theme.of(context)
-                        .textTheme
-                        .labelMedium
-                        ?.copyWith(fontWeight: FontWeight.w700),
-                  ),
                   const SizedBox(
-                    height: 2,
+                    height: 8,
                   ),
-                  Text(
-                    "Цена за час:",
-                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                        color: Theme.of(context).colorScheme.secondary),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          SizedBox(
+                            height: 48,
+                            width: 78,
+                          ),
+                          const SizedBox(
+                            width: 8,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                "Подобрать:",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .labelMedium
+                                    ?.copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .secondary),
+                              ),
+                              const SizedBox(
+                                height: 2,
+                              ),
+                              Text(
+                                "12.12.2024",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .labelSmall,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Text(
+                              "Высадка:",
+                              style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                                  color: Theme.of(context).colorScheme.secondary),
+                            ),
+                            const SizedBox(
+                              height: 2,
+                            ),
+                            Text(
+                              "12.12.2024",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelSmall,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 8,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      BaseButton(onPressed: () {}, title: "Принимать"),
+                      BaseButton(
+                        onPressed: () {},
+                        title: "Контакт",
+                        background: const Color(0xFFFFAA17),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

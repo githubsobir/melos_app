@@ -24,7 +24,8 @@ class BaseButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(8.0), // Adjust radius as needed
         ),
         child: Padding(
-          padding: const EdgeInsets.all(4.0),
+          padding:
+              const EdgeInsets.only(left: 16, right: 16, top: 4, bottom: 4),
           child: Text(
             title,
             textAlign: TextAlign.center,

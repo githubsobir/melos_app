@@ -117,7 +117,7 @@ TextTheme _textTheme = TextTheme(
       fontFamily: "packages/common/${FontFamily.BOLD.name}", fontSize: 18),
 //   ----------------------- //
   labelSmall: TextStyle(
-      fontFamily: "packages/common/${FontFamily.REGULAR.name}", fontSize: 14),
+      fontFamily: "packages/common/${FontFamily.REGULAR.name}", fontSize: 10),
   labelMedium: TextStyle(
       fontFamily: "packages/common/${FontFamily.MEDIUM.name}", fontSize: 12),
   labelLarge: TextStyle(
