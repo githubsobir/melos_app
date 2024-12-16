@@ -1,3 +1,4 @@
+import 'package:common/base_button.dart';
 import 'package:flutter/material.dart';
 import 'package:main/my_cars/item_my_car.dart';
 
@@ -18,6 +19,7 @@ class MyCarsScreen extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 24, right: 24),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             "Сдавайте автомобиль в аренду с легкостью!",
@@ -51,7 +53,11 @@ class MyCarsScreen extends StatelessWidget {
             "\n4. Устройство GPS-слежения, установленное в вашем автомобиле."
             "\n5. Безопасность вашего автомобиля и ваше спокойствие — наши главные приоритеты!",
             style: Theme.of(context).textTheme.labelMedium,
-          )
+          ),
+          SizedBox(
+            height: 24,
+          ),
+          BaseButton(onPressed: () {}, title: "Начать")
         ],
       ),
     );
