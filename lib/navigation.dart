@@ -9,7 +9,7 @@ import 'package:main/booking/booking_screen.dart';
 import 'package:main/booking_history/booking_history_screen.dart';
 import 'package:main/help/help_screen.dart';
 import 'package:main/main/main_screen.dart';
-import 'package:main/my_cars/create_car_info_screen.dart';
+import 'package:main/my_cars/create_car/create_car_info_screen.dart';
 import 'package:main/my_cars/my_cars_screen.dart';
 import 'package:main/payment_details/payment_details_screen.dart';
 import 'package:navigation/auth_navigation_intents.dart';
