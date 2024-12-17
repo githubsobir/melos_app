@@ -9,10 +9,12 @@ import 'package:main/booking/booking_screen.dart';
 import 'package:main/booking_history/booking_history_screen.dart';
 import 'package:main/help/help_screen.dart';
 import 'package:main/main/main_screen.dart';
+import 'package:main/my_cars/create_car_info_screen.dart';
 import 'package:main/my_cars/my_cars_screen.dart';
 import 'package:main/payment_details/payment_details_screen.dart';
 import 'package:navigation/auth_navigation_intents.dart';
 import 'package:navigation/main_navigation_intents.dart';
+import 'package:navigation/my_cars_intents.dart';
 import 'package:navigation/profile_navigation_intents.dart';
 import 'package:navigation/splash_navigation_intents.dart';
 import 'package:profile/edit_profile/edit_profile_screen.dart';
@@ -53,8 +55,12 @@ final _launcher = IntentLauncher()
       ..onNavigationIntent<HelpIntent>((context, intent) {
         return Navigator.pushNamed(context, HelpIntent.path);
       })
+//MyCars
       ..onNavigationIntent<MyCarsIntent>((context, intent) {
         return Navigator.pushNamed(context, MyCarsIntent.path);
+      })
+      ..onNavigationIntent<CreateCarInfoIntent>((context, intent) {
+        return Navigator.pushNamed(context, CreateCarInfoIntent.path);
       })
       ..onNavigationIntent<PaymentDetailsIntent>((context, intent) {
         return Navigator.pushNamed(context, PaymentDetailsIntent.path);
@@ -103,6 +109,8 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     return _createRoute(HelpScreen().wrapWith(_launcher));
   } else if (MyCarsIntent.path == settings.name) {
     return _createRoute(MyCarsScreen().wrapWith(_launcher));
+  } else if (CreateCarInfoIntent.path == settings.name) {
+    return _createRoute(CreateCarInfoScreen().wrapWith(_launcher));
   } else if (PaymentDetailsIntent.path == settings.name) {
     return _createRoute(PaymentDetailsScreen().wrapWith(_launcher));
   } else if (EditProfileIntent.path == settings.name) {

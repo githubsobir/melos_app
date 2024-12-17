@@ -16,9 +16,6 @@ class HelpIntent implements NavigationIntent {
   static String path = "/help";
 }
 
-class MyCarsIntent implements NavigationIntent {
-  static String path = "/my_cars";
-}
 class PaymentDetailsIntent implements NavigationIntent {
   static String path = "/payment_details";
 }

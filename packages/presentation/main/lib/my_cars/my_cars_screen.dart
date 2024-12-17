@@ -1,6 +1,8 @@
 import 'package:common/base_button.dart';
 import 'package:flutter/material.dart';
+import 'package:intent_launcher/intent_launcher.dart';
 import 'package:main/my_cars/item_my_car.dart';
+import 'package:navigation/my_cars_intents.dart';
 
 class MyCarsScreen extends StatelessWidget {
   const MyCarsScreen({super.key});
@@ -57,7 +59,11 @@ class MyCarsScreen extends StatelessWidget {
           SizedBox(
             height: 24,
           ),
-          BaseButton(onPressed: () {}, title: "Начать")
+          BaseButton(
+              onPressed: () {
+                context.openScreen(CreateCarInfoIntent());
+              },
+              title: "Начать")
         ],
       ),
     );
