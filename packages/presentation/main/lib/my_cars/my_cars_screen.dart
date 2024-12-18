@@ -1,19 +1,32 @@
 import 'package:common/base_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:main/my_cars/item_my_car.dart';
+import 'package:main/my_cars/my_cars_cubit.dart';
 import 'package:navigation/my_cars_intents.dart';
 
 class MyCarsScreen extends StatelessWidget {
-  const MyCarsScreen({super.key});
+  MyCarsScreen({super.key});
+
+  final MyCarsCubit cubit = MyCarsCubit();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Мои машины"),
+        title: const Text("Мои машины"),
       ),
-      body: emptyCar(context),
+      body: BlocBuilder<MyCarsCubit, MyCarsState>(
+        bloc: cubit,
+        builder: (context, state) {
+          if (state.cars.isEmpty) {
+            return emptyCar(context);
+          } else {
+            return carList();
+          }
+        },
+      ),
     );
   }
 
@@ -60,8 +73,11 @@ class MyCarsScreen extends StatelessWidget {
             height: 24,
           ),
           BaseButton(
-              onPressed: () {
-                context.openScreen(CreateCarInfoIntent());
+              onPressed: () async {
+                var value = await context.openScreen(CreateCarInfoIntent());
+                if (value) {
+                  cubit.getMyCars();
+                }
               },
               title: "Начать")
         ],

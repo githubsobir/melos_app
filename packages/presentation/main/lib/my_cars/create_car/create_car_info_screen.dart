@@ -96,6 +96,7 @@ class CreateCarInfoScreen extends StatelessWidget {
                             );
                           } else {
                             // context.openScreen(LoginIntent());
+                            context.closeActiveScreen(true);
                           }
                         },
                         title: "Следующий")
