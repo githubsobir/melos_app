@@ -1,16 +1,14 @@
-import 'package:common/decorations.dart';
 import 'package:common/path_images.dart';
 import 'package:common/textfield3.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class Page2 extends StatelessWidget {
-  Page2({super.key});
+class Page3 extends StatelessWidget {
+  Page3({super.key});
 
   final List<String> radioButtons = [
     "better",
     "coll",
-    "good",
   ];
   String selectedRadio = "better";
 
@@ -62,7 +60,7 @@ class Page2 extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
-                        'Состояние транспортного средства',
+                        "Оплата и цены",
                         textAlign: TextAlign.end,
                         style: Theme.of(context)
                             .textTheme
@@ -84,7 +82,7 @@ class Page2 extends StatelessWidget {
             ),
           ),
           Text(
-            "Состояние транспортного средства",
+            "Оплата и цены",
             style: Theme.of(context)
                 .textTheme
                 .bodyMedium
@@ -96,12 +94,14 @@ class Page2 extends StatelessWidget {
           Row(
             children: [
               SvgPicture.asset(PathImages.lampOn),
-              Text(
-                "Хороший пробег менее 50 000 миль.",
-                style: Theme.of(context)
-                    .textTheme
-                    .labelMedium
-                    ?.copyWith(color: const Color(0xFF90A3BF)),
+              Expanded(
+                child: Text(
+                  "Введите цену аренды вашего автомобиля! Учтите, что к этой цене будут добавлены 1% за обслуживание и государственные налоги.",
+                  style: Theme.of(context)
+                      .textTheme
+                      .labelMedium
+                      ?.copyWith(color: const Color(0xFF90A3BF)),
+                ),
               ),
             ],
           ),
@@ -112,10 +112,10 @@ class Page2 extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Text(
-                "Пробег",
+                "Цена",
                 style: Theme.of(context).textTheme.bodyLarge,
               ),
-              SizedBox(width: 120, child: TextField3(hint: "12 000 км"))
+              SizedBox(width: 120, child: TextField3(hint: "80 000"))
             ],
           ),
           SizedBox(
@@ -123,10 +123,7 @@ class Page2 extends StatelessWidget {
           ),
           Text(
             "Опишите состояние транспортного средства, выбрав:",
-            style: Theme.of(context)
-                .textTheme
-                .labelMedium
-                ?.copyWith(color: const Color(0xFF050E2B)),
+            style: Theme.of(context).textTheme.bodyLarge,
           ),
           SizedBox(
             height: 8,
@@ -139,7 +136,7 @@ class Page2 extends StatelessWidget {
                   contentPadding: EdgeInsets.zero,
                   dense: true,
                   title: Text(
-                    "Отличный",
+                    "В час",
                     style: Theme.of(context).textTheme.labelMedium,
                   ),
                   groupValue: radioButtons[0],
@@ -151,7 +148,7 @@ class Page2 extends StatelessWidget {
                   contentPadding: EdgeInsets.zero,
                   dense: true,
                   title: Text(
-                    "Хороший",
+                    "В день",
                     style: Theme.of(context).textTheme.labelMedium,
                   ),
                   value: selectedRadio,
@@ -159,64 +156,8 @@ class Page2 extends StatelessWidget {
                   onChanged: (value) {},
                 ),
               ),
-              Expanded(
-                child: RadioListTile(
-                  contentPadding: EdgeInsets.zero,
-                  dense: true,
-                  title: Text(
-                    "Справедливый",
-                    style: Theme.of(context).textTheme.labelMedium,
-                  ),
-                  value: selectedRadio,
-                  groupValue: radioButtons[2],
-                  onChanged: (value) {},
-                ),
-              ),
             ],
           ),
-          Text(
-            "Загрузите высококачественные фотографии вашего автомобиля",
-            style: Theme.of(context).textTheme.bodyLarge,
-          ),
-          SizedBox(
-            height: 8,
-          ),
-          Row(
-            children: [
-              SvgPicture.asset(PathImages.lampOn),
-              Text(
-                "Minimum 6 images of your car is required!",
-                style: Theme.of(context)
-                    .textTheme
-                    .labelMedium
-                    ?.copyWith(color: const Color(0xFF90A3BF)),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: 16,
-          ),
-          Row(
-            children: [
-              GestureDetector(
-                onTap: () {},
-                child: Container(
-                  decoration: Decorations.basicDecoration(
-                    background: const Color(0xFFD9D9D9),
-                    radius: 8,
-                  ),
-                  padding: const EdgeInsets.only(
-                    left: 26,
-                    right: 26,
-                    top: 12,
-                    bottom: 12,
-                  ),
-                  child: SvgPicture.asset(PathImages.upload),
-                ),
-              ),
-              Expanded(child: Container())
-            ],
-          )
         ],
       ),
     );
