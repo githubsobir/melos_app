@@ -42,7 +42,7 @@ class Page2 extends StatelessWidget {
                       height: 55,
                       width: 55,
                       child: CircularProgressIndicator(
-                        value: 0.25,
+                        value: 0.50,
                         backgroundColor: Color(0xFFD9D9D9),
                         color: Theme.of(context).colorScheme.primary,
                         strokeWidth: 8.0,

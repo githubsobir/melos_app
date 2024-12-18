@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:main/my_cars/create_car/page_1.dart';
 import 'package:main/my_cars/create_car/page_2.dart';
 import 'package:main/my_cars/create_car/page_3.dart';
+import 'package:main/my_cars/create_car/page_4.dart';
 
 class CreateCarInfoScreen extends StatelessWidget {
   const CreateCarInfoScreen({super.key});
@@ -21,6 +22,7 @@ class CreateCarInfoScreen extends StatelessWidget {
                 Page1(),
                 Page2(),
                 Page3(),
+                Page4()
               ],
             ),
           ),
