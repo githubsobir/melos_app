@@ -1,22 +1,38 @@
+import 'package:common/decorations.dart';
+import 'package:common/path_images.dart';
+import 'package:common/textfield3.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class Page2 extends StatelessWidget {
-  const Page2({super.key});
+  Page2({super.key});
+
+  final List<String> radioButtons = [
+    "better",
+    "coll",
+    "good",
+  ];
+  String selectedRadio = "better";
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(16),
+      margin: const EdgeInsets.all(16),
       height: double.infinity,
       // color: Colors.red,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Container(
             margin: const EdgeInsets.only(
               top: 16,
             ),
-            padding:
-            const EdgeInsets.only(left: 62, right: 62, top: 24, bottom: 24),
+            padding: const EdgeInsets.only(
+              left: 24,
+              right: 24,
+              top: 24,
+              bottom: 24,
+            ),
             child: Row(
               children: [
                 Stack(
@@ -33,7 +49,7 @@ class Page2 extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      '1/4',
+                      '2/4',
                       style: Theme.of(context)
                           .textTheme
                           .labelMedium
@@ -42,42 +58,165 @@ class Page2 extends StatelessWidget {
                   ],
                 ),
                 Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.end,
-                      children: [
-                        Text(
-                          'Детали автомобиля',
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(color: const Color(0xFF658DF1)),
-                        ),
-                        Text(
-                          'Заполните данные ниже',
-                          style: Theme.of(context)
-                              .textTheme
-                              .labelMedium
-                              ?.copyWith(color: const Color(0xFF90A3BF)),
-                        ),
-                      ],
-                    ))
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(
+                        'Состояние транспортного средства',
+                        textAlign: TextAlign.end,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium
+                            ?.copyWith(color: const Color(0xFF658DF1)),
+                      ),
+                      Text(
+                        'Заполните данные ниже',
+                        textAlign: TextAlign.end,
+                        style: Theme.of(context)
+                            .textTheme
+                            .labelMedium
+                            ?.copyWith(color: const Color(0xFF90A3BF)),
+                      ),
+                    ],
+                  ),
+                )
               ],
             ),
           ),
           Text(
-            'Заполните данные ниже',
+            "Состояние транспортного средства",
             style: Theme.of(context)
                 .textTheme
-                .labelMedium
-                ?.copyWith(color: const Color(0xFF90A3BF)),
+                .bodyMedium
+                ?.copyWith(fontWeight: FontWeight.w700),
+          ),
+          SizedBox(
+            height: 16,
+          ),
+          Row(
+            children: [
+              SvgPicture.asset(PathImages.lampOn),
+              Text(
+                "Хороший пробег менее 50 000 миль.",
+                style: Theme.of(context)
+                    .textTheme
+                    .labelMedium
+                    ?.copyWith(color: const Color(0xFF90A3BF)),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 16,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Пробег",
+                style: Theme.of(context).textTheme.bodyLarge,
+              ),
+              SizedBox(width: 120, child: TextField3(hint: "12 000 км"))
+            ],
+          ),
+          SizedBox(
+            height: 16,
           ),
           Text(
-            'Заполните данные ниже',
+            "Опишите состояние транспортного средства, выбрав:",
             style: Theme.of(context)
                 .textTheme
                 .labelMedium
-                ?.copyWith(color: const Color(0xFF90A3BF)),
+                ?.copyWith(color: const Color(0xFF050E2B)),
           ),
+          SizedBox(
+            height: 8,
+          ),
+          Row(
+            children: [
+              Expanded(
+                child: RadioListTile(
+                  value: selectedRadio[0],
+                  contentPadding: EdgeInsets.zero,
+                  dense: true,
+                  title: Text(
+                    "Отличный",
+                    style: Theme.of(context).textTheme.labelMedium,
+                  ),
+                  groupValue: radioButtons,
+                  onChanged: (value) {},
+                ),
+              ),
+              Expanded(
+                child: RadioListTile(
+                  contentPadding: EdgeInsets.zero,
+                  dense: true,
+                  title: Text(
+                    "Хороший",
+                    style: Theme.of(context).textTheme.labelMedium,
+                  ),
+                  value: selectedRadio[1],
+                  groupValue: radioButtons,
+                  onChanged: (value) {},
+                ),
+              ),
+              Expanded(
+                child: RadioListTile(
+                  contentPadding: EdgeInsets.zero,
+                  dense: true,
+                  title: Text(
+                    "Справедливый",
+                    style: Theme.of(context).textTheme.labelMedium,
+                  ),
+                  value: selectedRadio[2],
+                  groupValue: radioButtons,
+                  onChanged: (value) {},
+                ),
+              ),
+            ],
+          ),
+          Text(
+            "Загрузите высококачественные фотографии вашего автомобиля",
+            style: Theme.of(context).textTheme.bodyLarge,
+          ),
+          SizedBox(
+            height: 8,
+          ),
+          Row(
+            children: [
+              SvgPicture.asset(PathImages.lampOn),
+              Text(
+                "Minimum 6 images of your car is required!",
+                style: Theme.of(context)
+                    .textTheme
+                    .labelMedium
+                    ?.copyWith(color: const Color(0xFF90A3BF)),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: 16,
+          ),
+          Row(
+            children: [
+              GestureDetector(
+                onTap: () {},
+                child: Container(
+                  decoration: Decorations.basicDecoration(
+                    background: const Color(0xFFD9D9D9),
+                    radius: 8,
+                  ),
+                  padding: const EdgeInsets.only(
+                    left: 26,
+                    right: 26,
+                    top: 12,
+                    bottom: 12,
+                  ),
+                  child: SvgPicture.asset(PathImages.upload),
+                ),
+              ),
+              Expanded(child: Container())
+            ],
+          )
         ],
       ),
     );

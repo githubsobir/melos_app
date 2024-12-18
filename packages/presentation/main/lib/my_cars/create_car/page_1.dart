@@ -18,7 +18,11 @@ class Page1 extends StatelessWidget {
                 top: 16,
               ),
               padding: const EdgeInsets.only(
-                  left: 62, right: 62, top: 24, bottom: 24),
+                left: 24,
+                right: 24,
+                top: 24,
+                bottom: 24,
+              ),
               child: Row(
                 children: [
                   Stack(
@@ -35,7 +39,7 @@ class Page1 extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '1/1',
+                        '1/4',
                         style: Theme.of(context)
                             .textTheme
                             .labelMedium

@@ -46,5 +46,7 @@ class PathImages {
   static var myCars = "packages/common/assets/main/my_cars.svg";
   static var paymentDetails = "packages/common/assets/main/payment_details.svg";
   static var notification = "packages/common/assets/main/notification.svg";
+  static var lampOn = "packages/common/assets/main/lamp_on.svg";
+  static var upload = "packages/common/assets/main/upload.svg";
 //--------------------------------------------//
 }
