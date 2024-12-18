@@ -27,6 +27,14 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // onWillPop: () async {
+    //   if (cubit.pageIndex == 0) {
+    //     return true;
+    //   } else {
+    //     _onItemTapped(0);
+    //     return false;
+    //   }
+    // },
     return BlocBuilder(
       bloc: cubit,
       builder: (context, state) {
@@ -46,24 +54,24 @@ class MainScreen extends StatelessWidget {
                             height: 38,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(18),
-                              border: Border.all(color: const Color(0xFFC0D8FF)),
+                              border:
+                                  Border.all(color: const Color(0xFFC0D8FF)),
                             ),
-
                             padding: const EdgeInsets.all(8),
                             child: SvgPicture.asset(PathImages.notification),
                           ),
-                         Align(
-                           child:  Container(
-                             height: 11,
-                             width: 11,
-                             decoration: BoxDecoration(
-                                 borderRadius: BorderRadius.circular(11),
-                                 color: const Color(0xFFFF3636)
-                               // border: Border.all(color: const Color(0xFFC0D8FF)),
-                             ),
-                           ),
-                           alignment: Alignment.topRight,
-                         )
+                          Align(
+                            child: Container(
+                              height: 11,
+                              width: 11,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(11),
+                                  color: const Color(0xFFFF3636)
+                                  // border: Border.all(color: const Color(0xFFC0D8FF)),
+                                  ),
+                            ),
+                            alignment: Alignment.topRight,
+                          )
                         ],
                       ),
                     )
@@ -87,8 +95,12 @@ class MainScreen extends StatelessWidget {
                       "Рядом со мной", () => _onItemTapped(1)),
                   item(context, cubit.pageIndex == 2, PathImages.menuAdd, "",
                       () => _onItemTapped(2)),
-                  item(context, cubit.pageIndex == 3, PathImages.menuFavourite,
-                      "Сохранено", () => _onItemTapped(3)),
+                  item(
+                      context,
+                      cubit.pageIndex == 3,
+                      PathImages.menuFavourite,
+                      "Сохранено",
+                      () => _onItemTapped(3)),
                   item(context, cubit.pageIndex == 4, PathImages.menuProfile,
                       "Профиль", () => _onItemTapped(4)),
                 ],
@@ -178,21 +190,17 @@ class MainScreen extends StatelessWidget {
       case 0:
         return SvgPicture.asset(
           PathImages.logo,
-          // colorFilter: const ColorFilter.mode(
-          //   Color(0xFF54A6FF),
-          //   BlendMode.srcIn,
-          // ),
         );
       case 1:
-        return Text("Рядом сомной");
+        return const Text("Рядом сомной");
       case 2:
-        return Text("");
+        return const Text("");
       case 3:
-        return Text("Сохранено");
+        return const Text("Сохранено");
       case 4:
-        return Text("Ваш аккаунт");
+        return const Text("Ваш аккаунт");
       default:
-        return Text("");
+        return const Text("");
     }
   }
 }
