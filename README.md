@@ -1,5 +1,7 @@
 ## import-> melos bootstrap
 ## clean-> melos clear
+## dart pub global activate melos
+## export PATH="$PATH":"$HOME/.pub-cache/bin"
 
 # https://github.com/StuartApp/flutter-modular-architecture
 

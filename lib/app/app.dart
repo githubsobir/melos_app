@@ -3,6 +3,7 @@ import 'package:carbnb/navigation.dart';
 import 'package:common/l10n/localizations.dart';
 import 'package:common/theme.dart';
 import 'package:dependency/dependencies.dart';
+import 'package:dependency/dependencies/injector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
               GlobalWidgetsLocalizations.delegate,
               AppLocalizations.delegate,
             ],
+            navigatorKey: getIt.get<GlobalKey<NavigatorState>>(),
           );
         },
       ),

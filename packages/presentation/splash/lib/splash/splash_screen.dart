@@ -2,7 +2,7 @@ import 'package:common/font_family.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intent_launcher/intent_launcher.dart';
-import 'package:navigation/main_navigation_intents.dart';
+import 'package:navigation/splash_navigation_intents.dart';
 import 'package:splash/splash/splash_cubit.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -16,8 +16,8 @@ class SplashScreen extends StatelessWidget {
       bloc: cubit,
       listener: (context, state) {
         if (state is NextScreenState) {
-          // context.openScreen(OnboardingIntent());
-          context.openScreen(MainIntent());
+          context.openScreen(OnboardingIntent());
+          // context.openScreen(MainIntent());
         }
       },
       child: Scaffold(
