@@ -1,5 +1,6 @@
 import 'package:common/base_button.dart';
 import 'package:common/base_text_field.dart';
+import 'package:common/navigation/auth_navigation_intents.dart';
 import 'package:common/path_images.dart';
 import 'package:flutter/material.dart';
 import 'package:intent_launcher/intent_launcher.dart';

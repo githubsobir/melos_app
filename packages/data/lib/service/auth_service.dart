@@ -19,7 +19,7 @@ class AuthService {
 
   Future<Response> sendSms(SendSmsRequest request) async {
     var response = await _netBase.dio.post(
-      'users/send-sms',
+      'users/send-sms/',
       data: request.toJson(),
     );
     return response;

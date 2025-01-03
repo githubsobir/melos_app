@@ -1,11 +1,11 @@
 import 'package:common/base_button.dart';
 import 'package:common/custom_otp.dart';
+import 'package:common/navigation/auth_navigation_intents.dart';
 import 'package:flutter/material.dart';
 import 'package:intent_launcher/intent_launcher.dart';
-import 'package:navigation/auth_navigation_intents.dart';
 
-class ForgotPasswordScreen extends StatelessWidget {
-  const ForgotPasswordScreen({super.key});
+class OtpCodeScreen extends StatelessWidget {
+  const OtpCodeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -43,9 +43,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                   title: "Отправлять"),
               const SizedBox(height: 32),
               GestureDetector(
-                onTap: () {
-
-                },
+                onTap: () {},
                 child: Text(
                   "Не получили код?",
                   textAlign: TextAlign.center,

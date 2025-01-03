@@ -38,7 +38,7 @@ class PhoneNumberScreen extends StatelessWidget {
               SizedBox(height: 42),
               BaseButton(
                   onPressed: () {
-                    context.openScreen(ForgotPasswordIntent());
+                    // context.openScreen(OtpCodeIntent());
                   },
                   title: "Отправлять"),
             ],

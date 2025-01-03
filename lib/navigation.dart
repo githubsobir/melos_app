@@ -1,8 +1,9 @@
 import 'package:authentication/forgot_password/create_new_password_screen.dart';
-import 'package:authentication/forgot_password/forgot_password_screen.dart';
 import 'package:authentication/forgot_password/phone_number_screen.dart';
 import 'package:authentication/login/login_screen.dart';
+import 'package:authentication/otp_code_screen/otp_code_screen.dart';
 import 'package:authentication/register/register_screen.dart';
+import 'package:common/navigation/auth_navigation_intents.dart';
 import 'package:flutter/material.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:main/booking/booking_screen.dart';
@@ -12,7 +13,6 @@ import 'package:main/main/main_screen.dart';
 import 'package:main/my_cars/create_car/create_car_info_screen.dart';
 import 'package:main/my_cars/my_cars_screen.dart';
 import 'package:main/payment_details/payment_details_screen.dart';
-import 'package:navigation/auth_navigation_intents.dart';
 import 'package:navigation/main_navigation_intents.dart';
 import 'package:navigation/my_cars_intents.dart';
 import 'package:navigation/profile_navigation_intents.dart';
@@ -36,8 +36,8 @@ final _launcher = IntentLauncher()
       ..onNavigationIntent<PhoneNumberIntent>((context, intent) {
         return Navigator.pushNamed(context, PhoneNumberIntent.path);
       })
-      ..onNavigationIntent<ForgotPasswordIntent>((context, intent) {
-        return Navigator.pushNamed(context, ForgotPasswordIntent.path);
+      ..onNavigationIntent<OtpCodeIntent>((context, intent) {
+        return Navigator.pushNamed(context, OtpCodeIntent.path);
       })
       ..onNavigationIntent<CreateNewPasswordIntent>((context, intent) {
         return Navigator.pushNamed(context, CreateNewPasswordIntent.path);
@@ -95,8 +95,8 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     return _createRoute(RegisterScreen().wrapWith(_launcher));
   } else if (PhoneNumberIntent.path == settings.name) {
     return _createRoute(PhoneNumberScreen().wrapWith(_launcher));
-  } else if (ForgotPasswordIntent.path == settings.name) {
-    return _createRoute(ForgotPasswordScreen().wrapWith(_launcher));
+  } else if (OtpCodeIntent.path == settings.name) {
+    return _createRoute(OtpCodeScreen().wrapWith(_launcher));
   } else if (CreateNewPasswordIntent.path == settings.name) {
     return _createRoute(CreateNewPasswordScreen().wrapWith(_launcher));
   } else if (MainIntent.path == settings.name) {

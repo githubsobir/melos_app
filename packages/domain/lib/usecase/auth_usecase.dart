@@ -43,7 +43,7 @@ class AuthUseCase {
     );
   }
 
-  Future<BaseResult<bool>> sendSms(String phoneNumber) {
+  Future<BaseResult<bool>> sendSms({required String phoneNumber}) {
     return _authRepository.sendSms(phoneNumber: phoneNumber);
   }
 }

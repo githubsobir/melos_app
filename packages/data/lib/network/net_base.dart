@@ -10,7 +10,7 @@ class NetBase {
   GlobalKey<NavigatorState> navigatorKey;
 
   final BaseOptions _baseOptions = BaseOptions(
-    baseUrl: "https://api.dostonbarber.uz/api/",
+    baseUrl: "https://c610-195-158-3-42.ngrok-free.app/api/",
     sendTimeout: const Duration(seconds: 60000),
     receiveTimeout: const Duration(seconds: 60000),
     connectTimeout: const Duration(seconds: 60000),

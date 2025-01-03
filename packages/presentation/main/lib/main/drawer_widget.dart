@@ -1,3 +1,4 @@
+import 'package:common/navigation/auth_navigation_intents.dart';
 import 'package:common/path_images.dart';
 import 'package:dependency/dependencies/injector.dart';
 import 'package:domain/utils/app_state_notifier.dart';

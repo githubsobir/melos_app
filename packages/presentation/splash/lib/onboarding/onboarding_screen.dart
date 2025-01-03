@@ -1,10 +1,10 @@
 import 'package:common/base_button.dart';
 import 'package:common/l10n/build_context_extension.dart';
+import 'package:common/navigation/auth_navigation_intents.dart';
 import 'package:common/path_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intent_launcher/intent_launcher.dart';
-import 'package:navigation/auth_navigation_intents.dart';
 import 'package:splash/onboarding/onboarding_cubit.dart';
 
 class OnboardingScreen extends StatelessWidget {
@@ -98,9 +98,10 @@ class OnboardingScreen extends StatelessWidget {
                               style: Theme.of(context)
                                   .textTheme
                                   .bodySmall!
-                                  .copyWith(color: Theme.of(context)
-                        .colorScheme
-                        .secondary),
+                                  .copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondary),
                               textAlign: TextAlign.center,
                             ),
                           ],
@@ -129,9 +130,10 @@ class OnboardingScreen extends StatelessWidget {
                               style: Theme.of(context)
                                   .textTheme
                                   .bodySmall!
-                                  .copyWith(color: Theme.of(context)
-                        .colorScheme
-                        .secondary),
+                                  .copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondary),
                               textAlign: TextAlign.center,
                             ),
                           ],
@@ -160,9 +162,10 @@ class OnboardingScreen extends StatelessWidget {
                               style: Theme.of(context)
                                   .textTheme
                                   .bodySmall!
-                                  .copyWith(color: Theme.of(context)
-                        .colorScheme
-                        .secondary),
+                                  .copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondary),
                               textAlign: TextAlign.center,
                             ),
                           ],
