@@ -1,7 +1,7 @@
 import 'package:authentication/forgot_password/create_new_password_screen.dart';
-import 'package:authentication/forgot_password/phone_number_screen.dart';
 import 'package:authentication/login/login_screen.dart';
 import 'package:authentication/otp_code_screen/otp_code_screen.dart';
+import 'package:authentication/phone_number/phone_number_screen.dart';
 import 'package:authentication/register/register_screen.dart';
 import 'package:common/navigation/auth_navigation_intents.dart';
 import 'package:flutter/material.dart';

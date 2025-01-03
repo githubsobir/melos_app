@@ -1,9 +1,9 @@
 import 'package:common/base_button.dart';
 import 'package:common/base_text_field.dart';
+import 'package:common/navigation/auth_navigation_intents.dart';
 import 'package:common/path_images.dart';
 import 'package:flutter/material.dart';
 import 'package:intent_launcher/intent_launcher.dart';
-import 'package:navigation/auth_navigation_intents.dart';
 
 class PhoneNumberScreen extends StatelessWidget {
   const PhoneNumberScreen({super.key});
@@ -38,7 +38,7 @@ class PhoneNumberScreen extends StatelessWidget {
               SizedBox(height: 42),
               BaseButton(
                   onPressed: () {
-                    // context.openScreen(OtpCodeIntent());
+                    context.openScreen(OtpCodeIntent());
                   },
                   title: "Отправлять"),
             ],

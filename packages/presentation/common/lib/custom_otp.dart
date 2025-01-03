@@ -13,21 +13,14 @@ class CustomOtp extends StatefulWidget {
 }
 
 class _CustomOtpState extends State<CustomOtp> {
-  TextEditingController? contrller1;
-  TextEditingController? contrller2;
-  TextEditingController? contrller3;
-  TextEditingController? contrller4;
+  TextEditingController? contrller1 = TextEditingController();
+  TextEditingController? contrller2 = TextEditingController();
+  TextEditingController? contrller3 = TextEditingController();
+  TextEditingController? contrller4 = TextEditingController();
+  TextEditingController? contrller5 = TextEditingController();
+  TextEditingController? contrller6 = TextEditingController();
 
-  List<String> codes = ["", "", "", ""];
-
-  @override
-  void initState() {
-    super.initState();
-    contrller1 = TextEditingController();
-    contrller2 = TextEditingController();
-    contrller3 = TextEditingController();
-    contrller4 = TextEditingController();
-  }
+  List<String> codes = ["", "", "", "", "", ""];
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +34,11 @@ class _CustomOtpState extends State<CustomOtp> {
         _textFieldOTP(
             first: false, last: false, controller: contrller3, position: 2),
         _textFieldOTP(
-            first: false, last: true, controller: contrller4, position: 3),
+            first: false, last: false, controller: contrller4, position: 3),
+        _textFieldOTP(
+            first: false, last: false, controller: contrller5, position: 4),
+        _textFieldOTP(
+            first: false, last: true, controller: contrller6, position: 5),
       ],
     );
   }
@@ -52,8 +49,8 @@ class _CustomOtpState extends State<CustomOtp> {
       TextEditingController? controller,
       required int position}) {
     return SizedBox(
-      height: 70,
-      width: 70,
+      height: 50,
+      width: 50,
       child: Card(
         shape: RoundedRectangleBorder(
           side: BorderSide(
@@ -73,9 +70,11 @@ class _CustomOtpState extends State<CustomOtp> {
               if (codes[0].isNotEmpty &&
                   codes[1].isNotEmpty &&
                   codes[2].isNotEmpty &&
-                  codes[3].isNotEmpty) {
+                  codes[3].isNotEmpty &&
+                  codes[4].isNotEmpty &&
+                  codes[5].isNotEmpty) {
                 widget.onPinEntered(
-                    "${codes[0]}${codes[1]}${codes[2]}${codes[3]}");
+                    "${codes[0]}${codes[1]}${codes[2]}${codes[3]}${codes[4]}${codes[5]}");
               } else {
                 widget.onPinEntered("");
               }

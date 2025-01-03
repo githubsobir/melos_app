@@ -4,7 +4,6 @@ import 'package:common/navigation/auth_navigation_intents.dart';
 import 'package:common/path_images.dart';
 import 'package:flutter/material.dart';
 import 'package:intent_launcher/intent_launcher.dart';
-import 'package:navigation/auth_navigation_intents.dart';
 import 'package:navigation/main_navigation_intents.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -65,13 +64,15 @@ class LoginScreen extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 14),
-              BaseButton(onPressed: () {
-                context.openScreen(MainIntent());
-              }, title: "Войти"),
+              BaseButton(
+                  onPressed: () {
+                    context.openScreen(MainIntent());
+                  },
+                  title: "Войти"),
               SizedBox(height: 32),
               GestureDetector(
                 onTap: () {
-                  context.openScreen(RegisterIntent());
+                  context.openScreen(PhoneNumberIntent());
                 },
                 child: RichText(
                   textAlign: TextAlign.center,
