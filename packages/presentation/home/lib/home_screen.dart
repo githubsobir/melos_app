@@ -132,6 +132,16 @@ class HomeScreen extends StatelessWidget {
                                     0)
                                 .toDouble(),
                             onPressed: () {},
+                            passengerCapacity: (state
+                                        .carsModel
+                                        .recommendCars[index]
+                                        .passengerCapacity ??
+                                    0)
+                                .toInt(),
+                            fuelCapacity: (state.carsModel.recommendCars[index]
+                                        .fuelCapacity ??
+                                    0)
+                                .toInt(),
                           ),
                         ),
                       )

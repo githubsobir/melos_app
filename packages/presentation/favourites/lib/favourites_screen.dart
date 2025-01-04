@@ -18,12 +18,15 @@ class FavouritesScreen extends StatelessWidget {
           padding: const EdgeInsets.only(top: 16),
           itemBuilder: (context, index) {
             return ItemCarBase(
-              carImage: "https://www.hyundai.com/content/dam/hyundai/in/en/data/find-a-car/i20/Highlights/pc/i20_Modelpc.png",
+              carImage:
+                  "https://www.hyundai.com/content/dam/hyundai/in/en/data/find-a-car/i20/Highlights/pc/i20_Modelpc.png",
               carName: "Chevrolet Captiva wd",
               carType: "SUVVVV",
               price: 89,
               fullPrice: 980,
               onPressed: () {},
+              passengerCapacity: 100,
+              fuelCapacity: 1900,
             );
           },
         ),

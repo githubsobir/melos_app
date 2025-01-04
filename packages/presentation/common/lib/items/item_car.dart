@@ -11,6 +11,8 @@ class ItemCarBase extends StatelessWidget {
   final String carType;
   final double price;
   final double fullPrice;
+  final int passengerCapacity;
+  final int fuelCapacity;
 
   const ItemCarBase({
     super.key,
@@ -20,6 +22,8 @@ class ItemCarBase extends StatelessWidget {
     required this.carType,
     required this.price,
     required this.fullPrice,
+    required this.passengerCapacity,
+    required this.fuelCapacity,
   });
 
   @override
@@ -54,27 +58,35 @@ class ItemCarBase extends StatelessWidget {
                     ],
                   ),
                 ),
-                const Icon(
-                  Icons.favorite_outlined,
-                  color: Color(0xFFFF3636),
-                )
+                true
+                    ? Icon(
+                        Icons.favorite_outline,
+                        color: Theme.of(context).colorScheme.secondary,
+                      )
+                    : const Icon(
+                        Icons.favorite_outlined,
+                        color: Color(0xFFFF3636),
+                      )
               ],
             ),
             Row(
               children: [
                 Expanded(
-                  child: CachedNetworkImage(
-                    imageUrl: carImage,
-                    progressIndicatorBuilder:
-                        (context, url, downloadProgress) => SizedBox(
-                      width: 24,
-                      height: 24,
-                      child: CircularProgressIndicator(
-                        value: downloadProgress.progress,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: CachedNetworkImage(
+                      imageUrl: carImage,
+                      progressIndicatorBuilder:
+                          (context, url, downloadProgress) => SizedBox(
+                        width: 24,
+                        height: 24,
+                        child: CircularProgressIndicator(
+                          value: downloadProgress.progress,
+                        ),
                       ),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
                     ),
-                    errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
                   ),
                 ),
                 Column(
@@ -88,7 +100,7 @@ class ItemCarBase extends StatelessWidget {
                           width: 4,
                         ),
                         Text(
-                          "70L",
+                          "${fuelCapacity}L",
                           style: Theme.of(context)
                               .textTheme
                               .labelMedium
@@ -130,7 +142,7 @@ class ItemCarBase extends StatelessWidget {
                           width: 4,
                         ),
                         Text(
-                          "6 Люди",
+                          "$passengerCapacity Люди",
                           style: Theme.of(context)
                               .textTheme
                               .labelMedium
@@ -145,11 +157,9 @@ class ItemCarBase extends StatelessWidget {
               ],
             ),
             const SizedBox(
-              height: 48,
+              height: 24,
             ),
             Row(
-              // mainAxisAlignment: MainAxisAlignment.center,
-              // crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 Expanded(
                     child: Column(
