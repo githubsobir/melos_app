@@ -26,7 +26,7 @@ class NetBase {
         //checkConnection();
         final token = await MySharedPref.instance.getAccessToken();
         if (token.isNotEmpty) {
-          // options.headers['Authorization'] = 'Bearer $token';
+          options.headers['Authorization'] = 'Bearer $token';
         }
         myPrint("⬇⬇⬇ onRequest ⬇⬇⬇");
         myPrint(options.method);
