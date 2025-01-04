@@ -11,6 +11,8 @@ class ItemCarPopular extends StatelessWidget {
   final String carType;
   final double price;
   final double fullPrice;
+  final int passengerCapacity;
+  final int fuelCapacity;
 
   const ItemCarPopular({
     super.key,
@@ -20,6 +22,8 @@ class ItemCarPopular extends StatelessWidget {
     required this.carType,
     required this.price,
     required this.fullPrice,
+    required this.passengerCapacity,
+    required this.fuelCapacity,
   });
 
   @override
@@ -50,9 +54,8 @@ class ItemCarPopular extends StatelessWidget {
                         style: Theme.of(context)
                             .textTheme
                             .labelMedium
-                            ?.copyWith(color: Theme.of(context)
-                        .colorScheme
-                        .secondary),
+                            ?.copyWith(
+                                color: Theme.of(context).colorScheme.secondary),
                       ),
                     ],
                   ),
@@ -92,13 +95,9 @@ class ItemCarPopular extends StatelessWidget {
                       width: 4,
                     ),
                     Text(
-                      "70L",
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelMedium
-                          ?.copyWith(color: Theme.of(context)
-                        .colorScheme
-                        .secondary),
+                      "${fuelCapacity}L",
+                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                          color: Theme.of(context).colorScheme.secondary),
                     ),
                   ],
                 ),
@@ -114,12 +113,8 @@ class ItemCarPopular extends StatelessWidget {
                     ),
                     Text(
                       "Руководство",
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelMedium
-                          ?.copyWith(color: Theme.of(context)
-                        .colorScheme
-                        .secondary),
+                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                          color: Theme.of(context).colorScheme.secondary),
                     ),
                   ],
                 ),
@@ -134,13 +129,9 @@ class ItemCarPopular extends StatelessWidget {
                       width: 4,
                     ),
                     Text(
-                      "6 Люди",
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelMedium
-                          ?.copyWith(color: Theme.of(context)
-                        .colorScheme
-                        .secondary),
+                      "$passengerCapacity Люди",
+                      style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                          color: Theme.of(context).colorScheme.secondary),
                     ),
                   ],
                 ),
@@ -158,31 +149,27 @@ class ItemCarPopular extends StatelessWidget {
                     RichText(
                       text: TextSpan(
                         text: '\$$price/',
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium
-                            ?.copyWith(fontWeight: FontWeight.w700,fontSize: 14),
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.w700, fontSize: 14),
                         children: [
                           TextSpan(
                             text: "день",
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium
-                                ?.copyWith(color: Theme.of(context)
-                        .colorScheme
-                        .secondary,fontSize: 14),
+                                ?.copyWith(
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
+                                    fontSize: 14),
                           ),
                         ],
                       ),
                     ),
                     Text(
                       "\$$fullPrice",
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium
-                          ?.copyWith(color: Theme.of(context)
-                        .colorScheme
-                        .secondary,fontSize: 14),
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: Theme.of(context).colorScheme.secondary,
+                          fontSize: 14),
                     ),
                   ],
                 )),

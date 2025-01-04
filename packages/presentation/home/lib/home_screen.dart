@@ -90,6 +90,8 @@ class HomeScreen extends StatelessWidget {
                   carType: "carType",
                   price: 100,
                   fullPrice: 300,
+                  passengerCapacity: 100,
+                  fuelCapacity: 200,
                 ),
               ),
             ),
