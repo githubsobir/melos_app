@@ -4,8 +4,9 @@ import 'package:common/path_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class ItemCarBase extends StatelessWidget {
+class ItemCarBase extends StatefulWidget {
   final VoidCallback onPressed;
+  final VoidCallback onLike;
   final String carImage;
   final String carName;
   final String carType;
@@ -13,8 +14,9 @@ class ItemCarBase extends StatelessWidget {
   final double fullPrice;
   final int passengerCapacity;
   final int fuelCapacity;
+  bool isLiked;
 
-  const ItemCarBase({
+  ItemCarBase({
     super.key,
     required this.onPressed,
     required this.carImage,
@@ -24,8 +26,15 @@ class ItemCarBase extends StatelessWidget {
     required this.fullPrice,
     required this.passengerCapacity,
     required this.fuelCapacity,
+    required this.onLike,
+    required this.isLiked,
   });
 
+  @override
+  State<ItemCarBase> createState() => _ItemCarBaseState();
+}
+
+class _ItemCarBaseState extends State<ItemCarBase> {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -41,14 +50,14 @@ class ItemCarBase extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
-                        carName,
+                        widget.carName,
                         style: Theme.of(context)
                             .textTheme
                             .bodyMedium
                             ?.copyWith(fontWeight: FontWeight.w700),
                       ),
                       Text(
-                        carType,
+                        widget.carType,
                         style: Theme.of(context)
                             .textTheme
                             .labelMedium
@@ -58,15 +67,23 @@ class ItemCarBase extends StatelessWidget {
                     ],
                   ),
                 ),
-                true
-                    ? Icon(
-                        Icons.favorite_outline,
-                        color: Theme.of(context).colorScheme.secondary,
-                      )
-                    : const Icon(
-                        Icons.favorite_outlined,
-                        color: Color(0xFFFF3636),
-                      )
+                GestureDetector(
+                  onTap: () {
+                    widget.onLike();
+                    setState(() {
+                      widget.isLiked = !widget.isLiked;
+                    });
+                  },
+                  child: widget.isLiked
+                      ? const Icon(
+                          Icons.favorite_outlined,
+                          color: Color(0xFFFF3636),
+                        )
+                      : Icon(
+                          Icons.favorite_outline,
+                          color: Theme.of(context).colorScheme.secondary,
+                        ),
+                )
               ],
             ),
             Row(
@@ -75,7 +92,7 @@ class ItemCarBase extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(12.0),
                     child: CachedNetworkImage(
-                      imageUrl: carImage,
+                      imageUrl: widget.carImage,
                       progressIndicatorBuilder:
                           (context, url, downloadProgress) => SizedBox(
                         width: 24,
@@ -100,7 +117,7 @@ class ItemCarBase extends StatelessWidget {
                           width: 4,
                         ),
                         Text(
-                          "${fuelCapacity}L",
+                          "${widget.fuelCapacity}L",
                           style: Theme.of(context)
                               .textTheme
                               .labelMedium
@@ -142,7 +159,7 @@ class ItemCarBase extends StatelessWidget {
                           width: 4,
                         ),
                         Text(
-                          "$passengerCapacity Люди",
+                          "${widget.passengerCapacity} Люди",
                           style: Theme.of(context)
                               .textTheme
                               .labelMedium
@@ -167,7 +184,7 @@ class ItemCarBase extends StatelessWidget {
                   children: [
                     RichText(
                       text: TextSpan(
-                        text: '\$$price/',
+                        text: '\$${widget.price}/',
                         style: Theme.of(context)
                             .textTheme
                             .bodyMedium
@@ -187,14 +204,14 @@ class ItemCarBase extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "\$$fullPrice",
+                      "\$${widget.fullPrice}",
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: Theme.of(context).colorScheme.secondary),
                     ),
                   ],
                 )),
                 BaseButton(
-                  onPressed: onPressed,
+                  onPressed: widget.onPressed,
                   title: "Забронировать\nсейчас",
                   fontSize: 12,
                 ),

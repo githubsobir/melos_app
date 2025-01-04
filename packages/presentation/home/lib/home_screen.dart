@@ -144,6 +144,12 @@ class HomeScreen extends StatelessWidget {
                                         .fuelCapacity ??
                                     0)
                                 .toInt(),
+                            onLike: () {
+                              carsCubit.likeCar(
+                                  (state.carsModel.recommendCars[index].id ?? 0)
+                                      .toInt());
+                            },
+                            isLiked: true,
                           ),
                         ),
                       )

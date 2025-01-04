@@ -18,6 +18,16 @@ class CarsCubit extends Cubit<CarsState> {
       }
     }
   }
+
+  Future<void> likeCar(int id) async {
+    var response = await _carsUseCase.likeCar(id);
+    // if (response.success) {
+    //   var cars = response.body;
+    //   if (cars != null) {
+    //     emit(CarListState(cars));
+    //   }
+    // }
+  }
 }
 
 abstract class CarsState extends Equatable {

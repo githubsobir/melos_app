@@ -27,6 +27,8 @@ class FavouritesScreen extends StatelessWidget {
               onPressed: () {},
               passengerCapacity: 100,
               fuelCapacity: 1900,
+              onLike: () {},
+              isLiked: true,
             );
           },
         ),

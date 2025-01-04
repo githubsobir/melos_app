@@ -10,4 +10,8 @@ class CarsUseCase {
   Future<BaseResult<CarsModel>> carsList() {
     return _authRepository.carsList();
   }
+
+  Future<BaseResult<bool>> likeCar(int id) {
+    return _authRepository.likeCar(id);
+  }
 }
