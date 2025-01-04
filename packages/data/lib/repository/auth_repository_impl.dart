@@ -81,4 +81,11 @@ class AuthRepositoryImpl extends AuthRepository {
       return BaseResult(success: false, exceptionBody: exception);
     }
   }
+
+  @override
+  Future<bool> hasUser() async {
+    var hasUser = (await MySharedPref.instance.getAccessToken()).isNotEmpty &&
+        (await MySharedPref.instance.getRefreshToken()).isNotEmpty;
+    return hasUser;
+  }
 }

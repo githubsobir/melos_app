@@ -22,4 +22,6 @@ abstract class AuthRepository {
     required String password,
     required String confirmPassword,
   });
+
+  Future<bool> hasUser();
 }

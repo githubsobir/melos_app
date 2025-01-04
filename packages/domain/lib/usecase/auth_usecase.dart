@@ -46,4 +46,8 @@ class AuthUseCase {
   Future<BaseResult<bool>> sendSms({required String phoneNumber}) {
     return _authRepository.sendSms(phoneNumber: phoneNumber);
   }
+
+  Future<bool> hasUser() {
+    return _authRepository.hasUser();
+  }
 }

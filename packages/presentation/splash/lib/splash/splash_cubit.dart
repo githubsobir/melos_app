@@ -1,18 +1,21 @@
 import 'dart:async';
-
-import 'package:bloc/bloc.dart';
+import 'package:domain/usecase/auth_usecase.dart';
 import 'package:equatable/equatable.dart';
 
+import 'package:flutter_bloc/flutter_bloc.dart';
+
 class SplashCubit extends Cubit<SplashState> {
-  SplashCubit() : super(SplashInitialState());
+  final AuthUseCase _authUseCase;
+
+  SplashCubit(this._authUseCase) : super(SplashInitialState());
 
   Future<void> openNextScreen() async {
-    Timer(
-      const Duration(seconds: 1),
-      () {
-        emit(NextScreenState());
-      },
-    );
+    var hasUser = await _authUseCase.hasUser();
+    if (hasUser) {
+      emit(MainScreenState());
+    } else {
+      emit(OnBoardingScreenState());
+    }
   }
 }
 
@@ -25,7 +28,12 @@ final class SplashInitialState extends SplashState {
   List<Object> get props => [];
 }
 
-final class NextScreenState extends SplashState {
+final class OnBoardingScreenState extends SplashState {
+  @override
+  List<Object> get props => [];
+}
+
+final class MainScreenState extends SplashState {
   @override
   List<Object> get props => [];
 }
