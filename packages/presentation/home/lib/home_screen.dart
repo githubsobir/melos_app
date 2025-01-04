@@ -1,11 +1,18 @@
+import 'package:common/base_loader_builder.dart';
 import 'package:common/items/item_car.dart';
 import 'package:common/items/item_car_popular.dart';
 import 'package:common/search_edittext.dart';
+import 'package:dependency/dependencies.dart';
+import 'package:domain/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:home/cars_cubit.dart';
 import 'package:home/widgets/date_selector_widget.dart';
 
 class HomeScreen extends StatelessWidget {
-  const HomeScreen({super.key});
+  HomeScreen({super.key});
+
+  final carsCubit = CarsCubit(inject())..carsList();
 
   @override
   Widget build(BuildContext context) {
@@ -50,11 +57,9 @@ class HomeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Рекомендация Автомобиль",
+                  "Популярный автомобиль",
                   style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                        color: Theme.of(context)
-                        .colorScheme
-                        .secondary,
+                        color: Theme.of(context).colorScheme.secondary,
                         fontWeight: FontWeight.w700,
                       ),
                 ),
@@ -94,26 +99,46 @@ class HomeScreen extends StatelessWidget {
             child: Text(
               "Рекомендация Автомобиль",
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                    color: Theme.of(context)
-                        .colorScheme
-                        .secondary,
+                    color: Theme.of(context).colorScheme.secondary,
                     fontWeight: FontWeight.w700,
                   ),
             ),
           ),
-          for (int i = 0; i < 10; i++)
-            Padding(
-              padding: const EdgeInsets.only(left: 24, right: 24),
-              child: ItemCarBase(
-                carImage:
-                    "https://www.hyundai.com/content/dam/hyundai/in/en/data/find-a-car/i20/Highlights/pc/i20_Modelpc.png",
-                carName: "Chevrolet Captiva wd",
-                carType: "SUVVVV",
-                price: 89,
-                fullPrice: 980,
-                onPressed: () {},
-              ),
-            )
+          BlocBuilder(
+            bloc: carsCubit,
+            builder: (context, state) {
+              return BaseLoaderBuilder(
+                hasLoading: state is CarsLoaderState,
+                child: state is CarListState
+                    ? ListView.builder(
+                        itemCount: state.carsModel.recommendCars.length,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) => Padding(
+                          padding: const EdgeInsets.only(left: 24, right: 24),
+                          child: ItemCarBase(
+                            carImage:
+                                "$BASE_URL${state.carsModel.recommendCars[index].firstPhotoUrl}",
+                            carName:
+                                "${state.carsModel.recommendCars[index].make}",
+                            carType:
+                                "${state.carsModel.recommendCars[index].category}",
+                            price: (state.carsModel.recommendCars[index]
+                                        .originalPrice ??
+                                    0)
+                                .toDouble(),
+                            fullPrice: (state.carsModel.recommendCars[index]
+                                        .originalPrice ??
+                                    0)
+                                .toDouble(),
+                            onPressed: () {},
+                          ),
+                        ),
+                      )
+                    : Container(),
+              );
+            },
+          )
         ],
       ),
     );

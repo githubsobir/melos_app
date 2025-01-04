@@ -18,7 +18,7 @@ class MainScreen extends StatelessWidget {
   final cubit = MainCubit(inject());
 
   static final List<Widget> _mainScreens = <Widget>[
-    const HomeScreen(),
+    HomeScreen(),
     LocationsScreen(),
     Container(
       color: Colors.greenAccent,

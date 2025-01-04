@@ -1,5 +1,6 @@
 import 'package:data/di/app_state_dependency_configurator.dart';
 import 'package:data/di/auth_dependency_configurator.dart';
+import 'package:data/di/cars_dependency_configurator.dart';
 import 'package:data/di/global_state_configurator.dart';
 import 'package:data/di/net_base_dependency_configurator.dart';
 import 'package:data/di/shared_pref_dependency_configurator.dart';
@@ -8,10 +9,11 @@ import 'package:get_it/get_it.dart';
 
 final configurators = [
   GlobalStateDependencyConfigurator(),
+  NetBaseDependencyConfigurator(),
   SharedPrefDependencyConfigurator(),
   AppStateDependencyConfigurator(),
-  NetBaseDependencyConfigurator(),
   AuthDependencyConfigurator(),
+  CarsDependencyConfigurator()
   // MainDependencyConfigurator(),
   // UserDependencyConfigurator(),
   // HistoryDependencyConfigurator(),
@@ -19,7 +21,9 @@ final configurators = [
   // SettingsDependencyConfigurator()
 ];
 
-void configureDependencies(DependencyConfigurationContext context) {
+void configureDependencies(
+  DependencyConfigurationContext context,
+) {
   for (var configurator in configurators) {
     configurator.configureDependencies(context, GetIt.instance);
   }

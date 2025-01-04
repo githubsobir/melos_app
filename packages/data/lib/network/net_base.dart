@@ -1,7 +1,9 @@
 // import 'package:chuck_interceptor/chuck.dart';
+import 'package:chuck_interceptor/chuck.dart';
 import 'package:data/utils/custom_functions.dart';
 import 'package:data/utils/my_shared_pref.dart';
 import 'package:dio/dio.dart';
+import 'package:domain/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 
@@ -10,7 +12,7 @@ class NetBase {
   GlobalKey<NavigatorState> navigatorKey;
 
   final BaseOptions _baseOptions = BaseOptions(
-    baseUrl: "https://c610-195-158-3-42.ngrok-free.app/api/",
+    baseUrl: "$BASE_URL/api/",
     sendTimeout: const Duration(seconds: 60000),
     receiveTimeout: const Duration(seconds: 60000),
     connectTimeout: const Duration(seconds: 60000),
@@ -24,7 +26,7 @@ class NetBase {
         //checkConnection();
         final token = await MySharedPref.instance.getAccessToken();
         if (token.isNotEmpty) {
-          options.headers['Authorization'] = 'Bearer $token';
+          // options.headers['Authorization'] = 'Bearer $token';
         }
         myPrint("⬇⬇⬇ onRequest ⬇⬇⬇");
         myPrint(options.method);
@@ -52,11 +54,11 @@ class NetBase {
       },
     ));
     if (!kReleaseMode) {
-      // var alice = Chuck(
-      //     navigatorKey: navigatorKey,
-      //     showNotification: true,
-      //     showInspectorOnShake: true);
-      // dio.interceptors.add(alice.getDioInterceptor());
+      var alice = Chuck(
+          navigatorKey: navigatorKey,
+          showNotification: true,
+          showInspectorOnShake: true);
+      dio.interceptors.add(alice.getDioInterceptor());
     }
   }
 
