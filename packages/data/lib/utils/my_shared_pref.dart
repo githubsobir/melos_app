@@ -24,7 +24,7 @@ class MySharedPref {
 
   Future<bool> setAccessToken(String token) async {
     SharedPreferences prefs = await _getInstance();
-    myPrint("saveAccessToken: $token");
+    myPrint("setAccessToken: $token");
     return prefs.setString('ACCESS_TOKEN', token);
   }
 
@@ -36,7 +36,7 @@ class MySharedPref {
 
   Future<bool> setRefreshToken(String token) async {
     SharedPreferences prefs = await _getInstance();
-    myPrint("saveAccessToken: $token");
+    myPrint("setRefreshToken: $token");
     return prefs.setString('REFRESH_TOKEN', token);
   }
 
@@ -48,7 +48,7 @@ class MySharedPref {
 
   Future<bool> setLanguageCode(String languageCode) async {
     SharedPreferences prefs = await _getInstance();
-    myPrint("saveLanguageCode: $languageCode");
+    myPrint("setLanguageCode: $languageCode");
     return prefs.setString('LANGUAGE_CODE', languageCode);
   }
 

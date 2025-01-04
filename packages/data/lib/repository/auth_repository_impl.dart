@@ -16,18 +16,16 @@ class AuthRepositoryImpl extends AuthRepository {
 
   @override
   Future<BaseResult<bool>> login(
-      {required String phone, required String password}) async {
+      {required String phoneNumber, required String password}) async {
     try {
       var response = await _authServices.login(LoginRequest(
-        phoneNumber: phone,
+        phoneNumber: phoneNumber,
         password: password,
       ));
-
       var isSaved = await MySharedPref.instance.setAccessToken(
               LoginResponse.fromJson(response.data).access ?? "") &&
           await MySharedPref.instance.setRefreshToken(
               LoginResponse.fromJson(response.data).refresh ?? "");
-
       return BaseResult(success: true, body: isSaved);
     } catch (exception) {
       return BaseResult(success: false, exceptionBody: exception);

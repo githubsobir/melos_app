@@ -8,11 +8,11 @@ class AuthUseCase {
   AuthUseCase(this._authRepository);
 
   Future<BaseResult<bool>> login({
-    required String email,
+    required String phoneNumber,
     required String password,
   }) {
     return _authRepository.login(
-      phone: email,
+      phoneNumber: phoneNumber,
       password: password,
     );
   }

@@ -11,7 +11,7 @@ class AuthService {
 
   Future<Response> login(LoginRequest request) async {
     var response = await _netBase.dio.post(
-      'users/login',
+      'users/login/',
       data: request.toJson(),
     );
     return response;

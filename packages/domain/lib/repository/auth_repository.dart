@@ -2,7 +2,7 @@ import 'package:domain/utils/base_result.dart';
 
 abstract class AuthRepository {
   Future<BaseResult<bool>> login({
-    required String phone,
+    required String phoneNumber,
     required String password,
   });
 
