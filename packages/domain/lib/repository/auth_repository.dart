@@ -24,4 +24,6 @@ abstract class AuthRepository {
   });
 
   Future<bool> hasUser();
+
+  Future<bool> logOut();
 }

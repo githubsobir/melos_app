@@ -1,9 +1,12 @@
+import 'package:common/navigation/auth_navigation_intents.dart';
 import 'package:common/path_images.dart';
+import 'package:dependency/dependencies.dart';
 import 'package:favourites/favourites_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:home/home_screen.dart';
+import 'package:intent_launcher/intent_launcher.dart';
 import 'package:locations/locations_screen.dart';
 import 'package:main/main/drawer_widget.dart';
 import 'package:main/main/main_cubit.dart';
@@ -12,8 +15,7 @@ import 'package:profile/profile/profile_screen.dart';
 class MainScreen extends StatelessWidget {
   MainScreen({super.key});
 
-  // final cubit = MainCubit(inject());
-  final cubit = MainCubit();
+  final cubit = MainCubit(inject());
 
   static final List<Widget> _mainScreens = <Widget>[
     const HomeScreen(),
@@ -35,8 +37,13 @@ class MainScreen extends StatelessWidget {
     //     return false;
     //   }
     // },
-    return BlocBuilder(
+    return BlocConsumer(
       bloc: cubit,
+      listener: (BuildContext context, Object state) {
+        if (state is LogOutState) {
+          context.openScreen(LoginIntent());
+        }
+      },
       builder: (context, state) {
         return Scaffold(
           appBar: cubit.pageIndex != 1
@@ -61,6 +68,7 @@ class MainScreen extends StatelessWidget {
                             child: SvgPicture.asset(PathImages.notification),
                           ),
                           Align(
+                            alignment: Alignment.topRight,
                             child: Container(
                               height: 11,
                               width: 11,
@@ -70,7 +78,6 @@ class MainScreen extends StatelessWidget {
                                   // border: Border.all(color: const Color(0xFFC0D8FF)),
                                   ),
                             ),
-                            alignment: Alignment.topRight,
                           )
                         ],
                       ),
@@ -78,8 +85,12 @@ class MainScreen extends StatelessWidget {
                   ],
                 )
               : null,
-          drawer: const Drawer(
-            child: DrawerWidget(),
+          drawer: Drawer(
+            child: DrawerWidget(
+              onLogOut: () {
+                cubit.logOut();
+              },
+            ),
           ),
           body: _mainScreens[cubit.pageIndex],
           bottomNavigationBar: SizedBox(
@@ -95,12 +106,8 @@ class MainScreen extends StatelessWidget {
                       "Рядом со мной", () => _onItemTapped(1)),
                   item(context, cubit.pageIndex == 2, PathImages.menuAdd, "",
                       () => _onItemTapped(2)),
-                  item(
-                      context,
-                      cubit.pageIndex == 3,
-                      PathImages.menuFavourite,
-                      "Сохранено",
-                      () => _onItemTapped(3)),
+                  item(context, cubit.pageIndex == 3, PathImages.menuFavourite,
+                      "Сохранено", () => _onItemTapped(3)),
                   item(context, cubit.pageIndex == 4, PathImages.menuProfile,
                       "Профиль", () => _onItemTapped(4)),
                 ],

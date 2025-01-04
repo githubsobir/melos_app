@@ -1,4 +1,5 @@
 import 'package:data/models/remote/auth/request/login_request.dart';
+import 'package:data/models/remote/auth/request/logout_request.dart';
 import 'package:data/models/remote/auth/request/register_request.dart';
 import 'package:data/models/remote/auth/request/send_sms_request.dart';
 import 'package:data/models/remote/auth/response/login_response.dart';
@@ -87,5 +88,21 @@ class AuthRepositoryImpl extends AuthRepository {
     var hasUser = (await MySharedPref.instance.getAccessToken()).isNotEmpty &&
         (await MySharedPref.instance.getRefreshToken()).isNotEmpty;
     return hasUser;
+  }
+
+  @override
+  Future<bool> logOut() async {
+    try {
+      var refresh = await MySharedPref.instance.getRefreshToken();
+      var response =
+          await _authServices.logOut(LogoutRequest(refresh: refresh));
+
+      if (response.statusCode == 205) {
+        return await MySharedPref.instance.clearAllData();
+      }
+      return false;
+    } catch (exception) {
+      return false;
+    }
   }
 }

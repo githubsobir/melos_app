@@ -50,4 +50,8 @@ class AuthUseCase {
   Future<bool> hasUser() {
     return _authRepository.hasUser();
   }
+
+  Future<bool> logOut() {
+    return _authRepository.logOut();
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:data/models/remote/auth/request/login_request.dart';
+import 'package:data/models/remote/auth/request/logout_request.dart';
 import 'package:data/models/remote/auth/request/register_request.dart';
 import 'package:data/models/remote/auth/request/send_sms_request.dart';
 import 'package:data/network/net_base.dart';
@@ -27,7 +28,15 @@ class AuthService {
 
   Future<Response> register(RegisterRequest request) async {
     var response = await _netBase.dio.post(
-      'users/register',
+      'users/register/',
+      data: request.toJson(),
+    );
+    return response;
+  }
+
+  Future<Response> logOut(LogoutRequest request) async {
+    var response = await _netBase.dio.post(
+      'users/logout/',
       data: request.toJson(),
     );
     return response;

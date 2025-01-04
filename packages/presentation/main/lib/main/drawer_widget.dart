@@ -1,16 +1,16 @@
-import 'package:common/navigation/auth_navigation_intents.dart';
 import 'package:common/path_images.dart';
 import 'package:dependency/dependencies/injector.dart';
 import 'package:domain/utils/app_state_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intent_launcher/intent_launcher.dart';
-import 'package:navigation/auth_navigation_intents.dart';
 import 'package:navigation/main_navigation_intents.dart';
 import 'package:navigation/my_cars_intents.dart';
 
 class DrawerWidget extends StatelessWidget {
-  const DrawerWidget({super.key});
+  final VoidCallback onLogOut;
+
+  const DrawerWidget({super.key, required this.onLogOut});
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +94,7 @@ class DrawerWidget extends StatelessWidget {
           title: "Выйти",
           context: context,
           onTap: () {
-            context.openScreen(LoginIntent());
+            onLogOut();
           },
         ),
       ],
