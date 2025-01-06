@@ -47,7 +47,10 @@ class PhoneNumberScreen extends StatelessWidget {
               SizedBox(height: 42),
               BaseButton(
                   onPressed: () {
-                    context.openScreen(OtpCodeIntent());
+                    context.openScreen(OtpCodeIntent(
+                      phoneNumber: phoneController.text,
+                      isRegister: isRegister,
+                    ));
                   },
                   title: "Отправлять"),
             ],

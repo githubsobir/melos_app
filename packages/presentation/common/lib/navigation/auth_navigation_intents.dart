@@ -17,6 +17,10 @@ class PhoneNumberIntent implements NavigationIntent {
 
 class OtpCodeIntent implements NavigationIntent {
   static String path = "/otp_code";
+  String phoneNumber;
+  bool isRegister;
+
+  OtpCodeIntent({required this.phoneNumber, required this.isRegister});
 }
 
 class CreateNewPasswordIntent implements NavigationIntent {

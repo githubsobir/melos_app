@@ -41,7 +41,7 @@ class RegisterScreen extends StatelessWidget {
           } else if (state is RegisterErrorState) {
             showToast("Ошибка регистрации");
           } else if (state is SuccessfullyRegisteredState) {
-            context.openScreen(OtpCodeIntent());
+            // context.openScreen(OtpCodeIntent(phoneNumber: ,isRegister: ));
           }
         },
         builder: (context, state) => BaseLoaderBuilder(
