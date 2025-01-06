@@ -10,6 +10,9 @@ class RegisterIntent implements NavigationIntent {
 
 class PhoneNumberIntent implements NavigationIntent {
   static String path = "/phone_number";
+  bool isRegister;
+
+  PhoneNumberIntent(this.isRegister);
 }
 
 class OtpCodeIntent implements NavigationIntent {

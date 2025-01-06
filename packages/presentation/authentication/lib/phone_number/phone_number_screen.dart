@@ -1,12 +1,20 @@
+import 'package:authentication/phone_number/phone_number_cubit.dart';
 import 'package:common/base_button.dart';
 import 'package:common/base_text_field.dart';
 import 'package:common/navigation/auth_navigation_intents.dart';
 import 'package:common/path_images.dart';
+import 'package:dependency/dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 
 class PhoneNumberScreen extends StatelessWidget {
-  const PhoneNumberScreen({super.key});
+  PhoneNumberScreen({super.key, required this.isRegister});
+
+  final bool isRegister;
+
+  final cubit = PhoneNumberCubit(inject());
+
+  final TextEditingController phoneController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +42,7 @@ class PhoneNumberScreen extends StatelessWidget {
                 title: "Контактный телефон",
                 hint: "+998 __ ___ __ __",
                 type: TextFieldType.PHONE,
+                controller: phoneController,
               ),
               SizedBox(height: 42),
               BaseButton(

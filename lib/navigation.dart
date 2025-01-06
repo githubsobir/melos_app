@@ -34,7 +34,8 @@ final _launcher = IntentLauncher()
         return Navigator.pushReplacementNamed(context, RegisterIntent.path);
       })
       ..onNavigationIntent<PhoneNumberIntent>((context, intent) {
-        return Navigator.pushNamed(context, PhoneNumberIntent.path);
+        return Navigator.pushNamed(context, PhoneNumberIntent.path,
+            arguments: intent.isRegister);
       })
       ..onNavigationIntent<OtpCodeIntent>((context, intent) {
         return Navigator.pushNamed(context, OtpCodeIntent.path);
@@ -94,7 +95,10 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
   } else if (RegisterIntent.path == settings.name) {
     return _createRoute(RegisterScreen().wrapWith(_launcher));
   } else if (PhoneNumberIntent.path == settings.name) {
-    return _createRoute(PhoneNumberScreen().wrapWith(_launcher));
+    var isRegister = settings.arguments as bool;
+    return _createRoute(PhoneNumberScreen(
+      isRegister: isRegister,
+    ).wrapWith(_launcher));
   } else if (OtpCodeIntent.path == settings.name) {
     return _createRoute(OtpCodeScreen().wrapWith(_launcher));
   } else if (CreateNewPasswordIntent.path == settings.name) {

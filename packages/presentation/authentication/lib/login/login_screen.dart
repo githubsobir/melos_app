@@ -66,7 +66,7 @@ class LoginScreen extends StatelessWidget {
                     SizedBox(height: 16),
                     GestureDetector(
                       onTap: () {
-                        context.openScreen(PhoneNumberIntent());
+                        context.openScreen(PhoneNumberIntent(false));
                       },
                       child: Text(
                         "Забыли пароль?",
@@ -102,7 +102,7 @@ class LoginScreen extends StatelessWidget {
                     SizedBox(height: 32),
                     GestureDetector(
                       onTap: () {
-                        context.openScreen(PhoneNumberIntent());
+                        context.openScreen(PhoneNumberIntent(true));
                       },
                       child: RichText(
                         textAlign: TextAlign.center,
