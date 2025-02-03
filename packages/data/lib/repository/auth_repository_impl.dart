@@ -8,6 +8,7 @@ import 'package:data/models/remote/auth/response/register_response.dart';
 import 'package:data/models/remote/auth/response/send_sms_response.dart';
 import 'package:data/service/auth_service.dart';
 import 'package:data/utils/my_shared_pref.dart';
+import 'package:dio/dio.dart';
 import 'package:domain/repository/auth_repository.dart';
 import 'package:domain/utils/base_result.dart';
 
@@ -29,6 +30,9 @@ class AuthRepositoryImpl extends AuthRepository {
           await MySharedPref.instance.setRefreshToken(
               LoginResponse.fromJson(response.data).refresh ?? "");
       return BaseResult(success: true, body: isSaved);
+    } on DioException catch (error) {
+      return BaseResult(
+          success: false, exceptionBody: error.response?.data['error_note']);
     } catch (exception) {
       return BaseResult(success: false, exceptionBody: exception);
     }
@@ -43,6 +47,9 @@ class AuthRepositoryImpl extends AuthRepository {
         success: true,
         body: SendSmsResponse.fromJson(response.data).message != null,
       );
+    }  on DioException catch (error) {
+      return BaseResult(
+          success: false, exceptionBody: error.response?.data['error_note']);
     } catch (exception) {
       return BaseResult(success: false, exceptionBody: exception);
     }
@@ -75,6 +82,9 @@ class AuthRepositoryImpl extends AuthRepository {
           await MySharedPref.instance.setRefreshToken(
               RegisterResponse.fromJson(response.data).token?.refresh ?? "");
       return BaseResult(success: true, body: isSaved);
+    } on DioException catch (error) {
+      return BaseResult(
+          success: false, exceptionBody: error.response?.data['error_note']);
     } catch (exception) {
       return BaseResult(success: false, exceptionBody: exception);
     }
@@ -125,8 +135,11 @@ class AuthRepositoryImpl extends AuthRepository {
         smsCode: smsCode,
       ));
       return BaseResult(success: true, body: true);
+    }  on DioException catch (error) {
+      return BaseResult(
+          success: false, exceptionBody: error.response?.data['error_note']);
     } catch (exception) {
-      return BaseResult(success: false, exceptionBody: exception.toString());
+      return BaseResult(success: false, exceptionBody: exception);
     }
   }
 }

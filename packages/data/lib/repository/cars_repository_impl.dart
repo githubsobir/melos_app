@@ -1,6 +1,7 @@
 import 'package:data/models/remote/cars/request/car_like_request.dart';
 import 'package:data/models/remote/cars/response/car_response.dart';
 import 'package:data/service/cars_service.dart';
+import 'package:dio/dio.dart';
 import 'package:domain/model/car_model.dart';
 import 'package:domain/repository/cars_repository.dart';
 import 'package:domain/utils/base_result.dart';
@@ -18,6 +19,9 @@ class CarsRepositoryImpl extends CarsRepository {
         success: true,
         body: CarResponse.fromJson(response.data).results?.toDomainModel(),
       );
+    } on DioException catch (error) {
+      return BaseResult(
+          success: false, exceptionBody: error.response?.data['error_note']);
     } catch (exception) {
       return BaseResult(success: false, exceptionBody: exception);
     }
@@ -31,6 +35,9 @@ class CarsRepositoryImpl extends CarsRepository {
         success: true,
         body: true,
       );
+    } on DioException catch (error) {
+      return BaseResult(
+          success: false, exceptionBody: error.response?.data['error_note']);
     } catch (exception) {
       return BaseResult(success: false, exceptionBody: exception);
     }
