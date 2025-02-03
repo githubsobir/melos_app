@@ -28,4 +28,6 @@ abstract class AuthRepository {
   Future<bool> verifyPhone({required String phoneNumber});
 
   Future<BaseResult<bool>>  verifySmsCode({required String phoneNumber, required String smsCode});
+
+  Future<BaseResult<bool>> forgotPassword({required String phoneNumber, required String newPassword, required String confirmPassword});
 }

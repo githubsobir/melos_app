@@ -1,3 +1,4 @@
+import 'package:data/models/remote/auth/request/forgot_password_request.dart';
 import 'package:data/models/remote/auth/request/login_request.dart';
 import 'package:data/models/remote/auth/request/logout_request.dart';
 import 'package:data/models/remote/auth/request/register_request.dart';
@@ -47,7 +48,7 @@ class AuthRepositoryImpl extends AuthRepository {
         success: true,
         body: SendSmsResponse.fromJson(response.data).message != null,
       );
-    }  on DioException catch (error) {
+    } on DioException catch (error) {
       return BaseResult(
           success: false, exceptionBody: error.response?.data['error_note']);
     } catch (exception) {
@@ -135,7 +136,27 @@ class AuthRepositoryImpl extends AuthRepository {
         smsCode: smsCode,
       ));
       return BaseResult(success: true, body: true);
-    }  on DioException catch (error) {
+    } on DioException catch (error) {
+      return BaseResult(
+          success: false, exceptionBody: error.response?.data['error_note']);
+    } catch (exception) {
+      return BaseResult(success: false, exceptionBody: exception);
+    }
+  }
+
+  @override
+  Future<BaseResult<bool>> forgotPassword(
+      {required String phoneNumber,
+      required String newPassword,
+      required String confirmPassword}) async {
+    try {
+      var response = await _authServices.forgotPassword(ForgotPasswordRequest(
+        phoneNumber: phoneNumber,
+        newPassword: newPassword,
+        confirmPassword: confirmPassword,
+      ));
+      return BaseResult(success: true, body: true);
+    } on DioException catch (error) {
       return BaseResult(
           success: false, exceptionBody: error.response?.data['error_note']);
     } catch (exception) {

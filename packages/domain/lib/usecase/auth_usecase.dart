@@ -55,7 +55,21 @@ class AuthUseCase {
     return _authRepository.verifyPhone(phoneNumber: phoneNumber);
   }
 
-  Future<BaseResult<bool>> verifySmsCode({required String phoneNumber, required String smsCode}) {
-    return _authRepository.verifySmsCode(phoneNumber: phoneNumber, smsCode: smsCode);
+  Future<BaseResult<bool>> verifySmsCode(
+      {required String phoneNumber, required String smsCode}) {
+    return _authRepository.verifySmsCode(
+        phoneNumber: phoneNumber, smsCode: smsCode);
+  }
+
+  Future<BaseResult<bool>> forgotPassword({
+    required String phoneNumber,
+    required String newPassword,
+    required String confirmPassword,
+  }) {
+    return _authRepository.forgotPassword(
+      phoneNumber: phoneNumber,
+      newPassword: newPassword,
+      confirmPassword: confirmPassword,
+    );
   }
 }

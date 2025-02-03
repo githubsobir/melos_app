@@ -1,3 +1,4 @@
+import 'package:data/models/remote/auth/request/forgot_password_request.dart';
 import 'package:data/models/remote/auth/request/login_request.dart';
 import 'package:data/models/remote/auth/request/logout_request.dart';
 import 'package:data/models/remote/auth/request/register_request.dart';
@@ -63,6 +64,15 @@ class AuthService {
     var response = await _netBase.dio.post(
       'users/verify-sms-code/',
       data: verifySmsCodeRequest.toJson(),
+    );
+    return response;
+  }
+
+  Future<Response> forgotPassword(
+      ForgotPasswordRequest forgotPasswordRequest) async {
+    var response = await _netBase.dio.post(
+      'users/password-reset/',
+      data: forgotPasswordRequest.toJson(),
     );
     return response;
   }

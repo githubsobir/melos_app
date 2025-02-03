@@ -51,24 +51,24 @@ class PasswordScreen extends StatelessWidget {
                       height: 150,
                       width: 212,
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     BaseTextField(
                       controller: passwordController,
                       title: "Пароль",
                       hint: "Пароль",
                       type: TextFieldType.PASSWORD,
                     ),
-                    SizedBox(height: 16),
+                    const SizedBox(height: 16),
                     GestureDetector(
                       onTap: () {
-                        context.openScreen(PhoneNumberIntent(false));
+                        context.openScreen(ForgotPasswordIntent(phoneNumber: phoneNumber));
                       },
                       child: Text(
                         "Забыли пароль?",
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ),
-                    SizedBox(height: 42),
+                    const SizedBox(height: 42),
                     BaseButton(
                         onPressed: () {
                           cubit.login(

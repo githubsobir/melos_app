@@ -17,19 +17,22 @@ class RegisterIntent implements NavigationIntent {
 
 class PhoneNumberIntent implements NavigationIntent {
   static String path = "/phone_number";
-  bool isRegister;
+  final bool isRegister;
 
   PhoneNumberIntent(this.isRegister);
 }
 
 class OtpCodeIntent implements NavigationIntent {
   static String path = "/otp_code";
-  String phoneNumber;
-  bool isRegister;
+  final String phoneNumber;
+  final bool isRegister;
 
   OtpCodeIntent({required this.phoneNumber, required this.isRegister});
 }
 
-class CreateNewPasswordIntent implements NavigationIntent {
-  static String path = "/create_new_password";
+class ForgotPasswordIntent implements NavigationIntent {
+  static String path = "/forgot_password";
+  final String phoneNumber;
+
+  ForgotPasswordIntent({required this.phoneNumber});
 }

@@ -1,4 +1,4 @@
-import 'package:authentication/forgot_password/create_new_password_screen.dart';
+import 'package:authentication/forgot_password/forgot_password_screen.dart';
 import 'package:authentication/login/login_screen.dart';
 import 'package:authentication/otp_code_screen/otp_code_screen.dart';
 import 'package:authentication/password/password_screen.dart';
@@ -56,8 +56,12 @@ final _launcher = IntentLauncher()
           },
         );
       })
-      ..onNavigationIntent<CreateNewPasswordIntent>((context, intent) {
-        return Navigator.pushNamed(context, CreateNewPasswordIntent.path);
+      ..onNavigationIntent<ForgotPasswordIntent>((context, intent) {
+        return Navigator.pushNamed(
+          context,
+          ForgotPasswordIntent.path,
+          arguments: intent.phoneNumber,
+        );
       })
 // main
       ..onNavigationIntent<MainIntent>((context, intent) {
@@ -126,8 +130,10 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
       isRegister: map["isRegister"],
       phoneNumber: map["phoneNumber"],
     ).wrapWith(_launcher));
-  } else if (CreateNewPasswordIntent.path == settings.name) {
-    return _createRoute(const CreateNewPasswordScreen().wrapWith(_launcher));
+  } else if (ForgotPasswordIntent.path == settings.name) {
+    return _createRoute(ForgotPasswordScreen(
+      phoneNumber: settings.arguments as String,
+    ).wrapWith(_launcher));
   } else if (MainIntent.path == settings.name) {
     return _createRoute(MainScreen().wrapWith(_launcher));
   } else if (BookingIntent.path == settings.name) {
