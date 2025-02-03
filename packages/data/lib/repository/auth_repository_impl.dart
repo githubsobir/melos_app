@@ -105,4 +105,15 @@ class AuthRepositoryImpl extends AuthRepository {
       return false;
     }
   }
+
+  @override
+  Future<bool> verifyPhone({required String phoneNumber}) async {
+    try {
+      var response = await _authServices
+          .verifyPhone(SendSmsRequest(phoneNumber: phoneNumber));
+      return true;
+    } catch (exception) {
+      return false;
+    }
+  }
 }

@@ -26,4 +26,6 @@ abstract class AuthRepository {
   Future<bool> hasUser();
 
   Future<bool> logOut();
+
+  Future<bool> verifyPhone({required String phoneNumber});
 }

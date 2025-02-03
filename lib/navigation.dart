@@ -1,6 +1,7 @@
 import 'package:authentication/forgot_password/create_new_password_screen.dart';
 import 'package:authentication/login/login_screen.dart';
 import 'package:authentication/otp_code_screen/otp_code_screen.dart';
+import 'package:authentication/password/password_screen.dart';
 import 'package:authentication/phone_number/phone_number_screen.dart';
 import 'package:authentication/register/register_screen.dart';
 import 'package:common/navigation/auth_navigation_intents.dart';
@@ -30,6 +31,14 @@ final _launcher = IntentLauncher()
         Navigator.of(context).popUntil((route) => route.isFirst);
         return Navigator.pushReplacementNamed(context, LoginIntent.path);
       })
+      ..onNavigationIntent<PasswordScreenIntent>((context, intent) {
+        // Navigator.of(context).popUntil((route) => route.isFirst);
+        return Navigator.pushNamed(
+          context,
+          PasswordScreenIntent.path,
+          arguments: intent.phoneNumber,
+        );
+      })
       ..onNavigationIntent<RegisterIntent>((context, intent) {
         return Navigator.pushReplacementNamed(context, RegisterIntent.path);
       })
@@ -45,6 +54,7 @@ final _launcher = IntentLauncher()
       })
 // main
       ..onNavigationIntent<MainIntent>((context, intent) {
+        Navigator.of(context).popUntil((route) => route.isFirst);
         return Navigator.pushReplacementNamed(context, MainIntent.path);
       })
       ..onNavigationIntent<BookingIntent>((context, intent) {
@@ -92,6 +102,10 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     return _createRoute(OnboardingScreen().wrapWith(_launcher));
   } else if (LoginIntent.path == settings.name) {
     return _createRoute(LoginScreen().wrapWith(_launcher));
+  } else if (PasswordScreenIntent.path == settings.name) {
+    return _createRoute(
+        PasswordScreen(phoneNumber: settings.arguments as String)
+            .wrapWith(_launcher));
   } else if (RegisterIntent.path == settings.name) {
     return _createRoute(RegisterScreen().wrapWith(_launcher));
   } else if (PhoneNumberIntent.path == settings.name) {

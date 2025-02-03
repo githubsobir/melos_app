@@ -54,4 +54,8 @@ class AuthUseCase {
   Future<bool> logOut() {
     return _authRepository.logOut();
   }
+
+  Future<bool> verifyPhone({required String phoneNumber}) {
+    return _authRepository.verifyPhone(phoneNumber: phoneNumber);
+  }
 }

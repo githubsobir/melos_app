@@ -2,26 +2,31 @@ import 'package:domain/usecase/auth_usecase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LoginCubit extends Cubit<LoginState> {
+class PasswordCubit extends Cubit<LoginState> {
   final AuthUseCase _authUseCase;
 
-  LoginCubit(this._authUseCase) : super(LoginInitial());
+  PasswordCubit(this._authUseCase) : super(LoginInitial());
 
-  Future<void> verifyPhone({required String phone}) async {
+  Future<void> login({
+    required String phone,
+    required String password,
+  }) async {
     emit(LoaderState());
-    if (phone.isNotEmpty) {
-      var response = await _authUseCase.verifyPhone(
+    if (phone.isNotEmpty && password.isNotEmpty) {
+      var response = await _authUseCase.login(
         phoneNumber: phone,
+        password: password,
       );
-      if (response) {
-        emit(HasUser());
+      if (response.success) {
+        emit(SuccessfullyLoginState());
       } else {
-        emit(UserNotFound());
+        emit(LoginErrorState());
       }
     } else {
       emit(EmptyFieldsErrorState());
     }
   }
+
 }
 
 abstract class LoginState extends Equatable {
@@ -38,12 +43,12 @@ class LoaderState extends LoginState {
   List<Object> get props => [];
 }
 
-class HasUser extends LoginState {
+class SuccessfullyLoginState extends LoginState {
   @override
   List<Object> get props => [];
 }
 
-class UserNotFound extends LoginState {
+class LoginErrorState extends LoginState {
   @override
   List<Object> get props => [];
 }

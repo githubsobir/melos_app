@@ -41,4 +41,11 @@ class AuthService {
     );
     return response;
   }
+
+  Future<Response> verifyPhone(SendSmsRequest sendSmsRequest) async {
+    var response = await _netBase.dio.get(
+      'users/verify-phone/${sendSmsRequest.phoneNumber}/',
+    );
+    return response;
+  }
 }

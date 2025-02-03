@@ -1,4 +1,4 @@
-import 'package:authentication/login/login_cubit.dart';
+import 'package:authentication/password/password_cubit.dart';
 import 'package:common/base_button.dart';
 import 'package:common/base_loader_builder.dart';
 import 'package:common/base_text_field.dart';
@@ -9,30 +9,32 @@ import 'package:dependency/dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intent_launcher/intent_launcher.dart';
+import 'package:navigation/main_navigation_intents.dart';
 
-class LoginScreen extends StatelessWidget {
-  LoginScreen({super.key});
+class PasswordScreen extends StatelessWidget {
+  PasswordScreen({super.key, required this.phoneNumber});
 
-  final cubit = LoginCubit(inject());
+  final String phoneNumber;
 
-  final TextEditingController phoneController = TextEditingController();
+  final cubit = PasswordCubit(inject());
+
+  final TextEditingController passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Войти"),
+        title: const Text("Авторизоваться"),
       ),
       body: BlocConsumer(
         bloc: cubit,
         listener: (context, state) {
           if (state is EmptyFieldsErrorState) {
             showToast("Пожалуйста, заполните все поля");
-          } else if (state is UserNotFound) {
+          } else if (state is LoginErrorState) {
             showToast("Ошибка регистрации");
-          } else if (state is HasUser) {
-            context.openScreen(PasswordScreenIntent(
-                phoneNumber: phoneController.text.replaceAll(" ", "")));
+          } else if (state is SuccessfullyLoginState) {
+            context.openScreen(MainIntent());
           }
         },
         builder: (context, state) {
@@ -49,22 +51,32 @@ class LoginScreen extends StatelessWidget {
                       height: 150,
                       width: 212,
                     ),
-                    const SizedBox(height: 72),
+                    SizedBox(height: 16),
                     BaseTextField(
-                      controller: phoneController,
-                      title: "Введите номер",
-                      hint: "+998 __ ___ __ __",
-                      type: TextFieldType.PHONE,
+                      controller: passwordController,
+                      title: "Пароль",
+                      hint: "Пароль",
+                      type: TextFieldType.PASSWORD,
                     ),
-                    const SizedBox(height: 100),
+                    SizedBox(height: 16),
+                    GestureDetector(
+                      onTap: () {
+                        context.openScreen(PhoneNumberIntent(false));
+                      },
+                      child: Text(
+                        "Забыли пароль?",
+                        style: Theme.of(context).textTheme.bodyMedium,
+                      ),
+                    ),
+                    SizedBox(height: 42),
                     BaseButton(
                         onPressed: () {
-                          cubit.verifyPhone(
-                            phone:
-                                "+998${phoneController.text.replaceAll(" ", "")}",
-                          ); //123
+                          cubit.login(
+                              phone: "+998$phoneNumber",
+                              password: passwordController.text); //123
                         },
-                        title: "Продолжать"),
+                        title: "Войти"),
+                    const SizedBox(height: 32),
                   ],
                 ),
               ),

@@ -25,7 +25,7 @@ class BaseButton extends StatelessWidget {
         ),
         child: Padding(
           padding:
-              const EdgeInsets.only(left: 16, right: 16, top: 4, bottom: 4),
+              const EdgeInsets.only(left: 16, right: 16, top: 12, bottom: 12),
           child: Text(
             title,
             textAlign: TextAlign.center,
