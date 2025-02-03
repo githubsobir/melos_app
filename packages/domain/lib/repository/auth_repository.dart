@@ -17,8 +17,6 @@ abstract class AuthRepository {
     required String phoneNumber,
     required String passportPinfl,
     required String driverLicense,
-    required String role,
-    required String smsCode,
     required String password,
     required String confirmPassword,
   });
@@ -28,4 +26,6 @@ abstract class AuthRepository {
   Future<bool> logOut();
 
   Future<bool> verifyPhone({required String phoneNumber});
+
+  Future<BaseResult<bool>>  verifySmsCode({required String phoneNumber, required String smsCode});
 }

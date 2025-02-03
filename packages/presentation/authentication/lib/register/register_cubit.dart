@@ -9,40 +9,37 @@ class RegisterCubit extends Cubit<RegisterState> {
 
   Future<void> register({
     required String firstName,
-    required String phone,
+    required String phoneNumber,
     required String password,
     required String confirmPassword,
     required String lastName,
     required String driverLicense,
     required String middleName,
     required String passportPinfl,
-    required String role,
   }) async {
     emit(LoaderState());
     if (firstName.isNotEmpty &&
-        phone.isNotEmpty &&
+        phoneNumber.isNotEmpty &&
         password.isNotEmpty &&
         confirmPassword.isNotEmpty &&
         lastName.isNotEmpty &&
         driverLicense.isNotEmpty &&
         middleName.isNotEmpty &&
-        passportPinfl.isNotEmpty &&
-        role.isNotEmpty) {
-      var response = await _authUseCase.sendSms(phoneNumber: phone);
+        passportPinfl.isNotEmpty) {
+      var response = await _authUseCase.register(
+        firstName: firstName,
+        lastName: lastName,
+        middleName: middleName,
+        passportPinfl: passportPinfl,
+        driverLicense: driverLicense,
+        phoneNumber: phoneNumber,
+        password: password,
+        confirmPassword: confirmPassword,
+      );
       if (response.success) {
-        emit(SuccessfullyRegisteredState(
-          firstName,
-          phone,
-          password,
-          confirmPassword,
-          lastName,
-          driverLicense,
-          middleName,
-          passportPinfl,
-          role,
-        ));
+        emit(const SuccessfullyRegisteredState());
       } else {
-        emit(RegisterErrorState());
+        emit(RegisterErrorState(response.exceptionBody.toString()));
       }
     } else {
       emit(EmptyFieldsErrorState());
@@ -65,43 +62,17 @@ class LoaderState extends RegisterState {
 }
 
 class SuccessfullyRegisteredState extends RegisterState {
-  final String firstName;
-  final String phone;
-  final String password;
-  final String confirmPassword;
-  final String lastName;
-  final String driverLicense;
-  final String middleName;
-  final String passportPinfl;
-  final String role;
-
-  const SuccessfullyRegisteredState(
-    this.firstName,
-    this.phone,
-    this.password,
-    this.confirmPassword,
-    this.lastName,
-    this.driverLicense,
-    this.middleName,
-    this.passportPinfl,
-    this.role,
-  );
+  const SuccessfullyRegisteredState();
 
   @override
-  List<Object> get props => [
-        firstName,
-        phone,
-        password,
-        confirmPassword,
-        lastName,
-        driverLicense,
-        middleName,
-        passportPinfl,
-        role,
-      ];
+  List<Object> get props => [];
 }
 
 class RegisterErrorState extends RegisterState {
+  final String message;
+
+  const RegisterErrorState(this.message);
+
   @override
   List<Object> get props => [];
 }

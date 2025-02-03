@@ -7,45 +7,38 @@ class OtpCodeCubit extends Cubit<OtpCodeState> {
 
   OtpCodeCubit(this._authUseCase) : super(RegisterInitial());
 
-  Future<void> register({
-    required String firstName,
+  Future<void> sendSms({
     required String phone,
-    required String password,
-    required String confirmPassword,
-    required String lastName,
-    required String driverLicense,
-    required String middleName,
-    required String passportPinfl,
-    required String role,
+  }) async {
+    // emit(LoaderState());
+    if (phone.isNotEmpty) {
+      var response = await _authUseCase.sendSms(
+        phoneNumber: phone,
+      );
+      // if (response.success) {
+      //   emit(SuccessfullyRegisteredState());
+      // } else {
+      //   emit(RegisterErrorState());
+      // }
+    } else {
+      emit(EmptyFieldsErrorState());
+    }
+  }
+
+  Future<void> verifySmsCode({
+    required String phone,
     required String smsCode,
   }) async {
     emit(LoaderState());
-    var response = await _authUseCase.register(
-      firstName: firstName,
-      phoneNumber: phone,
-      password: password,
-      confirmPassword: confirmPassword,
-      lastName: lastName,
-      driverLicense: driverLicense,
-      middleName: middleName,
-      passportPinfl: passportPinfl,
-      role: role,
-      smsCode: smsCode,
-    );
-    if (firstName.isNotEmpty &&
-        phone.isNotEmpty &&
-        password.isNotEmpty &&
-        confirmPassword.isNotEmpty &&
-        lastName.isNotEmpty &&
-        driverLicense.isNotEmpty &&
-        middleName.isNotEmpty &&
-        passportPinfl.isNotEmpty &&
-        role.isNotEmpty &&
-        smsCode.isNotEmpty) {
+    if (phone.isNotEmpty && smsCode.isNotEmpty) {
+      var response = await _authUseCase.verifySmsCode(
+        phoneNumber: phone,
+        smsCode: smsCode,
+      );
       if (response.success) {
-        emit(SuccessfullyRegisteredState());
+        emit(SuccessfullyVerifiedState());
       } else {
-        emit(RegisterErrorState());
+        emit(ErrorState(message: response.exceptionBody.toString()));
       }
     } else {
       emit(EmptyFieldsErrorState());
@@ -67,14 +60,18 @@ class LoaderState extends OtpCodeState {
   List<Object> get props => [];
 }
 
-class SuccessfullyRegisteredState extends OtpCodeState {
+class SuccessfullyVerifiedState extends OtpCodeState {
   @override
   List<Object> get props => [];
 }
 
-class RegisterErrorState extends OtpCodeState {
+class ErrorState extends OtpCodeState {
+  final String message;
+
+  const ErrorState({required this.message});
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [message];
 }
 
 class EmptyFieldsErrorState extends OtpCodeState {

@@ -6,8 +6,6 @@ class RegisterRequest {
     this.phoneNumber,
     this.passportPinfl,
     this.driverLicense,
-    this.role,
-    this.smsCode,
     this.password,
     this.confirmPassword,
   });
@@ -19,8 +17,6 @@ class RegisterRequest {
     phoneNumber = json['phone_number'];
     passportPinfl = json['passport_pinfl'];
     driverLicense = json['driver_license'];
-    role = json['role'];
-    smsCode = json['sms_code'];
     password = json['password'];
     confirmPassword = json['confirm_password'];
   }
@@ -31,8 +27,6 @@ class RegisterRequest {
   String? phoneNumber;
   String? passportPinfl;
   String? driverLicense;
-  String? role;
-  String? smsCode;
   String? password;
   String? confirmPassword;
 
@@ -44,8 +38,6 @@ class RegisterRequest {
     map['phone_number'] = phoneNumber;
     map['passport_pinfl'] = passportPinfl;
     map['driver_license'] = driverLicense;
-    map['role'] = role;
-    map['sms_code'] = smsCode;
     map['password'] = password;
     map['confirm_password'] = confirmPassword;
     return map;

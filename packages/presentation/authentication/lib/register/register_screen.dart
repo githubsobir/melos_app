@@ -9,6 +9,7 @@ import 'package:dependency/dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intent_launcher/intent_launcher.dart';
+import 'package:navigation/main_navigation_intents.dart';
 
 class RegisterScreen extends StatelessWidget {
   RegisterScreen({super.key});
@@ -21,7 +22,7 @@ class RegisterScreen extends StatelessWidget {
   final TextEditingController driverLicenseController = TextEditingController();
   final TextEditingController middleNameLicenseController =
       TextEditingController();
-  final TextEditingController roleController = TextEditingController();
+  // final TextEditingController roleController = TextEditingController();
   final TextEditingController passportPinflController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
@@ -39,9 +40,9 @@ class RegisterScreen extends StatelessWidget {
           if (state is EmptyFieldsErrorState) {
             showToast("Пожалуйста, заполните все поля");
           } else if (state is RegisterErrorState) {
-            showToast("Ошибка регистрации");
+            showToast(state.message);
           } else if (state is SuccessfullyRegisteredState) {
-            // context.openScreen(OtpCodeIntent(phoneNumber: ,isRegister: ));
+            context.openScreen(MainIntent());
           }
         },
         builder: (context, state) => BaseLoaderBuilder(
@@ -107,34 +108,17 @@ class RegisterScreen extends StatelessWidget {
                     type: TextFieldType.PASSWORD,
                   ),
                   SizedBox(height: 42),
-                  Row(
-                    children: [
-                      SizedBox(
-                          width: 24.0,
-                          height: 24.0,
-                          child: Checkbox(value: true, onChanged: (value) {})),
-                      SizedBox(
-                        width: 8,
-                      ),
-                      Text(
-                        "Запомнить меня?",
-                        style: Theme.of(context).textTheme.bodyMedium,
-                      ),
-                    ],
-                  ),
-                  SizedBox(height: 14),
                   BaseButton(
                       onPressed: () {
                         cubit.register(
                           firstName: firstNameController.text,
-                          phone: phoneController.text,
+                          phoneNumber: phoneController.text,
                           password: passwordController.text,
                           confirmPassword: confirmPasswordController.text,
                           lastName: lastNameController.text,
                           driverLicense: driverLicenseController.text,
                           middleName: middleNameLicenseController.text,
                           passportPinfl: passportPinflController.text,
-                          role: roleController.text,
                         );
                       },
                       title: "Войти"),

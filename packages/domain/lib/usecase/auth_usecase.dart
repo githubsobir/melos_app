@@ -23,8 +23,6 @@ class AuthUseCase {
     required String middleName,
     required String passportPinfl,
     required String driverLicense,
-    required String role,
-    required String smsCode,
     required String phoneNumber,
     required String password,
     required String confirmPassword,
@@ -35,8 +33,6 @@ class AuthUseCase {
       middleName: middleName,
       passportPinfl: passportPinfl,
       driverLicense: driverLicense,
-      role: role,
-      smsCode: smsCode,
       phoneNumber: phoneNumber,
       password: password,
       confirmPassword: confirmPassword,
@@ -57,5 +53,9 @@ class AuthUseCase {
 
   Future<bool> verifyPhone({required String phoneNumber}) {
     return _authRepository.verifyPhone(phoneNumber: phoneNumber);
+  }
+
+  Future<BaseResult<bool>> verifySmsCode({required String phoneNumber, required String smsCode}) {
+    return _authRepository.verifySmsCode(phoneNumber: phoneNumber, smsCode: smsCode);
   }
 }

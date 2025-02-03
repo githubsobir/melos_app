@@ -2,6 +2,7 @@ import 'package:data/models/remote/auth/request/login_request.dart';
 import 'package:data/models/remote/auth/request/logout_request.dart';
 import 'package:data/models/remote/auth/request/register_request.dart';
 import 'package:data/models/remote/auth/request/send_sms_request.dart';
+import 'package:data/models/remote/auth/request/verify_sms_code_request.dart';
 import 'package:data/models/remote/auth/response/login_response.dart';
 import 'package:data/models/remote/auth/response/register_response.dart';
 import 'package:data/models/remote/auth/response/send_sms_response.dart';
@@ -55,8 +56,6 @@ class AuthRepositoryImpl extends AuthRepository {
     required String phoneNumber,
     required String passportPinfl,
     required String driverLicense,
-    required String role,
-    required String smsCode,
     required String password,
     required String confirmPassword,
   }) async {
@@ -68,8 +67,6 @@ class AuthRepositoryImpl extends AuthRepository {
           phoneNumber: phoneNumber,
           passportPinfl: passportPinfl,
           driverLicense: driverLicense,
-          role: role,
-          smsCode: smsCode,
           password: password,
           confirmPassword: confirmPassword));
 
@@ -114,6 +111,22 @@ class AuthRepositoryImpl extends AuthRepository {
       return true;
     } catch (exception) {
       return false;
+    }
+  }
+
+  @override
+  Future<BaseResult<bool>> verifySmsCode({
+    required String phoneNumber,
+    required String smsCode,
+  }) async {
+    try {
+      var response = await _authServices.verifySmsCode(VerifySmsCodeRequest(
+        phoneNumber: phoneNumber,
+        smsCode: smsCode,
+      ));
+      return BaseResult(success: true, body: true);
+    } catch (exception) {
+      return BaseResult(success: false, exceptionBody: exception.toString());
     }
   }
 }

@@ -47,7 +47,14 @@ final _launcher = IntentLauncher()
             arguments: intent.isRegister);
       })
       ..onNavigationIntent<OtpCodeIntent>((context, intent) {
-        return Navigator.pushNamed(context, OtpCodeIntent.path);
+        return Navigator.pushNamed(
+          context,
+          OtpCodeIntent.path,
+          arguments: {
+            "phoneNumber": intent.phoneNumber,
+            "isRegister": intent.isRegister,
+          },
+        );
       })
       ..onNavigationIntent<CreateNewPasswordIntent>((context, intent) {
         return Navigator.pushNamed(context, CreateNewPasswordIntent.path);
@@ -114,9 +121,13 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
       isRegister: isRegister,
     ).wrapWith(_launcher));
   } else if (OtpCodeIntent.path == settings.name) {
-    return _createRoute(OtpCodeScreen().wrapWith(_launcher));
+    var map = settings.arguments as Map;
+    return _createRoute(OtpCodeScreen(
+      isRegister: map["isRegister"],
+      phoneNumber: map["phoneNumber"],
+    ).wrapWith(_launcher));
   } else if (CreateNewPasswordIntent.path == settings.name) {
-    return _createRoute(CreateNewPasswordScreen().wrapWith(_launcher));
+    return _createRoute(const CreateNewPasswordScreen().wrapWith(_launcher));
   } else if (MainIntent.path == settings.name) {
     return _createRoute(MainScreen().wrapWith(_launcher));
   } else if (BookingIntent.path == settings.name) {

@@ -42,7 +42,6 @@ class HasUser extends LoginState {
   @override
   List<Object> get props => [];
 }
-
 class UserNotFound extends LoginState {
   @override
   List<Object> get props => [];

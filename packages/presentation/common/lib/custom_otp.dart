@@ -5,8 +5,7 @@ class CustomOtp extends StatefulWidget {
   Function(String code) onPinEntered;
   bool invalidCode = false;
 
-  CustomOtp({Key? key, required this.onPinEntered, this.invalidCode = false})
-      : super(key: key);
+  CustomOtp({super.key, required this.onPinEntered, this.invalidCode = false});
 
   @override
   State<CustomOtp> createState() => _CustomOtpState();
@@ -18,9 +17,8 @@ class _CustomOtpState extends State<CustomOtp> {
   TextEditingController? contrller3 = TextEditingController();
   TextEditingController? contrller4 = TextEditingController();
   TextEditingController? contrller5 = TextEditingController();
-  TextEditingController? contrller6 = TextEditingController();
 
-  List<String> codes = ["", "", "", "", "", ""];
+  List<String> codes = ["", "", "", "", ""];
 
   @override
   Widget build(BuildContext context) {
@@ -37,8 +35,6 @@ class _CustomOtpState extends State<CustomOtp> {
             first: false, last: false, controller: contrller4, position: 3),
         _textFieldOTP(
             first: false, last: false, controller: contrller5, position: 4),
-        _textFieldOTP(
-            first: false, last: true, controller: contrller6, position: 5),
       ],
     );
   }
@@ -71,10 +67,9 @@ class _CustomOtpState extends State<CustomOtp> {
                   codes[1].isNotEmpty &&
                   codes[2].isNotEmpty &&
                   codes[3].isNotEmpty &&
-                  codes[4].isNotEmpty &&
-                  codes[5].isNotEmpty) {
+                  codes[4].isNotEmpty) {
                 widget.onPinEntered(
-                    "${codes[0]}${codes[1]}${codes[2]}${codes[3]}${codes[4]}${codes[5]}");
+                    "${codes[0]}${codes[1]}${codes[2]}${codes[3]}${codes[4]}");
               } else {
                 widget.onPinEntered("");
               }

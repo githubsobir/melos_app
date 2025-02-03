@@ -29,7 +29,10 @@ class LoginScreen extends StatelessWidget {
           if (state is EmptyFieldsErrorState) {
             showToast("Пожалуйста, заполните все поля");
           } else if (state is UserNotFound) {
-            showToast("Ошибка регистрации");
+            context.openScreen(OtpCodeIntent(
+              phoneNumber: phoneController.text.replaceAll(" ", ""),
+              isRegister: true,
+            ));
           } else if (state is HasUser) {
             context.openScreen(PasswordScreenIntent(
                 phoneNumber: phoneController.text.replaceAll(" ", "")));
