@@ -27,4 +27,5 @@ class CarModel {
   num? dailyRate;
   num? originalPrice;
   String? firstPhotoUrl;
+
 }

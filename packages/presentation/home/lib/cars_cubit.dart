@@ -28,6 +28,18 @@ class CarsCubit extends Cubit<CarsState> {
     //   }
     // }
   }
+
+  Future<void> likedCar(int carId) async {
+    var response = await _carsUseCase.likedCar(
+        carId: carId
+    );
+    if (response.success) {
+      var cars = response.body;
+      if (cars != null) {
+        emit(CarListState(cars));
+      }
+    }
+  }
 }
 
 abstract class CarsState extends Equatable {
@@ -48,6 +60,15 @@ class CarListState extends CarsState {
   final CarsModel carsModel;
 
   const CarListState(this.carsModel);
+
+  @override
+  List<Object> get props => [carsModel];
+}
+
+class LikedCarListState extends CarsState {
+  final CarsModel carsModel;
+
+  const LikedCarListState(this.carsModel);
 
   @override
   List<Object> get props => [carsModel];

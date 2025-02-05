@@ -28,6 +28,8 @@ class NetBase {
         if (token.isNotEmpty) {
           options.headers['Authorization'] = 'Bearer $token';
         }
+        final language = await MySharedPref.instance.getLanguageCode();
+        options.headers['Accept-Language'] = language;
         myPrint("⬇⬇⬇ onRequest ⬇⬇⬇");
         myPrint(options.method);
         myPrint(options.uri);

@@ -14,4 +14,6 @@ class CarsUseCase {
   Future<BaseResult<bool>> likeCar(int id) {
     return _authRepository.likeCar(id);
   }
+
+  likedCar({required int carId}) {}
 }
