@@ -34,9 +34,13 @@ class CarsRepositoryImpl extends CarsRepository {
   }
 
   @override
-  Future<BaseResult<bool>> likeCar(int id) async {
+  Future<BaseResult<bool>> likeCar(int id, bool isLiked) async {
     try {
-      var response = await _carsService.likeCar(CarLikeRequest(carId: id));
+      if (isLiked) {
+        var response = await _carsService.likeCar(CarLikeRequest(carId: id));
+      } else {
+        var response = await _carsService.removeLikeCar(id);
+      }
       return BaseResult(
         success: true,
         body: true,

@@ -28,8 +28,8 @@ class CarsCubit extends Cubit<CarsState> {
     }
   }
 
-  Future<void> likeCar(int id) async {
-    var response = await _carsUseCase.likeCar(id);
+  Future<void> likeCar(int id,bool isLiked) async {
+    var response = await _carsUseCase.likeCar(id,isLiked);
     // if (response.success) {
     //   var cars = response.body;
     //   if (cars != null) {

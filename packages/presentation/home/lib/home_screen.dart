@@ -122,9 +122,10 @@ class HomeScreen extends StatelessWidget {
                               fuelCapacity:
                                   (state.recommended[index].fuelCapacity ?? 0)
                                       .toInt(),
-                              onLike: () {
+                              onLike: (isLiked) {
                                 cubit.likeCar(
-                                    (state.recommended[index].id ?? 0).toInt());
+                                    (state.recommended[index].id ?? 0).toInt(),
+                                    isLiked);
                               },
                               isLiked:
                                   (state.recommended[index].liked ?? false),
@@ -178,9 +179,10 @@ class HomeScreen extends StatelessWidget {
                               fuelCapacity:
                                   (state.recommended[index].fuelCapacity ?? 0)
                                       .toInt(),
-                              onLike: () {
+                              onLike: (isLiked) {
                                 cubit.likeCar(
-                                    (state.recommended[index].id ?? 0).toInt());
+                                    (state.recommended[index].id ?? 0).toInt(),
+                                    isLiked);
                               },
                               isLiked:
                                   (state.recommended[index].liked ?? false),

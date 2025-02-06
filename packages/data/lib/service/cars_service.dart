@@ -19,6 +19,11 @@ class CarsService {
     return response;
   }
 
+  Future<Response> removeLikeCar(int carId) async {
+    var response = await _netBase.dio.delete('cars/remove-like/$carId/');
+    return response;
+  }
+
   Future<Response> likedCars() async {
     final token = await MySharedPref.instance.getAccessToken();
     var response = await _netBase.dio.get('cars/liked-list/');

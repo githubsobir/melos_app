@@ -6,7 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class ItemCarBase extends StatefulWidget {
   final VoidCallback onPressed;
-  final VoidCallback onLike;
+  final Function(bool isKed) onLike;
   final String carImage;
   final String carName;
   final String carType;
@@ -69,10 +69,10 @@ class _ItemCarBaseState extends State<ItemCarBase> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    widget.onLike();
                     setState(() {
                       widget.isLiked = !widget.isLiked;
                     });
+                    widget.onLike(widget.isLiked);
                   },
                   child: widget.isLiked
                       ? const Icon(

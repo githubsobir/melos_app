@@ -6,7 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class ItemCarPopular extends StatefulWidget {
   final VoidCallback onPressed;
-  final VoidCallback onLike;
+  final Function(bool isKed) onLike;
   final String carImage;
   final String carName;
   final String carType;
