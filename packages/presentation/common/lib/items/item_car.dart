@@ -212,7 +212,7 @@ class _ItemCarBaseState extends State<ItemCarBase> {
                 )),
                 BaseButton(
                   onPressed: widget.onPressed,
-                  title: "Забронировать\nсейчас",
+                  title: "Открыть",
                   fontSize: 12,
                 ),
               ],

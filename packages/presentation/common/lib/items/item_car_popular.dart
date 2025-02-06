@@ -184,7 +184,7 @@ class _ItemCarPopularState extends State<ItemCarPopular> {
                 )),
                 BaseButton(
                   onPressed: widget.onPressed,
-                  title: "Забронировать\nсейчас",
+                  title: "Открыть",
                   fontSize: 12,
                 ),
               ],

@@ -14,31 +14,31 @@ class CarsCubit extends Cubit<CarsState> {
         ));
   final CarsUseCase _carsUseCase;
   int page = 1;
+  bool hasNext = true;
 
   Future<void> recommendedCars() async {
-    emit(state.copyWith(isLoading: true));
-    var response = await _carsUseCase.recommendedCars(page: page);
-    if (response.success) {
-      var cars = response.body;
-      if (cars != null) {
-        emit(state.copyWith(isLoading: false, recommended: cars));
+    if (hasNext) {
+      emit(state.copyWith(isLoading: true));
+      var response = await _carsUseCase.recommendedCars(page: page);
+      if (response.success) {
+        var cars = response.body;
+        if (cars != null) {
+          emit(state.copyWith(isLoading: false, recommended: (state.recommended+cars)));
+          page++;
+        }
+      } else {
+        hasNext = false;
+        emit(state.copyWith(isLoading: false));
       }
-    } else {
-      emit(state.copyWith(isLoading: false));
     }
   }
 
-  Future<void> likeCar(int id,bool isLiked) async {
-    var response = await _carsUseCase.likeCar(id,isLiked);
-    // if (response.success) {
-    //   var cars = response.body;
-    //   if (cars != null) {
-    //     emit(CarListState(cars));
-    //   }
-    // }
+  Future<void> likeCar(int id, bool isLiked) async {
+    var response = await _carsUseCase.likeCar(id, isLiked);
   }
 
   Future<void> likedCars() async {
+    emit(state.copyWith(isLoading: true));
     var response = await _carsUseCase.likedCars();
     if (response.success) {
       var cars = response.body;

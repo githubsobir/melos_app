@@ -13,8 +13,10 @@ class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
 
   final cubit = CarsCubit(inject())
-    // ..likedCars()
+    ..likedCars()
     ..recommendedCars();
+
+  final ScrollController _scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,125 +28,58 @@ class HomeScreen extends StatelessWidget {
       body: BlocBuilder<CarsCubit, CarsState>(
         bloc: cubit,
         builder: (context, state) {
-          return BaseLoaderBuilder(
-            hasLoading: state.isLoading,
-            child: ListView(
-              children: [
-                Card(
-                  elevation: 0,
-                  margin: const EdgeInsets.all(0),
-                  child: Container(
-                    padding:
-                        const EdgeInsets.only(left: 24, right: 24, bottom: 24),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        SearchEdittext(
-                          onTextChange: (productName) {},
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                const Padding(
-                  padding: EdgeInsets.only(
-                    left: 16,
-                    right: 16,
-                  ),
-                  child: DateSelectorWidget(),
-                ),
-                Visibility(
-                  visible: state.liked.isNotEmpty,
+          return ListView(
+            controller: _scrollController
+              ..addListener(
+                    () {
+                  if (_scrollController.position.pixels ==
+                      _scrollController.position.maxScrollExtent) {
+                    cubit.recommendedCars();
+                  }
+                },
+              ),
+            children: [
+              Card(
+                elevation: 0,
+                margin: const EdgeInsets.all(0),
+                child: Container(
+                  padding:
+                      const EdgeInsets.only(left: 24, right: 24, bottom: 24),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      const SizedBox(
-                        height: 16,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              "Популярный автомобиль",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall
-                                  ?.copyWith(
-                                    color:
-                                        Theme.of(context).colorScheme.secondary,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                            ),
-                            Text(
-                              "Просмотреть все",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall
-                                  ?.copyWith(
-                                    color:
-                                        Theme.of(context).colorScheme.primary,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                            ),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 280,
-                        child: ListView.builder(
-                          shrinkWrap: true,
-                          padding: const EdgeInsets.only(right: 24),
-                          scrollDirection: Axis.horizontal,
-                          itemCount: state.liked.length,
-                          itemBuilder: (BuildContext context, int index) =>
-                              Padding(
-                            padding: const EdgeInsets.only(left: 24),
-                            child: ItemCarPopular(
-                              onPressed: () {},
-                              carImage:
-                                  "$BASE_URL_IMAGE${state.recommended[index].photo}",
-                              carName: "${state.recommended[index].make}",
-                              carType: "${state.recommended[index].category}",
-                              price: (state.recommended[index].originalPrice ??
-                                  ""),
-                              fullPrice:
-                                  (state.recommended[index].originalPrice ??
-                                      ""),
-                              passengerCapacity:
-                                  (state.recommended[index].passengerCapacity ??
-                                          0)
-                                      .toInt(),
-                              fuelCapacity:
-                                  (state.recommended[index].fuelCapacity ?? 0)
-                                      .toInt(),
-                              onLike: (isLiked) {
-                                cubit.likeCar(
-                                    (state.recommended[index].id ?? 0).toInt(),
-                                    isLiked);
-                              },
-                              isLiked:
-                                  (state.recommended[index].liked ?? false),
-                            ),
-                          ),
-                        ),
+                      SearchEdittext(
+                        onTextChange: (productName) {},
                       ),
                     ],
                   ),
                 ),
-                Visibility(
-                    visible: state.recommended.isNotEmpty,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.all(16.0),
-                          child: Text(
-                            "Рекомендация Автомобиль",
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              const Padding(
+                padding: EdgeInsets.only(
+                  left: 16,
+                  right: 16,
+                ),
+                child: DateSelectorWidget(),
+              ),
+              Visibility(
+                visible: state.liked.isNotEmpty,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            "Популярный автомобиль",
                             style: Theme.of(context)
                                 .textTheme
                                 .bodySmall
@@ -154,45 +89,118 @@ class HomeScreen extends StatelessWidget {
                                   fontWeight: FontWeight.w700,
                                 ),
                           ),
-                        ),
-                        ListView.builder(
-                          itemCount: state.recommended.length,
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemBuilder: (context, index) => Padding(
-                            padding: const EdgeInsets.only(left: 24, right: 24),
-                            child: ItemCarBase(
-                              carImage:
-                                  "$BASE_URL_IMAGE${state.recommended[index].photo}",
-                              carName: "${state.recommended[index].make}",
-                              carType: "${state.recommended[index].category}",
-                              price: (state.recommended[index].originalPrice ??
-                                  ""),
-                              fullPrice:
-                                  (state.recommended[index].originalPrice ??
-                                      ""),
-                              onPressed: () {},
-                              passengerCapacity:
-                                  (state.recommended[index].passengerCapacity ??
-                                          0)
-                                      .toInt(),
-                              fuelCapacity:
-                                  (state.recommended[index].fuelCapacity ?? 0)
-                                      .toInt(),
-                              onLike: (isLiked) {
-                                cubit.likeCar(
-                                    (state.recommended[index].id ?? 0).toInt(),
-                                    isLiked);
-                              },
-                              isLiked:
-                                  (state.recommended[index].liked ?? false),
-                            ),
+                          Text(
+                            "Просмотреть все",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodySmall
+                                ?.copyWith(
+                                  color:
+                                      Theme.of(context).colorScheme.primary,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 280,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        padding: const EdgeInsets.only(right: 24),
+                        scrollDirection: Axis.horizontal,
+                        itemCount: state.liked.length,
+                        itemBuilder: (BuildContext context, int index) =>
+                            Padding(
+                          padding: const EdgeInsets.only(left: 24),
+                          child: ItemCarPopular(
+                            onPressed: () {},
+                            carImage:
+                                "$BASE_URL_IMAGE${state.liked[index].photo}",
+                            carName: "${state.liked[index].make}",
+                            carType: "${state.liked[index].category}",
+                            price: (state.liked[index].originalPrice ??
+                                ""),
+                            fullPrice:
+                                (state.liked[index].originalPrice ??
+                                    ""),
+                            passengerCapacity:
+                                (state.liked[index].passengerCapacity ??
+                                        0)
+                                    .toInt(),
+                            fuelCapacity:
+                                (state.liked[index].fuelCapacity ?? 0)
+                                    .toInt(),
+                            onLike: (isLiked) {
+                              cubit.likeCar(
+                                  (state.liked[index].id ?? 0).toInt(),
+                                  isLiked);
+                            },
+                            isLiked:
+                                (state.liked[index].liked ?? false),
                           ),
                         ),
-                      ],
-                    ))
-              ],
-            ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Visibility(
+                  visible: state.recommended.isNotEmpty,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(16.0),
+                        child: Text(
+                          "Рекомендация Автомобиль",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodySmall
+                              ?.copyWith(
+                                color:
+                                    Theme.of(context).colorScheme.secondary,
+                                fontWeight: FontWeight.w700,
+                              ),
+                        ),
+                      ),
+                      ListView.builder(
+                        itemCount: state.recommended.length,
+                        shrinkWrap: true,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (context, index) => Padding(
+                          padding: const EdgeInsets.only(left: 24, right: 24),
+                          child: ItemCarBase(
+                            carImage:
+                                "$BASE_URL_IMAGE${state.recommended[index].photo}",
+                            carName: "${state.recommended[index].make}",
+                            carType: "${state.recommended[index].category}",
+                            price: (state.recommended[index].originalPrice ??
+                                ""),
+                            fullPrice:
+                                (state.recommended[index].originalPrice ??
+                                    ""),
+                            onPressed: () {},
+                            passengerCapacity:
+                                (state.recommended[index].passengerCapacity ??
+                                        0)
+                                    .toInt(),
+                            fuelCapacity:
+                                (state.recommended[index].fuelCapacity ?? 0)
+                                    .toInt(),
+                            onLike: (isLiked) {
+                              cubit.likeCar(
+                                  (state.recommended[index].id ?? 0).toInt(),
+                                  isLiked);
+                            },
+                            isLiked:
+                                (state.recommended[index].liked ?? false),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ))
+            ],
           );
         },
       ),

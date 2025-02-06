@@ -1,5 +1,7 @@
 import 'package:data/models/remote/cars/request/car_like_request.dart';
+import 'package:data/models/remote/cars/response/car.dart';
 import 'package:data/models/remote/cars/response/car_response.dart';
+import 'package:data/models/remote/cars/response/liked_cars_response.dart';
 import 'package:data/service/cars_service.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/model/car_model.dart';
@@ -59,8 +61,9 @@ class CarsRepositoryImpl extends CarsRepository {
       var response = await _carsService.likedCars();
       return BaseResult(
         success: true,
-        body: Car.listFromJson(response.data)
-            .map((e) => e.toDomainModel())
+        body: LikedCarsResponse.fromJson(response.data)
+            .likedCars
+            ?.map((e) => e.toDomainModel())
             .toList(),
       );
     } on DioException catch (error) {
