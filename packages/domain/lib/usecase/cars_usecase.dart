@@ -7,13 +7,15 @@ class CarsUseCase {
 
   CarsUseCase(this._authRepository);
 
-  Future<BaseResult<CarsModel>> carsList() {
-    return _authRepository.carsList();
+  Future<BaseResult<List<CarModel>>> recommendedCars({required int page}) {
+    return _authRepository.recommendedCars(page: page);
   }
 
   Future<BaseResult<bool>> likeCar(int id) {
     return _authRepository.likeCar(id);
   }
 
-  likedCar({required int carId}) {}
+  Future<BaseResult<List<CarModel>>> likedCars() {
+    return _authRepository.likedCars();
+  }
 }

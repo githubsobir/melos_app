@@ -10,8 +10,8 @@ class ItemCarBase extends StatefulWidget {
   final String carImage;
   final String carName;
   final String carType;
-  final double price;
-  final double fullPrice;
+  final String price;
+  final String fullPrice;
   final int passengerCapacity;
   final int fuelCapacity;
   bool isLiked;

@@ -12,14 +12,18 @@ class CarResponse {
     count = json['count'];
     next = json['next'];
     previous = json['previous'];
-    results =
-        json['results'] != null ? Results.fromJson(json['results']) : null;
+    if (json['results'] != null) {
+      results = [];
+      json['results'].forEach((v) {
+        results?.add(Car.fromJson(v));
+      });
+    }
   }
 
   num? count;
   String? next;
   String? previous;
-  Results? results;
+  List<Car>? results;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -27,44 +31,7 @@ class CarResponse {
     map['next'] = next;
     map['previous'] = previous;
     if (results != null) {
-      map['results'] = results?.toJson();
-    }
-    return map;
-  }
-}
-
-class Results {
-  Results({
-    this.recommendedCars,
-    this.carsList,
-  });
-
-  Results.fromJson(dynamic json) {
-    if (json['recommended_cars'] != null) {
-      recommendedCars = [];
-      json['recommended_cars'].forEach((v) {
-        recommendedCars?.add(Car.fromJson(v));
-      });
-    }
-    if (json['cars_list'] != null) {
-      carsList = [];
-      json['cars_list'].forEach((v) {
-        carsList?.add(Car.fromJson(v));
-      });
-    }
-  }
-
-  List<Car>? recommendedCars;
-  List<Car>? carsList;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    if (recommendedCars != null) {
-      map['recommended_cars'] =
-          recommendedCars?.map((v) => v.toJson()).toList();
-    }
-    if (carsList != null) {
-      map['cars_list'] = carsList?.map((v) => v.toJson()).toList();
+      map['recommended_cars'] = results?.map((v) => v.toJson()).toList();
     }
     return map;
   }
@@ -80,7 +47,8 @@ class Car {
     this.passengerCapacity,
     this.dailyRate,
     this.originalPrice,
-    this.firstPhotoUrl,
+    this.photo,
+    this.liked,
   });
 
   Car.fromJson(dynamic json) {
@@ -92,7 +60,8 @@ class Car {
     passengerCapacity = json['passenger_capacity'];
     dailyRate = json['daily_rate'];
     originalPrice = json['original_price'];
-    firstPhotoUrl = json['first_photo_url'];
+    photo = json['photo'];
+    liked = json['liked'];
   }
 
   num? id;
@@ -101,9 +70,10 @@ class Car {
   num? fuelCapacity;
   String? transmission;
   num? passengerCapacity;
-  num? dailyRate;
-  num? originalPrice;
-  String? firstPhotoUrl;
+  String? dailyRate;
+  String? originalPrice;
+  String? photo;
+  bool? liked;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -115,8 +85,13 @@ class Car {
     map['passenger_capacity'] = passengerCapacity;
     map['daily_rate'] = dailyRate;
     map['original_price'] = originalPrice;
-    map['first_photo_url'] = firstPhotoUrl;
+    map['photo'] = photo;
+    map['liked'] = liked;
     return map;
+  }
+
+  static List<Car> listFromJson(dynamic json) {
+    return (json as List).map((i) => Car.fromJson(i)).toList();
   }
 }
 
@@ -126,29 +101,13 @@ extension CarMapper on Car {
       id: id,
       category: category,
       dailyRate: dailyRate,
-      firstPhotoUrl: firstPhotoUrl,
+      photo: photo,
       fuelCapacity: fuelCapacity,
       make: make,
       originalPrice: originalPrice,
       passengerCapacity: passengerCapacity,
       transmission: transmission,
-    );
-  }
-}
-
-extension ResultsMapper on Results {
-  CarsModel toDomainModel() {
-    return CarsModel(
-      carsList: (carsList ?? [])
-          .map(
-            (e) => e.toDomainModel(),
-          )
-          .toList(),
-      recommendCars: (recommendedCars ?? [])
-          .map(
-            (e) => e.toDomainModel(),
-          )
-          .toList(),
+      liked: liked,
     );
   }
 }

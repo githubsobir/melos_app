@@ -1,10 +1,3 @@
-class CarsModel {
-  CarsModel({required this.recommendCars, required this.carsList});
-
-  List<CarModel> recommendCars;
-  List<CarModel> carsList;
-}
-
 class CarModel {
   CarModel({
     this.id,
@@ -15,7 +8,8 @@ class CarModel {
     this.passengerCapacity,
     this.dailyRate,
     this.originalPrice,
-    this.firstPhotoUrl,
+    this.photo,
+    this.liked,
   });
 
   num? id;
@@ -24,8 +18,8 @@ class CarModel {
   num? fuelCapacity;
   String? transmission;
   num? passengerCapacity;
-  num? dailyRate;
-  num? originalPrice;
-  String? firstPhotoUrl;
-
+  String? dailyRate;
+  String? originalPrice;
+  String? photo;
+  bool? liked;
 }

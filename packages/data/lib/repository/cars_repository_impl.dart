@@ -12,12 +12,18 @@ class CarsRepositoryImpl extends CarsRepository {
   CarsRepositoryImpl(this._carsService);
 
   @override
-  Future<BaseResult<CarsModel>> carsList() async {
+  Future<BaseResult<List<CarModel>>> recommendedCars(
+      {required int page}) async {
     try {
-      var response = await _carsService.carsList();
+      var response = await _carsService.recommendedCars(page: page);
       return BaseResult(
         success: true,
-        body: CarResponse.fromJson(response.data).results?.toDomainModel(),
+        body: CarResponse.fromJson(response.data)
+            .results
+            ?.map(
+              (e) => e.toDomainModel(),
+            )
+            .toList(),
       );
     } on DioException catch (error) {
       return BaseResult(
@@ -34,6 +40,24 @@ class CarsRepositoryImpl extends CarsRepository {
       return BaseResult(
         success: true,
         body: true,
+      );
+    } on DioException catch (error) {
+      return BaseResult(
+          success: false, exceptionBody: error.response?.data['error_note']);
+    } catch (exception) {
+      return BaseResult(success: false, exceptionBody: exception);
+    }
+  }
+
+  @override
+  Future<BaseResult<List<CarModel>>> likedCars() async {
+    try {
+      var response = await _carsService.likedCars();
+      return BaseResult(
+        success: true,
+        body: Car.listFromJson(response.data)
+            .map((e) => e.toDomainModel())
+            .toList(),
       );
     } on DioException catch (error) {
       return BaseResult(

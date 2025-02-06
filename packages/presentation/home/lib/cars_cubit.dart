@@ -1,21 +1,30 @@
+import 'dart:async';
+
 import 'package:domain/model/car_model.dart';
 import 'package:domain/usecase/cars_usecase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CarsCubit extends Cubit<CarsState> {
+  CarsCubit(this._carsUseCase)
+      : super(const CarsState(
+          recommended: [],
+          liked: [],
+          isLoading: false,
+        ));
   final CarsUseCase _carsUseCase;
+  int page = 1;
 
-  CarsCubit(this._carsUseCase) : super(CarsInitial());
-
-  Future<void> carsList() async {
-    emit(CarsLoaderState());
-    var response = await _carsUseCase.carsList();
+  Future<void> recommendedCars() async {
+    emit(state.copyWith(isLoading: true));
+    var response = await _carsUseCase.recommendedCars(page: page);
     if (response.success) {
       var cars = response.body;
       if (cars != null) {
-        emit(CarListState(cars));
+        emit(state.copyWith(isLoading: false, recommended: cars));
       }
+    } else {
+      emit(state.copyWith(isLoading: false));
     }
   }
 
@@ -29,47 +38,42 @@ class CarsCubit extends Cubit<CarsState> {
     // }
   }
 
-  Future<void> likedCar(int carId) async {
-    var response = await _carsUseCase.likedCar(
-        carId: carId
-    );
+  Future<void> likedCars() async {
+    var response = await _carsUseCase.likedCars();
     if (response.success) {
       var cars = response.body;
       if (cars != null) {
-        emit(CarListState(cars));
+        emit(state.copyWith(isLoading: false, liked: cars));
       }
+    } else {
+      emit(state.copyWith(isLoading: false));
     }
   }
 }
 
-abstract class CarsState extends Equatable {
-  const CarsState();
-}
+class CarsState extends Equatable {
+  final bool isLoading;
+  final List<CarModel> recommended;
+  final List<CarModel> liked;
 
-class CarsInitial extends CarsState {
-  @override
-  List<Object> get props => [];
-}
+  const CarsState({
+    required this.recommended,
+    required this.liked,
+    required this.isLoading,
+  });
 
-class CarsLoaderState extends CarsState {
-  @override
-  List<Object> get props => [];
-}
-
-class CarListState extends CarsState {
-  final CarsModel carsModel;
-
-  const CarListState(this.carsModel);
-
-  @override
-  List<Object> get props => [carsModel];
-}
-
-class LikedCarListState extends CarsState {
-  final CarsModel carsModel;
-
-  const LikedCarListState(this.carsModel);
+  CarsState copyWith({
+    bool? isLoading,
+    List<CarModel>? recommended,
+    List<CarModel>? liked,
+  }) {
+    return CarsState(
+      isLoading: isLoading ?? this.isLoading,
+      recommended: recommended ?? this.recommended,
+      liked: liked ?? this.liked,
+    );
+  }
 
   @override
-  List<Object> get props => [carsModel];
+  List<Object> get props => [recommended, liked];
 }
