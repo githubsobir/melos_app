@@ -29,6 +29,7 @@ flutter:
     - assets/main/
     - assets/home/
     - assets/locations/
+    - assets/profile/
 
   fonts:
     - family: BOLD

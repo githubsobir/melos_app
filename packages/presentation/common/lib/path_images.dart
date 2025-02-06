@@ -49,5 +49,6 @@ class PathImages {
   static var notification = "packages/common/assets/main/notification.svg";
   static var lampOn = "packages/common/assets/main/lamp_on.svg";
   static var upload = "packages/common/assets/main/upload.svg";
-//--------------------------------------------//
+//---------------- profile ----------------//
+  static var chat = "packages/common/assets/profile/chat.svg";
 }
