@@ -25,9 +25,9 @@ class NetBase {
       onRequest: (options, handler) async {
         //checkConnection();
         final token = await MySharedPref.instance.getAccessToken();
-        // if (token.isNotEmpty) {
-        //   options.headers['Authorization'] = 'Bearer $token';
-        // }
+        if (token.isNotEmpty) {
+          options.headers['Authorization'] = 'Bearer $token';
+        }
         final language = await MySharedPref.instance.getLanguageCode();
         options.headers['Accept-Language'] = language;
         myPrint("⬇⬇⬇ onRequest ⬇⬇⬇");

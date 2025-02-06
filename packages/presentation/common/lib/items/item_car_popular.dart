@@ -4,17 +4,19 @@ import 'package:common/path_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class ItemCarPopular extends StatelessWidget {
+class ItemCarPopular extends StatefulWidget {
   final VoidCallback onPressed;
+  final VoidCallback onLike;
   final String carImage;
   final String carName;
   final String carType;
-  final double price;
-  final double fullPrice;
+  final String price;
+  final String fullPrice;
   final int passengerCapacity;
   final int fuelCapacity;
+  bool isLiked;
 
-  const ItemCarPopular({
+  ItemCarPopular({
     super.key,
     required this.onPressed,
     required this.carImage,
@@ -24,8 +26,15 @@ class ItemCarPopular extends StatelessWidget {
     required this.fullPrice,
     required this.passengerCapacity,
     required this.fuelCapacity,
+    required this.onLike,
+    required this.isLiked,
   });
 
+  @override
+  State<ItemCarPopular> createState() => _ItemCarPopularState();
+}
+
+class _ItemCarPopularState extends State<ItemCarPopular> {
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -43,14 +52,14 @@ class ItemCarPopular extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
-                        carName,
+                        widget.carName,
                         style: Theme.of(context)
                             .textTheme
                             .bodyMedium
                             ?.copyWith(fontWeight: FontWeight.w700),
                       ),
                       Text(
-                        carType,
+                        widget.carType,
                         style: Theme.of(context)
                             .textTheme
                             .labelMedium
@@ -69,7 +78,7 @@ class ItemCarPopular extends StatelessWidget {
             Expanded(
               child: CachedNetworkImage(
                 height: 90,
-                imageUrl: carImage,
+                imageUrl: widget.carImage,
                 progressIndicatorBuilder: (context, url, downloadProgress) =>
                     SizedBox(
                   width: 24,
@@ -95,7 +104,7 @@ class ItemCarPopular extends StatelessWidget {
                       width: 4,
                     ),
                     Text(
-                      "${fuelCapacity}L",
+                      "${widget.fuelCapacity}L",
                       style: Theme.of(context).textTheme.labelMedium?.copyWith(
                           color: Theme.of(context).colorScheme.secondary),
                     ),
@@ -129,7 +138,7 @@ class ItemCarPopular extends StatelessWidget {
                       width: 4,
                     ),
                     Text(
-                      "$passengerCapacity Люди",
+                      "${widget.passengerCapacity} Люди",
                       style: Theme.of(context).textTheme.labelMedium?.copyWith(
                           color: Theme.of(context).colorScheme.secondary),
                     ),
@@ -148,7 +157,7 @@ class ItemCarPopular extends StatelessWidget {
                   children: [
                     RichText(
                       text: TextSpan(
-                        text: '\$$price/',
+                        text: '\$${widget.price}/',
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             fontWeight: FontWeight.w700, fontSize: 14),
                         children: [
@@ -166,7 +175,7 @@ class ItemCarPopular extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "\$$fullPrice",
+                      "\$${widget.fullPrice}",
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: Theme.of(context).colorScheme.secondary,
                           fontSize: 14),
@@ -174,7 +183,7 @@ class ItemCarPopular extends StatelessWidget {
                   ],
                 )),
                 BaseButton(
-                  onPressed: onPressed,
+                  onPressed: widget.onPressed,
                   title: "Забронировать\nсейчас",
                   fontSize: 12,
                 ),

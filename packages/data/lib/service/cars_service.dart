@@ -21,8 +21,7 @@ class CarsService {
 
   Future<Response> likedCars() async {
     final token = await MySharedPref.instance.getAccessToken();
-    var response = await _netBase.dio.get('cars/liked-list/',
-        options: Options(headers: {"Authorization": "Bearer $token"}));
+    var response = await _netBase.dio.get('cars/liked-list/');
     return response;
   }
 }
