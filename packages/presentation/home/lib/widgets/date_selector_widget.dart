@@ -7,159 +7,78 @@ class DateSelectorWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 282,
-      child: Stack(
-        children: [
-          Column(
-            children: [
-              itemSelector(context),
-              const SizedBox(
-                height: 24,
-              ),
-              itemSelector(context),
-            ],
-          ),
-          Align(
-            alignment: Alignment.center,
-            child: Container(
-              height: 60,
-              width: 60,
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Theme.of(context).colorScheme.primary),
-              child: SvgPicture.asset(PathImages.swap),
-            ),
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget itemSelector(BuildContext context) {
     return Card(
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(0.0), // Adjust radius as needed
+      ),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.only(
+          left: 20,
+          right: 20,
+          top: 16,
+          bottom: 16,
+        ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Row(
-              children: [
-                SvgPicture.asset(PathImages.mark),
-                const SizedBox(
-                  width: 8,
-                ),
-                Text(
-                  "Высадка - Выкл.",
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium
-                      ?.copyWith(fontWeight: FontWeight.w700),
-                )
-              ],
+            Text(
+              "Даты поездки",
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    fontWeight: FontWeight.w700,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
             ),
             const SizedBox(
               height: 16,
             ),
-            SizedBox(
-              height: 48,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+            Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100.0),
+                    border: Border.all(
+                      color: const Color(0xFFC3D4E9).withOpacity(0.4),
+                    ),
+                  ),
+                  child: SvgPicture.asset(
+                    PathImages.calendar,
+                    height: 26,
+                    width: 26,
+                  ),
+                ),
+                const SizedBox(
+                  width: 16,
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
-                        "Места",
+                        "Mon, Feb 3, 09:00 AM ",
                         style: Theme.of(context)
                             .textTheme
-                            .bodyMedium
-                            ?.copyWith(fontWeight: FontWeight.w700),
+                            .bodySmall
+                            ?.copyWith(fontSize: 16),
                       ),
-                      SizedBox(
-                        height: 4,
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            "Ташкент",
-                            style: Theme.of(context).textTheme.labelMedium,
-                          ),
-                          SizedBox(
-                            width: 16,
-                          ),
-                          Icon(
-                            Icons.keyboard_arrow_down,
-                            size: 12,
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                  VerticalDivider(),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
                       Text(
-                        "Дата",
+                        "Mon, Feb 10, 09:00 PM ",
                         style: Theme.of(context)
                             .textTheme
-                            .bodyMedium
-                            ?.copyWith(fontWeight: FontWeight.w700),
+                            .bodySmall
+                            ?.copyWith(fontSize: 16),
                       ),
-                      SizedBox(
-                        height: 4,
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            "20 Ноя 2024",
-                            style: Theme.of(context).textTheme.labelMedium,
-                          ),
-                          SizedBox(
-                            width: 16,
-                          ),
-                          Icon(
-                            Icons.keyboard_arrow_down,
-                            size: 12,
-                          )
-                        ],
-                      )
                     ],
                   ),
-                  VerticalDivider(),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Время",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium
-                            ?.copyWith(fontWeight: FontWeight.w700),
+                ),
+                Text(
+                  "Изменять",
+                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                        color: Theme.of(context).colorScheme.primary,
                       ),
-                      SizedBox(
-                        height: 4,
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            "01.00",
-                            style: Theme.of(context).textTheme.labelMedium,
-                          ),
-                          SizedBox(
-                            width: 16,
-                          ),
-                          Icon(
-                            Icons.keyboard_arrow_down,
-                            size: 12,
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                ],
-              ),
+                ),
+              ],
             )
           ],
         ),

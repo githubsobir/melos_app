@@ -58,13 +58,7 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(
                 height: 16,
               ),
-              const Padding(
-                padding: EdgeInsets.only(
-                  left: 16,
-                  right: 16,
-                ),
-                child: DateSelectorWidget(),
-              ),
+              DateSelectorWidget(),
               Visibility(
                 visible: state.liked.isNotEmpty,
                 child: Column(
