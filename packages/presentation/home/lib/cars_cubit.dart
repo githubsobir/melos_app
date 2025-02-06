@@ -16,14 +16,21 @@ class CarsCubit extends Cubit<CarsState> {
   int page = 1;
   bool hasNext = true;
 
-  Future<void> recommendedCars() async {
+  Future<void> recommendedCars({bool isRefreshed = false}) async {
+    if (isRefreshed) {
+      page = 1;
+      hasNext = true;
+    }
     if (hasNext) {
       emit(state.copyWith(isLoading: true));
       var response = await _carsUseCase.recommendedCars(page: page);
       if (response.success) {
         var cars = response.body;
         if (cars != null) {
-          emit(state.copyWith(isLoading: false, recommended: (state.recommended+cars)));
+          emit(state.copyWith(
+            isLoading: false,
+            recommended: isRefreshed ? cars : (state.recommended + cars),
+          ));
           page++;
         }
       } else {
@@ -33,11 +40,7 @@ class CarsCubit extends Cubit<CarsState> {
     }
   }
 
-  Future<void> likeCar(int id, bool isLiked) async {
-    var response = await _carsUseCase.likeCar(id, isLiked);
-  }
-
-  Future<void> likedCars() async {
+  Future<void> likedCars({bool isRefreshed = false}) async {
     emit(state.copyWith(isLoading: true));
     var response = await _carsUseCase.likedCars();
     if (response.success) {
@@ -48,6 +51,10 @@ class CarsCubit extends Cubit<CarsState> {
     } else {
       emit(state.copyWith(isLoading: false));
     }
+  }
+
+  Future<void> likeCar(int id, bool isLiked) async {
+    var response = await _carsUseCase.likeCar(id, isLiked);
   }
 }
 

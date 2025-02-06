@@ -3,6 +3,7 @@ import 'package:chuck_interceptor/chuck.dart';
 import 'package:data/utils/custom_functions.dart';
 import 'package:data/utils/my_shared_pref.dart';
 import 'package:dio/dio.dart';
+import 'package:domain/utils/base_result.dart';
 import 'package:domain/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -46,7 +47,7 @@ class NetBase {
       },
       onError: (e, handler) async {
         if (e.response?.statusCode == 401) {
-          // refreshToken();
+          refreshToken();
         }
         myPrint("⬇⬇⬇ onError ⬇⬇⬇");
         myPrint(e.error);
@@ -64,19 +65,22 @@ class NetBase {
     }
   }
 
-// Future<BaseResult<bool>> refreshToken() async {
-//   try {
-//     // var response = await dio.post('user/login/refresh',
-//     //     data: {"refresh": await MySharedPref.instance.getRefreshToken()});
-//     // if (response.statusCode == 200) {
-//     //   await MySharedPref.instance.saveToken(response.data['access'] ?? "");
-//     //   return BaseResponse(success: true, body: true);
-//     // } else {
-//     //   return BaseResponse(success: false, message: "Something went wrong");
-//     // }
-//     return BaseResult(success: false, exceptionBody: "Something went wrong");
-//   } catch (e) {
-//     return BaseResult(success: false, exceptionBody: e);
-//   }
-// }
+  Future<BaseResult<bool>> refreshToken() async {
+    try {
+      var response = await dio.post('users/token/refresh/',
+          data: {"refresh": await MySharedPref.instance.getRefreshToken()});
+      if (response.statusCode == 201) {
+        await MySharedPref.instance
+            .setAccessToken(response.data['access'] ?? "");
+        await MySharedPref.instance
+            .setRefreshToken(response.data['refresh'] ?? "");
+        return BaseResult(success: true, body: true);
+      } else {
+        return BaseResult(
+            success: false, exceptionBody: "Something went wrong");
+      }
+    } catch (e) {
+      return BaseResult(success: false, exceptionBody: e);
+    }
+  }
 }
