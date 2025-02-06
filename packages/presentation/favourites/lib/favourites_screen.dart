@@ -1,8 +1,14 @@
 import 'package:common/items/item_car.dart';
+import 'package:dependency/dependencies.dart';
+import 'package:domain/utils/constants.dart';
+import 'package:favourites/favourite_cubit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class FavouritesScreen extends StatelessWidget {
-  const FavouritesScreen({super.key});
+  FavouritesScreen({super.key});
+
+  final cubit = FavouriteCubit(inject())..likedCars();
 
   @override
   Widget build(BuildContext context) {
@@ -13,23 +19,38 @@ class FavouritesScreen extends StatelessWidget {
               : const Color(0xFF061136),
       body: Padding(
         padding: const EdgeInsets.only(left: 24, right: 24),
-        child: ListView.builder(
-          itemCount: 10,
-          padding: const EdgeInsets.only(top: 16),
-          itemBuilder: (context, index) {
-            return ItemCarBase(
-              carImage:
-                  "https://www.hyundai.com/content/dam/hyundai/in/en/data/find-a-car/i20/Highlights/pc/i20_Modelpc.png",
-              carName: "Chevrolet Captiva wd",
-              carType: "SUVVVV",
-              price: "89",
-              fullPrice: "980",
-              onPressed: () {},
-              passengerCapacity: 100,
-              fuelCapacity: 1900,
-              onLike: (isLiked) {},
-              isLiked: true,
-            );
+        child: BlocBuilder(
+          bloc: cubit,
+          builder: (context, state) {
+            if (state is CarsState) {
+              return ListView.builder(
+                itemCount: state.liked.length,
+                padding: const EdgeInsets.only(top: 16),
+                itemBuilder: (context, index) {
+                  return ItemCarBase(
+                    onPressed: () {},
+                    carImage: "$BASE_URL_IMAGE${state.liked[index].photo}",
+                    carName: "${state.liked[index].make}",
+                    carType: "${state.liked[index].category}",
+                    price: (state.liked[index].originalPrice ?? ""),
+                    fullPrice: (state.liked[index].originalPrice ?? ""),
+                    passengerCapacity:
+                        (state.liked[index].passengerCapacity ?? 0).toInt(),
+                    fuelCapacity:
+                        (state.liked[index].fuelCapacity ?? 0).toInt(),
+                    onLike: (isLiked) {
+                      cubit.likeCar(
+                          (state.liked[index].id ?? 0).toInt(), isLiked);
+                    },
+                    isLiked: (state.liked[index].liked ?? false),
+                  );
+                },
+              );
+            } else if (state is LoadingState) {
+              return const Center(child: CircularProgressIndicator());
+            } else {
+              return const SizedBox();
+            }
           },
         ),
       ),

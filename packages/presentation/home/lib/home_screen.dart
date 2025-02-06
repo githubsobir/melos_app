@@ -9,17 +9,17 @@ import 'package:home/cars_cubit.dart';
 import 'package:home/widgets/date_selector_widget.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  HomeScreen({super.key});
+
+  final cubit = CarsCubit(inject())
+    ..likedCars()
+    ..recommendedCars();
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final cubit = CarsCubit(inject())
-    ..likedCars()
-    ..recommendedCars();
-
   final ScrollController _scrollController = ScrollController();
 
   @override
@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
       () {
         if (_scrollController.position.pixels ==
             _scrollController.position.maxScrollExtent) {
-          cubit.recommendedCars();
+          widget.cubit.recommendedCars();
         }
       },
     );
@@ -44,12 +44,12 @@ class _HomeScreenState extends State<HomeScreen> {
               : const Color(0xFF061136),
       body: RefreshIndicator(
         onRefresh: () {
-          cubit.likedCars(isRefreshed: true);
-          cubit.recommendedCars(isRefreshed: true);
+          widget.cubit.likedCars(isRefreshed: true);
+          widget.cubit.recommendedCars(isRefreshed: true);
           return Future<void>.delayed(const Duration(seconds: 3));
         },
         child: BlocBuilder<CarsCubit, CarsState>(
-          bloc: cubit,
+          bloc: widget.cubit,
           builder: (context, state) {
             return ListView(
               controller: _scrollController,
@@ -138,7 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   (state.liked[index].fuelCapacity ?? 0)
                                       .toInt(),
                               onLike: (isLiked) {
-                                cubit.likeCar(
+                                widget.cubit.likeCar(
                                     (state.liked[index].id ?? 0).toInt(),
                                     isLiked);
                               },
@@ -194,7 +194,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   (state.recommended[index].fuelCapacity ?? 0)
                                       .toInt(),
                               onLike: (isLiked) {
-                                cubit.likeCar(
+                                widget.cubit.likeCar(
                                     (state.recommended[index].id ?? 0).toInt(),
                                     isLiked);
                               },

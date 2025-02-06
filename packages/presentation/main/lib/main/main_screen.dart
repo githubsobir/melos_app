@@ -23,7 +23,7 @@ class MainScreen extends StatelessWidget {
     Container(
       color: Colors.greenAccent,
     ),
-    const FavouritesScreen(),
+    FavouritesScreen(),
     const ProfileScreen(),
   ];
 
