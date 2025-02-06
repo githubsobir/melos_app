@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
         onRefresh: () {
           widget.cubit.likedCars(isRefreshed: true);
           widget.cubit.recommendedCars(isRefreshed: true);
-          return Future<void>.delayed(const Duration(seconds: 3));
+          return Future<void>.delayed(const Duration(seconds: 1));
         },
         child: BlocBuilder<CarsCubit, CarsState>(
           bloc: widget.cubit,
