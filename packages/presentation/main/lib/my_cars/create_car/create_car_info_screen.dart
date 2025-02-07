@@ -64,7 +64,6 @@ class CreateCarInfoScreen extends StatelessWidget {
                       },
                       child: Card(
                         elevation: 0,
-                        color: Colors.white,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(8.0),
                             side: BorderSide(

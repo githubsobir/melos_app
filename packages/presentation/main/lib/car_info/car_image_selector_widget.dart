@@ -63,9 +63,6 @@ class _CarImageSelectorWidgetState extends State<CarImageSelectorWidget> {
             }).toList(),
           ),
         ),
-        const SizedBox(
-          height: 36,
-        ),
       ],
     );
   }

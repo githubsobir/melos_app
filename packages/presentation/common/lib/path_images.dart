@@ -25,17 +25,24 @@ class PathImages {
       "packages/common/assets/favourites/management_icon.svg";
   static var peoplesCount =
       "packages/common/assets/favourites/peoples_count_icon.svg";
+
 //---------------- home ----------------//
   static var search = "packages/common/assets/home/search_icon.svg";
   static var filter = "packages/common/assets/home/filter.svg";
   static var mark = "packages/common/assets/home/mark_icon.svg";
   static var swap = "packages/common/assets/home/swap.svg";
   static var calendar = "packages/common/assets/home/calendar.svg";
+  static var favouriteOff = "packages/common/assets/home/favourite_off.svg";
+  static var favouriteOn = "packages/common/assets/home/favourite_on.svg";
+  static var share = "packages/common/assets/home/share.svg";
+
 //---------------- locations ----------------//
   static var locationPin = "packages/common/assets/locations/location_pin.svg";
   static var location1 = "packages/common/assets/locations/location1.svg";
-  static var locationFilled = "packages/common/assets/locations/location_filled.svg";
+  static var locationFilled =
+      "packages/common/assets/locations/location_filled.svg";
   static var locationRed = "packages/common/assets/locations/location_red.svg";
+
 //---------------- main ----------------//
   static var logo = "packages/common/assets/main/logo.svg";
   static var booking = "packages/common/assets/main/booking.svg";
@@ -49,6 +56,7 @@ class PathImages {
   static var notification = "packages/common/assets/main/notification.svg";
   static var lampOn = "packages/common/assets/main/lamp_on.svg";
   static var upload = "packages/common/assets/main/upload.svg";
+
 //---------------- profile ----------------//
   static var chat = "packages/common/assets/profile/chat.svg";
 }
