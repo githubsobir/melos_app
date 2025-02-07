@@ -7,3 +7,10 @@ class MyCarsIntent implements NavigationIntent {
 class CreateCarInfoIntent implements NavigationIntent {
   static String path = "/create_car_info";
 }
+
+class CarInfoDetailIntent implements NavigationIntent {
+  static String path = "/car_info";
+  num carId;
+
+  CarInfoDetailIntent({required this.carId});
+}

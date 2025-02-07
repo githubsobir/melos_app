@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:main/booking/booking_screen.dart';
 import 'package:main/booking_history/booking_history_screen.dart';
+import 'package:main/car_info/car_info_detail_screen.dart';
 import 'package:main/help/help_screen.dart';
 import 'package:main/main/main_screen.dart';
 import 'package:main/my_cars/create_car/create_car_info_screen.dart';
@@ -87,6 +88,9 @@ final _launcher = IntentLauncher()
       ..onNavigationIntent<PaymentDetailsIntent>((context, intent) {
         return Navigator.pushNamed(context, PaymentDetailsIntent.path);
       })
+      ..onNavigationIntent<CarInfoDetailIntent>((context, intent) {
+        return Navigator.pushNamed(context, CarInfoDetailIntent.path,arguments: intent.carId);
+      })
 //profile
       ..onNavigationIntent<EditProfileIntent>((context, intent) {
         return Navigator.pushNamed(context, EditProfileIntent.path);
@@ -144,6 +148,11 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     return _createRoute(HelpScreen().wrapWith(_launcher));
   } else if (MyCarsIntent.path == settings.name) {
     return _createRoute(MyCarsScreen().wrapWith(_launcher));
+  } else if (CarInfoDetailIntent.path == settings.name) {
+    var cardId = settings.arguments as num;
+    return _createRoute(CarInfoDetailScreen(
+      carId: cardId,
+    ).wrapWith(_launcher));
   } else if (CreateCarInfoIntent.path == settings.name) {
     return _createRoute(CreateCarInfoScreen().wrapWith(_launcher));
   } else if (PaymentDetailsIntent.path == settings.name) {

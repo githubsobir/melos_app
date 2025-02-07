@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home/cars_cubit.dart';
 import 'package:home/widgets/date_selector_widget.dart';
+import 'package:intent_launcher/intent_launcher.dart';
+import 'package:navigation/my_cars_intents.dart';
 
 class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
@@ -123,7 +125,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               Padding(
                             padding: const EdgeInsets.only(left: 24),
                             child: ItemCarPopular(
-                              onPressed: () {},
+                              onPressed: () {
+                                context.openScreen(CarInfoDetailIntent(
+                                  carId: state.recommended[index].id ?? 0,
+                                ));
+                              },
                               carImage:
                                   "$BASE_URL_IMAGE${state.liked[index].photo}",
                               carName: "${state.liked[index].make}",
@@ -185,7 +191,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               fullPrice:
                                   (state.recommended[index].originalPrice ??
                                       ""),
-                              onPressed: () {},
+                              onPressed: () {
+                                context.openScreen(CarInfoDetailIntent(
+                                  carId: state.recommended[index].id ?? 0,
+                                ));
+                              },
                               passengerCapacity:
                                   (state.recommended[index].passengerCapacity ??
                                           0)
