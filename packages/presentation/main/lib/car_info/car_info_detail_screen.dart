@@ -56,9 +56,11 @@ class CarInfoDetailScreen extends StatelessWidget {
                     padding: const EdgeInsets.only(left: 24, right: 24),
                     child: Card(
                       elevation: 0,
-                      // margin: const EdgeInsets.all(0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
+                      margin: const EdgeInsets.all(0),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10.0),
+                            topRight: Radius.circular(10.0)),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
@@ -151,12 +153,16 @@ class CarInfoDetailScreen extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 24, right: 24),
+                    padding: const EdgeInsets.only(
+                      left: 24,
+                      right: 24,
+                      top: 4,
+                    ),
                     child: Card(
                       elevation: 0,
-                      // margin: const EdgeInsets.all(0),
+                      margin: const EdgeInsets.all(0),
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
+                        borderRadius: BorderRadius.circular(0.0),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
@@ -167,81 +173,54 @@ class CarInfoDetailScreen extends StatelessWidget {
                               children: [
                                 Expanded(
                                   child: Text(
-                                    "${state.carDetail.make} ${state.carDetail.model}",
-                                    style:
-                                        Theme.of(context).textTheme.titleSmall,
+                                    "Тип автомобиля",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelMedium
+                                        ?.copyWith(
+                                          color:
+                                              Theme.of(context).colorScheme.secondary,
+                                        ),
                                   ),
                                 ),
-                                SvgPicture.asset(
-                                  PathImages.share,
-                                  height: 24,
-                                  width: 24,
-                                ),
-                                const SizedBox(
-                                  width: 16,
-                                ),
-                                (state.carDetail.liked ?? false)
-                                    ? SvgPicture.asset(
-                                        PathImages.favouriteOn,
-                                        height: 24,
-                                        width: 24,
-                                      )
-                                    : SvgPicture.asset(
-                                        PathImages.favouriteOff,
-                                        height: 24,
-                                        width: 24,
-                                      ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            Row(
-                              children: [
-                                RatingBar.builder(
-                                  initialRating:
-                                      (state.carDetail.averageRating ?? 0)
-                                          .toDouble(),
-                                  minRating: 1,
-                                  itemCount: 5,
-                                  itemSize: 18,
-                                  itemPadding: const EdgeInsets.symmetric(
-                                      horizontal: 1.0),
-                                  itemBuilder: (context, _) => const Icon(
-                                    Icons.star,
-                                    color: Colors.amber,
+                                Expanded(
+                                  child: Text(
+                                    "Тип автомобиля",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall
+                                        ?.copyWith(
+                                      color:
+                                      Theme.of(context).colorScheme.secondary,
+                                    ),
                                   ),
-                                  onRatingUpdate: (rating) {
-                                    print(rating);
-                                  },
                                 ),
-                                const SizedBox(
-                                  width: 8,
-                                ),
-                                Text(
-                                  "440+ рецензентов",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .labelMedium
-                                      ?.copyWith(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .secondary),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 16,
-                            ),
-                            Text(
-                              "Новый Chevrolet Malibu отличается более агрессивным, динамичным дизайном с изогнутыми линиями и обтекаемой формой. Его фирменная двойная решетка радиатора сочетается с более узкими светодиодными фарами. Кузов, схожий с моделями Impala и Camaro, предлагает улучшенную .",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall
-                                  ?.copyWith(
-                                    color:
-                                        Theme.of(context).colorScheme.secondary,
+                                Expanded(
+                                  child: Text(
+                                    "Тип автомобиля",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall
+                                        ?.copyWith(
+                                      color:
+                                      Theme.of(context).colorScheme.secondary,
+                                    ),
                                   ),
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    "Тип автомобиля",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelMedium
+                                        ?.copyWith(
+                                      color:
+                                      Theme.of(context).colorScheme.secondary,
+                                    ),
+                                  ),
+                                ),
+
+                               ],
                             ),
                           ],
                         ),
