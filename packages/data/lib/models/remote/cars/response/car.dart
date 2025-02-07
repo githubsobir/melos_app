@@ -1,4 +1,4 @@
-import 'package:domain/model/car_model.dart';
+import 'package:domain/model/cars/car_model.dart';
 
 class Car {
   Car({

@@ -1,6 +1,5 @@
 import 'package:data/models/remote/cars/request/car_like_request.dart';
 import 'package:data/network/net_base.dart';
-import 'package:data/utils/my_shared_pref.dart';
 import 'package:dio/dio.dart';
 
 class CarsService {
@@ -26,6 +25,11 @@ class CarsService {
 
   Future<Response> likedCars() async {
     var response = await _netBase.dio.get('cars/liked-list/');
+    return response;
+  }
+
+  Future<Response> getCarDetail({required num carId}) async {
+    var response = await _netBase.dio.get('cars/detail/$carId/');
     return response;
   }
 }

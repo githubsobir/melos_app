@@ -10,3 +10,5 @@
 # flutter_3_24_4
 
 https://carbnb.uz/backend/swagger/
+
+https://pub.dev/packages/flutter_navigation_generator/example

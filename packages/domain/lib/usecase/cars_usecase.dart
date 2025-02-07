@@ -1,21 +1,28 @@
-import 'package:domain/model/car_model.dart';
+import 'package:domain/model/cars/car_detail_info_model.dart';
+import 'package:domain/model/cars/car_model.dart';
 import 'package:domain/repository/cars_repository.dart';
 import 'package:domain/utils/base_result.dart';
 
 class CarsUseCase {
-  final CarsRepository _authRepository;
+  final CarsRepository _carsDetail;
 
-  CarsUseCase(this._authRepository);
+  CarsUseCase(this._carsDetail);
 
   Future<BaseResult<List<CarModel>>> recommendedCars({required int page}) {
-    return _authRepository.recommendedCars(page: page);
+    return _carsDetail.recommendedCars(page: page);
   }
 
-  Future<BaseResult<bool>> likeCar(int id,bool isLiked) {
-    return _authRepository.likeCar(id,isLiked);
+  Future<BaseResult<bool>> likeCar(int id, bool isLiked) {
+    return _carsDetail.likeCar(id, isLiked);
   }
 
   Future<BaseResult<List<CarModel>>> likedCars() {
-    return _authRepository.likedCars();
+    return _carsDetail.likedCars();
+  }
+
+  Future<BaseResult<CarDetailInfoModel>> getCarDetail({required num carId}) {
+    return _carsDetail.getCarDetail(
+      carId: carId,
+    );
   }
 }

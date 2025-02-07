@@ -1,4 +1,5 @@
-import 'package:domain/model/car_model.dart';
+import 'package:domain/model/cars/car_detail_info_model.dart';
+import 'package:domain/model/cars/car_model.dart';
 import 'package:domain/utils/base_result.dart';
 
 abstract class CarsRepository {
@@ -7,5 +8,7 @@ abstract class CarsRepository {
   Future<BaseResult<bool>> likeCar(int id,bool isLiked);
 
   Future<BaseResult<List<CarModel>>> likedCars();
+
+  Future<BaseResult<CarDetailInfoModel>> getCarDetail({required num carId});
 
 }

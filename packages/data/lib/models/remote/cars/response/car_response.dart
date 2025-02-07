@@ -1,5 +1,5 @@
 import 'package:data/models/remote/cars/response/car.dart';
-import 'package:domain/model/car_model.dart';
+
 
 class CarResponse {
   CarResponse({
