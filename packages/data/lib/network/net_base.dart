@@ -1,4 +1,6 @@
 // import 'package:chuck_interceptor/chuck.dart';
+import 'dart:async';
+
 import 'package:chuck_interceptor/chuck.dart';
 import 'package:data/utils/custom_functions.dart';
 import 'package:data/utils/my_shared_pref.dart';
@@ -19,6 +21,9 @@ class NetBase {
     connectTimeout: const Duration(seconds: 60000),
     contentType: 'application/json',
   );
+
+  var isRefreshing = Completer();
+  bool isIdle = true;
 
   NetBase(this.navigatorKey) {
     dio = Dio(_baseOptions);
@@ -45,15 +50,49 @@ class NetBase {
         myPrint("⬆⬆⬆ onResponse ⬆⬆⬆");
         return handler.next(response);
       },
-      onError: (e, handler) async {
-        if (e.response?.statusCode == 401) {
-          refreshToken();
+      onError: (error, handler) async {
+        if (error.response?.statusCode == 401) {
+          if(error.requestOptions.path.contains("refresh-token")){
+            await MySharedPref.instance.clearAllData();
+            // closeAllScreenAndOpenMain(PhoneNumberScreen());
+          }else{
+            if (isIdle) {
+              isIdle = false;
+              var value = await refreshToken();
+              if (value.success) {
+                isRefreshing.complete();
+                isIdle = true;
+                var response = await dio.request(
+                  error.requestOptions.path,
+                  data: error.requestOptions.data,
+                  queryParameters: error.requestOptions.queryParameters,
+                  options: Options(
+                    method: error.requestOptions.method,
+                    headers: error.requestOptions.headers,
+                  ),
+                );
+                return handler.resolve(response);
+              }
+            } else {
+              await isRefreshing.future;
+              var response = await dio.request(
+                error.requestOptions.path,
+                data: error.requestOptions.data,
+                queryParameters: error.requestOptions.queryParameters,
+                options: Options(
+                  method: error.requestOptions.method,
+                  headers: error.requestOptions.headers,
+                ),
+              );
+              return handler.resolve(response);
+            }
+          }
         }
         myPrint("⬇⬇⬇ onError ⬇⬇⬇");
-        myPrint(e.error);
-        myPrint(e.response);
+        myPrint(error.error);
+        myPrint(error.response);
         myPrint("⬆⬆⬆ onError ⬆⬆⬆");
-        return handler.next(e);
+        return handler.next(error);
       },
     ));
     if (!kReleaseMode) {
@@ -69,7 +108,7 @@ class NetBase {
     try {
       var response = await dio.post('users/token/refresh/',
           data: {"refresh": await MySharedPref.instance.getRefreshToken()});
-      if (response.statusCode == 201) {
+      if (response.statusCode == 200) {
         await MySharedPref.instance
             .setAccessToken(response.data['access'] ?? "");
         await MySharedPref.instance
