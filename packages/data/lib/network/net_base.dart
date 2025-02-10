@@ -52,10 +52,11 @@ class NetBase {
       },
       onError: (error, handler) async {
         if (error.response?.statusCode == 401) {
-          if(error.requestOptions.path.contains("refresh-token")){
+          if (error.requestOptions.path.contains("refresh/")) {
             await MySharedPref.instance.clearAllData();
-            // closeAllScreenAndOpenMain(PhoneNumberScreen());
-          }else{
+            navigatorKey.currentState?.popUntil((route) => route.isFirst);
+            navigatorKey.currentState?.pushReplacementNamed("/login");
+          } else {
             if (isIdle) {
               isIdle = false;
               var value = await refreshToken();
