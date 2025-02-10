@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:home/widgets/date_selector_widget.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:main/car_info/car_image_selector_widget.dart';
 import 'package:main/car_info/car_info_detail_cubit.dart';
@@ -293,6 +294,13 @@ class CarInfoDetailScreen extends StatelessWidget {
                       ),
                     ),
                   ),
+                  const Padding(
+                    padding: EdgeInsets.only(
+                      left: 20,
+                      right: 20,
+                    ),
+                    child: DateSelectorWidget(),
+                  ),
                   Visibility(
                       visible: (state.carDetail.recommendCars ?? []).isNotEmpty,
                       child: Column(
@@ -309,10 +317,11 @@ class CarInfoDetailScreen extends StatelessWidget {
                                       .textTheme
                                       .bodySmall
                                       ?.copyWith(
-                                    color:
-                                    Theme.of(context).colorScheme.secondary,
-                                    fontWeight: FontWeight.w700,
-                                  ),
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondary,
+                                        fontWeight: FontWeight.w700,
+                                      ),
                                 ),
                                 Text(
                                   "Просмотреть все",
@@ -320,10 +329,11 @@ class CarInfoDetailScreen extends StatelessWidget {
                                       .textTheme
                                       .bodySmall
                                       ?.copyWith(
-                                    color:
-                                    Theme.of(context).colorScheme.primary,
-                                    fontWeight: FontWeight.w700,
-                                  ),
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary,
+                                        fontWeight: FontWeight.w700,
+                                      ),
                                 ),
                               ],
                             ),

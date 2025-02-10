@@ -60,14 +60,17 @@ class DateSelectorWidget extends StatelessWidget {
                         style: Theme.of(context)
                             .textTheme
                             .bodySmall
-                            ?.copyWith(fontSize: 16),
+                            ?.copyWith(fontSize: 12),
+                      ),
+                      const SizedBox(
+                        height: 12,
                       ),
                       Text(
                         "Mon, Feb 10, 09:00 PM ",
                         style: Theme.of(context)
                             .textTheme
                             .bodySmall
-                            ?.copyWith(fontSize: 16),
+                            ?.copyWith(fontSize: 12),
                       ),
                     ],
                   ),
