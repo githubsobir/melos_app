@@ -58,6 +58,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                   const SizedBox(
                     height: 16,
                   ),
+                  ////////////////////////
                   Padding(
                     padding: const EdgeInsets.only(left: 24, right: 24),
                     child: Card(
@@ -158,6 +159,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                       ),
                     ),
                   ),
+                  ////////////////////////
                   Padding(
                     padding: const EdgeInsets.only(
                       left: 24,
@@ -295,6 +297,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                       ),
                     ),
                   ),
+                  ////////////////////////
                   const Padding(
                     padding: EdgeInsets.only(
                       left: 20,
@@ -302,6 +305,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                     ),
                     child: DateSelectorWidget(),
                   ),
+                  ////////////////////////
                   const Padding(
                     padding: EdgeInsets.only(
                       left: 20,
@@ -309,6 +313,78 @@ class CarInfoDetailScreen extends StatelessWidget {
                     ),
                     child: PickupAndReturnWidget(),
                   ),
+                  ////////////////////////
+                  Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Card(
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                          0.0,
+                        ), // Adjust radius as needed
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.only(
+                          left: 20,
+                          right: 20,
+                          top: 16,
+                          bottom: 16,
+                        ),
+                        child: Row(
+                          children: [
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  crossAxisAlignment: CrossAxisAlignment.end,
+                                  children: [
+                                    Text(
+                                      "${(state.carDetail.originalPrice ?? 0)}",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.w700,
+                                          ),
+                                    ),
+                                    Text(
+                                      "день",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodySmall
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.w700,
+                                            color: Theme.of(context)
+                                                .colorScheme
+                                                .secondary,
+                                          ),
+                                    ),
+                                  ],
+                                ),
+                                Text(
+                                  "${(state.carDetail.dailyRate ?? 0)}",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall
+                                      ?.copyWith(
+                                    fontWeight: FontWeight.w700,
+                                    decoration: TextDecoration.lineThrough,
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .secondary,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  ////////////////////////
                   Visibility(
                       visible: (state.carDetail.recommendCars ?? []).isNotEmpty,
                       child: Column(
