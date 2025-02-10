@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:common/base_button.dart';
+import 'package:common/widgets/base_button.dart';
 import 'package:common/decorations.dart';
-import 'package:common/textfield2.dart';
+import 'package:common/widgets/textfield2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 

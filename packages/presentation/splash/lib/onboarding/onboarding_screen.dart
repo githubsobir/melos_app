@@ -1,4 +1,4 @@
-import 'package:common/base_button.dart';
+import 'package:common/widgets/base_button.dart';
 import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/navigation/auth_navigation_intents.dart';
 import 'package:common/path_images.dart';

@@ -1,12 +1,12 @@
 import 'package:common/items/item_car.dart';
 import 'package:common/path_images.dart';
+import 'package:common/widgets/date_selector_widget.dart';
 import 'package:dependency/dependencies.dart';
 import 'package:domain/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:home/widgets/date_selector_widget.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:main/car_info/car_image_selector_widget.dart';
 import 'package:main/car_info/car_info_detail_cubit.dart';
@@ -294,6 +294,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                       ),
                     ),
                   ),
+
                   const Padding(
                     padding: EdgeInsets.only(
                       left: 20,

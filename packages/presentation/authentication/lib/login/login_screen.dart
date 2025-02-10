@@ -1,10 +1,10 @@
 import 'package:authentication/login/login_cubit.dart';
-import 'package:common/base_button.dart';
-import 'package:common/base_loader_builder.dart';
-import 'package:common/base_text_field.dart';
-import 'package:common/custom_functions.dart';
 import 'package:common/navigation/auth_navigation_intents.dart';
 import 'package:common/path_images.dart';
+import 'package:common/widgets/base_button.dart';
+import 'package:common/widgets/base_loader_builder.dart';
+import 'package:common/widgets/base_text_field.dart';
+import 'package:common/widgets/custom_functions.dart';
 import 'package:dependency/dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

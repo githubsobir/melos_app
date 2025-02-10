@@ -1,4 +1,4 @@
-import 'package:common/base_button.dart';
+import 'package:common/widgets/base_button.dart';
 import 'package:common/path_images.dart';
 import 'package:flutter/material.dart';
 import 'package:intent_launcher/intent_launcher.dart';

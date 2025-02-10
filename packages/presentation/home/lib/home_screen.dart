@@ -1,12 +1,12 @@
 import 'package:common/items/item_car.dart';
 import 'package:common/items/item_car_popular.dart';
-import 'package:common/search_edittext.dart';
+import 'package:common/widgets/search_edittext.dart';
 import 'package:dependency/dependencies.dart';
 import 'package:domain/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home/cars_cubit.dart';
-import 'package:home/widgets/date_selector_widget.dart';
+import 'package:common/widgets/date_selector_widget.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:navigation/my_cars_intents.dart';
 
