@@ -1,6 +1,7 @@
 import 'package:common/items/item_car.dart';
 import 'package:common/path_images.dart';
 import 'package:common/widgets/date_selector_widget.dart';
+import 'package:common/widgets/pickub_and_return_widget.dart';
 import 'package:dependency/dependencies.dart';
 import 'package:domain/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -302,6 +303,14 @@ class CarInfoDetailScreen extends StatelessWidget {
                     ),
                     child: DateSelectorWidget(),
                   ),
+
+                  const Padding(
+                    padding: EdgeInsets.only(
+                      left: 20,
+                      right: 20,
+                    ),
+                    child: PickupAndReturnWidget(),
+                  ),
                   Visibility(
                       visible: (state.carDetail.recommendCars ?? []).isNotEmpty,
                       child: Column(
@@ -398,6 +407,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                       ))
                 ],
               ),
+
             );
           } else if (state is LoadingState) {
             return const Center(child: CircularProgressIndicator());
