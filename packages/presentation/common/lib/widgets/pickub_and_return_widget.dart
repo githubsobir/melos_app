@@ -49,30 +49,15 @@ class PickupAndReturnWidget extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  width: 16,
+                  width: 8,
                 ),
                 Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text(
-                        "Mon, Feb 3, 09:00 AM ",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodySmall
-                            ?.copyWith(fontSize: 12),
-                      ),
-                      const SizedBox(
-                        height: 12,
-                      ),
-                      Text(
-                        "Mon, Feb 10, 09:00 PM ",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodySmall
-                            ?.copyWith(fontSize: 12),
-                      ),
-                    ],
+                  child: Text(
+                    "Tashkent, Shayk...",
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodySmall
+                        ?.copyWith(fontSize: 12),
                   ),
                 ),
                 Text(

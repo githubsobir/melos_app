@@ -1,4 +1,5 @@
 import 'package:common/items/item_car.dart';
+import 'package:common/items/item_car_popular.dart';
 import 'package:common/path_images.dart';
 import 'package:common/widgets/date_selector_widget.dart';
 import 'package:common/widgets/pickub_and_return_widget.dart';
@@ -348,58 +349,61 @@ class CarInfoDetailScreen extends StatelessWidget {
                               ],
                             ),
                           ),
-                          ListView.builder(
-                            itemCount:
-                                (state.carDetail.recommendCars ?? []).length,
-                            shrinkWrap: true,
-                            physics: const NeverScrollableScrollPhysics(),
-                            itemBuilder: (context, index) => Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 24, right: 24),
-                              child: ItemCarBase(
-                                carImage:
-                                    "$BASE_URL_IMAGE${(state.carDetail.recommendCars ?? [])[index].photo}",
-                                carName:
-                                    "${(state.carDetail.recommendCars ?? [])[index].make}",
-                                carType:
-                                    "${(state.carDetail.recommendCars ?? [])[index].category}",
-                                price: ((state.carDetail.recommendCars ??
-                                            [])[index]
-                                        .originalPrice ??
-                                    ""),
-                                fullPrice: ((state.carDetail.recommendCars ??
-                                            [])[index]
-                                        .originalPrice ??
-                                    ""),
-                                onPressed: () {
-                                  context.openScreen(CarInfoDetailIntent(
-                                    carId: (state.carDetail.recommendCars ??
-                                                [])[index]
-                                            .id ??
-                                        0,
-                                  ));
-                                },
-                                passengerCapacity:
-                                    ((state.carDetail.recommendCars ??
-                                                    [])[index]
-                                                .passengerCapacity ??
-                                            0)
-                                        .toInt(),
-                                fuelCapacity: ((state.carDetail.recommendCars ??
-                                                [])[index]
-                                            .fuelCapacity ??
-                                        0)
-                                    .toInt(),
-                                onLike: (isLiked) {
-                                  // cubit.likeCar(
-                                  //     ( (state.carDetail.recommendCars ?? [])[index].id ?? 0)
-                                  //         .toInt(),
-                                  //     isLiked);
-                                },
-                                isLiked: ((state.carDetail.recommendCars ??
-                                            [])[index]
-                                        .liked ??
-                                    false),
+                          SizedBox(
+                            height: 280,
+                            child: ListView.builder(
+                              itemCount:
+                                  (state.carDetail.recommendCars ?? []).length,
+                              shrinkWrap: true,
+                              padding: const EdgeInsets.only(right: 24),
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) => Padding(
+                                padding: const EdgeInsets.only(left: 24),
+                                child: ItemCarPopular(
+                                  carImage:
+                                      "$BASE_URL_IMAGE${(state.carDetail.recommendCars ?? [])[index].photo}",
+                                  carName:
+                                      "${(state.carDetail.recommendCars ?? [])[index].make}",
+                                  carType:
+                                      "${(state.carDetail.recommendCars ?? [])[index].category}",
+                                  price: ((state.carDetail.recommendCars ??
+                                              [])[index]
+                                          .originalPrice ??
+                                      ""),
+                                  fullPrice: ((state.carDetail.recommendCars ??
+                                              [])[index]
+                                          .originalPrice ??
+                                      ""),
+                                  onPressed: () {
+                                    context.openScreen(CarInfoDetailIntent(
+                                      carId: (state.carDetail.recommendCars ??
+                                                  [])[index]
+                                              .id ??
+                                          0,
+                                    ));
+                                  },
+                                  passengerCapacity:
+                                      ((state.carDetail.recommendCars ??
+                                                      [])[index]
+                                                  .passengerCapacity ??
+                                              0)
+                                          .toInt(),
+                                  fuelCapacity: ((state.carDetail.recommendCars ??
+                                                  [])[index]
+                                              .fuelCapacity ??
+                                          0)
+                                      .toInt(),
+                                  onLike: (isLiked) {
+                                    // cubit.likeCar(
+                                    //     ( (state.carDetail.recommendCars ?? [])[index].id ?? 0)
+                                    //         .toInt(),
+                                    //     isLiked);
+                                  },
+                                  isLiked: ((state.carDetail.recommendCars ??
+                                              [])[index]
+                                          .liked ??
+                                      false),
+                                ),
                               ),
                             ),
                           ),
