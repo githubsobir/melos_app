@@ -1,4 +1,3 @@
-import 'package:common/items/item_car.dart';
 import 'package:common/items/item_car_popular.dart';
 import 'package:common/path_images.dart';
 import 'package:common/widgets/date_selector_widget.dart';
@@ -296,7 +295,6 @@ class CarInfoDetailScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-
                   const Padding(
                     padding: EdgeInsets.only(
                       left: 20,
@@ -304,7 +302,6 @@ class CarInfoDetailScreen extends StatelessWidget {
                     ),
                     child: DateSelectorWidget(),
                   ),
-
                   const Padding(
                     padding: EdgeInsets.only(
                       left: 20,
@@ -388,16 +385,20 @@ class CarInfoDetailScreen extends StatelessWidget {
                                                   .passengerCapacity ??
                                               0)
                                           .toInt(),
-                                  fuelCapacity: ((state.carDetail.recommendCars ??
-                                                  [])[index]
-                                              .fuelCapacity ??
-                                          0)
-                                      .toInt(),
+                                  fuelCapacity:
+                                      ((state.carDetail.recommendCars ??
+                                                      [])[index]
+                                                  .fuelCapacity ??
+                                              0)
+                                          .toInt(),
                                   onLike: (isLiked) {
-                                    // cubit.likeCar(
-                                    //     ( (state.carDetail.recommendCars ?? [])[index].id ?? 0)
-                                    //         .toInt(),
-                                    //     isLiked);
+                                    cubit.likeCar(
+                                        ((state.carDetail.recommendCars ??
+                                                        [])[index]
+                                                    .id ??
+                                                0)
+                                            .toInt(),
+                                        isLiked);
                                   },
                                   isLiked: ((state.carDetail.recommendCars ??
                                               [])[index]
@@ -411,7 +412,6 @@ class CarInfoDetailScreen extends StatelessWidget {
                       ))
                 ],
               ),
-
             );
           } else if (state is LoadingState) {
             return const Center(child: CircularProgressIndicator());

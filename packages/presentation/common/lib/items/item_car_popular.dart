@@ -69,9 +69,22 @@ class _ItemCarPopularState extends State<ItemCarPopular> {
                     ],
                   ),
                 ),
-                const Icon(
-                  Icons.favorite_outlined,
-                  color: Color(0xFFFF3636),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      widget.isLiked = !widget.isLiked;
+                    });
+                    widget.onLike(widget.isLiked);
+                  },
+                  child: widget.isLiked
+                      ? const Icon(
+                    Icons.favorite_outlined,
+                    color: Color(0xFFFF3636),
+                  )
+                      : Icon(
+                    Icons.favorite_outline,
+                    color: Theme.of(context).colorScheme.secondary,
+                  ),
                 )
               ],
             ),

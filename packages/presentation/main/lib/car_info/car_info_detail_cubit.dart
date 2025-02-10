@@ -21,6 +21,9 @@ class CarInfoDetailCubit extends Cubit<CarInfoDetailState> {
       // emit(state.copyWith(isLoading: false));
     }
   }
+  Future<void> likeCar(int id, bool isLiked) async {
+    var response = await _carsUseCase.likeCar(id, isLiked);
+  }
 }
 
 sealed class CarInfoDetailState extends Equatable {
