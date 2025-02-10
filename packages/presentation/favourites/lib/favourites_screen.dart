@@ -4,6 +4,8 @@ import 'package:domain/utils/constants.dart';
 import 'package:favourites/favourite_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:navigation/my_cars_intents.dart';
+import 'package:intent_launcher/intent_launcher.dart';
 
 class FavouritesScreen extends StatelessWidget {
   FavouritesScreen({super.key});
@@ -32,7 +34,11 @@ class FavouritesScreen extends StatelessWidget {
                           const EdgeInsets.only(top: 16, left: 24, right: 24),
                       itemBuilder: (context, index) {
                         return ItemCarBase(
-                          onPressed: () {},
+                          onPressed: () {
+                            context.openScreen(CarInfoDetailIntent(
+                              carId: state.liked[index].id ?? 0,
+                            ));
+                          },
                           carImage:
                               "$BASE_URL_IMAGE${state.liked[index].photo}",
                           carName: "${state.liked[index].make}",

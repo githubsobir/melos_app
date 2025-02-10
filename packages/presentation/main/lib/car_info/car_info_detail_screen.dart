@@ -1,11 +1,15 @@
+import 'package:common/items/item_car.dart';
 import 'package:common/path_images.dart';
 import 'package:dependency/dependencies.dart';
+import 'package:domain/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intent_launcher/intent_launcher.dart';
 import 'package:main/car_info/car_image_selector_widget.dart';
 import 'package:main/car_info/car_info_detail_cubit.dart';
+import 'package:navigation/my_cars_intents.dart';
 
 class CarInfoDetailScreen extends StatelessWidget {
   CarInfoDetailScreen({super.key, required this.carId});
@@ -174,59 +178,213 @@ class CarInfoDetailScreen extends StatelessWidget {
                                 Expanded(
                                   child: Text(
                                     "Тип автомобиля",
+                                    textAlign: TextAlign.start,
                                     style: Theme.of(context)
                                         .textTheme
                                         .labelMedium
                                         ?.copyWith(
-                                          color:
-                                              Theme.of(context).colorScheme.secondary,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .secondary,
                                         ),
                                   ),
                                 ),
                                 Expanded(
                                   child: Text(
-                                    "Тип автомобиля",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall
-                                        ?.copyWith(
-                                      color:
-                                      Theme.of(context).colorScheme.secondary,
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Text(
-                                    "Тип автомобиля",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall
-                                        ?.copyWith(
-                                      color:
-                                      Theme.of(context).colorScheme.secondary,
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Text(
-                                    "Тип автомобиля",
+                                    (state.carDetail.category ?? ""),
+                                    textAlign: TextAlign.center,
                                     style: Theme.of(context)
                                         .textTheme
                                         .labelMedium
                                         ?.copyWith(
-                                      color:
-                                      Theme.of(context).colorScheme.secondary,
-                                    ),
+                                          fontWeight: FontWeight.w700,
+                                        ),
                                   ),
                                 ),
-
-                               ],
+                                Expanded(
+                                  child: Text(
+                                    "Емкость",
+                                    textAlign: TextAlign.center,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall
+                                        ?.copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .secondary,
+                                        ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    "${(state.carDetail.passengerCapacity ?? 0)}",
+                                    textAlign: TextAlign.end,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelMedium
+                                        ?.copyWith(
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    "Рулевое управление",
+                                    textAlign: TextAlign.start,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelMedium
+                                        ?.copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .secondary,
+                                        ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    (state.carDetail.transmission ?? ""),
+                                    textAlign: TextAlign.center,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelMedium
+                                        ?.copyWith(
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    "Бензин",
+                                    textAlign: TextAlign.center,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall
+                                        ?.copyWith(
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .secondary,
+                                        ),
+                                  ),
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    "${(state.carDetail.fuelCapacity ?? 0)}",
+                                    textAlign: TextAlign.end,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelMedium
+                                        ?.copyWith(
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ],
                         ),
                       ),
                     ),
                   ),
+                  Visibility(
+                      visible: (state.carDetail.recommendCars ?? []).isNotEmpty,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Рекомендация Автомобиль",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall
+                                      ?.copyWith(
+                                    color:
+                                    Theme.of(context).colorScheme.secondary,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                                Text(
+                                  "Просмотреть все",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodySmall
+                                      ?.copyWith(
+                                    color:
+                                    Theme.of(context).colorScheme.primary,
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          ListView.builder(
+                            itemCount:
+                                (state.carDetail.recommendCars ?? []).length,
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemBuilder: (context, index) => Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 24, right: 24),
+                              child: ItemCarBase(
+                                carImage:
+                                    "$BASE_URL_IMAGE${(state.carDetail.recommendCars ?? [])[index].photo}",
+                                carName:
+                                    "${(state.carDetail.recommendCars ?? [])[index].make}",
+                                carType:
+                                    "${(state.carDetail.recommendCars ?? [])[index].category}",
+                                price: ((state.carDetail.recommendCars ??
+                                            [])[index]
+                                        .originalPrice ??
+                                    ""),
+                                fullPrice: ((state.carDetail.recommendCars ??
+                                            [])[index]
+                                        .originalPrice ??
+                                    ""),
+                                onPressed: () {
+                                  context.openScreen(CarInfoDetailIntent(
+                                    carId: (state.carDetail.recommendCars ??
+                                                [])[index]
+                                            .id ??
+                                        0,
+                                  ));
+                                },
+                                passengerCapacity:
+                                    ((state.carDetail.recommendCars ??
+                                                    [])[index]
+                                                .passengerCapacity ??
+                                            0)
+                                        .toInt(),
+                                fuelCapacity: ((state.carDetail.recommendCars ??
+                                                [])[index]
+                                            .fuelCapacity ??
+                                        0)
+                                    .toInt(),
+                                onLike: (isLiked) {
+                                  // cubit.likeCar(
+                                  //     ( (state.carDetail.recommendCars ?? [])[index].id ?? 0)
+                                  //         .toInt(),
+                                  //     isLiked);
+                                },
+                                isLiked: ((state.carDetail.recommendCars ??
+                                            [])[index]
+                                        .liked ??
+                                    false),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ))
                 ],
               ),
             );
