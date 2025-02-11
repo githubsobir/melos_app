@@ -56,7 +56,7 @@ class LoginScreen extends StatelessWidget {
                     BaseTextField(
                       controller: phoneController,
                       title: "Введите номер",
-                      hint: "+998 __ ___ __ __",
+                      hint: "__ ___ __ __",
                       type: TextFieldType.PHONE,
                     ),
                     const SizedBox(height: 100),

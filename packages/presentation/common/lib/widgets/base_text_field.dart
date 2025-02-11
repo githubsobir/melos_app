@@ -121,40 +121,46 @@ class _BaseTextFieldState extends State<BaseTextField> {
             ),
           )
         else if (widget.type == TextFieldType.PHONE)
-          TextField(
-            controller: widget.controller,
-            maxLines: 1,
-            style: Theme.of(context).textTheme.labelMedium,
-            keyboardType: TextInputType.phone,
-            inputFormatters: [
-              MaskedTextInputFormatter(mask: "xx xxx xx xx", separator: " "),
-            ],
-            decoration: InputDecoration(
-              contentPadding:
-                  const EdgeInsets.only(left: 12, top: 0, bottom: 0, right: 12),
-              hintText: widget.hint,
-              hintStyle: Theme.of(context)
-                  .textTheme
-                  .labelMedium
-                  ?.copyWith(color: Theme.of(context).hintColor),
-              border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8.0),
-                borderSide: BorderSide(
-                  color: Color(0xFFC0D8FF),
-                ),
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(8.0),
+              border: Border.all(
+                color: Color(0xFFC0D8FF),
               ),
-              focusedBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8.0),
-                borderSide: BorderSide(
-                  color: Theme.of(context).colorScheme.primary,
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                  width: 16,
                 ),
-              ),
-              enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(8.0),
-                borderSide: BorderSide(
-                  color: Color(0xFFC0D8FF),
+                Text(
+                  "+998",
+                  style: Theme.of(context).textTheme.labelMedium,
                 ),
-              ),
+                Expanded(
+                  child: TextField(
+                    controller: widget.controller,
+                    maxLines: 1,
+                    style: Theme.of(context).textTheme.labelMedium,
+                    keyboardType: TextInputType.phone,
+                    inputFormatters: [
+                      MaskedTextInputFormatter(
+                          mask: "xx xxx xx xx", separator: " "),
+                    ],
+                    decoration: InputDecoration(
+                      contentPadding: const EdgeInsets.only(
+                          left: 2, top: 0, bottom: 0, right: 12),
+                      hintText: widget.hint,
+                      hintStyle: Theme.of(context)
+                          .textTheme
+                          .labelMedium
+                          ?.copyWith(color: Theme.of(context).hintColor),
+                      border: InputBorder.none,
+                    ),
+                  ),
+                ),
+              ],
             ),
           )
       ],
