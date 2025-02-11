@@ -45,8 +45,8 @@ class _CustomOtpState extends State<CustomOtp> {
       TextEditingController? controller,
       required int position}) {
     return SizedBox(
-      height: 50,
-      width: 50,
+      height: 60,
+      width: 60,
       child: Card(
         shape: RoundedRectangleBorder(
           side: BorderSide(
