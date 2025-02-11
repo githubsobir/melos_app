@@ -1,168 +1,117 @@
 import 'package:common/path_images.dart';
+import 'package:common/widgets/date_time_picker_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intl/intl.dart';
+import 'package:syncfusion_flutter_datepicker/datepicker.dart';
+import 'package:time_range/time_range.dart';
 
-class DateSelectorWidget extends StatelessWidget {
+class DateSelectorWidget extends StatefulWidget {
   const DateSelectorWidget({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return SizedBox(
-      height: 282,
-      child: Stack(
-        children: [
-          Column(
-            children: [
-              itemSelector(context: context, title: "Высадка"),
-              const SizedBox(
-                height: 24,
-              ),
-              itemSelector(context: context,title: "Высадка -"),
-            ],
-          ),
-          Align(
-            alignment: Alignment.center,
-            child: Container(
-              height: 60,
-              width: 60,
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Theme.of(context).colorScheme.primary),
-              child: SvgPicture.asset(PathImages.swap),
-            ),
-          )
-        ],
-      ),
-    );
-  }
+  State<DateSelectorWidget> createState() => _DateSelectorWidgetState();
+}
 
-  Widget itemSelector({
-    required BuildContext context,
-    required String title,
-  }) {
+class _DateSelectorWidgetState extends State<DateSelectorWidget> {
+  PickerDateRange dateRange = PickerDateRange(DateTime.now(), DateTime.now());
+  TimeRangeResult timeRange = TimeRangeResult(
+      const TimeOfDay(hour: 6, minute: 0), const TimeOfDay(hour: 6, minute: 0));
+
+  @override
+  Widget build(BuildContext context) {
     return Card(
+      elevation: 0,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(0.0), // Adjust radius as needed
+      ),
       child: Padding(
-        padding: const EdgeInsets.all(16.0),
+        padding: const EdgeInsets.only(
+          left: 20,
+          right: 20,
+          top: 16,
+          bottom: 16,
+        ),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Row(
-              children: [
-                SvgPicture.asset(PathImages.mark),
-                const SizedBox(
-                  width: 8,
-                ),
-                Text(
-                  title,
-                  style: Theme.of(context)
-                      .textTheme
-                      .bodyMedium
-                      ?.copyWith(fontWeight: FontWeight.w700),
-                )
-              ],
+            Text(
+              "Даты поездки",
+              style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                    fontWeight: FontWeight.w700,
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
             ),
             const SizedBox(
               height: 16,
             ),
-            SizedBox(
-              height: 48,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+            Row(
+              children: [
+                Container(
+                  padding: const EdgeInsets.all(12),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(100.0),
+                    border: Border.all(
+                      color: const Color(0xFFC3D4E9).withOpacity(0.4),
+                    ),
+                  ),
+                  child: SvgPicture.asset(
+                    PathImages.calendar,
+                    height: 26,
+                    width: 26,
+                  ),
+                ),
+                const SizedBox(
+                  width: 16,
+                ),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Text(
-                        "Места",
+                        "${DateFormat('dd.MM.yyyy').format(
+                          dateRange.startDate ?? DateTime.now(),
+                        )}, ${timeRange.start.format(context)}",
                         style: Theme.of(context)
                             .textTheme
-                            .bodyMedium
-                            ?.copyWith(fontWeight: FontWeight.w700),
+                            .bodySmall
+                            ?.copyWith(fontSize: 12),
                       ),
-                      SizedBox(
-                        height: 4,
+                      const SizedBox(
+                        height: 12,
                       ),
-                      Row(
-                        children: [
-                          Text(
-                            "Ташкент",
-                            style: Theme.of(context).textTheme.labelMedium,
-                          ),
-                          SizedBox(
-                            width: 16,
-                          ),
-                          Icon(
-                            Icons.keyboard_arrow_down,
-                            size: 12,
-                          )
-                        ],
-                      )
-                    ],
-                  ),
-                  VerticalDivider(),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
                       Text(
-                        "Дата",
+                        "${DateFormat('dd.MM.yyyy').format(
+                          dateRange.endDate ?? DateTime.now(),
+                        )}, ${timeRange.end.format(context)}",
                         style: Theme.of(context)
                             .textTheme
-                            .bodyMedium
-                            ?.copyWith(fontWeight: FontWeight.w700),
+                            .bodySmall
+                            ?.copyWith(fontSize: 12),
                       ),
-                      SizedBox(
-                        height: 4,
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            "20 Ноя 2024",
-                            style: Theme.of(context).textTheme.labelMedium,
-                          ),
-                          SizedBox(
-                            width: 16,
-                          ),
-                          Icon(
-                            Icons.keyboard_arrow_down,
-                            size: 12,
-                          )
-                        ],
-                      )
                     ],
                   ),
-                  VerticalDivider(),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Время",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium
-                            ?.copyWith(fontWeight: FontWeight.w700),
-                      ),
-                      SizedBox(
-                        height: 4,
-                      ),
-                      Row(
-                        children: [
-                          Text(
-                            "01.00",
-                            style: Theme.of(context).textTheme.labelMedium,
-                          ),
-                          SizedBox(
-                            width: 16,
-                          ),
-                          Icon(
-                            Icons.keyboard_arrow_down,
-                            size: 12,
-                          )
-                        ],
-                      )
-                    ],
+                ),
+                GestureDetector(
+                  onTap: () {
+                    DateTimePickerBottomSheet.show(
+                      context: context,
+                      onRangeSelected: (dateRange, timeRange) {
+                        setState(() {
+                          this.dateRange = dateRange;
+                          this.timeRange = timeRange;
+                        });
+                      },
+                    );
+                  },
+                  child: Text(
+                    "Изменять",
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
                   ),
-                ],
-              ),
+                ),
+              ],
             )
           ],
         ),

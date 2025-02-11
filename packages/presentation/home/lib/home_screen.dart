@@ -73,22 +73,16 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 const SizedBox(
-                  height: 16,
+                  height: 8,
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(
-                    left: 24,
-                    right: 24,
-                  ),
-                  child: DateSelectorWidget(),
-                ),
+                const DateSelectorWidget(),
                 Visibility(
                   visible: state.liked.isNotEmpty,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       const SizedBox(
-                        height: 16,
+                        height: 8,
                       ),
                       Padding(
                         padding: const EdgeInsets.all(16.0),
