@@ -9,6 +9,18 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_map: ^7.0.2
+  cached_network_image: ^3.4.1
   flutter_svg: ^2.0.16
+  flutter_bloc: ^8.1.5
+  equatable: ^2.0.7
+
+  domain:
+    path: ../../domain
   common:
     path: ../common
+  intent_launcher:
+    path: ../../core/intent_launcher
+  navigation:
+    path: ../../core/navigation
+  dependency:
+    path: ../../core/dependency
