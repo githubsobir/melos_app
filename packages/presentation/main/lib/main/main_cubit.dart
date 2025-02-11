@@ -2,7 +2,7 @@ import 'package:domain/usecase/auth_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MainCubit extends Cubit<MainState> {
-  MainCubit(this._authUseCase) : super(MainInitial());
+  MainCubit(this._authUseCase) : super(MenuPositionState(0));
 
   final AuthUseCase _authUseCase;
   var pageIndex = 0;
@@ -22,12 +22,11 @@ class MainCubit extends Cubit<MainState> {
 
   Future<void> hasUserProfile() async {
     hasUser = await _authUseCase.hasUser();
+    changeMenuPosition(0);
   }
 }
 
 abstract class MainState {}
-
-class MainInitial extends MainState {}
 
 class LogOutState extends MainState {}
 
