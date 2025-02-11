@@ -2,11 +2,11 @@ import 'package:domain/usecase/auth_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MainCubit extends Cubit<MainState> {
-  final AuthUseCase _authUseCase;
-
   MainCubit(this._authUseCase) : super(MainInitial());
 
+  final AuthUseCase _authUseCase;
   var pageIndex = 0;
+  bool hasUser = false;
 
   changeMenuPosition(int index) {
     pageIndex = index;
@@ -18,6 +18,10 @@ class MainCubit extends Cubit<MainState> {
     if (logOut) {
       emit(LogOutState());
     }
+  }
+
+  Future<void> hasUserProfile() async {
+    hasUser = await _authUseCase.hasUser();
   }
 }
 

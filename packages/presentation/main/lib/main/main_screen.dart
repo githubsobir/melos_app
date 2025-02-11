@@ -15,7 +15,7 @@ import 'package:profile/profile/profile_screen.dart';
 class MainScreen extends StatelessWidget {
   MainScreen({super.key});
 
-  final cubit = MainCubit(inject());
+  final cubit = MainCubit(inject())..hasUserProfile();
 
   static final List<Widget> _mainScreens = <Widget>[
     HomeScreen(),
@@ -106,10 +106,32 @@ class MainScreen extends StatelessWidget {
                       "Рядом со мной", () => _onItemTapped(1)),
                   item(context, cubit.pageIndex == 2, PathImages.menuAdd, "",
                       () => _onItemTapped(2)),
-                  item(context, cubit.pageIndex == 3, PathImages.menuFavourite,
-                      "Сохранено", () => _onItemTapped(3)),
-                  item(context, cubit.pageIndex == 4, PathImages.menuProfile,
-                      "Профиль", () => _onItemTapped(4)),
+                  item(
+                    context,
+                    cubit.pageIndex == 3,
+                    PathImages.menuFavourite,
+                    "Сохранено",
+                    () {
+                      if (cubit.hasUser) {
+                        _onItemTapped(3);
+                      } else {
+                        context.openScreen(LoginIntent());
+                      }
+                    },
+                  ),
+                  item(
+                    context,
+                    cubit.pageIndex == 4,
+                    PathImages.menuProfile,
+                    "Профиль",
+                    () {
+                      if (cubit.hasUser) {
+                        _onItemTapped(4);
+                      } else {
+                        context.openScreen(LoginIntent());
+                      }
+                    },
+                  ),
                 ],
               ),
             ),
