@@ -9,6 +9,7 @@ class PickupAndReturnWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 0,
+      margin: EdgeInsets.all(0),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(0.0), // Adjust radius as needed
       ),

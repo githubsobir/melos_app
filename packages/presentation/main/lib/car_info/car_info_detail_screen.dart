@@ -1,5 +1,6 @@
 import 'package:common/items/item_car_popular.dart';
 import 'package:common/path_images.dart';
+import 'package:common/widgets/base_button.dart';
 import 'package:common/widgets/date_selector_widget.dart';
 import 'package:common/widgets/pickub_and_return_widget.dart';
 import 'package:dependency/dependencies.dart';
@@ -11,6 +12,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:main/car_info/car_image_selector_widget.dart';
 import 'package:main/car_info/car_info_detail_cubit.dart';
+import 'package:main/car_info/item_review.dart';
 import 'package:navigation/my_cars_intents.dart';
 
 class CarInfoDetailScreen extends StatelessWidget {
@@ -45,6 +47,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                   ),
                   Card(
                     elevation: 0,
+                    margin: const EdgeInsets.all(0),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(0.0),
                     ),
@@ -299,9 +302,10 @@ class CarInfoDetailScreen extends StatelessWidget {
                   ),
                   ////////////////////////
                   Padding(
-                    padding: EdgeInsets.only(
-                      left: 20,
-                      right: 20,
+                    padding: const EdgeInsets.only(
+                      left: 24,
+                      right: 24,
+                      top: 4,
                     ),
                     child: DateSelectorWidget(
                       onRangeSelected: (dateRange, timeRange) {
@@ -313,19 +317,30 @@ class CarInfoDetailScreen extends StatelessWidget {
                   ////////////////////////
                   const Padding(
                     padding: EdgeInsets.only(
-                      left: 20,
-                      right: 20,
+                      left: 24,
+                      right: 24,
+                      top: 4,
                     ),
                     child: PickupAndReturnWidget(),
                   ),
                   ////////////////////////
                   Padding(
-                    padding: const EdgeInsets.all(16),
+                    padding: const EdgeInsets.only(
+                      left: 24,
+                      right: 24,
+                      top: 4,
+                    ),
                     child: Card(
                       elevation: 0,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                          0.0,
+                      margin: const EdgeInsets.all(0),
+                      shape: const RoundedRectangleBorder(
+                        borderRadius: BorderRadius.only(
+                          bottomLeft: Radius.circular(
+                            10.0,
+                          ),
+                          bottomRight: Radius.circular(
+                            10.0,
+                          ),
                         ), // Adjust radius as needed
                       ),
                       child: Padding(
@@ -337,52 +352,95 @@ class CarInfoDetailScreen extends StatelessWidget {
                         ),
                         child: Row(
                           children: [
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.end,
-                                  children: [
-                                    Text(
-                                      "${(state.carDetail.originalPrice ?? 0)}",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodyLarge
-                                          ?.copyWith(
-                                            fontWeight: FontWeight.w700,
-                                          ),
-                                    ),
-                                    Text(
-                                      "день",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .bodySmall
-                                          ?.copyWith(
-                                            fontWeight: FontWeight.w700,
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .secondary,
-                                          ),
-                                    ),
-                                  ],
-                                ),
-                                Text(
-                                  "${(state.carDetail.dailyRate ?? 0)}",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodySmall
-                                      ?.copyWith(
-                                        fontWeight: FontWeight.w700,
-                                        decoration: TextDecoration.lineThrough,
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .secondary,
-                                      ),
-                                ),
-                              ],
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "${(state.carDetail.originalPrice ?? 0)}",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyLarge
+                                        ?.copyWith(
+                                          fontWeight: FontWeight.w700,
+                                        ),
+                                  ),
+                                  Text(
+                                    "сум/день",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall
+                                        ?.copyWith(
+                                          fontWeight: FontWeight.w700,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .secondary,
+                                        ),
+                                  ),
+                                  const SizedBox(
+                                    height: 4,
+                                  ),
+                                  Text(
+                                    "${(state.carDetail.dailyRate ?? 0)}",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodySmall
+                                        ?.copyWith(
+                                          fontWeight: FontWeight.w700,
+                                          decoration:
+                                              TextDecoration.lineThrough,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .secondary,
+                                        ),
+                                  ),
+                                ],
+                              ),
                             ),
                             const SizedBox(
                               height: 16,
+                            ),
+                            BaseButton(onPressed: () {}, title: "Арендовать")
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  ////////////////////////
+                  Padding(
+                    padding: const EdgeInsets.only(
+                      left: 24,
+                      right: 24,
+                      top: 16,
+                    ),
+                    child: Card(
+                      elevation: 0,
+                      margin: EdgeInsets.all(0),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                            10.0), // Adjust radius as needed
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.all(16),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Text(
+                              "Обзоры",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge
+                                  ?.copyWith(
+                                    fontWeight: FontWeight.w700,
+                                  ),
+                            ),
+                            ListView.builder(
+                              itemCount: state.carDetail.reviews?.length,
+                              physics: NeverScrollableScrollPhysics(),
+                              shrinkWrap: true,
+                              itemBuilder: (context, index) {
+                                return ItemReview();
+                              },
                             ),
                           ],
                         ),
