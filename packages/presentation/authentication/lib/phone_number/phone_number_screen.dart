@@ -40,7 +40,7 @@ class PhoneNumberScreen extends StatelessWidget {
               SizedBox(height: 16),
               BaseTextField(
                 title: "Контактный телефон",
-                hint: "+998 __ ___ __ __",
+                hint: "__ ___ __ __",
                 type: TextFieldType.PHONE,
                 controller: phoneController,
               ),

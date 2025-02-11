@@ -79,7 +79,7 @@ class RegisterScreen extends StatelessWidget {
                   BaseTextField(
                     controller: phoneController,
                     title: "Контактный телефон",
-                    hint: "+998 __ ___ __ __",
+                    hint: "__ ___ __ __",
                   ),
                   SizedBox(height: 4),
                   BaseTextField(

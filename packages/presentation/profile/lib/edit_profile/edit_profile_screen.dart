@@ -38,7 +38,7 @@ class EditProfileScreen extends StatelessWidget {
                   SizedBox(height: 4),
                   BaseTextField(
                     title: "Контактный телефон",
-                    hint: "+998 __ ___ __ __",
+                    hint: "__ ___ __ __",
                   ),
                   SizedBox(height: 4),
                   BaseTextField(
