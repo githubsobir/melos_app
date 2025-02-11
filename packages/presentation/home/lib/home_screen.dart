@@ -55,6 +55,7 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             child: ListView(
               controller: _scrollController,
+              physics: const AlwaysScrollableScrollPhysics(),
               children: [
                 Card(
                   elevation: 0,
@@ -77,7 +78,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 DateSelectorWidget(
                   onRangeSelected: (dateRange, timeRange) {
-                    print("xaxaaxa ${dateRange.toString()} - ${timeRange.toString()}");
+                    print(
+                        "xaxaaxa ${dateRange.toString()} - ${timeRange.toString()}");
                   },
                 ),
                 Visibility(

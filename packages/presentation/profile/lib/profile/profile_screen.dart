@@ -95,7 +95,7 @@ class ProfileScreen extends StatelessWidget {
                 imageUrl: imagePath,
                 width: 100,
                 height: 100,
-                fit: BoxFit.fill,
+                fit: BoxFit.cover,
                 progressIndicatorBuilder: (context, url, downloadProgress) =>
                     SizedBox(
                   width: 100,
