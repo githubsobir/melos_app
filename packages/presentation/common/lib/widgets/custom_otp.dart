@@ -50,7 +50,7 @@ class _CustomOtpState extends State<CustomOtp> {
       child: Card(
         shape: RoundedRectangleBorder(
           side: BorderSide(
-            color: widget.invalidCode ? Color(0xFF79EFFF) : Color(0xFFAEC8FC),
+            color: widget.invalidCode ? const Color(0xFF79EFFF) : const Color(0xFFAEC8FC),
             width: 1.0,
           ),
           borderRadius: const BorderRadius.all(
