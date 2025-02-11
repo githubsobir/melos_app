@@ -7,7 +7,15 @@ import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:time_range/time_range.dart';
 
 class DateSelectorWidget extends StatefulWidget {
-  const DateSelectorWidget({super.key});
+  const DateSelectorWidget({
+    super.key,
+    required this.onRangeSelected,
+  });
+
+  final Function(
+    PickerDateRange dateRange,
+    TimeRangeResult timeRange,
+  ) onRangeSelected;
 
   @override
   State<DateSelectorWidget> createState() => _DateSelectorWidgetState();
@@ -97,6 +105,7 @@ class _DateSelectorWidgetState extends State<DateSelectorWidget> {
                     DateTimePickerBottomSheet.show(
                       context: context,
                       onRangeSelected: (dateRange, timeRange) {
+                        widget.onRangeSelected(dateRange, timeRange);
                         setState(() {
                           this.dateRange = dateRange;
                           this.timeRange = timeRange;

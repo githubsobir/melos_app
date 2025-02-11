@@ -75,7 +75,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(
                   height: 8,
                 ),
-                const DateSelectorWidget(),
+                DateSelectorWidget(
+                  onRangeSelected: (dateRange, timeRange) {
+                    print("xaxaaxa ${dateRange.toString()} - ${timeRange.toString()}");
+                  },
+                ),
                 Visibility(
                   visible: state.liked.isNotEmpty,
                   child: Column(

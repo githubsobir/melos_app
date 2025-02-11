@@ -298,12 +298,17 @@ class CarInfoDetailScreen extends StatelessWidget {
                     ),
                   ),
                   ////////////////////////
-                  const Padding(
+                  Padding(
                     padding: EdgeInsets.only(
                       left: 20,
                       right: 20,
                     ),
-                    child: DateSelectorWidget(),
+                    child: DateSelectorWidget(
+                      onRangeSelected: (dateRange, timeRange) {
+                        print(
+                            "xaxaaxa ${dateRange.toString()} - ${timeRange.toString()}");
+                      },
+                    ),
                   ),
                   ////////////////////////
                   const Padding(
@@ -367,12 +372,12 @@ class CarInfoDetailScreen extends StatelessWidget {
                                       .textTheme
                                       .bodySmall
                                       ?.copyWith(
-                                    fontWeight: FontWeight.w700,
-                                    decoration: TextDecoration.lineThrough,
-                                    color: Theme.of(context)
-                                        .colorScheme
-                                        .secondary,
-                                  ),
+                                        fontWeight: FontWeight.w700,
+                                        decoration: TextDecoration.lineThrough,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondary,
+                                      ),
                                 ),
                               ],
                             ),
