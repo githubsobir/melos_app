@@ -6,8 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intent_launcher/intent_launcher.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:locations/locations_cubit.dart';
+import 'package:navigation/my_cars_intents.dart';
 
 class LocationsScreen extends StatelessWidget {
   LocationsScreen({super.key});
@@ -105,7 +107,11 @@ class LocationsScreen extends StatelessWidget {
                               Padding(
                             padding: const EdgeInsets.only(left: 12),
                             child: ItemCarMap(
-                              onPressed: () {},
+                              onPressed: () {
+                                context.openScreen(CarInfoDetailIntent(
+                                  carId: state.liked[index].id ?? 0,
+                                ));
+                              },
                               carImage: "$BASE_URL_IMAGE${state.liked[index].photo}",
                               carName: "${state.liked[index].make}",
                               carStatus: "Доступный",
