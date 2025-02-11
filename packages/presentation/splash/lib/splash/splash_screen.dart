@@ -18,7 +18,8 @@ class SplashScreen extends StatelessWidget {
       bloc: cubit,
       listener: (context, state) {
         if (state is OnBoardingScreenState) {
-          context.openScreen(OnboardingIntent());
+          // context.openScreen(OnboardingIntent());
+          context.openScreen(MainIntent());
         } else if (state is MainScreenState) {
           context.openScreen(MainIntent());
         }

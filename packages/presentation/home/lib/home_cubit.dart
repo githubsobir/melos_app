@@ -1,11 +1,12 @@
 import 'dart:async';
+
 import 'package:domain/model/cars/car_model.dart';
 import 'package:domain/usecase/cars_usecase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class CarsCubit extends Cubit<CarsState> {
-  CarsCubit(this._carsUseCase)
+class HomeCubit extends Cubit<CarsState> {
+  HomeCubit(this._carsUseCase)
       : super(const CarsState(
           recommended: [],
           liked: [],
@@ -40,6 +41,7 @@ class CarsCubit extends Cubit<CarsState> {
   }
 
   Future<void> likedCars({bool isRefreshed = false}) async {
+    if (!await hasUser()) return;
     emit(state.copyWith(isLoading: true));
     var response = await _carsUseCase.likedCars();
     if (response.success) {
@@ -50,6 +52,10 @@ class CarsCubit extends Cubit<CarsState> {
     } else {
       emit(state.copyWith(isLoading: false));
     }
+  }
+
+  Future<bool> hasUser() async {
+    return await _carsUseCase.hasUser();
   }
 
   Future<void> likeCar(int id, bool isLiked) async {

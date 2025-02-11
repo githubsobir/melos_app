@@ -8,6 +8,7 @@ class FavouriteCubit extends Cubit<FavouriteState> {
   final CarsUseCase _carsUseCase;
 
   Future<void> likedCars({bool isRefreshed = false}) async {
+    if (!await _carsUseCase.hasUser()) return;
     emit(LoadingState());
     var response = await _carsUseCase.likedCars();
     if (response.success) {
