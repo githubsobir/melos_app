@@ -59,12 +59,11 @@ class FavouritesScreen extends StatelessWidget {
                   )
                 : (state is LoadingState)
                     ? const Center(child: CircularProgressIndicator())
-                    : Container(
+                    : SizedBox(
                         height: MediaQuery.sizeOf(context).height,
                         width: MediaQuery.sizeOf(context).width,
-                        color: const Color(0xFF061136),
-                        child: SingleChildScrollView(
-                          physics: const AlwaysScrollableScrollPhysics(),
+                        child: const SingleChildScrollView(
+                          physics: AlwaysScrollableScrollPhysics(),
                         ),
                       );
           },
