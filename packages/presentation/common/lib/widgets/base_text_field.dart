@@ -32,13 +32,10 @@ class _BaseTextFieldState extends State<BaseTextField> {
       children: [
         Text(
           widget.title,
-          style: Theme.of(context)
-              .textTheme
-              .bodyMedium
-              ?.copyWith(fontWeight: FontWeight.w700),
+          style: Theme.of(context).textTheme.bodyMedium,
         ),
         SizedBox(
-          height: 8,
+          height: 4,
         ),
         if (widget.type == TextFieldType.BASE)
           TextField(

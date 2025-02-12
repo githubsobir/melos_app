@@ -2,6 +2,8 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:common/path_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intent_launcher/intent_launcher.dart';
+import 'package:navigation/profile_navigation_intents.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});
@@ -26,7 +28,7 @@ class ProfileScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             itemProfile(
@@ -36,6 +38,9 @@ class ProfileScreen extends StatelessWidget {
               lastName: "Nemadulla o'g'li",
               imagePath:
                   "https://plus.unsplash.com/premium_photo-1689977968861-9c91dbb16049?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8fDA%3D",
+              onChange: () {
+                context.openScreen(EditProfileIntent());
+              },
             ),
             SizedBox(
               height: 16,
@@ -73,6 +78,7 @@ class ProfileScreen extends StatelessWidget {
     required String middleName,
     required String lastName,
     required String imagePath,
+    required VoidCallback onChange,
   }) {
     return Card(
       elevation: 0,
@@ -158,7 +164,7 @@ class ProfileScreen extends StatelessWidget {
                   Align(
                     alignment: Alignment.bottomCenter,
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: onChange,
                       icon: const Icon(Icons.edit),
                     ),
                   ),
