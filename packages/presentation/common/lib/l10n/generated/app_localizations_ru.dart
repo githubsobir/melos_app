@@ -197,4 +197,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get your_account => 'Ваш аккаунт';
+
+  @override
+  String get notifications => 'Уведомления';
 }

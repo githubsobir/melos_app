@@ -197,4 +197,7 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get your_account => 'Sizning hisobingiz';
+
+  @override
+  String get notifications => 'Bildirishnomalar';
 }

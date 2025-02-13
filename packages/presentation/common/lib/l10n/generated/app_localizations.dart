@@ -478,6 +478,12 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Ваш аккаунт'**
   String get your_account;
+
+  /// No description provided for @notifications.
+  ///
+  /// In ru, this message translates to:
+  /// **'Уведомления'**
+  String get notifications;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

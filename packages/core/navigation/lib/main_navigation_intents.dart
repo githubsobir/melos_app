@@ -19,3 +19,7 @@ class HelpIntent implements NavigationIntent {
 class PaymentDetailsIntent implements NavigationIntent {
   static String path = "/payment_details";
 }
+
+class NotificationsScreenIntent implements NavigationIntent {
+  static String path = "/notifications";
+}

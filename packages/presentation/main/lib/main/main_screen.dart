@@ -11,6 +11,7 @@ import 'package:intent_launcher/intent_launcher.dart';
 import 'package:locations/locations_screen.dart';
 import 'package:main/main/drawer_widget.dart';
 import 'package:main/main/main_cubit.dart';
+import 'package:navigation/main_navigation_intents.dart';
 import 'package:profile/profile/profile_screen.dart';
 
 class MainScreen extends StatelessWidget {
@@ -51,36 +52,42 @@ class MainScreen extends StatelessWidget {
               ? AppBar(
                   title: _getTitleFromPosition(cubit.pageIndex, context),
                   actions: [
-                    Container(
-                      margin: const EdgeInsets.only(right: 24),
-                      width: 38,
-                      height: 38,
-                      child: Stack(
-                        children: [
-                          Container(
-                            width: 38,
-                            height: 38,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(18),
-                              border:
-                                  Border.all(color: const Color(0xFFC0D8FF)),
-                            ),
-                            padding: const EdgeInsets.all(8),
-                            child: SvgPicture.asset(PathImages.notification),
-                          ),
-                          Align(
-                            alignment: Alignment.topRight,
-                            child: Container(
-                              height: 11,
-                              width: 11,
+                    GestureDetector(
+                      onTap: () {
+                        // NotificationsScreen
+                        context.openScreen(NotificationsScreenIntent());
+                      },
+                      child: Container(
+                        margin: const EdgeInsets.only(right: 24),
+                        width: 38,
+                        height: 38,
+                        child: Stack(
+                          children: [
+                            Container(
+                              width: 38,
+                              height: 38,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(11),
-                                  color: const Color(0xFFFF3636)
-                                  // border: Border.all(color: const Color(0xFFC0D8FF)),
-                                  ),
+                                borderRadius: BorderRadius.circular(18),
+                                border:
+                                    Border.all(color: const Color(0xFFC0D8FF)),
+                              ),
+                              padding: const EdgeInsets.all(8),
+                              child: SvgPicture.asset(PathImages.notification),
                             ),
-                          )
-                        ],
+                            Align(
+                              alignment: Alignment.topRight,
+                              child: Container(
+                                height: 11,
+                                width: 11,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(11),
+                                    color: const Color(0xFFFF3636)
+                                    // border: Border.all(color: const Color(0xFFC0D8FF)),
+                                    ),
+                              ),
+                            )
+                          ],
+                        ),
                       ),
                     )
                   ],

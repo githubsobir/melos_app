@@ -14,6 +14,7 @@ import 'package:main/help/help_screen.dart';
 import 'package:main/main/main_screen.dart';
 import 'package:main/my_cars/create_car/create_car_info_screen.dart';
 import 'package:main/my_cars/my_cars_screen.dart';
+import 'package:main/notifications/notifications_screen.dart';
 import 'package:main/payment_details/payment_details_screen.dart';
 import 'package:navigation/main_navigation_intents.dart';
 import 'package:navigation/my_cars_intents.dart';
@@ -78,6 +79,9 @@ final _launcher = IntentLauncher()
       ..onNavigationIntent<HelpIntent>((context, intent) {
         return Navigator.pushNamed(context, HelpIntent.path);
       })
+      ..onNavigationIntent<NotificationsScreenIntent>((context, intent) {
+        return Navigator.pushNamed(context, NotificationsScreenIntent.path);
+      })
 //MyCars
       ..onNavigationIntent<MyCarsIntent>((context, intent) {
         return Navigator.pushNamed(context, MyCarsIntent.path);
@@ -89,7 +93,8 @@ final _launcher = IntentLauncher()
         return Navigator.pushNamed(context, PaymentDetailsIntent.path);
       })
       ..onNavigationIntent<CarInfoDetailIntent>((context, intent) {
-        return Navigator.pushNamed(context, CarInfoDetailIntent.path,arguments: intent.carId);
+        return Navigator.pushNamed(context, CarInfoDetailIntent.path,
+            arguments: intent.carId);
       })
 //profile
       ..onNavigationIntent<EditProfileIntent>((context, intent) {
@@ -146,6 +151,8 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     return _createRoute(BookingHistoryScreen().wrapWith(_launcher));
   } else if (HelpIntent.path == settings.name) {
     return _createRoute(HelpScreen().wrapWith(_launcher));
+  } else if (NotificationsScreenIntent.path == settings.name) {
+    return _createRoute(NotificationsScreen().wrapWith(_launcher));
   } else if (MyCarsIntent.path == settings.name) {
     return _createRoute(MyCarsScreen().wrapWith(_launcher));
   } else if (CarInfoDetailIntent.path == settings.name) {
