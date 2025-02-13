@@ -1,3 +1,4 @@
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/navigation/auth_navigation_intents.dart';
 import 'package:common/path_images.dart';
 import 'package:dependency/dependencies.dart';
@@ -101,16 +102,16 @@ class MainScreen extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   item(context, cubit.pageIndex == 0, PathImages.menuHome,
-                      "Основной", () => _onItemTapped(0)),
+                      context.translations.home, () => _onItemTapped(0)),
                   item(context, cubit.pageIndex == 1, PathImages.menuLocation,
-                      "Рядом со мной", () => _onItemTapped(1)),
+                      context.translations.next_to_me, () => _onItemTapped(1)),
                   item(context, cubit.pageIndex == 2, PathImages.menuAdd, "",
                       () => _onItemTapped(2)),
                   item(
                     context,
                     cubit.pageIndex == 3,
                     PathImages.menuFavourite,
-                    "Сохранено",
+                    context.translations.saved,
                     () {
                       if (cubit.hasUser) {
                         _onItemTapped(3);
@@ -123,7 +124,7 @@ class MainScreen extends StatelessWidget {
                     context,
                     cubit.pageIndex == 4,
                     PathImages.menuProfile,
-                    "Профиль",
+                    context.translations.profile,
                     () {
                       if (cubit.hasUser) {
                         _onItemTapped(4);

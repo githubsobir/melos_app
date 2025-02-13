@@ -10,5 +10,9 @@
   "help": "Yordam",
   "exit": "Chiqish",
   "dark": "Qorong'i",
-  "light": "Yorug'"
+  "light": "Yorug'",
+  "home": "Asosiy",
+  "next_to_me": "Yonimda",
+  "saved": "Saqlangan",
+  "profile": "Profil"
 }

@@ -166,6 +166,30 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Свет'**
   String get light;
+
+  /// No description provided for @home.
+  ///
+  /// In ru, this message translates to:
+  /// **'Главная'**
+  String get home;
+
+  /// No description provided for @next_to_me.
+  ///
+  /// In ru, this message translates to:
+  /// **'Рядом со мной'**
+  String get next_to_me;
+
+  /// No description provided for @saved.
+  ///
+  /// In ru, this message translates to:
+  /// **'Сохранено'**
+  String get saved;
+
+  /// No description provided for @profile.
+  ///
+  /// In ru, this message translates to:
+  /// **'Профиль'**
+  String get profile;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
