@@ -1,3 +1,4 @@
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/path_images.dart';
 import 'package:dependency/dependencies/injector.dart';
 import 'package:domain/utils/app_state_notifier.dart';
@@ -34,7 +35,7 @@ class DrawerWidget extends StatelessWidget {
         const Divider(),
         item(
           icon: PathImages.booking,
-          title: "Бронирование",
+          title:context.translations.booking,
           context: context,
           onTap: () {
             context.openScreen(BookingIntent());
@@ -85,8 +86,17 @@ class DrawerWidget extends StatelessWidget {
           context: context,
           onTap: () {
             getIt.get<AppStateNotifier>().setValue(
-                isNightMode: (Theme.of(context).colorScheme.brightness ==
+                isNightMode: (Theme
+                    .of(context)
+                    .colorScheme
+                    .brightness ==
                     Brightness.light));
+          },
+        ),
+        itemLanguage(
+          context: context,
+          onTap: (langCode) {
+            getIt.get<AppStateNotifier>().setValue(languageCode: langCode);
           },
         ),
         item(
@@ -116,7 +126,10 @@ class DrawerWidget extends StatelessWidget {
             SvgPicture.asset(
               icon,
               colorFilter: ColorFilter.mode(
-                Theme.of(context).colorScheme.brightness == Brightness.light
+                Theme
+                    .of(context)
+                    .colorScheme
+                    .brightness == Brightness.light
                     ? const Color(0xFF050E2B)
                     : Colors.white,
                 BlendMode.srcIn,
@@ -127,7 +140,10 @@ class DrawerWidget extends StatelessWidget {
             ),
             Text(
               title,
-              style: Theme.of(context).textTheme.headlineMedium,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .headlineMedium,
             ),
           ],
         ),
@@ -146,7 +162,10 @@ class DrawerWidget extends StatelessWidget {
         child: Row(
           children: [
             SvgPicture.asset(
-              Theme.of(context).colorScheme.brightness == Brightness.light
+              Theme
+                  .of(context)
+                  .colorScheme
+                  .brightness == Brightness.light
                   ? PathImages.darkMode
                   : PathImages.lightMode,
             ),
@@ -154,10 +173,67 @@ class DrawerWidget extends StatelessWidget {
               width: 16,
             ),
             Text(
-              Theme.of(context).colorScheme.brightness == Brightness.light
+              Theme
+                  .of(context)
+                  .colorScheme
+                  .brightness == Brightness.light
                   ? "Dark"
                   : "Light",
-              style: Theme.of(context).textTheme.headlineMedium,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .headlineMedium,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget itemLanguage({
+    required BuildContext context,
+    required Function(String langCode) onTap,
+  }) {
+    return GestureDetector(
+      onTapDown: (details) {
+        final RenderBox overlay =
+        Overlay
+            .of(context)
+            .context
+            .findRenderObject() as RenderBox;
+        showMenu(
+          context: context,
+          // shape:,
+          position: RelativeRect.fromLTRB(
+            details.globalPosition.dx,
+            details.globalPosition.dy,
+            overlay.size.width - details.globalPosition.dx,
+            overlay.size.height - details.globalPosition.dy,
+          ),
+          items: [
+            const PopupMenuItem(value: 'ru', child: Text('Русский')),
+            const PopupMenuItem(value: 'uz', child: Text('O`zbek')),
+          ],
+        ).then((value) {
+          if (value != null) {
+            onTap(value);
+          }
+        });
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
+        child: Row(
+          children: [
+            SvgPicture.asset(PathImages.langRu),
+            const SizedBox(
+              width: 16,
+            ),
+            Text(
+              context.translations.language_text,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .headlineMedium,
             ),
           ],
         ),

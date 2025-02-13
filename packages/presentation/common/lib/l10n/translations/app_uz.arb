@@ -1,5 +1,7 @@
 {
-   "next": "Keyingisi",
-   "change": "O'zgartirish",
-   "begin": "Boshlash"
+  "next": "Keyingisi",
+  "change": "O'zgartirish",
+  "begin": "Boshlash",
+  "language_text": "O'zbek",
+  "booking": "Band qilish"
 }
