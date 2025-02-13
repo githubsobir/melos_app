@@ -194,4 +194,7 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get travel_dates => 'Sayohat sanalari';
+
+  @override
+  String get your_account => 'Sizning hisobingiz';
 }

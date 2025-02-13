@@ -49,7 +49,7 @@ class MainScreen extends StatelessWidget {
         return Scaffold(
           appBar: cubit.pageIndex != 1
               ? AppBar(
-                  title: _getTitleFromPosition(cubit.pageIndex),
+                  title: _getTitleFromPosition(cubit.pageIndex, context),
                   actions: [
                     Container(
                       margin: const EdgeInsets.only(right: 24),
@@ -215,22 +215,22 @@ class MainScreen extends StatelessWidget {
     );
   }
 
-  Widget _getTitleFromPosition(int currentMenuPosition) {
+  Widget _getTitleFromPosition(int currentMenuPosition, BuildContext context) {
     switch (currentMenuPosition) {
       case 0:
         return SvgPicture.asset(
           PathImages.logo,
         );
       case 1:
-        return const Text("Рядом сомной");
+        return Container();
       case 2:
-        return const Text("");
+        return Container();
       case 3:
-        return const Text("Сохранено");
+        return Text(context.translations.saved);
       case 4:
-        return const Text("Ваш аккаунт");
+        return Text(context.translations.your_account);
       default:
-        return const Text("");
+        return Container();
     }
   }
 }

@@ -472,6 +472,12 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Даты поездки'**
   String get travel_dates;
+
+  /// No description provided for @your_account.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ваш аккаунт'**
+  String get your_account;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

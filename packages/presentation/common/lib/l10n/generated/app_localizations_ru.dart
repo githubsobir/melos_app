@@ -194,4 +194,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get travel_dates => 'Даты поездки';
+
+  @override
+  String get your_account => 'Ваш аккаунт';
 }

@@ -18,7 +18,7 @@ class EditProfileScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Ваш аккаунт"),
+        title: Text(context.translations.your_account),
       ),
       body: SingleChildScrollView(
         child: Column(
