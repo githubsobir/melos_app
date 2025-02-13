@@ -7,7 +7,7 @@ class AppLocalizationsUz extends AppLocalizations {
   AppLocalizationsUz([String locale = 'uz']) : super(locale);
 
   @override
-  String get next => 'Keyingi';
+  String get next => 'Keyingisi';
 
   @override
   String get change => 'O\'zgartirish';
@@ -16,16 +16,16 @@ class AppLocalizationsUz extends AppLocalizations {
   String get begin => 'Boshlash';
 
   @override
-  String get language_text => 'O\'zbekcha';
+  String get language_text => 'O\'zbek';
 
   @override
   String get booking => 'Bron qilish';
 
   @override
-  String get booking_history => 'Bronlash tarixi';
+  String get booking_history => 'Bron tarixi';
 
   @override
-  String get payment_details => 'To\'lov tafsilotlari';
+  String get payment_details => 'To‘lov rekvizitlari';
 
   @override
   String get my_cars => 'Mening mashinalarim';
@@ -37,16 +37,16 @@ class AppLocalizationsUz extends AppLocalizations {
   String get exit => 'Chiqish';
 
   @override
-  String get dark => 'Qorong\'i';
+  String get dark => 'Qorong‘i';
 
   @override
-  String get light => 'Yorug\'';
+  String get light => 'Yorug‘';
 
   @override
   String get home => 'Asosiy';
 
   @override
-  String get next_to_me => 'Yonimda';
+  String get next_to_me => 'Mening yonimda';
 
   @override
   String get saved => 'Saqlangan';
@@ -55,19 +55,19 @@ class AppLocalizationsUz extends AppLocalizations {
   String get profile => 'Profil';
 
   @override
-  String get please_fill_in_all_fields => 'Iltimos, barcha maydonlarni to\'ldiring';
+  String get please_fill_in_all_fields => 'Iltimos, barcha maydonlarni to‘ldiring';
 
   @override
-  String get new_password_difference => 'Yangi parolingiz avval ishlatgan parolingizdan farq qilishi kerak.';
+  String get new_password_difference => 'Yangi parolingiz avval ishlatilgan paroldan farq qilishi kerak.';
 
   @override
   String get password => 'Parol';
 
   @override
-  String get repeat_password => 'Parolni takrorlash';
+  String get repeat_password => 'Parolni takrorlang';
 
   @override
-  String get change_password => 'Parolni o\'zgartirish';
+  String get change_password => 'Parolni o‘zgartirish';
 
   @override
   String get enter => 'Kirish';
@@ -79,16 +79,16 @@ class AppLocalizationsUz extends AppLocalizations {
   String get continue_x => 'Davom etish';
 
   @override
-  String get authentication => 'Authentication';
+  String get authentication => 'Tasdiqlash';
 
   @override
-  String get enter_the_code => 'Enter the authentication code sent to your phone.';
+  String get enter_the_code => 'Telefoningizga yuborilgan tasdiqlash kodini kiriting.';
 
   @override
-  String get send => 'Send';
+  String get send => 'Yuborish';
 
   @override
-  String get did_not_receive_the_code => 'Didn\'t receive the code?';
+  String get did_not_receive_the_code => 'Kod kelmadimi?';
 
   @override
   String get log_in => 'Tizimga kirish';
@@ -100,29 +100,68 @@ class AppLocalizationsUz extends AppLocalizations {
   String get forgot_your_password => 'Parolingizni unutdingizmi?';
 
   @override
-  String get enter_your_number => 'Введите свой номер, чтобы получить проверочный код!';
+  String get enter_your_number => 'Tasdiqlash kodini olish uchun raqamingizni kiriting!';
 
   @override
-  String get contact_phone => 'Контактный телефон';
+  String get contact_phone => 'Aloqa telefoni';
 
   @override
-  String get surname => 'Фамилия';
+  String get surname => 'Familiya';
 
   @override
-  String get name => 'Имя';
+  String get name => 'Ism';
 
   @override
-  String get patronymics => 'Отчества';
+  String get patronymics => 'Otasining ismi';
 
   @override
-  String get pinfl => 'ПИНФЛ';
+  String get pinfl => 'PINFL';
 
   @override
-  String get drivers_license => 'Вод Прав';
+  String get drivers_license => 'Haydovchilik guvohnomasi';
 
   @override
-  String get i_have_an_account => 'У меня есть аккаунт. ';
+  String get i_have_an_account => 'Menda akkaunt bor.';
 
   @override
-  String get save => 'Сохранять';
+  String get save => 'Saqlash';
+
+  @override
+  String get car_detail => 'Avtomobil tafsilotlari';
+
+  @override
+  String get model => 'Model';
+
+  @override
+  String get number => 'Raqam';
+
+  @override
+  String get rental_details => 'Ijaraga olish tafsilotlari';
+
+  @override
+  String get date_of_receipt => 'Qabul qilish sanasi';
+
+  @override
+  String get return_date => 'Qaytarish sanasi';
+
+  @override
+  String get deposit => 'Depozit';
+
+  @override
+  String get the_remaining => 'Qolgan';
+
+  @override
+  String get total_payment_amount => 'Umumiy to‘lov miqdori';
+
+  @override
+  String get booking_status => 'Bron holati';
+
+  @override
+  String get status => 'Holat';
+
+  @override
+  String get completed => 'Tugallangan';
+
+  @override
+  String get extend_booking_time => 'Bron vaqtini uzaytirish';
 }

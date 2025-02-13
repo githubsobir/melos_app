@@ -38,5 +38,18 @@
   "pinfl": "ПИНФЛ",
   "drivers_license": "Вод Прав",
   "i_have_an_account": "У меня есть аккаунт. ",
-  "save": "Сохранять"
+  "save": "Сохранять",
+  "car_detail": "Детали автомобиля",
+  "model": "Модель",
+  "number": "Число",
+  "rental_details": "Подробности аренды",
+  "date_of_receipt": "Дата получения",
+  "return_date": "Дата возврата",
+  "deposit": "Депозит",
+  "the_remaining": "Оставшийся",
+  "total_payment_amount": "Общая сумма оплаты",
+  "booking_status": "Статус бронирования",
+  "status": "Статус",
+  "completed": "Завершенный",
+  "extend_booking_time": "Продлить время бронирования"
 }

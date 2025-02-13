@@ -125,4 +125,43 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get save => 'Сохранять';
+
+  @override
+  String get car_detail => 'Детали автомобиля';
+
+  @override
+  String get model => 'Модель';
+
+  @override
+  String get number => 'Число';
+
+  @override
+  String get rental_details => 'Подробности аренды';
+
+  @override
+  String get date_of_receipt => 'Дата получения';
+
+  @override
+  String get return_date => 'Дата возврата';
+
+  @override
+  String get deposit => 'Депозит';
+
+  @override
+  String get the_remaining => 'Оставшийся';
+
+  @override
+  String get total_payment_amount => 'Общая сумма оплаты';
+
+  @override
+  String get booking_status => 'Статус бронирования';
+
+  @override
+  String get status => 'Статус';
+
+  @override
+  String get completed => 'Завершенный';
+
+  @override
+  String get extend_booking_time => 'Продлить время бронирования';
 }

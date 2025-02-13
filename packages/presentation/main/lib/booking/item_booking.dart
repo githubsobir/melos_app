@@ -1,4 +1,5 @@
 import 'package:common/decorations.dart';
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:main/booking/item_car_image.dart';
 import 'package:main/booking/item_left_right.dart';
@@ -58,7 +59,7 @@ class ItemBooking extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      "Детали автомобиля",
+                      context.translations.car_detail,
                       style:
                       Theme.of(context).textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.w700,
@@ -68,14 +69,14 @@ class ItemBooking extends StatelessWidget {
                       height: 12,
                     ),
                     ItemLeftRight(
-                      leftText: "Модель",
+                      leftText: context.translations.model,
                       rightText: "Malibu 2 Turbo",
                     ),
                     SizedBox(
                       height: 12,
                     ),
                     ItemLeftRight(
-                      leftText: "Число",
+                      leftText: context.translations.number,
                       rightText: "01/A123BC/UZ",
                     ),
                   ],
@@ -89,7 +90,7 @@ class ItemBooking extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
-                      "Подробности аренды",
+                      context.translations.rental_details,
                       style:
                       Theme.of(context).textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.w700,
@@ -99,14 +100,14 @@ class ItemBooking extends StatelessWidget {
                       height: 12,
                     ),
                     ItemLeftRight(
-                      leftText: "Дата получения",
+                      leftText: context.translations.date_of_receipt,
                       rightText: "12 нояб. 2024 г.",
                     ),
                     SizedBox(
                       height: 12,
                     ),
                     ItemLeftRight(
-                      leftText: "Дата возврата",
+                      leftText: context.translations.return_date,
                       rightText: "13 нояб. 2024 г.",
                     ),
                   ],
@@ -126,7 +127,7 @@ class ItemBooking extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
-                      "Реквизиты для оплаты",
+                      context.translations.payment_details,
                       style:
                       Theme.of(context).textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.w700,
@@ -136,21 +137,21 @@ class ItemBooking extends StatelessWidget {
                       height: 12,
                     ),
                     ItemLeftRight(
-                      leftText: "Депозит",
+                      leftText: context.translations.deposit,
                       rightText: "\$55.00",
                     ),
                     SizedBox(
                       height: 12,
                     ),
                     ItemLeftRight(
-                      leftText: "Оставшийся",
+                      leftText: context.translations.the_remaining,
                       rightText: "\$44.00",
                     ),
                     SizedBox(
                       height: 12,
                     ),
                     ItemLeftRight(
-                      leftText: "Общая сумма оплаты",
+                      leftText: context.translations.total_payment_amount,
                       rightText: "\$99.00",
                     ),
                   ],
@@ -164,7 +165,7 @@ class ItemBooking extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Статус бронирования",
+                      context.translations.booking_status,
                       style:
                       Theme.of(context).textTheme.bodyMedium?.copyWith(
                         fontWeight: FontWeight.w700,
@@ -176,7 +177,7 @@ class ItemBooking extends StatelessWidget {
                     Row(
                       children: [
                         Text(
-                          "Статус",
+                          context.translations.status,
                           style: Theme.of(context)
                               .textTheme
                               .labelMedium
@@ -197,7 +198,7 @@ class ItemBooking extends StatelessWidget {
                             right: 6,
                           ),
                           child: Text(
-                            "Завершенный",
+                            context.translations.completed,
                             style: Theme.of(context)
                                 .textTheme
                                 .labelMedium
@@ -218,7 +219,7 @@ class ItemBooking extends StatelessWidget {
                         right: 6,
                       ),
                       child: Text(
-                        "Extend booking time",
+                        context.translations.extend_booking_time,
                         style: Theme.of(context)
                             .textTheme
                             .labelMedium

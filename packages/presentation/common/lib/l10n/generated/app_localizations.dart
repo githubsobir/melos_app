@@ -334,6 +334,84 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Сохранять'**
   String get save;
+
+  /// No description provided for @car_detail.
+  ///
+  /// In ru, this message translates to:
+  /// **'Детали автомобиля'**
+  String get car_detail;
+
+  /// No description provided for @model.
+  ///
+  /// In ru, this message translates to:
+  /// **'Модель'**
+  String get model;
+
+  /// No description provided for @number.
+  ///
+  /// In ru, this message translates to:
+  /// **'Число'**
+  String get number;
+
+  /// No description provided for @rental_details.
+  ///
+  /// In ru, this message translates to:
+  /// **'Подробности аренды'**
+  String get rental_details;
+
+  /// No description provided for @date_of_receipt.
+  ///
+  /// In ru, this message translates to:
+  /// **'Дата получения'**
+  String get date_of_receipt;
+
+  /// No description provided for @return_date.
+  ///
+  /// In ru, this message translates to:
+  /// **'Дата возврата'**
+  String get return_date;
+
+  /// No description provided for @deposit.
+  ///
+  /// In ru, this message translates to:
+  /// **'Депозит'**
+  String get deposit;
+
+  /// No description provided for @the_remaining.
+  ///
+  /// In ru, this message translates to:
+  /// **'Оставшийся'**
+  String get the_remaining;
+
+  /// No description provided for @total_payment_amount.
+  ///
+  /// In ru, this message translates to:
+  /// **'Общая сумма оплаты'**
+  String get total_payment_amount;
+
+  /// No description provided for @booking_status.
+  ///
+  /// In ru, this message translates to:
+  /// **'Статус бронирования'**
+  String get booking_status;
+
+  /// No description provided for @status.
+  ///
+  /// In ru, this message translates to:
+  /// **'Статус'**
+  String get status;
+
+  /// No description provided for @completed.
+  ///
+  /// In ru, this message translates to:
+  /// **'Завершенный'**
+  String get completed;
+
+  /// No description provided for @extend_booking_time.
+  ///
+  /// In ru, this message translates to:
+  /// **'Продлить время бронирования'**
+  String get extend_booking_time;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

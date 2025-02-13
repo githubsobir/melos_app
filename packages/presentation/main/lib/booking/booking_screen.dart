@@ -1,3 +1,4 @@
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:main/booking/item_booking.dart';
 
@@ -8,7 +9,7 @@ class BookingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Бронирование"),
+        title: Text(context.translations.booking),
       ),
       body: ListView.separated(
           itemBuilder: (context, index) => const ItemBooking(),
