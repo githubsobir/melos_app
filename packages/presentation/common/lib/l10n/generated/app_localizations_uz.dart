@@ -41,4 +41,16 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get light => 'Yorug\'';
+
+  @override
+  String get home => 'Asosiy';
+
+  @override
+  String get next_to_me => 'Yonimda';
+
+  @override
+  String get saved => 'Saqlangan';
+
+  @override
+  String get profile => 'Profil';
 }
