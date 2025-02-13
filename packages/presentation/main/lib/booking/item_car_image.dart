@@ -26,7 +26,7 @@ class ItemCarImage extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.0),
         child: CachedNetworkImage(
           imageUrl: imagePath,
-          fit: BoxFit.cover,
+          fit: BoxFit.fill,
           progressIndicatorBuilder: (context, url, downloadProgress) =>
               SizedBox(
             width: width,
