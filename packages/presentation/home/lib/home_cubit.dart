@@ -59,7 +59,7 @@ class HomeCubit extends Cubit<CarsState> {
   }
 
   Future<void> likeCar(int id, bool isLiked) async {
-    var response = await _carsUseCase.likeCar(id, isLiked);
+    await _carsUseCase.likeCar(id, isLiked);
   }
 }
 

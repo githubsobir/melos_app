@@ -221,7 +221,11 @@ class DrawerWidget extends StatelessWidget {
         padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
         child: Row(
           children: [
-            SvgPicture.asset(PathImages.langRu),
+            SvgPicture.asset(
+              Localizations.localeOf(context).languageCode == "uz"
+                  ? PathImages.langUz
+                  : PathImages.langRu,
+            ),
             const SizedBox(
               width: 16,
             ),
