@@ -1,7 +1,14 @@
 {
-  "next": "Keyingisi",
+  "next": "Keyingi",
   "change": "O'zgartirish",
   "begin": "Boshlash",
-  "language_text": "O'zbek",
-  "booking": "Band qilish"
+  "language_text": "O'zbekcha",
+  "booking": "Bron qilish",
+  "booking_history": "Bronlash tarixi",
+  "payment_details": "To'lov tafsilotlari",
+  "my_cars": "Mening mashinalarim",
+  "help": "Yordam",
+  "exit": "Chiqish",
+  "dark": "Qorong'i",
+  "light": "Yorug'"
 }

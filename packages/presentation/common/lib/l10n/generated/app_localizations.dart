@@ -124,6 +124,48 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Бронирование'**
   String get booking;
+
+  /// No description provided for @booking_history.
+  ///
+  /// In ru, this message translates to:
+  /// **'История бронирования'**
+  String get booking_history;
+
+  /// No description provided for @payment_details.
+  ///
+  /// In ru, this message translates to:
+  /// **'Реквизиты для оплаты'**
+  String get payment_details;
+
+  /// No description provided for @my_cars.
+  ///
+  /// In ru, this message translates to:
+  /// **'Мои машины'**
+  String get my_cars;
+
+  /// No description provided for @help.
+  ///
+  /// In ru, this message translates to:
+  /// **'Помощь'**
+  String get help;
+
+  /// No description provided for @exit.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выйти'**
+  String get exit;
+
+  /// No description provided for @dark.
+  ///
+  /// In ru, this message translates to:
+  /// **'Темный'**
+  String get dark;
+
+  /// No description provided for @light.
+  ///
+  /// In ru, this message translates to:
+  /// **'Свет'**
+  String get light;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

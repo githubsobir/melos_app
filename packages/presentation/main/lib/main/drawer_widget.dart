@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/path_images.dart';
 import 'package:dependency/dependencies/injector.dart';
@@ -25,17 +27,18 @@ class DrawerWidget extends StatelessWidget {
             children: [
               SvgPicture.asset(PathImages.logo),
               IconButton(
-                  onPressed: () {
-                    Scaffold.of(context).closeDrawer();
-                  },
-                  icon: const Icon(Icons.close))
+                onPressed: () {
+                  Scaffold.of(context).closeDrawer();
+                },
+                icon: const Icon(Icons.close),
+              )
             ],
           ),
         ),
         const Divider(),
         item(
           icon: PathImages.booking,
-          title:context.translations.booking,
+          title: context.translations.booking,
           context: context,
           onTap: () {
             context.openScreen(BookingIntent());
@@ -44,7 +47,7 @@ class DrawerWidget extends StatelessWidget {
         ),
         item(
           icon: PathImages.bookingHistory,
-          title: "История бронирования",
+          title: context.translations.booking_history,
           context: context,
           onTap: () {
             context.openScreen(BookingHistoryIntent());
@@ -53,7 +56,7 @@ class DrawerWidget extends StatelessWidget {
         ),
         item(
           icon: PathImages.paymentDetails,
-          title: "Реквизиты для оплаты",
+          title: context.translations.payment_details,
           context: context,
           onTap: () {
             context.openScreen(PaymentDetailsIntent());
@@ -62,7 +65,7 @@ class DrawerWidget extends StatelessWidget {
         ),
         item(
           icon: PathImages.myCars,
-          title: "Мои машины",
+          title: context.translations.my_cars,
           context: context,
           onTap: () {
             context.openScreen(MyCarsIntent());
@@ -75,7 +78,7 @@ class DrawerWidget extends StatelessWidget {
         const Divider(),
         item(
           icon: PathImages.help,
-          title: "Помощь",
+          title: context.translations.help,
           context: context,
           onTap: () {
             context.openScreen(HelpIntent());
@@ -86,10 +89,7 @@ class DrawerWidget extends StatelessWidget {
           context: context,
           onTap: () {
             getIt.get<AppStateNotifier>().setValue(
-                isNightMode: (Theme
-                    .of(context)
-                    .colorScheme
-                    .brightness ==
+                isNightMode: (Theme.of(context).colorScheme.brightness ==
                     Brightness.light));
           },
         ),
@@ -101,7 +101,7 @@ class DrawerWidget extends StatelessWidget {
         ),
         item(
           icon: PathImages.logout,
-          title: "Выйти",
+          title: context.translations.exit,
           context: context,
           onTap: () {
             onLogOut();
@@ -126,10 +126,7 @@ class DrawerWidget extends StatelessWidget {
             SvgPicture.asset(
               icon,
               colorFilter: ColorFilter.mode(
-                Theme
-                    .of(context)
-                    .colorScheme
-                    .brightness == Brightness.light
+                Theme.of(context).colorScheme.brightness == Brightness.light
                     ? const Color(0xFF050E2B)
                     : Colors.white,
                 BlendMode.srcIn,
@@ -140,10 +137,7 @@ class DrawerWidget extends StatelessWidget {
             ),
             Text(
               title,
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .headlineMedium,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
         ),
@@ -162,10 +156,7 @@ class DrawerWidget extends StatelessWidget {
         child: Row(
           children: [
             SvgPicture.asset(
-              Theme
-                  .of(context)
-                  .colorScheme
-                  .brightness == Brightness.light
+              Theme.of(context).colorScheme.brightness == Brightness.light
                   ? PathImages.darkMode
                   : PathImages.lightMode,
             ),
@@ -173,16 +164,10 @@ class DrawerWidget extends StatelessWidget {
               width: 16,
             ),
             Text(
-              Theme
-                  .of(context)
-                  .colorScheme
-                  .brightness == Brightness.light
-                  ? "Dark"
-                  : "Light",
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .headlineMedium,
+              Theme.of(context).colorScheme.brightness == Brightness.light
+                  ? context.translations.dark
+                  : context.translations.light,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
         ),
@@ -197,13 +182,12 @@ class DrawerWidget extends StatelessWidget {
     return GestureDetector(
       onTapDown: (details) {
         final RenderBox overlay =
-        Overlay
-            .of(context)
-            .context
-            .findRenderObject() as RenderBox;
+            Overlay.of(context).context.findRenderObject() as RenderBox;
         showMenu(
           context: context,
-          // shape:,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0), // Adjust radius as needed
+          ),
           position: RelativeRect.fromLTRB(
             details.globalPosition.dx,
             details.globalPosition.dy,
@@ -211,12 +195,23 @@ class DrawerWidget extends StatelessWidget {
             overlay.size.height - details.globalPosition.dy,
           ),
           items: [
-            const PopupMenuItem(value: 'ru', child: Text('Русский')),
-            const PopupMenuItem(value: 'uz', child: Text('O`zbek')),
+            const PopupMenuItem(
+                value: 'ru',
+                child: SizedBox(
+                    width: 120, child: Center(child: Text('Русский')))),
+            const PopupMenuItem(
+                value: 'uz',
+                child:
+                    SizedBox(width: 120, child: Center(child: Text('O`zbek')))),
           ],
         ).then((value) {
           if (value != null) {
-            onTap(value);
+            Timer(
+              const Duration(milliseconds: 100),
+              () {
+                onTap(value);
+              },
+            );
           }
         });
       },
@@ -230,10 +225,7 @@ class DrawerWidget extends StatelessWidget {
             ),
             Text(
               context.translations.language_text,
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .headlineMedium,
+              style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
         ),

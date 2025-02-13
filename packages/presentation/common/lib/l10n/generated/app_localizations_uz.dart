@@ -7,7 +7,7 @@ class AppLocalizationsUz extends AppLocalizations {
   AppLocalizationsUz([String locale = 'uz']) : super(locale);
 
   @override
-  String get next => 'Keyingisi';
+  String get next => 'Keyingi';
 
   @override
   String get change => 'O\'zgartirish';
@@ -16,8 +16,29 @@ class AppLocalizationsUz extends AppLocalizations {
   String get begin => 'Boshlash';
 
   @override
-  String get language_text => 'O\'zbek';
+  String get language_text => 'O\'zbekcha';
 
   @override
-  String get booking => 'Band qilish';
+  String get booking => 'Bron qilish';
+
+  @override
+  String get booking_history => 'Bronlash tarixi';
+
+  @override
+  String get payment_details => 'To\'lov tafsilotlari';
+
+  @override
+  String get my_cars => 'Mening mashinalarim';
+
+  @override
+  String get help => 'Yordam';
+
+  @override
+  String get exit => 'Chiqish';
+
+  @override
+  String get dark => 'Qorong\'i';
+
+  @override
+  String get light => 'Yorug\'';
 }
