@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:common/widgets/base_button.dart';
 import 'package:common/path_images.dart';
+import 'package:common/widgets/base_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -97,8 +97,21 @@ class _ItemCarBaseState extends State<ItemCarBase> {
                           (context, url, downloadProgress) => SizedBox(
                         width: 24,
                         height: 24,
-                        child: CircularProgressIndicator(
-                          value: downloadProgress.progress,
+                        child: Stack(
+                          children: [
+                            Align(
+                              alignment: Alignment.center,
+                              child: SizedBox(
+                                width: 24,
+                                height: 24,
+                                child: CircularProgressIndicator(
+                                  value: downloadProgress.progress,
+                                  color: Theme.of(context).colorScheme.primary,
+                                  strokeWidth: 1,
+                                ),
+                              ),
+                            )
+                          ],
                         ),
                       ),
                       errorWidget: (context, url, error) =>

@@ -42,28 +42,27 @@ class CarInfoDetailScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Card(
-                    elevation: 0,
-                    margin: const EdgeInsets.all(0),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(0.0),
-                    ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(16),
-                      child: CarImageSelectorWidget(
-                        images: state.carDetail.photos ?? [],
+                  if ((state.carDetail.photos ?? []).isNotEmpty)
+                    Padding(
+                      padding: const EdgeInsets.only(top: 16),
+                      child: Card(
+                        elevation: 0,
+                        margin: const EdgeInsets.all(0),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(0.0),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: CarImageSelectorWidget(
+                            images: state.carDetail.photos ?? [],
+                          ),
+                        ),
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
                   ////////////////////////
                   Padding(
-                    padding: const EdgeInsets.only(left: 24, right: 24),
+                    padding:
+                        const EdgeInsets.only(left: 24, right: 24, top: 16),
                     child: Card(
                       elevation: 0,
                       margin: const EdgeInsets.all(0),

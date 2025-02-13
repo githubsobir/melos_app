@@ -1,6 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:common/widgets/base_button.dart';
 import 'package:common/path_images.dart';
+import 'package:common/widgets/base_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -78,13 +78,13 @@ class _ItemCarPopularState extends State<ItemCarPopular> {
                   },
                   child: widget.isLiked
                       ? const Icon(
-                    Icons.favorite_outlined,
-                    color: Color(0xFFFF3636),
-                  )
+                          Icons.favorite_outlined,
+                          color: Color(0xFFFF3636),
+                        )
                       : Icon(
-                    Icons.favorite_outline,
-                    color: Theme.of(context).colorScheme.secondary,
-                  ),
+                          Icons.favorite_outline,
+                          color: Theme.of(context).colorScheme.secondary,
+                        ),
                 )
               ],
             ),
@@ -96,8 +96,21 @@ class _ItemCarPopularState extends State<ItemCarPopular> {
                     SizedBox(
                   width: 24,
                   height: 24,
-                  child: CircularProgressIndicator(
-                    value: downloadProgress.progress,
+                  child: Stack(
+                    children: [
+                      Align(
+                        alignment: Alignment.center,
+                        child: SizedBox(
+                          width: 24,
+                          height: 24,
+                          child: CircularProgressIndicator(
+                            value: downloadProgress.progress,
+                            color: Theme.of(context).colorScheme.primary,
+                            strokeWidth: 1,
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                 ),
                 errorWidget: (context, url, error) => const Icon(Icons.error),
