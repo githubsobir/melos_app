@@ -1,4 +1,5 @@
 import 'package:authentication/register/register_cubit.dart';
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/navigation/auth_navigation_intents.dart';
 import 'package:common/path_images.dart';
 import 'package:common/widgets/base_button.dart';
@@ -22,6 +23,7 @@ class RegisterScreen extends StatelessWidget {
   final TextEditingController driverLicenseController = TextEditingController();
   final TextEditingController middleNameLicenseController =
       TextEditingController();
+
   // final TextEditingController roleController = TextEditingController();
   final TextEditingController passportPinflController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
@@ -38,7 +40,7 @@ class RegisterScreen extends StatelessWidget {
         bloc: cubit,
         listener: (context, state) {
           if (state is EmptyFieldsErrorState) {
-            showToast("Пожалуйста, заполните все поля");
+            showToast(context.translations.please_fill_in_all_fields);
           } else if (state is RegisterErrorState) {
             showToast(state.message);
           } else if (state is SuccessfullyRegisteredState) {
@@ -60,68 +62,69 @@ class RegisterScreen extends StatelessWidget {
                   ),
                   BaseTextField(
                     controller: lastNameController,
-                    title: "Фамилия",
-                    hint: "Фамилия",
+                    title: context.translations.surname,
+                    hint: context.translations.surname,
                   ),
                   SizedBox(height: 4),
                   BaseTextField(
                     controller: firstNameController,
-                    title: "Имя",
-                    hint: "Имя",
+                    title: context.translations.name,
+                    hint: context.translations.name,
                   ),
                   SizedBox(height: 4),
                   BaseTextField(
                     controller: middleNameLicenseController,
-                    title: "Очества",
-                    hint: "Очества",
+                    title: context.translations.patronymics,
+                    hint: context.translations.patronymics,
                   ),
                   SizedBox(height: 4),
                   BaseTextField(
                     controller: phoneController,
-                    title: "Контактный телефон",
+                    title: context.translations.contact_phone,
                     hint: "__ ___ __ __",
                   ),
                   SizedBox(height: 4),
                   BaseTextField(
                     controller: passportPinflController,
-                    title: "ПИНФЛ",
-                    hint: "ПИНФЛ",
+                    title: context.translations.pinfl,
+                    hint: context.translations.pinfl,
                   ),
                   SizedBox(height: 4),
                   BaseTextField(
                     controller: driverLicenseController,
-                    title: "Вод Прав",
-                    hint: "Вод Прав",
+                    title: context.translations.drivers_license,
+                    hint: context.translations.drivers_license,
                   ),
                   SizedBox(height: 4),
                   BaseTextField(
                     controller: passwordController,
-                    title: "Пароль",
+                    title: context.translations.password,
                     hint: "** ** ** **",
                     type: TextFieldType.PASSWORD,
                   ),
                   SizedBox(height: 4),
                   BaseTextField(
                     controller: confirmPasswordController,
-                    title: "Повторите пароль",
+                    title: context.translations.repeat_password,
                     hint: "** ** ** **",
                     type: TextFieldType.PASSWORD,
                   ),
-                  SizedBox(height: 42),
+                  const SizedBox(height: 42),
                   BaseButton(
-                      onPressed: () {
-                        cubit.register(
-                          firstName: firstNameController.text,
-                          phoneNumber: phoneController.text,
-                          password: passwordController.text,
-                          confirmPassword: confirmPasswordController.text,
-                          lastName: lastNameController.text,
-                          driverLicense: driverLicenseController.text,
-                          middleName: middleNameLicenseController.text,
-                          passportPinfl: passportPinflController.text,
-                        );
-                      },
-                      title: "Войти"),
+                    onPressed: () {
+                      cubit.register(
+                        firstName: firstNameController.text,
+                        phoneNumber: phoneController.text,
+                        password: passwordController.text,
+                        confirmPassword: confirmPasswordController.text,
+                        lastName: lastNameController.text,
+                        driverLicense: driverLicenseController.text,
+                        middleName: middleNameLicenseController.text,
+                        passportPinfl: passportPinflController.text,
+                      );
+                    },
+                    title: context.translations.enter,
+                  ),
                   SizedBox(height: 32),
                   GestureDetector(
                     onTap: () {
@@ -130,11 +133,11 @@ class RegisterScreen extends StatelessWidget {
                     child: RichText(
                       textAlign: TextAlign.center,
                       text: TextSpan(
-                        text: 'У меня есть аккаунт. ',
+                        text:context.translations.i_have_an_account,
                         style: Theme.of(context).textTheme.bodyMedium,
                         children: [
                           TextSpan(
-                            text: 'Войти',
+                            text: context.translations.enter,
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium

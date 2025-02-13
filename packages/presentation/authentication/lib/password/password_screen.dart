@@ -1,4 +1,5 @@
 import 'package:authentication/password/password_cubit.dart';
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/navigation/auth_navigation_intents.dart';
 import 'package:common/path_images.dart';
 import 'package:common/widgets/base_button.dart';
@@ -24,15 +25,15 @@ class PasswordScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Авторизоваться"),
+        title: Text(context.translations.log_in),
       ),
       body: BlocConsumer(
         bloc: cubit,
         listener: (context, state) {
           if (state is EmptyFieldsErrorState) {
-            showToast("Пожалуйста, заполните все поля");
+            showToast(context.translations.please_fill_in_all_fields);
           } else if (state is LoginErrorState) {
-            showToast("Ошибка регистрации");
+            showToast(context.translations.registration_error);
           } else if (state is SuccessfullyLoginState) {
             context.openScreen(MainIntent());
           }
@@ -54,8 +55,8 @@ class PasswordScreen extends StatelessWidget {
                     const SizedBox(height: 16),
                     BaseTextField(
                       controller: passwordController,
-                      title: "Пароль",
-                      hint: "Пароль",
+                      title: context.translations.password,
+                      hint: context.translations.password,
                       type: TextFieldType.PASSWORD,
                     ),
                     const SizedBox(height: 16),
@@ -64,7 +65,7 @@ class PasswordScreen extends StatelessWidget {
                         context.openScreen(ForgotPasswordIntent(phoneNumber: phoneNumber));
                       },
                       child: Text(
-                        "Забыли пароль?",
+                        context.translations.forgot_your_password,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                     ),
@@ -75,7 +76,7 @@ class PasswordScreen extends StatelessWidget {
                               phone: "+998$phoneNumber",
                               password: passwordController.text); //123
                         },
-                        title: "Войти"),
+                        title: context.translations.enter),
                     const SizedBox(height: 32),
                   ],
                 ),

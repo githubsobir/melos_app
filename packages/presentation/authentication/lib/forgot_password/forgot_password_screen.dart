@@ -1,4 +1,5 @@
 import 'package:authentication/forgot_password/forgot_password_cubit.dart';
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/navigation/auth_navigation_intents.dart';
 import 'package:common/path_images.dart';
 import 'package:common/widgets/base_button.dart';
@@ -28,7 +29,7 @@ class ForgotPasswordScreen extends StatelessWidget {
         bloc: cubit,
         listener: (context, state) {
           if (state is EmptyFieldsErrorState) {
-            showToast("Пожалуйста, заполните все поля");
+            showToast(context.translations.please_fill_in_all_fields);
           } else if (state is ErrorState) {
             showToast(state.message);
           } else if (state is SuccessfullyChangedState) {
@@ -51,21 +52,21 @@ class ForgotPasswordScreen extends StatelessWidget {
                     ),
                     SizedBox(height: 16),
                     Text(
-                      "Ваш новый пароль должен отличаться от ранее использованного пароля.",
+                      context.translations.new_password_difference,
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
                     SizedBox(height: 32),
                     BaseTextField(
                       controller: newPasswordController,
-                      title: "Пароль",
+                      title: context.translations.password,
                       hint: "** ** ** **",
                       type: TextFieldType.PASSWORD,
                     ),
                     SizedBox(height: 6),
                     BaseTextField(
                       controller: confirmPasswordController,
-                      title: "Повторите пароль",
+                      title: context.translations.repeat_password,
                       hint: "** ** ** **",
                       type: TextFieldType.PASSWORD,
                     ),
@@ -78,7 +79,7 @@ class ForgotPasswordScreen extends StatelessWidget {
                             confirmPassword: confirmPasswordController.text,
                           );
                         },
-                        title: "Изменить пароль"),
+                        title: context.translations.change_password),
                   ],
                 ),
               ),

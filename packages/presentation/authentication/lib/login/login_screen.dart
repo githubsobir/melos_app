@@ -1,4 +1,5 @@
 import 'package:authentication/login/login_cubit.dart';
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/navigation/auth_navigation_intents.dart';
 import 'package:common/path_images.dart';
 import 'package:common/widgets/base_button.dart';
@@ -21,13 +22,13 @@ class LoginScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Войти"),
+        title: Text(context.translations.enter),
       ),
       body: BlocConsumer(
         bloc: cubit,
         listener: (context, state) {
           if (state is EmptyFieldsErrorState) {
-            showToast("Пожалуйста, заполните все поля");
+            showToast(context.translations.please_fill_in_all_fields);
           } else if (state is UserNotFound) {
             context.openScreen(OtpCodeIntent(
               phoneNumber: phoneController.text.replaceAll(" ", ""),
@@ -55,7 +56,7 @@ class LoginScreen extends StatelessWidget {
                     const SizedBox(height: 72),
                     BaseTextField(
                       controller: phoneController,
-                      title: "Введите номер",
+                      title: context.translations.enter_number,
                       hint: "__ ___ __ __",
                       type: TextFieldType.PHONE,
                     ),
@@ -67,7 +68,7 @@ class LoginScreen extends StatelessWidget {
                                 "+998${phoneController.text.replaceAll(" ", "")}",
                           ); //123
                         },
-                        title: "Продолжать"),
+                        title: context.translations.continue_x),
                   ],
                 ),
               ),

@@ -1,4 +1,5 @@
 import 'package:authentication/otp_code_screen/otp_code_cubit.dart';
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/navigation/auth_navigation_intents.dart';
 import 'package:common/widgets/base_button.dart';
 import 'package:common/widgets/base_loader_builder.dart';
@@ -32,7 +33,7 @@ class OtpCodeScreen extends StatelessWidget {
         bloc: cubit,
         listener: (context, state) {
           if (state is EmptyFieldsErrorState) {
-            showToast("Пожалуйста, заполните все поля");
+            showToast(context.translations.please_fill_in_all_fields);
           } else if (state is ErrorState) {
             showToast(state.message);
           } else if (state is SuccessfullyVerifiedState) {
@@ -52,13 +53,13 @@ class OtpCodeScreen extends StatelessWidget {
                       height: 150,
                     ),
                     Text(
-                      "Аутентификация",
+                      context.translations.authentication,
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      "Пожалуйста, введите код аутентификации, отправленный на вашу электронную почту",
+                      context.translations.enter_the_code,
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
@@ -74,13 +75,13 @@ class OtpCodeScreen extends StatelessWidget {
                         cubit.verifySmsCode(
                             phone: "+998$phoneNumber", smsCode: smsCode);
                       },
-                      title: "Отправлять",
+                      title: context.translations.send,
                     ),
                     const SizedBox(height: 32),
                     GestureDetector(
                       onTap: () {},
                       child: Text(
-                        "Не получили код?",
+                        context.translations.did_not_receive_the_code,
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),

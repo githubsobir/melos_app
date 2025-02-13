@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/path_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -47,7 +48,7 @@ class ProfileScreen extends StatelessWidget {
             ),
             item(
               context: context,
-              title: "Контактный телефон",
+              title: context.translations.contact_phone,
               content: "+99893***0321",
             ),
             SizedBox(
@@ -55,7 +56,7 @@ class ProfileScreen extends StatelessWidget {
             ),
             item(
               context: context,
-              title: "ПИНФЛ",
+              title: context.translations.pinfl,
               content: "521120******25",
             ),
             SizedBox(
@@ -63,7 +64,7 @@ class ProfileScreen extends StatelessWidget {
             ),
             item(
               context: context,
-              title: "Водительское Удостоверение",
+              title: context.translations.drivers_license,
               content: "AG 12****8",
             ),
           ],

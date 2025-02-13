@@ -1,3 +1,4 @@
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/widgets/base_button.dart';
 import 'package:common/widgets/base_text_field.dart';
 import 'package:flutter/material.dart';
@@ -30,32 +31,32 @@ class EditProfileScreen extends StatelessWidget {
                 children: [
                   BaseTextField(
                     controller: lastNameController,
-                    title: "Фамилия",
-                    hint: "Фамилия",
+                    title: context.translations.surname,
+                    hint: context.translations.surname,
                   ),
                   const SizedBox(height: 8),
                   BaseTextField(
                     controller: firstNameController,
-                    title: "Имя",
-                    hint: "Имя",
+                    title: context.translations.name,
+                    hint: context.translations.name,
                   ),
                   const SizedBox(height: 8),
                   BaseTextField(
                     controller: middleNameLicenseController,
-                    title: "Очества",
-                    hint: "Очества",
+                    title: context.translations.patronymics,
+                    hint: context.translations.patronymics,
                   ),
                   const SizedBox(height: 8),
                   BaseTextField(
                     controller: phoneController,
-                    title: "Контактный телефон",
+                    title: context.translations.contact_phone,
                     hint: "__ ___ __ __",
                   ),
                   const SizedBox(height: 8),
                   BaseTextField(
                     controller: passportPinflController,
-                    title: "ПИНФЛ",
-                    hint: "ПИНФЛ",
+                    title: context.translations.pinfl,
+                    hint: context.translations.pinfl,
                   ),
                 ],
               ),
@@ -71,7 +72,7 @@ class EditProfileScreen extends StatelessWidget {
                 onPressed: () {
                   context.closeActiveScreen();
                 },
-                title: "Сохранять",
+                title: context.translations.save,
                 background: const Color(0xFF008A22),
               ),
             )

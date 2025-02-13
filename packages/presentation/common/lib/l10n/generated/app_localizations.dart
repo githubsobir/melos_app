@@ -190,6 +190,150 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Профиль'**
   String get profile;
+
+  /// No description provided for @please_fill_in_all_fields.
+  ///
+  /// In ru, this message translates to:
+  /// **'Пожалуйста, заполните все поля'**
+  String get please_fill_in_all_fields;
+
+  /// No description provided for @new_password_difference.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ваш новый пароль должен отличаться от ранее использованного пароля.'**
+  String get new_password_difference;
+
+  /// No description provided for @password.
+  ///
+  /// In ru, this message translates to:
+  /// **'Пароль'**
+  String get password;
+
+  /// No description provided for @repeat_password.
+  ///
+  /// In ru, this message translates to:
+  /// **'Повторите пароль'**
+  String get repeat_password;
+
+  /// No description provided for @change_password.
+  ///
+  /// In ru, this message translates to:
+  /// **'Изменить пароль'**
+  String get change_password;
+
+  /// No description provided for @enter.
+  ///
+  /// In ru, this message translates to:
+  /// **'Войти'**
+  String get enter;
+
+  /// No description provided for @enter_number.
+  ///
+  /// In ru, this message translates to:
+  /// **'Введите номер'**
+  String get enter_number;
+
+  /// No description provided for @continue_x.
+  ///
+  /// In ru, this message translates to:
+  /// **'Продолжать'**
+  String get continue_x;
+
+  /// No description provided for @authentication.
+  ///
+  /// In ru, this message translates to:
+  /// **'Аутентификация'**
+  String get authentication;
+
+  /// No description provided for @enter_the_code.
+  ///
+  /// In ru, this message translates to:
+  /// **'Введите код аутентификации, отправленный на ваш телефон.'**
+  String get enter_the_code;
+
+  /// No description provided for @send.
+  ///
+  /// In ru, this message translates to:
+  /// **'Отправлять'**
+  String get send;
+
+  /// No description provided for @did_not_receive_the_code.
+  ///
+  /// In ru, this message translates to:
+  /// **'Не получили код?'**
+  String get did_not_receive_the_code;
+
+  /// No description provided for @log_in.
+  ///
+  /// In ru, this message translates to:
+  /// **'Авторизоваться'**
+  String get log_in;
+
+  /// No description provided for @registration_error.
+  ///
+  /// In ru, this message translates to:
+  /// **'Ошибка регистрации'**
+  String get registration_error;
+
+  /// No description provided for @forgot_your_password.
+  ///
+  /// In ru, this message translates to:
+  /// **'Забыли пароль?'**
+  String get forgot_your_password;
+
+  /// No description provided for @enter_your_number.
+  ///
+  /// In ru, this message translates to:
+  /// **'Введите свой номер, чтобы получить проверочный код!'**
+  String get enter_your_number;
+
+  /// No description provided for @contact_phone.
+  ///
+  /// In ru, this message translates to:
+  /// **'Контактный телефон'**
+  String get contact_phone;
+
+  /// No description provided for @surname.
+  ///
+  /// In ru, this message translates to:
+  /// **'Фамилия'**
+  String get surname;
+
+  /// No description provided for @name.
+  ///
+  /// In ru, this message translates to:
+  /// **'Имя'**
+  String get name;
+
+  /// No description provided for @patronymics.
+  ///
+  /// In ru, this message translates to:
+  /// **'Отчества'**
+  String get patronymics;
+
+  /// No description provided for @pinfl.
+  ///
+  /// In ru, this message translates to:
+  /// **'ПИНФЛ'**
+  String get pinfl;
+
+  /// No description provided for @drivers_license.
+  ///
+  /// In ru, this message translates to:
+  /// **'Вод Прав'**
+  String get drivers_license;
+
+  /// No description provided for @i_have_an_account.
+  ///
+  /// In ru, this message translates to:
+  /// **'У меня есть аккаунт. '**
+  String get i_have_an_account;
+
+  /// No description provided for @save.
+  ///
+  /// In ru, this message translates to:
+  /// **'Сохранять'**
+  String get save;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

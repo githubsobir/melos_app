@@ -1,4 +1,6 @@
+import 'package:authentication/forgot_password/forgot_password_screen.dart';
 import 'package:authentication/phone_number/phone_number_cubit.dart';
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/navigation/auth_navigation_intents.dart';
 import 'package:common/path_images.dart';
 import 'package:common/widgets/base_button.dart';
@@ -33,13 +35,13 @@ class PhoneNumberScreen extends StatelessWidget {
               ),
               SizedBox(height: 16),
               Text(
-                "Введите свой номер, чтобы получить проверочный код!",
+                context.translations.enter_your_number,
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.bodyMedium,
               ),
               SizedBox(height: 16),
               BaseTextField(
-                title: "Контактный телефон",
+                title: context.translations.contact_phone,
                 hint: "__ ___ __ __",
                 type: TextFieldType.PHONE,
                 controller: phoneController,
@@ -52,7 +54,7 @@ class PhoneNumberScreen extends StatelessWidget {
                       isRegister: isRegister,
                     ));
                   },
-                  title: "Отправлять"),
+                  title: context.translations.send),
             ],
           ),
         ),
