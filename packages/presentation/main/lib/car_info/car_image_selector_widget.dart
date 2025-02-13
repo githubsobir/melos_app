@@ -23,7 +23,7 @@ class _CarImageSelectorWidgetState extends State<CarImageSelectorWidget> {
           padding: const EdgeInsets.only(left: 16, right: 16),
           child: ItemCarImage(
             width: MediaQuery.sizeOf(context).width,
-            height: 180,
+            height: 200,
             imagePath: "$BASE_URL_IMAGE${widget.images[position]}",
           ),
         ),
