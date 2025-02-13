@@ -194,10 +194,9 @@ class OnboardingScreen extends StatelessWidget {
                           openNextScreen(context);
                         }
                       },
-                      title: "",
-                      // title: cubit.position < 2
-                      //     ? context.translations.next
-                      //     : context.translations.begin,
+                      title: cubit.position < 2
+                          ? context.translations.next
+                          : context.translations.begin,
                     ),
                   ],
                 ),

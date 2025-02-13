@@ -13,7 +13,9 @@ import 'package:navigation/my_cars_intents.dart';
 class DrawerWidget extends StatelessWidget {
   final VoidCallback onLogOut;
 
-  const DrawerWidget({super.key, required this.onLogOut});
+  DrawerWidget({super.key, required this.onLogOut});
+
+  final AppStateNotifier _appStateNotifier = getIt.get<AppStateNotifier>();
 
   @override
   Widget build(BuildContext context) {
@@ -88,7 +90,7 @@ class DrawerWidget extends StatelessWidget {
         itemTheme(
           context: context,
           onTap: () {
-            getIt.get<AppStateNotifier>().setValue(
+            _appStateNotifier.setThemeValue(
                 isNightMode: (Theme.of(context).colorScheme.brightness ==
                     Brightness.light));
           },
@@ -96,7 +98,7 @@ class DrawerWidget extends StatelessWidget {
         itemLanguage(
           context: context,
           onTap: (langCode) {
-            getIt.get<AppStateNotifier>().setValue(languageCode: langCode);
+            _appStateNotifier.setLanguageValue(languageCode: langCode);
           },
         ),
         item(

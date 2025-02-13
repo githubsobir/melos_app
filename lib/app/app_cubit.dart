@@ -58,6 +58,5 @@ class AppState extends Equatable {
   const AppState({required this.themeMode, required this.languageCode});
 
   @override
-  // TODO: implement props
   List<Object?> get props => [languageCode, themeMode];
 }

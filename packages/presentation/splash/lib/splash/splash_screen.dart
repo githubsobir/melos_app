@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:navigation/main_navigation_intents.dart';
-import 'package:navigation/splash_navigation_intents.dart';
 import 'package:splash/splash/splash_cubit.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -25,6 +24,10 @@ class SplashScreen extends StatelessWidget {
         }
       },
       child: Scaffold(
+        backgroundColor:
+        Theme.of(context).colorScheme.brightness == Brightness.light
+            ? const Color(0xFFF6F7F9)
+            : const Color(0xFF061136),
         body: Center(
           child: Padding(
             padding: const EdgeInsets.all(24.0),

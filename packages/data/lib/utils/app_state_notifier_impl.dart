@@ -6,8 +6,12 @@ class AppStateNotifierImpl extends AppStateNotifier {
       : super(ValueNotifier<String?>(null), ValueNotifier<bool?>(null));
 
   @override
-  void setValue({String? languageCode, bool? isNightMode}) {
-    this.languageCode.value = languageCode;
+  void setThemeValue({required bool isNightMode}) {
     this.isNightMode.value = isNightMode;
+  }
+
+  @override
+  void setLanguageValue({required String languageCode}) {
+    this.languageCode.value = languageCode;
   }
 }

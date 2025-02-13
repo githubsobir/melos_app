@@ -4,8 +4,9 @@ abstract class AppStateNotifier {
   ValueNotifier<String?> languageCode;
   ValueNotifier<bool?> isNightMode;
 
-
   AppStateNotifier(this.languageCode, this.isNightMode);
 
-  void setValue({String? languageCode, bool? isNightMode});
+  void setThemeValue({required bool isNightMode});
+
+  void setLanguageValue({required String languageCode});
 }
