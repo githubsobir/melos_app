@@ -51,5 +51,15 @@
   "booking_status": "Bron holati",
   "status": "Holat",
   "completed": "Tugallangan",
-  "extend_booking_time": "Bron vaqtini uzaytirish"
+  "extend_booking_time": "Bron vaqtini uzaytirish",
+  "popular_car": "Ommabop avtomobil",
+  "view_all": "Barchasini ko‘rish",
+  "recommendation_car": "Tavsiya etilgan avtomobil",
+  "car_type": "Avtomobil turi",
+  "capacity": "Sig‘imi",
+  "steering": "Boshqaruv",
+  "rent": "Ijaraga olish",
+  "reviews": "Sharhlar",
+  "car_model": "Avtomobil modeli",
+  "travel_dates": "Sayohat sanalari"
 }

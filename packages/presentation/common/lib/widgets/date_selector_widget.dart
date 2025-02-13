@@ -1,3 +1,4 @@
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/path_images.dart';
 import 'package:common/widgets/date_time_picker_dialog.dart';
 import 'package:flutter/material.dart';
@@ -45,7 +46,7 @@ class _DateSelectorWidgetState extends State<DateSelectorWidget> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              "Даты поездки",
+              context.translations.travel_dates,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     fontWeight: FontWeight.w700,
                     color: Theme.of(context).colorScheme.primary,
@@ -115,7 +116,7 @@ class _DateSelectorWidgetState extends State<DateSelectorWidget> {
                     );
                   },
                   child: Text(
-                    "Изменять",
+                    context.translations.change,
                     style: Theme.of(context).textTheme.labelMedium?.copyWith(
                           color: Theme.of(context).colorScheme.primary,
                         ),

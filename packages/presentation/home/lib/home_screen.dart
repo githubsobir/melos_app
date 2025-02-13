@@ -1,5 +1,6 @@
 import 'package:common/items/item_car.dart';
 import 'package:common/items/item_car_popular.dart';
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/widgets/date_selector_widget.dart';
 import 'package:common/widgets/search_edittext.dart';
 import 'package:dependency/dependencies.dart';
@@ -96,7 +97,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Популярный автомобиль",
+                              context.translations.popular_car,
                               style: Theme.of(context)
                                   .textTheme
                                   .bodySmall
@@ -107,7 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                   ),
                             ),
                             Text(
-                              "Просмотреть все",
+                              context.translations.view_all,
                               style: Theme.of(context)
                                   .textTheme
                                   .bodySmall
@@ -170,7 +171,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         Padding(
                           padding: const EdgeInsets.all(16.0),
                           child: Text(
-                            "Рекомендация Автомобиль",
+                            context.translations.recommendation_car,
                             style: Theme.of(context)
                                 .textTheme
                                 .bodySmall

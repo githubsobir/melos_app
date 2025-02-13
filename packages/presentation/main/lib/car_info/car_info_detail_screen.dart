@@ -1,4 +1,5 @@
 import 'package:common/items/item_car_popular.dart';
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/path_images.dart';
 import 'package:common/widgets/base_button.dart';
 import 'package:common/widgets/date_selector_widget.dart';
@@ -183,7 +184,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                               children: [
                                 Expanded(
                                   child: Text(
-                                    "Тип автомобиля",
+                                    context.translations.car_type,
                                     textAlign: TextAlign.start,
                                     style: Theme.of(context)
                                         .textTheme
@@ -209,7 +210,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                                 ),
                                 Expanded(
                                   child: Text(
-                                    "Емкость",
+                                    context.translations.capacity,
                                     textAlign: TextAlign.center,
                                     style: Theme.of(context)
                                         .textTheme
@@ -242,7 +243,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                               children: [
                                 Expanded(
                                   child: Text(
-                                    "Рулевое управление",
+                                    context.translations.steering,
                                     textAlign: TextAlign.start,
                                     style: Theme.of(context)
                                         .textTheme
@@ -399,7 +400,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                             const SizedBox(
                               height: 16,
                             ),
-                            BaseButton(onPressed: () {}, title: "Арендовать")
+                            BaseButton(onPressed: () {}, title: context.translations.rent)
                           ],
                         ),
                       ),
@@ -425,7 +426,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             Text(
-                              "Обзоры",
+                              context.translations.reviews,
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyLarge
@@ -458,7 +459,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Text(
-                                  "Рекомендация Автомобиль",
+                                  context.translations.recommendation_car,
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodySmall
@@ -470,7 +471,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                                       ),
                                 ),
                                 Text(
-                                  "Просмотреть все",
+                                  context.translations.view_all,
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodySmall

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/path_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -60,7 +61,7 @@ class _SearchEdittextState extends State<SearchEdittext> {
                     bottom: 0,
                     right: 12,
                   ),
-                  hintText: "Найдите что-нибудь здесь",
+                  hintText: context.translations.car_model,
                   hintStyle: Theme.of(context)
                       .textTheme
                       .labelMedium

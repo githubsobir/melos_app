@@ -164,4 +164,34 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get extend_booking_time => 'Bron vaqtini uzaytirish';
+
+  @override
+  String get popular_car => 'Ommabop avtomobil';
+
+  @override
+  String get view_all => 'Barchasini ko‘rish';
+
+  @override
+  String get recommendation_car => 'Tavsiya etilgan avtomobil';
+
+  @override
+  String get car_type => 'Avtomobil turi';
+
+  @override
+  String get capacity => 'Sig‘imi';
+
+  @override
+  String get steering => 'Boshqaruv';
+
+  @override
+  String get rent => 'Ijaraga olish';
+
+  @override
+  String get reviews => 'Sharhlar';
+
+  @override
+  String get car_model => 'Avtomobil modeli';
+
+  @override
+  String get travel_dates => 'Sayohat sanalari';
 }

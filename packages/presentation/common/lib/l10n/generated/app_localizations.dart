@@ -412,6 +412,66 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Продлить время бронирования'**
   String get extend_booking_time;
+
+  /// No description provided for @popular_car.
+  ///
+  /// In ru, this message translates to:
+  /// **'Популярный автомобиль'**
+  String get popular_car;
+
+  /// No description provided for @view_all.
+  ///
+  /// In ru, this message translates to:
+  /// **'Посмотреть все'**
+  String get view_all;
+
+  /// No description provided for @recommendation_car.
+  ///
+  /// In ru, this message translates to:
+  /// **'Рекомендация Автомобиль'**
+  String get recommendation_car;
+
+  /// No description provided for @car_type.
+  ///
+  /// In ru, this message translates to:
+  /// **'Тип автомобиля'**
+  String get car_type;
+
+  /// No description provided for @capacity.
+  ///
+  /// In ru, this message translates to:
+  /// **'Емкость'**
+  String get capacity;
+
+  /// No description provided for @steering.
+  ///
+  /// In ru, this message translates to:
+  /// **'Рулевое управление'**
+  String get steering;
+
+  /// No description provided for @rent.
+  ///
+  /// In ru, this message translates to:
+  /// **'Арендовать'**
+  String get rent;
+
+  /// No description provided for @reviews.
+  ///
+  /// In ru, this message translates to:
+  /// **'Обзоры'**
+  String get reviews;
+
+  /// No description provided for @car_model.
+  ///
+  /// In ru, this message translates to:
+  /// **'Модель автомобиля'**
+  String get car_model;
+
+  /// No description provided for @travel_dates.
+  ///
+  /// In ru, this message translates to:
+  /// **'Даты поездки'**
+  String get travel_dates;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
