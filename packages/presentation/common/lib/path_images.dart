@@ -35,6 +35,8 @@ class PathImages {
   static var favouriteOff = "packages/common/assets/home/favourite_off.svg";
   static var favouriteOn = "packages/common/assets/home/favourite_on.svg";
   static var share = "packages/common/assets/home/share.svg";
+  static var readNotification = "packages/common/assets/home/read_notification.svg";
+  static var unreadNotification = "packages/common/assets/home/unread_notification.svg";
 
 //---------------- locations ----------------//
   static var locationPin = "packages/common/assets/locations/location_pin.svg";
