@@ -1,4 +1,6 @@
-# melos_managed_dependency_overrides: intent_launcher
+# melos_managed_dependency_overrides: intent_launcher,domain
 dependency_overrides:
+  domain:
+    path: ../../domain
   intent_launcher:
     path: ../../core/intent_launcher

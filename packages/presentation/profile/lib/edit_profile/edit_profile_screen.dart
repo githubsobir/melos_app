@@ -3,13 +3,16 @@ import 'package:common/widgets/base_button.dart';
 import 'package:common/widgets/base_text_field.dart';
 import 'package:common/widgets/custom_functions.dart';
 import 'package:dependency/dependencies.dart';
+import 'package:domain/model/profile/user_information_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:profile/edit_profile/edit_cubit.dart';
 
 class EditProfileScreen extends StatelessWidget {
-  EditProfileScreen({super.key});
+  EditProfileScreen({super.key, required this.info});
+
+  final UserInformationModel info;
 
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
@@ -49,38 +52,43 @@ class EditProfileScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       BaseTextField(
-                        controller: lastNameController,
+                        controller: lastNameController
+                          ..text = info.lastName ?? "",
                         title: context.translations.surname,
                         hint: context.translations.surname,
                       ),
                       const SizedBox(height: 8),
                       BaseTextField(
-                        controller: firstNameController,
+                        controller: firstNameController
+                          ..text = info.lastName ?? "",
                         title: context.translations.name,
                         hint: context.translations.name,
                       ),
                       const SizedBox(height: 8),
                       BaseTextField(
-                        controller: middleNameLicenseController,
+                        controller: middleNameLicenseController
+                          ..text = info.middleName ?? "",
                         title: context.translations.patronymics,
                         hint: context.translations.patronymics,
                       ),
                       const SizedBox(height: 8),
                       BaseTextField(
-                        controller: phoneController,
+                        controller: phoneController
+                          ..text = info.phoneNumber ?? "",
                         title: context.translations.contact_phone,
                         hint: "__ ___ __ __",
-                        type: TextFieldType.PHONE,
                       ),
                       const SizedBox(height: 8),
                       BaseTextField(
-                        controller: passportPinflController,
+                        controller: passportPinflController
+                          ..text = info.passportPinfl ?? "",
                         title: context.translations.pinfl,
                         hint: context.translations.pinfl,
                       ),
                       const SizedBox(height: 8),
                       BaseTextField(
-                        controller: driverLicenseController,
+                        controller: driverLicenseController
+                          ..text = info.driverLicense ?? "",
                         title: context.translations.drivers_license,
                         hint: context.translations.drivers_license,
                       ),
@@ -98,7 +106,7 @@ class EditProfileScreen extends StatelessWidget {
                     onPressed: () {
                       cubit.updateUser(
                         phoneNumber:
-                            "+998${phoneController.text.replaceAll(" ", "")}",
+                            phoneController.text.replaceAll(" ", ""),
                         driverLicense: driverLicenseController.text,
                         passportPinfl: passportPinflController.text,
                         middleName: middleNameLicenseController.text,

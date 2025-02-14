@@ -5,6 +5,8 @@ import 'package:authentication/password/password_screen.dart';
 import 'package:authentication/phone_number/phone_number_screen.dart';
 import 'package:authentication/register/register_screen.dart';
 import 'package:common/navigation/auth_navigation_intents.dart';
+import 'package:common/navigation/profile_navigation_intents.dart';
+import 'package:domain/model/profile/user_information_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:main/booking/booking_screen.dart';
@@ -18,7 +20,6 @@ import 'package:main/notifications/notifications_screen.dart';
 import 'package:main/payment_details/payment_details_screen.dart';
 import 'package:navigation/main_navigation_intents.dart';
 import 'package:navigation/my_cars_intents.dart';
-import 'package:navigation/profile_navigation_intents.dart';
 import 'package:navigation/splash_navigation_intents.dart';
 import 'package:profile/edit_profile/edit_profile_screen.dart';
 import 'package:splash/onboarding/onboarding_screen.dart';
@@ -98,7 +99,8 @@ final _launcher = IntentLauncher()
       })
 //profile
       ..onNavigationIntent<EditProfileIntent>((context, intent) {
-        return Navigator.pushNamed(context, EditProfileIntent.path);
+        return Navigator.pushNamed(context, EditProfileIntent.path,
+            arguments: intent.info);
       })
 // ..onNavigationIntent<EditUserScreenIntent>((context, intent) {
 //   return Navigator.pushNamed(context, EditUserScreenIntent.path,
@@ -165,7 +167,10 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
   } else if (PaymentDetailsIntent.path == settings.name) {
     return _createRoute(PaymentDetailsScreen().wrapWith(_launcher));
   } else if (EditProfileIntent.path == settings.name) {
-    return _createRoute(EditProfileScreen().wrapWith(_launcher));
+    var info = settings.arguments as UserInformationModel;
+    return _createRoute(EditProfileScreen(
+      info: info,
+    ).wrapWith(_launcher));
   }
   // } else if (EditUserScreenIntent.path == settings.name) {
   //   var id = settings.arguments as num;
