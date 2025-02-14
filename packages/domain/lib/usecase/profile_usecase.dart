@@ -27,4 +27,8 @@ class ProfileUseCase {
   Future<BaseResult<UserInformationModel>> userInformation() {
     return _profileRepository.userInformation();
   }
+
+  Future<BaseResult<bool>> uploadImage(String path) {
+    return _profileRepository.uploadImage(path);
+  }
 }

@@ -7,6 +7,7 @@ import 'package:domain/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:profile/profile/profile_cubit.dart';
 
@@ -50,6 +51,9 @@ class ProfileScreen extends StatelessWidget {
                     imagePath: "$BASE_URL_IMAGE${state.info.photo}",
                     onChange: () {
                       context.openScreen(EditProfileIntent(state.info));
+                    },
+                    changeImage: () {
+                      _showPicker(context);
                     },
                   ),
                   SizedBox(
@@ -98,6 +102,7 @@ class ProfileScreen extends StatelessWidget {
     required String lastName,
     required String imagePath,
     required VoidCallback onChange,
+    required VoidCallback changeImage,
   }) {
     return Card(
       elevation: 0,
@@ -114,35 +119,38 @@ class ProfileScreen extends StatelessWidget {
         ),
         child: Row(
           children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(100.0),
-              child: CachedNetworkImage(
-                imageUrl: imagePath,
-                width: 100,
-                height: 100,
-                fit: BoxFit.cover,
-                progressIndicatorBuilder: (context, url, downloadProgress) =>
-                    SizedBox(
+            GestureDetector(
+              onTap: changeImage,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(100.0),
+                child: CachedNetworkImage(
+                  imageUrl: imagePath,
                   width: 100,
                   height: 100,
-                  child: Stack(
-                    children: [
-                      Align(
-                        alignment: Alignment.center,
-                        child: SizedBox(
-                          width: 24,
-                          height: 24,
-                          child: CircularProgressIndicator(
-                            value: downloadProgress.progress,
-                            color: Theme.of(context).colorScheme.primary,
-                            strokeWidth: 1,
+                  fit: BoxFit.cover,
+                  progressIndicatorBuilder: (context, url, downloadProgress) =>
+                      SizedBox(
+                    width: 100,
+                    height: 100,
+                    child: Stack(
+                      children: [
+                        Align(
+                          alignment: Alignment.center,
+                          child: SizedBox(
+                            width: 24,
+                            height: 24,
+                            child: CircularProgressIndicator(
+                              value: downloadProgress.progress,
+                              color: Theme.of(context).colorScheme.primary,
+                              strokeWidth: 1,
+                            ),
                           ),
-                        ),
-                      )
-                    ],
+                        )
+                      ],
+                    ),
                   ),
+                  errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
-                errorWidget: (context, url, error) => const Icon(Icons.error),
               ),
             ),
             const SizedBox(
@@ -235,5 +243,66 @@ class ProfileScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _showPicker(context) {
+    showModalBottomSheet(
+        context: context,
+        builder: (BuildContext bc) {
+          return SafeArea(
+            child: Wrap(
+              children: <Widget>[
+                ListTile(
+                    leading: Icon(Icons.photo_library),
+                    title: Text('Photo Library'),
+                    onTap: () {
+                      _imgFromGallery();
+                      Navigator.of(context).pop();
+                    }),
+                ListTile(
+                  leading: Icon(Icons.photo_camera),
+                  title: Text('Camera'),
+                  onTap: () {
+                    _imgFromCamera();
+                    Navigator.of(context).pop();
+                  },
+                ),
+              ],
+            ),
+          );
+        });
+  }
+
+  _imgFromGallery() async {
+    final ImagePicker picker = ImagePicker();
+    var img = await picker.pickImage(
+      source: ImageSource.gallery,
+      maxHeight: 640,
+      maxWidth: 320,
+      imageQuality: 50,
+    );
+    if (img != null) {
+      cubit.uploadImage(img.path);
+    }
+  }
+
+  // Future<double> getFileSize(File file) async {
+  //   int bytes = await file.length();
+  //   if (bytes <= 0) return 0;
+  //   // var i = (log(bytes) / log(1024)).floor();
+  //   return (bytes*10 / pow(1024, 2));
+  // }
+
+  _imgFromCamera() async {
+    final ImagePicker picker = ImagePicker();
+    var img = await picker.pickImage(
+      source: ImageSource.camera,
+      maxHeight: 640,
+      maxWidth: 320,
+      imageQuality: 50,
+    );
+    if (img != null) {
+      cubit.uploadImage(img.path);
+    }
   }
 }

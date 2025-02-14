@@ -17,6 +17,14 @@ class ProfileCubit extends Cubit<ProfileState> {
       }
     }
   }
+
+  Future<void> uploadImage(String path) async {
+    // emit(LoaderState());
+    var response = await _profileUseCase.uploadImage(path);
+    if (response.success) {
+      userInformation();
+    }
+  }
 }
 
 sealed class ProfileState extends Equatable {

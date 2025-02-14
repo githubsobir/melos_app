@@ -21,4 +21,17 @@ class ProfileService {
     );
     return response;
   }
+
+  Future<Response> uploadImage(String path) async {
+    var image = await MultipartFile.fromFile(path,
+        filename: path.substring(path.lastIndexOf("/") + 1));
+    var formData = FormData.fromMap({
+      "photo": image,
+    });
+    var response = await _netBase.dio.post(
+      "users/image-upload/",
+      data: formData,
+    );
+    return response;
+  }
 }

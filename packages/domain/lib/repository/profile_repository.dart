@@ -11,4 +11,6 @@ abstract class ProfileRepository {
       required String phoneNumber});
 
   Future<BaseResult<UserInformationModel>> userInformation();
+
+  Future<BaseResult<bool>> uploadImage(String path);
 }
