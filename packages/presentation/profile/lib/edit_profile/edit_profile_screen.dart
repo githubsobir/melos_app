@@ -1,8 +1,12 @@
 import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/widgets/base_button.dart';
 import 'package:common/widgets/base_text_field.dart';
+import 'package:common/widgets/custom_functions.dart';
+import 'package:dependency/dependencies.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intent_launcher/intent_launcher.dart';
+import 'package:profile/edit_profile/edit_cubit.dart';
 
 class EditProfileScreen extends StatelessWidget {
   EditProfileScreen({super.key});
@@ -13,6 +17,9 @@ class EditProfileScreen extends StatelessWidget {
       TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passportPinflController = TextEditingController();
+  final TextEditingController driverLicenseController = TextEditingController();
+
+  final cubit = EditCubit(inject());
 
   @override
   Widget build(BuildContext context) {
@@ -20,64 +27,93 @@ class EditProfileScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(context.translations.your_account),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Padding(
-              padding: EdgeInsets.all(24.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  BaseTextField(
-                    controller: lastNameController,
-                    title: context.translations.surname,
-                    hint: context.translations.surname,
+      body: BlocConsumer<EditCubit, EditState>(
+        bloc: cubit,
+        listener: (context, state) {
+          if (state is EmptyFieldsErrorState) {
+            showToast(context.translations.please_fill_in_all_fields);
+          } else if (state is UpdateErrorState) {
+            showToast(state.message);
+          } else if (state is UserUpdatedState) {
+            context.closeActiveScreen();
+          }
+        },
+        builder: (context, state) {
+          return SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(24.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      BaseTextField(
+                        controller: lastNameController,
+                        title: context.translations.surname,
+                        hint: context.translations.surname,
+                      ),
+                      const SizedBox(height: 8),
+                      BaseTextField(
+                        controller: firstNameController,
+                        title: context.translations.name,
+                        hint: context.translations.name,
+                      ),
+                      const SizedBox(height: 8),
+                      BaseTextField(
+                        controller: middleNameLicenseController,
+                        title: context.translations.patronymics,
+                        hint: context.translations.patronymics,
+                      ),
+                      const SizedBox(height: 8),
+                      BaseTextField(
+                        controller: phoneController,
+                        title: context.translations.contact_phone,
+                        hint: "__ ___ __ __",
+                        type: TextFieldType.PHONE,
+                      ),
+                      const SizedBox(height: 8),
+                      BaseTextField(
+                        controller: passportPinflController,
+                        title: context.translations.pinfl,
+                        hint: context.translations.pinfl,
+                      ),
+                      const SizedBox(height: 8),
+                      BaseTextField(
+                        controller: driverLicenseController,
+                        title: context.translations.drivers_license,
+                        hint: context.translations.drivers_license,
+                      ),
+                    ],
                   ),
-                  const SizedBox(height: 8),
-                  BaseTextField(
-                    controller: firstNameController,
-                    title: context.translations.name,
-                    hint: context.translations.name,
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(
+                    top: 48,
+                    bottom: 24,
+                    left: 24,
+                    right: 24,
                   ),
-                  const SizedBox(height: 8),
-                  BaseTextField(
-                    controller: middleNameLicenseController,
-                    title: context.translations.patronymics,
-                    hint: context.translations.patronymics,
+                  child: BaseButton(
+                    onPressed: () {
+                      cubit.updateUser(
+                        phoneNumber:
+                            "+998${phoneController.text.replaceAll(" ", "")}",
+                        driverLicense: driverLicenseController.text,
+                        passportPinfl: passportPinflController.text,
+                        middleName: middleNameLicenseController.text,
+                        lastName: lastNameController.text,
+                        firstName: firstNameController.text,
+                      );
+                    },
+                    title: context.translations.save,
+                    background: const Color(0xFF008A22),
                   ),
-                  const SizedBox(height: 8),
-                  BaseTextField(
-                    controller: phoneController,
-                    title: context.translations.contact_phone,
-                    hint: "__ ___ __ __",
-                  ),
-                  const SizedBox(height: 8),
-                  BaseTextField(
-                    controller: passportPinflController,
-                    title: context.translations.pinfl,
-                    hint: context.translations.pinfl,
-                  ),
-                ],
-              ),
+                )
+              ],
             ),
-            Padding(
-              padding: const EdgeInsets.only(
-                top: 48,
-                bottom: 24,
-                left: 24,
-                right: 24,
-              ),
-              child: BaseButton(
-                onPressed: () {
-                  context.closeActiveScreen();
-                },
-                title: context.translations.save,
-                background: const Color(0xFF008A22),
-              ),
-            )
-          ],
-        ),
+          );
+        },
       ),
     );
   }
