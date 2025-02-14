@@ -26,7 +26,7 @@ class MainScreen extends StatelessWidget {
       color: Colors.greenAccent,
     ),
     FavouritesScreen(),
-    const ProfileScreen(),
+    ProfileScreen(),
   ];
 
   @override

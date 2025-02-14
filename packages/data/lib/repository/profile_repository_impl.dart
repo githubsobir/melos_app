@@ -1,6 +1,8 @@
 import 'package:data/models/remote/profile/request/profile_update_request.dart';
+import 'package:data/models/remote/profile/response/user_information_response.dart';
 import 'package:data/service/profile_service.dart';
 import 'package:dio/dio.dart';
+import 'package:domain/model/profile/user_information_model.dart';
 import 'package:domain/repository/profile_repository.dart';
 import 'package:domain/utils/base_result.dart';
 
@@ -30,6 +32,22 @@ class ProfileRepositoryImpl extends ProfileRepository {
       return BaseResult(
         success: true,
         body: true,
+      );
+    } on DioException catch (error) {
+      return BaseResult(
+          success: false, exceptionBody: error.response?.data['error_note']);
+    } catch (exception) {
+      return BaseResult(success: false, exceptionBody: exception);
+    }
+  }
+
+  @override
+  Future<BaseResult<UserInformationModel>> userInformation() async {
+    try {
+      var response = await _profileService.userInformation();
+      return BaseResult(
+        success: true,
+        body: UserInformationResponse.fromJson(response.data).toDomainModel(),
       );
     } on DioException catch (error) {
       return BaseResult(

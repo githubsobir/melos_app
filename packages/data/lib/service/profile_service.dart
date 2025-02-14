@@ -14,4 +14,11 @@ class ProfileService {
     );
     return response;
   }
+
+  Future<Response> userInformation() async {
+    var response = await _netBase.dio.get(
+      'users/profile/',
+    );
+    return response;
+  }
 }

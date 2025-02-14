@@ -1,13 +1,19 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/path_images.dart';
+import 'package:dependency/dependencies.dart';
+import 'package:domain/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:navigation/profile_navigation_intents.dart';
+import 'package:profile/profile/profile_cubit.dart';
 
 class ProfileScreen extends StatelessWidget {
-  const ProfileScreen({super.key});
+  ProfileScreen({super.key});
+
+  final cubit = ProfileCubit(inject())..userInformation();
 
   @override
   Widget build(BuildContext context) {
@@ -25,50 +31,62 @@ class ProfileScreen extends StatelessWidget {
         child: SvgPicture.asset(PathImages.chat),
         onPressed: () {},
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            const SizedBox(
-              height: 16,
-            ),
-            itemProfile(
-              context: context,
-              firstName: "Kuchimov",
-              middleName: "Azamat",
-              lastName: "Nemadulla o'g'li",
-              imagePath:
-                  "https://plus.unsplash.com/premium_photo-1689977968861-9c91dbb16049?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8fDA%3D",
-              onChange: () {
-                context.openScreen(EditProfileIntent());
-              },
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            item(
-              context: context,
-              title: context.translations.contact_phone,
-              content: "+99893***0321",
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            item(
-              context: context,
-              title: context.translations.pinfl,
-              content: "521120******25",
-            ),
-            SizedBox(
-              height: 16,
-            ),
-            item(
-              context: context,
-              title: context.translations.drivers_license,
-              content: "AG 12****8",
-            ),
-          ],
-        ),
+      body: BlocBuilder<ProfileCubit, ProfileState>(
+        bloc: cubit,
+        builder: (context, state) {
+          if (state is UserInfoState) {
+            return SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  itemProfile(
+                    context: context,
+                    firstName: state.info.firstName ?? "",
+                    middleName: state.info.middleName ?? "",
+                    lastName: state.info.lastName ?? "",
+                    imagePath: "$BASE_URL_IMAGE${state.info.photo}",
+                    onChange: () {
+                      context.openScreen(EditProfileIntent());
+                    },
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  item(
+                    context: context,
+                    title: context.translations.contact_phone,
+                    content: state.info.phoneNumber ?? "",
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  item(
+                    context: context,
+                    title: context.translations.pinfl,
+                    content: state.info.passportPinfl ?? "",
+                  ),
+                  SizedBox(
+                    height: 16,
+                  ),
+                  item(
+                    context: context,
+                    title: context.translations.drivers_license,
+                    content: state.info.driverLicense ?? "",
+                  ),
+                ],
+              ),
+            );
+          } else if (state is LoaderState) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
+            return Container();
+          }
+        },
       ),
     );
   }
