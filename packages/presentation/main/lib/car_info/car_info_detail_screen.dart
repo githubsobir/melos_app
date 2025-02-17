@@ -13,7 +13,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:main/car_info/car_image_selector_widget.dart';
 import 'package:main/car_info/car_info_detail_cubit.dart';
-import 'package:main/car_info/item_review.dart';
+import 'package:main/car_info/review_card.dart';
 import 'package:navigation/my_cars_intents.dart';
 
 class CarInfoDetailScreen extends StatelessWidget {
@@ -400,7 +400,9 @@ class CarInfoDetailScreen extends StatelessWidget {
                             const SizedBox(
                               height: 16,
                             ),
-                            BaseButton(onPressed: () {}, title: context.translations.rent)
+                            BaseButton(
+                                onPressed: () {},
+                                title: context.translations.rent)
                           ],
                         ),
                       ),
@@ -413,38 +415,8 @@ class CarInfoDetailScreen extends StatelessWidget {
                       right: 24,
                       top: 16,
                     ),
-                    child: Card(
-                      elevation: 0,
-                      margin: EdgeInsets.all(0),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(
-                            10.0), // Adjust radius as needed
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.all(16),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Text(
-                              context.translations.reviews,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyLarge
-                                  ?.copyWith(
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                            ),
-                            ListView.builder(
-                              itemCount: state.carDetail.reviews?.length,
-                              physics: NeverScrollableScrollPhysics(),
-                              shrinkWrap: true,
-                              itemBuilder: (context, index) {
-                                return ItemReview();
-                              },
-                            ),
-                          ],
-                        ),
-                      ),
+                    child: ReviewCard(
+                      reviews: state.carDetail.reviews ?? [],
                     ),
                   ),
                   ////////////////////////
