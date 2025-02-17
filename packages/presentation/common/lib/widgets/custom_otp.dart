@@ -34,7 +34,7 @@ class _CustomOtpState extends State<CustomOtp> {
         _textFieldOTP(
             first: false, last: false, controller: contrller4, position: 3),
         _textFieldOTP(
-            first: false, last: false, controller: contrller5, position: 4),
+            first: false, last: true, controller: contrller5, position: 4),
       ],
     );
   }
@@ -60,7 +60,7 @@ class _CustomOtpState extends State<CustomOtp> {
         child: Center(
           child: TextField(
             controller: controller,
-            autofocus: true,
+            // autofocus: true,
             onChanged: (value) {
               codes[position] = value;
               if (codes[0].isNotEmpty &&
