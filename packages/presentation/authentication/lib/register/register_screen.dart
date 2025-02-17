@@ -80,6 +80,7 @@ class RegisterScreen extends StatelessWidget {
                   SizedBox(height: 4),
                   BaseTextField(
                     controller: phoneController,
+                    type: TextFieldType.PHONE,
                     title: context.translations.contact_phone,
                     hint: "__ ___ __ __",
                   ),
