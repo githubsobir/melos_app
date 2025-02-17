@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:common/date_formats.dart';
+import 'package:domain/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
@@ -29,7 +30,7 @@ class ItemReview extends StatelessWidget {
               ClipRRect(
                 borderRadius: BorderRadius.circular(44.0),
                 child: CachedNetworkImage(
-                  imageUrl: image,
+                  imageUrl: "$BASE_URL_IMAGE$image",
                   width: 44,
                   height: 44,
                   fit: BoxFit.cover,
