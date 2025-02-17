@@ -79,9 +79,19 @@ class OtpCodeScreen extends StatelessWidget {
                     ),
                     const SizedBox(height: 32),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        if (state is TimerState) {
+                          if (state.seconds == 0) {
+                            cubit.sendSms(phone: "+998$phoneNumber");
+                          }
+                        }
+                      },
                       child: Text(
-                        context.translations.did_not_receive_the_code,
+                        (state is TimerState)
+                            ? state.seconds != 0
+                                ? formatDuration(state.seconds)
+                                : context.translations.did_not_receive_the_code
+                            : context.translations.did_not_receive_the_code,
                         textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
@@ -94,5 +104,10 @@ class OtpCodeScreen extends StatelessWidget {
         },
       ),
     );
+  }
+  String formatDuration(int totalSeconds) {
+    int minutes = totalSeconds ~/ 60; // Daqiqani olish
+    int seconds = totalSeconds % 60;  // Qolgan soniyalar
+    return "${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}";
   }
 }

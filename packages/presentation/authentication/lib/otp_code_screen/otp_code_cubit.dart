@@ -1,16 +1,20 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'dart:async';
+
 import 'package:domain/usecase/auth_usecase.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class OtpCodeCubit extends Cubit<OtpCodeState> {
   final AuthUseCase _authUseCase;
+  Timer? timer;
+  int timeValue = 120;
 
   OtpCodeCubit(this._authUseCase) : super(RegisterInitial());
 
   Future<void> sendSms({
     required String phone,
   }) async {
-    // emit(LoaderState());
+    timerChanger();
     if (phone.isNotEmpty) {
       var response = await _authUseCase.sendSms(
         phoneNumber: phone,
@@ -23,6 +27,17 @@ class OtpCodeCubit extends Cubit<OtpCodeState> {
     } else {
       emit(EmptyFieldsErrorState());
     }
+  }
+
+  Future<void> timerChanger() async {
+    timer = Timer.periodic(const Duration(seconds: 1), (timer) {
+      if (timeValue >= 1) {
+        emit(TimerState(seconds: --timeValue));
+      } else {
+        timeValue = 120;
+        timer.cancel();
+      }
+    });
   }
 
   Future<void> verifySmsCode({
@@ -77,4 +92,13 @@ class ErrorState extends OtpCodeState {
 class EmptyFieldsErrorState extends OtpCodeState {
   @override
   List<Object> get props => [];
+}
+
+class TimerState extends OtpCodeState {
+  final int seconds;
+
+  const TimerState({required this.seconds});
+
+  @override
+  List<Object> get props => [seconds];
 }
