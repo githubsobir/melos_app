@@ -37,7 +37,7 @@ class OtpCodeScreen extends StatelessWidget {
           } else if (state is ErrorState) {
             showToast(state.message);
           } else if (state is SuccessfullyVerifiedState) {
-            context.openScreen(RegisterIntent());
+            context.openScreen(RegisterIntent(phoneNumber: phoneNumber));
           }
         },
         builder: (context, state) {
@@ -105,9 +105,10 @@ class OtpCodeScreen extends StatelessWidget {
       ),
     );
   }
+
   String formatDuration(int totalSeconds) {
     int minutes = totalSeconds ~/ 60; // Daqiqani olish
-    int seconds = totalSeconds % 60;  // Qolgan soniyalar
+    int seconds = totalSeconds % 60; // Qolgan soniyalar
     return "${minutes.toString().padLeft(2, '0')}:${seconds.toString().padLeft(2, '0')}";
   }
 }

@@ -13,18 +13,18 @@ import 'package:intent_launcher/intent_launcher.dart';
 import 'package:navigation/main_navigation_intents.dart';
 
 class RegisterScreen extends StatelessWidget {
-  RegisterScreen({super.key});
+  RegisterScreen({super.key, required this.phoneNumber});
 
+  final String phoneNumber;
   final cubit = RegisterCubit(inject());
 
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
-  final TextEditingController phoneController = TextEditingController();
+
+  // final TextEditingController phoneController = TextEditingController();
   final TextEditingController driverLicenseController = TextEditingController();
   final TextEditingController middleNameLicenseController =
       TextEditingController();
-
-  // final TextEditingController roleController = TextEditingController();
   final TextEditingController passportPinflController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController confirmPasswordController =
@@ -77,13 +77,13 @@ class RegisterScreen extends StatelessWidget {
                     title: context.translations.patronymics,
                     hint: context.translations.patronymics,
                   ),
-                  SizedBox(height: 4),
-                  BaseTextField(
-                    controller: phoneController,
-                    type: TextFieldType.PHONE,
-                    title: context.translations.contact_phone,
-                    hint: "__ ___ __ __",
-                  ),
+                  // SizedBox(height: 4),
+                  // BaseTextField(
+                  //   controller: phoneController,
+                  //   type: TextFieldType.PHONE,
+                  //   title: context.translations.contact_phone,
+                  //   hint: "__ ___ __ __",
+                  // ),
                   SizedBox(height: 4),
                   BaseTextField(
                     controller: passportPinflController,
@@ -115,7 +115,7 @@ class RegisterScreen extends StatelessWidget {
                     onPressed: () {
                       cubit.register(
                         firstName: firstNameController.text,
-                        phoneNumber: phoneController.text,
+                        phoneNumber: phoneNumber,
                         password: passwordController.text,
                         confirmPassword: confirmPasswordController.text,
                         lastName: lastNameController.text,
@@ -134,7 +134,7 @@ class RegisterScreen extends StatelessWidget {
                     child: RichText(
                       textAlign: TextAlign.center,
                       text: TextSpan(
-                        text:context.translations.i_have_an_account,
+                        text: context.translations.i_have_an_account,
                         style: Theme.of(context).textTheme.bodyMedium,
                         children: [
                           TextSpan(

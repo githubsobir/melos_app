@@ -43,7 +43,11 @@ final _launcher = IntentLauncher()
         );
       })
       ..onNavigationIntent<RegisterIntent>((context, intent) {
-        return Navigator.pushReplacementNamed(context, RegisterIntent.path);
+        return Navigator.pushReplacementNamed(
+          context,
+          RegisterIntent.path,
+          arguments: intent.phoneNumber,
+        );
       })
       ..onNavigationIntent<PhoneNumberIntent>((context, intent) {
         return Navigator.pushNamed(context, PhoneNumberIntent.path,
@@ -129,7 +133,9 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
         PasswordScreen(phoneNumber: settings.arguments as String)
             .wrapWith(_launcher));
   } else if (RegisterIntent.path == settings.name) {
-    return _createRoute(RegisterScreen().wrapWith(_launcher));
+    return _createRoute(RegisterScreen(
+      phoneNumber: settings.arguments as String,
+    ).wrapWith(_launcher));
   } else if (PhoneNumberIntent.path == settings.name) {
     var isRegister = settings.arguments as bool;
     return _createRoute(PhoneNumberScreen(
