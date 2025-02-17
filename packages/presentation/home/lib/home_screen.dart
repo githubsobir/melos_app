@@ -151,9 +151,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   (state.liked[index].fuelCapacity ?? 0)
                                       .toInt(),
                               onLike: (isLiked) {
-                                widget.cubit.likeCar(
-                                    (state.liked[index].id ?? 0).toInt(),
-                                    isLiked);
+                                widget.cubit
+                                    .likeCar(state.liked[index], isLiked);
                               },
                               isLiked: (state.liked[index].liked ?? false),
                             ),
@@ -211,9 +210,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                   (state.recommended[index].fuelCapacity ?? 0)
                                       .toInt(),
                               onLike: (isLiked) {
-                                widget.cubit.likeCar(
-                                    (state.recommended[index].id ?? 0).toInt(),
-                                    isLiked);
+                                widget.cubit
+                                    .likeCar(state.recommended[index], isLiked);
                               },
                               isLiked:
                                   (state.recommended[index].liked ?? false),

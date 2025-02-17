@@ -5,7 +5,7 @@ import 'package:domain/utils/base_result.dart';
 abstract class CarsRepository {
   Future<BaseResult<List<CarModel>>> recommendedCars({required int page});
 
-  Future<BaseResult<bool>> likeCar(int id,bool isLiked);
+  Future<BaseResult<bool>> likeCar(num id,bool isLiked);
 
   Future<BaseResult<List<CarModel>>> likedCars();
 

@@ -14,7 +14,7 @@ class CarsUseCase {
     return _carsDetail.recommendedCars(page: page);
   }
 
-  Future<BaseResult<bool>> likeCar(int id, bool isLiked) {
+  Future<BaseResult<bool>> likeCar(num id, bool isLiked) {
     return _carsDetail.likeCar(id, isLiked);
   }
 

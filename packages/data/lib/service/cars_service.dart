@@ -18,7 +18,7 @@ class CarsService {
     return response;
   }
 
-  Future<Response> removeLikeCar(int carId) async {
+  Future<Response> removeLikeCar(num carId) async {
     var response = await _netBase.dio.delete('cars/remove-like/$carId/');
     return response;
   }

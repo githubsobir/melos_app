@@ -58,8 +58,14 @@ class HomeCubit extends Cubit<CarsState> {
     return await _carsUseCase.hasUser();
   }
 
-  Future<void> likeCar(int id, bool isLiked) async {
-    await _carsUseCase.likeCar(id, isLiked);
+  Future<void> likeCar(CarModel model, bool isLiked) async {
+    await _carsUseCase.likeCar(model.id ?? 0, isLiked);
+    await likedCars(isRefreshed: true);
+    var recommendedCars = state.recommended;
+    var selectedCar =
+        recommendedCars.firstWhere((element) => element.id == (model.id ?? 0));
+    selectedCar.liked = isLiked;
+    emit(state.copyWith(recommended: recommendedCars));
   }
 }
 
