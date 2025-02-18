@@ -197,14 +197,14 @@ class _ItemCarBaseState extends State<ItemCarBase> {
                   children: [
                     RichText(
                       text: TextSpan(
-                        text: '\$${widget.price}/',
+                        text: '${widget.price} ',
                         style: Theme.of(context)
                             .textTheme
                             .bodyMedium
                             ?.copyWith(fontWeight: FontWeight.w700),
                         children: [
                           TextSpan(
-                            text: "день",
+                            text: "сум/день",
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium
@@ -217,9 +217,10 @@ class _ItemCarBaseState extends State<ItemCarBase> {
                       ),
                     ),
                     Text(
-                      "\$${widget.fullPrice}",
+                      "${widget.fullPrice} сум/день",
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: Theme.of(context).colorScheme.secondary),
+                          color: Theme.of(context).colorScheme.secondary,
+                          decoration: TextDecoration.lineThrough),
                     ),
                   ],
                 )),

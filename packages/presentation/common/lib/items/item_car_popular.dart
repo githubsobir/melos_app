@@ -183,12 +183,12 @@ class _ItemCarPopularState extends State<ItemCarPopular> {
                   children: [
                     RichText(
                       text: TextSpan(
-                        text: '\$${widget.price}/',
+                        text: '${widget.price} ',
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             fontWeight: FontWeight.w700, fontSize: 14),
                         children: [
                           TextSpan(
-                            text: "день",
+                            text: "сум/день",
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium
@@ -201,7 +201,7 @@ class _ItemCarPopularState extends State<ItemCarPopular> {
                       ),
                     ),
                     Text(
-                      "\$${widget.fullPrice}",
+                      "${widget.fullPrice} 80 000 сум/день",
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: Theme.of(context).colorScheme.secondary,
                           fontSize: 14),

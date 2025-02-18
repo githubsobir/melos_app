@@ -138,7 +138,7 @@ class ItemBooking extends StatelessWidget {
                     ),
                     ItemLeftRight(
                       leftText: context.translations.deposit,
-                      rightText: "\$55.00",
+                      rightText: "80 000 сум/день",
                     ),
                     SizedBox(
                       height: 12,
