@@ -7,6 +7,7 @@ import 'package:dependency/dependencies.dart';
 import 'package:domain/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:home/filter_bottom_sheet.dart';
 import 'package:home/home_cubit.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:navigation/my_cars_intents.dart';
@@ -69,6 +70,9 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         SearchEdittext(
                           onTextChange: (productName) {},
+                          onFilter: () {
+                            FilterBottomSheet.show(context: context);
+                          },
                         ),
                       ],
                     ),

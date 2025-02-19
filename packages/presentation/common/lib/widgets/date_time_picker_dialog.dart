@@ -39,12 +39,12 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 24,
         ),
         Card(
           elevation: 0,
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
               topRight: Radius.circular(12),
               topLeft: Radius.circular(12),

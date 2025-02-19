@@ -6,9 +6,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class SearchEdittext extends StatefulWidget {
-  Function(String productName) onTextChange;
+  final Function(String productName) onTextChange;
+  final Function onFilter;
 
-  SearchEdittext({super.key, required this.onTextChange});
+  const SearchEdittext({
+    super.key,
+    required this.onTextChange,
+    required this.onFilter,
+  });
 
   @override
   State<SearchEdittext> createState() => _SearchEdittextState();
@@ -62,12 +67,8 @@ class _SearchEdittextState extends State<SearchEdittext> {
                     right: 12,
                   ),
                   hintText: context.translations.car_model,
-                  hintStyle: Theme.of(context)
-                      .textTheme
-                      .labelMedium
-                      ?.copyWith(color: Theme.of(context)
-                        .colorScheme
-                        .secondary),
+                  hintStyle: Theme.of(context).textTheme.labelMedium?.copyWith(
+                      color: Theme.of(context).colorScheme.secondary),
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
                     borderSide: const BorderSide(
@@ -131,18 +132,23 @@ class _SearchEdittextState extends State<SearchEdittext> {
         const SizedBox(
           width: 8,
         ),
-        Container(
-            padding: const EdgeInsets.all(11),
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
-              // shape: BoxShape.circle,
-              border: Border.all(
-                color: const Color(0xFFC0D8FF),
+        GestureDetector(
+          onTap: () {
+            widget.onFilter();
+          },
+          child: Container(
+              padding: const EdgeInsets.all(11),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10.0),
+                // shape: BoxShape.circle,
+                border: Border.all(
+                  color: const Color(0xFFC0D8FF),
+                ),
               ),
-            ),
-            child: SvgPicture.asset(
-              PathImages.filter,
-            ))
+              child: SvgPicture.asset(
+                PathImages.filter,
+              )),
+        )
       ],
     );
   }
