@@ -1,4 +1,3 @@
-import 'package:common/navigation/auth_navigation_intents.dart';
 import 'package:common/widgets/base_button.dart';
 import 'package:flutter/material.dart';
 import 'package:intent_launcher/intent_launcher.dart';
@@ -142,17 +141,20 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                                                         visible: e.list[index]
                                                                 .count !=
                                                             0,
-                                                        child: Text(
-                                                          "(${e.list[index].count})",
-                                                          style: Theme.of(
-                                                                  context)
-                                                              .textTheme
-                                                              .bodySmall
-                                                              ?.copyWith(
-                                                                  color: Theme.of(
-                                                                          context)
-                                                                      .colorScheme
-                                                                      .secondary),
+                                                        child: Padding(
+                                                          padding: const EdgeInsets.only(left: 4),
+                                                          child: Text(
+                                                            "(${e.list[index].count})",
+                                                            style: Theme.of(
+                                                                    context)
+                                                                .textTheme
+                                                                .bodySmall
+                                                                ?.copyWith(
+                                                                    color: Theme.of(
+                                                                            context)
+                                                                        .colorScheme
+                                                                        .secondary),
+                                                          ),
                                                         ),
                                                       ),
                                                     ],
@@ -175,9 +177,11 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        BaseButton(onPressed: () {
-                          context.closeActiveScreen();
-                        }, title: "Сохранить"),
+                        BaseButton(
+                            onPressed: () {
+                              context.closeActiveScreen();
+                            },
+                            title: "Сохранить"),
                       ],
                     )
                   ],
