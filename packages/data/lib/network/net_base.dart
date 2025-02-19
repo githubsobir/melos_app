@@ -55,7 +55,10 @@ class NetBase {
           if (error.requestOptions.path.contains("refresh/")) {
             await MySharedPref.instance.clearAllData();
             navigatorKey.currentState?.popUntil((route) => route.isFirst);
-            navigatorKey.currentState?.pushReplacementNamed("/login");
+            navigatorKey.currentState?.pushNamedAndRemoveUntil(
+              "/login",
+              (route) => false,
+            );
           } else {
             if (isIdle) {
               isIdle = false;

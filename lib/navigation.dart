@@ -32,10 +32,13 @@ final _launcher = IntentLauncher()
       })
       ..onNavigationIntent<LoginIntent>((context, intent) {
         Navigator.of(context).popUntil((route) => route.isFirst);
-        return Navigator.pushReplacementNamed(context, LoginIntent.path);
+        return Navigator.pushNamedAndRemoveUntil(
+          context,
+          LoginIntent.path,
+          (route) => false,
+        );
       })
       ..onNavigationIntent<PasswordScreenIntent>((context, intent) {
-        // Navigator.of(context).popUntil((route) => route.isFirst);
         return Navigator.pushNamed(
           context,
           PasswordScreenIntent.path,
@@ -73,7 +76,11 @@ final _launcher = IntentLauncher()
 // main
       ..onNavigationIntent<MainIntent>((context, intent) {
         Navigator.of(context).popUntil((route) => route.isFirst);
-        return Navigator.pushReplacementNamed(context, MainIntent.path);
+        return Navigator.pushNamedAndRemoveUntil(
+          context,
+          MainIntent.path,
+          (route) => false,
+        );
       })
       ..onNavigationIntent<BookingIntent>((context, intent) {
         return Navigator.pushNamed(context, BookingIntent.path);

@@ -14,20 +14,31 @@ import 'package:main/main/main_cubit.dart';
 import 'package:navigation/main_navigation_intents.dart';
 import 'package:profile/profile/profile_screen.dart';
 
-class MainScreen extends StatelessWidget {
-  MainScreen({super.key});
+class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
 
+  @override
+  State<MainScreen> createState() => _MainScreenState();
+}
+
+class _MainScreenState extends State<MainScreen> {
   final cubit = MainCubit(inject())..hasUserProfile();
 
-  static final List<Widget> _mainScreens = <Widget>[
-    HomeScreen(),
-    LocationsScreen(),
-    Container(
-      color: Colors.greenAccent,
-    ),
-    FavouritesScreen(),
-    ProfileScreen(),
-  ];
+  static final List<Widget> _mainScreens = <Widget>[];
+
+  @override
+  void initState() {
+    _mainScreens.addAll([
+      HomeScreen(),
+      LocationsScreen(),
+      Container(
+        color: Colors.greenAccent,
+      ),
+      FavouritesScreen(),
+      ProfileScreen(),
+    ]);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
