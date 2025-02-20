@@ -20,13 +20,14 @@ class PasswordCubit extends Cubit<LoginState> {
       if (response.success) {
         emit(SuccessfullyLoginState());
       } else {
-        emit(LoginErrorState());
+        emit(LoginErrorState(
+          message: response.exceptionBody.toString(),
+        ));
       }
     } else {
       emit(EmptyFieldsErrorState());
     }
   }
-
 }
 
 abstract class LoginState extends Equatable {
@@ -49,8 +50,12 @@ class SuccessfullyLoginState extends LoginState {
 }
 
 class LoginErrorState extends LoginState {
+  final String message;
+
+  const LoginErrorState({required this.message});
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [message];
 }
 
 class EmptyFieldsErrorState extends LoginState {

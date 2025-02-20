@@ -33,7 +33,7 @@ class PasswordScreen extends StatelessWidget {
           if (state is EmptyFieldsErrorState) {
             showToast(context.translations.please_fill_in_all_fields);
           } else if (state is LoginErrorState) {
-            showToast(context.translations.registration_error);
+            showToast(state.message);
           } else if (state is SuccessfullyLoginState) {
             context.openScreen(MainIntent());
           }
@@ -62,7 +62,8 @@ class PasswordScreen extends StatelessWidget {
                     const SizedBox(height: 16),
                     GestureDetector(
                       onTap: () {
-                        context.openScreen(ForgotPasswordIntent(phoneNumber: phoneNumber));
+                        context.openScreen(
+                            ForgotPasswordIntent(phoneNumber: phoneNumber));
                       },
                       child: Text(
                         context.translations.forgot_your_password,
