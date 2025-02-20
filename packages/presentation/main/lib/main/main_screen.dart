@@ -12,6 +12,7 @@ import 'package:locations/locations_screen.dart';
 import 'package:main/main/drawer_widget.dart';
 import 'package:main/main/main_cubit.dart';
 import 'package:navigation/main_navigation_intents.dart';
+import 'package:navigation/my_cars_intents.dart';
 import 'package:profile/profile/profile_screen.dart';
 
 class MainScreen extends StatefulWidget {
@@ -164,7 +165,7 @@ class _MainScreenState extends State<MainScreen> {
     if (index != 2) {
       cubit.changeMenuPosition(index);
     } else {
-      print("addd");
+      context.openScreen(CreateCarInfoIntent());
     }
   }
 
