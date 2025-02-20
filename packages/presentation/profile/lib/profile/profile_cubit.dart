@@ -7,7 +7,12 @@ class ProfileCubit extends Cubit<ProfileState> {
   ProfileCubit(this._profileUseCase) : super(ProfileInitial());
   final ProfileUseCase _profileUseCase;
 
+  Future<bool> hasUser() async {
+    return await _profileUseCase.hasUser();
+  }
+
   Future<void> userInformation() async {
+    if (!await hasUser()) return;
     emit(LoaderState());
     var response = await _profileUseCase.userInformation();
     if (response.success) {

@@ -32,65 +32,78 @@ class ProfileScreen extends StatelessWidget {
         child: SvgPicture.asset(PathImages.chat),
         onPressed: () {},
       ),
-      body: BlocBuilder<ProfileCubit, ProfileState>(
-        bloc: cubit,
-        builder: (context, state) {
-          if (state is UserInfoState) {
-            return SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  itemProfile(
-                    context: context,
-                    firstName: state.info.firstName ?? "",
-                    middleName: state.info.middleName ?? "",
-                    lastName: state.info.lastName ?? "",
-                    imagePath: "$BASE_URL_IMAGE${state.info.photo}",
-                    onChange: () {
-                      context.openScreen(EditProfileIntent(state.info));
-                    },
-                    changeImage: () {
-                      _showPicker(context);
-                    },
-                  ),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  item(
-                    context: context,
-                    title: context.translations.contact_phone,
-                    content: state.info.phoneNumber ?? "",
-                  ),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  item(
-                    context: context,
-                    title: context.translations.pinfl,
-                    content: state.info.passportPinfl ?? "",
-                  ),
-                  SizedBox(
-                    height: 16,
-                  ),
-                  item(
-                    context: context,
-                    title: context.translations.drivers_license,
-                    content: state.info.driverLicense ?? "",
-                  ),
-                ],
-              ),
-            );
-          } else if (state is LoaderState) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else {
-            return Container();
-          }
+      body: RefreshIndicator(
+        onRefresh: () {
+          cubit.userInformation();
+          return Future<void>.delayed(const Duration(seconds: 1));
         },
+        child: BlocBuilder<ProfileCubit, ProfileState>(
+          bloc: cubit,
+          builder: (context, state) {
+            if (state is UserInfoState) {
+              return SingleChildScrollView(
+                physics: const AlwaysScrollableScrollPhysics(),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    const SizedBox(
+                      height: 16,
+                    ),
+                    itemProfile(
+                      context: context,
+                      firstName: state.info.firstName ?? "",
+                      middleName: state.info.middleName ?? "",
+                      lastName: state.info.lastName ?? "",
+                      imagePath: "$BASE_URL_IMAGE${state.info.photo}",
+                      onChange: () {
+                        context.openScreen(EditProfileIntent(state.info));
+                      },
+                      changeImage: () {
+                        _showPicker(context);
+                      },
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    item(
+                      context: context,
+                      title: context.translations.contact_phone,
+                      content: state.info.phoneNumber ?? "",
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    item(
+                      context: context,
+                      title: context.translations.pinfl,
+                      content: state.info.passportPinfl ?? "",
+                    ),
+                    SizedBox(
+                      height: 16,
+                    ),
+                    item(
+                      context: context,
+                      title: context.translations.drivers_license,
+                      content: state.info.driverLicense ?? "",
+                    ),
+                  ],
+                ),
+              );
+            } else if (state is LoaderState) {
+              return const Center(
+                child: CircularProgressIndicator(),
+              );
+            } else {
+              return SizedBox(
+                height: MediaQuery.sizeOf(context).height,
+                width: MediaQuery.sizeOf(context).width,
+                child: const SingleChildScrollView(
+                  physics: AlwaysScrollableScrollPhysics(),
+                ),
+              );
+            }
+          },
+        ),
       ),
     );
   }
