@@ -22,7 +22,7 @@ class AuthInterceptor extends Interceptor {
   Future<void> onRequest(
       RequestOptions options, RequestInterceptorHandler handler) async {
     final token = await MySharedPref.instance.getAccessToken();
-    if (token.isNotEmpty) {
+    if (token.isNotEmpty && options.path != refreshTokenUrl) {
       options.headers['Authorization'] = 'Bearer $token';
     }
     final language = await MySharedPref.instance.getLanguageCode();
@@ -47,14 +47,6 @@ class AuthInterceptor extends Interceptor {
   @override
   void onError(DioException err, ErrorInterceptorHandler handler) async {
     if (err.response?.statusCode == 401 && err.requestOptions.path != refreshTokenUrl) {
-
-      // // Agar refresh token ham tugagan bo'lsa, logout qilamiz
-      // if (err.requestOptions.path == refreshTokenUrl) {
-      //   onLogout(); // Foydalanuvchini tizimdan chiqarish
-      //   return handler.reject(err);
-      // }
-
-
       // Agar refresh token allaqachon ishlayotgan bo‘lsa, kutib turamiz
       if (_isRefreshing) {
         await _refreshCompleter?.future;

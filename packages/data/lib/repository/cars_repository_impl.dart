@@ -4,6 +4,7 @@ import 'package:data/models/remote/cars/response/car_detail_info_response.dart';
 import 'package:data/models/remote/cars/response/car_response.dart';
 import 'package:data/models/remote/cars/response/liked_cars_response.dart';
 import 'package:data/service/cars_service.dart';
+import 'package:data/utils/my_shared_pref.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/model/cars/car_detail_info_model.dart';
 import 'package:domain/model/cars/car_model.dart';
@@ -60,6 +61,8 @@ class CarsRepositoryImpl extends CarsRepository {
   @override
   Future<BaseResult<List<CarModel>>> likedCars() async {
     try {
+      // await MySharedPref.instance.setAccessToken("token");
+      // await MySharedPref.instance.setRefreshToken("token");
       var response = await _carsService.likedCars();
       return BaseResult(
         success: true,
