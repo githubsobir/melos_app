@@ -9,7 +9,7 @@ class ProfileService {
 
   Future<Response> updateUser({required ProfileUpdateRequest request}) async {
     var response = await _netBase.dio.put(
-      'users/update/',
+      'user/update/',
       data: request.toJson(),
     );
     return response;
@@ -17,7 +17,7 @@ class ProfileService {
 
   Future<Response> userInformation() async {
     var response = await _netBase.dio.get(
-      'users/profile/',
+      'user/profile/',
     );
     return response;
   }
@@ -29,7 +29,7 @@ class ProfileService {
       "photo": image,
     });
     var response = await _netBase.dio.post(
-      "users/image-upload/",
+      "user/image-upload/",
       data: formData,
     );
     return response;

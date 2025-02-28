@@ -22,7 +22,7 @@ class NetBase {
     dio = Dio(_baseOptions);
     dio.interceptors.add(AuthInterceptor(
       dio: dio,
-      refreshTokenUrl: "users/token/refresh/",
+      refreshTokenUrl: "auth/token/refresh/",
       onLogout: () async {
         await MySharedPref.instance.clearAllData();
         navigatorKey.currentState?.popUntil((route) => route.isFirst);

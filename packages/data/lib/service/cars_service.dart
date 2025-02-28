@@ -8,23 +8,23 @@ class CarsService {
   CarsService(this._netBase);
 
   Future<Response> recommendedCars({required int page}) async {
-    var response = await _netBase.dio.get('cars/recommend-cars/?page=$page');
+    var response = await _netBase.dio.get('cars/list/recommended/?page=$page');
     return response;
   }
 
   Future<Response> likeCar(CarLikeRequest request) async {
     var response =
-        await _netBase.dio.post('cars/like-car/', data: request.toJson());
+        await _netBase.dio.post('liked/create/', data: request.toJson());
     return response;
   }
 
   Future<Response> removeLikeCar(num carId) async {
-    var response = await _netBase.dio.delete('cars/remove-like/$carId/');
+    var response = await _netBase.dio.delete('liked/$carId/');
     return response;
   }
 
   Future<Response> likedCars() async {
-    var response = await _netBase.dio.get('cars/liked-list/');
+    var response = await _netBase.dio.get('liked/list/');
     return response;
   }
 

@@ -14,7 +14,7 @@ class AuthService {
 
   Future<Response> login(LoginRequest request) async {
     var response = await _netBase.dio.post(
-      'users/login/',
+      'auth/login/',
       data: request.toJson(),
     );
     return response;
@@ -22,7 +22,7 @@ class AuthService {
 
   Future<Response> sendSms(SendSmsRequest request) async {
     var response = await _netBase.dio.post(
-      'users/send-sms/',
+      'auth/send-sms/',
       data: request.toJson(),
     );
     return response;
@@ -30,7 +30,7 @@ class AuthService {
 
   Future<Response> verifySms(VerifySmsCodeRequest request) async {
     var response = await _netBase.dio.post(
-      'users/verify-send-sms/',
+      'auth/verify-send-sms/',
       data: request.toJson(),
     );
     return response;
@@ -38,7 +38,7 @@ class AuthService {
 
   Future<Response> register(RegisterRequest request) async {
     var response = await _netBase.dio.post(
-      'users/register/',
+      'auth/register/',
       data: request.toJson(),
     );
     return response;
@@ -46,7 +46,7 @@ class AuthService {
 
   Future<Response> logOut(LogoutRequest request) async {
     var response = await _netBase.dio.post(
-      'users/logout/',
+      'auth/logout/',
       data: request.toJson(),
     );
     return response;
@@ -54,7 +54,7 @@ class AuthService {
 
   Future<Response> verifyPhone(SendSmsRequest sendSmsRequest) async {
     var response = await _netBase.dio.get(
-      'users/verify-phone/${sendSmsRequest.phoneNumber}/',
+      'auth/verify-phone/${sendSmsRequest.phoneNumber}/',
     );
     return response;
   }
@@ -62,7 +62,7 @@ class AuthService {
   Future<Response> verifySmsCode(
       VerifySmsCodeRequest verifySmsCodeRequest) async {
     var response = await _netBase.dio.post(
-      'users/verify-sms-code/',
+      'auth/verify-sms-code/',
       data: verifySmsCodeRequest.toJson(),
     );
     return response;
@@ -71,7 +71,7 @@ class AuthService {
   Future<Response> forgotPassword(
       ForgotPasswordRequest forgotPasswordRequest) async {
     var response = await _netBase.dio.post(
-      'users/password-reset/',
+      'auth/password-reset/',
       data: forgotPasswordRequest.toJson(),
     );
     return response;
