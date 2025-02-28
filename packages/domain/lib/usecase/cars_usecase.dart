@@ -11,8 +11,20 @@ class CarsUseCase {
 
   CarsUseCase(this._carsDetail, this._authRepository);
 
-  Future<BaseResult<List<CarModel>>> recommendedCars({required int page}) {
-    return _carsDetail.recommendedCars(page: page);
+  Future<BaseResult<List<CarModel>>> recommendedCars({
+    required int page,
+    String? startDataTime,
+    String? endDataTime,
+    String? latitude,
+    String? longitude,
+  }) {
+    return _carsDetail.recommendedCars(
+      page: page,
+      startDataTime: startDataTime,
+      endDataTime: endDataTime,
+      latitude: latitude,
+      longitude: longitude,
+    );
   }
 
   Future<BaseResult<bool>> likeCar(num id, bool isLiked) {
@@ -35,5 +47,21 @@ class CarsUseCase {
 
   Future<BaseResult<FilterModel>> filter() {
     return _carsDetail.filter();
+  }
+
+  Future<BaseResult<List<CarModel>>> popularCars({
+    required int page,
+    String? startDataTime,
+    String? endDataTime,
+    String? latitude,
+    String? longitude,
+  }) {
+    return _carsDetail.popularCars(
+      page: page,
+      startDataTime: startDataTime,
+      endDataTime: endDataTime,
+      latitude: latitude,
+      longitude: longitude,
+    );
   }
 }

@@ -4,9 +4,15 @@ import 'package:domain/model/cars/filter_model.dart';
 import 'package:domain/utils/base_result.dart';
 
 abstract class CarsRepository {
-  Future<BaseResult<List<CarModel>>> recommendedCars({required int page});
+  Future<BaseResult<List<CarModel>>> recommendedCars({
+    required int page,
+    String? startDataTime,
+    String? endDataTime,
+    String? latitude,
+    String? longitude,
+  });
 
-  Future<BaseResult<bool>> likeCar(num id,bool isLiked);
+  Future<BaseResult<bool>> likeCar(num id, bool isLiked);
 
   Future<BaseResult<List<CarModel>>> likedCars();
 
@@ -14,4 +20,11 @@ abstract class CarsRepository {
 
   Future<BaseResult<FilterModel>> filter();
 
+  Future<BaseResult<List<CarModel>>> popularCars({
+    required int page,
+    String? startDataTime,
+    String? endDataTime,
+    String? latitude,
+    String? longitude,
+  });
 }

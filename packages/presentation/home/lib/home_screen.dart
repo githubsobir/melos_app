@@ -16,8 +16,8 @@ class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
 
   final cubit = HomeCubit(inject())
-    ..likedCars()
-    ..recommendedCars();
+    ..popularCars()
+    ..recommendedCars(isRefreshed: true);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -51,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (context, state) {
           return RefreshIndicator(
             onRefresh: () {
-              widget.cubit.likedCars(isRefreshed: true);
+              widget.cubit.popularCars(isRefreshed: true);
               widget.cubit.recommendedCars(isRefreshed: true);
               return Future<void>.delayed(const Duration(seconds: 1));
             },
@@ -85,10 +85,33 @@ class _HomeScreenState extends State<HomeScreen> {
                   onRangeSelected: (dateRange, timeRange) {
                     print(
                         "xaxaaxa ${dateRange.toString()} - ${timeRange.toString()}");
+                    var start = dateRange.startDate;
+                    var end = dateRange.endDate;
+                    if (start != null && end != null) {
+                      DateTime startDate = DateTime(
+                        start.year,
+                        start.month,
+                        start.day,
+                        timeRange.start.hour,
+                        timeRange.start.minute,
+                      );
+
+                      DateTime endDate = DateTime(
+                        start.year,
+                        start.month,
+                        start.day,
+                        timeRange.start.hour,
+                        timeRange.start.minute,
+                      );
+                      widget.cubit.setDateTime(
+                        startDataTime: startDate.toIso8601String(),
+                        endDataTime: endDate.toIso8601String(),
+                      );
+                    }
                   },
                 ),
                 Visibility(
-                  visible: state.liked.isNotEmpty,
+                  visible: state.popular.isNotEmpty,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -131,7 +154,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           shrinkWrap: true,
                           padding: const EdgeInsets.only(right: 24),
                           scrollDirection: Axis.horizontal,
-                          itemCount: state.liked.length,
+                          itemCount: state.popular.length,
                           itemBuilder: (BuildContext context, int index) =>
                               Padding(
                             padding: const EdgeInsets.only(left: 24),
@@ -142,23 +165,23 @@ class _HomeScreenState extends State<HomeScreen> {
                                 ));
                               },
                               carImage:
-                                  "$BASE_URL_IMAGE${state.liked[index].photo}",
-                              carName: "${state.liked[index].make}",
-                              carType: "${state.liked[index].category}",
-                              price: (state.liked[index].originalPrice ?? ""),
+                                  "$BASE_URL_IMAGE${state.popular[index].photo}",
+                              carName: "${state.popular[index].make}",
+                              carType: "${state.popular[index].category}",
+                              price: (state.popular[index].originalPrice ?? ""),
                               fullPrice:
-                                  (state.liked[index].originalPrice ?? ""),
+                                  (state.popular[index].originalPrice ?? ""),
                               passengerCapacity:
-                                  (state.liked[index].passengerCapacity ?? 0)
+                                  (state.popular[index].passengerCapacity ?? 0)
                                       .toInt(),
                               fuelCapacity:
-                                  (state.liked[index].fuelCapacity ?? 0)
+                                  (state.popular[index].fuelCapacity ?? 0)
                                       .toInt(),
                               onLike: (isLiked) {
                                 widget.cubit
-                                    .likeCar(state.liked[index], isLiked);
+                                    .likeCar(state.popular[index], isLiked);
                               },
-                              isLiked: (state.liked[index].liked ?? false),
+                              isLiked: (state.popular[index].liked ?? false),
                             ),
                           ),
                         ),

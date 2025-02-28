@@ -7,8 +7,33 @@ class CarsService {
 
   CarsService(this._netBase);
 
-  Future<Response> recommendedCars({required int page}) async {
-    var response = await _netBase.dio.get('cars/list/recommended/?page=$page');
+  Future<Response> recommendedCars({
+    required int page,
+    String? startDataTime,
+    String? endDataTime,
+    String? latitude,
+    String? longitude,
+  }) async {
+    Map<String, dynamic> headers = {};
+    if (startDataTime != null) {
+      headers['start_date_time'] = startDataTime;
+    }
+    if (endDataTime != null) {
+      headers['end_date_time'] = endDataTime;
+    }
+    if (latitude != null) {
+      headers['latitude'] = latitude;
+    }
+    if (longitude != null) {
+      headers['longitude'] = longitude;
+    }
+
+    var response = await _netBase.dio.get(
+      'cars/list/recommended/?page=$page',
+      options: Options(
+        headers: headers,
+      ),
+    );
     return response;
   }
 
@@ -35,6 +60,36 @@ class CarsService {
 
   Future<Response> filter() async {
     var response = await _netBase.dio.get('cars/filter/');
+    return response;
+  }
+
+  Future<Response> popularCars({
+    required int page,
+    String? startDataTime,
+    String? endDataTime,
+    String? latitude,
+    String? longitude,
+  }) async {
+    Map<String, dynamic> headers = {};
+    if (startDataTime != null) {
+      headers['start_date_time'] = startDataTime;
+    }
+    if (endDataTime != null) {
+      headers['end_date_time'] = endDataTime;
+    }
+    if (latitude != null) {
+      headers['latitude'] = latitude;
+    }
+    if (longitude != null) {
+      headers['longitude'] = longitude;
+    }
+
+    var response = await _netBase.dio.get(
+      'cars/list/popular/?page=$page',
+      options: Options(
+        headers: headers,
+      ),
+    );
     return response;
   }
 }

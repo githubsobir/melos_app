@@ -18,10 +18,21 @@ class CarsRepositoryImpl extends CarsRepository {
   CarsRepositoryImpl(this._carsService);
 
   @override
-  Future<BaseResult<List<CarModel>>> recommendedCars(
-      {required int page}) async {
+  Future<BaseResult<List<CarModel>>> recommendedCars({
+    required int page,
+    String? startDataTime,
+    String? endDataTime,
+    String? latitude,
+    String? longitude,
+  }) async {
     try {
-      var response = await _carsService.recommendedCars(page: page);
+      var response = await _carsService.recommendedCars(
+        page: page,
+        startDataTime: startDataTime,
+        endDataTime: endDataTime,
+        latitude: latitude,
+        longitude: longitude,
+      );
       return BaseResult(
         success: true,
         body: CarResponse.fromJson(response.data)
@@ -104,6 +115,39 @@ class CarsRepositoryImpl extends CarsRepository {
       return BaseResult(
         success: true,
         body: FilterResponse.fromJson(response.data).toDomainModel(),
+      );
+    } on DioException catch (error) {
+      return BaseResult(
+          success: false, exceptionBody: error.response?.data['error_note']);
+    } catch (exception) {
+      return BaseResult(success: false, exceptionBody: exception);
+    }
+  }
+
+  @override
+  Future<BaseResult<List<CarModel>>> popularCars({
+    required int page,
+    String? startDataTime,
+    String? endDataTime,
+    String? latitude,
+    String? longitude,
+  }) async {
+    try {
+      var response = await _carsService.popularCars(
+        page: page,
+        startDataTime: startDataTime,
+        endDataTime: endDataTime,
+        latitude: latitude,
+        longitude: longitude,
+      );
+      return BaseResult(
+        success: true,
+        body: CarResponse.fromJson(response.data)
+            .results
+            ?.map(
+              (e) => e.toDomainModel(),
+            )
+            .toList(),
       );
     } on DioException catch (error) {
       return BaseResult(

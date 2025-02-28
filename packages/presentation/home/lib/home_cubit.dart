@@ -9,21 +9,43 @@ class HomeCubit extends Cubit<CarsState> {
   HomeCubit(this._carsUseCase)
       : super(const CarsState(
           recommended: [],
-          liked: [],
+          popular: [],
           isLoading: false,
         ));
   final CarsUseCase _carsUseCase;
-  int page = 1;
-  bool hasNext = true;
+  int recommendedCarsPage = 1;
+  int popularCarsPage = 1;
+  bool recommendedCarsHasNext = true;
+  bool popularCarsHasNext = true;
+  String _startDataTime = DateTime.now().toIso8601String();
+  String _endDataTime = DateTime.now().toIso8601String();
 
-  Future<void> recommendedCars({bool isRefreshed = false}) async {
+  setDateTime({
+    required String startDataTime,
+    required String endDataTime,
+  }) {
+    _startDataTime = startDataTime;
+    _endDataTime = endDataTime;
+    popularCars(isRefreshed: true);
+    recommendedCars(isRefreshed: true);
+  }
+
+  Future<void> recommendedCars({
+    bool isRefreshed = false,
+  }) async {
     if (isRefreshed) {
-      page = 1;
-      hasNext = true;
+      recommendedCarsPage = 1;
+      recommendedCarsHasNext = true;
     }
-    if (hasNext) {
+    if (recommendedCarsHasNext) {
       emit(state.copyWith(isLoading: true));
-      var response = await _carsUseCase.recommendedCars(page: page);
+      var response = await _carsUseCase.recommendedCars(
+        page: recommendedCarsPage,
+        startDataTime: _startDataTime,
+        endDataTime: _endDataTime,
+        latitude: "latitude",
+        longitude: "longitude",
+      );
       if (response.success) {
         var cars = response.body;
         if (cars != null) {
@@ -31,26 +53,43 @@ class HomeCubit extends Cubit<CarsState> {
             isLoading: false,
             recommended: isRefreshed ? cars : (state.recommended + cars),
           ));
-          page++;
+          recommendedCarsPage++;
         }
       } else {
-        hasNext = false;
+        recommendedCarsHasNext = false;
         emit(state.copyWith(isLoading: false));
       }
     }
   }
 
-  Future<void> likedCars({bool isRefreshed = false}) async {
+  Future<void> popularCars({bool isRefreshed = false}) async {
     if (!await hasUser()) return;
-    emit(state.copyWith(isLoading: true));
-    var response = await _carsUseCase.likedCars();
-    if (response.success) {
-      var cars = response.body;
-      if (cars != null) {
-        emit(state.copyWith(isLoading: false, liked: cars));
+    if (isRefreshed) {
+      popularCarsPage = 1;
+      popularCarsHasNext = true;
+    }
+    if (popularCarsHasNext) {
+      emit(state.copyWith(isLoading: true));
+      var response = await _carsUseCase.popularCars(
+        page: popularCarsPage,
+        startDataTime: _startDataTime,
+        endDataTime: _endDataTime,
+        latitude: "latitude",
+        longitude: "longitude",
+      );
+      if (response.success) {
+        var cars = response.body;
+        if (cars != null) {
+          emit(state.copyWith(
+            isLoading: false,
+            popular: isRefreshed ? cars : (state.popular + cars),
+          ));
+          popularCarsPage++;
+        }
+      } else {
+        popularCarsHasNext = false;
+        emit(state.copyWith(isLoading: false));
       }
-    } else {
-      emit(state.copyWith(isLoading: false));
     }
   }
 
@@ -60,38 +99,38 @@ class HomeCubit extends Cubit<CarsState> {
 
   Future<void> likeCar(CarModel model, bool isLiked) async {
     await _carsUseCase.likeCar(model.id ?? 0, isLiked);
-    await likedCars(isRefreshed: true);
-    var recommendedCars = state.recommended;
-    var selectedCar =
-        recommendedCars.firstWhere((element) => element.id == (model.id ?? 0));
-    selectedCar.liked = isLiked;
-    emit(state.copyWith(recommended: recommendedCars));
+    // await popularCars(isRefreshed: true);
+    // var recommendedCars = state.recommended;
+    // var selectedCar =
+    //     recommendedCars.firstWhere((element) => element.id == (model.id ?? 0));
+    // selectedCar.liked = isLiked;
+    // emit(state.copyWith(recommended: recommendedCars));
   }
 }
 
 class CarsState extends Equatable {
   final bool isLoading;
   final List<CarModel> recommended;
-  final List<CarModel> liked;
+  final List<CarModel> popular;
 
   const CarsState({
     required this.recommended,
-    required this.liked,
+    required this.popular,
     required this.isLoading,
   });
 
   CarsState copyWith({
     bool? isLoading,
     List<CarModel>? recommended,
-    List<CarModel>? liked,
+    List<CarModel>? popular,
   }) {
     return CarsState(
       isLoading: isLoading ?? this.isLoading,
       recommended: recommended ?? this.recommended,
-      liked: liked ?? this.liked,
+      popular: popular ?? this.popular,
     );
   }
 
   @override
-  List<Object> get props => [recommended, liked];
+  List<Object> get props => [recommended, popular];
 }
