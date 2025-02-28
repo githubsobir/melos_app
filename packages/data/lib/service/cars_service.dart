@@ -32,4 +32,9 @@ class CarsService {
     var response = await _netBase.dio.get('cars/detail/$carId/');
     return response;
   }
+
+  Future<Response> filter() async {
+    var response = await _netBase.dio.get('cars/filter/');
+    return response;
+  }
 }
