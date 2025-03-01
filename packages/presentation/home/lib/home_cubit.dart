@@ -63,7 +63,6 @@ class HomeCubit extends Cubit<CarsState> {
   }
 
   Future<void> popularCars({bool isRefreshed = false}) async {
-    if (!await hasUser()) return;
     if (isRefreshed) {
       popularCarsPage = 1;
       popularCarsHasNext = true;
