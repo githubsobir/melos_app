@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:locations/locations_cubit.dart';
@@ -63,6 +64,14 @@ class LocationsScreen extends StatelessWidget {
                             width: 24,
                           ),
                         ),
+                        Marker(
+                          point: const LatLng(50.5, 30.51),
+                          child: SvgPicture.asset(
+                            PathImages.locationPin,
+                            height: 24,
+                            width: 24,
+                          ),
+                        ),
                       ],
                     ),
                   ],
@@ -73,27 +82,64 @@ class LocationsScreen extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.end,
                     children: [
-                      Container(
-                        height: 40,
-                        width: 40,
-                        margin: const EdgeInsets.all(16),
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          border: Border.all(
+                      GestureDetector(
+                        child: Container(
+                          height: 40,
+                          width: 40,
+                          margin: const EdgeInsets.all(16),
+                          padding: const EdgeInsets.all(8),
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: Theme.of(context).colorScheme.brightness ==
+                                      Brightness.light
+                                  ? const Color(0xFF3563E9)
+                                  : const Color(0xFF3563E9),
+                            ),
                             color: Theme.of(context).colorScheme.brightness ==
                                     Brightness.light
-                                ? const Color(0xFF3563E9)
-                                : const Color(0xFF3563E9),
+                                ? const Color(0xFFFFFFFF)
+                                : const Color(0xFF050E2B),
+                            borderRadius:
+                                const BorderRadius.all(Radius.circular(6)),
                           ),
-                          color: Theme.of(context).colorScheme.brightness ==
-                                  Brightness.light
-                              ? const Color(0xFFFFFFFF)
-                              : const Color(0xFF050E2B),
-                          borderRadius:
-                              const BorderRadius.all(Radius.circular(6)),
+                          child: Center(
+                              child:
+                                  SvgPicture.asset(PathImages.locationFilled)),
                         ),
-                        child: Center(
-                            child: SvgPicture.asset(PathImages.locationFilled)),
+                        onTap: () async {
+                          try {
+                            Geolocator.requestPermission().then((value) async {
+                              if (await Geolocator.isLocationServiceEnabled()) {
+                                Position? position =
+                                    await Geolocator.getLastKnownPosition();
+                                if (position != null) {
+                                  _mapController.move(
+                                    LatLng(
+                                      position.latitude,
+                                      position.longitude,
+                                    ),
+                                    17,
+                                  );
+                                  // controller.centerPosition(LatLng(
+                                  //   position.latitude,
+                                  //   position.longitude,
+                                  // ));
+                                  // controller.getLocationAddressByLatLon(
+                                  //     position.latitude,
+                                  //     position.longitude);
+                                }
+                              } else {
+                                await Geolocator.openLocationSettings();
+                              }
+                            }).onError((error, stackTrace) async {
+                              await Geolocator.openLocationSettings();
+                              print("MAP-ERROR->:$error");
+                            });
+                          } catch (e) {
+                            await Geolocator.openLocationSettings();
+                            print("MAP-ERROR:$e");
+                          }
+                        },
                       ),
                       Container(
                         height: 216,
@@ -112,7 +158,8 @@ class LocationsScreen extends StatelessWidget {
                                   carId: state.liked[index].id ?? 0,
                                 ));
                               },
-                              carImage: "$BASE_URL_IMAGE${state.liked[index].photo}",
+                              carImage:
+                                  "$BASE_URL_IMAGE${state.liked[index].photo}",
                               carName: "${state.liked[index].make}",
                               carStatus: "Доступный",
                               carRating: 4.6,

@@ -4,6 +4,7 @@ import 'package:domain/model/cars/car_model.dart';
 import 'package:domain/usecase/cars_usecase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geolocator/geolocator.dart';
 
 class HomeCubit extends Cubit<CarsState> {
   HomeCubit(this._carsUseCase)
@@ -39,12 +40,13 @@ class HomeCubit extends Cubit<CarsState> {
     }
     if (recommendedCarsHasNext) {
       emit(state.copyWith(isLoading: true));
+      Position? position = await Geolocator.getLastKnownPosition();
       var response = await _carsUseCase.recommendedCars(
         page: recommendedCarsPage,
         startDataTime: _startDataTime,
         endDataTime: _endDataTime,
-        latitude: "latitude",
-        longitude: "longitude",
+        latitude: position?.latitude != null ? "${position?.latitude}" : null,
+        longitude: position?.longitude != null ? "${position?.latitude}" : null,
       );
       if (response.success) {
         var cars = response.body;
@@ -69,12 +71,13 @@ class HomeCubit extends Cubit<CarsState> {
     }
     if (popularCarsHasNext) {
       emit(state.copyWith(isLoading: true));
+      Position? position = await Geolocator.getLastKnownPosition();
       var response = await _carsUseCase.popularCars(
         page: popularCarsPage,
         startDataTime: _startDataTime,
         endDataTime: _endDataTime,
-        latitude: "latitude",
-        longitude: "longitude",
+        latitude: position?.latitude != null ? "${position?.latitude}" : null,
+        longitude: position?.longitude != null ? "${position?.latitude}" : null,
       );
       if (response.success) {
         var cars = response.body;
