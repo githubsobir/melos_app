@@ -1,26 +1,29 @@
-import 'package:domain/model/cars/car_model.dart';
+import 'package:domain/model/location/gps_model.dart';
 import 'package:domain/usecase/cars_usecase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geolocator/geolocator.dart';
 
 class LocationsCubit extends Cubit<LocationsState> {
   LocationsCubit(this._carsUseCase) : super(LocationsInitial());
   final CarsUseCase _carsUseCase;
 
-  Future<void> likedCars({bool isRefreshed = false}) async {
-    if (!await _carsUseCase.hasUser()) return;
+  Future<void> gpsList() async {
     emit(LoadingState());
-    var response = await _carsUseCase.likedCars();
+    Position? position = await Geolocator.getLastKnownPosition();
+    var response = await _carsUseCase.gpsList(
+      latitude: position?.latitude,
+      longitude: position?.longitude,
+    );
     if (response.success) {
       var cars = response.body;
       if (cars != null) {
-        emit(CarsState(cars));
+        emit(GpsState(cars));
       }
     } else {
-      emit(const CarsState([]));
+      emit(const GpsState([]));
     }
   }
-
 }
 
 sealed class LocationsState extends Equatable {
@@ -37,11 +40,11 @@ final class LoadingState extends LocationsState {
   List<Object> get props => [];
 }
 
-final class CarsState extends LocationsState {
-  final List<CarModel> liked;
+final class GpsState extends LocationsState {
+  final List<GpsModel> gps;
 
-  const CarsState(this.liked);
+  const GpsState(this.gps);
 
   @override
-  List<Object> get props => [liked];
+  List<Object> get props => [gps];
 }

@@ -1,6 +1,7 @@
 import 'package:domain/model/cars/car_detail_info_model.dart';
 import 'package:domain/model/cars/car_model.dart';
 import 'package:domain/model/cars/filter_model.dart';
+import 'package:domain/model/location/gps_model.dart';
 import 'package:domain/repository/auth_repository.dart';
 import 'package:domain/repository/cars_repository.dart';
 import 'package:domain/utils/base_result.dart';
@@ -62,6 +63,13 @@ class CarsUseCase {
       endDataTime: endDataTime,
       latitude: latitude,
       longitude: longitude,
+    );
+  }
+
+  Future<BaseResult<List<GpsModel>>> gpsList(
+      {double? latitude, double? longitude}) {
+    return _carsDetail.gpsList(
+        latitude: latitude, longitude: longitude
     );
   }
 }

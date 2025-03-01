@@ -16,7 +16,7 @@ class LocationsScreen extends StatelessWidget {
   LocationsScreen({super.key});
 
   final MapController _mapController = MapController();
-  final cubit = LocationsCubit(inject())..likedCars();
+  final cubit = LocationsCubit(inject())..gpsList();
 
   @override
   Widget build(BuildContext context) {
@@ -38,14 +38,14 @@ class LocationsScreen extends StatelessWidget {
       body: BlocBuilder<LocationsCubit, LocationsState>(
         bloc: cubit,
         builder: (context, state) {
-          if (state is CarsState) {
+          if (state is GpsState) {
             return Stack(
               children: [
                 FlutterMap(
                   mapController: _mapController,
                   options: MapOptions(
-                    initialZoom: 17,
-                    initialCenter: const LatLng(50.5, 30.51),
+                    initialZoom: 12,
+                    initialCenter: const LatLng(41.313755, 69.248912),
                     onMapEvent: (MapEvent event) {},
                     onMapReady: () {},
                   ),
@@ -55,24 +55,21 @@ class LocationsScreen extends StatelessWidget {
                           "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
                     ),
                     MarkerLayer(
-                      markers: [
-                        Marker(
-                          point: const LatLng(50.5, 30.51),
-                          child: SvgPicture.asset(
-                            PathImages.locationPin,
-                            height: 24,
-                            width: 24,
-                          ),
-                        ),
-                        Marker(
-                          point: const LatLng(50.5, 30.51),
-                          child: SvgPicture.asset(
-                            PathImages.locationPin,
-                            height: 24,
-                            width: 24,
-                          ),
-                        ),
-                      ],
+                      markers: state.gps
+                          .map(
+                            (e) => Marker(
+                              point: LatLng(
+                                (e.latitude ?? 0).toDouble(),
+                                (e.longitude ?? 0).toDouble(),
+                              ),
+                              child: SvgPicture.asset(
+                                PathImages.locationPin,
+                                height: 24,
+                                width: 24,
+                              ),
+                            ),
+                          )
+                          .toList(),
                     ),
                   ],
                 ),
@@ -118,8 +115,9 @@ class LocationsScreen extends StatelessWidget {
                                       position.latitude,
                                       position.longitude,
                                     ),
-                                    17,
+                                    12,
                                   );
+                                  cubit.gpsList();
                                   // controller.centerPosition(LatLng(
                                   //   position.latitude,
                                   //   position.longitude,
@@ -155,15 +153,16 @@ class LocationsScreen extends StatelessWidget {
                             child: ItemCarMap(
                               onPressed: () {
                                 context.openScreen(CarInfoDetailIntent(
-                                  carId: state.liked[index].id ?? 0,
+                                  carId: state.gps[index].id ?? 0,
                                 ));
                               },
                               carImage:
-                                  "$BASE_URL_IMAGE${state.liked[index].photo}",
-                              carName: "${state.liked[index].make}",
+                                  "$BASE_URL_IMAGE${state.gps[index].photo}",
+                              carName: "${state.gps[index].make}",
                               carStatus: "Доступный",
-                              carRating: 4.6,
-                              carLocation: "улица Гейдара, 5",
+                              carRating:
+                                  (state.gps[index].rating ?? 0).toDouble(),
+                              carLocation: "${state.gps[index].address}",
                             ),
                           ),
                         ),
