@@ -1,5 +1,6 @@
 import 'package:common/items/item_car_map.dart';
 import 'package:common/path_images.dart';
+import 'package:common/widgets/base_loader_builder.dart';
 import 'package:dependency/dependencies.dart';
 import 'package:domain/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -38,13 +39,14 @@ class LocationsScreen extends StatelessWidget {
       body: BlocBuilder<LocationsCubit, LocationsState>(
         bloc: cubit,
         builder: (context, state) {
-          if (state is GpsState) {
-            return Stack(
+          return BaseLoaderBuilder(
+            hasLoading: state.isLoading,
+            child: Stack(
               children: [
                 FlutterMap(
                   mapController: _mapController,
                   options: MapOptions(
-                    initialZoom: 12,
+                    initialZoom: 14,
                     initialCenter: const LatLng(41.313755, 69.248912),
                     onMapEvent: (MapEvent event) {},
                     onMapReady: () {},
@@ -74,7 +76,7 @@ class LocationsScreen extends StatelessWidget {
                   ],
                 ),
                 Align(
-                  alignment: Alignment.bottomCenter,
+                  alignment: Alignment.bottomRight,
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.end,
@@ -115,7 +117,7 @@ class LocationsScreen extends StatelessWidget {
                                       position.latitude,
                                       position.longitude,
                                     ),
-                                    12,
+                                    14,
                                   );
                                   cubit.gpsList();
                                   // controller.centerPosition(LatLng(
@@ -146,7 +148,7 @@ class LocationsScreen extends StatelessWidget {
                           shrinkWrap: true,
                           padding: const EdgeInsets.only(right: 24, left: 12),
                           scrollDirection: Axis.horizontal,
-                          itemCount: 4,
+                          itemCount: state.gps.length,
                           itemBuilder: (BuildContext context, int index) =>
                               Padding(
                             padding: const EdgeInsets.only(left: 12),
@@ -171,12 +173,8 @@ class LocationsScreen extends StatelessWidget {
                   ),
                 ),
               ],
-            );
-          } else if (state is LoadingState) {
-            return const Center(child: CircularProgressIndicator());
-          } else {
-            return Container();
-          }
+            ),
+          );
         },
       ),
     );

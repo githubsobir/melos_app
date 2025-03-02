@@ -5,46 +5,47 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 
 class LocationsCubit extends Cubit<LocationsState> {
-  LocationsCubit(this._carsUseCase) : super(LocationsInitial());
+  LocationsCubit(this._carsUseCase)
+      : super(const LocationsState(isLoading: false, gps: []));
   final CarsUseCase _carsUseCase;
 
   Future<void> gpsList() async {
-    emit(LoadingState());
+    emit(state.copyWith(isLoading: true));
     Position? position = await Geolocator.getLastKnownPosition();
     var response = await _carsUseCase.gpsList(
       latitude: position?.latitude,
       longitude: position?.longitude,
     );
     if (response.success) {
-      var cars = response.body;
-      if (cars != null) {
-        emit(GpsState(cars));
+      var gps = response.body;
+      if (gps != null) {
+        emit(state.copyWith(
+          isLoading: false,
+          gps: gps,
+        ));
       }
     } else {
-      emit(const GpsState([]));
+      emit(state.copyWith(isLoading: false));
     }
   }
 }
 
-sealed class LocationsState extends Equatable {
-  const LocationsState();
-}
-
-final class LocationsInitial extends LocationsState {
-  @override
-  List<Object> get props => [];
-}
-
-final class LoadingState extends LocationsState {
-  @override
-  List<Object> get props => [];
-}
-
-final class GpsState extends LocationsState {
+class LocationsState extends Equatable {
+  final bool isLoading;
   final List<GpsModel> gps;
 
-  const GpsState(this.gps);
+  const LocationsState({
+    required this.isLoading,
+    required this.gps,
+  });
+
+  LocationsState copyWith({bool? isLoading, List<GpsModel>? gps}) {
+    return LocationsState(
+      isLoading: isLoading ?? this.isLoading,
+      gps: gps ?? this.gps,
+    );
+  }
 
   @override
-  List<Object> get props => [gps];
+  List<Object> get props => [gps, isLoading];
 }
