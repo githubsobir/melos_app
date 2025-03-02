@@ -1,5 +1,6 @@
 import 'package:data/di/app_state_dependency_configurator.dart';
 import 'package:data/di/auth_dependency_configurator.dart';
+import 'package:data/di/booking_dependency_configurator.dart';
 import 'package:data/di/cars_dependency_configurator.dart';
 import 'package:data/di/global_state_configurator.dart';
 import 'package:data/di/main_dependency_configurator.dart';
@@ -15,9 +16,10 @@ final configurators = [
   SharedPrefDependencyConfigurator(),
   AppStateDependencyConfigurator(),
   AuthDependencyConfigurator(),
+  MainDependencyConfigurator(),
   CarsDependencyConfigurator(),
   ProfileDependencyConfigurator(),
-  MainDependencyConfigurator(),
+  BookingDependencyConfigurator()
 ];
 
 void configureDependencies(
