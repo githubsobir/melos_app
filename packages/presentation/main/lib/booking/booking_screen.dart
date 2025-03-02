@@ -8,15 +8,20 @@ class BookingScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor:
+          Theme.of(context).colorScheme.brightness == Brightness.light
+              ? const Color(0xFFF6F7F9)
+              : const Color(0xFF061136),
       appBar: AppBar(
         title: Text(context.translations.booking),
       ),
       body: ListView.separated(
-          itemBuilder: (context, index) => const ItemBooking(),
-          separatorBuilder: (context, index) => const Divider(
-                color: Color(0xFF658DF1),
-              ),
-          itemCount: 3),
+        itemBuilder: (context, index) => const ItemBooking(),
+        separatorBuilder: (context, index) => const Divider(
+          color: Color(0xFF658DF1),
+        ),
+        itemCount: 3,
+      ),
     );
   }
 }

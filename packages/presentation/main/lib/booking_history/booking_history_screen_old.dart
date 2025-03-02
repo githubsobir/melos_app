@@ -1,7 +1,7 @@
 import 'package:common/decorations.dart';
 import 'package:flutter/material.dart';
 import 'package:main/booking/item_car_image.dart';
-import 'package:main/booking/item_left_right.dart';
+import 'package:main/booking/item_top_bottom.dart';
 
 class BookingHistoryScreen extends StatelessWidget {
   const BookingHistoryScreen({super.key});
@@ -71,14 +71,14 @@ class BookingHistoryScreen extends StatelessWidget {
                       const SizedBox(
                         height: 12,
                       ),
-                      ItemLeftRight(
+                      ItemTopBottom(
                         leftText: "Модель",
                         rightText: "Malibu 2 Turbo",
                       ),
                       SizedBox(
                         height: 12,
                       ),
-                      ItemLeftRight(
+                      ItemTopBottom(
                         leftText: "Число",
                         rightText: "01/A123BC/UZ",
                       ),
@@ -102,14 +102,14 @@ class BookingHistoryScreen extends StatelessWidget {
                       SizedBox(
                         height: 12,
                       ),
-                      ItemLeftRight(
+                      ItemTopBottom(
                         leftText: "Дата получения",
                         rightText: "12 нояб. 2024 г.",
                       ),
                       SizedBox(
                         height: 12,
                       ),
-                      ItemLeftRight(
+                      ItemTopBottom(
                         leftText: "Дата возврата",
                         rightText: "13 нояб. 2024 г.",
                       ),
@@ -139,21 +139,21 @@ class BookingHistoryScreen extends StatelessWidget {
                       SizedBox(
                         height: 12,
                       ),
-                      ItemLeftRight(
+                      ItemTopBottom(
                         leftText: "Депозит",
                         rightText: "\$55.00",
                       ),
                       SizedBox(
                         height: 12,
                       ),
-                      ItemLeftRight(
+                      ItemTopBottom(
                         leftText: "Оставшийся",
                         rightText: "\$44.00",
                       ),
                       SizedBox(
                         height: 12,
                       ),
-                      ItemLeftRight(
+                      ItemTopBottom(
                         leftText: "Общая сумма оплаты",
                         rightText: "\$99.00",
                       ),

@@ -63,4 +63,7 @@ class PathImages {
 
 //---------------- profile ----------------//
   static var chat = "packages/common/assets/profile/chat.svg";
+
+  //---------------- booking ----------------//
+  static var phoneCircled = "packages/common/assets/booking/phone_circled_icon.svg";
 }

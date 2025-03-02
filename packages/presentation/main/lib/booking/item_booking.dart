@@ -1,8 +1,12 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:common/decorations.dart';
 import 'package:common/l10n/build_context_extension.dart';
+import 'package:common/path_images.dart';
+import 'package:domain/utils/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:main/booking/item_car_image.dart';
-import 'package:main/booking/item_left_right.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:main/booking/item_top_bottom.dart';
+import 'package:main/car_info/car_image_selector_widget.dart';
 
 class ItemBooking extends StatelessWidget {
   const ItemBooking({super.key});
@@ -10,110 +14,167 @@ class ItemBooking extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.only(left: 24, right: 24,top: 16,bottom: 16),
+      padding: const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 16),
       child: Column(
         children: [
-          const Padding(
-            padding: EdgeInsets.only(left: 16, right: 16),
-            child: ItemCarImage(
-                width: double.infinity,
-                height: 180,
-                imagePath:
-                "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?cs=srgb&dl=pexels-mikebirdy-170811.jpg&fm=jpg"),
+          const Card(
+            child: Padding(
+              padding: EdgeInsets.only(
+                top: 16,
+                bottom: 16,
+              ),
+              child: CarImageSelectorWidget(
+                images: [
+                  "/backend/media/car_photos/db/cars_image/photo141.jpg",
+                  "/backend/media/car_photos/db/cars_image/photo216.jpg",
+                  "/backend/media/car_photos/db/cars_image/photo141.jpg",
+                  "/backend/media/car_photos/db/cars_image/photo141.jpg",
+                  "/backend/media/car_photos/db/cars_image/photo141.jpg",
+                ],
+              ),
+            ),
           ),
           const SizedBox(
             height: 8,
           ),
-          SizedBox(
-            // height: 180,
-            child: Wrap(
-              spacing: 8.0, // gap between adjacent chips
-              runSpacing: 8.0,
-              children: [
-                "",
-                "",
-                "",
-                "",
-                "",
-                "",
-              ]
-                  .map(
-                    (e) =>  ItemCarImage(
-                    width: MediaQuery.sizeOf(context).width/3-32,
-                    height: 50,
-                    imagePath:
-                    "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?cs=srgb&dl=pexels-mikebirdy-170811.jpg&fm=jpg"),
-              )
-                  .toList(),
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    context.translations.car_detail,
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          fontWeight: FontWeight.w700,
+                        ),
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            const SizedBox(
+                              height: 12,
+                            ),
+                            ItemTopBottom(
+                              leftText: context.translations.model,
+                              rightText: "Malibu 2 Turbo",
+                            ),
+                            const SizedBox(
+                              height: 12,
+                            ),
+                            ItemTopBottom(
+                              leftText: "Гос. номер",
+                              rightText: "01/A123BC/UZ",
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            const SizedBox(
+                              height: 12,
+                            ),
+                            Text(
+                              "Владелец",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelMedium
+                                  ?.copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondary),
+                            ),
+                            SizedBox(
+                              height: 12,
+                            ),
+                            Row(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(24.0),
+                                  child: CachedNetworkImage(
+                                    imageUrl:
+                                        "$BASE_URL_IMAGE/backend/media/car_photos/db/cars_image/photo73_kvkGvlK.jpg",
+                                    width: 24,
+                                    height: 24,
+                                    fit: BoxFit.cover,
+                                    progressIndicatorBuilder:
+                                        (context, url, downloadProgress) =>
+                                            SizedBox(
+                                      width: 24,
+                                      height: 24,
+                                      child: Stack(
+                                        children: [
+                                          Align(
+                                            alignment: Alignment.center,
+                                            child: SizedBox(
+                                              width: 24,
+                                              height: 24,
+                                              child: CircularProgressIndicator(
+                                                value:
+                                                    downloadProgress.progress,
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .primary,
+                                                strokeWidth: 1,
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    errorWidget: (context, url, error) =>
+                                        const Icon(Icons.error),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                Text(
+                                  "Azizbek Karimov",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelLarge
+                                      ?.copyWith(
+                                          fontWeight: FontWeight.w700,
+                                          fontSize: 12),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 24,
+                            ),
+                            Row(
+                              children: [
+                                SvgPicture.asset(PathImages.phoneCircled),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                Text(
+                                  "+998 93 935 0321",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelLarge
+                                      ?.copyWith(
+                                        fontWeight: FontWeight.w700,
+                                        fontSize: 12,
+                                      ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
             ),
-          ),
-          const SizedBox(
-            height: 36,
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      context.translations.car_detail,
-                      style:
-                      Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    ItemLeftRight(
-                      leftText: context.translations.model,
-                      rightText: "Malibu 2 Turbo",
-                    ),
-                    SizedBox(
-                      height: 12,
-                    ),
-                    ItemLeftRight(
-                      leftText: context.translations.number,
-                      rightText: "01/A123BC/UZ",
-                    ),
-                  ],
-                ),
-              ),
-              SizedBox(
-                width: 24,
-              ),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Text(
-                      context.translations.rental_details,
-                      style:
-                      Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        fontWeight: FontWeight.w700,
-                      ),
-                    ),
-                    SizedBox(
-                      height: 12,
-                    ),
-                    ItemLeftRight(
-                      leftText: context.translations.date_of_receipt,
-                      rightText: "12 нояб. 2024 г.",
-                    ),
-                    SizedBox(
-                      height: 12,
-                    ),
-                    ItemLeftRight(
-                      leftText: context.translations.return_date,
-                      rightText: "13 нояб. 2024 г.",
-                    ),
-                  ],
-                ),
-              ),
-            ],
           ),
           SizedBox(
             height: 8,
@@ -128,29 +189,28 @@ class ItemBooking extends StatelessWidget {
                   children: [
                     Text(
                       context.translations.payment_details,
-                      style:
-                      Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        fontWeight: FontWeight.w700,
-                      ),
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.w700,
+                          ),
                     ),
                     SizedBox(
                       height: 12,
                     ),
-                    ItemLeftRight(
+                    ItemTopBottom(
                       leftText: context.translations.deposit,
                       rightText: "80 000 сум/день",
                     ),
                     SizedBox(
                       height: 12,
                     ),
-                    ItemLeftRight(
+                    ItemTopBottom(
                       leftText: context.translations.the_remaining,
                       rightText: "\$44.00",
                     ),
                     SizedBox(
                       height: 12,
                     ),
-                    ItemLeftRight(
+                    ItemTopBottom(
                       leftText: context.translations.total_payment_amount,
                       rightText: "\$99.00",
                     ),
@@ -166,10 +226,9 @@ class ItemBooking extends StatelessWidget {
                   children: [
                     Text(
                       context.translations.booking_status,
-                      style:
-                      Theme.of(context).textTheme.bodyMedium?.copyWith(
-                        fontWeight: FontWeight.w700,
-                      ),
+                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            fontWeight: FontWeight.w700,
+                          ),
                     ),
                     SizedBox(
                       height: 12,
@@ -181,9 +240,9 @@ class ItemBooking extends StatelessWidget {
                           style: Theme.of(context)
                               .textTheme
                               .labelMedium
-                              ?.copyWith(color: Theme.of(context)
-                        .colorScheme
-                        .secondary),
+                              ?.copyWith(
+                                  color:
+                                      Theme.of(context).colorScheme.secondary),
                         ),
                         SizedBox(
                           width: 8,
@@ -226,13 +285,11 @@ class ItemBooking extends StatelessWidget {
                             ?.copyWith(color: Colors.white),
                       ),
                     ),
-
                   ],
                 ),
               ),
             ],
           ),
-
         ],
       ),
     );
