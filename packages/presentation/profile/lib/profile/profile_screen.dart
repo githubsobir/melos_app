@@ -56,7 +56,11 @@ class ProfileScreen extends StatelessWidget {
                       lastName: state.info.lastName ?? "",
                       imagePath: "$BASE_URL_IMAGE${state.info.photo}",
                       onChange: () {
-                        context.openScreen(EditProfileIntent(state.info));
+                        context.openScreen(EditProfileIntent(state.info)).then(
+                          (value) {
+                            cubit.userInformation();
+                          },
+                        );
                       },
                       changeImage: () {
                         _showPicker(context);
