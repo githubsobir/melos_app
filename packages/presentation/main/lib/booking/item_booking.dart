@@ -34,9 +34,6 @@ class ItemBooking extends StatelessWidget {
               ),
             ),
           ),
-          const SizedBox(
-            height: 8,
-          ),
           Card(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
@@ -176,10 +173,146 @@ class ItemBooking extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(
-            height: 8,
+          Card(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    "Отчеты",
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      fontWeight: FontWeight.w700,
+                    ),
+                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            const SizedBox(
+                              height: 12,
+                            ),
+                            ItemTopBottom(
+                              leftText: context.translations.model,
+                              rightText: "Malibu 2 Turbo",
+                            ),
+                            const SizedBox(
+                              height: 12,
+                            ),
+                            ItemTopBottom(
+                              leftText: "Гос. номер",
+                              rightText: "01/A123BC/UZ",
+                            ),
+                          ],
+                        ),
+                      ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            const SizedBox(
+                              height: 12,
+                            ),
+                            Text(
+                              "Владелец",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelMedium
+                                  ?.copyWith(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .secondary),
+                            ),
+                            SizedBox(
+                              height: 12,
+                            ),
+                            Row(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(24.0),
+                                  child: CachedNetworkImage(
+                                    imageUrl:
+                                    "$BASE_URL_IMAGE/backend/media/car_photos/db/cars_image/photo73_kvkGvlK.jpg",
+                                    width: 24,
+                                    height: 24,
+                                    fit: BoxFit.cover,
+                                    progressIndicatorBuilder:
+                                        (context, url, downloadProgress) =>
+                                        SizedBox(
+                                          width: 24,
+                                          height: 24,
+                                          child: Stack(
+                                            children: [
+                                              Align(
+                                                alignment: Alignment.center,
+                                                child: SizedBox(
+                                                  width: 24,
+                                                  height: 24,
+                                                  child: CircularProgressIndicator(
+                                                    value:
+                                                    downloadProgress.progress,
+                                                    color: Theme.of(context)
+                                                        .colorScheme
+                                                        .primary,
+                                                    strokeWidth: 1,
+                                                  ),
+                                                ),
+                                              )
+                                            ],
+                                          ),
+                                        ),
+                                    errorWidget: (context, url, error) =>
+                                    const Icon(Icons.error),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                Text(
+                                  "Azizbek Karimov",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelLarge
+                                      ?.copyWith(
+                                      fontWeight: FontWeight.w700,
+                                      fontSize: 12),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(
+                              height: 24,
+                            ),
+                            Row(
+                              children: [
+                                SvgPicture.asset(PathImages.phoneCircled),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                Text(
+                                  "+998 93 935 0321",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelLarge
+                                      ?.copyWith(
+                                    fontWeight: FontWeight.w700,
+                                    fontSize: 12,
+                                  ),
+                                ),
+                              ],
+                            )
+                          ],
+                        ),
+                      )
+                    ],
+                  )
+                ],
+              ),
+            ),
           ),
-          // second
+
           Row(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
