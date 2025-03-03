@@ -16,7 +16,7 @@ import 'package:main/help/help_screen.dart';
 import 'package:main/main/main_screen.dart';
 import 'package:main/my_cars/car_location/my_car_location_screen.dart';
 import 'package:main/my_cars/create_car/create_car_info_screen.dart';
-import 'package:main/my_cars/my_cars_screen.dart';
+import 'package:main/my_cars/my_cars/my_cars_screen.dart';
 import 'package:main/notifications/notifications_screen.dart';
 import 'package:main/payment_details/payment_details_screen.dart';
 import 'package:navigation/main_navigation_intents.dart';

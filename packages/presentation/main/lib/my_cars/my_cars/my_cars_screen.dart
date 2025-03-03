@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:main/my_cars/item_my_car.dart';
-import 'package:main/my_cars/my_cars_cubit.dart';
+import 'package:main/my_cars/my_cars/item_my_car.dart';
+import 'package:main/my_cars/my_cars/my_cars_cubit.dart';
 
 class MyCarsScreen extends StatelessWidget {
   MyCarsScreen({super.key});
