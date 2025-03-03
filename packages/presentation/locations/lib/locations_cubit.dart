@@ -11,7 +11,14 @@ class LocationsCubit extends Cubit<LocationsState> {
 
   Future<void> gpsList() async {
     emit(state.copyWith(isLoading: true));
-    Position? position = await Geolocator.getLastKnownPosition();
+    Position? position;
+
+    try {
+      position = await Geolocator.getLastKnownPosition();
+    } catch (e) {
+      print(e);
+    }
+
     var response = await _carsUseCase.gpsList(
       latitude: position?.latitude,
       longitude: position?.longitude,

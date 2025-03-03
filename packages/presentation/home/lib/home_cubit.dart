@@ -40,7 +40,13 @@ class HomeCubit extends Cubit<CarsState> {
     }
     if (recommendedCarsHasNext) {
       emit(state.copyWith(isLoading: true));
-      Position? position = await Geolocator.getLastKnownPosition();
+      Position? position;
+
+      try {
+        position = await Geolocator.getLastKnownPosition();
+      } catch (e) {
+        print(e);
+      }
       var response = await _carsUseCase.recommendedCars(
         page: recommendedCarsPage,
         startDataTime: _startDataTime,
@@ -71,7 +77,12 @@ class HomeCubit extends Cubit<CarsState> {
     }
     if (popularCarsHasNext) {
       emit(state.copyWith(isLoading: true));
-      Position? position = await Geolocator.getLastKnownPosition();
+      Position? position;
+      try {
+        position = await Geolocator.getLastKnownPosition();
+      } catch (e) {
+        print(e);
+      }
       var response = await _carsUseCase.popularCars(
         page: popularCarsPage,
         startDataTime: _startDataTime,
