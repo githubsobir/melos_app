@@ -63,5 +63,6 @@
   "car_model": "Модель автомобиля",
   "travel_dates": "Даты поездки",
   "your_account": "Ваш аккаунт",
-  "notifications": "Уведомления"
+  "notifications": "Уведомления",
+  "open": "Открыть"
 }

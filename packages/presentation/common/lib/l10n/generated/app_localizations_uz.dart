@@ -200,4 +200,7 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get notifications => 'Bildirishnomalar';
+
+  @override
+  String get open => 'Ochiq';
 }

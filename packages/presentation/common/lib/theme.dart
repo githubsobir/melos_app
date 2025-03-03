@@ -32,7 +32,8 @@ ThemeData _themeDataLight(ColorScheme colorScheme, Color focusColor) {
     textTheme: _textTheme,
     primaryColor: Colors.greenAccent,
     dividerTheme: const DividerThemeData(
-      color: Color(0xFFD9D9D9),
+      color: Color(0xFFECE9FB),
+      thickness: 0.5
     ),
     hintColor: const Color(0xFF596780),
     appBarTheme: AppBarTheme(

@@ -75,7 +75,8 @@ class Page2 extends StatelessWidget {
                         style: Theme.of(context)
                             .textTheme
                             .labelMedium
-                            ?.copyWith(color: const Color(0xFF90A3BF)),
+                            ?.copyWith(
+                                color: Theme.of(context).colorScheme.secondary),
                       ),
                     ],
                   ),
@@ -90,7 +91,7 @@ class Page2 extends StatelessWidget {
                 .bodyMedium
                 ?.copyWith(fontWeight: FontWeight.w700),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
           Row(
@@ -101,11 +102,11 @@ class Page2 extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .labelMedium
-                    ?.copyWith(color: const Color(0xFF90A3BF)),
+                    ?.copyWith(color: Theme.of(context).colorScheme.secondary),
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
           Row(
@@ -118,7 +119,7 @@ class Page2 extends StatelessWidget {
               SizedBox(width: 120, child: TextField3(hint: "12 000 км"))
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
           Text(
@@ -128,7 +129,7 @@ class Page2 extends StatelessWidget {
                 .labelMedium
                 ?.copyWith(color: const Color(0xFF050E2B)),
           ),
-          SizedBox(
+          const SizedBox(
             height: 8,
           ),
           Row(
@@ -189,7 +190,7 @@ class Page2 extends StatelessWidget {
                 style: Theme.of(context)
                     .textTheme
                     .labelMedium
-                    ?.copyWith(color: const Color(0xFF90A3BF)),
+                    ?.copyWith(color: Theme.of(context).colorScheme.secondary),
               ),
             ],
           ),

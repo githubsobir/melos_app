@@ -484,6 +484,12 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Уведомления'**
   String get notifications;
+
+  /// No description provided for @open.
+  ///
+  /// In ru, this message translates to:
+  /// **'Открыть'**
+  String get open;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

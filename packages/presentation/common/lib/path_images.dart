@@ -35,8 +35,10 @@ class PathImages {
   static var favouriteOff = "packages/common/assets/home/favourite_off.svg";
   static var favouriteOn = "packages/common/assets/home/favourite_on.svg";
   static var share = "packages/common/assets/home/share.svg";
-  static var readNotification = "packages/common/assets/home/read_notification.svg";
-  static var unreadNotification = "packages/common/assets/home/unread_notification.svg";
+  static var readNotification =
+      "packages/common/assets/home/read_notification.svg";
+  static var unreadNotification =
+      "packages/common/assets/home/unread_notification.svg";
 
 //---------------- locations ----------------//
   static var locationPin = "packages/common/assets/locations/location_pin.svg";
@@ -65,5 +67,13 @@ class PathImages {
   static var chat = "packages/common/assets/profile/chat.svg";
 
   //---------------- booking ----------------//
-  static var phoneCircled = "packages/common/assets/booking/phone_circled_icon.svg";
+  static var phoneCircled =
+      "packages/common/assets/booking/phone_circled_icon.svg";
+
+//---------------- my cars ----------------//
+  static var closedType = "packages/common/assets/my_cars/closed_type.svg";
+  static var lockDoors = "packages/common/assets/my_cars/lock_doors.svg";
+  static var nearbyCircled =
+      "packages/common/assets/my_cars/nearby_circled.svg";
+  static var removeCircledIcon = "packages/common/assets/my_cars/remove_circle_icon.svg";
 }

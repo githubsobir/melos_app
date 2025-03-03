@@ -63,7 +63,7 @@ class Page1 extends StatelessWidget {
                         style: Theme.of(context)
                             .textTheme
                             .labelMedium
-                            ?.copyWith(color: const Color(0xFF90A3BF)),
+                            ?.copyWith(color: Theme.of(context).colorScheme.secondary),
                       ),
                     ],
                   ))
