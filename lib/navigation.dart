@@ -14,6 +14,7 @@ import 'package:main/booking_history/booking_history_screen.dart';
 import 'package:main/car_info/car_info_detail_screen.dart';
 import 'package:main/help/help_screen.dart';
 import 'package:main/main/main_screen.dart';
+import 'package:main/my_cars/car_location/my_car_location_screen.dart';
 import 'package:main/my_cars/create_car/create_car_info_screen.dart';
 import 'package:main/my_cars/my_cars_screen.dart';
 import 'package:main/notifications/notifications_screen.dart';
@@ -108,6 +109,9 @@ final _launcher = IntentLauncher()
         return Navigator.pushNamed(context, CarInfoDetailIntent.path,
             arguments: intent.carId);
       })
+      ..onNavigationIntent<MyCarLocationIntent>((context, intent) {
+        return Navigator.pushNamed(context, MyCarLocationIntent.path);
+      })
 //profile
       ..onNavigationIntent<EditProfileIntent>((context, intent) {
         return Navigator.pushNamed(context, EditProfileIntent.path,
@@ -170,6 +174,8 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     return _createRoute(NotificationsScreen().wrapWith(_launcher));
   } else if (MyCarsIntent.path == settings.name) {
     return _createRoute(MyCarsScreen().wrapWith(_launcher));
+  } else if (MyCarLocationIntent.path == settings.name) {
+    return _createRoute(MyCarLocationScreen().wrapWith(_launcher));
   } else if (CarInfoDetailIntent.path == settings.name) {
     var cardId = settings.arguments as num;
     return _createRoute(CarInfoDetailScreen(

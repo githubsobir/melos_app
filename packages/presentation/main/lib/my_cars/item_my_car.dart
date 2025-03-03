@@ -4,6 +4,8 @@ import 'package:common/path_images.dart';
 import 'package:common/widgets/base_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intent_launcher/intent_launcher.dart';
+import 'package:navigation/my_cars_intents.dart';
 
 class ItemMyCar extends StatefulWidget {
   const ItemMyCar({super.key, required this.carImage});
@@ -121,10 +123,66 @@ class _ItemMyCarState extends State<ItemMyCar> {
               )
             ],
           ),
-          leftRight("See the location of the car", PathImages.nearbyCircled),
-          leftRight("Lock/Unlock your car", PathImages.lockDoors),
-          leftRight("Make it enable/disable on app", PathImages.closedType),
-          leftRight("Remove this car forever", PathImages.removeCircledIcon),
+          leftRight(
+            title: "See the location of the car",
+            icon: PathImages.nearbyCircled,
+            onTap: () {
+              context.openScreen(MyCarLocationIntent());
+            },
+          ),
+          leftRight(
+            title: "Lock/Unlock your car",
+            icon: PathImages.lockDoors,
+            onTap: () {},
+          ),
+          leftRight(
+            title: "Make it enable/disable on app",
+            icon: PathImages.closedType,
+            onTap: () {},
+          ),
+          leftRight(
+            title: "Remove this car forever",
+            icon: PathImages.removeCircledIcon,
+            onTap: () {
+              showDialog<String>(
+                context: context,
+                builder: (BuildContext context) => AlertDialog(
+                  shape: RoundedRectangleBorder(
+                    borderRadius:
+                        BorderRadius.circular(10.0), // Adjust radius as needed
+                  ),
+                  content: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      const Text(
+                        'Вы уверены, что хотите удалить автомобиль из своей учетной записи?',
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(
+                        height: 24,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: BaseButton(onPressed: () {}, title: "Нет"),
+                          ),
+                          const SizedBox(
+                            width: 48,
+                          ),
+                          Expanded(
+                              child: BaseButton(
+                            onPressed: () {},
+                            title: "Да",
+                            background: const Color(0xFFFF3636),
+                          )),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
           Padding(
             padding: const EdgeInsets.only(
               left: 16,
@@ -166,7 +224,11 @@ class _ItemMyCarState extends State<ItemMyCar> {
     );
   }
 
-  leftRight(String title, String icon) {
+  leftRight({
+    required String title,
+    required String icon,
+    required VoidCallback onTap,
+  }) {
     return Column(
       children: [
         Padding(
@@ -184,7 +246,7 @@ class _ItemMyCarState extends State<ItemMyCar> {
               SizedBox(
                 width: 16,
               ),
-              SvgPicture.asset(icon)
+              GestureDetector(onTap: onTap, child: SvgPicture.asset(icon))
             ],
           ),
         ),
