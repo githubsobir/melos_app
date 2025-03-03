@@ -14,6 +14,7 @@ import 'package:intent_launcher/intent_launcher.dart';
 import 'package:main/car_info/car_image_selector_widget.dart';
 import 'package:main/car_info/car_info_detail_cubit.dart';
 import 'package:main/car_info/review_card.dart';
+import 'package:navigation/main_navigation_intents.dart';
 import 'package:navigation/my_cars_intents.dart';
 
 class CarInfoDetailScreen extends StatelessWidget {
@@ -401,7 +402,9 @@ class CarInfoDetailScreen extends StatelessWidget {
                               height: 16,
                             ),
                             BaseButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  context.openScreen(PaymentDetailsIntent());
+                                },
                                 title: context.translations.rent)
                           ],
                         ),

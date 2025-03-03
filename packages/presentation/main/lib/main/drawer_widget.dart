@@ -57,15 +57,6 @@ class DrawerWidget extends StatelessWidget {
           },
         ),
         item(
-          icon: PathImages.paymentDetails,
-          title: context.translations.payment_details,
-          context: context,
-          onTap: () {
-            context.openScreen(PaymentDetailsIntent());
-            Scaffold.of(context).closeDrawer();
-          },
-        ),
-        item(
           icon: PathImages.myCars,
           title: context.translations.my_cars,
           context: context,

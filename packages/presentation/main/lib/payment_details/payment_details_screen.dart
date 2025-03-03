@@ -1,9 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:common/path_images.dart';
 import 'package:common/widgets/base_button.dart';
 import 'package:common/decorations.dart';
 import 'package:common/widgets/textfield2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class PaymentDetailsScreen extends StatelessWidget {
   const PaymentDetailsScreen({super.key});
@@ -16,7 +18,7 @@ class PaymentDetailsScreen extends StatelessWidget {
               ? const Color(0xFFF6F7F9)
               : const Color(0xFF061136),
       appBar: AppBar(
-        title: Text("Payment"),
+        title: const Text("Оплата"),
         backgroundColor:
             Theme.of(context).colorScheme.brightness == Brightness.light
                 ? const Color(0xFFF6F7F9)
@@ -34,26 +36,40 @@ class PaymentDetailsScreen extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      Text(
-                        "Резюме аренды",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium
-                            ?.copyWith(fontWeight: FontWeight.w700),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              "Резюме аренды",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(fontWeight: FontWeight.w700),
+                            ),
+                          ),
+                          SvgPicture.asset(
+                            PathImages.share,
+                            height: 24,
+                            width: 24,
+                          ),
+                          const SizedBox(
+                            width: 8,
+                          ),
+                          true
+                              ? SvgPicture.asset(
+                            PathImages.favouriteOn,
+                            height: 24,
+                            width: 24,
+                          )
+                              : SvgPicture.asset(
+                            PathImages.favouriteOff,
+                            height: 24,
+                            width: 24,
+                          ),
+                        ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 4,
-                      ),
-                      Text(
-                        "Цены могут меняться в зависимости от длительности аренды и стоимости арендованного вами автомобиля.",
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelMedium
-                            ?.copyWith(
-                                color: Theme.of(context).colorScheme.secondary),
-                      ),
-                      SizedBox(
-                        height: 24,
                       ),
                       Row(
                         children: [
@@ -108,11 +124,10 @@ class PaymentDetailsScreen extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.stretch,
                               children: [
                                 Text(
-                                  "Резюме аренды",
+                                  "Малибу Турбо ",
                                   style: Theme.of(context)
                                       .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(fontWeight: FontWeight.w700),
+                                      .titleSmall,
                                 ),
                                 Padding(
                                   padding:
@@ -156,7 +171,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              "Промежуточный итог",
+                              "Срок аренды",
                               style: Theme.of(context)
                                   .textTheme
                                   .labelMedium
@@ -167,7 +182,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            "\$80.00",
+                            "6",
                             style: Theme.of(context).textTheme.bodyMedium,
                           ),
                         ],
@@ -179,7 +194,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              "Налог",
+                              "Стоимость за день",
                               style: Theme.of(context)
                                   .textTheme
                                   .labelMedium
@@ -190,7 +205,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            "\$8",
+                            "99 000 сум",
                             style: Theme.of(context).textTheme.bodyMedium,
                           ),
                         ],
@@ -202,7 +217,30 @@ class PaymentDetailsScreen extends StatelessWidget {
                         children: [
                           Expanded(
                             child: Text(
-                              "Общая стоимость\nаренды",
+                              "Залог",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelMedium
+                                  ?.copyWith(
+                                  color: Theme.of(context)
+                                      .colorScheme
+                                      .secondary),
+                            ),
+                          ),
+                          Text(
+                            "9 000 сум",
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: 8,
+                      ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child: Text(
+                              "Общая стоимость аренды",
                               style: Theme.of(context)
                                   .textTheme
                                   .bodyMedium
@@ -210,7 +248,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                             ),
                           ),
                           Text(
-                            "\$88.00",
+                            "108 900 сум",
                             style: Theme.of(context).textTheme.titleSmall,
                           ),
                         ],
@@ -222,65 +260,65 @@ class PaymentDetailsScreen extends StatelessWidget {
               const SizedBox(
                 height: 24,
               ),
-              Card(
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Text(
-                        "Платежная информация",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium
-                            ?.copyWith(fontWeight: FontWeight.w700),
-                      ),
-                      SizedBox(
-                        height: 4,
-                      ),
-                      Text(
-                        "Пожалуйста, введите ваши платежные данные",
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelMedium
-                            ?.copyWith(
-                                color: Theme.of(context).colorScheme.secondary),
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      TextField2(
-                        title: "Имя",
-                        hint: "Ваше имя",
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      TextField2(
-                        title: "Адрес",
-                        hint: "Адрес",
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      TextField2(
-                        title: "Номер телефона",
-                        hint: "Номер телефона",
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      TextField2(
-                        title: "Город / Город",
-                        hint: "Город или местечко",
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              const SizedBox(
-                height: 24,
-              ),
+              // Card(
+              //   child: Padding(
+              //     padding: const EdgeInsets.all(16.0),
+              //     child: Column(
+              //       crossAxisAlignment: CrossAxisAlignment.stretch,
+              //       children: [
+              //         Text(
+              //           "Платежная информация",
+              //           style: Theme.of(context)
+              //               .textTheme
+              //               .bodyMedium
+              //               ?.copyWith(fontWeight: FontWeight.w700),
+              //         ),
+              //         SizedBox(
+              //           height: 4,
+              //         ),
+              //         Text(
+              //           "Пожалуйста, введите ваши платежные данные",
+              //           style: Theme.of(context)
+              //               .textTheme
+              //               .labelMedium
+              //               ?.copyWith(
+              //                   color: Theme.of(context).colorScheme.secondary),
+              //         ),
+              //         SizedBox(
+              //           height: 16,
+              //         ),
+              //         TextField2(
+              //           title: "Имя",
+              //           hint: "Ваше имя",
+              //         ),
+              //         SizedBox(
+              //           height: 16,
+              //         ),
+              //         TextField2(
+              //           title: "Адрес",
+              //           hint: "Адрес",
+              //         ),
+              //         SizedBox(
+              //           height: 16,
+              //         ),
+              //         TextField2(
+              //           title: "Номер телефона",
+              //           hint: "Номер телефона",
+              //         ),
+              //         SizedBox(
+              //           height: 16,
+              //         ),
+              //         TextField2(
+              //           title: "Город / Город",
+              //           hint: "Город или местечко",
+              //         ),
+              //       ],
+              //     ),
+              //   ),
+              // ),
+              // const SizedBox(
+              //   height: 24,
+              // ),
               Card(
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
@@ -427,12 +465,8 @@ class PaymentDetailsScreen extends StatelessWidget {
                       SizedBox(
                         height: 16,
                       ),
-                      BaseButton(onPressed: null, title: "Арендовать сейчас"),
-                      SizedBox(
-                        height: 16,
-                      ),
                       Text(
-                        "Подтверждение",
+                        "Все ваши данные в безопасности",
                         style: Theme.of(context)
                             .textTheme
                             .bodyMedium
@@ -446,6 +480,10 @@ class PaymentDetailsScreen extends StatelessWidget {
                             ?.copyWith(
                             color: Theme.of(context).colorScheme.secondary),
                       ),
+                      SizedBox(
+                        height: 16,
+                      ),
+                      BaseButton(onPressed: null, title: "Арендовать сейчас"),
                     ],
                   ),
                 ),
