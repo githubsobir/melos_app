@@ -7,12 +7,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:main/payment_details/payment/payment_bottom_sheet.dart';
 import 'package:main/payment_details/payment_detail_cubit.dart';
 
 class PaymentDetailsScreen extends StatelessWidget {
   PaymentDetailsScreen({super.key});
 
   final PaymentDetailCubit cubit = PaymentDetailCubit();
+  final TextEditingController cardNumberController = TextEditingController();
+  final TextEditingController cardDateController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -412,18 +415,34 @@ class PaymentDetailsScreen extends StatelessWidget {
                                       )
                                     ],
                                   ),
-                                  const TextField2(
+                                  TextField2(
                                     title: "Номер карты",
                                     hint: "Номер карты",
                                     fillColor: Colors.white,
+                                    controller: cardNumberController
+                                      ..addListener(
+                                        () {
+                                          cubit.setCardNumber(
+                                            cardNumberController.text,
+                                          );
+                                        },
+                                      ),
                                   ),
                                   const SizedBox(
                                     height: 16,
                                   ),
-                                  const TextField2(
+                                  TextField2(
                                     title: "Дата окончания срока",
                                     hint: "ММ / ГГ",
                                     fillColor: Colors.white,
+                                    controller: cardDateController
+                                      ..addListener(
+                                        () {
+                                          cubit.setCardDate(
+                                            cardDateController.text,
+                                          );
+                                        },
+                                      ),
                                   ),
                                 ],
                               ),
@@ -707,8 +726,21 @@ class PaymentDetailsScreen extends StatelessWidget {
                           const SizedBox(
                             height: 16,
                           ),
-                          const BaseButton(
-                              onPressed: null, title: "Арендовать сейчас"),
+                          BaseButton(
+                              onPressed: (cubit.state.firstAgreement &&
+                                      cubit.state.secondAgreement &&
+                                      ((cubit.state.selectedMethod == 0 &&
+                                              cubit.state.cardNumber
+                                                  .isNotEmpty &&
+                                              cubit
+                                                  .state.cardDate.isNotEmpty) ||
+                                          cubit.state.selectedMethod == 1 ||
+                                          cubit.state.selectedMethod == 2))
+                                  ? () {
+                                      PaymentBottomSheet.show(context: context);
+                                    }
+                                  : null,
+                              title: "Арендовать сейчас"),
                         ],
                       ),
                     ),

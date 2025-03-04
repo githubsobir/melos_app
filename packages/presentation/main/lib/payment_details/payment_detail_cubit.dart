@@ -7,6 +7,8 @@ class PaymentDetailCubit extends Cubit<PaymentDetailState> {
           selectedMethod: 0,
           firstAgreement: false,
           secondAgreement: false,
+          cardNumber: "",
+          cardDate: "",
         ));
 
   Future<void> selectPaymentMethod(int selectedMethod) async {
@@ -20,6 +22,14 @@ class PaymentDetailCubit extends Cubit<PaymentDetailState> {
   Future<void> setSecondAgreement(bool secondAgreement) async {
     emit(state.copyWith(secondAgreement: secondAgreement));
   }
+
+  Future<void> setCardNumber(String cardNumber) async {
+    emit(state.copyWith(cardNumber: cardNumber));
+  }
+
+  Future<void> setCardDate(String cardDate) async {
+    emit(state.copyWith(cardDate: cardDate));
+  }
 }
 
 class PaymentDetailState extends Equatable {
@@ -27,22 +37,34 @@ class PaymentDetailState extends Equatable {
   final int selectedMethod;
   final bool firstAgreement;
   final bool secondAgreement;
+  final String cardNumber;
+  final String cardDate;
 
   PaymentDetailState({
     required this.selectedMethod,
     required this.firstAgreement,
     required this.secondAgreement,
+    required this.cardNumber,
+    required this.cardDate,
   });
 
-  PaymentDetailState copyWith(
-      {int? selectedMethod, bool? firstAgreement, bool? secondAgreement}) {
+  PaymentDetailState copyWith({
+    int? selectedMethod,
+    bool? firstAgreement,
+    bool? secondAgreement,
+    String? cardNumber,
+    String? cardDate,
+  }) {
     return PaymentDetailState(
       selectedMethod: selectedMethod ?? this.selectedMethod,
       firstAgreement: firstAgreement ?? this.firstAgreement,
       secondAgreement: secondAgreement ?? this.secondAgreement,
+      cardNumber: cardNumber ?? this.cardNumber,
+      cardDate: cardDate ?? this.cardDate,
     );
   }
 
   @override
-  List<Object?> get props => [paymentMethods, selectedMethod,firstAgreement,secondAgreement];
+  List<Object?> get props =>
+      [paymentMethods, selectedMethod, firstAgreement, secondAgreement, cardNumber, cardDate];
 }
