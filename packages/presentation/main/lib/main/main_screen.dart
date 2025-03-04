@@ -173,15 +173,15 @@ class _MainScreenState extends State<MainScreen> {
       VoidCallback onPressed) {
     return Expanded(
       child: isEnabled
-          ? Container(
+          ? SizedBox(
               height: 64,
               width: 64,
-              decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.brightness ==
-                          Brightness.light
-                      ? const Color(0xFFC0D8FF)
-                      : const Color(0xFF102587),
-                  borderRadius: BorderRadius.circular(8)),
+              // decoration: BoxDecoration(
+              //     color: Theme.of(context).colorScheme.brightness ==
+              //             Brightness.light
+              //         ? const Color(0xFFC0D8FF)
+              //         : const Color(0xFF102587),
+              //     borderRadius: BorderRadius.circular(8)),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,
