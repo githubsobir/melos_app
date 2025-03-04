@@ -75,5 +75,12 @@ class PathImages {
   static var lockDoors = "packages/common/assets/my_cars/lock_doors.svg";
   static var nearbyCircled =
       "packages/common/assets/my_cars/nearby_circled.svg";
-  static var removeCircledIcon = "packages/common/assets/my_cars/remove_circle_icon.svg";
+  static var removeCircledIcon =
+      "packages/common/assets/my_cars/remove_circle_icon.svg";
+
+//---------------- payment ----------------//
+  static var click = "packages/common/assets/payment/click.png";
+  static var humoUzcard = "packages/common/assets/payment/humo_uzcard.png";
+  static var payme = "packages/common/assets/payment/payme.png";
+  static var securitySafety = "packages/common/assets/payment/security_safety.svg";
 }

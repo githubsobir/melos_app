@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:common/decorations.dart';
 import 'package:common/path_images.dart';
 import 'package:common/widgets/base_button.dart';
-import 'package:common/decorations.dart';
 import 'package:common/widgets/textfield2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -57,15 +57,15 @@ class PaymentDetailsScreen extends StatelessWidget {
                           ),
                           true
                               ? SvgPicture.asset(
-                            PathImages.favouriteOn,
-                            height: 24,
-                            width: 24,
-                          )
+                                  PathImages.favouriteOn,
+                                  height: 24,
+                                  width: 24,
+                                )
                               : SvgPicture.asset(
-                            PathImages.favouriteOff,
-                            height: 24,
-                            width: 24,
-                          ),
+                                  PathImages.favouriteOff,
+                                  height: 24,
+                                  width: 24,
+                                ),
                         ],
                       ),
                       const SizedBox(
@@ -116,7 +116,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                               ),
                             ),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 16,
                           ),
                           Expanded(
@@ -125,9 +125,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                               children: [
                                 Text(
                                   "Малибу Турбо ",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .titleSmall,
+                                  style: Theme.of(context).textTheme.titleSmall,
                                 ),
                                 Padding(
                                   padding:
@@ -163,8 +161,8 @@ class PaymentDetailsScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(top: 24, bottom: 16),
+                      const Padding(
+                        padding: EdgeInsets.only(top: 24, bottom: 16),
                         child: Divider(),
                       ),
                       Row(
@@ -187,7 +185,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 8,
                       ),
                       Row(
@@ -210,7 +208,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 8,
                       ),
                       Row(
@@ -222,9 +220,9 @@ class PaymentDetailsScreen extends StatelessWidget {
                                   .textTheme
                                   .labelMedium
                                   ?.copyWith(
-                                  color: Theme.of(context)
-                                      .colorScheme
-                                      .secondary),
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondary),
                             ),
                           ),
                           Text(
@@ -233,7 +231,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 8,
                       ),
                       Row(
@@ -332,7 +330,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                             .bodyMedium
                             ?.copyWith(fontWeight: FontWeight.w700),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 4,
                       ),
                       Text(
@@ -343,19 +341,167 @@ class PaymentDetailsScreen extends StatelessWidget {
                             ?.copyWith(
                                 color: Theme.of(context).colorScheme.secondary),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 16,
                       ),
-                      TextField2(
-                        title: "Номер карты",
-                        hint: "Номер карты",
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(18),
+                          color: Theme.of(context).colorScheme.brightness ==
+                                  Brightness.light
+                              ? const Color(0xFFF6F7F9)
+                              : const Color(0xFF061136),
+                        ),
+                        padding: const EdgeInsets.all(16),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                SizedBox(
+                                  height: 16,
+                                  width: 16,
+                                  child: Radio(
+                                    value: 0,
+                                    visualDensity: const VisualDensity(
+                                        horizontal:
+                                            VisualDensity.minimumDensity,
+                                        vertical: VisualDensity.minimumDensity),
+                                    materialTapTargetSize:
+                                        MaterialTapTargetSize.shrinkWrap,
+                                    groupValue: 0,
+                                    onChanged: (value) {},
+                                  ),
+                                ),
+                                const SizedBox(
+                                  width: 8,
+                                ),
+                                Expanded(
+                                  child: Text(
+                                    "Банковская карта",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium
+                                        ?.copyWith(fontWeight: FontWeight.w600),
+                                  ),
+                                ),
+                                Image.asset(
+                                  PathImages.humoUzcard,
+                                  width: 78,
+                                  height: 20,
+                                )
+                              ],
+                            ),
+                            const TextField2(
+                              title: "Номер карты",
+                              hint: "Номер карты",
+                              fillColor: Colors.white,
+                            ),
+                            const SizedBox(
+                              height: 16,
+                            ),
+                            const TextField2(
+                              title: "Дата окончания срока",
+                              hint: "ММ / ГГ",
+                              fillColor: Colors.white,
+                            ),
+                          ],
+                        ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 16,
                       ),
-                      TextField2(
-                        title: "Дата окончания срока",
-                        hint: "ММ / ГГ",
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(18),
+                          color: Theme.of(context).colorScheme.brightness ==
+                                  Brightness.light
+                              ? const Color(0xFFF6F7F9)
+                              : const Color(0xFF061136),
+                        ),
+                        padding: const EdgeInsets.all(16),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              height: 16,
+                              width: 16,
+                              child: Radio(
+                                value: 0,
+                                visualDensity: const VisualDensity(
+                                    horizontal: VisualDensity.minimumDensity,
+                                    vertical: VisualDensity.minimumDensity),
+                                materialTapTargetSize:
+                                    MaterialTapTargetSize.shrinkWrap,
+                                groupValue: 0,
+                                onChanged: (value) {},
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            Expanded(
+                              child: Text(
+                                "Payme",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(fontWeight: FontWeight.w600),
+                              ),
+                            ),
+                            Image.asset(
+                              PathImages.payme,
+                              width: 78,
+                              height: 20,
+                            )
+                          ],
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 16,
+                      ),
+                      Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(18),
+                          color: Theme.of(context).colorScheme.brightness ==
+                                  Brightness.light
+                              ? const Color(0xFFF6F7F9)
+                              : const Color(0xFF061136),
+                        ),
+                        padding: const EdgeInsets.all(16),
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              height: 16,
+                              width: 16,
+                              child: Radio(
+                                value: 0,
+                                visualDensity: const VisualDensity(
+                                    horizontal: VisualDensity.minimumDensity,
+                                    vertical: VisualDensity.minimumDensity),
+                                materialTapTargetSize:
+                                    MaterialTapTargetSize.shrinkWrap,
+                                groupValue: 0,
+                                onChanged: (value) {},
+                              ),
+                            ),
+                            const SizedBox(
+                              width: 8,
+                            ),
+                            Expanded(
+                              child: Text(
+                                "Click",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(fontWeight: FontWeight.w600),
+                              ),
+                            ),
+                            Image.asset(
+                              PathImages.click,
+                              width: 78,
+                              height: 20,
+                            )
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -377,7 +523,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                             .bodyMedium
                             ?.copyWith(fontWeight: FontWeight.w700),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 4,
                       ),
                       Text(
@@ -388,7 +534,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                             ?.copyWith(
                                 color: Theme.of(context).colorScheme.secondary),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 24,
                       ),
                       Container(
@@ -400,7 +546,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                                   ? const Color(0xFFF6F7F9)
                                   : const Color(0xFF061136),
                         ),
-                        padding: EdgeInsets.all(16),
+                        padding: const EdgeInsets.all(16),
                         child: Row(
                           children: [
                             SizedBox(
@@ -408,7 +554,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                                 height: 24.0,
                                 child: Checkbox(
                                     value: false, onChanged: (value) {})),
-                            SizedBox(
+                            const SizedBox(
                               width: 8,
                             ),
                             Flexible(
@@ -425,19 +571,19 @@ class PaymentDetailsScreen extends StatelessWidget {
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 16,
                       ),
                       Container(
                         decoration: Decorations.basicDecoration(
                           radius: 10,
                           background:
-                          Theme.of(context).colorScheme.brightness ==
-                              Brightness.light
-                              ? const Color(0xFFF6F7F9)
-                              : const Color(0xFF061136),
+                              Theme.of(context).colorScheme.brightness ==
+                                      Brightness.light
+                                  ? const Color(0xFFF6F7F9)
+                                  : const Color(0xFF061136),
                         ),
-                        padding: EdgeInsets.all(16),
+                        padding: const EdgeInsets.all(16),
                         child: Row(
                           children: [
                             SizedBox(
@@ -445,7 +591,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                                 height: 24.0,
                                 child: Checkbox(
                                     value: false, onChanged: (value) {})),
-                            SizedBox(
+                            const SizedBox(
                               width: 8,
                             ),
                             Flexible(
@@ -455,15 +601,32 @@ class PaymentDetailsScreen extends StatelessWidget {
                                         .textTheme
                                         .labelMedium
                                         ?.copyWith(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .secondary,
-                                    )))
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .secondary,
+                                        )))
                           ],
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 16,
+                      ),
+                      Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(
+                              left: 8,
+                            ),
+                            child: SvgPicture.asset(
+                              PathImages.securitySafety,
+                              // height: 24,
+                              // width: 24,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(
+                        height: 12,
                       ),
                       Text(
                         "Все ваши данные в безопасности",
@@ -478,12 +641,13 @@ class PaymentDetailsScreen extends StatelessWidget {
                             .textTheme
                             .labelMedium
                             ?.copyWith(
-                            color: Theme.of(context).colorScheme.secondary),
+                                color: Theme.of(context).colorScheme.secondary),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 16,
                       ),
-                      BaseButton(onPressed: null, title: "Арендовать сейчас"),
+                      const BaseButton(
+                          onPressed: null, title: "Арендовать сейчас"),
                     ],
                   ),
                 ),

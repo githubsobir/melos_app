@@ -4,13 +4,14 @@ class TextField2 extends StatelessWidget {
   final TextEditingController? controller;
   final String title;
   final String hint;
+  final Color? fillColor;
 
-  const TextField2({
-    super.key,
-    this.controller,
-    required this.title,
-    required this.hint,
-  });
+  const TextField2(
+      {super.key,
+      this.controller,
+      required this.title,
+      required this.hint,
+      this.fillColor});
 
   @override
   Widget build(BuildContext context) {
@@ -22,16 +23,16 @@ class TextField2 extends StatelessWidget {
           title,
           style: Theme.of(context).textTheme.bodySmall,
         ),
-        SizedBox(
+        const SizedBox(
           height: 12,
         ),
         TextField(
           controller: controller,
           decoration: InputDecoration(
-            fillColor:
-                Theme.of(context).colorScheme.brightness == Brightness.light
+            fillColor: fillColor ??
+                (Theme.of(context).colorScheme.brightness == Brightness.light
                     ? const Color(0xFFF6F7F9)
-                    : const Color(0xFF061136),
+                    : const Color(0xFF061136)),
             filled: true,
             hintText: hint,
             hintStyle: Theme.of(context)

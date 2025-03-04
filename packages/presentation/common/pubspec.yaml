@@ -36,6 +36,7 @@ flutter:
     - assets/profile/
     - assets/booking/
     - assets/my_cars/
+    - assets/payment/
 
   fonts:
     - family: BOLD
