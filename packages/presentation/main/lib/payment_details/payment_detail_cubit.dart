@@ -1,5 +1,5 @@
-import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PaymentDetailCubit extends Cubit<PaymentDetailState> {
   PaymentDetailCubit()
@@ -65,6 +65,12 @@ class PaymentDetailState extends Equatable {
   }
 
   @override
-  List<Object?> get props =>
-      [paymentMethods, selectedMethod, firstAgreement, secondAgreement, cardNumber, cardDate];
+  List<Object?> get props => [
+        paymentMethods,
+        selectedMethod,
+        firstAgreement,
+        secondAgreement,
+        cardNumber,
+        cardDate
+      ];
 }

@@ -83,4 +83,5 @@ class PathImages {
   static var humoUzcard = "packages/common/assets/payment/humo_uzcard.png";
   static var payme = "packages/common/assets/payment/payme.png";
   static var securitySafety = "packages/common/assets/payment/security_safety.svg";
+  static var paymentSuccessfully = "packages/common/assets/payment/payment_successfully.svg";
 }
