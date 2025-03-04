@@ -596,6 +596,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                                   height: 24.0,
                                   child: Checkbox(
                                     value: cubit.state.firstAgreement,
+                                    checkColor: Colors.white,
                                     onChanged: (value) {
                                       cubit.setFirstAgreement((value ?? false));
                                     },
@@ -640,6 +641,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                                   height: 24.0,
                                   child: Checkbox(
                                     value: cubit.state.secondAgreement,
+                                    checkColor: Colors.white,
                                     onChanged: (value) {
                                       cubit
                                           .setSecondAgreement((value ?? false));
