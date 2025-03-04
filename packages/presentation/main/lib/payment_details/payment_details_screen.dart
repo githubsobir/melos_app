@@ -3,6 +3,7 @@ import 'package:common/decorations.dart';
 import 'package:common/path_images.dart';
 import 'package:common/widgets/base_button.dart';
 import 'package:common/widgets/textfield2.dart';
+import 'package:dependency/dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -13,7 +14,7 @@ import 'package:main/payment_details/payment_detail_cubit.dart';
 class PaymentDetailsScreen extends StatelessWidget {
   PaymentDetailsScreen({super.key});
 
-  final PaymentDetailCubit cubit = PaymentDetailCubit();
+  final PaymentDetailCubit cubit = PaymentDetailCubit(inject());
   final TextEditingController cardNumberController = TextEditingController();
   final TextEditingController cardDateController = TextEditingController();
 

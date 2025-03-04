@@ -1,8 +1,11 @@
+import 'package:domain/usecase/payment_usecase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PaymentDetailCubit extends Cubit<PaymentDetailState> {
-  PaymentDetailCubit()
+  final PaymentUseCase _paymentUseCase;
+
+  PaymentDetailCubit(this._paymentUseCase)
       : super(PaymentDetailState(
           selectedMethod: 0,
           firstAgreement: false,
@@ -10,6 +13,17 @@ class PaymentDetailCubit extends Cubit<PaymentDetailState> {
           cardNumber: "",
           cardDate: "",
         ));
+
+  // Future<void> getNotifications() async {
+  //   emit(LoaderState());
+  //   var response = await _paymentUseCase.getNotifications();
+  //   if (response.success) {
+  //     var info = response.body;
+  //     if (info != null) {
+  //       emit(NotificationsListState(info));
+  //     }
+  //   }
+  // }
 
   Future<void> selectPaymentMethod(int selectedMethod) async {
     emit(state.copyWith(selectedMethod: selectedMethod));
