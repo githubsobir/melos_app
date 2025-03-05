@@ -4,6 +4,7 @@ import 'package:common/path_images.dart';
 import 'package:common/widgets/base_button.dart';
 import 'package:common/widgets/textfield2.dart';
 import 'package:dependency/dependencies.dart';
+import 'package:domain/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
@@ -50,6 +51,7 @@ class PaymentDetailsScreen extends StatelessWidget {
       body: BlocBuilder<PaymentDetailCubit, PaymentDetailState>(
         bloc: cubit,
         builder: (context, state) {
+          print("photo: ${state.paymentProcessModel.photo}");
           return SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.only(left: 24, right: 24),
@@ -81,7 +83,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                               const SizedBox(
                                 width: 8,
                               ),
-                              true
+                              state.paymentProcessModel.liked ?? false
                                   ? SvgPicture.asset(
                                       PathImages.favouriteOn,
                                       height: 24,
@@ -109,7 +111,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(8.0),
                                   child: CachedNetworkImage(
                                     imageUrl:
-                                        "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?cs=srgb&dl=pexels-mikebirdy-170811.jpg&fm=jpg",
+                                        "$BASE_URL_IMAGE${state.paymentProcessModel.photo}",
                                     width: 116,
                                     height: 80,
                                     fit: BoxFit.fill,
@@ -152,7 +154,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                                       CrossAxisAlignment.stretch,
                                   children: [
                                     Text(
-                                      "Малибу Турбо ",
+                                      state.paymentProcessModel.make ?? "",
                                       style: Theme.of(context)
                                           .textTheme
                                           .titleSmall,
@@ -161,7 +163,11 @@ class PaymentDetailsScreen extends StatelessWidget {
                                       padding: const EdgeInsets.only(
                                           top: 12, bottom: 4),
                                       child: RatingBar.builder(
-                                        initialRating: 4,
+                                        initialRating: (state
+                                                    .paymentProcessModel
+                                                    .totalRate ??
+                                                0)
+                                            .toDouble(),
                                         minRating: 1,
                                         itemCount: 5,
                                         itemSize: 18,
@@ -210,7 +216,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                "6",
+                                "${state.paymentProcessModel.day}",
                                 style: Theme.of(context).textTheme.bodyMedium,
                               ),
                             ],
@@ -233,7 +239,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                "99 000 сум",
+                                "${state.paymentProcessModel.dailyRate} сум",
                                 style: Theme.of(context).textTheme.bodyMedium,
                               ),
                             ],
@@ -256,7 +262,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                "9 000 сум",
+                                "${state.paymentProcessModel.securityDeposit} сум",
                                 style: Theme.of(context).textTheme.bodyMedium,
                               ),
                             ],

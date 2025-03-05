@@ -35,11 +35,11 @@ class PaymentProcessResponse {
   num? year;
   String? dailyRate;
   String? photo;
-  String? totalRate;
+  num? totalRate;
   String? securityDeposit;
   String? url;
-  String? day;
-  String? liked;
+  num? day;
+  bool? liked;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

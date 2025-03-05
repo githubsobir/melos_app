@@ -26,7 +26,8 @@ class PaymentDetailCubit extends Cubit<PaymentDetailState> {
     if (response.success) {
       var info = response.body;
       if (info != null) {
-        emit(state.copyWith());
+        print("info ${info.photo}");
+        emit(state.copyWith(paymentProcessModel: info));
       }
     }
   }

@@ -19,9 +19,9 @@ class PaymentProcessModel {
   num? year;
   String? dailyRate;
   String? photo;
-  String? totalRate;
+  num? totalRate;
   String? securityDeposit;
   String? url;
-  String? day;
-  String? liked;
+  num? day;
+  bool? liked;
 }
