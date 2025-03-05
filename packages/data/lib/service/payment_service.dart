@@ -1,3 +1,4 @@
+import 'package:data/models/remote/payment/request/send_invoice_request.dart';
 import 'package:data/network/net_base.dart';
 import 'package:dio/dio.dart';
 
@@ -13,6 +14,12 @@ class PaymentService {
     var response = await _netBase.dio.get(
       'payments/process/$carId/?start_date_time=$startDateTme&end_date_time=$endDateTme',
     );
+    return response;
+  }
+
+  Future<Response> sendInvoice(SendInvoiceRequest sendInvoiceRequest) async {
+    var response = await _netBase.dio
+        .post('payments/send-invoice/', data: sendInvoiceRequest.toJson());
     return response;
   }
 }

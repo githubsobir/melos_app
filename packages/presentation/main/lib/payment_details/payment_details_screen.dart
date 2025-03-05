@@ -2,12 +2,10 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:common/decorations.dart';
 import 'package:common/path_images.dart';
 import 'package:common/widgets/base_button.dart';
-import 'package:common/widgets/textfield2.dart';
 import 'package:dependency/dependencies.dart';
 import 'package:domain/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:main/payment_details/payment/payment_bottom_sheet.dart';
 import 'package:main/payment_details/payment_detail_cubit.dart';
@@ -48,7 +46,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                 ? const Color(0xFFF6F7F9)
                 : const Color(0xFF061136),
       ),
-      body: BlocBuilder<PaymentDetailCubit, PaymentDetailState>(
+      body: BlocConsumer<PaymentDetailCubit, PaymentDetailState>(
         bloc: cubit,
         builder: (context, state) {
           print("photo: ${state.paymentProcessModel.photo}");
@@ -151,9 +149,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                               Expanded(
                                 child: Text(
                                   state.paymentProcessModel.make ?? "",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyLarge,
+                                  style: Theme.of(context).textTheme.bodyLarge,
                                 ),
                               ),
                             ],
@@ -243,7 +239,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                "${state.paymentProcessModel.dailyRate} сум",
+                                "${state.paymentProcessModel.totalAmount} сум",
                                 style: Theme.of(context).textTheme.titleSmall,
                               ),
                             ],
@@ -340,103 +336,103 @@ class PaymentDetailsScreen extends StatelessWidget {
                                         .colorScheme
                                         .secondary),
                           ),
+                          // const SizedBox(
+                          //   height: 16,
+                          // ),
+                          // GestureDetector(
+                          //   onTap: () {
+                          //     cubit.selectPaymentMethod(0);
+                          //   },
+                          //   child: Container(
+                          //     decoration: BoxDecoration(
+                          //       borderRadius: BorderRadius.circular(18),
+                          //       color:
+                          //           Theme.of(context).colorScheme.brightness ==
+                          //                   Brightness.light
+                          //               ? const Color(0xFFF6F7F9)
+                          //               : const Color(0xFF061136),
+                          //     ),
+                          //     padding: const EdgeInsets.all(16),
+                          //     child: Column(
+                          //       children: [
+                          //         Row(
+                          //           children: [
+                          //             SizedBox(
+                          //               height: 16,
+                          //               width: 16,
+                          //               child: Radio(
+                          //                 value: cubit.state.selectedMethod,
+                          //                 visualDensity: const VisualDensity(
+                          //                     horizontal:
+                          //                         VisualDensity.minimumDensity,
+                          //                     vertical:
+                          //                         VisualDensity.minimumDensity),
+                          //                 materialTapTargetSize:
+                          //                     MaterialTapTargetSize.shrinkWrap,
+                          //                 groupValue:
+                          //                     cubit.state.paymentMethods[0],
+                          //                 onChanged: (value) {},
+                          //               ),
+                          //             ),
+                          //             const SizedBox(
+                          //               width: 8,
+                          //             ),
+                          //             Expanded(
+                          //               child: Text(
+                          //                 "Банковская карта",
+                          //                 style: Theme.of(context)
+                          //                     .textTheme
+                          //                     .bodyMedium
+                          //                     ?.copyWith(
+                          //                         fontWeight: FontWeight.w600),
+                          //               ),
+                          //             ),
+                          //             Image.asset(
+                          //               PathImages.humoUzcard,
+                          //               width: 78,
+                          //               height: 20,
+                          //             )
+                          //           ],
+                          //         ),
+                          //         TextField2(
+                          //           title: "Номер карты",
+                          //           hint: "Номер карты",
+                          //           fillColor: Colors.white,
+                          //           controller: cardNumberController
+                          //             ..addListener(
+                          //               () {
+                          //                 cubit.setCardNumber(
+                          //                   cardNumberController.text,
+                          //                 );
+                          //               },
+                          //             ),
+                          //         ),
+                          //         const SizedBox(
+                          //           height: 16,
+                          //         ),
+                          //         TextField2(
+                          //           title: "Дата окончания срока",
+                          //           hint: "ММ / ГГ",
+                          //           fillColor: Colors.white,
+                          //           controller: cardDateController
+                          //             ..addListener(
+                          //               () {
+                          //                 cubit.setCardDate(
+                          //                   cardDateController.text,
+                          //                 );
+                          //               },
+                          //             ),
+                          //         ),
+                          //       ],
+                          //     ),
+                          //   ),
+                          // ),
                           const SizedBox(
                             height: 16,
                           ),
                           GestureDetector(
                             onTap: () {
-                              cubit.selectPaymentMethod(0);
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(18),
-                                color:
-                                    Theme.of(context).colorScheme.brightness ==
-                                            Brightness.light
-                                        ? const Color(0xFFF6F7F9)
-                                        : const Color(0xFF061136),
-                              ),
-                              padding: const EdgeInsets.all(16),
-                              child: Column(
-                                children: [
-                                  Row(
-                                    children: [
-                                      SizedBox(
-                                        height: 16,
-                                        width: 16,
-                                        child: Radio(
-                                          value: cubit.state.selectedMethod,
-                                          visualDensity: const VisualDensity(
-                                              horizontal:
-                                                  VisualDensity.minimumDensity,
-                                              vertical:
-                                                  VisualDensity.minimumDensity),
-                                          materialTapTargetSize:
-                                              MaterialTapTargetSize.shrinkWrap,
-                                          groupValue:
-                                              cubit.state.paymentMethods[0],
-                                          onChanged: (value) {},
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        width: 8,
-                                      ),
-                                      Expanded(
-                                        child: Text(
-                                          "Банковская карта",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium
-                                              ?.copyWith(
-                                                  fontWeight: FontWeight.w600),
-                                        ),
-                                      ),
-                                      Image.asset(
-                                        PathImages.humoUzcard,
-                                        width: 78,
-                                        height: 20,
-                                      )
-                                    ],
-                                  ),
-                                  TextField2(
-                                    title: "Номер карты",
-                                    hint: "Номер карты",
-                                    fillColor: Colors.white,
-                                    controller: cardNumberController
-                                      ..addListener(
-                                        () {
-                                          cubit.setCardNumber(
-                                            cardNumberController.text,
-                                          );
-                                        },
-                                      ),
-                                  ),
-                                  const SizedBox(
-                                    height: 16,
-                                  ),
-                                  TextField2(
-                                    title: "Дата окончания срока",
-                                    hint: "ММ / ГГ",
-                                    fillColor: Colors.white,
-                                    controller: cardDateController
-                                      ..addListener(
-                                        () {
-                                          cubit.setCardDate(
-                                            cardDateController.text,
-                                          );
-                                        },
-                                      ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          const SizedBox(
-                            height: 16,
-                          ),
-                          GestureDetector(
-                            onTap: () {
-                              cubit.selectPaymentMethod(1);
+                              cubit.selectPaymentMethod("Payme");
                             },
                             child: Container(
                               decoration: BoxDecoration(
@@ -462,7 +458,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                                               VisualDensity.minimumDensity),
                                       materialTapTargetSize:
                                           MaterialTapTargetSize.shrinkWrap,
-                                      groupValue: cubit.state.paymentMethods[1],
+                                      groupValue: cubit.state.paymentMethods[0],
                                       onChanged: (value) {},
                                     ),
                                   ),
@@ -493,7 +489,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                           ),
                           GestureDetector(
                             onTap: () {
-                              cubit.selectPaymentMethod(2);
+                              cubit.selectPaymentMethod("Click");
                             },
                             child: Container(
                               decoration: BoxDecoration(
@@ -519,7 +515,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                                               VisualDensity.minimumDensity),
                                       materialTapTargetSize:
                                           MaterialTapTargetSize.shrinkWrap,
-                                      groupValue: cubit.state.paymentMethods[2],
+                                      groupValue: cubit.state.paymentMethods[1],
                                       onChanged: (value) {},
                                     ),
                                   ),
@@ -711,16 +707,17 @@ class PaymentDetailsScreen extends StatelessWidget {
                           ),
                           BaseButton(
                               onPressed: (cubit.state.firstAgreement &&
-                                      cubit.state.secondAgreement &&
-                                      ((cubit.state.selectedMethod == 0 &&
-                                              cubit.state.cardNumber
-                                                  .isNotEmpty &&
-                                              cubit
-                                                  .state.cardDate.isNotEmpty) ||
-                                          cubit.state.selectedMethod == 1 ||
-                                          cubit.state.selectedMethod == 2))
+                                      cubit.state.secondAgreement)
                                   ? () {
-                                      PaymentBottomSheet.show(context: context);
+                                      cubit.sendInvoice(
+                                        amount: state.paymentProcessModel
+                                                .totalAmount ??
+                                            0,
+                                        carId: carId,
+                                        paymentMethod: state.selectedMethod,
+                                        startDateTme: startDateTme,
+                                        endDateTme: endDateTme,
+                                      );
                                     }
                                   : null,
                               title: "Арендовать сейчас"),
@@ -735,6 +732,11 @@ class PaymentDetailsScreen extends StatelessWidget {
               ),
             ),
           );
+        },
+        listener: (BuildContext context, PaymentDetailState state) {
+          if (state.invoice != null) {
+            PaymentBottomSheet.show(context: context);
+          }
         },
       ),
     );
