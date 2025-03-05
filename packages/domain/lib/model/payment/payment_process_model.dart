@@ -6,7 +6,7 @@ class PaymentProcessModel {
     this.year,
     this.dailyRate,
     this.photo,
-    this.totalRate,
+    this.totalAmount,
     this.securityDeposit,
     this.url,
     this.day,
@@ -19,7 +19,7 @@ class PaymentProcessModel {
   num? year;
   String? dailyRate;
   String? photo;
-  num? totalRate;
+  num? totalAmount;
   String? securityDeposit;
   String? url;
   num? day;

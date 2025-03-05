@@ -8,7 +8,7 @@ class PaymentProcessResponse {
     this.year,
     this.dailyRate,
     this.photo,
-    this.totalRate,
+    this.totalAmount,
     this.securityDeposit,
     this.url,
     this.day,
@@ -22,7 +22,7 @@ class PaymentProcessResponse {
     year = json['year'];
     dailyRate = json['daily_rate'];
     photo = json['photo'];
-    totalRate = json['total_rate'];
+    totalAmount = json['total_rate'];
     securityDeposit = json['security_deposit'];
     url = json['url'];
     day = json['day'];
@@ -35,7 +35,7 @@ class PaymentProcessResponse {
   num? year;
   String? dailyRate;
   String? photo;
-  num? totalRate;
+  num? totalAmount;
   String? securityDeposit;
   String? url;
   num? day;
@@ -49,7 +49,7 @@ class PaymentProcessResponse {
     map['year'] = year;
     map['daily_rate'] = dailyRate;
     map['photo'] = photo;
-    map['total_rate'] = totalRate;
+    map['total_rate'] = totalAmount;
     map['security_deposit'] = securityDeposit;
     map['url'] = url;
     map['day'] = day;
@@ -67,7 +67,7 @@ extension PaymentProcessMapper on PaymentProcessResponse {
       year: year,
       dailyRate: dailyRate,
       photo: photo,
-      totalRate: totalRate,
+      totalAmount: totalAmount,
       securityDeposit: securityDeposit,
       url: url,
       day: day,

@@ -149,50 +149,11 @@ class PaymentDetailsScreen extends StatelessWidget {
                                 width: 16,
                               ),
                               Expanded(
-                                child: Column(
-                                  crossAxisAlignment:
-                                      CrossAxisAlignment.stretch,
-                                  children: [
-                                    Text(
-                                      state.paymentProcessModel.make ?? "",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .titleSmall,
-                                    ),
-                                    Padding(
-                                      padding: const EdgeInsets.only(
-                                          top: 12, bottom: 4),
-                                      child: RatingBar.builder(
-                                        initialRating: (state
-                                                    .paymentProcessModel
-                                                    .totalRate ??
-                                                0)
-                                            .toDouble(),
-                                        minRating: 1,
-                                        itemCount: 5,
-                                        itemSize: 18,
-                                        itemPadding: const EdgeInsets.symmetric(
-                                            horizontal: 4.0),
-                                        itemBuilder: (context, _) => const Icon(
-                                          Icons.star,
-                                          color: Colors.amber,
-                                        ),
-                                        onRatingUpdate: (rating) {
-                                          print(rating);
-                                        },
-                                      ),
-                                    ),
-                                    Text(
-                                      "440+ рецензентов",
-                                      style: Theme.of(context)
-                                          .textTheme
-                                          .labelMedium
-                                          ?.copyWith(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .secondary),
-                                    ),
-                                  ],
+                                child: Text(
+                                  state.paymentProcessModel.make ?? "",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyLarge,
                                 ),
                               ),
                             ],
@@ -282,7 +243,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                                 ),
                               ),
                               Text(
-                                "108 900 сум",
+                                "${state.paymentProcessModel.dailyRate} сум",
                                 style: Theme.of(context).textTheme.titleSmall,
                               ),
                             ],
