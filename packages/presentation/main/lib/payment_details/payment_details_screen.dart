@@ -735,7 +735,8 @@ class PaymentDetailsScreen extends StatelessWidget {
         },
         listener: (BuildContext context, PaymentDetailState state) {
           if (state.invoice != null) {
-            PaymentBottomSheet.show(context: context);
+            PaymentBottomSheet.show(
+                context: context, paymentId: state.invoice?.paymentId ?? 0);
           }
         },
       ),

@@ -7,13 +7,14 @@ import 'package:intent_launcher/intent_launcher.dart';
 import 'package:main/payment_details/payment/payment_cubit.dart';
 
 class PaymentBottomSheet extends StatelessWidget {
-  PaymentBottomSheet({super.key});
+  final num paymentId;
+
+  PaymentBottomSheet({super.key, required this.paymentId});
 
   final PaymentCubit cubit = PaymentCubit()..pay();
 
-  static Future show({
-    required BuildContext context,
-  }) async {
+  static Future show(
+      {required BuildContext context, required num paymentId}) async {
     var result = await showModalBottomSheet(
       context: context,
       isScrollControlled: false,
@@ -21,7 +22,9 @@ class PaymentBottomSheet extends StatelessWidget {
       enableDrag: false,
       backgroundColor: Colors.transparent,
       builder: (context) {
-        return PaymentBottomSheet();
+        return PaymentBottomSheet(
+          paymentId: paymentId,
+        );
       },
     );
     return result;

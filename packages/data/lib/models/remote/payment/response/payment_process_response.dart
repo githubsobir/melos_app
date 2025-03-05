@@ -22,7 +22,7 @@ class PaymentProcessResponse {
     year = json['year'];
     dailyRate = json['daily_rate'];
     photo = json['photo'];
-    totalAmount = json['total_rate'];
+    totalAmount = json['total_amount'];
     securityDeposit = json['security_deposit'];
     url = json['url'];
     day = json['day'];
@@ -49,7 +49,7 @@ class PaymentProcessResponse {
     map['year'] = year;
     map['daily_rate'] = dailyRate;
     map['photo'] = photo;
-    map['total_rate'] = totalAmount;
+    map['total_amount'] = totalAmount;
     map['security_deposit'] = securityDeposit;
     map['url'] = url;
     map['day'] = day;
