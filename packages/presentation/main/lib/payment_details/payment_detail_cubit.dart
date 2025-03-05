@@ -1,3 +1,4 @@
+import 'package:domain/model/payment/payment_process_model.dart';
 import 'package:domain/usecase/payment_usecase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,18 +13,23 @@ class PaymentDetailCubit extends Cubit<PaymentDetailState> {
           secondAgreement: false,
           cardNumber: "",
           cardDate: "",
+          paymentProcessModel: PaymentProcessModel(),
         ));
 
-  // Future<void> getNotifications() async {
-  //   emit(LoaderState());
-  //   var response = await _paymentUseCase.getNotifications();
-  //   if (response.success) {
-  //     var info = response.body;
-  //     if (info != null) {
-  //       emit(NotificationsListState(info));
-  //     }
-  //   }
-  // }
+  Future<void> paymentProcess({
+    required int carId,
+    required String startDateTme,
+    required String endDateTme,
+  }) async {
+    var response = await _paymentUseCase.paymentProcess(
+        carId: carId, startDateTme: startDateTme, endDateTme: endDateTme);
+    if (response.success) {
+      var info = response.body;
+      if (info != null) {
+        emit(state.copyWith());
+      }
+    }
+  }
 
   Future<void> selectPaymentMethod(int selectedMethod) async {
     emit(state.copyWith(selectedMethod: selectedMethod));
@@ -53,6 +59,7 @@ class PaymentDetailState extends Equatable {
   final bool secondAgreement;
   final String cardNumber;
   final String cardDate;
+  final PaymentProcessModel paymentProcessModel;
 
   PaymentDetailState({
     required this.selectedMethod,
@@ -60,21 +67,23 @@ class PaymentDetailState extends Equatable {
     required this.secondAgreement,
     required this.cardNumber,
     required this.cardDate,
+    required this.paymentProcessModel,
   });
 
-  PaymentDetailState copyWith({
-    int? selectedMethod,
-    bool? firstAgreement,
-    bool? secondAgreement,
-    String? cardNumber,
-    String? cardDate,
-  }) {
+  PaymentDetailState copyWith(
+      {int? selectedMethod,
+      bool? firstAgreement,
+      bool? secondAgreement,
+      String? cardNumber,
+      String? cardDate,
+      PaymentProcessModel? paymentProcessModel}) {
     return PaymentDetailState(
       selectedMethod: selectedMethod ?? this.selectedMethod,
       firstAgreement: firstAgreement ?? this.firstAgreement,
       secondAgreement: secondAgreement ?? this.secondAgreement,
       cardNumber: cardNumber ?? this.cardNumber,
       cardDate: cardDate ?? this.cardDate,
+      paymentProcessModel: paymentProcessModel ?? this.paymentProcessModel,
     );
   }
 
@@ -85,6 +94,7 @@ class PaymentDetailState extends Equatable {
         firstAgreement,
         secondAgreement,
         cardNumber,
-        cardDate
+        cardDate,
+        paymentProcessModel,
       ];
 }

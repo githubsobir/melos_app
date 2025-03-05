@@ -24,6 +24,9 @@ class CarInfoDetailScreen extends StatelessWidget {
 
   final cubit = CarInfoDetailCubit(inject());
 
+  DateTime startDateTime = DateTime.now();
+  DateTime endDateTime = DateTime.now();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -312,6 +315,25 @@ class CarInfoDetailScreen extends StatelessWidget {
                       onRangeSelected: (dateRange, timeRange) {
                         print(
                             "xaxaaxa ${dateRange.toString()} - ${timeRange.toString()}");
+                        var start = dateRange.startDate;
+                        var end = dateRange.endDate;
+                        if (start != null && end != null) {
+                           startDateTime = DateTime(
+                            start.year,
+                            start.month,
+                            start.day,
+                            timeRange.start.hour,
+                            timeRange.start.minute,
+                          );
+
+                           endDateTime = DateTime(
+                             end.year,
+                             end.month,
+                             end.day,
+                            timeRange.end.hour,
+                            timeRange.end.minute,
+                          );
+                        }
                       },
                     ),
                   ),
@@ -403,7 +425,12 @@ class CarInfoDetailScreen extends StatelessWidget {
                             ),
                             BaseButton(
                                 onPressed: () {
-                                  context.openScreen(PaymentDetailsIntent());
+                                  print(startDateTime.toString());
+                                  context.openScreen(PaymentDetailsIntent(
+                                    carId: carId,
+                                    startDateTme: startDateTime.toIso8601String(),
+                                    endDateTme: endDateTime.toIso8601String(),
+                                  ));
                                 },
                                 title: context.translations.rent)
                           ],

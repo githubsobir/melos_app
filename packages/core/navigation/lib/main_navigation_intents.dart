@@ -18,6 +18,15 @@ class HelpIntent implements NavigationIntent {
 
 class PaymentDetailsIntent implements NavigationIntent {
   static String path = "/payment_details";
+  final num carId;
+  final String startDateTme;
+  final String endDateTme;
+
+  PaymentDetailsIntent({
+    required this.carId,
+    required this.startDateTme,
+    required this.endDateTme,
+  });
 }
 
 class NotificationsScreenIntent implements NavigationIntent {

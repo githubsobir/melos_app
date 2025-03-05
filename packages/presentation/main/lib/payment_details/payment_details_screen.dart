@@ -12,7 +12,22 @@ import 'package:main/payment_details/payment/payment_bottom_sheet.dart';
 import 'package:main/payment_details/payment_detail_cubit.dart';
 
 class PaymentDetailsScreen extends StatelessWidget {
-  PaymentDetailsScreen({super.key});
+  PaymentDetailsScreen({
+    super.key,
+    required this.carId,
+    required this.startDateTme,
+    required this.endDateTme,
+  }) {
+    cubit.paymentProcess(
+      carId: carId.toInt(),
+      startDateTme: startDateTme,
+      endDateTme: endDateTme,
+    );
+  }
+
+  final num carId;
+  final String startDateTme;
+  final String endDateTme;
 
   final PaymentDetailCubit cubit = PaymentDetailCubit(inject());
   final TextEditingController cardNumberController = TextEditingController();

@@ -28,109 +28,99 @@ import 'package:splash/splash/splash_screen.dart';
 
 final _launcher = IntentLauncher()
 // login
-      ..onNavigationIntent<OnboardingIntent>((context, intent) {
-        return Navigator.pushReplacementNamed(context, OnboardingIntent.path);
-      })
-      ..onNavigationIntent<LoginIntent>((context, intent) {
-        Navigator.of(context).popUntil((route) => route.isFirst);
-        return Navigator.pushNamedAndRemoveUntil(
-          context,
-          LoginIntent.path,
-          (route) => false,
-        );
-      })
-      ..onNavigationIntent<PasswordScreenIntent>((context, intent) {
-        return Navigator.pushNamed(
-          context,
-          PasswordScreenIntent.path,
-          arguments: intent.phoneNumber,
-        );
-      })
-      ..onNavigationIntent<RegisterIntent>((context, intent) {
-        return Navigator.pushReplacementNamed(
-          context,
-          RegisterIntent.path,
-          arguments: intent.phoneNumber,
-        );
-      })
-      ..onNavigationIntent<PhoneNumberIntent>((context, intent) {
-        return Navigator.pushNamed(context, PhoneNumberIntent.path,
-            arguments: intent.isRegister);
-      })
-      ..onNavigationIntent<OtpCodeIntent>((context, intent) {
-        return Navigator.pushNamed(
-          context,
-          OtpCodeIntent.path,
-          arguments: {
-            "phoneNumber": intent.phoneNumber,
-            "isRegister": intent.isRegister,
-          },
-        );
-      })
-      ..onNavigationIntent<ForgotPasswordIntent>((context, intent) {
-        return Navigator.pushNamed(
-          context,
-          ForgotPasswordIntent.path,
-          arguments: intent.phoneNumber,
-        );
-      })
+  ..onNavigationIntent<OnboardingIntent>((context, intent) {
+    return Navigator.pushReplacementNamed(context, OnboardingIntent.path);
+  })
+  ..onNavigationIntent<LoginIntent>((context, intent) {
+    Navigator.of(context).popUntil((route) => route.isFirst);
+    return Navigator.pushNamedAndRemoveUntil(
+      context,
+      LoginIntent.path,
+      (route) => false,
+    );
+  })
+  ..onNavigationIntent<PasswordScreenIntent>((context, intent) {
+    return Navigator.pushNamed(
+      context,
+      PasswordScreenIntent.path,
+      arguments: intent.phoneNumber,
+    );
+  })
+  ..onNavigationIntent<RegisterIntent>((context, intent) {
+    return Navigator.pushReplacementNamed(
+      context,
+      RegisterIntent.path,
+      arguments: intent.phoneNumber,
+    );
+  })
+  ..onNavigationIntent<PhoneNumberIntent>((context, intent) {
+    return Navigator.pushNamed(context, PhoneNumberIntent.path,
+        arguments: intent.isRegister);
+  })
+  ..onNavigationIntent<OtpCodeIntent>((context, intent) {
+    return Navigator.pushNamed(
+      context,
+      OtpCodeIntent.path,
+      arguments: {
+        "phoneNumber": intent.phoneNumber,
+        "isRegister": intent.isRegister,
+      },
+    );
+  })
+  ..onNavigationIntent<ForgotPasswordIntent>((context, intent) {
+    return Navigator.pushNamed(
+      context,
+      ForgotPasswordIntent.path,
+      arguments: intent.phoneNumber,
+    );
+  })
 // main
-      ..onNavigationIntent<MainIntent>((context, intent) {
-        Navigator.of(context).popUntil((route) => route.isFirst);
-        return Navigator.pushNamedAndRemoveUntil(
-          context,
-          MainIntent.path,
-          (route) => false,
-        );
-      })
-      ..onNavigationIntent<BookingIntent>((context, intent) {
-        return Navigator.pushNamed(context, BookingIntent.path);
-      })
-      ..onNavigationIntent<BookingHistoryIntent>((context, intent) {
-        return Navigator.pushNamed(context, BookingHistoryIntent.path);
-      })
-      ..onNavigationIntent<HelpIntent>((context, intent) {
-        return Navigator.pushNamed(context, HelpIntent.path);
-      })
-      ..onNavigationIntent<NotificationsScreenIntent>((context, intent) {
-        return Navigator.pushNamed(context, NotificationsScreenIntent.path);
-      })
+  ..onNavigationIntent<MainIntent>((context, intent) {
+    Navigator.of(context).popUntil((route) => route.isFirst);
+    return Navigator.pushNamedAndRemoveUntil(
+      context,
+      MainIntent.path,
+      (route) => false,
+    );
+  })
+  ..onNavigationIntent<BookingIntent>((context, intent) {
+    return Navigator.pushNamed(context, BookingIntent.path);
+  })
+  ..onNavigationIntent<BookingHistoryIntent>((context, intent) {
+    return Navigator.pushNamed(context, BookingHistoryIntent.path);
+  })
+  ..onNavigationIntent<HelpIntent>((context, intent) {
+    return Navigator.pushNamed(context, HelpIntent.path);
+  })
+  ..onNavigationIntent<NotificationsScreenIntent>((context, intent) {
+    return Navigator.pushNamed(context, NotificationsScreenIntent.path);
+  })
 //MyCars
-      ..onNavigationIntent<MyCarsIntent>((context, intent) {
-        return Navigator.pushNamed(context, MyCarsIntent.path);
-      })
-      ..onNavigationIntent<CreateCarInfoIntent>((context, intent) {
-        return Navigator.pushNamed(context, CreateCarInfoIntent.path);
-      })
-      ..onNavigationIntent<PaymentDetailsIntent>((context, intent) {
-        return Navigator.pushNamed(context, PaymentDetailsIntent.path);
-      })
-      ..onNavigationIntent<CarInfoDetailIntent>((context, intent) {
-        return Navigator.pushNamed(context, CarInfoDetailIntent.path,
-            arguments: intent.carId);
-      })
-      ..onNavigationIntent<MyCarLocationIntent>((context, intent) {
-        return Navigator.pushNamed(context, MyCarLocationIntent.path);
-      })
+  ..onNavigationIntent<MyCarsIntent>((context, intent) {
+    return Navigator.pushNamed(context, MyCarsIntent.path);
+  })
+  ..onNavigationIntent<CreateCarInfoIntent>((context, intent) {
+    return Navigator.pushNamed(context, CreateCarInfoIntent.path);
+  })
+  ..onNavigationIntent<PaymentDetailsIntent>((context, intent) {
+    return Navigator.pushNamed(context, PaymentDetailsIntent.path, arguments: {
+      "carId": intent.carId,
+      "startDateTme": intent.startDateTme,
+      "endDateTme": intent.endDateTme,
+    });
+  })
+  ..onNavigationIntent<CarInfoDetailIntent>((context, intent) {
+    return Navigator.pushNamed(context, CarInfoDetailIntent.path,
+        arguments: intent.carId);
+  })
+  ..onNavigationIntent<MyCarLocationIntent>((context, intent) {
+    return Navigator.pushNamed(context, MyCarLocationIntent.path);
+  })
 //profile
-      ..onNavigationIntent<EditProfileIntent>((context, intent) {
-        return Navigator.pushNamed(context, EditProfileIntent.path,
-            arguments: intent.info);
-      })
-// ..onNavigationIntent<EditUserScreenIntent>((context, intent) {
-//   return Navigator.pushNamed(context, EditUserScreenIntent.path,
-//       arguments: intent.id);
-// })
-// ..onNavigationIntent<EditTemplateIntent>((context, intent) {
-//   return Navigator.pushNamed(context, EditTemplateIntent.path, arguments: {
-//     "id": intent.id,
-//     "language": intent.language,
-//     "name": intent.name,
-//     "message": intent.message,
-//     "status": intent.status
-//   });
-// })
-    ;
+  ..onNavigationIntent<EditProfileIntent>((context, intent) {
+    return Navigator.pushNamed(context, EditProfileIntent.path,
+        arguments: intent.info);
+  });
 
 Route<dynamic>? onGenerateRoute(RouteSettings settings) {
   if (SplashIntent.path == settings.name) {
@@ -184,27 +174,18 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
   } else if (CreateCarInfoIntent.path == settings.name) {
     return _createRoute(CreateCarInfoScreen().wrapWith(_launcher));
   } else if (PaymentDetailsIntent.path == settings.name) {
-    return _createRoute(PaymentDetailsScreen().wrapWith(_launcher));
+    var map = settings.arguments as Map;
+    return _createRoute(PaymentDetailsScreen(
+      carId: map["carId"],
+      startDateTme: map["startDateTme"],
+      endDateTme: map["endDateTme"],
+    ).wrapWith(_launcher));
   } else if (EditProfileIntent.path == settings.name) {
     var info = settings.arguments as UserInformationModel;
     return _createRoute(EditProfileScreen(
       info: info,
     ).wrapWith(_launcher));
   }
-  // } else if (EditUserScreenIntent.path == settings.name) {
-  //   var id = settings.arguments as num;
-  //   return _route((_) => EditUserScreen(id: id).wrapWith(_launcher));
-  // } else if (EditTemplateIntent.path == settings.name) {
-  //   var map = settings.arguments as Map;
-  //
-  //   return _route((_) => EditTemplateScreen(
-  //           id: map["id"],
-  //           language: map["language"],
-  //           name: map["name"],
-  //           message: map["message"],
-  //           status: map["status"])
-  //       .wrapWith(_launcher));
-  // }
   return null;
 }
 
