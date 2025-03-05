@@ -1,13 +1,3 @@
-class SendInvoiceModel {
-  SendInvoiceModel({
-    this.message,
-    this.invoiceModel,
-  });
-
-  String? message;
-  InvoiceModel? invoiceModel;
-}
-
 class InvoiceModel {
   InvoiceModel({
     this.errorCode,

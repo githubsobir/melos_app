@@ -1,31 +1,5 @@
 import 'package:domain/model/payment/send_invoice_model.dart';
 
-class SendInvoiceResponse {
-  SendInvoiceResponse({
-    this.message,
-    this.invoiceResponse,
-  });
-
-  SendInvoiceResponse.fromJson(dynamic json) {
-    message = json['message'];
-    invoiceResponse = json['invoice_response'] != null
-        ? InvoiceResponse.fromJson(json['invoice_response'])
-        : null;
-  }
-
-  String? message;
-  InvoiceResponse? invoiceResponse;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['message'] = message;
-    if (invoiceResponse != null) {
-      map['invoice_response'] = invoiceResponse?.toJson();
-    }
-    return map;
-  }
-}
-
 class InvoiceResponse {
   InvoiceResponse({
     this.errorCode,
@@ -56,16 +30,13 @@ class InvoiceResponse {
   }
 }
 
-extension SendInvoiceMapper on SendInvoiceResponse {
-  SendInvoiceModel toDomainModel() {
-    return SendInvoiceModel(
-      message: message,
-      invoiceModel: InvoiceModel(
-        errorCode: invoiceResponse?.errorCode,
-        errorNote: invoiceResponse?.errorNote,
-        paymentId: invoiceResponse?.paymentId,
-        url: invoiceResponse?.url,
-      ),
+extension SendInvoiceMapper on InvoiceResponse {
+  InvoiceModel toDomainModel() {
+    return InvoiceModel(
+      errorCode: errorCode,
+      errorNote: errorNote,
+      paymentId: paymentId,
+      url: url,
     );
   }
 }

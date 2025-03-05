@@ -1,5 +1,6 @@
 import 'package:common/path_images.dart';
 import 'package:common/widgets/base_button.dart';
+import 'package:dependency/dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -9,9 +10,11 @@ import 'package:main/payment_details/payment/payment_cubit.dart';
 class PaymentBottomSheet extends StatelessWidget {
   final num paymentId;
 
-  PaymentBottomSheet({super.key, required this.paymentId});
+  PaymentBottomSheet({super.key, required this.paymentId}) {
+    cubit.checkStatus(paymentId);
+  }
 
-  final PaymentCubit cubit = PaymentCubit()..pay();
+  final PaymentCubit cubit = PaymentCubit(inject());
 
   static Future show(
       {required BuildContext context, required num paymentId}) async {
@@ -48,7 +51,7 @@ class PaymentBottomSheet extends StatelessWidget {
           builder: (context, state) {
             return SizedBox(
                 height: 300,
-                child: state.isPayed
+                child: state.status.status == 1
                     ? Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
@@ -78,7 +81,7 @@ class PaymentBottomSheet extends StatelessWidget {
                                     onPressed: () {
                                       context.closeActiveScreen();
                                     },
-                                    title: "Закрыть"),
+                                    title: "Дальше"),
                               ),
                             ],
                           )

@@ -15,7 +15,8 @@ class PaymentDetailCubit extends Cubit<PaymentDetailState> {
           cardNumber: "",
           cardDate: "",
           paymentProcessModel: PaymentProcessModel(),
-          invoice: null,
+          invoice: InvoiceModel(),
+          isButtonLoading: false,
         ));
 
   Future<void> paymentProcess({
@@ -41,6 +42,7 @@ class PaymentDetailCubit extends Cubit<PaymentDetailState> {
     required String startDateTme,
     required String endDateTme,
   }) async {
+    emit(state.copyWith(isButtonLoading: true));
     var response = await _paymentUseCase.sendInvoice(
       carId: carId,
       amount: amount,
@@ -51,8 +53,12 @@ class PaymentDetailCubit extends Cubit<PaymentDetailState> {
     if (response.success) {
       var invoice = response.body;
       if (invoice != null) {
-        emit(state.copyWith(invoice: invoice.invoiceModel));
+        emit(state.copyWith(invoice: invoice,isButtonLoading: false));
+      }else{
+        emit(state.copyWith(isButtonLoading: false));
       }
+    }else{
+      emit(state.copyWith(isButtonLoading: false));
     }
   }
 
@@ -80,12 +86,13 @@ class PaymentDetailCubit extends Cubit<PaymentDetailState> {
 class PaymentDetailState extends Equatable {
   final List<String> paymentMethods = ["Payme", "Click"];
   final String selectedMethod;
+  final bool isButtonLoading;
   final bool firstAgreement;
   final bool secondAgreement;
   final String cardNumber;
   final String cardDate;
   final PaymentProcessModel paymentProcessModel;
-  final InvoiceModel? invoice;
+  final InvoiceModel invoice;
 
   PaymentDetailState({
     required this.selectedMethod,
@@ -95,17 +102,18 @@ class PaymentDetailState extends Equatable {
     required this.cardDate,
     required this.paymentProcessModel,
     required this.invoice,
+    required this.isButtonLoading,
   });
 
-  PaymentDetailState copyWith({
-    String? selectedMethod,
-    bool? firstAgreement,
-    bool? secondAgreement,
-    String? cardNumber,
-    String? cardDate,
-    PaymentProcessModel? paymentProcessModel,
-    InvoiceModel? invoice,
-  }) {
+  PaymentDetailState copyWith(
+      {String? selectedMethod,
+      bool? firstAgreement,
+      bool? secondAgreement,
+      String? cardNumber,
+      String? cardDate,
+      PaymentProcessModel? paymentProcessModel,
+      InvoiceModel? invoice,
+      bool? isButtonLoading}) {
     return PaymentDetailState(
       selectedMethod: selectedMethod ?? this.selectedMethod,
       firstAgreement: firstAgreement ?? this.firstAgreement,
@@ -114,6 +122,7 @@ class PaymentDetailState extends Equatable {
       cardDate: cardDate ?? this.cardDate,
       paymentProcessModel: paymentProcessModel ?? this.paymentProcessModel,
       invoice: invoice ?? this.invoice,
+      isButtonLoading: isButtonLoading ?? this.isButtonLoading,
     );
   }
 
@@ -126,6 +135,7 @@ class PaymentDetailState extends Equatable {
         cardNumber,
         cardDate,
         paymentProcessModel,
-        invoice
+        invoice,
+        isButtonLoading
       ];
 }

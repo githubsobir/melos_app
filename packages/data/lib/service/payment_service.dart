@@ -22,4 +22,9 @@ class PaymentService {
         .post('payments/send-invoice/', data: sendInvoiceRequest.toJson());
     return response;
   }
+
+  Future<Response> paymentStatus({required num paymentId}) async {
+    var response = await _netBase.dio.get('payments/status/$paymentId/');
+    return response;
+  }
 }
