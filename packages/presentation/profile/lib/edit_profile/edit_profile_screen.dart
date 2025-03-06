@@ -38,7 +38,7 @@ class EditProfileScreen extends StatelessWidget {
           } else if (state is UpdateErrorState) {
             showToast(state.message);
           } else if (state is UserUpdatedState) {
-            context.closeActiveScreen();
+            context.closeActiveScreen(true);
           }
         },
         builder: (context, state) {
@@ -74,9 +74,11 @@ class EditProfileScreen extends StatelessWidget {
                       const SizedBox(height: 8),
                       BaseTextField(
                         controller: phoneController
-                          ..text = info.phoneNumber ?? "",
+                          ..text =
+                              (info.phoneNumber ?? "").replaceAll("+998", ""),
                         title: context.translations.contact_phone,
                         hint: "__ ___ __ __",
+                        type: TextFieldType.PHONE,
                       ),
                       const SizedBox(height: 8),
                       BaseTextField(
@@ -107,7 +109,7 @@ class EditProfileScreen extends StatelessWidget {
                     onPressed: () {
                       cubit.updateUser(
                         phoneNumber:
-                            phoneController.text.replaceAll(" ", ""),
+                            "+998${phoneController.text.replaceAll(" ", "")}",
                         driverLicense: driverLicenseController.text,
                         passportPinfl: passportPinflController.text,
                         middleName: middleNameLicenseController.text,

@@ -58,7 +58,9 @@ class ProfileScreen extends StatelessWidget {
                       onChange: () {
                         context.openScreen(EditProfileIntent(state.info)).then(
                           (value) {
-                            cubit.userInformation();
+                            if (value is bool && value == true) {
+                              cubit.userInformation();
+                            }
                           },
                         );
                       },
