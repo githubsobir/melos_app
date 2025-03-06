@@ -7,13 +7,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PaymentCubit extends Cubit<PaymentState> {
   final PaymentUseCase _paymentUseCase;
+  Timer? timer;
 
   PaymentCubit(this._paymentUseCase)
       : super(
             PaymentState(status: PaymentStatusModel(status: 0, bookingId: 0)));
 
   Future<void> checkStatus(num paymentId) async {
-    Timer.periodic(
+    timer = Timer.periodic(
       const Duration(seconds: 5),
       (timer) {
         paymentStatus(paymentId: paymentId);
@@ -30,7 +31,10 @@ class PaymentCubit extends Cubit<PaymentState> {
     if (response.success) {
       var invoice = response.body;
       if (invoice != null) {
-        emit(state.copyWith(status: invoice));
+        if (invoice.status == 0) {
+          timer?.cancel();
+          emit(state.copyWith(status: invoice));
+        }
       }
     }
   }

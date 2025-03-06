@@ -8,8 +8,10 @@ import 'package:domain/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:intent_launcher/intent_launcher.dart';
 import 'package:main/payment_details/payment/payment_bottom_sheet.dart';
 import 'package:main/payment_details/payment_detail_cubit.dart';
+import 'package:navigation/main_navigation_intents.dart';
 
 class PaymentDetailsScreen extends StatelessWidget {
   PaymentDetailsScreen({
@@ -749,7 +751,15 @@ class PaymentDetailsScreen extends StatelessWidget {
           if (state.invoice.paymentId != null) {
             print("invoice ${state.invoice.paymentId}");
             PaymentBottomSheet.show(
-                context: context, paymentId: state.invoice.paymentId ?? 0);
+                    context: context, paymentId: state.invoice.paymentId ?? 0)
+                .then(
+              (value) {
+                if (context.mounted) {
+                  context.openScreen(
+                      ReceivingTheCarScreenIntent(bookingId: value));
+                }
+              },
+            );
           }
         },
       ),

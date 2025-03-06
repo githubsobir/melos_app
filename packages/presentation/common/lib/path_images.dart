@@ -84,4 +84,6 @@ class PathImages {
   static var payme = "packages/common/assets/payment/payme.png";
   static var securitySafety = "packages/common/assets/payment/security_safety.svg";
   static var paymentSuccessfully = "packages/common/assets/payment/payment_successfully.svg";
+  static var nearbyCircledGrey = "packages/common/assets/payment/nearby_circled_grey.svg";
+  static var uploadImage = "packages/common/assets/payment/upload_image.svg";
 }

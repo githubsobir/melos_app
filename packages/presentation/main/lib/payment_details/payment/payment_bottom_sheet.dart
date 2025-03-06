@@ -51,7 +51,7 @@ class PaymentBottomSheet extends StatelessWidget {
           builder: (context, state) {
             return SizedBox(
                 height: 300,
-                child: state.status.status == 1
+                child: state.status.status == 0
                     ? Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
@@ -79,7 +79,8 @@ class PaymentBottomSheet extends StatelessWidget {
                                 width: 200,
                                 child: BaseButton(
                                     onPressed: () {
-                                      context.closeActiveScreen();
+                                      context.closeActiveScreen(
+                                          state.status.bookingId);
                                     },
                                     title: "Дальше"),
                               ),

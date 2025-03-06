@@ -32,3 +32,10 @@ class PaymentDetailsIntent implements NavigationIntent {
 class NotificationsScreenIntent implements NavigationIntent {
   static String path = "/notifications";
 }
+
+class ReceivingTheCarScreenIntent implements NavigationIntent {
+  static String path = "/receiving_the_car";
+  num bookingId;
+
+  ReceivingTheCarScreenIntent({required this.bookingId});
+}

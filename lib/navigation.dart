@@ -19,6 +19,7 @@ import 'package:main/my_cars/create_car/create_car_info_screen.dart';
 import 'package:main/my_cars/my_cars/my_cars_screen.dart';
 import 'package:main/notifications/notifications_screen.dart';
 import 'package:main/payment_details/payment_details_screen.dart';
+import 'package:main/payment_details/receiving_the_car/receiving_the_car_screen.dart';
 import 'package:navigation/main_navigation_intents.dart';
 import 'package:navigation/my_cars_intents.dart';
 import 'package:navigation/splash_navigation_intents.dart';
@@ -109,6 +110,15 @@ final _launcher = IntentLauncher()
       "endDateTme": intent.endDateTme,
     });
   })
+  ..onNavigationIntent<ReceivingTheCarScreenIntent>((context, intent) {
+    Navigator.of(context).popUntil((route) => route.isFirst);
+    return Navigator.pushNamedAndRemoveUntil(
+      context,
+      ReceivingTheCarScreenIntent.path,
+      arguments: intent.bookingId,
+      (route) => false,
+    );
+  })
   ..onNavigationIntent<CarInfoDetailIntent>((context, intent) {
     return Navigator.pushNamed(context, CarInfoDetailIntent.path,
         arguments: intent.carId);
@@ -180,6 +190,10 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
       startDateTme: map["startDateTme"],
       endDateTme: map["endDateTme"],
     ).wrapWith(_launcher));
+  } else if (ReceivingTheCarScreenIntent.path == settings.name) {
+    var bookingId = settings.arguments as num;
+    return _createRoute(
+        ReceivingTheCarScreen(bookingId: bookingId).wrapWith(_launcher));
   } else if (EditProfileIntent.path == settings.name) {
     var info = settings.arguments as UserInformationModel;
     return _createRoute(EditProfileScreen(
