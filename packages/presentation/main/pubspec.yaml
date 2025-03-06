@@ -16,6 +16,7 @@ dependencies:
   flutter_rating_bar: ^4.0.1
   flutter_map: ^7.0.2
   latlong2: ^0.9.1
+  image_picker: ^1.1.2
   domain:
     path: ../../domain
   common:
