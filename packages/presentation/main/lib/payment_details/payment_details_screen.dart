@@ -747,16 +747,28 @@ class PaymentDetailsScreen extends StatelessWidget {
             ),
           );
         },
-        listener: (BuildContext context, PaymentDetailState state) {
+        listener: (BuildContext context, PaymentDetailState state) async {
           if (state.invoice.paymentId != null) {
             print("invoice ${state.invoice.paymentId}");
-            PaymentBottomSheet.show(
-                    context: context, paymentId: state.invoice.paymentId ?? 0)
-                .then(
+            showModalBottomSheet(
+              context: context,
+              isScrollControlled: false,
+              isDismissible: false,
+              enableDrag: false,
+              backgroundColor: Colors.transparent,
+              builder: (context) {
+                return PaymentBottomSheet(
+                  paymentId: state.invoice.paymentId ?? 0,
+                );
+              },
+            ).then(
               (value) {
-                if (context.mounted) {
-                  context.openScreen(
-                      ReceivingTheCarScreenIntent(bookingId: value));
+                print("value : ${value}");
+                if (value is num) {
+                  if (context.mounted) {
+                    context.openScreen(
+                        ReceivingTheCarScreenIntent(bookingId: value));
+                  }
                 }
               },
             );

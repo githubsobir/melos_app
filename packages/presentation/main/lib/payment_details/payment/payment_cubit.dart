@@ -11,7 +11,7 @@ class PaymentCubit extends Cubit<PaymentState> {
 
   PaymentCubit(this._paymentUseCase)
       : super(
-            PaymentState(status: PaymentStatusModel(status: 0, bookingId: 0)));
+            PaymentState(status: PaymentStatusModel()));
 
   Future<void> checkStatus(num paymentId) async {
     timer = Timer.periodic(
@@ -32,8 +32,8 @@ class PaymentCubit extends Cubit<PaymentState> {
       var invoice = response.body;
       if (invoice != null) {
         if (invoice.status == 0) {
-          timer?.cancel();
           emit(state.copyWith(status: invoice));
+          timer?.cancel();
         }
       }
     }

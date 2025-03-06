@@ -1,0 +1,6 @@
+import 'package:domain/model/contracts/contract_model.dart';
+import 'package:domain/utils/base_result.dart';
+
+abstract class ContractsRepository {
+  Future<BaseResult<ContractModel>> contractsInfo({required num bookingId});
+}

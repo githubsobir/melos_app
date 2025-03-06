@@ -2,6 +2,7 @@ import 'package:data/di/app_state_dependency_configurator.dart';
 import 'package:data/di/auth_dependency_configurator.dart';
 import 'package:data/di/booking_dependency_configurator.dart';
 import 'package:data/di/cars_dependency_configurator.dart';
+import 'package:data/di/contracts_dependency_configurator.dart';
 import 'package:data/di/global_state_configurator.dart';
 import 'package:data/di/main_dependency_configurator.dart';
 import 'package:data/di/net_base_dependency_configurator.dart';
@@ -21,7 +22,8 @@ final configurators = [
   CarsDependencyConfigurator(),
   ProfileDependencyConfigurator(),
   BookingDependencyConfigurator(),
-  PaymentDependencyConfigurator()
+  PaymentDependencyConfigurator(),
+  ContractsDependencyConfigurator()
 ];
 
 void configureDependencies(

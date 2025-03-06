@@ -1,0 +1,30 @@
+import 'package:data/models/remote/contracts/contract_response.dart';
+import 'package:data/service/contracts_service.dart';
+import 'package:dio/dio.dart';
+import 'package:domain/model/contracts/contract_model.dart';
+import 'package:domain/repository/contracts_repository.dart';
+import 'package:domain/utils/base_result.dart';
+
+class ContractsRepositoryImpl extends ContractsRepository {
+  final ContractsService _contractsService;
+
+  ContractsRepositoryImpl(this._contractsService);
+
+  @override
+  Future<BaseResult<ContractModel>> contractsInfo(
+      {required num bookingId}) async {
+    try {
+      var response =
+          await _contractsService.contractsInfo(bookingId: bookingId);
+      return BaseResult(
+        success: true,
+        body: ContractResponse.fromJson(response.data).toDomainModel(),
+      );
+    } on DioException catch (error) {
+      return BaseResult(
+          success: false, exceptionBody: error.response?.data['error_note']);
+    } catch (exception) {
+      return BaseResult(success: false, exceptionBody: exception);
+    }
+  }
+}

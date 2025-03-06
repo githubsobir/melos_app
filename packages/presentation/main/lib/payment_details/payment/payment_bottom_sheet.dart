@@ -16,23 +16,6 @@ class PaymentBottomSheet extends StatelessWidget {
 
   final PaymentCubit cubit = PaymentCubit(inject());
 
-  static Future show(
-      {required BuildContext context, required num paymentId}) async {
-    var result = await showModalBottomSheet(
-      context: context,
-      isScrollControlled: false,
-      isDismissible: false,
-      enableDrag: false,
-      backgroundColor: Colors.transparent,
-      builder: (context) {
-        return PaymentBottomSheet(
-          paymentId: paymentId,
-        );
-      },
-    );
-    return result;
-  }
-
   @override
   Widget build(BuildContext context) {
     return PopScope(
@@ -79,8 +62,10 @@ class PaymentBottomSheet extends StatelessWidget {
                                 width: 200,
                                 child: BaseButton(
                                     onPressed: () {
+                                      print("bookingId: ${state.status.bookingId}");
                                       context.closeActiveScreen(
-                                          state.status.bookingId);
+                                        state.status.bookingId,
+                                      );
                                     },
                                     title: "Дальше"),
                               ),

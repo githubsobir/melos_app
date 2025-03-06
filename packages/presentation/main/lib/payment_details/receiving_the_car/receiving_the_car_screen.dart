@@ -1,7 +1,10 @@
 import 'dart:io';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:common/path_images.dart';
 import 'package:common/widgets/base_button.dart';
+import 'package:dependency/dependencies/injector.dart';
+import 'package:domain/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -10,10 +13,11 @@ import 'package:main/car_info/car_image_selector_widget.dart';
 import 'package:main/payment_details/receiving_the_car/receiving_the_car_cubit.dart';
 
 class ReceivingTheCarScreen extends StatelessWidget {
-  ReceivingTheCarScreen({super.key, required this.bookingId});
+  ReceivingTheCarScreen({super.key, required this.bookingId}) {
+    cubit.contractsInfo(bookingId: bookingId);
+  }
 
-  // final ReceivingTheCarCubit cubit = ReceivingTheCarCubit(inject());
-  final ReceivingTheCarCubit cubit = ReceivingTheCarCubit();
+  final ReceivingTheCarCubit cubit = ReceivingTheCarCubit(inject());
 
   final num bookingId;
 
@@ -37,22 +41,16 @@ class ReceivingTheCarScreen extends StatelessWidget {
                 padding: const EdgeInsets.all(16),
                 child: Column(
                   children: [
-                    const Card(
-                      elevation: 0,
-                      child: Padding(
-                        padding: EdgeInsets.all(16),
-                        child: CarImageSelectorWidget(
-                          images: [
-                            "/backend/media/car_photos/db/cars_image/photo141.jpg",
-                            "/backend/media/car_photos/db/cars_image/photo158.jpg",
-                            "/backend/media/car_photos/db/cars_image/photo158.jpg",
-                            "/backend/media/car_photos/db/cars_image/photo78.jpg",
-                            "/backend/media/car_photos/db/cars_image/photo78.jpg",
-                            "/backend/media/car_photos/db/cars_image/photo257.jpg"
-                          ],
+                    if ((state.contract.photos ?? []).isNotEmpty)
+                      Card(
+                        elevation: 0,
+                        child: Padding(
+                          padding: const EdgeInsets.all(16),
+                          child: CarImageSelectorWidget(
+                            images: state.contract.photos ?? [],
+                          ),
                         ),
                       ),
-                    ),
                     Card(
                       child: Padding(
                         padding: const EdgeInsets.all(16.0),
@@ -81,7 +79,7 @@ class ReceivingTheCarScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  "3",
+                                  "${state.contract.rentalDays}",
                                   style: Theme.of(context).textTheme.bodyMedium,
                                 ),
                               ],
@@ -104,7 +102,7 @@ class ReceivingTheCarScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  "10300 сум",
+                                  "${state.contract.dailyRate} сум",
                                   style: Theme.of(context).textTheme.bodyMedium,
                                 ),
                               ],
@@ -127,7 +125,7 @@ class ReceivingTheCarScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  "23000 сум",
+                                  "${state.contract.securityDeposit} сум",
                                   style: Theme.of(context).textTheme.bodyMedium,
                                 ),
                               ],
@@ -147,7 +145,7 @@ class ReceivingTheCarScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  "100500 сум",
+                                  "${state.contract.totalAmount} сум",
                                   style: Theme.of(context).textTheme.titleSmall,
                                 ),
                               ],
@@ -174,16 +172,48 @@ class ReceivingTheCarScreen extends StatelessWidget {
                             ),
                             Row(
                               children: [
-                                SvgPicture.asset(
-                                  PathImages.nearbyCircled,
-                                  height: 44,
-                                  width: 44,
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(100.0),
+                                  child: CachedNetworkImage(
+                                    imageUrl:
+                                        "$BASE_URL_IMAGE/${state.contract.profilePage}",
+                                    width: 44,
+                                    height: 44,
+                                    fit: BoxFit.cover,
+                                    progressIndicatorBuilder:
+                                        (context, url, downloadProgress) =>
+                                            SizedBox(
+                                      width: 44,
+                                      height: 44,
+                                      child: Stack(
+                                        children: [
+                                          Align(
+                                            alignment: Alignment.center,
+                                            child: SizedBox(
+                                              width: 44,
+                                              height: 44,
+                                              child: CircularProgressIndicator(
+                                                value:
+                                                    downloadProgress.progress,
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .primary,
+                                                strokeWidth: 1,
+                                              ),
+                                            ),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                    errorWidget: (context, url, error) =>
+                                        const Icon(Icons.error),
+                                  ),
                                 ),
                                 const SizedBox(
                                   width: 8,
                                 ),
                                 Text(
-                                  "Azizbek Karimov",
+                                  "${state.contract.carOwner}",
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyMedium
@@ -205,7 +235,7 @@ class ReceivingTheCarScreen extends StatelessWidget {
                                   width: 8,
                                 ),
                                 Text(
-                                  "+998 93 935 0321",
+                                  "${state.contract.ownerPhoneNumber}",
                                   style: Theme.of(context).textTheme.bodyMedium,
                                 ),
                               ],
@@ -224,7 +254,7 @@ class ReceivingTheCarScreen extends StatelessWidget {
                                   width: 8,
                                 ),
                                 Text(
-                                  "Tashkent, Shaykhontohur, Qoratosh 33A",
+                                  "${state.contract.addressLink}",
                                   style: Theme.of(context)
                                       .textTheme
                                       .labelMedium
@@ -277,9 +307,10 @@ class ReceivingTheCarScreen extends StatelessWidget {
                               child: Container(
                                 child: state.imageFile == null
                                     ? SvgPicture.asset(
-                                  PathImages.uploadImage,
-                                )
-                                    : Image.file(File(state.imageFile?.path ?? "")),
+                                        PathImages.uploadImage,
+                                      )
+                                    : Image.file(
+                                        File(state.imageFile?.path ?? "")),
                               ),
                             ),
                           ],
