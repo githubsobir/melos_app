@@ -3,14 +3,17 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:common/path_images.dart';
 import 'package:common/widgets/base_button.dart';
+import 'package:common/widgets/base_loader_builder.dart';
 import 'package:dependency/dependencies/injector.dart';
 import 'package:domain/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intent_launcher/intent_launcher.dart';
 import 'package:main/car_info/car_image_selector_widget.dart';
 import 'package:main/payment_details/receiving_the_car/receiving_the_car_cubit.dart';
+import 'package:navigation/main_navigation_intents.dart';
 
 class ReceivingTheCarScreen extends StatelessWidget {
   ReceivingTheCarScreen({super.key, required this.bookingId}) {
@@ -33,301 +36,324 @@ class ReceivingTheCarScreen extends StatelessWidget {
         appBar: AppBar(
           title: const Text("Получение автомобиля"),
         ),
-        body: BlocBuilder<ReceivingTheCarCubit, ReceivingTheCarState>(
+        body: BlocConsumer<ReceivingTheCarCubit, ReceivingTheCarState>(
           bloc: cubit,
           builder: (context, state) {
-            return SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  children: [
-                    if ((state.contract.photos ?? []).isNotEmpty)
+            return BaseLoaderBuilder(
+              hasLoading: state.isButtonLoading,
+              child: SingleChildScrollView(
+                child: Padding(
+                  padding: const EdgeInsets.all(16),
+                  child: Column(
+                    children: [
+                      if ((state.contract.photos ?? []).isNotEmpty)
+                        Card(
+                          elevation: 0,
+                          child: Padding(
+                            padding: const EdgeInsets.all(16),
+                            child: CarImageSelectorWidget(
+                              images: state.contract.photos ?? [],
+                            ),
+                          ),
+                        ),
                       Card(
-                        elevation: 0,
                         child: Padding(
-                          padding: const EdgeInsets.all(16),
-                          child: CarImageSelectorWidget(
-                            images: state.contract.photos ?? [],
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Text(
+                                "Отчет",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(fontWeight: FontWeight.w700),
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      "Срок аренды",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelMedium
+                                          ?.copyWith(
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .secondary),
+                                    ),
+                                  ),
+                                  Text(
+                                    "${state.contract.rentalDays}",
+                                    style:
+                                        Theme.of(context).textTheme.bodyMedium,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      "Стоимость за день",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelMedium
+                                          ?.copyWith(
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .secondary),
+                                    ),
+                                  ),
+                                  Text(
+                                    "${state.contract.dailyRate} сум",
+                                    style:
+                                        Theme.of(context).textTheme.bodyMedium,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      "Залог",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .labelMedium
+                                          ?.copyWith(
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .secondary),
+                                    ),
+                                  ),
+                                  Text(
+                                    "${state.contract.securityDeposit} сум",
+                                    style:
+                                        Theme.of(context).textTheme.bodyMedium,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: Text(
+                                      "Общая сумма аренды",
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyMedium
+                                          ?.copyWith(
+                                              fontWeight: FontWeight.w700),
+                                    ),
+                                  ),
+                                  Text(
+                                    "${state.contract.totalAmount} сум",
+                                    style:
+                                        Theme.of(context).textTheme.titleSmall,
+                                  ),
+                                ],
+                              ),
+                            ],
                           ),
                         ),
                       ),
-                    Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Text(
-                              "Отчет",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium
-                                  ?.copyWith(fontWeight: FontWeight.w700),
-                            ),
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    "Срок аренды",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .labelMedium
-                                        ?.copyWith(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .secondary),
+                      Card(
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Text(
+                                "Владелец автомобиля",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(fontWeight: FontWeight.w700),
+                              ),
+                              const SizedBox(
+                                height: 16,
+                              ),
+                              Row(
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: BorderRadius.circular(100.0),
+                                    child: CachedNetworkImage(
+                                      imageUrl:
+                                          "$BASE_URL_IMAGE/${state.contract.profilePage}",
+                                      width: 44,
+                                      height: 44,
+                                      fit: BoxFit.cover,
+                                      progressIndicatorBuilder:
+                                          (context, url, downloadProgress) =>
+                                              SizedBox(
+                                        width: 44,
+                                        height: 44,
+                                        child: Stack(
+                                          children: [
+                                            Align(
+                                              alignment: Alignment.center,
+                                              child: SizedBox(
+                                                width: 44,
+                                                height: 44,
+                                                child:
+                                                    CircularProgressIndicator(
+                                                  value:
+                                                      downloadProgress.progress,
+                                                  color: Theme.of(context)
+                                                      .colorScheme
+                                                      .primary,
+                                                  strokeWidth: 1,
+                                                ),
+                                              ),
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      errorWidget: (context, url, error) =>
+                                          const Icon(Icons.error),
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  "${state.contract.rentalDays}",
-                                  style: Theme.of(context).textTheme.bodyMedium,
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    "Стоимость за день",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .labelMedium
-                                        ?.copyWith(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .secondary),
+                                  const SizedBox(
+                                    width: 8,
                                   ),
-                                ),
-                                Text(
-                                  "${state.contract.dailyRate} сум",
-                                  style: Theme.of(context).textTheme.bodyMedium,
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    "Залог",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .labelMedium
-                                        ?.copyWith(
-                                            color: Theme.of(context)
-                                                .colorScheme
-                                                .secondary),
-                                  ),
-                                ),
-                                Text(
-                                  "${state.contract.securityDeposit} сум",
-                                  style: Theme.of(context).textTheme.bodyMedium,
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            Row(
-                              children: [
-                                Expanded(
-                                  child: Text(
-                                    "Общая сумма аренды",
+                                  Text(
+                                    "${state.contract.carOwner}",
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyMedium
                                         ?.copyWith(fontWeight: FontWeight.w700),
                                   ),
-                                ),
-                                Text(
-                                  "${state.contract.totalAmount} сум",
-                                  style: Theme.of(context).textTheme.titleSmall,
-                                ),
-                              ],
-                            ),
-                          ],
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 16,
+                              ),
+                              Row(
+                                children: [
+                                  SvgPicture.asset(
+                                    PathImages.phoneCircled,
+                                    height: 44,
+                                    width: 44,
+                                  ),
+                                  const SizedBox(
+                                    width: 8,
+                                  ),
+                                  Text(
+                                    "${state.contract.ownerPhoneNumber}",
+                                    style:
+                                        Theme.of(context).textTheme.bodyMedium,
+                                  ),
+                                ],
+                              ),
+                              const SizedBox(
+                                height: 16,
+                              ),
+                              Row(
+                                children: [
+                                  SvgPicture.asset(
+                                    PathImages.nearbyCircledGrey,
+                                    height: 44,
+                                    width: 44,
+                                  ),
+                                  const SizedBox(
+                                    width: 8,
+                                  ),
+                                  Text(
+                                    "${state.contract.addressLink}",
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelMedium
+                                        ?.copyWith(
+                                            decoration:
+                                                TextDecoration.underline,
+                                            color: const Color(0xff0404B9)),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Text(
-                              "Владелец автомобиля",
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium
-                                  ?.copyWith(fontWeight: FontWeight.w700),
-                            ),
-                            const SizedBox(
-                              height: 16,
-                            ),
-                            Row(
-                              children: [
-                                ClipRRect(
-                                  borderRadius: BorderRadius.circular(100.0),
-                                  child: CachedNetworkImage(
-                                    imageUrl:
-                                        "$BASE_URL_IMAGE/${state.contract.profilePage}",
-                                    width: 44,
-                                    height: 44,
-                                    fit: BoxFit.cover,
-                                    progressIndicatorBuilder:
-                                        (context, url, downloadProgress) =>
-                                            SizedBox(
-                                      width: 44,
-                                      height: 44,
-                                      child: Stack(
-                                        children: [
-                                          Align(
-                                            alignment: Alignment.center,
-                                            child: SizedBox(
-                                              width: 44,
-                                              height: 44,
-                                              child: CircularProgressIndicator(
-                                                value:
-                                                    downloadProgress.progress,
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .primary,
-                                                strokeWidth: 1,
-                                              ),
-                                            ),
-                                          )
-                                        ],
-                                      ),
-                                    ),
-                                    errorWidget: (context, url, error) =>
-                                        const Icon(Icons.error),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 8,
-                                ),
-                                Text(
-                                  "${state.contract.carOwner}",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(fontWeight: FontWeight.w700),
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 16,
-                            ),
-                            Row(
-                              children: [
-                                SvgPicture.asset(
-                                  PathImages.phoneCircled,
-                                  height: 44,
-                                  width: 44,
-                                ),
-                                const SizedBox(
-                                  width: 8,
-                                ),
-                                Text(
-                                  "${state.contract.ownerPhoneNumber}",
-                                  style: Theme.of(context).textTheme.bodyMedium,
-                                ),
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 16,
-                            ),
-                            Row(
-                              children: [
-                                SvgPicture.asset(
-                                  PathImages.nearbyCircledGrey,
-                                  height: 44,
-                                  width: 44,
-                                ),
-                                const SizedBox(
-                                  width: 8,
-                                ),
-                                Text(
-                                  "${state.contract.addressLink}",
+                      Card(
+                        child: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Text(
+                                "Загрузите файл доверенности",
+                                textAlign: TextAlign.center,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(fontWeight: FontWeight.w700),
+                              ),
+                              const SizedBox(
+                                height: 8,
+                              ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(left: 24, right: 24),
+                                child: Text(
+                                  "Поддерживаемые форматы: JPEG, PNG, PDG (до 10 МБ)",
+                                  textAlign: TextAlign.center,
                                   style: Theme.of(context)
                                       .textTheme
                                       .labelMedium
                                       ?.copyWith(
-                                          decoration: TextDecoration.underline,
-                                          color: const Color(0xff0404B9)),
+                                          color: const Color(0xffA9ACB4)),
                                 ),
-                              ],
-                            ),
-                          ],
+                              ),
+                              const SizedBox(
+                                height: 32,
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  _showPicker(context);
+                                },
+                                child: Container(
+                                  child: state.imageFile == null
+                                      ? SvgPicture.asset(
+                                          PathImages.uploadImage,
+                                        )
+                                      : Image.file(
+                                          File(state.imageFile?.path ?? "")),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    Card(
-                      child: Padding(
-                        padding: const EdgeInsets.all(16.0),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Text(
-                              "Загрузите файл доверенности",
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium
-                                  ?.copyWith(fontWeight: FontWeight.w700),
-                            ),
-                            const SizedBox(
-                              height: 8,
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.only(left: 24, right: 24),
-                              child: Text(
-                                "Поддерживаемые форматы: JPEG, PNG, PDG (до 10 МБ)",
-                                textAlign: TextAlign.center,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .labelMedium
-                                    ?.copyWith(color: const Color(0xffA9ACB4)),
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 32,
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                _showPicker(context);
-                              },
-                              child: Container(
-                                child: state.imageFile == null
-                                    ? SvgPicture.asset(
-                                        PathImages.uploadImage,
-                                      )
-                                    : Image.file(
-                                        File(state.imageFile?.path ?? "")),
-                              ),
-                            ),
-                          ],
-                        ),
+                      const SizedBox(
+                        height: 24,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 24,
-                    ),
-                    SizedBox(
-                      width: 190,
-                      child: BaseButton(onPressed: () {}, title: "Отправить"),
-                    )
-                  ],
+                      SizedBox(
+                        width: 190,
+                        child: BaseButton(
+                            onPressed: state.isButtonLoading
+                                ? null
+                                : () {
+                                    cubit.uploadContract(bookingId);
+                                  },
+                            title: "Отправить"),
+                      )
+                    ],
+                  ),
                 ),
               ),
             );
+          },
+          listener: (BuildContext context, ReceivingTheCarState state) {
+            if (state.successfullySent) {
+              context.openScreen(MainIntent());
+            }
           },
         ),
       ),

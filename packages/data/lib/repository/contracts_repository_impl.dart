@@ -27,4 +27,24 @@ class ContractsRepositoryImpl extends ContractsRepository {
       return BaseResult(success: false, exceptionBody: exception);
     }
   }
+
+  @override
+  Future<BaseResult<bool>> uploadContract(
+      {required num bookingId, required String path}) async {
+    try {
+      var response = await _contractsService.uploadContract(
+        bookingId: bookingId,
+        path: path,
+      );
+      return BaseResult(
+        success: response.statusCode == 201,
+        body: true,
+      );
+    } on DioException catch (error) {
+      return BaseResult(
+          success: false, exceptionBody: error.response?.data['error_note']);
+    } catch (exception) {
+      return BaseResult(success: false, exceptionBody: exception);
+    }
+  }
 }

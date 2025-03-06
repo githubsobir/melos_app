@@ -14,4 +14,12 @@ class ContractsUseCase {
       bookingId: bookingId,
     );
   }
+
+  Future<BaseResult<bool>> uploadContract(
+      {required num bookingId, required String file}) {
+    return _contractsRepository.uploadContract(
+      bookingId: bookingId,
+      path: file,
+    );
+  }
 }

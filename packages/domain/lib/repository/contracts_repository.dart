@@ -3,4 +3,7 @@ import 'package:domain/utils/base_result.dart';
 
 abstract class ContractsRepository {
   Future<BaseResult<ContractModel>> contractsInfo({required num bookingId});
+
+  Future<BaseResult<bool>> uploadContract(
+      {required num bookingId, required String path});
 }

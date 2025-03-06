@@ -8,7 +8,12 @@ class ReceivingTheCarCubit extends Cubit<ReceivingTheCarState> {
   final ContractsUseCase _paymentUseCase;
 
   ReceivingTheCarCubit(this._paymentUseCase)
-      : super(ReceivingTheCarState(imageFile: null, contract: ContractModel()));
+      : super(ReceivingTheCarState(
+          imageFile: null,
+          contract: ContractModel(),
+          successfullySent: false,
+          isButtonLoading: false,
+        ));
 
   void uploadImage(XFile imageFile) {
     emit(state.copyWith(imageFile: imageFile));
@@ -27,21 +32,59 @@ class ReceivingTheCarCubit extends Cubit<ReceivingTheCarState> {
       }
     }
   }
+
+  Future<void> uploadContract(num bookingId) async {
+    emit(state.copyWith(isButtonLoading: true));
+    var response = await _paymentUseCase.uploadContract(
+      bookingId: bookingId,
+      file: state.imageFile?.path ?? "",
+    );
+    if (response.success) {
+      var contract = response.body;
+      if (contract != null) {
+        emit(
+            state.copyWith(successfullySent: contract, isButtonLoading: false));
+      } else {
+        emit(state.copyWith(isButtonLoading: false));
+      }
+    } else {
+      emit(state.copyWith(isButtonLoading: false));
+    }
+  }
 }
 
 class ReceivingTheCarState extends Equatable {
   final XFile? imageFile;
+  final bool isButtonLoading;
+  final bool successfullySent;
   final ContractModel contract;
 
-  const ReceivingTheCarState({required this.imageFile, required this.contract});
+  const ReceivingTheCarState({
+    required this.imageFile,
+    required this.contract,
+    required this.successfullySent,
+    required this.isButtonLoading,
+  });
 
-  ReceivingTheCarState copyWith({XFile? imageFile, ContractModel? contract}) {
+  ReceivingTheCarState copyWith({
+    XFile? imageFile,
+    ContractModel? contract,
+    bool? successfullySent,
+    bool? isButtonLoading,
+  }) {
     return ReceivingTheCarState(
       imageFile: imageFile ?? this.imageFile,
       contract: contract ?? this.contract,
+      successfullySent: successfullySent ?? this.successfullySent,
+      isButtonLoading: isButtonLoading ?? this.isButtonLoading,
     );
   }
 
   @override
-  List<Object?> get props => [imageFile];
+  List<Object?> get props => [
+        imageFile,
+        isButtonLoading,
+        successfullySent,
+        contract,
+      ];
 }
