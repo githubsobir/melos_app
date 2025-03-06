@@ -335,9 +335,9 @@ class ReceivingTheCarScreen extends StatelessWidget {
     final ImagePicker picker = ImagePicker();
     var img = await picker.pickImage(
       source: ImageSource.gallery,
-      maxHeight: 640,
-      maxWidth: 320,
-      imageQuality: 100,
+      // maxHeight: 640,
+      // maxWidth: 320,
+      // imageQuality: 100,
     );
     if (img != null) {
       cubit.uploadImage(img);
@@ -355,9 +355,9 @@ class ReceivingTheCarScreen extends StatelessWidget {
     final ImagePicker picker = ImagePicker();
     var img = await picker.pickImage(
       source: ImageSource.camera,
-      maxHeight: 640,
-      maxWidth: 320,
-      imageQuality: 100,
+      // maxHeight: 640,
+      // maxWidth: 320,
+      // imageQuality: 100,
     );
     if (img != null) {
       cubit.uploadImage(img);
