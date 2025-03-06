@@ -337,7 +337,7 @@ class ReceivingTheCarScreen extends StatelessWidget {
       source: ImageSource.gallery,
       maxHeight: 640,
       maxWidth: 320,
-      imageQuality: 50,
+      imageQuality: 100,
     );
     if (img != null) {
       cubit.uploadImage(img);
