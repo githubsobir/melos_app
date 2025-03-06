@@ -1,7 +1,7 @@
 import 'package:common/masked_text_input_formatter.dart';
 import 'package:flutter/material.dart';
 
-enum TextFieldType { BASE, PHONE, PASSWORD }
+enum TextFieldType { BASE, PHONE, PASSWORD, NUMBER }
 
 class BaseTextField extends StatefulWidget {
   const BaseTextField({
@@ -42,6 +42,44 @@ class _BaseTextFieldState extends State<BaseTextField> {
             controller: widget.controller,
             maxLines: 1,
             style: Theme.of(context).textTheme.labelMedium,
+            decoration: InputDecoration(
+              contentPadding:
+                  const EdgeInsets.only(left: 12, top: 0, bottom: 0, right: 12),
+              hintText: widget.hint,
+              hintStyle: Theme.of(context)
+                  .textTheme
+                  .labelMedium
+                  ?.copyWith(color: Theme.of(context).hintColor),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+                borderSide: BorderSide(
+                  color: Color(0xFFC0D8FF),
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+                borderSide: BorderSide(
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+                borderSide: BorderSide(
+                  color: Color(0xFFC0D8FF),
+                ),
+              ),
+            ),
+          )
+        else if (widget.type == TextFieldType.NUMBER)
+          TextField(
+            controller: widget.controller,
+            maxLines: 1,
+            style: Theme.of(context).textTheme.labelMedium,
+            keyboardType: TextInputType.number,
+            inputFormatters: [
+              MaskedTextInputFormatter(
+                  mask: "xxxxxxxxxxxxxx", separator: ""),
+            ],
             decoration: InputDecoration(
               contentPadding:
                   const EdgeInsets.only(left: 12, top: 0, bottom: 0, right: 12),

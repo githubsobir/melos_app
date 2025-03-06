@@ -84,6 +84,7 @@ class EditProfileScreen extends StatelessWidget {
                           ..text = info.passportPinfl ?? "",
                         title: context.translations.pinfl,
                         hint: context.translations.pinfl,
+                        type: TextFieldType.NUMBER,
                       ),
                       const SizedBox(height: 8),
                       BaseTextField(

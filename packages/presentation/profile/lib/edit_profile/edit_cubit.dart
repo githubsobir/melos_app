@@ -18,7 +18,7 @@ class EditCubit extends Cubit<EditState> {
     if (firstName.isNotEmpty &&
         lastName.isNotEmpty &&
         middleName.isNotEmpty &&
-        passportPinfl.isNotEmpty &&
+        passportPinfl.length == 14 &&
         driverLicense.isNotEmpty &&
         phoneNumber.isNotEmpty) {
       var response = await _profileUseCase.updateUser(
