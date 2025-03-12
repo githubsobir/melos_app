@@ -11,6 +11,7 @@ class FavouritesScreen extends StatelessWidget {
   FavouritesScreen({super.key});
 
   final cubit = FavouriteCubit(inject())..likedCars();
+
   // final cubit = FavouriteCubit(inject());
 
   @override
@@ -53,7 +54,8 @@ class FavouritesScreen extends StatelessWidget {
                           cubit.likeCar(
                               (state.liked[index].id ?? 0).toInt(), isLiked);
                         },
-                        isLiked: (state.liked[index].liked ?? false), transmission: "${state.liked[index].transmission}",
+                        isLiked: (state.liked[index].liked ?? false),
+                        transmission: "${state.liked[index].transmission}",
                       );
                     },
                   )
