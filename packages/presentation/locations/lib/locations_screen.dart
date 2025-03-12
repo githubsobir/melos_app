@@ -142,7 +142,7 @@ class LocationsScreen extends StatelessWidget {
                         },
                       ),
                       Container(
-                        height: 216,
+                        height: 160,
                         margin: const EdgeInsets.only(bottom: 16),
                         child: ListView.builder(
                           shrinkWrap: true,
@@ -161,7 +161,6 @@ class LocationsScreen extends StatelessWidget {
                               carImage:
                                   "$BASE_URL_IMAGE${state.gps[index].photo}",
                               carName: "${state.gps[index].make}",
-                              carStatus: "Доступный",
                               carRating:
                                   (state.gps[index].rating ?? 0).toDouble(),
                               carLocation: "${state.gps[index].address}",

@@ -471,7 +471,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                             ),
                           ),
                           SizedBox(
-                            height: 280,
+                            height: 336,
                             child: ListView.builder(
                               itemCount:
                                   (state.carDetail.recommendCars ?? []).length,
