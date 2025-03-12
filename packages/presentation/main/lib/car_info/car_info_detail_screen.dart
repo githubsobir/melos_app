@@ -457,34 +457,17 @@ class CarInfoDetailScreen extends StatelessWidget {
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(16.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  context.translations.recommendation_car,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodySmall
-                                      ?.copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .secondary,
-                                        fontWeight: FontWeight.w700,
-                                      ),
-                                ),
-                                Text(
-                                  context.translations.view_all,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodySmall
-                                      ?.copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .primary,
-                                        fontWeight: FontWeight.w700,
-                                      ),
-                                ),
-                              ],
+                            child:  Text(
+                              context.translations.recommendation_car,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodySmall
+                                  ?.copyWith(
+                                color: Theme.of(context)
+                                    .colorScheme
+                                    .secondary,
+                                fontWeight: FontWeight.w700,
+                              ),
                             ),
                           ),
                           SizedBox(
@@ -544,7 +527,10 @@ class CarInfoDetailScreen extends StatelessWidget {
                                   isLiked: ((state.carDetail.recommendCars ??
                                               [])[index]
                                           .liked ??
-                                      false),
+                                      false), transmission: ((state.carDetail.recommendCars ??
+                                    [])[index]
+                                    .transmission ??
+                                    ""),
                                 ),
                               ),
                             ),

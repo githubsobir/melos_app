@@ -20,7 +20,7 @@ Future<void> main() async {
       }
     });
   }
-  // HttpOverrides.global = MyHttpOverrides();
+  HttpOverrides.global = MyHttpOverrides();
   configureDependencies(const DependencyConfigurationContext());
   runApp(const MyApp());
 }

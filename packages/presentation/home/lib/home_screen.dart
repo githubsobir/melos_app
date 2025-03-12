@@ -120,36 +120,20 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       Padding(
                         padding: const EdgeInsets.all(16.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              context.translations.popular_car,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall
-                                  ?.copyWith(
-                                    color:
-                                        Theme.of(context).colorScheme.secondary,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                            ),
-                            Text(
-                              context.translations.view_all,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodySmall
-                                  ?.copyWith(
-                                    color:
-                                        Theme.of(context).colorScheme.primary,
-                                    fontWeight: FontWeight.w700,
-                                  ),
-                            ),
-                          ],
+                        child: Text(
+                          context.translations.popular_car,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodySmall
+                              ?.copyWith(
+                            color:
+                            Theme.of(context).colorScheme.secondary,
+                            fontWeight: FontWeight.w700,
+                          ),
                         ),
                       ),
                       SizedBox(
-                        height: 280,
+                        height: 336,
                         child: ListView.builder(
                           shrinkWrap: true,
                           padding: const EdgeInsets.only(right: 24),
@@ -182,6 +166,8 @@ class _HomeScreenState extends State<HomeScreen> {
                                     .likeCar(state.popular[index], isLiked);
                               },
                               isLiked: (state.popular[index].liked ?? false),
+                              transmission:
+                                  "${state.popular[index].transmission}",
                             ),
                           ),
                         ),
