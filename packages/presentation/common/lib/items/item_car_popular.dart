@@ -112,42 +112,40 @@ class _ItemCarPopularState extends State<ItemCarPopular> {
                       const EdgeInsets.only(left: 16, right: 16, bottom: 16),
                   child: Column(
                     children: [
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.only(top: 8),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  widget.carName,
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(fontWeight: FontWeight.w700),
-                                  maxLines: 2,
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 16,
-                              ),
-                              Text(
-                                widget.carType,
-                                maxLines: 1,
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                widget.carName,
                                 style: Theme.of(context)
                                     .textTheme
-                                    .labelMedium
-                                    ?.copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .secondary),
+                                    .bodyMedium
+                                    ?.copyWith(fontWeight: FontWeight.w700),
+                                maxLines: 2,
                               ),
-                            ],
-                          ),
+                            ),
+                            const SizedBox(
+                              width: 16,
+                            ),
+                            Text(
+                              widget.carType,
+                              maxLines: 1,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .labelMedium
+                                  ?.copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .secondary),
+                            ),
+                          ],
                         ),
                       ),
-                      const SizedBox(
-                        height: 12,
+                      const Expanded(
+                        child: SizedBox(),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -251,17 +249,21 @@ class _ItemCarPopularState extends State<ItemCarPopular> {
                                     ],
                                   ),
                                 ),
-                                Text(
-                                  "${widget.fullPrice} сум/день",
-                                  style: Theme.of(context)
-                                      .textTheme
-                                      .bodyMedium
-                                      ?.copyWith(
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .secondary,
-                                          fontSize: 14),
-                                ),
+                                widget.price != widget.fullPrice
+                                    ? Text(
+                                        "${widget.fullPrice} сум/день",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium
+                                            ?.copyWith(
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .secondary,
+                                                fontSize: 14),
+                                      )
+                                    : Container(
+                                        height: 8,
+                                      ),
                               ],
                             ),
                           ),
