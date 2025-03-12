@@ -12,6 +12,7 @@ class ItemCarBase extends StatefulWidget {
   final String carType;
   final String price;
   final String fullPrice;
+  final String transmission;
   final int passengerCapacity;
   final int fuelCapacity;
   bool isLiked;
@@ -24,6 +25,7 @@ class ItemCarBase extends StatefulWidget {
     required this.carType,
     required this.price,
     required this.fullPrice,
+    required this.transmission,
     required this.passengerCapacity,
     required this.fuelCapacity,
     required this.onLike,
@@ -151,7 +153,7 @@ class _ItemCarBaseState extends State<ItemCarBase> {
                           width: 4,
                         ),
                         Text(
-                          "Руководство",
+                          widget.transmission,
                           style: Theme.of(context)
                               .textTheme
                               .labelMedium

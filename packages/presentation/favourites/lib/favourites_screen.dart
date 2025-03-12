@@ -53,7 +53,7 @@ class FavouritesScreen extends StatelessWidget {
                           cubit.likeCar(
                               (state.liked[index].id ?? 0).toInt(), isLiked);
                         },
-                        isLiked: (state.liked[index].liked ?? false),
+                        isLiked: (state.liked[index].liked ?? false), transmission: "${state.liked[index].transmission}",
                       );
                     },
                   )

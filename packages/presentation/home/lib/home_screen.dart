@@ -126,10 +126,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               .textTheme
                               .bodySmall
                               ?.copyWith(
-                            color:
-                            Theme.of(context).colorScheme.secondary,
-                            fontWeight: FontWeight.w700,
-                          ),
+                                color: Theme.of(context).colorScheme.secondary,
+                                fontWeight: FontWeight.w700,
+                              ),
                         ),
                       ),
                       SizedBox(
@@ -228,6 +227,8 @@ class _HomeScreenState extends State<HomeScreen> {
                               },
                               isLiked:
                                   (state.recommended[index].liked ?? false),
+                              transmission:
+                                  (state.recommended[index].transmission ?? ""),
                             ),
                           ),
                         ),
