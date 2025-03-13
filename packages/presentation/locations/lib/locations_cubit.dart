@@ -3,11 +3,16 @@ import 'package:domain/usecase/cars_usecase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:yandex_maps_mapkit/init.dart' as init;
 
 class LocationsCubit extends Cubit<LocationsState> {
   LocationsCubit(this._carsUseCase)
       : super(const LocationsState(isLoading: false, gps: []));
   final CarsUseCase _carsUseCase;
+
+  initMap() async {
+    await init.initMapkit(apiKey: '973005bb-3cfc-4e46-81d2-26939d2b8c3c');
+  }
 
   Future<void> gpsList() async {
     emit(state.copyWith(isLoading: true));
@@ -20,8 +25,8 @@ class LocationsCubit extends Cubit<LocationsState> {
     }
 
     var response = await _carsUseCase.gpsList(
-      latitude: position?.latitude,
-      longitude: position?.longitude,
+      latitude: position?.latitude??0.0,
+      longitude: position?.longitude??0.0,
     );
     if (response.success) {
       var gps = response.body;

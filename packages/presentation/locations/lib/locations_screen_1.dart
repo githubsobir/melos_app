@@ -5,29 +5,19 @@ import 'package:dependency/dependencies.dart';
 import 'package:domain/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_map/flutter_map.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intent_launcher/intent_launcher.dart';
+import 'package:latlong2/latlong.dart';
 import 'package:locations/locations_cubit.dart';
 import 'package:navigation/my_cars_intents.dart';
-import 'package:yandex_maps_mapkit/mapkit.dart';
-import 'package:yandex_maps_mapkit/yandex_map.dart';
 
-class LocationsScreen extends StatefulWidget {
-  const LocationsScreen({super.key});
+class LocationsScreen extends StatelessWidget {
+  LocationsScreen({super.key});
 
-  @override
-  State<LocationsScreen> createState() => _LocationsScreenState();
-}
-
-class _LocationsScreenState extends State<LocationsScreen> {
-  // final MapController _mapController = MapController();
-
-  final cubit = LocationsCubit(inject())
-    ..initMap()
-    ..gpsList();
-
-  MapWindow? _mapWindow;
+  final MapController _mapController = MapController();
+  final cubit = LocationsCubit(inject())..gpsList();
 
   @override
   Widget build(BuildContext context) {
@@ -53,54 +43,37 @@ class _LocationsScreenState extends State<LocationsScreen> {
             hasLoading: state.isLoading,
             child: Stack(
               children: [
-                YandexMap(
-                  platformViewType: PlatformViewType.Hybrid,
-
-                  // children: [
-                  //   TileLayer(
-                  //     urlTemplate:
-                  //         "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-                  //   ),
-                  //   MarkerLayer(
-                  //     markers: state.gps
-                  //         .map(
-                  //           (e) => Marker(
-                  //             point: LatLng(
-                  //               (e.latitude ?? 0).toDouble(),
-                  //               (e.longitude ?? 0).toDouble(),
-                  //             ),
-                  //             child: SvgPicture.asset(
-                  //               PathImages.locationPin,
-                  //               height: 24,
-                  //               width: 24,
-                  //             ),
-                  //           ),
-                  //         )
-                  //         .toList(),
-                  //   ),
-                  // ],
-                  onMapCreated: (mapWindow) {
-                    print("Map ready");
-                    _mapWindow = mapWindow;
-                    _mapWindow?.map.move(
-                      const CameraPosition(
-                        Point(latitude: 41.313755, longitude: 69.248912),
-                        zoom: 17.0,
-                        azimuth: 150.0,
-                        tilt: 30.0,
-                      ),
-                    );
-                    _mapWindow?.map.mapObjects.addPlacemarkWithPoint(
-                      Point(latitude: 41.313755, longitude: 69.248912),
-                    );
-                    for (var e in state.gps) {
-                      _mapWindow?.map.mapObjects.addPlacemarkWithPoint(
-                        Point(
-                            latitude: (e.latitude ?? 0).toDouble(),
-                            longitude: (e.longitude ?? 0).toDouble()),
-                      );
-                    }
-                  },
+                FlutterMap(
+                  mapController: _mapController,
+                  options: MapOptions(
+                    initialZoom: 14,
+                    initialCenter: const LatLng(41.313755, 69.248912),
+                    onMapEvent: (MapEvent event) {},
+                    onMapReady: () {},
+                  ),
+                  children: [
+                    TileLayer(
+                      urlTemplate:
+                          "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+                    ),
+                    MarkerLayer(
+                      markers: state.gps
+                          .map(
+                            (e) => Marker(
+                              point: LatLng(
+                                (e.latitude ?? 0).toDouble(),
+                                (e.longitude ?? 0).toDouble(),
+                              ),
+                              child: SvgPicture.asset(
+                                PathImages.locationPin,
+                                height: 24,
+                                width: 24,
+                              ),
+                            ),
+                          )
+                          .toList(),
+                    ),
+                  ],
                 ),
                 Align(
                   alignment: Alignment.bottomRight,
@@ -139,16 +112,12 @@ class _LocationsScreenState extends State<LocationsScreen> {
                                 Position? position =
                                     await Geolocator.getLastKnownPosition();
                                 if (position != null) {
-                                  _mapWindow?.map.move(
-                                    CameraPosition(
-                                      Point(
-                                        latitude: position.latitude,
-                                        longitude: position.longitude,
-                                      ),
-                                      zoom: 14.0,
-                                      azimuth: 150.0,
-                                      tilt: 30.0,
+                                  _mapController.move(
+                                    LatLng(
+                                      position.latitude,
+                                      position.longitude,
                                     ),
+                                    14,
                                   );
                                   cubit.gpsList();
                                   // controller.centerPosition(LatLng(

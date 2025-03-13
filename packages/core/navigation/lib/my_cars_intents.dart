@@ -11,6 +11,10 @@ class CreateCarInfoIntent implements NavigationIntent {
   static String path = "/create_car_info";
 }
 
+class LocationsScreenIntent implements NavigationIntent {
+  static String path = "/LocationsScreenIntent";
+}
+
 class CarInfoDetailIntent implements NavigationIntent {
   static String path = "/car_info";
   num carId;

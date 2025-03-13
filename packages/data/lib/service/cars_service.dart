@@ -95,7 +95,7 @@ class CarsService {
 
   Future<Response> gpsList({double? latitude, double? longitude}) async {
     var response = await _netBase.dio.get(
-      'gps/list/?longitude=$longitude&latitude=$latitude',
+      'gps/list/?latitude=$latitude&longitude=$longitude',
     );
     return response;
   }

@@ -176,6 +176,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "7.0.2"
+  flutter_plugin_android_lifecycle:
+    dependency: transitive
+    description:
+      name: flutter_plugin_android_lifecycle
+      sha256: "1c2b787f99bdca1f3718543f81d38aa1b124817dfeb9fb196201bea85b6134bf"
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.26"
   flutter_svg:
     dependency: "direct main"
     description:
@@ -672,6 +680,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.5.0"
+  yandex_maps_mapkit:
+    dependency: "direct main"
+    description:
+      name: yandex_maps_mapkit
+      sha256: f5176aa5afd23692bf2685111c89d901b3ca38b6b1923bf54c7b8a83b26d16df
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.11.0-beta"
 sdks:
   dart: ">=3.5.4 <4.0.0"
   flutter: ">=3.24.0"
