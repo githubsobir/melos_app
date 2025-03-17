@@ -10,10 +10,9 @@ import 'package:geolocator/geolocator.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:locations/locations_cubit.dart';
 import 'package:navigation/my_cars_intents.dart';
+import 'package:yandex_maps_mapkit_lite/image.dart' as image_provider;
 import 'package:yandex_maps_mapkit_lite/mapkit.dart';
 import 'package:yandex_maps_mapkit_lite/mapkit_factory.dart';
-import 'package:yandex_maps_mapkit_lite/src/bindings/image/image_provider.dart'
-    as image_provider;
 import 'package:yandex_maps_mapkit_lite/yandex_map.dart';
 
 class LocationsScreen extends StatefulWidget {
@@ -28,8 +27,6 @@ class LocationsScreen extends StatefulWidget {
 }
 
 class _LocationsScreenState extends State<LocationsScreen> {
-  // final MapController _mapController = MapController();
-
   MapWindow? _mapWindow;
 
   @override
@@ -73,6 +70,8 @@ class _LocationsScreenState extends State<LocationsScreen> {
                   onMapCreated: (mapWindow) {
                     print("Map ready");
                     _mapWindow = mapWindow;
+                    // _mapWindow?.map.zoomGesturesEnabled = true;
+
                     _mapWindow?.map.move(
                       const CameraPosition(
                         Point(latitude: 41.313755, longitude: 69.248912),
@@ -81,17 +80,21 @@ class _LocationsScreenState extends State<LocationsScreen> {
                         tilt: 30.0,
                       ),
                     );
-                    _mapWindow?.map.mapObjects.addPlacemarkWithImage(
-                      const Point(latitude: 41.313755, longitude: 69.248912),
-                      image_provider.ImageProvider.fromImageProvider(
-                        AssetImage(PathImages.locationPinPng),
-                      ),
-                    );
+
+                    // _mapWindow?.map.mapObjects.addPlacemarkWithImage(
+                    //   const Point(latitude: 41.313755, longitude: 69.248912),
+                    //   image_provider.ImageProvider.fromImageProvider(
+                    //     AssetImage(PathImages.locationPinPng),
+                    //   ),
+                    // );
                     for (var e in state.gps) {
-                      _mapWindow?.map.mapObjects.addPlacemarkWithPoint(
+                      _mapWindow?.map.mapObjects.addPlacemarkWithImage(
                         Point(
                             latitude: (e.latitude ?? 0).toDouble(),
                             longitude: (e.longitude ?? 0).toDouble()),
+                        image_provider.ImageProvider.fromImageProvider(
+                          AssetImage(PathImages.locationPinPng),
+                        ),
                       );
                     }
                   },
