@@ -836,11 +836,11 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.5.0"
-  yandex_maps_mapkit:
+  yandex_maps_mapkit_lite:
     dependency: transitive
     description:
-      name: yandex_maps_mapkit
-      sha256: f5176aa5afd23692bf2685111c89d901b3ca38b6b1923bf54c7b8a83b26d16df
+      name: yandex_maps_mapkit_lite
+      sha256: a91660a5eb8f4af4ba7dbc7af1de0c77ee34bce6fef241ae182206b39b8597c6
       url: "https://pub.dev"
     source: hosted
     version: "4.11.0-beta"

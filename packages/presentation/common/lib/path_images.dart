@@ -46,6 +46,7 @@ class PathImages {
   static var locationFilled =
       "packages/common/assets/locations/location_filled.svg";
   static var locationRed = "packages/common/assets/locations/location_red.svg";
+  static var locationPinPng = "packages/common/assets/locations/location_pin_png.png";
 
 //---------------- main ----------------//
   static var logo = "packages/common/assets/main/logo.svg";

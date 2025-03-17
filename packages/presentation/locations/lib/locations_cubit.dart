@@ -3,7 +3,7 @@ import 'package:domain/usecase/cars_usecase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:yandex_maps_mapkit/init.dart' as init;
+import 'package:yandex_maps_mapkit_lite/init.dart' as init;
 
 class LocationsCubit extends Cubit<LocationsState> {
   LocationsCubit(this._carsUseCase)

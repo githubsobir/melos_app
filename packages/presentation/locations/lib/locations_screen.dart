@@ -10,11 +10,18 @@ import 'package:geolocator/geolocator.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:locations/locations_cubit.dart';
 import 'package:navigation/my_cars_intents.dart';
-import 'package:yandex_maps_mapkit/mapkit.dart';
-import 'package:yandex_maps_mapkit/yandex_map.dart';
+import 'package:yandex_maps_mapkit_lite/mapkit.dart';
+import 'package:yandex_maps_mapkit_lite/mapkit_factory.dart';
+import 'package:yandex_maps_mapkit_lite/src/bindings/image/image_provider.dart'
+    as image_provider;
+import 'package:yandex_maps_mapkit_lite/yandex_map.dart';
 
 class LocationsScreen extends StatefulWidget {
-  const LocationsScreen({super.key});
+  LocationsScreen({super.key});
+
+  final cubit = LocationsCubit(inject())
+    ..initMap()
+    ..gpsList();
 
   @override
   State<LocationsScreen> createState() => _LocationsScreenState();
@@ -23,11 +30,19 @@ class LocationsScreen extends StatefulWidget {
 class _LocationsScreenState extends State<LocationsScreen> {
   // final MapController _mapController = MapController();
 
-  final cubit = LocationsCubit(inject())
-    ..initMap()
-    ..gpsList();
-
   MapWindow? _mapWindow;
+
+  @override
+  void initState() {
+    mapkit.onStart();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    mapkit.onStop();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,38 +62,14 @@ class _LocationsScreenState extends State<LocationsScreen> {
         ),
       ),
       body: BlocBuilder<LocationsCubit, LocationsState>(
-        bloc: cubit,
+        bloc: widget.cubit,
         builder: (context, state) {
           return BaseLoaderBuilder(
             hasLoading: state.isLoading,
             child: Stack(
               children: [
                 YandexMap(
-                  platformViewType: PlatformViewType.Hybrid,
-
-                  // children: [
-                  //   TileLayer(
-                  //     urlTemplate:
-                  //         "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
-                  //   ),
-                  //   MarkerLayer(
-                  //     markers: state.gps
-                  //         .map(
-                  //           (e) => Marker(
-                  //             point: LatLng(
-                  //               (e.latitude ?? 0).toDouble(),
-                  //               (e.longitude ?? 0).toDouble(),
-                  //             ),
-                  //             child: SvgPicture.asset(
-                  //               PathImages.locationPin,
-                  //               height: 24,
-                  //               width: 24,
-                  //             ),
-                  //           ),
-                  //         )
-                  //         .toList(),
-                  //   ),
-                  // ],
+                  // platformViewType: PlatformViewType.Hybrid,
                   onMapCreated: (mapWindow) {
                     print("Map ready");
                     _mapWindow = mapWindow;
@@ -90,8 +81,11 @@ class _LocationsScreenState extends State<LocationsScreen> {
                         tilt: 30.0,
                       ),
                     );
-                    _mapWindow?.map.mapObjects.addPlacemarkWithPoint(
-                      Point(latitude: 41.313755, longitude: 69.248912),
+                    _mapWindow?.map.mapObjects.addPlacemarkWithImage(
+                      const Point(latitude: 41.313755, longitude: 69.248912),
+                      image_provider.ImageProvider.fromImageProvider(
+                        AssetImage(PathImages.locationPinPng),
+                      ),
                     );
                     for (var e in state.gps) {
                       _mapWindow?.map.mapObjects.addPlacemarkWithPoint(
@@ -150,7 +144,7 @@ class _LocationsScreenState extends State<LocationsScreen> {
                                       tilt: 30.0,
                                     ),
                                   );
-                                  cubit.gpsList();
+                                  widget.cubit.gpsList();
                                   // controller.centerPosition(LatLng(
                                   //   position.latitude,
                                   //   position.longitude,

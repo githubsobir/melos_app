@@ -15,7 +15,7 @@ dependencies:
   flutter_bloc: ^8.1.5
   equatable: ^2.0.7
   geolocator: ^13.0.2
-  yandex_maps_mapkit: ^4.11.0-beta
+  yandex_maps_mapkit_lite: ^4.5.0
 
   domain:
     path: ../../domain
