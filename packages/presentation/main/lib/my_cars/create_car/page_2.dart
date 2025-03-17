@@ -73,13 +73,15 @@ class Page2 extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "Год выпуска",
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
+              Expanded(
+                child: Text(
+                  "Год выпуска",
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                ),
               ),
-              SizedBox(width: 120, child: TextField3(hint: "2025"))
+              SizedBox(width: 170, child: TextField3(hint: "2025"))
             ],
           ),
           const SizedBox(
@@ -88,13 +90,15 @@ class Page2 extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "Пробег",
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
+              Expanded(
+                child: Text(
+                  "Пробег",
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                ),
               ),
-              SizedBox(width: 120, child: TextField3(hint: "12 000 км"))
+              SizedBox(width: 170, child: TextField3(hint: "12 000 км"))
             ],
           ),
           const SizedBox(
@@ -103,13 +107,15 @@ class Page2 extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "Объем топливного бака",
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
+              Expanded(
+                child: Text(
+                  "Объем топливного бака",
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                ),
               ),
-              SizedBox(width: 120, child: TextField3(hint: "4"))
+              const SizedBox(width: 170, child: TextField3(hint: "4"))
             ],
           ),
           const SizedBox(
@@ -129,7 +135,7 @@ class Page2 extends StatelessWidget {
           Text(
             "Поддерживаемые форматы: JPEG, PNG, PDG (до 10 МБ)",
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.labelMedium,
+            style: Theme.of(context).textTheme.labelMedium?.copyWith(color: const Color(0xffA9ACB4)),
           ),
           const SizedBox(
             height: 24,

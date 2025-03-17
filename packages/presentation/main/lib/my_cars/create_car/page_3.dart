@@ -71,13 +71,15 @@ class Page3 extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "Цена",
-                style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                      color: Theme.of(context).colorScheme.primary,
-                    ),
+              Expanded(
+                child: Text(
+                  "Цена",
+                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                        color: Theme.of(context).colorScheme.primary,
+                      ),
+                ),
               ),
-              const SizedBox(width: 120, child: TextField3(hint: "80 000"))
+              const SizedBox(width: 170, child: TextField3(hint: "80 000"))
             ],
           ),
           const SizedBox(

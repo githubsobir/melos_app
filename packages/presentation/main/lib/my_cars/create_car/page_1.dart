@@ -77,7 +77,7 @@ class Page1 extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  width: 150,
+                  width: 170,
                   child: TextField3(
                     hint: "Шевроле",
                   ),
@@ -99,7 +99,7 @@ class Page1 extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  width: 150,
+                  width: 170,
                   child: TextField3(
                     hint: "Малибу 2 Турбо",
                   ),
@@ -121,7 +121,7 @@ class Page1 extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  width: 150,
+                  width: 170,
                   child: TextField3(
                     hint: "2020",
                   ),
@@ -143,7 +143,7 @@ class Page1 extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  width: 150,
+                  width: 170,
                   child: TextField3(
                     hint: "2020",
                   ),
@@ -165,7 +165,7 @@ class Page1 extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  width: 150,
+                  width: 170,
                   child: TextField3(
                     hint: "2020",
                   ),
@@ -187,7 +187,7 @@ class Page1 extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(
-                  width: 150,
+                  width: 170,
                   child: TextField3(
                     hint: "2020",
                   ),

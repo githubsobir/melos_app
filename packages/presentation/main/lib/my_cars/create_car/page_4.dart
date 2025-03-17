@@ -5,7 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class Page4 extends StatelessWidget {
-  const Page4({super.key});
+  Page4({super.key});
+
+  final List<String> radioButtons = [
+    "yes",
+    "no",
+  ];
+  String selectedRadio = "yes";
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +42,7 @@ class Page4 extends StatelessWidget {
                       width: 55,
                       child: CircularProgressIndicator(
                         value: 1.0,
-                        backgroundColor: const Color(0xFFD9D9D9),
+                        backgroundColor: Color(0xFFD9D9D9),
                         color: Theme.of(context).colorScheme.primary,
                         strokeWidth: 8.0,
                       ),
@@ -68,38 +74,6 @@ class Page4 extends StatelessWidget {
               ],
             ),
           ),
-          Text(
-            "Вы установили GPS?",
-            style: Theme.of(context).textTheme.bodyLarge,
-          ),
-          SizedBox(
-            height: 16,
-          ),
-          Row(
-            children: [
-              SvgPicture.asset(PathImages.lampOn),
-              Expanded(
-                child: Text(
-                  "GPS installation is required to rent out your car!",
-                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                      color: Theme.of(context).colorScheme.secondary),
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(
-            height: 8,
-          ),
-          SizedBox(
-            height: 16,
-          ),
-          Text(
-            "У вас есть страховка автомобиля?",
-            style: Theme.of(context).textTheme.bodyLarge,
-          ),
-          SizedBox(
-            height: 16,
-          ),
           Row(
             children: [
               SvgPicture.asset(PathImages.lampOn),
@@ -113,50 +87,112 @@ class Page4 extends StatelessWidget {
             ],
           ),
           const SizedBox(
-            height: 8,
-          ),
-          SizedBox(
             height: 16,
           ),
           Text(
-            "Загрузить подтверждение регистрации",
-            style: Theme.of(context).textTheme.bodyLarge,
+            "GPS-данные",
+            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                  color: Theme.of(context).colorScheme.primary,
+                ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SvgPicture.asset(PathImages.lampOn),
+              Text(
+                "Порт",
+                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+              ),
+              const SizedBox(width: 170, child: TextField3(hint: "21073"))
+            ],
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Уникальный ID",
+                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+              ),
+              const SizedBox(
+                  width: 170, child: TextField3(hint: "357454075150068"))
+            ],
+          ),
+          const SizedBox(
+            height: 16,
+          ),
+          Text(
+            "У вас есть страховка автомобиля?",
+            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+          ),
+          Row(
+            children: [
               Expanded(
-                child: Text(
-                  "Для сдачи автомобиля в аренду требуется подтверждение регистрации!",
-                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                      color: Theme.of(context).colorScheme.secondary),
+                child: RadioListTile(
+                  value: selectedRadio,
+                  contentPadding: EdgeInsets.zero,
+                  dense: true,
+                  title: Text(
+                    "Да",
+                    style: Theme.of(context).textTheme.labelMedium,
+                  ),
+                  groupValue: radioButtons[0],
+                  onChanged: (value) {},
+                ),
+              ),
+              Expanded(
+                child: RadioListTile(
+                  contentPadding: EdgeInsets.zero,
+                  dense: true,
+                  title: Text(
+                    "Нет",
+                    style: Theme.of(context).textTheme.labelMedium,
+                  ),
+                  value: selectedRadio,
+                  groupValue: radioButtons[1],
+                  onChanged: (value) {},
                 ),
               ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 8,
+          ),
+          Text(
+            "Загрузить подтверждение регистрации",
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+              color: Theme.of(context).colorScheme.primary,
+              fontWeight: FontWeight.w700,
+            ),
+          ),
+          const SizedBox(
+            height: 8,
+          ),
+          Text(
+            "Поддерживаемые форматы: JPEG, PNG, PDG (до 10 МБ)",
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.labelMedium?.copyWith(color: const Color(0xffA9ACB4)),
+          ),
+          const SizedBox(
+            height: 24,
           ),
           Row(
             children: [
+              Expanded(child: Container()),
               GestureDetector(
                 onTap: () {},
-                child: Container(
-                  decoration: Decorations.basicDecoration(
-                    background: const Color(0xFFD9D9D9),
-                    radius: 8,
-                  ),
-                  padding: const EdgeInsets.only(
-                    left: 26,
-                    right: 26,
-                    top: 43,
-                    bottom: 43,
-                  ),
-                  child: SvgPicture.asset(PathImages.upload),
-                ),
+                child: SvgPicture.asset(PathImages.upload),
               ),
               Expanded(child: Container())
             ],
