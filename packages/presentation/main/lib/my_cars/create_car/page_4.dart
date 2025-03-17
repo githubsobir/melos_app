@@ -1,4 +1,3 @@
-import 'package:common/decorations.dart';
 import 'package:common/path_images.dart';
 import 'package:common/widgets/textfield3.dart';
 import 'package:flutter/material.dart';
@@ -172,9 +171,9 @@ class Page4 extends StatelessWidget {
             "Загрузить подтверждение регистрации",
             textAlign: TextAlign.center,
             style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-              color: Theme.of(context).colorScheme.primary,
-              fontWeight: FontWeight.w700,
-            ),
+                  color: Theme.of(context).colorScheme.primary,
+                  fontWeight: FontWeight.w700,
+                ),
           ),
           const SizedBox(
             height: 8,
@@ -182,7 +181,10 @@ class Page4 extends StatelessWidget {
           Text(
             "Поддерживаемые форматы: JPEG, PNG, PDG (до 10 МБ)",
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.labelMedium?.copyWith(color: const Color(0xffA9ACB4)),
+            style: Theme.of(context)
+                .textTheme
+                .labelMedium
+                ?.copyWith(color: const Color(0xffA9ACB4)),
           ),
           const SizedBox(
             height: 24,
