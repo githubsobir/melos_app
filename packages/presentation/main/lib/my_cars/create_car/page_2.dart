@@ -1,18 +1,10 @@
-import 'package:common/decorations.dart';
 import 'package:common/path_images.dart';
 import 'package:common/widgets/textfield3.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class Page2 extends StatelessWidget {
-  Page2({super.key});
-
-  final List<String> radioButtons = [
-    "better",
-    "coll",
-    "good",
-  ];
-  String selectedRadio = "better";
+  const Page2({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -69,41 +61,25 @@ class Page2 extends StatelessWidget {
                             .bodyMedium
                             ?.copyWith(color: const Color(0xFF658DF1)),
                       ),
-                      Text(
-                        'Заполните данные ниже',
-                        textAlign: TextAlign.end,
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelMedium
-                            ?.copyWith(
-                                color: Theme.of(context).colorScheme.secondary),
-                      ),
                     ],
                   ),
                 )
               ],
             ),
           ),
-          Text(
-            "Состояние транспортного средства",
-            style: Theme.of(context)
-                .textTheme
-                .bodyMedium
-                ?.copyWith(fontWeight: FontWeight.w700),
-          ),
           const SizedBox(
             height: 16,
           ),
           Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SvgPicture.asset(PathImages.lampOn),
               Text(
-                "Хороший пробег менее 50 000 миль.",
-                style: Theme.of(context)
-                    .textTheme
-                    .labelMedium
-                    ?.copyWith(color: Theme.of(context).colorScheme.secondary),
+                "Год выпуска",
+                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
               ),
+              SizedBox(width: 120, child: TextField3(hint: "2025"))
             ],
           ),
           const SizedBox(
@@ -114,7 +90,9 @@ class Page2 extends StatelessWidget {
             children: [
               Text(
                 "Пробег",
-                style: Theme.of(context).textTheme.bodyLarge,
+                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
               ),
               SizedBox(width: 120, child: TextField3(hint: "12 000 км"))
             ],
@@ -122,98 +100,46 @@ class Page2 extends StatelessWidget {
           const SizedBox(
             height: 16,
           ),
-          Text(
-            "Опишите состояние транспортного средства, выбрав:",
-            style: Theme.of(context)
-                .textTheme
-                .labelMedium
-                ?.copyWith(color: const Color(0xFF050E2B)),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                "Объем топливного бака",
+                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
+              ),
+              SizedBox(width: 120, child: TextField3(hint: "4"))
+            ],
           ),
           const SizedBox(
             height: 8,
           ),
-          Row(
-            children: [
-              Expanded(
-                child: RadioListTile(
-                  value: selectedRadio,
-                  contentPadding: EdgeInsets.zero,
-                  dense: true,
-                  title: Text(
-                    "Отличный",
-                    style: Theme.of(context).textTheme.labelMedium,
-                  ),
-                  groupValue: radioButtons[0],
-                  onChanged: (value) {},
-                ),
-              ),
-              Expanded(
-                child: RadioListTile(
-                  contentPadding: EdgeInsets.zero,
-                  dense: true,
-                  title: Text(
-                    "Хороший",
-                    style: Theme.of(context).textTheme.labelMedium,
-                  ),
-                  value: selectedRadio,
-                  groupValue: radioButtons[1],
-                  onChanged: (value) {},
-                ),
-              ),
-              Expanded(
-                child: RadioListTile(
-                  contentPadding: EdgeInsets.zero,
-                  dense: true,
-                  title: Text(
-                    "Справедливый",
-                    style: Theme.of(context).textTheme.labelMedium,
-                  ),
-                  value: selectedRadio,
-                  groupValue: radioButtons[2],
-                  onChanged: (value) {},
-                ),
-              ),
-            ],
-          ),
           Text(
-            "Загрузите высококачественные фотографии вашего автомобиля",
-            style: Theme.of(context).textTheme.bodyLarge,
+            "Загрузите фото автомобиля",
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                  color: Theme.of(context).colorScheme.primary,
+                  fontWeight: FontWeight.w700,
+                ),
           ),
-          SizedBox(
+          const SizedBox(
             height: 8,
           ),
-          Row(
-            children: [
-              SvgPicture.asset(PathImages.lampOn),
-              Text(
-                "Minimum 6 images of your car is required!",
-                style: Theme.of(context)
-                    .textTheme
-                    .labelMedium
-                    ?.copyWith(color: Theme.of(context).colorScheme.secondary),
-              ),
-            ],
+          Text(
+            "Поддерживаемые форматы: JPEG, PNG, PDG (до 10 МБ)",
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.labelMedium,
           ),
-          SizedBox(
-            height: 16,
+          const SizedBox(
+            height: 24,
           ),
           Row(
             children: [
+              Expanded(child: Container()),
               GestureDetector(
                 onTap: () {},
-                child: Container(
-                  decoration: Decorations.basicDecoration(
-                    background: const Color(0xFFD9D9D9),
-                    radius: 8,
-                  ),
-                  padding: const EdgeInsets.only(
-                    left: 26,
-                    right: 26,
-                    top: 12,
-                    bottom: 12,
-                  ),
-                  child: SvgPicture.asset(PathImages.upload),
-                ),
+                child: SvgPicture.asset(PathImages.upload),
               ),
               Expanded(child: Container())
             ],

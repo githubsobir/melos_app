@@ -1,16 +1,8 @@
-import 'package:common/path_images.dart';
 import 'package:common/widgets/textfield3.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 
 class Page3 extends StatelessWidget {
-  Page3({super.key});
-
-  final List<String> radioButtons = [
-    "better",
-    "coll",
-  ];
-  String selectedRadio = "better";
+  const Page3({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -67,45 +59,13 @@ class Page3 extends StatelessWidget {
                             .bodyMedium
                             ?.copyWith(color: const Color(0xFF658DF1)),
                       ),
-                      Text(
-                        'Заполните данные ниже',
-                        textAlign: TextAlign.end,
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelMedium
-                            ?.copyWith(color: Theme.of(context).colorScheme.secondary),
-                      ),
                     ],
                   ),
                 )
               ],
             ),
           ),
-          Text(
-            "Оплата и цены",
-            style: Theme.of(context)
-                .textTheme
-                .bodyMedium
-                ?.copyWith(fontWeight: FontWeight.w700),
-          ),
-          SizedBox(
-            height: 16,
-          ),
-          Row(
-            children: [
-              SvgPicture.asset(PathImages.lampOn),
-              Expanded(
-                child: Text(
-                  "Введите цену аренды вашего автомобиля! Учтите, что к этой цене будут добавлены 1% за обслуживание и государственные налоги.",
-                  style: Theme.of(context)
-                      .textTheme
-                      .labelMedium
-                      ?.copyWith(color: Theme.of(context).colorScheme.secondary),
-                ),
-              ),
-            ],
-          ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
           Row(
@@ -113,51 +73,51 @@ class Page3 extends StatelessWidget {
             children: [
               Text(
                 "Цена",
-                style: Theme.of(context).textTheme.bodyLarge,
+                style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                      color: Theme.of(context).colorScheme.primary,
+                    ),
               ),
-              SizedBox(width: 120, child: TextField3(hint: "80 000"))
+              const SizedBox(width: 120, child: TextField3(hint: "80 000"))
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 16,
           ),
           Text(
-            "Опишите состояние транспортного средства, выбрав:",
-            style: Theme.of(context).textTheme.bodyLarge,
+            "Описание",
+            style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                  color: Theme.of(context).colorScheme.primary,
+                ),
           ),
-          SizedBox(
-            height: 8,
-          ),
-          Row(
-            children: [
-              Expanded(
-                child: RadioListTile(
-                  value: selectedRadio,
-                  contentPadding: EdgeInsets.zero,
-                  dense: true,
-                  title: Text(
-                    "В час",
-                    style: Theme.of(context).textTheme.labelMedium,
-                  ),
-                  groupValue: radioButtons[0],
-                  onChanged: (value) {},
+          Expanded(
+            child: TextField(
+              // controller: controller,
+              maxLines: 6,
+              style: Theme.of(context).textTheme.labelMedium,
+              decoration: InputDecoration(
+                isDense: true,
+                contentPadding: const EdgeInsets.only(
+                  left: 8,
+                  right: 8,
+                  top: 8,
+                  bottom: 8,
+                ),
+                filled: true,
+                hintText: "Описание",
+                hintStyle: Theme.of(context).textTheme.labelMedium?.copyWith(
+                      color: Theme.of(context).colorScheme.secondary,
+                    ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(color: Color(0xFF658DF1)),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                  borderSide: const BorderSide(color: Color(0xFF658DF1)),
                 ),
               ),
-              Expanded(
-                child: RadioListTile(
-                  contentPadding: EdgeInsets.zero,
-                  dense: true,
-                  title: Text(
-                    "В день",
-                    style: Theme.of(context).textTheme.labelMedium,
-                  ),
-                  value: selectedRadio,
-                  groupValue: radioButtons[1],
-                  onChanged: (value) {},
-                ),
-              ),
-            ],
-          ),
+            ),
+          )
         ],
       ),
     );

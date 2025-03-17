@@ -52,7 +52,7 @@ class CreateCarInfoScreen extends StatelessWidget {
                 ),
               ),
               Visibility(
-                visible: cubit.position !=0,
+                visible: cubit.position != 0,
                 child: Padding(
                   padding: const EdgeInsets.only(
                     left: 16,
@@ -79,10 +79,16 @@ class CreateCarInfoScreen extends StatelessWidget {
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8.0),
                               side: BorderSide(
-                                  color: Theme.of(context).colorScheme.primary)),
-                          child: Padding(
+                                  color:
+                                      Theme.of(context).colorScheme.primary)),
+                          child: Container(
+                            width: 135,
                             padding: const EdgeInsets.only(
-                                left: 16, right: 16, top: 6, bottom: 6),
+                              left: 16,
+                              right: 16,
+                              top: 8,
+                              bottom: 8,
+                            ),
                             child: Text(
                               cubit.position == 0 ? "Оставлять" : "Назад",
                               textAlign: TextAlign.center,
@@ -90,7 +96,9 @@ class CreateCarInfoScreen extends StatelessWidget {
                                   .textTheme
                                   .bodyMedium!
                                   .copyWith(
-                                    color: Theme.of(context).colorScheme.primary,
+                                    color:
+                                        Theme.of(context).colorScheme.primary,
+                                    fontSize: 18,
                                   ),
                             ),
                           ),

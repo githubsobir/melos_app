@@ -14,9 +14,15 @@ class TextField3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       controller: controller,
+      style: Theme.of(context).textTheme.labelMedium,
       decoration: InputDecoration(
         isDense: true,
-        contentPadding: EdgeInsets.only(left: 8, right: 8),
+        contentPadding: const EdgeInsets.only(
+          left: 8,
+          right: 8,
+          top: 8,
+          bottom: 8,
+        ),
         // fillColor:
         // Theme.of(context).colorScheme.brightness == Brightness.light
         //     ? const Color(0xFFF6F7F9)
@@ -28,11 +34,11 @@ class TextField3 extends StatelessWidget {
             .labelMedium
             ?.copyWith(color: Theme.of(context).colorScheme.secondary),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(6.0),
+          borderRadius: BorderRadius.circular(10.0),
           borderSide: const BorderSide(color: Color(0xFF658DF1)),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(6.0),
+          borderRadius: BorderRadius.circular(10.0),
           borderSide: const BorderSide(color: Color(0xFF658DF1)),
         ),
       ),

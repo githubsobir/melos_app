@@ -48,80 +48,150 @@ class Page1 extends StatelessWidget {
                     ],
                   ),
                   Expanded(
-                      child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.end,
-                    children: [
-                      Text(
-                        'Детали автомобиля',
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium
-                            ?.copyWith(color: const Color(0xFF658DF1)),
-                      ),
-                      Text(
-                        'Заполните данные ниже',
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelMedium
-                            ?.copyWith(color: Theme.of(context).colorScheme.secondary),
-                      ),
-                    ],
-                  ))
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.end,
+                      children: [
+                        Text(
+                          'Заполните данные ниже',
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(
+                                  color: Theme.of(context).colorScheme.primary),
+                        ),
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Делать', style: Theme.of(context).textTheme.labelMedium),
-                SizedBox(
-                    width: 150,
-                    child: TextField3(
-                      hint: "Шевроле",
-                    ))
+                Expanded(
+                  child: Text(
+                    'Марка',
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 150,
+                  child: TextField3(
+                    hint: "Шевроле",
+                  ),
+                )
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Модель', style: Theme.of(context).textTheme.labelMedium),
-                SizedBox(
-                    width: 150,
-                    child: TextField3(
-                      hint: "Малибу 2 Турбо",
-                    ))
+                Expanded(
+                  child: Text(
+                    'Модель',
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 150,
+                  child: TextField3(
+                    hint: "Малибу 2 Турбо",
+                  ),
+                )
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Год выпуска',
-                    style: Theme.of(context).textTheme.labelMedium),
-                SizedBox(
-                    width: 150,
-                    child: TextField3(
-                      hint: "2020",
-                    ))
+                Expanded(
+                  child: Text(
+                    'Госномер',
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 150,
+                  child: TextField3(
+                    hint: "2020",
+                  ),
+                )
               ],
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('ЛПН', style: Theme.of(context).textTheme.labelMedium),
-                SizedBox(
-                    width: 150,
-                    child: TextField3(
-                      hint: "01/A123BC/UZ",
-                    ))
+                Expanded(
+                  child: Text(
+                    'Город',
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 150,
+                  child: TextField3(
+                    hint: "2020",
+                  ),
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(
+                    'Коробка передач',
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 150,
+                  child: TextField3(
+                    hint: "2020",
+                  ),
+                )
+              ],
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(
+                    'Вместимость пассажиров',
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                  ),
+                ),
+                const SizedBox(
+                  width: 150,
+                  child: TextField3(
+                    hint: "2020",
+                  ),
+                )
               ],
             ),
           ],

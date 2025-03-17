@@ -5,13 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class Page4 extends StatelessWidget {
-  Page4({super.key});
-
-  final List<String> radioButtons = [
-    "better",
-    "coll",
-  ];
-  String selectedRadio = "better";
+  const Page4({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +36,7 @@ class Page4 extends StatelessWidget {
                       width: 55,
                       child: CircularProgressIndicator(
                         value: 1.0,
-                        backgroundColor: Color(0xFFD9D9D9),
+                        backgroundColor: const Color(0xFFD9D9D9),
                         color: Theme.of(context).colorScheme.primary,
                         strokeWidth: 8.0,
                       ),
@@ -68,14 +62,6 @@ class Page4 extends StatelessWidget {
                             .bodyMedium
                             ?.copyWith(color: const Color(0xFF658DF1)),
                       ),
-                      Text(
-                        'Fill in the details below',
-                        textAlign: TextAlign.end,
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelMedium
-                            ?.copyWith(color: Theme.of(context).colorScheme.secondary),
-                      ),
                     ],
                   ),
                 )
@@ -95,10 +81,8 @@ class Page4 extends StatelessWidget {
               Expanded(
                 child: Text(
                   "GPS installation is required to rent out your car!",
-                  style: Theme.of(context)
-                      .textTheme
-                      .labelMedium
-                      ?.copyWith(color: Theme.of(context).colorScheme.secondary),
+                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                      color: Theme.of(context).colorScheme.secondary),
                 ),
               ),
             ],
@@ -106,37 +90,9 @@ class Page4 extends StatelessWidget {
           const SizedBox(
             height: 8,
           ),
-          Row(
-            children: [
-              Expanded(
-                child: RadioListTile(
-                  value: selectedRadio,
-                  contentPadding: EdgeInsets.zero,
-                  dense: true,
-                  title: Text(
-                    "Да",
-                    style: Theme.of(context).textTheme.labelMedium,
-                  ),
-                  groupValue: radioButtons[0],
-                  onChanged: (value) {},
-                ),
-              ),
-              Expanded(
-                child: RadioListTile(
-                  contentPadding: EdgeInsets.zero,
-                  dense: true,
-                  title: Text(
-                    "Нет",
-                    style: Theme.of(context).textTheme.labelMedium,
-                  ),
-                  value: selectedRadio,
-                  groupValue: radioButtons[1],
-                  onChanged: (value) {},
-                ),
-              ),
-            ],
+          SizedBox(
+            height: 16,
           ),
-          SizedBox(height: 16,),
           Text(
             "У вас есть страховка автомобиля?",
             style: Theme.of(context).textTheme.bodyLarge,
@@ -150,10 +106,8 @@ class Page4 extends StatelessWidget {
               Expanded(
                 child: Text(
                   "Для сдачи автомобиля в аренду необходима установка GPS!",
-                  style: Theme.of(context)
-                      .textTheme
-                      .labelMedium
-                      ?.copyWith(color: Theme.of(context).colorScheme.secondary),
+                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                      color: Theme.of(context).colorScheme.secondary),
                 ),
               ),
             ],
@@ -161,37 +115,9 @@ class Page4 extends StatelessWidget {
           const SizedBox(
             height: 8,
           ),
-          Row(
-            children: [
-              Expanded(
-                child: RadioListTile(
-                  value: selectedRadio,
-                  contentPadding: EdgeInsets.zero,
-                  dense: true,
-                  title: Text(
-                    "Да",
-                    style: Theme.of(context).textTheme.labelMedium,
-                  ),
-                  groupValue: radioButtons[0],
-                  onChanged: (value) {},
-                ),
-              ),
-              Expanded(
-                child: RadioListTile(
-                  contentPadding: EdgeInsets.zero,
-                  dense: true,
-                  title: Text(
-                    "Нет",
-                    style: Theme.of(context).textTheme.labelMedium,
-                  ),
-                  value: selectedRadio,
-                  groupValue: radioButtons[1],
-                  onChanged: (value) {},
-                ),
-              ),
-            ],
+          SizedBox(
+            height: 16,
           ),
-          SizedBox(height: 16,),
           Text(
             "Загрузить подтверждение регистрации",
             style: Theme.of(context).textTheme.bodyLarge,
@@ -205,10 +131,8 @@ class Page4 extends StatelessWidget {
               Expanded(
                 child: Text(
                   "Для сдачи автомобиля в аренду требуется подтверждение регистрации!",
-                  style: Theme.of(context)
-                      .textTheme
-                      .labelMedium
-                      ?.copyWith(color: Theme.of(context).colorScheme.secondary),
+                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                      color: Theme.of(context).colorScheme.secondary),
                 ),
               ),
             ],
