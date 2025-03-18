@@ -19,7 +19,7 @@ class LocationsScreen extends StatefulWidget {
   LocationsScreen({super.key});
 
   final cubit = LocationsCubit(inject())
-    ..initMap()
+    ..mapInitial()
     ..gpsList();
 
   @override
@@ -66,27 +66,19 @@ class _LocationsScreenState extends State<LocationsScreen> {
             child: Stack(
               children: [
                 YandexMap(
-                  // platformViewType: PlatformViewType.Hybrid,
                   onMapCreated: (mapWindow) {
-                    print("Map ready");
                     _mapWindow = mapWindow;
-                    // _mapWindow?.map.zoomGesturesEnabled = true;
-
                     _mapWindow?.map.move(
-                      const CameraPosition(
-                        Point(latitude: 41.313755, longitude: 69.248912),
+                      CameraPosition(
+                        Point(
+                          latitude: state.point.latitude,
+                          longitude: state.point.longitude,
+                        ),
                         zoom: 17.0,
                         azimuth: 150.0,
                         tilt: 30.0,
                       ),
                     );
-
-                    // _mapWindow?.map.mapObjects.addPlacemarkWithImage(
-                    //   const Point(latitude: 41.313755, longitude: 69.248912),
-                    //   image_provider.ImageProvider.fromImageProvider(
-                    //     AssetImage(PathImages.locationPinPng),
-                    //   ),
-                    // );
                     for (var e in state.gps) {
                       _mapWindow?.map.mapObjects.addPlacemarkWithImage(
                         Point(
@@ -133,29 +125,18 @@ class _LocationsScreenState extends State<LocationsScreen> {
                           try {
                             Geolocator.requestPermission().then((value) async {
                               if (await Geolocator.isLocationServiceEnabled()) {
-                                Position? position =
-                                    await Geolocator.getLastKnownPosition();
-                                if (position != null) {
-                                  _mapWindow?.map.move(
-                                    CameraPosition(
-                                      Point(
-                                        latitude: position.latitude,
-                                        longitude: position.longitude,
-                                      ),
-                                      zoom: 14.0,
-                                      azimuth: 150.0,
-                                      tilt: 30.0,
+                                _mapWindow?.map.move(
+                                  CameraPosition(
+                                    Point(
+                                      latitude: state.point.latitude,
+                                      longitude: state.point.longitude,
                                     ),
-                                  );
-                                  widget.cubit.gpsList();
-                                  // controller.centerPosition(LatLng(
-                                  //   position.latitude,
-                                  //   position.longitude,
-                                  // ));
-                                  // controller.getLocationAddressByLatLon(
-                                  //     position.latitude,
-                                  //     position.longitude);
-                                }
+                                    zoom: 17.0,
+                                    azimuth: 150.0,
+                                    tilt: 30.0,
+                                  ),
+                                );
+                                widget.cubit.gpsList();
                               } else {
                                 await Geolocator.openLocationSettings();
                               }

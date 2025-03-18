@@ -72,4 +72,8 @@ class CarsUseCase {
         latitude: latitude, longitude: longitude
     );
   }
+
+  Future<BaseResult<String>> mapApiKey() {
+    return _carsDetail.mapApiKey();
+  }
 }

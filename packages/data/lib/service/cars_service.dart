@@ -99,4 +99,11 @@ class CarsService {
     );
     return response;
   }
+
+  Future<Response> mapApiKey() async {
+    var response = await _netBase.dio.get(
+      'admin/yandex-api/',
+    );
+    return response;
+  }
 }

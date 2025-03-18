@@ -30,4 +30,6 @@ abstract class CarsRepository {
   });
 
   Future<BaseResult<List<GpsModel>>> gpsList({double? latitude, double? longitude});
+
+  Future<BaseResult<String>> mapApiKey();
 }

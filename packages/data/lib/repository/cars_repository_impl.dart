@@ -5,6 +5,7 @@ import 'package:data/models/remote/cars/response/car_response.dart';
 import 'package:data/models/remote/cars/response/filter_response.dart';
 import 'package:data/models/remote/cars/response/liked_cars_response.dart';
 import 'package:data/models/remote/location/gps_response.dart';
+import 'package:data/models/remote/location/map_api_key_response.dart';
 import 'package:data/service/cars_service.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/model/cars/car_detail_info_model.dart';
@@ -172,6 +173,22 @@ class CarsRepositoryImpl extends CarsRepository {
               (e) => e.toDomainModel(),
             )
             .toList(),
+      );
+    } on DioException catch (error) {
+      return BaseResult(
+          success: false, exceptionBody: error.response?.data['error_note']);
+    } catch (exception) {
+      return BaseResult(success: false, exceptionBody: exception);
+    }
+  }
+
+  @override
+  Future<BaseResult<String>> mapApiKey() async {
+    try {
+      var response = await _carsService.mapApiKey();
+      return BaseResult(
+        success: true,
+        body: MapApiKeyResponse.fromJson(response.data).key,
       );
     } on DioException catch (error) {
       return BaseResult(
