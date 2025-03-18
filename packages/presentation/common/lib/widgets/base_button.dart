@@ -5,6 +5,7 @@ class BaseButton extends StatelessWidget {
   final String title;
   final Color background;
   final double fontSize;
+  final double? width;
 
   const BaseButton({
     super.key,
@@ -12,6 +13,7 @@ class BaseButton extends StatelessWidget {
     required this.title,
     this.fontSize = 18,
     this.background = const Color(0xFF3563E9),
+    this.width,
   });
 
   @override
@@ -23,7 +25,8 @@ class BaseButton extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(8.0), // Adjust radius as needed
         ),
-        child: Padding(
+        child: Container(
+          width: width,
           padding: const EdgeInsets.only(
             left: 16,
             right: 16,

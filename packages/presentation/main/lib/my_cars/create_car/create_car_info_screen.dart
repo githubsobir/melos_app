@@ -19,7 +19,7 @@ class CreateCarInfoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Мои машины"),
+        title: const Text("Мои машины"),
       ),
       body: BlocBuilder(
         bloc: cubit,
@@ -82,7 +82,7 @@ class CreateCarInfoScreen extends StatelessWidget {
                                   color:
                                       Theme.of(context).colorScheme.primary)),
                           child: Container(
-                            width: 135,
+                            width: 145,
                             padding: const EdgeInsets.only(
                               left: 16,
                               right: 16,
@@ -105,6 +105,7 @@ class CreateCarInfoScreen extends StatelessWidget {
                         ),
                       ),
                       BaseButton(
+                          width: 145,
                           onPressed: () {
                             cubit.changePosition(++cubit.position);
                             if (cubit.position <= 4) {
@@ -118,7 +119,7 @@ class CreateCarInfoScreen extends StatelessWidget {
                               context.closeActiveScreen(true);
                             }
                           },
-                          title: "Следующий")
+                          title: cubit.position < 4?"Следующий":"Обзор")
                     ],
                   ),
                 ),
