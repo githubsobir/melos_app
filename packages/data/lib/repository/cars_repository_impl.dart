@@ -27,6 +27,10 @@ class CarsRepositoryImpl extends CarsRepository {
     String? endDataTime,
     String? latitude,
     String? longitude,
+    required String search,
+    required List<String> category,
+    required List<String> passengers,
+    required List<String> cities,
   }) async {
     try {
       var response = await _carsService.recommendedCars(
@@ -35,6 +39,10 @@ class CarsRepositoryImpl extends CarsRepository {
         endDataTime: endDataTime,
         latitude: latitude,
         longitude: longitude,
+        search: search,
+        category: category,
+        passengers: passengers,
+        cities: cities,
       );
       return BaseResult(
         success: true,

@@ -1,17 +1,24 @@
 import 'dart:async';
 
 import 'package:domain/model/cars/car_model.dart';
+import 'package:domain/model/cars/filter_model.dart';
 import 'package:domain/usecase/cars_usecase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 
-class HomeCubit extends Cubit<CarsState> {
+class HomeCubit extends Cubit<HomeState> {
   HomeCubit(this._carsUseCase)
-      : super(const CarsState(
+      : super(HomeState(
           recommended: [],
           popular: [],
           isLoading: false,
+          search: "",
+          filter: FilterModel(
+            cityCounts: [],
+            passengerCapacityCounts: [],
+            categoryCounts: [],
+          ),
         ));
   final CarsUseCase _carsUseCase;
   int recommendedCarsPage = 1;
@@ -29,6 +36,16 @@ class HomeCubit extends Cubit<CarsState> {
     _endDataTime = endDataTime;
     popularCars(isRefreshed: true);
     recommendedCars(isRefreshed: true);
+  }
+
+  Future<void> filter() async {
+    var response = await _carsUseCase.filter();
+    if (response.success) {
+      var filter = response.body;
+      if (filter != null) {
+        emit(state.copyWith(filter: filter));
+      }
+    }
   }
 
   Future<void> recommendedCars({
@@ -53,6 +70,22 @@ class HomeCubit extends Cubit<CarsState> {
         endDataTime: _endDataTime,
         latitude: position?.latitude != null ? "${position?.latitude}" : null,
         longitude: position?.longitude != null ? "${position?.latitude}" : null,
+        search: state.search,
+        category: state.filter.categoryCounts
+            .where((element) => element.isSelected)
+            .toList()
+            .map((e) => e.title)
+            .toList(),
+        passengers: state.filter.passengerCapacityCounts
+            .where((element) => element.isSelected)
+            .toList()
+            .map((e) => e.title)
+            .toList(),
+        cities: state.filter.cityCounts
+            .where((element) => element.isSelected)
+            .toList()
+            .map((e) => e.title)
+            .toList(),
       );
       if (response.success) {
         var cars = response.body;
@@ -68,6 +101,11 @@ class HomeCubit extends Cubit<CarsState> {
         emit(state.copyWith(isLoading: false));
       }
     }
+  }
+
+  Future<void> search(String text) async {
+    emit(state.copyWith(searchedText: text));
+    recommendedCars(isRefreshed: true);
   }
 
   Future<void> popularCars({bool isRefreshed = false}) async {
@@ -112,38 +150,46 @@ class HomeCubit extends Cubit<CarsState> {
 
   Future<void> likeCar(CarModel model, bool isLiked) async {
     await _carsUseCase.likeCar(model.id ?? 0, isLiked);
-    // await popularCars(isRefreshed: true);
-    // var recommendedCars = state.recommended;
-    // var selectedCar =
-    //     recommendedCars.firstWhere((element) => element.id == (model.id ?? 0));
-    // selectedCar.liked = isLiked;
-    // emit(state.copyWith(recommended: recommendedCars));
   }
 }
 
-class CarsState extends Equatable {
+class HomeState extends Equatable {
   final bool isLoading;
   final List<CarModel> recommended;
   final List<CarModel> popular;
+  final String search;
+  final FilterModel filter;
 
-  const CarsState({
+  const HomeState({
     required this.recommended,
     required this.popular,
     required this.isLoading,
+    required this.search,
+    required this.filter,
   });
 
-  CarsState copyWith({
+  HomeState copyWith({
     bool? isLoading,
     List<CarModel>? recommended,
     List<CarModel>? popular,
+    String? searchedText,
+    FilterModel? filter,
   }) {
-    return CarsState(
+    return HomeState(
       isLoading: isLoading ?? this.isLoading,
       recommended: recommended ?? this.recommended,
       popular: popular ?? this.popular,
+      search: searchedText ?? this.search,
+      filter: filter ?? this.filter,
     );
   }
 
   @override
-  List<Object> get props => [recommended, popular];
+  List<Object> get props => [
+        recommended,
+        popular,
+        isLoading,
+        search,
+        filter,
+      ];
 }

@@ -11,6 +11,10 @@ abstract class CarsRepository {
     String? endDataTime,
     String? latitude,
     String? longitude,
+    required String search,
+    required List<String> category,
+    required List<String> passengers,
+    required List<String> cities,
   });
 
   Future<BaseResult<bool>> likeCar(num id, bool isLiked);

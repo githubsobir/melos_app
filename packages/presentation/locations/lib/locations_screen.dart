@@ -46,6 +46,7 @@ class _LocationsScreenState extends State<LocationsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             SvgPicture.asset(PathImages.locationRed),
             const SizedBox(

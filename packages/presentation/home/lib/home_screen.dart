@@ -16,6 +16,7 @@ class HomeScreen extends StatefulWidget {
   HomeScreen({super.key});
 
   final cubit = HomeCubit(inject())
+    ..filter()
     ..popularCars()
     ..recommendedCars(isRefreshed: true);
 
@@ -46,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
           Theme.of(context).colorScheme.brightness == Brightness.light
               ? const Color(0xFFF6F7F9)
               : const Color(0xFF061136),
-      body: BlocBuilder<HomeCubit, CarsState>(
+      body: BlocBuilder<HomeCubit, HomeState>(
         bloc: widget.cubit,
         builder: (context, state) {
           return RefreshIndicator(
@@ -69,9 +70,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         SearchEdittext(
-                          onTextChange: (productName) {},
+                          onTextChange: (productName) {
+                            widget.cubit.search(productName);
+                          },
                           onFilter: () {
-                            FilterBottomSheet.show(context: context);
+                            FilterBottomSheet.show(
+                              context: context,
+                              cubit: widget.cubit,
+                            );
                           },
                         ),
                       ],

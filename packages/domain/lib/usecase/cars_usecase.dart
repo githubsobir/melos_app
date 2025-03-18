@@ -18,6 +18,10 @@ class CarsUseCase {
     String? endDataTime,
     String? latitude,
     String? longitude,
+    required String search,
+    required List<String> category,
+    required List<String> passengers,
+    required List<String> cities,
   }) {
     return _carsDetail.recommendedCars(
       page: page,
@@ -25,6 +29,10 @@ class CarsUseCase {
       endDataTime: endDataTime,
       latitude: latitude,
       longitude: longitude,
+      search: search,
+      category: category,
+      passengers: passengers,
+      cities: cities,
     );
   }
 
@@ -68,9 +76,7 @@ class CarsUseCase {
 
   Future<BaseResult<List<GpsModel>>> gpsList(
       {double? latitude, double? longitude}) {
-    return _carsDetail.gpsList(
-        latitude: latitude, longitude: longitude
-    );
+    return _carsDetail.gpsList(latitude: latitude, longitude: longitude);
   }
 
   Future<BaseResult<String>> mapApiKey() {

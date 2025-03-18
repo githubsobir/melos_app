@@ -1,15 +1,17 @@
 import 'package:common/widgets/base_button.dart';
-import 'package:dependency/dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:home/filter/filter_cubit.dart';
+import 'package:home/home_cubit.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 
 class FilterBottomSheet extends StatefulWidget {
-  const FilterBottomSheet({super.key});
+  final HomeCubit cubit;
+
+  const FilterBottomSheet({super.key, required this.cubit});
 
   static Future<void> show({
     required BuildContext context,
+    required HomeCubit cubit,
   }) async {
     var result = await showModalBottomSheet(
       context: context,
@@ -17,7 +19,9 @@ class FilterBottomSheet extends StatefulWidget {
       isDismissible: true,
       backgroundColor: Colors.transparent,
       builder: (context) {
-        return FilterBottomSheet();
+        return FilterBottomSheet(
+          cubit: cubit,
+        );
       },
     );
     if (result != null) {}
@@ -28,8 +32,6 @@ class FilterBottomSheet extends StatefulWidget {
 }
 
 class _FilterBottomSheetState extends State<FilterBottomSheet> {
-  final cubit = FilterCubit(inject())..filter();
-
   @override
   Widget build(BuildContext context) {
     return DraggableScrollableSheet(
@@ -45,8 +47,8 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
         child: Container(
           margin: const EdgeInsets.only(top: 24),
           padding: const EdgeInsets.all(16.0),
-          child: BlocBuilder<FilterCubit, FilterState>(
-            bloc: cubit,
+          child: BlocBuilder<HomeCubit, HomeState>(
+            bloc: widget.cubit,
             builder: (context, state) {
               return ListView(
                 controller: scrollController,
@@ -300,6 +302,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                       BaseButton(
                         onPressed: () {
                           context.closeActiveScreen();
+                          widget.cubit.recommendedCars(isRefreshed: true);
                         },
                         title: "Сохранить",
                       ),
