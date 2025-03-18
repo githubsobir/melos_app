@@ -3,17 +3,20 @@ import 'package:flutter/material.dart';
 class TextField3 extends StatelessWidget {
   final TextEditingController? controller;
   final String hint;
+  final ValueChanged<String>? onChanged;
 
   const TextField3({
     super.key,
     this.controller,
     required this.hint,
+    this.onChanged,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextField(
       controller: controller,
+      onChanged: onChanged,
       style: Theme.of(context).textTheme.labelMedium,
       decoration: InputDecoration(
         isDense: true,

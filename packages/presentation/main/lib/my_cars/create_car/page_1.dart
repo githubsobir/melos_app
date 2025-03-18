@@ -2,13 +2,27 @@ import 'package:common/widgets/textfield3.dart';
 import 'package:flutter/material.dart';
 
 class Page1 extends StatelessWidget {
-  const Page1({super.key});
+  final ValueChanged<String> onChangedMake;
+  final ValueChanged<String> onChangedModel;
+  final ValueChanged<String> onChangedRegNumber;
+  final ValueChanged<String> onChangedCity;
+  final ValueChanged<String> onChangedTransmission;
+  final ValueChanged<String> onChangedPassengerCapacity;
+
+  const Page1({
+    super.key,
+    required this.onChangedMake,
+    required this.onChangedModel,
+    required this.onChangedRegNumber,
+    required this.onChangedCity,
+    required this.onChangedTransmission,
+    required this.onChangedPassengerCapacity,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.all(16),
-      // height: double.infinity,
+      margin: const EdgeInsets.all(16),
       child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
@@ -76,10 +90,11 @@ class Page1 extends StatelessWidget {
                         ),
                   ),
                 ),
-                const SizedBox(
+                SizedBox(
                   width: 170,
                   child: TextField3(
                     hint: "Шевроле",
+                    onChanged: onChangedModel,
                   ),
                 )
               ],

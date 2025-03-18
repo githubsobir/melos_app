@@ -8,91 +8,89 @@ class Page3 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(16),
-      height: double.infinity,
-      // color: Colors.red,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Container(
-            margin: const EdgeInsets.only(
-              top: 16,
-            ),
-            padding: const EdgeInsets.only(
-              left: 24,
-              right: 24,
-              top: 24,
-              bottom: 24,
-            ),
-            child: Row(
-              children: [
-                Stack(
-                  alignment: Alignment.center,
-                  children: [
-                    SizedBox(
-                      height: 55,
-                      width: 55,
-                      child: CircularProgressIndicator(
-                        value: 0.75,
-                        backgroundColor: Color(0xFFD9D9D9),
-                        color: Theme.of(context).colorScheme.primary,
-                        strokeWidth: 8.0,
-                      ),
-                    ),
-                    Text(
-                      '3/4',
-                      style: Theme.of(context)
-                          .textTheme
-                          .labelMedium
-                          ?.copyWith(color: const Color(0xFF658DF1)),
-                    ),
-                  ],
-                ),
-                Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Container(
+              margin: const EdgeInsets.only(
+                top: 16,
+              ),
+              padding: const EdgeInsets.only(
+                left: 24,
+                right: 24,
+                top: 24,
+                bottom: 24,
+              ),
+              child: Row(
+                children: [
+                  Stack(
+                    alignment: Alignment.center,
                     children: [
+                      SizedBox(
+                        height: 55,
+                        width: 55,
+                        child: CircularProgressIndicator(
+                          value: 0.75,
+                          backgroundColor: Color(0xFFD9D9D9),
+                          color: Theme.of(context).colorScheme.primary,
+                          strokeWidth: 8.0,
+                        ),
+                      ),
                       Text(
-                        "Оплата и цены",
-                        textAlign: TextAlign.end,
+                        '3/4',
                         style: Theme.of(context)
                             .textTheme
-                            .bodyMedium
+                            .labelMedium
                             ?.copyWith(color: const Color(0xFF658DF1)),
                       ),
                     ],
                   ),
-                )
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        Text(
+                          "Оплата и цены",
+                          textAlign: TextAlign.end,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(color: const Color(0xFF658DF1)),
+                        ),
+                      ],
+                    ),
+                  )
+                ],
+              ),
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: Text(
+                    "Цена",
+                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                          color: Theme.of(context).colorScheme.primary,
+                        ),
+                  ),
+                ),
+                const SizedBox(width: 170, child: TextField3(hint: "80 000"))
               ],
             ),
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                child: Text(
-                  "Цена",
-                  style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
-                ),
-              ),
-              const SizedBox(width: 170, child: TextField3(hint: "80 000"))
-            ],
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          Text(
-            "Описание",
-            style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                  color: Theme.of(context).colorScheme.primary,
-                ),
-          ),
-          Expanded(
-            child: TextField(
+            const SizedBox(
+              height: 16,
+            ),
+            Text(
+              "Описание",
+              style: Theme.of(context).textTheme.titleSmall?.copyWith(
+                    color: Theme.of(context).colorScheme.primary,
+                  ),
+            ),
+            TextField(
               // controller: controller,
               maxLines: 6,
               style: Theme.of(context).textTheme.labelMedium,
@@ -118,9 +116,9 @@ class Page3 extends StatelessWidget {
                   borderSide: const BorderSide(color: Color(0xFF658DF1)),
                 ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }
