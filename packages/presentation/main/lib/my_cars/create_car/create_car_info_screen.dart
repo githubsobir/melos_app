@@ -21,7 +21,23 @@ class CreateCarInfoScreen extends StatelessWidget {
       appBar: AppBar(
         title: const Text("Мои машины"),
       ),
-      body: BlocBuilder<CreateCarCubit, CreateCarState>(
+      body: BlocConsumer<CreateCarCubit, CreateCarState>(
+        listener: (context, state) {
+          print(state.position);
+          if (state.position == 0) {
+            context.closeActiveScreen();
+          } else if (state.position <= 4) {
+            controller.animateToPage(
+              state.position,
+              duration: const Duration(milliseconds: 300),
+              curve: Curves.linear,
+            );
+          } else {
+            // context.openScreen(LoginIntent());
+            // context.closeActiveScreen();
+            print("next");
+          }
+        },
         bloc: cubit,
         builder: (context, state) {
           return Column(
@@ -34,12 +50,8 @@ class CreateCarInfoScreen extends StatelessWidget {
                   children: [
                     Page0(
                       onStart: () {
-                        cubit.changePosition(1);
-                        controller.animateToPage(
-                          1,
-                          duration: const Duration(milliseconds: 300),
-                          curve: Curves.linear,
-                        );
+                        print("object");
+                        cubit.changePositionToRight();
                       },
                     ),
                     Page1(
@@ -69,17 +81,7 @@ class CreateCarInfoScreen extends StatelessWidget {
                     children: [
                       GestureDetector(
                         onTap: () {
-                          var position = state.position;
-                          cubit.changePosition(--position);
-                          if (state.position == 1) {
-                            context.closeActiveScreen();
-                          } else {
-                            controller.animateToPage(
-                              state.position,
-                              duration: const Duration(milliseconds: 300),
-                              curve: Curves.linear,
-                            );
-                          }
+                          cubit.changePositionToLeft();
                         },
                         child: Card(
                           elevation: 0,
@@ -114,18 +116,7 @@ class CreateCarInfoScreen extends StatelessWidget {
                       BaseButton(
                           width: 145,
                           onPressed: () {
-                            var position = state.position;
-                            cubit.changePosition(++position);
-                            if (state.position <= 4) {
-                              controller.animateToPage(
-                                state.position,
-                                duration: const Duration(milliseconds: 300),
-                                curve: Curves.linear,
-                              );
-                            } else {
-                              // context.openScreen(LoginIntent());
-                              context.closeActiveScreen(true);
-                            }
+                            cubit.changePositionToRight();
                           },
                           title: state.position < 4 ? "Следующий" : "Обзор")
                     ],

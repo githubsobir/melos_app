@@ -94,7 +94,7 @@ class Page1 extends StatelessWidget {
                   width: 170,
                   child: TextField3(
                     hint: "Шевроле",
-                    onChanged: onChangedModel,
+                    onChanged: onChangedMake,
                   ),
                 )
               ],
@@ -113,10 +113,11 @@ class Page1 extends StatelessWidget {
                         ),
                   ),
                 ),
-                const SizedBox(
+                 SizedBox(
                   width: 170,
                   child: TextField3(
                     hint: "Малибу 2 Турбо",
+                    onChanged: onChangedModel,
                   ),
                 )
               ],
@@ -135,10 +136,11 @@ class Page1 extends StatelessWidget {
                         ),
                   ),
                 ),
-                const SizedBox(
+                 SizedBox(
                   width: 170,
                   child: TextField3(
                     hint: "2020",
+                    onChanged: onChangedRegNumber,
                   ),
                 )
               ],
@@ -157,10 +159,11 @@ class Page1 extends StatelessWidget {
                         ),
                   ),
                 ),
-                const SizedBox(
+                 SizedBox(
                   width: 170,
                   child: TextField3(
                     hint: "2020",
+                    onChanged: onChangedCity,
                   ),
                 )
               ],
@@ -179,10 +182,11 @@ class Page1 extends StatelessWidget {
                         ),
                   ),
                 ),
-                const SizedBox(
+                 SizedBox(
                   width: 170,
                   child: TextField3(
                     hint: "2020",
+                    onChanged: onChangedTransmission,
                   ),
                 )
               ],
@@ -201,10 +205,11 @@ class Page1 extends StatelessWidget {
                         ),
                   ),
                 ),
-                const SizedBox(
+                 SizedBox(
                   width: 170,
                   child: TextField3(
                     hint: "2020",
+                    onChanged: onChangedPassengerCapacity,
                   ),
                 )
               ],
