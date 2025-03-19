@@ -139,7 +139,7 @@ class Page1 extends StatelessWidget {
                  SizedBox(
                   width: 170,
                   child: TextField3(
-                    hint: "2020",
+                    hint: "01 | A 001 AA",
                     onChanged: onChangedRegNumber,
                   ),
                 )
@@ -162,7 +162,7 @@ class Page1 extends StatelessWidget {
                  SizedBox(
                   width: 170,
                   child: TextField3(
-                    hint: "2020",
+                    hint: "Ташкент",
                     onChanged: onChangedCity,
                   ),
                 )
@@ -185,7 +185,7 @@ class Page1 extends StatelessWidget {
                  SizedBox(
                   width: 170,
                   child: TextField3(
-                    hint: "2020",
+                    hint: "Автомат",
                     onChanged: onChangedTransmission,
                   ),
                 )
@@ -208,8 +208,10 @@ class Page1 extends StatelessWidget {
                  SizedBox(
                   width: 170,
                   child: TextField3(
-                    hint: "2020",
+                    hint: "2",
+                    keyboardType: TextInputType.number,
                     onChanged: onChangedPassengerCapacity,
+
                   ),
                 )
               ],

@@ -1,6 +1,7 @@
 import 'package:data/models/remote/cars/request/car_like_request.dart';
 import 'package:data/network/net_base.dart';
 import 'package:dio/dio.dart';
+import 'package:domain/model/cars/car_create_model.dart';
 
 class CarsService {
   final NetBase _netBase;
@@ -140,6 +141,13 @@ class CarsService {
     var response = await _netBase.dio.get(
       'admin/yandex-api/',
     );
+    return response;
+  }
+
+  Future<Response> carCreate(
+      {required int processNumber, required CarCreateModel carModel}) async {
+    var response = await _netBase.dio
+        .post('cars/create/$processNumber/', data: carModel.toJson());
     return response;
   }
 }

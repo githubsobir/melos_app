@@ -1,3 +1,4 @@
+import 'package:domain/model/cars/car_create_model.dart';
 import 'package:domain/model/cars/car_detail_info_model.dart';
 import 'package:domain/model/cars/car_model.dart';
 import 'package:domain/model/cars/filter_model.dart';
@@ -7,10 +8,10 @@ import 'package:domain/repository/cars_repository.dart';
 import 'package:domain/utils/base_result.dart';
 
 class CarsUseCase {
-  final CarsRepository _carsDetail;
+  final CarsRepository _carsRepository;
   final AuthRepository _authRepository;
 
-  CarsUseCase(this._carsDetail, this._authRepository);
+  CarsUseCase(this._carsRepository, this._authRepository);
 
   Future<BaseResult<List<CarModel>>> recommendedCars({
     required int page,
@@ -23,7 +24,7 @@ class CarsUseCase {
     required List<String> passengers,
     required List<String> cities,
   }) {
-    return _carsDetail.recommendedCars(
+    return _carsRepository.recommendedCars(
       page: page,
       startDataTime: startDataTime,
       endDataTime: endDataTime,
@@ -37,15 +38,15 @@ class CarsUseCase {
   }
 
   Future<BaseResult<bool>> likeCar(num id, bool isLiked) {
-    return _carsDetail.likeCar(id, isLiked);
+    return _carsRepository.likeCar(id, isLiked);
   }
 
   Future<BaseResult<List<CarModel>>> likedCars() {
-    return _carsDetail.likedCars();
+    return _carsRepository.likedCars();
   }
 
   Future<BaseResult<CarDetailInfoModel>> getCarDetail({required num carId}) {
-    return _carsDetail.getCarDetail(
+    return _carsRepository.getCarDetail(
       carId: carId,
     );
   }
@@ -55,7 +56,7 @@ class CarsUseCase {
   }
 
   Future<BaseResult<FilterModel>> filter() {
-    return _carsDetail.filter();
+    return _carsRepository.filter();
   }
 
   Future<BaseResult<List<CarModel>>> popularCars({
@@ -65,7 +66,7 @@ class CarsUseCase {
     String? latitude,
     String? longitude,
   }) {
-    return _carsDetail.popularCars(
+    return _carsRepository.popularCars(
       page: page,
       startDataTime: startDataTime,
       endDataTime: endDataTime,
@@ -76,10 +77,18 @@ class CarsUseCase {
 
   Future<BaseResult<List<GpsModel>>> gpsList(
       {double? latitude, double? longitude}) {
-    return _carsDetail.gpsList(latitude: latitude, longitude: longitude);
+    return _carsRepository.gpsList(latitude: latitude, longitude: longitude);
   }
 
   Future<BaseResult<String>> mapApiKey() {
-    return _carsDetail.mapApiKey();
+    return _carsRepository.mapApiKey();
+  }
+
+  Future<BaseResult<bool>> carCreate(
+      {required int processNumber, required CarCreateModel carModel}) {
+    return _carsRepository.carCreate(
+      processNumber: processNumber,
+      carModel: carModel,
+    );
   }
 }

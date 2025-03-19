@@ -4,12 +4,14 @@ class TextField3 extends StatelessWidget {
   final TextEditingController? controller;
   final String hint;
   final ValueChanged<String>? onChanged;
+  final TextInputType? keyboardType;
 
   const TextField3({
     super.key,
     this.controller,
     required this.hint,
     this.onChanged,
+    this.keyboardType,
   });
 
   @override
@@ -17,7 +19,11 @@ class TextField3 extends StatelessWidget {
     return TextField(
       controller: controller,
       onChanged: onChanged,
-      style: Theme.of(context).textTheme.labelMedium,
+      keyboardType: keyboardType,
+      style: Theme
+          .of(context)
+          .textTheme
+          .labelMedium,
       decoration: InputDecoration(
         isDense: true,
         contentPadding: const EdgeInsets.only(
@@ -32,10 +38,14 @@ class TextField3 extends StatelessWidget {
         //     : const Color(0xFF061136),
         filled: true,
         hintText: hint,
-        hintStyle: Theme.of(context)
+        hintStyle: Theme
+            .of(context)
             .textTheme
             .labelMedium
-            ?.copyWith(color: Theme.of(context).colorScheme.secondary),
+            ?.copyWith(color: Theme
+            .of(context)
+            .colorScheme
+            .secondary),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
           borderSide: const BorderSide(color: Color(0xFF658DF1)),

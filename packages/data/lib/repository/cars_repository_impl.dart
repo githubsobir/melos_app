@@ -8,6 +8,7 @@ import 'package:data/models/remote/location/gps_response.dart';
 import 'package:data/models/remote/location/map_api_key_response.dart';
 import 'package:data/service/cars_service.dart';
 import 'package:dio/dio.dart';
+import 'package:domain/model/cars/car_create_model.dart';
 import 'package:domain/model/cars/car_detail_info_model.dart';
 import 'package:domain/model/cars/car_model.dart';
 import 'package:domain/model/cars/filter_model.dart';
@@ -197,6 +198,26 @@ class CarsRepositoryImpl extends CarsRepository {
       return BaseResult(
         success: true,
         body: MapApiKeyResponse.fromJson(response.data).key,
+      );
+    } on DioException catch (error) {
+      return BaseResult(
+          success: false, exceptionBody: error.response?.data['error_note']);
+    } catch (exception) {
+      return BaseResult(success: false, exceptionBody: exception);
+    }
+  }
+
+  @override
+  Future<BaseResult<bool>> carCreate(
+      {required int processNumber, required CarCreateModel carModel}) async {
+    try {
+      var response = await _carsService.carCreate(
+        processNumber: processNumber,
+        carModel: carModel,
+      );
+      return BaseResult(
+        success: true,
+        body: true,
       );
     } on DioException catch (error) {
       return BaseResult(

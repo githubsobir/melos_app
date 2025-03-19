@@ -1,4 +1,6 @@
 import 'package:common/widgets/base_button.dart';
+import 'package:common/widgets/base_loader_builder.dart';
+import 'package:dependency/dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intent_launcher/intent_launcher.dart';
@@ -13,7 +15,7 @@ class CreateCarInfoScreen extends StatelessWidget {
   CreateCarInfoScreen({super.key});
 
   final PageController controller = PageController(initialPage: 0);
-  final CreateCarCubit cubit = CreateCarCubit();
+  final CreateCarCubit cubit = CreateCarCubit(inject());
 
   @override
   Widget build(BuildContext context) {
@@ -40,93 +42,96 @@ class CreateCarInfoScreen extends StatelessWidget {
         },
         bloc: cubit,
         builder: (context, state) {
-          return Column(
-            children: [
-              Expanded(
-                child: PageView(
-                  physics: const NeverScrollableScrollPhysics(),
-                  scrollDirection: Axis.horizontal,
-                  controller: controller,
-                  children: [
-                    Page0(
-                      onStart: () {
-                        print("object");
-                        cubit.changePositionToRight();
-                      },
-                    ),
-                    Page1(
-                      onChangedMake: cubit.onChangedMake,
-                      onChangedModel: cubit.onChangeModel,
-                      onChangedRegNumber: cubit.onChangedRegNumber,
-                      onChangedCity: cubit.onChangedCity,
-                      onChangedTransmission: cubit.onChangedTransmission,
-                      onChangedPassengerCapacity:
-                          cubit.onChangedPassengerCapacity,
-                    ),
-                    Page2(),
-                    Page3(),
-                    Page4(),
-                  ],
-                ),
-              ),
-              Visibility(
-                visible: state.position != 0,
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    left: 16,
-                    right: 16,
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          return BaseLoaderBuilder(
+            hasLoading: state.isLoading,
+            child: Column(
+              children: [
+                Expanded(
+                  child: PageView(
+                    physics: const NeverScrollableScrollPhysics(),
+                    scrollDirection: Axis.horizontal,
+                    controller: controller,
                     children: [
-                      GestureDetector(
-                        onTap: () {
-                          cubit.changePositionToLeft();
+                      Page0(
+                        onStart: () {
+                          print("object");
+                          cubit.changePositionToRight();
                         },
-                        child: Card(
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8.0),
-                              side: BorderSide(
-                                  color:
-                                      Theme.of(context).colorScheme.primary)),
-                          child: Container(
-                            width: 145,
-                            padding: const EdgeInsets.only(
-                              left: 16,
-                              right: 16,
-                              top: 8,
-                              bottom: 8,
-                            ),
-                            child: Text(
-                              state.position == 1 ? "Оставлять" : "Назад",
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .bodyMedium!
-                                  .copyWith(
-                                    color:
-                                        Theme.of(context).colorScheme.primary,
-                                    fontSize: 18,
-                                  ),
-                            ),
-                          ),
-                        ),
                       ),
-                      BaseButton(
-                          width: 145,
-                          onPressed: () {
-                            cubit.changePositionToRight();
-                          },
-                          title: state.position < 4 ? "Следующий" : "Обзор")
+                      Page1(
+                        onChangedMake: cubit.onChangedMake,
+                        onChangedModel: cubit.onChangeModel,
+                        onChangedRegNumber: cubit.onChangedRegNumber,
+                        onChangedCity: cubit.onChangedCity,
+                        onChangedTransmission: cubit.onChangedTransmission,
+                        onChangedPassengerCapacity:
+                            cubit.onChangedPassengerCapacity,
+                      ),
+                      Page2(),
+                      Page3(),
+                      Page4(),
                     ],
                   ),
                 ),
-              ),
-              const SizedBox(
-                height: 52,
-              ),
-            ],
+                Visibility(
+                  visible: state.position != 0,
+                  child: Padding(
+                    padding: const EdgeInsets.only(
+                      left: 16,
+                      right: 16,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            cubit.changePositionToLeft();
+                          },
+                          child: Card(
+                            elevation: 0,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8.0),
+                                side: BorderSide(
+                                    color:
+                                        Theme.of(context).colorScheme.primary)),
+                            child: Container(
+                              width: 145,
+                              padding: const EdgeInsets.only(
+                                left: 16,
+                                right: 16,
+                                top: 8,
+                                bottom: 8,
+                              ),
+                              child: Text(
+                                state.position == 1 ? "Оставлять" : "Назад",
+                                textAlign: TextAlign.center,
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium!
+                                    .copyWith(
+                                      color:
+                                          Theme.of(context).colorScheme.primary,
+                                      fontSize: 18,
+                                    ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        BaseButton(
+                            width: 145,
+                            onPressed: () {
+                              cubit.changePositionToRight();
+                            },
+                            title: state.position < 4 ? "Следующий" : "Обзор")
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 52,
+                ),
+              ],
+            ),
           );
         },
       ),

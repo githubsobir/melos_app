@@ -67,4 +67,24 @@ class CarCreateModel {
         port: port ?? this.port,
         uniqueId: uniqueId ?? this.uniqueId,
       );
+
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['process_number'] = processNumber;
+    map['make'] = make;
+    map['model'] = model;
+    map['year'] = year;
+    map['category'] = category;
+    map['fuel_capacity'] = fuelCapacity;
+    map['transmission'] = transmission;
+    map['passenger_capacity'] = passengerCapacity;
+    map['registration_number'] = registrationNumber;
+    map['daily_rate'] = dailyRate;
+    map['original_price'] = originalPrice;
+    map['description'] = description;
+    map['city'] = city;
+    map['port'] = port;
+    map['unique_id'] = uniqueId;
+    return map;
+  }
 }

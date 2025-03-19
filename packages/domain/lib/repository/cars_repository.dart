@@ -1,3 +1,4 @@
+import 'package:domain/model/cars/car_create_model.dart';
 import 'package:domain/model/cars/car_detail_info_model.dart';
 import 'package:domain/model/cars/car_model.dart';
 import 'package:domain/model/cars/filter_model.dart';
@@ -36,4 +37,6 @@ abstract class CarsRepository {
   Future<BaseResult<List<GpsModel>>> gpsList({double? latitude, double? longitude});
 
   Future<BaseResult<String>> mapApiKey();
+
+  Future<BaseResult<bool>> carCreate({required int processNumber, required CarCreateModel carModel});
 }
