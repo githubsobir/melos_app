@@ -126,12 +126,12 @@ class _MainScreenState extends State<MainScreen> {
                       context.translations.next_to_me, () => _onItemTapped(1)),
                   item(context, cubit.pageIndex == 2, PathImages.menuAdd, "",
                       () {
-                        if (cubit.hasUser) {
-                          _onItemTapped(2);
-                        } else {
-                          context.openScreen(LoginIntent());
-                        }
-                      }),
+                    if (cubit.hasUser) {
+                      _onItemTapped(2);
+                    } else {
+                      context.openScreen(LoginIntent());
+                    }
+                  }),
                   item(
                     context,
                     cubit.pageIndex == 3,
