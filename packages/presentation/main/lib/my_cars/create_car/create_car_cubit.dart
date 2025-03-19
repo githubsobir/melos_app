@@ -3,7 +3,6 @@ import 'package:domain/usecase/cars_usecase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yandex_maps_mapkit_lite/init.dart' as init;
 
 class CreateCarCubit extends Cubit<CreateCarState> {
   final CarsUseCase _carsUseCase;
@@ -22,16 +21,16 @@ class CreateCarCubit extends Cubit<CreateCarState> {
     emit(state.copyWith(position: --position));
   }
 
-  Future<void> mapInitial() async {
-    var response = await _carsUseCase.mapApiKey();
-    if (response.success) {
-      var gps = response.body;
-      if (gps != null) {
-        // await init.initMapkit(apiKey: gps);
-        await init.initMapkit(apiKey: "973005bb-3cfc-4e46-81d2-26939d2b8c3c");
-      }
-    }
-  }
+  // Future<void> mapInitial() async {
+  //   var response = await _carsUseCase.mapApiKey();
+  //   if (response.success) {
+  //     var gps = response.body;
+  //     if (gps != null) {
+  //       // await init.initMapkit(apiKey: gps);
+  //       await init.initMapkit(apiKey: "973005bb-3cfc-4e46-81d2-26939d2b8c3c");
+  //     }
+  //   }
+  // }
 
   changePositionToRight() async {
     print(state.position);
@@ -51,7 +50,14 @@ class CreateCarCubit extends Cubit<CreateCarState> {
         } else {}
       }
     } else if (state.position == 2) {
-      emit(state.copyWith(position: 3));
+      if ((state.carModel.year ?? 0) > 0 &&
+          (state.carModel.mileage ?? 0) > 0 &&
+          (state.carModel.fuelCapacity ?? 0) > 0 &&
+          (state.carModel.photos ?? []).isNotEmpty) {
+        if (await carCreateProcess(2)) {
+          emit(state.copyWith(position: 3));
+        } else {}
+      }
     } else if (state.position == 3) {
       emit(state.copyWith(position: 4));
     } else {
@@ -91,7 +97,6 @@ class CreateCarCubit extends Cubit<CreateCarState> {
   }
 
   onChangedPassengerCapacity(String value) {
-    print(value);
     emit(state.copyWith(
         carModel:
             state.carModel.copyWith(passengerCapacity: num.parse(value))));
@@ -104,6 +109,25 @@ class CreateCarCubit extends Cubit<CreateCarState> {
         longitude: longitude,
       ),
     ));
+  }
+
+  void onChangedYear(String value) {
+    emit(state.copyWith(
+        carModel: state.carModel.copyWith(year: num.parse(value))));
+  }
+
+  void onChangedMileage(String value) {
+    emit(state.copyWith(
+        carModel: state.carModel.copyWith(mileage: num.parse(value))));
+  }
+
+  void onChangedFuelCapacity(String value) {
+    emit(state.copyWith(
+        carModel: state.carModel.copyWith(fuelCapacity: num.parse(value))));
+  }
+
+  onChangedPhotos(List<String> photos) {
+    emit(state.copyWith(carModel: state.carModel.copyWith(photos: photos)));
   }
 }
 

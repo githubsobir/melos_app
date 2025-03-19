@@ -6,6 +6,7 @@ class CarCreateModel {
     this.year,
     this.category,
     this.fuelCapacity,
+    this.mileage,
     this.transmission,
     this.passengerCapacity,
     this.registrationNumber,
@@ -17,6 +18,7 @@ class CarCreateModel {
     this.uniqueId,
     this.latitude,
     this.longitude,
+    this.photos,
   });
 
   num? processNumber;
@@ -25,6 +27,7 @@ class CarCreateModel {
   num? year;
   String? category;
   num? fuelCapacity;
+  num? mileage;
   String? transmission;
   num? passengerCapacity;
   String? registrationNumber;
@@ -36,26 +39,28 @@ class CarCreateModel {
   String? uniqueId;
   double? latitude;
   double? longitude;
+  List<String>? photos;
 
-  CarCreateModel copyWith({
-    num? processNumber,
-    String? make,
-    String? model,
-    num? year,
-    String? category,
-    num? fuelCapacity,
-    String? transmission,
-    num? passengerCapacity,
-    String? registrationNumber,
-    String? dailyRate,
-    String? originalPrice,
-    String? description,
-    String? city,
-    String? port,
-    String? uniqueId,
-    double? latitude,
-    double? longitude,
-  }) =>
+  CarCreateModel copyWith(
+          {num? processNumber,
+          String? make,
+          String? model,
+          num? year,
+          String? category,
+          num? fuelCapacity,
+          num? mileage,
+          String? transmission,
+          num? passengerCapacity,
+          String? registrationNumber,
+          String? dailyRate,
+          String? originalPrice,
+          String? description,
+          String? city,
+          String? port,
+          String? uniqueId,
+          double? latitude,
+          double? longitude,
+          List<String>? photos}) =>
       CarCreateModel(
         processNumber: processNumber ?? this.processNumber,
         make: make ?? this.make,
@@ -63,6 +68,7 @@ class CarCreateModel {
         year: year ?? this.year,
         category: category ?? this.category,
         fuelCapacity: fuelCapacity ?? this.fuelCapacity,
+        mileage: mileage ?? this.mileage,
         transmission: transmission ?? this.transmission,
         passengerCapacity: passengerCapacity ?? this.passengerCapacity,
         registrationNumber: registrationNumber ?? this.registrationNumber,
@@ -74,6 +80,7 @@ class CarCreateModel {
         uniqueId: uniqueId ?? this.uniqueId,
         latitude: latitude ?? this.latitude,
         longitude: longitude ?? this.longitude,
+        photos: photos ?? this.photos,
       );
 
   Map<String, dynamic> toJson() {
@@ -84,6 +91,7 @@ class CarCreateModel {
     map['year'] = year;
     map['category'] = category;
     map['fuel_capacity'] = fuelCapacity;
+    map['mileage'] = mileage;
     map['transmission'] = transmission;
     map['passenger_capacity'] = passengerCapacity;
     map['registration_number'] = registrationNumber;

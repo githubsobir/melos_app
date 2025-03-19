@@ -15,7 +15,7 @@ class CreateCarInfoScreen extends StatelessWidget {
   CreateCarInfoScreen({super.key});
 
   final PageController controller = PageController(initialPage: 0);
-  final CreateCarCubit cubit = CreateCarCubit(inject())..mapInitial();
+  final CreateCarCubit cubit = CreateCarCubit(inject());
 
   @override
   Widget build(BuildContext context) {
@@ -52,6 +52,7 @@ class CreateCarInfoScreen extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     controller: controller,
                     children: [
+                      // const Page2(),
                       Page0(
                         onStart: () {
                           cubit.changePositionToRight();
@@ -67,7 +68,12 @@ class CreateCarInfoScreen extends StatelessWidget {
                             cubit.onChangedPassengerCapacity,
                         onChangedLocations: cubit.onChangedLocations,
                       ),
-                      const Page2(),
+                      Page2(
+                        onChangedYear: cubit.onChangedYear,
+                        onChangedMileage: cubit.onChangedMileage,
+                        onChangedFuelCapacity: cubit.onChangedFuelCapacity,
+                        onChangedPhotos: cubit.onChangedPhotos,
+                      ),
                       const Page3(),
                       Page4(),
                     ],
