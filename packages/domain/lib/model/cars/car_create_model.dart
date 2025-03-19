@@ -15,6 +15,8 @@ class CarCreateModel {
     this.city,
     this.port,
     this.uniqueId,
+    this.latitude,
+    this.longitude,
   });
 
   num? processNumber;
@@ -32,6 +34,8 @@ class CarCreateModel {
   String? city;
   String? port;
   String? uniqueId;
+  double? latitude;
+  double? longitude;
 
   CarCreateModel copyWith({
     num? processNumber,
@@ -49,6 +53,8 @@ class CarCreateModel {
     String? city,
     String? port,
     String? uniqueId,
+    double? latitude,
+    double? longitude,
   }) =>
       CarCreateModel(
         processNumber: processNumber ?? this.processNumber,
@@ -66,6 +72,8 @@ class CarCreateModel {
         city: city ?? this.city,
         port: port ?? this.port,
         uniqueId: uniqueId ?? this.uniqueId,
+        latitude: latitude ?? this.latitude,
+        longitude: longitude ?? this.longitude,
       );
 
   Map<String, dynamic> toJson() {
@@ -85,6 +93,8 @@ class CarCreateModel {
     map['city'] = city;
     map['port'] = port;
     map['unique_id'] = uniqueId;
+    map['latitude'] = latitude;
+    map['longitude'] = longitude;
     return map;
   }
 }

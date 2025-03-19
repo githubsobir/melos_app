@@ -10,6 +10,7 @@ import 'package:domain/model/profile/user_information_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:locations/locations_screen.dart';
+import 'package:locations/select_location_screen.dart';
 import 'package:main/booking/booking_screen.dart';
 import 'package:main/booking_history/booking_history_screen.dart';
 import 'package:main/car_info/car_info_detail_screen.dart';
@@ -100,6 +101,9 @@ final _launcher = IntentLauncher()
   ..onNavigationIntent<LocationsScreenIntent>((context, intent) {
     return Navigator.pushNamed(context, LocationsScreenIntent.path);
   })
+  ..onNavigationIntent<SelectLocationScreenIntent>((context, intent) {
+    return Navigator.pushNamed(context, SelectLocationScreenIntent.path);
+  })
 //MyCars
   ..onNavigationIntent<MyCarsIntent>((context, intent) {
     return Navigator.pushNamed(context, MyCarsIntent.path);
@@ -174,8 +178,10 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     return _createRoute(BookingHistoryScreen().wrapWith(_launcher));
   } else if (LocationsScreenIntent.path == settings.name) {
     return _createRoute(LocationsScreen().wrapWith(_launcher));
+  } else if (SelectLocationScreenIntent.path == settings.name) {
+    return _createRoute(const SelectLocationScreen().wrapWith(_launcher));
   } else if (HelpIntent.path == settings.name) {
-    return _createRoute(HelpScreen().wrapWith(_launcher));
+    return _createRoute(const HelpScreen().wrapWith(_launcher));
   } else if (NotificationsScreenIntent.path == settings.name) {
     return _createRoute(NotificationsScreen().wrapWith(_launcher));
   } else if (MyCarsIntent.path == settings.name) {

@@ -3,6 +3,7 @@ import 'package:intent_launcher/intent_launcher.dart';
 class MyCarsIntent implements NavigationIntent {
   static String path = "/my_cars";
 }
+
 class MyCarLocationIntent implements NavigationIntent {
   static String path = "/my_car_location";
 }
@@ -13,6 +14,10 @@ class CreateCarInfoIntent implements NavigationIntent {
 
 class LocationsScreenIntent implements NavigationIntent {
   static String path = "/LocationsScreenIntent";
+}
+
+class SelectLocationScreenIntent implements NavigationIntent {
+  static String path = "/SelectLocationScreenIntent";
 }
 
 class CarInfoDetailIntent implements NavigationIntent {

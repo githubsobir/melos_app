@@ -1,13 +1,21 @@
+import 'package:common/widgets/base_button.dart';
 import 'package:common/widgets/textfield3.dart';
+import 'package:domain/model/location/point_model.dart';
 import 'package:flutter/material.dart';
+import 'package:intent_launcher/intent_launcher.dart';
+import 'package:navigation/my_cars_intents.dart';
 
-class Page1 extends StatelessWidget {
+class Page1 extends StatefulWidget {
   final ValueChanged<String> onChangedMake;
   final ValueChanged<String> onChangedModel;
   final ValueChanged<String> onChangedRegNumber;
   final ValueChanged<String> onChangedCity;
   final ValueChanged<String> onChangedTransmission;
   final ValueChanged<String> onChangedPassengerCapacity;
+  final Function(
+    double latitude,
+    double longitude,
+  ) onChangedLocations;
 
   const Page1({
     super.key,
@@ -17,7 +25,15 @@ class Page1 extends StatelessWidget {
     required this.onChangedCity,
     required this.onChangedTransmission,
     required this.onChangedPassengerCapacity,
+    required this.onChangedLocations,
   });
+
+  @override
+  State<Page1> createState() => _Page1State();
+}
+
+class _Page1State extends State<Page1> {
+  String location = "";
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +42,7 @@ class Page1 extends StatelessWidget {
       child: SingleChildScrollView(
         child: Column(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
               margin: const EdgeInsets.only(
@@ -47,7 +64,7 @@ class Page1 extends StatelessWidget {
                         width: 55,
                         child: CircularProgressIndicator(
                           value: 0.25,
-                          backgroundColor: Color(0xFFD9D9D9),
+                          backgroundColor: const Color(0xFFD9D9D9),
                           color: Theme.of(context).colorScheme.primary,
                           strokeWidth: 8.0,
                         ),
@@ -94,7 +111,7 @@ class Page1 extends StatelessWidget {
                   width: 170,
                   child: TextField3(
                     hint: "Шевроле",
-                    onChanged: onChangedMake,
+                    onChanged: widget.onChangedMake,
                   ),
                 )
               ],
@@ -113,11 +130,11 @@ class Page1 extends StatelessWidget {
                         ),
                   ),
                 ),
-                 SizedBox(
+                SizedBox(
                   width: 170,
                   child: TextField3(
                     hint: "Малибу 2 Турбо",
-                    onChanged: onChangedModel,
+                    onChanged: widget.onChangedModel,
                   ),
                 )
               ],
@@ -136,11 +153,11 @@ class Page1 extends StatelessWidget {
                         ),
                   ),
                 ),
-                 SizedBox(
+                SizedBox(
                   width: 170,
                   child: TextField3(
                     hint: "01 | A 001 AA",
-                    onChanged: onChangedRegNumber,
+                    onChanged: widget.onChangedRegNumber,
                   ),
                 )
               ],
@@ -159,11 +176,11 @@ class Page1 extends StatelessWidget {
                         ),
                   ),
                 ),
-                 SizedBox(
+                SizedBox(
                   width: 170,
                   child: TextField3(
                     hint: "Ташкент",
-                    onChanged: onChangedCity,
+                    onChanged: widget.onChangedCity,
                   ),
                 )
               ],
@@ -182,11 +199,11 @@ class Page1 extends StatelessWidget {
                         ),
                   ),
                 ),
-                 SizedBox(
+                SizedBox(
                   width: 170,
                   child: TextField3(
                     hint: "Автомат",
-                    onChanged: onChangedTransmission,
+                    onChanged: widget.onChangedTransmission,
                   ),
                 )
               ],
@@ -205,17 +222,43 @@ class Page1 extends StatelessWidget {
                         ),
                   ),
                 ),
-                 SizedBox(
+                SizedBox(
                   width: 170,
                   child: TextField3(
                     hint: "2",
                     keyboardType: TextInputType.number,
-                    onChanged: onChangedPassengerCapacity,
-
+                    onChanged: widget.onChangedPassengerCapacity,
                   ),
                 )
               ],
             ),
+            const SizedBox(
+              height: 16,
+            ),
+            BaseButton(
+              width: 170,
+              onPressed: () {
+                context.openScreen(SelectLocationScreenIntent()).then(
+                  (value) {
+                    if (value is PointModel) {
+                      widget.onChangedLocations(
+                          value.latitude, value.longitude);
+                      setState(() {
+                        location = "${value.latitude}, ${value.longitude}";
+                      });
+                    }
+                  },
+                );
+              },
+              title: "Локация",
+            ),
+            const SizedBox(
+              height: 16,
+            ),
+            Text(
+              location,
+              style: Theme.of(context).textTheme.bodySmall,
+            )
           ],
         ),
       ),
