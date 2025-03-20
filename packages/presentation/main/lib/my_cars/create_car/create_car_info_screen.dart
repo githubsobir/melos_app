@@ -89,60 +89,64 @@ class CreateCarInfoScreen extends StatelessWidget {
                 ),
                 Visibility(
                   visible: state.position != 0 && state.position != 4,
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                      left: 16,
-                      right: 16,
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        GestureDetector(
-                          onTap: () {
-                            cubit.changePositionToLeft();
-                          },
-                          child: Card(
-                            elevation: 0,
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(8.0),
-                                side: BorderSide(
-                                    color:
-                                        Theme.of(context).colorScheme.primary)),
-                            child: Container(
-                              width: 145,
-                              padding: const EdgeInsets.only(
-                                left: 16,
-                                right: 16,
-                                top: 8,
-                                bottom: 8,
-                              ),
-                              child: Text(
-                                state.position == 1 ? "Оставлять" : "Назад",
-                                textAlign: TextAlign.center,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyMedium!
-                                    .copyWith(
-                                      color:
-                                          Theme.of(context).colorScheme.primary,
-                                      fontSize: 18,
-                                    ),
+                  child: Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(
+                          left: 16,
+                          right: 16,
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            GestureDetector(
+                              onTap: () {
+                                cubit.changePositionToLeft();
+                              },
+                              child: Card(
+                                elevation: 0,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(8.0),
+                                    side: BorderSide(
+                                        color:
+                                            Theme.of(context).colorScheme.primary)),
+                                child: Container(
+                                  width: 145,
+                                  padding: const EdgeInsets.only(
+                                    left: 16,
+                                    right: 16,
+                                    top: 8,
+                                    bottom: 8,
+                                  ),
+                                  child: Text(
+                                    state.position == 1 ? "Оставлять" : "Назад",
+                                    textAlign: TextAlign.center,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .bodyMedium!
+                                        .copyWith(
+                                          color:
+                                              Theme.of(context).colorScheme.primary,
+                                          fontSize: 18,
+                                        ),
+                                  ),
+                                ),
                               ),
                             ),
-                          ),
+                            BaseButton(
+                                width: 145,
+                                onPressed: () {
+                                  cubit.changePositionToRight();
+                                },
+                                title: state.position < 4 ? "Следующий" : "Обзор")
+                          ],
                         ),
-                        BaseButton(
-                            width: 145,
-                            onPressed: () {
-                              cubit.changePositionToRight();
-                            },
-                            title: state.position < 4 ? "Следующий" : "Обзор")
-                      ],
-                    ),
+                      ),
+                      const SizedBox(
+                        height: 52,
+                      ),
+                    ],
                   ),
-                ),
-                const SizedBox(
-                  height: 52,
                 ),
               ],
             ),
