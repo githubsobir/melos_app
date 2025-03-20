@@ -2,7 +2,14 @@ import 'package:common/widgets/textfield3.dart';
 import 'package:flutter/material.dart';
 
 class Page3 extends StatelessWidget {
-  const Page3({super.key});
+  final ValueChanged<String> onChangedDailyRate;
+  final ValueChanged<String> onChangedDescription;
+
+  const Page3({
+    super.key,
+    required this.onChangedDailyRate,
+    required this.onChangedDescription,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +39,7 @@ class Page3 extends StatelessWidget {
                         width: 55,
                         child: CircularProgressIndicator(
                           value: 0.75,
-                          backgroundColor: Color(0xFFD9D9D9),
+                          backgroundColor: const Color(0xFFD9D9D9),
                           color: Theme.of(context).colorScheme.primary,
                           strokeWidth: 8.0,
                         ),
@@ -78,7 +85,12 @@ class Page3 extends StatelessWidget {
                         ),
                   ),
                 ),
-                const SizedBox(width: 170, child: TextField3(hint: "80 000"))
+                SizedBox(
+                    width: 170,
+                    child: TextField3(
+                      hint: "80 000",
+                      onChanged: onChangedDailyRate,
+                    ))
               ],
             ),
             const SizedBox(
@@ -93,6 +105,7 @@ class Page3 extends StatelessWidget {
             TextField(
               // controller: controller,
               maxLines: 6,
+              onChanged: onChangedDescription,
               style: Theme.of(context).textTheme.labelMedium,
               decoration: InputDecoration(
                 isDense: true,

@@ -208,8 +208,10 @@ class CarsRepositoryImpl extends CarsRepository {
   }
 
   @override
-  Future<BaseResult<bool>> carCreate(
-      {required int processNumber, required CarCreateModel carModel}) async {
+  Future<BaseResult<bool>> carCreate({
+    required int processNumber,
+    required CarCreateModel carModel,
+  }) async {
     try {
       var response = await _carsService.carCreate(
         processNumber: processNumber,

@@ -21,17 +21,6 @@ class CreateCarCubit extends Cubit<CreateCarState> {
     emit(state.copyWith(position: --position));
   }
 
-  // Future<void> mapInitial() async {
-  //   var response = await _carsUseCase.mapApiKey();
-  //   if (response.success) {
-  //     var gps = response.body;
-  //     if (gps != null) {
-  //       // await init.initMapkit(apiKey: gps);
-  //       await init.initMapkit(apiKey: "973005bb-3cfc-4e46-81d2-26939d2b8c3c");
-  //     }
-  //   }
-  // }
-
   changePositionToRight() async {
     print(state.position);
     if (state.position == 0) {
@@ -59,9 +48,19 @@ class CreateCarCubit extends Cubit<CreateCarState> {
         } else {}
       }
     } else if (state.position == 3) {
-      emit(state.copyWith(position: 4));
-    } else {
-      emit(state.copyWith(position: 5));
+      if ((state.carModel.dailyRate ?? 0) > 0 &&
+          (state.carModel.description ?? "").isNotEmpty) {
+        if (await carCreateProcess(3)) {
+          emit(state.copyWith(position: 4));
+        } else {}
+      }
+    } else if (state.position == 4) {
+      if ((state.carModel.dailyRate ?? 0) > 0 &&
+          (state.carModel.description ?? "").isNotEmpty) {
+        if (await carCreateProcess(4)) {
+          emit(state.copyWith(position: 5));
+        } else {}
+      }
     }
   }
 
@@ -128,6 +127,15 @@ class CreateCarCubit extends Cubit<CreateCarState> {
 
   onChangedPhotos(List<String> photos) {
     emit(state.copyWith(carModel: state.carModel.copyWith(photos: photos)));
+  }
+
+  void onChangedDailyRate(String value) {
+    emit(state.copyWith(
+        carModel: state.carModel.copyWith(dailyRate: num.parse(value))));
+  }
+
+  void onChangedDescription(String value) {
+    emit(state.copyWith(carModel: state.carModel.copyWith(description: value)));
   }
 }
 

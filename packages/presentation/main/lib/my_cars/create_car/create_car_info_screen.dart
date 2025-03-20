@@ -74,7 +74,10 @@ class CreateCarInfoScreen extends StatelessWidget {
                         onChangedFuelCapacity: cubit.onChangedFuelCapacity,
                         onChangedPhotos: cubit.onChangedPhotos,
                       ),
-                      const Page3(),
+                      Page3(
+                        onChangedDailyRate: cubit.onChangedDailyRate,
+                        onChangedDescription: cubit.onChangedDescription,
+                      ),
                       Page4(),
                     ],
                   ),

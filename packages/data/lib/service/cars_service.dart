@@ -146,8 +146,53 @@ class CarsService {
 
   Future<Response> carCreate(
       {required int processNumber, required CarCreateModel carModel}) async {
-    var response = await _netBase.dio
-        .post('cars/create/$processNumber/', data: carModel.toJson());
+    List<MultipartFile> multipartFiles = [];
+
+    for (var path in (carModel.photos ?? [])) {
+      multipartFiles.add(await MultipartFile.fromFile(path,
+          filename: path.substring(path.lastIndexOf("/") + 1)));
+    }
+
+    var formData = FormData.fromMap({
+      "process_number": processNumber,
+      "make": carModel.make,
+      "model": carModel.model,
+      "year": carModel.year,
+      "category": carModel.category,
+      "fuel_capacity": carModel.fuelCapacity,
+      "mileage": carModel.mileage,
+      "transmission": carModel.transmission,
+      "passenger_capacity": carModel.passengerCapacity,
+      "registration_number": carModel.registrationNumber,
+      "daily_rate": carModel.dailyRate,
+      "original_price": carModel.originalPrice,
+      "description": carModel.description,
+      "city": carModel.city,
+      "port": carModel.port,
+      "unique_id": carModel.uniqueId,
+      "latitude": carModel.latitude,
+      "longitude": carModel.longitude,
+      "photos": multipartFiles,
+      "document": carModel.document
+    });
+
+    var response = await _netBase.dio.post(
+      'cars/create/$processNumber/',
+      data: formData,
+    );
+    return response;
+  }
+
+  Future<Response> uploadImage(String path) async {
+    var image = await MultipartFile.fromFile(path,
+        filename: path.substring(path.lastIndexOf("/") + 1));
+    var formData = FormData.fromMap({
+      "photo": image,
+    });
+    var response = await _netBase.dio.post(
+      "user/image-upload/",
+      data: formData,
+    );
     return response;
   }
 }

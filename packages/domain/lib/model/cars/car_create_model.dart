@@ -19,6 +19,7 @@ class CarCreateModel {
     this.latitude,
     this.longitude,
     this.photos,
+    this.document,
   });
 
   num? processNumber;
@@ -31,7 +32,7 @@ class CarCreateModel {
   String? transmission;
   num? passengerCapacity;
   String? registrationNumber;
-  String? dailyRate;
+  num? dailyRate;
   String? originalPrice;
   String? description;
   String? city;
@@ -40,27 +41,30 @@ class CarCreateModel {
   double? latitude;
   double? longitude;
   List<String>? photos;
+  String? document;
 
-  CarCreateModel copyWith(
-          {num? processNumber,
-          String? make,
-          String? model,
-          num? year,
-          String? category,
-          num? fuelCapacity,
-          num? mileage,
-          String? transmission,
-          num? passengerCapacity,
-          String? registrationNumber,
-          String? dailyRate,
-          String? originalPrice,
-          String? description,
-          String? city,
-          String? port,
-          String? uniqueId,
-          double? latitude,
-          double? longitude,
-          List<String>? photos}) =>
+  CarCreateModel copyWith({
+    num? processNumber,
+    String? make,
+    String? model,
+    num? year,
+    String? category,
+    num? fuelCapacity,
+    num? mileage,
+    String? transmission,
+    num? passengerCapacity,
+    String? registrationNumber,
+    num? dailyRate,
+    String? originalPrice,
+    String? description,
+    String? city,
+    String? port,
+    String? uniqueId,
+    double? latitude,
+    double? longitude,
+    List<String>? photos,
+    String? document
+  }) =>
       CarCreateModel(
         processNumber: processNumber ?? this.processNumber,
         make: make ?? this.make,
@@ -81,28 +85,6 @@ class CarCreateModel {
         latitude: latitude ?? this.latitude,
         longitude: longitude ?? this.longitude,
         photos: photos ?? this.photos,
+        document: document ?? this.document,
       );
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['process_number'] = processNumber;
-    map['make'] = make;
-    map['model'] = model;
-    map['year'] = year;
-    map['category'] = category;
-    map['fuel_capacity'] = fuelCapacity;
-    map['mileage'] = mileage;
-    map['transmission'] = transmission;
-    map['passenger_capacity'] = passengerCapacity;
-    map['registration_number'] = registrationNumber;
-    map['daily_rate'] = dailyRate;
-    map['original_price'] = originalPrice;
-    map['description'] = description;
-    map['city'] = city;
-    map['port'] = port;
-    map['unique_id'] = uniqueId;
-    map['latitude'] = latitude;
-    map['longitude'] = longitude;
-    return map;
-  }
 }

@@ -3,13 +3,19 @@ import 'package:common/widgets/textfield3.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class Page4 extends StatelessWidget {
-  Page4({super.key});
+class Page4 extends StatefulWidget {
+  const Page4({super.key});
 
+  @override
+  State<Page4> createState() => _Page4State();
+}
+
+class _Page4State extends State<Page4> {
   final List<String> radioButtons = [
     "yes",
     "no",
   ];
+
   String selectedRadio = "yes";
 
   @override
@@ -137,67 +143,84 @@ class Page4 extends StatelessWidget {
               children: [
                 Expanded(
                   child: RadioListTile(
-                    value: selectedRadio,
+                    value: radioButtons[0],
                     contentPadding: EdgeInsets.zero,
                     dense: true,
                     title: Text(
                       "Да",
                       style: Theme.of(context).textTheme.labelMedium,
                     ),
-                    groupValue: radioButtons[0],
-                    onChanged: (value) {},
+                    groupValue: selectedRadio,
+                    onChanged: (value) {
+                      print(value);
+                      setState(() {
+                        selectedRadio = value ?? "";
+                      });
+                    },
                   ),
                 ),
                 Expanded(
                   child: RadioListTile(
+                    value: radioButtons[1],
                     contentPadding: EdgeInsets.zero,
                     dense: true,
                     title: Text(
                       "Нет",
                       style: Theme.of(context).textTheme.labelMedium,
                     ),
-                    value: selectedRadio,
-                    groupValue: radioButtons[1],
-                    onChanged: (value) {},
+                    groupValue: selectedRadio,
+                    onChanged: (value) {
+                      print(value);
+                      setState(() {
+                        selectedRadio = value ?? "";
+                      });
+                    },
                   ),
                 ),
               ],
             ),
-            const SizedBox(
-              height: 8,
-            ),
-            Text(
-              "Загрузить подтверждение регистрации",
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                    color: Theme.of(context).colorScheme.primary,
-                    fontWeight: FontWeight.w700,
+            Visibility(
+              visible: selectedRadio == "yes",
+              child: Column(
+                children: [
+                  const SizedBox(
+                    height: 8,
                   ),
+                  Text(
+                    "Загрузить подтверждение регистрации",
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: Theme.of(context).colorScheme.primary,
+                          fontWeight: FontWeight.w700,
+                        ),
+                  ),
+                  const SizedBox(
+                    height: 8,
+                  ),
+                  Text(
+                    "Поддерживаемые форматы: JPEG, PNG, PDG (до 10 МБ)",
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelMedium
+                        ?.copyWith(color: const Color(0xffA9ACB4)),
+                  ),
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  Row(
+                    children: [
+                      Expanded(child: Container()),
+                      GestureDetector(
+                        onTap: () {},
+                        child: SvgPicture.asset(PathImages.upload),
+                      ),
+                      Expanded(child: Container())
+                    ],
+                  )
+                ],
+              ),
             ),
-            const SizedBox(
-              height: 8,
-            ),
-            Text(
-              "Поддерживаемые форматы: JPEG, PNG, PDG (до 10 МБ)",
-              textAlign: TextAlign.center,
-              style: Theme.of(context)
-                  .textTheme
-                  .labelMedium
-                  ?.copyWith(color: const Color(0xffA9ACB4)),
-            ),
-            const SizedBox(
-              height: 24,
-            ),
-            Row(
-              children: [
-                Expanded(child: Container()),
-                GestureDetector(
-                  onTap: () {},
-                  child: SvgPicture.asset(PathImages.upload),
-                ),
-                Expanded(child: Container())
-              ],
-            )
           ],
         ),
       ),
