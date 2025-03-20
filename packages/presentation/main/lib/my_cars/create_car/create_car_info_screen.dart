@@ -10,6 +10,7 @@ import 'package:main/my_cars/create_car/page_1.dart';
 import 'package:main/my_cars/create_car/page_2.dart';
 import 'package:main/my_cars/create_car/page_3.dart';
 import 'package:main/my_cars/create_car/page_4.dart';
+import 'package:main/my_cars/create_car/page_5.dart';
 
 class CreateCarInfoScreen extends StatelessWidget {
   CreateCarInfoScreen({super.key});
@@ -36,7 +37,7 @@ class CreateCarInfoScreen extends StatelessWidget {
             );
           } else {
             // context.openScreen(LoginIntent());
-            // context.closeActiveScreen();
+            context.closeActiveScreen();
             print("next");
           }
         },
@@ -52,7 +53,7 @@ class CreateCarInfoScreen extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     controller: controller,
                     children: [
-                      // const Page2(),
+                      const Page5(),
                       Page0(
                         onStart: () {
                           cubit.changePositionToRight();
@@ -78,12 +79,16 @@ class CreateCarInfoScreen extends StatelessWidget {
                         onChangedDailyRate: cubit.onChangedDailyRate,
                         onChangedDescription: cubit.onChangedDescription,
                       ),
-                      Page4(),
+                      Page4(
+                        onChangedPort: cubit.onChangedPort,
+                        onChangedUniqueId: cubit.onChangedUniqueId,
+                        onChangedDocument: cubit.onChangedDocument,
+                      ),
                     ],
                   ),
                 ),
                 Visibility(
-                  visible: state.position != 0,
+                  visible: state.position != 0 && state.position != 4,
                   child: Padding(
                     padding: const EdgeInsets.only(
                       left: 16,

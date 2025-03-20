@@ -90,6 +90,7 @@ class Page3 extends StatelessWidget {
                     child: TextField3(
                       hint: "80 000",
                       onChanged: onChangedDailyRate,
+                      keyboardType: TextInputType.number,
                     ))
               ],
             ),

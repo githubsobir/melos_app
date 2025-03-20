@@ -55,8 +55,9 @@ class CreateCarCubit extends Cubit<CreateCarState> {
         } else {}
       }
     } else if (state.position == 4) {
-      if ((state.carModel.dailyRate ?? 0) > 0 &&
-          (state.carModel.description ?? "").isNotEmpty) {
+      if ((state.carModel.port ?? "").isNotEmpty &&
+          (state.carModel.uniqueId ?? "").isNotEmpty &&
+          (state.carModel.document ?? "").isNotEmpty) {
         if (await carCreateProcess(4)) {
           emit(state.copyWith(position: 5));
         } else {}
@@ -136,6 +137,18 @@ class CreateCarCubit extends Cubit<CreateCarState> {
 
   void onChangedDescription(String value) {
     emit(state.copyWith(carModel: state.carModel.copyWith(description: value)));
+  }
+
+  void onChangedPort(String value) {
+    emit(state.copyWith(carModel: state.carModel.copyWith(port: value)));
+  }
+
+  void onChangedUniqueId(String value) {
+    emit(state.copyWith(carModel: state.carModel.copyWith(uniqueId: value)));
+  }
+
+  void onChangedDocument(String value) {
+    emit(state.copyWith(carModel: state.carModel.copyWith(document: value)));
   }
 }
 

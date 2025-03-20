@@ -146,11 +146,17 @@ class CarsService {
 
   Future<Response> carCreate(
       {required int processNumber, required CarCreateModel carModel}) async {
-    List<MultipartFile> multipartFiles = [];
+    List<MultipartFile> photos = [];
 
     for (var path in (carModel.photos ?? [])) {
-      multipartFiles.add(await MultipartFile.fromFile(path,
+      photos.add(await MultipartFile.fromFile(path,
           filename: path.substring(path.lastIndexOf("/") + 1)));
+    }
+    MultipartFile? document;
+    if (carModel.document != null) {
+      document = await MultipartFile.fromFile(carModel.document!,
+          filename: carModel.document!
+              .substring(carModel.document!.lastIndexOf("/") + 1));
     }
 
     var formData = FormData.fromMap({
@@ -172,8 +178,8 @@ class CarsService {
       "unique_id": carModel.uniqueId,
       "latitude": carModel.latitude,
       "longitude": carModel.longitude,
-      "photos": multipartFiles,
-      "document": carModel.document
+      "photos": photos,
+      "document": document
     });
 
     var response = await _netBase.dio.post(
