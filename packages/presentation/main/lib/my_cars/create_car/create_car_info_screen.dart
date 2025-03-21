@@ -1,5 +1,6 @@
 import 'package:common/widgets/base_button.dart';
 import 'package:common/widgets/base_loader_builder.dart';
+import 'package:common/widgets/custom_functions.dart';
 import 'package:dependency/dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -29,16 +30,15 @@ class CreateCarInfoScreen extends StatelessWidget {
           print(state.position);
           if (state.position == 0) {
             context.closeActiveScreen();
-          } else if (state.position <= 4) {
+          } else if (state.position <= 5) {
             controller.animateToPage(
               state.position,
               duration: const Duration(milliseconds: 300),
               curve: Curves.linear,
             );
           } else {
-            // context.openScreen(LoginIntent());
+            showToast("Car successfully created");
             context.closeActiveScreen();
-            print("next");
           }
         },
         bloc: cubit,
@@ -53,7 +53,6 @@ class CreateCarInfoScreen extends StatelessWidget {
                     scrollDirection: Axis.horizontal,
                     controller: controller,
                     children: [
-                      const Page5(),
                       Page0(
                         onStart: () {
                           cubit.changePositionToRight();
@@ -84,11 +83,17 @@ class CreateCarInfoScreen extends StatelessWidget {
                         onChangedUniqueId: cubit.onChangedUniqueId,
                         onChangedDocument: cubit.onChangedDocument,
                       ),
+                      Page5(
+                        carModel: state.carModel,
+                        onCreate: () {
+                          cubit.carCreateProcess(5);
+                        },
+                      ),
                     ],
                   ),
                 ),
                 Visibility(
-                  visible: state.position != 0 && state.position != 4,
+                  visible: state.position != 0 && state.position != 5,
                   child: Column(
                     children: [
                       Padding(
@@ -108,8 +113,9 @@ class CreateCarInfoScreen extends StatelessWidget {
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(8.0),
                                     side: BorderSide(
-                                        color:
-                                            Theme.of(context).colorScheme.primary)),
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .primary)),
                                 child: Container(
                                   width: 145,
                                   padding: const EdgeInsets.only(
@@ -125,8 +131,9 @@ class CreateCarInfoScreen extends StatelessWidget {
                                         .textTheme
                                         .bodyMedium!
                                         .copyWith(
-                                          color:
-                                              Theme.of(context).colorScheme.primary,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .primary,
                                           fontSize: 18,
                                         ),
                                   ),
@@ -138,7 +145,8 @@ class CreateCarInfoScreen extends StatelessWidget {
                                 onPressed: () {
                                   cubit.changePositionToRight();
                                 },
-                                title: state.position < 4 ? "Следующий" : "Обзор")
+                                title:
+                                    state.position < 4 ? "Следующий" : "Обзор")
                           ],
                         ),
                       ),

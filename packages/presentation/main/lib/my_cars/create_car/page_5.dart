@@ -1,18 +1,22 @@
-import 'package:common/l10n/generated/app_localizations.dart';
+import 'dart:io';
+
+import 'package:common/l10n/build_context_extension.dart';
+import 'package:common/widgets/base_button.dart';
+import 'package:domain/model/cars/car_create_model.dart';
 import 'package:flutter/material.dart';
 import 'package:main/booking/item_top_bottom.dart';
-import 'package:main/car_info/car_image_selector_widget.dart';
+import 'package:main/car_info/car_image_selector_local_widget.dart';
 
-class Page5 extends StatefulWidget {
+class Page5 extends StatelessWidget {
+  final CarCreateModel carModel;
+  final VoidCallback onCreate;
+
   const Page5({
     super.key,
+    required this.carModel,
+    required this.onCreate,
   });
 
-  @override
-  State<Page5> createState() => _Page5State();
-}
-
-class _Page5State extends State<Page5> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,18 +27,12 @@ class _Page5State extends State<Page5> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            const Card(
+            Card(
               // elevation: 0,
               child: Padding(
-                padding: EdgeInsets.all(16),
-                child: CarImageSelectorWidget(
-                  images: [
-                    "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?cs=srgb&dl=pexels-mikebirdy-170811.jpg&fm=jpg",
-                    "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?cs=srgb&dl=pexels-mikebirdy-170811.jpg&fm=jpg",
-                    "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?cs=srgb&dl=pexels-mikebirdy-170811.jpg&fm=jpg",
-                    "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?cs=srgb&dl=pexels-mikebirdy-170811.jpg&fm=jpg",
-                    "https://images.pexels.com/photos/170811/pexels-photo-170811.jpeg?cs=srgb&dl=pexels-mikebirdy-170811.jpg&fm=jpg",
-                  ],
+                padding: const EdgeInsets.all(16),
+                child: CarImageSelectorLocalWidget(
+                  images: carModel.photos ?? [],
                 ),
               ),
             ),
@@ -45,13 +43,13 @@ class _Page5State extends State<Page5> {
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     Text(
-                      AppLocalizations.of(context).car_detail,
+                      context.translations.car_detail,
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium
                           ?.copyWith(fontWeight: FontWeight.w700),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 8,
                     ),
                     Row(
@@ -59,13 +57,13 @@ class _Page5State extends State<Page5> {
                         Expanded(
                           child: ItemTopBottom(
                             leftText: "Модель",
-                            rightText: "Malibu 2 Turbo",
+                            rightText: "${carModel.model}",
                           ),
                         ),
                         Expanded(
                           child: ItemTopBottom(
-                            leftText: "Модель",
-                            rightText: "Malibu 2 Turbo",
+                            leftText: "Пробег",
+                            rightText: "${carModel.mileage}",
                           ),
                         ),
                       ],
@@ -77,14 +75,14 @@ class _Page5State extends State<Page5> {
                       children: [
                         Expanded(
                           child: ItemTopBottom(
-                            leftText: "Модель",
-                            rightText: "Malibu 2 Turbo",
+                            leftText: "Год",
+                            rightText: "${carModel.year}",
                           ),
                         ),
                         Expanded(
                           child: ItemTopBottom(
-                            leftText: "Модель",
-                            rightText: "Malibu 2 Turbo",
+                            leftText: "Госномер",
+                            rightText: "${carModel.registrationNumber}",
                           ),
                         ),
                       ],
@@ -93,6 +91,73 @@ class _Page5State extends State<Page5> {
                 ),
               ),
             ),
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        "Цена",
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium
+                            ?.copyWith(fontWeight: FontWeight.w700),
+                      ),
+                    ),
+                    Text(
+                      "${carModel.originalPrice} сум",
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium
+                          ?.copyWith(fontWeight: FontWeight.w700),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Visibility(
+              visible: carModel.document != null,
+              child: Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Expanded(
+                        child: Text(
+                          "Страхование и документы",
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(fontWeight: FontWeight.w700),
+                        ),
+                      ),
+                      Container(
+                        padding: const EdgeInsets.all(2),
+                        width: MediaQuery.sizeOf(context).width / 3 - 32,
+                        height: 64,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(8.0),
+                          child: Image.file(
+                            File(carModel.document ?? ""),
+                            fit: BoxFit.cover,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            ),
+            const SizedBox(
+              height: 24,
+            ),
+            BaseButton(
+              onPressed: onCreate,
+              title: context.translations.saved,
+            )
           ],
         ),
       ),

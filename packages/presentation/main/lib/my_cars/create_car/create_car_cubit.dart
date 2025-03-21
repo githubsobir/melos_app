@@ -60,7 +60,7 @@ class CreateCarCubit extends Cubit<CreateCarState> {
           (state.carModel.document ?? "").isNotEmpty) {
         if (await carCreateProcess(4)) {
           emit(state.copyWith(position: 5));
-        } else {}
+        }
       }
     }
   }
@@ -71,6 +71,7 @@ class CreateCarCubit extends Cubit<CreateCarState> {
       processNumber: processNumber,
       carModel: state.carModel,
     );
+    emit(state.copyWith(isLoading: false));
     return response.success;
   }
 
