@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "447961271413",
+    "project_id": "carbnb-1a5e4",
+    "storage_bucket": "carbnb-1a5e4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:447961271413:android:8b8c73aca60cd132447c3c",
+        "android_client_info": {
+          "package_name": "uz.micro.star.carbnb"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBKPsHNaSowbqTqtaq-yIyDxCtNkzZtqEY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

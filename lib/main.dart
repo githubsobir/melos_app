@@ -1,6 +1,8 @@
 import 'dart:io';
 
+import 'package:carbnb/firebase_options.dart';
 import 'package:dependency/dependencies.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -22,6 +24,9 @@ Future<void> main() async {
   }
   HttpOverrides.global = MyHttpOverrides();
   configureDependencies(const DependencyConfigurationContext());
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 
