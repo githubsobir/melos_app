@@ -38,6 +38,9 @@ class _Page1State extends State<Page1> {
   TextEditingController transmissionController = TextEditingController();
   List<TypeName> transmissions = [];
 
+  TextEditingController passengerCapacityController = TextEditingController();
+  List<TypeName> passengerCapacity = [];
+
   TextEditingController regionsController = TextEditingController();
   List<TypeName> regions = [];
 
@@ -47,6 +50,13 @@ class _Page1State extends State<Page1> {
       transmissions.addAll([
         TypeName(1, "Автомат"),
         TypeName(2, "Механика"),
+      ]);
+
+      passengerCapacity.addAll([
+        TypeName(2, "2"),
+        TypeName(4, "4"),
+        TypeName(6, "6"),
+        TypeName(8, "8+"),
       ]);
 
       regions.addAll([
@@ -217,7 +227,6 @@ class _Page1State extends State<Page1> {
                     hint: "Ташкент",
                     controller: regionsController,
                     onTap: (details) {
-                      print("object");
                       final RenderBox overlay = Overlay.of(context)
                           .context
                           .findRenderObject() as RenderBox;
@@ -286,7 +295,6 @@ class _Page1State extends State<Page1> {
                     hint: "Автомат",
                     controller: transmissionController,
                     onTap: (details) {
-                      print("object");
                       final RenderBox overlay = Overlay.of(context)
                           .context
                           .findRenderObject() as RenderBox;
@@ -352,8 +360,53 @@ class _Page1State extends State<Page1> {
                   width: 170,
                   child: TextField3(
                     hint: "2",
+                    controller: passengerCapacityController,
                     keyboardType: TextInputType.number,
-                    onChanged: widget.onChangedPassengerCapacity,
+                    onTap: (details) {
+                      final RenderBox overlay = Overlay.of(context)
+                          .context
+                          .findRenderObject() as RenderBox;
+                      showMenu(
+                        context: context,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                              8.0), // Adjust radius as needed
+                        ),
+                        position: RelativeRect.fromLTRB(
+                          details.globalPosition.dx,
+                          details.globalPosition.dy,
+                          overlay.size.width - details.globalPosition.dx,
+                          overlay.size.height - details.globalPosition.dy,
+                        ),
+                        items: passengerCapacity
+                            .map(
+                              (e) => PopupMenuItem(
+                                value: e.name,
+                                child: SizedBox(
+                                  width: 120,
+                                  child: Center(
+                                    child: Text(e.name),
+                                  ),
+                                ),
+                              ),
+                            )
+                            .toList(),
+                      ).then(
+                        (value) {
+                          if (value != null) {
+                            passengerCapacityController.text = value;
+                            widget.onChangedPassengerCapacity(
+                              passengerCapacity
+                                  .firstWhere(
+                                    (element) => element.name == value,
+                                  )
+                                  .type
+                                  .toString(),
+                            );
+                          }
+                        },
+                      );
+                    },
                   ),
                 )
               ],

@@ -91,32 +91,32 @@ class Page5 extends StatelessWidget {
                 ),
               ),
             ),
-            Card(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                      child: Text(
-                        "Цена",
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium
-                            ?.copyWith(fontWeight: FontWeight.w700),
-                      ),
-                    ),
-                    Text(
-                      "${carModel.originalPrice} сум",
-                      style: Theme.of(context)
-                          .textTheme
-                          .bodyMedium
-                          ?.copyWith(fontWeight: FontWeight.w700),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+            // Card(
+            //   child: Padding(
+            //     padding: const EdgeInsets.all(16.0),
+            //     child: Row(
+            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //       children: [
+            //         Expanded(
+            //           child: Text(
+            //             "Цена",
+            //             style: Theme.of(context)
+            //                 .textTheme
+            //                 .bodyMedium
+            //                 ?.copyWith(fontWeight: FontWeight.w700),
+            //           ),
+            //         ),
+            //         Text(
+            //           "${carModel.originalPrice} сум",
+            //           style: Theme.of(context)
+            //               .textTheme
+            //               .bodyMedium
+            //               ?.copyWith(fontWeight: FontWeight.w700),
+            //         ),
+            //       ],
+            //     ),
+            //   ),
+            // ),
             Visibility(
               visible: carModel.document != null,
               child: Card(
