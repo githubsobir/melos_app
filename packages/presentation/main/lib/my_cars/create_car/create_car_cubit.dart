@@ -56,8 +56,7 @@ class CreateCarCubit extends Cubit<CreateCarState> {
       }
     } else if (state.position == 4) {
       if ((state.carModel.port ?? "").isNotEmpty &&
-          (state.carModel.uniqueId ?? "").isNotEmpty &&
-          (state.carModel.document ?? "").isNotEmpty) {
+          (state.carModel.uniqueId ?? "").isNotEmpty) {
         if (await carCreateProcess(4)) {
           emit(state.copyWith(position: 5));
         }
@@ -181,5 +180,6 @@ class CreateCarState extends Equatable {
   List<Object> get props => [
         position,
         carModel,
+        isLoading,
       ];
 }

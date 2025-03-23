@@ -4,6 +4,7 @@ class TextField3 extends StatelessWidget {
   final TextEditingController? controller;
   final String hint;
   final ValueChanged<String>? onChanged;
+  final GestureTapDownCallback? onTap;
   final TextInputType? keyboardType;
 
   const TextField3({
@@ -12,6 +13,7 @@ class TextField3 extends StatelessWidget {
     required this.hint,
     this.onChanged,
     this.keyboardType,
+    this.onTap,
   });
 
   @override
@@ -20,12 +22,11 @@ class TextField3 extends StatelessWidget {
       controller: controller,
       onChanged: onChanged,
       keyboardType: keyboardType,
-      style: Theme
-          .of(context)
-          .textTheme
-          .labelMedium,
+      readOnly: onTap != null,
+      style: Theme.of(context).textTheme.labelMedium,
       decoration: InputDecoration(
         isDense: true,
+
         contentPadding: const EdgeInsets.only(
           left: 8,
           right: 8,
@@ -38,14 +39,10 @@ class TextField3 extends StatelessWidget {
         //     : const Color(0xFF061136),
         filled: true,
         hintText: hint,
-        hintStyle: Theme
-            .of(context)
+        hintStyle: Theme.of(context)
             .textTheme
             .labelMedium
-            ?.copyWith(color: Theme
-            .of(context)
-            .colorScheme
-            .secondary),
+            ?.copyWith(color: Theme.of(context).colorScheme.secondary),
         border: OutlineInputBorder(
           borderRadius: BorderRadius.circular(10.0),
           borderSide: const BorderSide(color: Color(0xFF658DF1)),
@@ -54,6 +51,21 @@ class TextField3 extends StatelessWidget {
           borderRadius: BorderRadius.circular(10.0),
           borderSide: const BorderSide(color: Color(0xFF658DF1)),
         ),
+        suffixIconConstraints: const BoxConstraints(maxHeight: 40),
+        suffixIcon: onTap != null
+            ? GestureDetector(
+                onTapDown: (details) {
+                  onTap!(details);
+                },
+                child: Container(
+                  padding: const EdgeInsets.only(right: 8),
+                  child: const Icon(
+                    Icons.keyboard_arrow_down,
+                    color: Color(0xff7498F2),
+                  ),
+                ),
+              )
+            : null,
       ),
     );
   }

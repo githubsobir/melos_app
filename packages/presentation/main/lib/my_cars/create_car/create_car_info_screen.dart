@@ -43,6 +43,7 @@ class CreateCarInfoScreen extends StatelessWidget {
         },
         bloc: cubit,
         builder: (context, state) {
+          print("state ${state.isLoading}");
           return BaseLoaderBuilder(
             hasLoading: state.isLoading,
             child: Column(

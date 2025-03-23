@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class BaseLoaderBuilder extends StatelessWidget {
-  Widget child;
-  bool hasLoading;
+ final Widget child;
+  final bool hasLoading;
 
-  BaseLoaderBuilder({super.key, required this.child, this.hasLoading = false});
+  const BaseLoaderBuilder({super.key, required this.child, this.hasLoading = false});
 
   @override
   Widget build(BuildContext context) {

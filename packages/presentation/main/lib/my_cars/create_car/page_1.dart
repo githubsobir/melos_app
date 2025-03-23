@@ -35,6 +35,22 @@ class Page1 extends StatefulWidget {
 class _Page1State extends State<Page1> {
   String location = "";
 
+  TextEditingController transmissionController = TextEditingController();
+
+  List<Transmission> transmissions = [];
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      transmissions.addAll([
+        Transmission(1, "Автомат"),
+        Transmission(2, "Механика"),
+      ]);
+    });
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -180,6 +196,7 @@ class _Page1State extends State<Page1> {
                   width: 170,
                   child: TextField3(
                     hint: "Ташкент",
+                    keyboardType: TextInputType.number,
                     onChanged: widget.onChangedCity,
                   ),
                 )
@@ -203,7 +220,52 @@ class _Page1State extends State<Page1> {
                   width: 170,
                   child: TextField3(
                     hint: "Автомат",
-                    onChanged: widget.onChangedTransmission,
+                    controller: transmissionController,
+                    onTap: (details) {
+                      print("object");
+                      final RenderBox overlay = Overlay.of(context)
+                          .context
+                          .findRenderObject() as RenderBox;
+                      showMenu(
+                        context: context,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                              8.0), // Adjust radius as needed
+                        ),
+                        position: RelativeRect.fromLTRB(
+                          details.globalPosition.dx,
+                          details.globalPosition.dy,
+                          overlay.size.width - details.globalPosition.dx,
+                          overlay.size.height - details.globalPosition.dy,
+                        ),
+                        items: transmissions
+                            .map(
+                              (e) => PopupMenuItem(
+                                value: e.name,
+                                child: SizedBox(
+                                  width: 120,
+                                  child: Center(
+                                    child: Text(e.name),
+                                  ),
+                                ),
+                              ),
+                            )
+                            .toList(),
+                      ).then((value) {
+                        if (value != null) {
+                          transmissionController.text = value;
+                          widget.onChangedTransmission(
+                            transmissions
+                                .firstWhere(
+                                  (element) => element.name == value,
+                                )
+                                .type
+                                .toString(),
+                          );
+                        }
+                      });
+                    },
+                    keyboardType: TextInputType.number,
                   ),
                 )
               ],
@@ -264,4 +326,11 @@ class _Page1State extends State<Page1> {
       ),
     );
   }
+}
+
+class Transmission {
+  int type;
+  String name;
+
+  Transmission(this.type, this.name);
 }
