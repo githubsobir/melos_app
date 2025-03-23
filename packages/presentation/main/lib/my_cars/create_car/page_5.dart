@@ -26,6 +26,7 @@ class Page5 extends StatelessWidget {
           : const Color(0xFF061136),
       child: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Card(
               // elevation: 0,
@@ -91,53 +92,55 @@ class Page5 extends StatelessWidget {
                 ),
               ),
             ),
-            // Card(
-            //   child: Padding(
-            //     padding: const EdgeInsets.all(16.0),
-            //     child: Row(
-            //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //       children: [
-            //         Expanded(
-            //           child: Text(
-            //             "Цена",
-            //             style: Theme.of(context)
-            //                 .textTheme
-            //                 .bodyMedium
-            //                 ?.copyWith(fontWeight: FontWeight.w700),
-            //           ),
-            //         ),
-            //         Text(
-            //           "${carModel.originalPrice} сум",
-            //           style: Theme.of(context)
-            //               .textTheme
-            //               .bodyMedium
-            //               ?.copyWith(fontWeight: FontWeight.w700),
-            //         ),
-            //       ],
-            //     ),
-            //   ),
-            // ),
+            Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                      child: Text(
+                        "Цена",
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium
+                            ?.copyWith(fontWeight: FontWeight.w700),
+                      ),
+                    ),
+                    Text(
+                      "${carModel.dailyRate} сум",
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium
+                          ?.copyWith(fontWeight: FontWeight.w700),
+                    ),
+                  ],
+                ),
+              ),
+            ),
             Visibility(
               visible: carModel.document != null,
               child: Card(
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  child: Column(
+                    // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      Expanded(
-                        child: Text(
-                          "Страхование и документы",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(fontWeight: FontWeight.w700),
-                        ),
+                      Text(
+                        "Страхование и документы",
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium
+                            ?.copyWith(fontWeight: FontWeight.w700),
+                      ),
+                      const SizedBox(
+                        height: 16,
                       ),
                       Container(
                         padding: const EdgeInsets.all(2),
-                        width: MediaQuery.sizeOf(context).width / 3 - 32,
-                        height: 64,
+                        width: 102,
+                        height: 145,
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8.0),
                           child: Image.file(
@@ -156,8 +159,11 @@ class Page5 extends StatelessWidget {
             ),
             BaseButton(
               onPressed: onCreate,
-              title: context.translations.saved,
-            )
+              title: context.translations.save,
+            ),
+            const SizedBox(
+              height: 24,
+            ),
           ],
         ),
       ),

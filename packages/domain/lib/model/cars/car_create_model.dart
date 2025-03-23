@@ -11,7 +11,6 @@ class CarCreateModel {
     this.passengerCapacity,
     this.registrationNumber,
     this.dailyRate,
-    this.originalPrice,
     this.description,
     this.city,
     this.port,
@@ -33,7 +32,6 @@ class CarCreateModel {
   num? passengerCapacity;
   String? registrationNumber;
   num? dailyRate;
-  String? originalPrice;
   String? description;
   String? city;
   String? port;
@@ -43,28 +41,26 @@ class CarCreateModel {
   List<String>? photos;
   String? document;
 
-  CarCreateModel copyWith({
-    num? processNumber,
-    String? make,
-    String? model,
-    num? year,
-    String? category,
-    num? fuelCapacity,
-    num? mileage,
-    String? transmission,
-    num? passengerCapacity,
-    String? registrationNumber,
-    num? dailyRate,
-    String? originalPrice,
-    String? description,
-    String? city,
-    String? port,
-    String? uniqueId,
-    double? latitude,
-    double? longitude,
-    List<String>? photos,
-    String? document
-  }) =>
+  CarCreateModel copyWith(
+          {num? processNumber,
+          String? make,
+          String? model,
+          num? year,
+          String? category,
+          num? fuelCapacity,
+          num? mileage,
+          String? transmission,
+          num? passengerCapacity,
+          String? registrationNumber,
+          num? dailyRate,
+          String? description,
+          String? city,
+          String? port,
+          String? uniqueId,
+          double? latitude,
+          double? longitude,
+          List<String>? photos,
+          String? document}) =>
       CarCreateModel(
         processNumber: processNumber ?? this.processNumber,
         make: make ?? this.make,
@@ -77,7 +73,6 @@ class CarCreateModel {
         passengerCapacity: passengerCapacity ?? this.passengerCapacity,
         registrationNumber: registrationNumber ?? this.registrationNumber,
         dailyRate: dailyRate ?? this.dailyRate,
-        originalPrice: originalPrice ?? this.originalPrice,
         description: description ?? this.description,
         city: city ?? this.city,
         port: port ?? this.port,

@@ -171,7 +171,6 @@ class CarsService {
       "passenger_capacity": carModel.passengerCapacity,
       "registration_number": carModel.registrationNumber,
       "daily_rate": carModel.dailyRate,
-      "original_price": carModel.originalPrice,
       "description": carModel.description,
       "city": carModel.city,
       "port": carModel.port,
@@ -183,7 +182,7 @@ class CarsService {
     });
 
     var response = await _netBase.dio.post(
-      'cars/create/${processNumber<5?processNumber:"final"}/',
+      'cars/create/${processNumber < 5 ? processNumber : "final"}/',
       data: formData,
     );
     return response;

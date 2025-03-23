@@ -8,7 +8,7 @@ class MainService {
 
   Future<Response> getNotifications() async {
     var response = await _netBase.dio.get(
-      'users/notifications/',
+      'notification/',
     );
     return response;
   }
