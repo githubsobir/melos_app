@@ -74,6 +74,17 @@ class CreateCarCubit extends Cubit<CreateCarState> {
     return response.success;
   }
 
+  carCreateProcessFinal() async {
+    emit(state.copyWith(isLoading: true));
+    var response = await _carsUseCase.carCreate(
+      processNumber: 5,
+      carModel: state.carModel,
+    );
+    if (response.success) {
+      emit(state.copyWith(isLoading: false, position: 6));
+    }
+  }
+
   onChangeModel(String value) {
     emit(state.copyWith(carModel: state.carModel.copyWith(model: value)));
   }

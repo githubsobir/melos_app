@@ -37,7 +37,7 @@ class CreateCarInfoScreen extends StatelessWidget {
               curve: Curves.linear,
             );
           } else {
-            showToast("Car successfully created");
+            showToast("Автомобиль успешно создан");
             context.closeActiveScreen();
           }
         },
@@ -87,7 +87,7 @@ class CreateCarInfoScreen extends StatelessWidget {
                       Page5(
                         carModel: state.carModel,
                         onCreate: () {
-                          cubit.carCreateProcess(5);
+                          cubit.carCreateProcessFinal();
                         },
                       ),
                     ],
