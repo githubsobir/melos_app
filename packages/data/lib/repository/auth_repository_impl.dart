@@ -105,7 +105,7 @@ class AuthRepositoryImpl extends AuthRepository {
       var response =
           await _authServices.logOut(LogoutRequest(refresh: refresh));
 
-      if (response.statusCode == 205) {
+      if (response.statusCode == 200) {
         return await MySharedPref.instance.clearAllData();
       }
       return false;
