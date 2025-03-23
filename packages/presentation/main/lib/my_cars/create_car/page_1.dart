@@ -36,15 +36,34 @@ class _Page1State extends State<Page1> {
   String location = "";
 
   TextEditingController transmissionController = TextEditingController();
+  List<TypeName> transmissions = [];
 
-  List<Transmission> transmissions = [];
+  TextEditingController regionsController = TextEditingController();
+  List<TypeName> regions = [];
 
   @override
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       transmissions.addAll([
-        Transmission(1, "Автомат"),
-        Transmission(2, "Механика"),
+        TypeName(1, "Автомат"),
+        TypeName(2, "Механика"),
+      ]);
+
+      regions.addAll([
+        TypeName(1, "Tashkent"),
+        TypeName(2, "Samarkand"),
+        TypeName(3, "Bukhara"),
+        TypeName(4, "Khiva"),
+        TypeName(5, "Andijan"),
+        TypeName(6, "Fergana"),
+        TypeName(7, "Namangan"),
+        TypeName(8, "Nukus"),
+        TypeName(9, "Termez"),
+        TypeName(10, "Navoi"),
+        TypeName(11, "Jizzakh"),
+        TypeName(12, "Gulistan"),
+        TypeName(13, "Urgench"),
+        TypeName(14, "Karshi"),
       ]);
     });
 
@@ -196,8 +215,53 @@ class _Page1State extends State<Page1> {
                   width: 170,
                   child: TextField3(
                     hint: "Ташкент",
+                    controller: regionsController,
+                    onTap: (details) {
+                      print("object");
+                      final RenderBox overlay = Overlay.of(context)
+                          .context
+                          .findRenderObject() as RenderBox;
+                      showMenu(
+                        context: context,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(
+                              8.0), // Adjust radius as needed
+                        ),
+                        position: RelativeRect.fromLTRB(
+                          details.globalPosition.dx,
+                          details.globalPosition.dy,
+                          overlay.size.width - details.globalPosition.dx,
+                          overlay.size.height - details.globalPosition.dy,
+                        ),
+                        items: regions
+                            .map(
+                              (e) => PopupMenuItem(
+                                value: e.name,
+                                child: SizedBox(
+                                  width: 120,
+                                  child: Center(
+                                    child: Text(e.name),
+                                  ),
+                                ),
+                              ),
+                            )
+                            .toList(),
+                      ).then((value) {
+                        if (value != null) {
+                          regionsController.text = value;
+                          widget.onChangedCity(
+                            regions
+                                .firstWhere(
+                                  (element) => element.name == value,
+                                )
+                                .type
+                                .toString(),
+                          );
+                        }
+                      });
+                    },
                     keyboardType: TextInputType.number,
-                    onChanged: widget.onChangedCity,
+                    // onChanged: widget.onChangedCity,
                   ),
                 )
               ],
@@ -328,9 +392,9 @@ class _Page1State extends State<Page1> {
   }
 }
 
-class Transmission {
+class TypeName {
   int type;
   String name;
 
-  Transmission(this.type, this.name);
+  TypeName(this.type, this.name);
 }
