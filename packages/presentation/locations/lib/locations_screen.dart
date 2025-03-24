@@ -45,26 +45,26 @@ class _LocationsScreenState extends State<LocationsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SvgPicture.asset(PathImages.locationRed),
-            const SizedBox(
-              width: 4,
+    return BlocBuilder<LocationsCubit, LocationsState>(
+      bloc: widget.cubit,
+      builder: (context, state) {
+        return Scaffold(
+          appBar: AppBar(
+            title: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(PathImages.locationRed),
+                const SizedBox(
+                  width: 4,
+                ),
+                Text(
+                  state.locationName,
+                  style: Theme.of(context).textTheme.bodyMedium,
+                )
+              ],
             ),
-            Text(
-              "Коратош, 35, Шайхантохур",
-              style: Theme.of(context).textTheme.bodyMedium,
-            )
-          ],
-        ),
-      ),
-      body: BlocBuilder<LocationsCubit, LocationsState>(
-        bloc: widget.cubit,
-        builder: (context, state) {
-          return BaseLoaderBuilder(
+          ),
+          body: BaseLoaderBuilder(
             hasLoading: state.isLoading,
             child: Stack(
               children: [
@@ -185,9 +185,9 @@ class _LocationsScreenState extends State<LocationsScreen> {
                 ),
               ],
             ),
-          );
-        },
-      ),
+          ),
+        );
+      },
     );
   }
 }
