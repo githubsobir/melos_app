@@ -292,14 +292,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.19.0"
-  json_annotation:
-    dependency: transitive
-    description:
-      name: json_annotation
-      sha256: "1ce844379ca14835a50d2f019a3099f419082cfdd231cd86a142af94dd5c6bb1"
-      url: "https://pub.dev"
-    source: hosted
-    version: "4.9.0"
   latlong2:
     dependency: "direct main"
     description:
@@ -688,14 +680,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "6.5.0"
-  yandex_geocoder:
-    dependency: "direct main"
-    description:
-      name: yandex_geocoder
-      sha256: f78c2f7b7717b624c3b4e8328351449e51936423ee1c6d53657b1430a3e62862
-      url: "https://pub.dev"
-    source: hosted
-    version: "2.3.1"
   yandex_maps_mapkit_lite:
     dependency: "direct main"
     description:

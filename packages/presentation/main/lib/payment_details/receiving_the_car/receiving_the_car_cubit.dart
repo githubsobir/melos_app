@@ -1,7 +1,7 @@
-import 'package:bloc/bloc.dart';
 import 'package:domain/model/contracts/contract_model.dart';
 import 'package:domain/usecase/contracts_usecase.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 
 class ReceivingTheCarCubit extends Cubit<ReceivingTheCarState> {
