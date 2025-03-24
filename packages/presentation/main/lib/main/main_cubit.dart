@@ -1,15 +1,17 @@
 import 'package:domain/usecase/auth_usecase.dart';
+import 'package:domain/usecase/profile_usecase.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MainCubit extends Cubit<MainState> {
-  MainCubit(this._authUseCase) : super(MenuPositionState(0));
-
   final AuthUseCase _authUseCase;
-  var pageIndex = 0;
+  final ProfileUseCase _profileUseCase;
+
+  MainCubit(this._authUseCase, this._profileUseCase)
+      : super(MenuPositionState(0));
+
   bool hasUser = false;
 
   changeMenuPosition(int index) {
-    pageIndex = index;
     emit(MenuPositionState(index));
   }
 
@@ -17,6 +19,13 @@ class MainCubit extends Cubit<MainState> {
     var logOut = await _authUseCase.logOut();
     if (logOut) {
       emit(LogOutState());
+    }
+  }
+
+  unreadNotification() async {
+    var response = await _profileUseCase.unreadNotification();
+    if (response.success) {
+      emit(NotificationState(response.body != 0));
     }
   }
 
@@ -31,7 +40,13 @@ abstract class MainState {}
 class LogOutState extends MainState {}
 
 class MenuPositionState extends MainState {
-  final int menuPosition;
+  final int pageIndex;
 
-  MenuPositionState(this.menuPosition);
+  MenuPositionState(this.pageIndex);
+}
+
+class NotificationState extends MainState {
+  final bool hasNotification;
+
+  NotificationState(this.hasNotification);
 }

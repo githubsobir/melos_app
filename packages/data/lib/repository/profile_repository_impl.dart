@@ -72,4 +72,20 @@ class ProfileRepositoryImpl extends ProfileRepository {
       return BaseResult(success: false, exceptionBody: exception);
     }
   }
+
+  @override
+  Future<BaseResult<int>> unreadNotification() async {
+    try {
+      var response = await _profileService.unreadNotification();
+      return BaseResult(
+        success: true,
+        body: response.data['unread_count'],
+      );
+    } on DioException catch (error) {
+      return BaseResult(
+          success: false, exceptionBody: error.response?.data['error_note']);
+    } catch (exception) {
+      return BaseResult(success: false, exceptionBody: exception);
+    }
+  }
 }

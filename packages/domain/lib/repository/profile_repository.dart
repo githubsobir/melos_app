@@ -13,4 +13,6 @@ abstract class ProfileRepository {
   Future<BaseResult<UserInformationModel>> userInformation();
 
   Future<BaseResult<bool>> uploadImage(String path);
+
+  Future<BaseResult<int>> unreadNotification();
 }

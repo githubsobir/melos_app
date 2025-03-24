@@ -23,7 +23,9 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  final cubit = MainCubit(inject())..hasUserProfile();
+  final cubit = MainCubit(inject(), inject())
+    ..hasUserProfile()
+    ..unreadNotification();
 
   static final List<Widget> _mainScreens = <Widget>[];
 
@@ -53,20 +55,22 @@ class _MainScreenState extends State<MainScreen> {
     // },
     return BlocConsumer(
       bloc: cubit,
+      listenWhen: (previous, current) => current is LogOutState,
       listener: (BuildContext context, Object state) {
         if (state is LogOutState) {
           context.openScreen(LoginIntent());
         }
       },
+      buildWhen: (previous, current) => current is MenuPositionState,
       builder: (context, state) {
+        var menu = state as MenuPositionState;
         return Scaffold(
-          appBar: cubit.pageIndex != 1
+          appBar: state.pageIndex != 1
               ? AppBar(
-                  title: _getTitleFromPosition(cubit.pageIndex, context),
+                  title: _getTitleFromPosition(menu.pageIndex, context),
                   actions: [
                     GestureDetector(
                       onTap: () {
-                        // NotificationsScreen
                         context.openScreen(NotificationsScreenIntent());
                       },
                       child: Container(
@@ -86,17 +90,31 @@ class _MainScreenState extends State<MainScreen> {
                               padding: const EdgeInsets.all(8),
                               child: SvgPicture.asset(PathImages.notification),
                             ),
-                            Align(
-                              alignment: Alignment.topRight,
-                              child: Container(
-                                height: 11,
-                                width: 11,
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(11),
-                                    color: const Color(0xFFFF3636)
-                                    // border: Border.all(color: const Color(0xFFC0D8FF)),
-                                    ),
-                              ),
+                            BlocBuilder(
+                              bloc: cubit,
+                              buildWhen: (previous, current) =>
+                                  current is NotificationState,
+                              builder: (context, state) {
+                                if (state is NotificationState) {
+                                  var notification = state as NotificationState;
+                                  return notification.hasNotification
+                                      ? Align(
+                                          alignment: Alignment.topRight,
+                                          child: Container(
+                                            height: 11,
+                                            width: 11,
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(11),
+                                              color: const Color(0xFFFF3636),
+                                            ),
+                                          ),
+                                        )
+                                      : Container();
+                                } else {
+                                  return Container();
+                                }
+                              },
                             )
                           ],
                         ),
@@ -112,7 +130,7 @@ class _MainScreenState extends State<MainScreen> {
               },
             ),
           ),
-          body: _mainScreens[cubit.pageIndex],
+          body: _mainScreens[menu.pageIndex],
           bottomNavigationBar: SizedBox(
             height: 80,
             child: Padding(
@@ -120,11 +138,11 @@ class _MainScreenState extends State<MainScreen> {
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  item(context, cubit.pageIndex == 0, PathImages.menuHome,
+                  item(context, menu.pageIndex == 0, PathImages.menuHome,
                       context.translations.home, () => _onItemTapped(0)),
-                  item(context, cubit.pageIndex == 1, PathImages.menuLocation,
+                  item(context, menu.pageIndex == 1, PathImages.menuLocation,
                       context.translations.next_to_me, () => _onItemTapped(1)),
-                  item(context, cubit.pageIndex == 2, PathImages.menuAdd, "",
+                  item(context, menu.pageIndex == 2, PathImages.menuAdd, "",
                       () {
                     if (cubit.hasUser) {
                       _onItemTapped(2);
@@ -134,7 +152,7 @@ class _MainScreenState extends State<MainScreen> {
                   }),
                   item(
                     context,
-                    cubit.pageIndex == 3,
+                    menu.pageIndex == 3,
                     PathImages.menuFavourite,
                     context.translations.saved,
                     () {
@@ -147,7 +165,7 @@ class _MainScreenState extends State<MainScreen> {
                   ),
                   item(
                     context,
-                    cubit.pageIndex == 4,
+                    menu.pageIndex == 4,
                     PathImages.menuProfile,
                     context.translations.profile,
                     () {
@@ -182,12 +200,6 @@ class _MainScreenState extends State<MainScreen> {
           ? SizedBox(
               height: 64,
               width: 64,
-              // decoration: BoxDecoration(
-              //     color: Theme.of(context).colorScheme.brightness ==
-              //             Brightness.light
-              //         ? const Color(0xFFC0D8FF)
-              //         : const Color(0xFF102587),
-              //     borderRadius: BorderRadius.circular(8)),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 mainAxisAlignment: MainAxisAlignment.center,

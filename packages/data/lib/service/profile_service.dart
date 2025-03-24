@@ -34,4 +34,11 @@ class ProfileService {
     );
     return response;
   }
+
+  Future<Response> unreadNotification() async {
+    var response = await _netBase.dio.get(
+      'notification/unread/count/',
+    );
+    return response;
+  }
 }

@@ -37,4 +37,8 @@ class ProfileUseCase {
   Future<bool> hasUser() {
     return _authRepository.hasUser();
   }
+
+  Future<BaseResult<int>> unreadNotification() {
+    return _profileRepository.unreadNotification();
+  }
 }
