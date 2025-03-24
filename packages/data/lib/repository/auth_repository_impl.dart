@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:data/models/remote/auth/request/fcm_register_register_request.dart';
 import 'package:data/models/remote/auth/request/forgot_password_request.dart';
 import 'package:data/models/remote/auth/request/login_request.dart';
 import 'package:data/models/remote/auth/request/logout_request.dart';
@@ -12,6 +15,7 @@ import 'package:data/utils/my_shared_pref.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/repository/auth_repository.dart';
 import 'package:domain/utils/base_result.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class AuthRepositoryImpl extends AuthRepository {
   final AuthService _authServices;
@@ -155,6 +159,25 @@ class AuthRepositoryImpl extends AuthRepository {
         newPassword: newPassword,
         confirmPassword: confirmPassword,
       ));
+      return BaseResult(success: true, body: true);
+    } on DioException catch (error) {
+      return BaseResult(
+          success: false, exceptionBody: error.response?.data['error_note']);
+    } catch (exception) {
+      return BaseResult(success: false, exceptionBody: exception);
+    }
+  }
+
+  @override
+  Future<BaseResult<bool>> sendFirebaseToken() async {
+    try {
+      var token = await FirebaseMessaging.instance.getToken();
+      var response = await _authServices.sendFirebaseToken(
+        FcmRegisterRegisterRequest(
+          platform: Platform.isAndroid ? "android" : "ios",
+          token: token,
+        ),
+      );
       return BaseResult(success: true, body: true);
     } on DioException catch (error) {
       return BaseResult(

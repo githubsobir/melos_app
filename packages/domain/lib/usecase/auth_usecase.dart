@@ -72,4 +72,8 @@ class AuthUseCase {
       confirmPassword: confirmPassword,
     );
   }
+
+  Future<BaseResult<bool>> sendFirebaseToken() {
+    return _authRepository.sendFirebaseToken();
+  }
 }

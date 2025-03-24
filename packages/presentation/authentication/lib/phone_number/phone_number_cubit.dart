@@ -7,25 +7,6 @@ class PhoneNumberCubit extends Cubit<PhoneNumberState> {
 
   PhoneNumberCubit(this._authUseCase) : super(LoginInitial());
 
-  Future<void> login({
-    required String phone,
-    required String password,
-  }) async {
-    emit(LoaderState());
-    if (phone.isNotEmpty && password.isNotEmpty) {
-      var response = await _authUseCase.login(
-        phoneNumber: phone,
-        password: password,
-      );
-      if (response.success) {
-        emit(SuccessfullyLoginState());
-      } else {
-        emit(LoginErrorState());
-      }
-    } else {
-      emit(EmptyFieldsErrorState());
-    }
-  }
 }
 
 abstract class PhoneNumberState extends Equatable {

@@ -1,11 +1,8 @@
-import 'package:authentication/forgot_password/forgot_password_screen.dart';
-import 'package:authentication/phone_number/phone_number_cubit.dart';
 import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/navigation/auth_navigation_intents.dart';
 import 'package:common/path_images.dart';
 import 'package:common/widgets/base_button.dart';
 import 'package:common/widgets/base_text_field.dart';
-import 'package:dependency/dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 
@@ -13,8 +10,6 @@ class PhoneNumberScreen extends StatelessWidget {
   PhoneNumberScreen({super.key, required this.isRegister});
 
   final bool isRegister;
-
-  final cubit = PhoneNumberCubit(inject());
 
   final TextEditingController phoneController = TextEditingController();
 

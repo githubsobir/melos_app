@@ -18,6 +18,7 @@ class PasswordCubit extends Cubit<LoginState> {
         password: password,
       );
       if (response.success) {
+        await _authUseCase.sendFirebaseToken();
         emit(SuccessfullyLoginState());
       } else {
         emit(LoginErrorState(

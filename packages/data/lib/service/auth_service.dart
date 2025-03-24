@@ -1,3 +1,4 @@
+import 'package:data/models/remote/auth/request/fcm_register_register_request.dart';
 import 'package:data/models/remote/auth/request/forgot_password_request.dart';
 import 'package:data/models/remote/auth/request/login_request.dart';
 import 'package:data/models/remote/auth/request/logout_request.dart';
@@ -73,6 +74,15 @@ class AuthService {
     var response = await _netBase.dio.post(
       'auth/password-reset/',
       data: forgotPasswordRequest.toJson(),
+    );
+    return response;
+  }
+
+  Future<Response> sendFirebaseToken(
+      FcmRegisterRegisterRequest fcmRegisterRegisterRequest) async {
+    var response = await _netBase.dio.post(
+      'notification/fcm/register/',
+      data: fcmRegisterRegisterRequest.toJson(),
     );
     return response;
   }

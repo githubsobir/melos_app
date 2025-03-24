@@ -3,7 +3,6 @@ import 'package:carbnb/navigation.dart';
 import 'package:common/l10n/generated/app_localizations.dart';
 import 'package:common/theme.dart';
 import 'package:dependency/dependencies/injector.dart';
-import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -12,11 +11,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FirebaseMessaging.instance.getToken().then(
-      (value) {
-        print("fbtoken:$value");
-      },
-    );
     return BlocBuilder<AppCubit, AppState>(
       bloc: AppCubit(inject(), inject()),
       builder: (context, state) {
