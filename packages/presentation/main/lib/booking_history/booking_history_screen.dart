@@ -13,7 +13,7 @@ class BookingHistoryScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("История бронирования"),
+        title: const Text("История бронирования"),
       ),
       body: RefreshIndicator(
         onRefresh: () {
@@ -25,12 +25,12 @@ class BookingHistoryScreen extends StatelessWidget {
           builder: (context, state) {
             return (state is HistoryState)
                 ? ListView.builder(
-                    // itemCount: state.histories.length,
-                    itemCount: 4,
+                    itemCount: state.histories.length,
+                    // itemCount: 4,
                     itemBuilder: (context, index) {
-                      return const ItemBookingHistory(
-                          carImage:
-                              "https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?cs=srgb&dl=pexels-pixabay-210019.jpg&fm=jpg");
+                      return ItemBookingHistory(
+                        carImage: state.histories[index].photo ?? "",
+                      );
                     },
                   )
                 : (state is LoadingState)
