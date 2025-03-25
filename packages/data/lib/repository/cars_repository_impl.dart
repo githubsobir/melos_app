@@ -2,6 +2,7 @@ import 'package:data/models/remote/cars/request/car_like_request.dart';
 import 'package:data/models/remote/cars/response/car.dart';
 import 'package:data/models/remote/cars/response/car_detail_info_response.dart';
 import 'package:data/models/remote/cars/response/car_response.dart';
+import 'package:data/models/remote/cars/response/current_car_response.dart';
 import 'package:data/models/remote/cars/response/filter_response.dart';
 import 'package:data/models/remote/cars/response/liked_cars_response.dart';
 import 'package:data/models/remote/cars/response/my_car_response.dart';
@@ -12,6 +13,7 @@ import 'package:dio/dio.dart';
 import 'package:domain/model/cars/car_create_model.dart';
 import 'package:domain/model/cars/car_detail_info_model.dart';
 import 'package:domain/model/cars/car_model.dart';
+import 'package:domain/model/cars/current_car_model.dart';
 import 'package:domain/model/cars/filter_model.dart';
 import 'package:domain/model/cars/my_car_model.dart';
 import 'package:domain/model/location/gps_model.dart';
@@ -264,6 +266,42 @@ class CarsRepositoryImpl extends CarsRepository {
       return BaseResult(
         success: true,
         body: response.data["place"],
+      );
+    } on DioException catch (error) {
+      return BaseResult(
+          success: false, exceptionBody: error.response?.data['error_note']);
+    } catch (exception) {
+      return BaseResult(success: false, exceptionBody: exception);
+    }
+  }
+
+  @override
+  Future<BaseResult<List<CurrentCarModel>>> currentCarsOwners() async {
+    try {
+      var response = await _carsService.currentCarsOwners();
+      return BaseResult(
+        success: true,
+        body: CurrentCarResponse.listFromJson(response.data)
+            .map((e) => e.toDomainModel())
+            .toList(),
+      );
+    } on DioException catch (error) {
+      return BaseResult(
+          success: false, exceptionBody: error.response?.data['error_note']);
+    } catch (exception) {
+      return BaseResult(success: false, exceptionBody: exception);
+    }
+  }
+
+  @override
+  Future<BaseResult<bool>> changeCarStatus({required num carId}) async {
+    try {
+      var response = await _carsService.changeCarStatus(
+        carId: carId,
+      );
+      return BaseResult(
+        success: true,
+        body: true,
       );
     } on DioException catch (error) {
       return BaseResult(

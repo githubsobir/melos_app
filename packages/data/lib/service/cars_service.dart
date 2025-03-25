@@ -215,4 +215,18 @@ class CarsService {
     );
     return response;
   }
+
+  Future<Response> currentCarsOwners() async {
+    var response = await _netBase.dio.get(
+      'cars/current/owner/',
+    );
+    return response;
+  }
+
+  Future<Response> changeCarStatus({required num carId}) async {
+    var response = await _netBase.dio.put(
+      'cars/$carId/status/',
+    );
+    return response;
+  }
 }

@@ -1,5 +1,4 @@
 import 'package:common/l10n/build_context_extension.dart';
-import 'package:common/widgets/base_loader_builder.dart';
 import 'package:dependency/dependencies.dart';
 import 'package:domain/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +17,9 @@ class MyCarsScreen extends StatefulWidget {
 
 class _MyCarsScreenState extends State<MyCarsScreen>
     with SingleTickerProviderStateMixin {
-  final MyCarsCubit cubit = MyCarsCubit(inject())..getMyCars();
+  final MyCarsCubit cubit = MyCarsCubit(inject())
+    ..getMyCars()
+    ..currentCarsOwners();
 
   late TabController tabController;
 
@@ -62,29 +63,53 @@ class _MyCarsScreenState extends State<MyCarsScreen>
       body: TabBarView(
         controller: tabController,
         children: [
-          ListView.builder(
-            padding: const EdgeInsets.only(
-              left: 16,
-              right: 16,
-              bottom: 24,
-            ),
-            itemBuilder: (context, index) {
-              return ItemCurrentBookingCar(
-                carImage:
-                    "https://images.pexels.com/photos/210019/pexels-photo-210019.jpeg?cs=srgb&dl=pexels-pixabay-210019.jpg&fm=jpg",
-                onConfirmBooking: () {},
-              );
+          RefreshIndicator(
+            onRefresh: () {
+              cubit.currentCarsOwners();
+              return Future<void>.delayed(const Duration(seconds: 1));
             },
-            itemCount: 4,
+            child: BlocBuilder<MyCarsCubit, MyCarsState>(
+              bloc: cubit,
+              buildWhen: (previous, current) => current is CurrentCarsState,
+              builder: (context, state) {
+                if (state is CurrentCarsState) {
+                  return ListView.builder(
+                    itemCount: state.cars.length,
+                    padding: const EdgeInsets.only(
+                      left: 16,
+                      right: 16,
+                      bottom: 24,
+                    ),
+                    itemBuilder: (context, index) {
+                      return ItemCurrentBookingCar(
+                        carImage: "$BASE_URL_IMAGE${state.cars[index].photos}",
+                        onConfirmBooking: () {},
+                      );
+                    },
+                  );
+                } else {
+                 return SizedBox(
+                    height: MediaQuery.sizeOf(context).height,
+                    width: MediaQuery.sizeOf(context).width,
+                    child: const SingleChildScrollView(
+                      physics: AlwaysScrollableScrollPhysics(),
+                    ),
+                  );
+                }
+              },
+            ),
           ),
-          BlocBuilder<MyCarsCubit, MyCarsState>(
-            bloc: cubit,
-            buildWhen: (previous, current) => current is CarsState,
-            builder: (context, state) {
-              if (state is CarsState) {
-                return BaseLoaderBuilder(
-                  hasLoading: state is LoadingState,
-                  child: ListView.builder(
+          RefreshIndicator(
+            onRefresh: () {
+              cubit.getMyCars();
+              return Future<void>.delayed(const Duration(seconds: 1));
+            },
+            child: BlocBuilder<MyCarsCubit, MyCarsState>(
+              bloc: cubit,
+              buildWhen: (previous, current) => current is CarsState,
+              builder: (context, state) {
+                if (state is CarsState) {
+                  return ListView.builder(
                     itemCount: state.cars.length,
                     padding: const EdgeInsets.only(
                       left: 16,
@@ -98,14 +123,25 @@ class _MyCarsScreenState extends State<MyCarsScreen>
                         carName:
                             "${state.cars[index].model} ${state.cars[index].make}",
                         carAvailable: state.cars[index].status == "available",
+                        onChangeStatus: () {
+                          if (state.cars[index].id != null) {
+                            cubit.changeCarStatus(state.cars[index].id!);
+                          }
+                        },
                       );
                     },
-                  ),
-                );
-              } else {
-                return Container();
-              }
-            },
+                  );
+                } else {
+                 return SizedBox(
+                    height: MediaQuery.sizeOf(context).height,
+                    width: MediaQuery.sizeOf(context).width,
+                    child: const SingleChildScrollView(
+                      physics: AlwaysScrollableScrollPhysics(),
+                    ),
+                  );
+                }
+              },
+            ),
           )
         ],
       ),

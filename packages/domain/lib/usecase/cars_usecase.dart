@@ -1,6 +1,7 @@
 import 'package:domain/model/cars/car_create_model.dart';
 import 'package:domain/model/cars/car_detail_info_model.dart';
 import 'package:domain/model/cars/car_model.dart';
+import 'package:domain/model/cars/current_car_model.dart';
 import 'package:domain/model/cars/filter_model.dart';
 import 'package:domain/model/cars/my_car_model.dart';
 import 'package:domain/model/location/gps_model.dart';
@@ -105,5 +106,13 @@ class CarsUseCase {
       latitude: latitude,
       longitude: longitude,
     );
+  }
+
+  Future<BaseResult<List<CurrentCarModel>>> currentCarsOwners() {
+    return _carsRepository.currentCarsOwners();
+  }
+
+  Future<BaseResult<bool>> changeCarStatus({required num carId}) {
+    return _carsRepository.changeCarStatus(carId: carId);
   }
 }
