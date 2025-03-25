@@ -250,4 +250,26 @@ class CarsRepositoryImpl extends CarsRepository {
       return BaseResult(success: false, exceptionBody: exception);
     }
   }
+
+  @override
+  Future<BaseResult<String>> geocoder({
+    required double latitude,
+    required double longitude,
+  }) async {
+    try {
+      var response = await _carsService.geocoder(
+        latitude: latitude,
+        longitude: longitude,
+      );
+      return BaseResult(
+        success: true,
+        body: response.data["place"],
+      );
+    } on DioException catch (error) {
+      return BaseResult(
+          success: false, exceptionBody: error.response?.data['error_note']);
+    } catch (exception) {
+      return BaseResult(success: false, exceptionBody: exception);
+    }
+  }
 }

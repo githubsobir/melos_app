@@ -96,4 +96,14 @@ class CarsUseCase {
   Future<BaseResult<List<MyCarModel>>> getMyCars() {
     return _carsRepository.getMyCars();
   }
+
+  Future<BaseResult<String>> geocoder({
+    required double latitude,
+    required double longitude,
+  }) {
+    return _carsRepository.geocoder(
+      latitude: latitude,
+      longitude: longitude,
+    );
+  }
 }

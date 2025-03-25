@@ -20,6 +20,7 @@ class LocationsScreen extends StatefulWidget {
 
   final cubit = LocationsCubit(inject())
     ..mapInitial()
+    ..geocoder()
     ..gpsList();
 
   @override
@@ -40,8 +41,6 @@ class _LocationsScreenState extends State<LocationsScreen> {
     mapkit.onStop();
     super.dispose();
   }
-
-// https://pub.dev/packages/yandex_geocoder
 
   @override
   Widget build(BuildContext context) {

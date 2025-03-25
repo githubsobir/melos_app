@@ -42,4 +42,6 @@ abstract class CarsRepository {
   Future<BaseResult<bool>> carCreate({required int processNumber, required CarCreateModel carModel});
 
   Future<BaseResult<List<MyCarModel>>> getMyCars();
+
+  Future<BaseResult<String>> geocoder({required double latitude, required double longitude});
 }

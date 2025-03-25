@@ -66,6 +66,19 @@ class LocationsCubit extends Cubit<LocationsState> {
       }
     }
   }
+
+  Future<void> geocoder() async {
+    var response = await _carsUseCase.geocoder(
+      latitude: state.point.latitude,
+      longitude: state.point.longitude,
+    );
+    if (response.success) {
+      var place = response.body;
+      if (place != null) {
+        emit(state.copyWith(locationName: place));
+      }
+    }
+  }
 }
 
 class LocationsState extends Equatable {

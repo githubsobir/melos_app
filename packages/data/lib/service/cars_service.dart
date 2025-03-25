@@ -207,4 +207,12 @@ class CarsService {
     );
     return response;
   }
+
+  Future<Response> geocoder(
+      {required double latitude, required double longitude}) async {
+    var response = await _netBase.dio.get(
+      'gps/geocoder/?latitude=$latitude&longitude=$longitude',
+    );
+    return response;
+  }
 }
