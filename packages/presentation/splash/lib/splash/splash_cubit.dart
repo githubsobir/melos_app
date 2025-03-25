@@ -1,7 +1,7 @@
 import 'dart:async';
+
 import 'package:domain/usecase/auth_usecase.dart';
 import 'package:equatable/equatable.dart';
-
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SplashCubit extends Cubit<SplashState> {
@@ -10,6 +10,7 @@ class SplashCubit extends Cubit<SplashState> {
   SplashCubit(this._authUseCase) : super(SplashInitialState());
 
   Future<void> openNextScreen() async {
+    // await _authUseCase.sendFirebaseToken();
     var hasUser = await _authUseCase.hasUser();
     if (hasUser) {
       emit(MainScreenState());
