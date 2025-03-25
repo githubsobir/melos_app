@@ -73,6 +73,8 @@ class PathImages {
 
 //---------------- my cars ----------------//
   static var closedType = "packages/common/assets/my_cars/closed_type.svg";
+  static var carStatusEnabled = "packages/common/assets/my_cars/car_status_enabled.svg";
+  static var carStatusDisabled = "packages/common/assets/my_cars/car_status_disabled.svg";
   static var lockDoors = "packages/common/assets/my_cars/lock_doors.svg";
   static var nearbyCircled =
       "packages/common/assets/my_cars/nearby_circled.svg";
