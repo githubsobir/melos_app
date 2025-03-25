@@ -1,19 +1,46 @@
+import 'package:domain/model/cars/my_car_model.dart';
+import 'package:domain/usecase/cars_usecase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class MyCarsCubit extends Cubit<MyCarsState> {
-  MyCarsCubit() : super(const MyCarsState([]));
+  final CarsUseCase _carsUseCase;
 
-  getMyCars() {
-    List<String> cars = ["", "", "", "", "", "", ""];
-    emit(MyCarsState(cars));
+  MyCarsCubit(this._carsUseCase) : super(MyCarsInitial());
+
+  getMyCars() async {
+    if (!await _carsUseCase.hasUser()) return;
+    emit(LoadingState());
+    var response = await _carsUseCase.getMyCars();
+    if (response.success) {
+      var cars = response.body;
+      if (cars != null) {
+        emit(CarsState(cars));
+      }
+    } else {
+      emit(const CarsState([]));
+    }
   }
 }
 
-class MyCarsState extends Equatable {
-  final List<String> cars;
+sealed class MyCarsState extends Equatable {
+  const MyCarsState();
+}
 
-  const MyCarsState(this.cars);
+final class MyCarsInitial extends MyCarsState {
+  @override
+  List<Object> get props => [];
+}
+
+final class LoadingState extends MyCarsState {
+  @override
+  List<Object> get props => [];
+}
+
+final class CarsState extends MyCarsState {
+  final List<MyCarModel> cars;
+
+  const CarsState(this.cars);
 
   @override
   List<Object> get props => [cars];

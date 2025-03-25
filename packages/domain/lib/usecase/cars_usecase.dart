@@ -2,6 +2,7 @@ import 'package:domain/model/cars/car_create_model.dart';
 import 'package:domain/model/cars/car_detail_info_model.dart';
 import 'package:domain/model/cars/car_model.dart';
 import 'package:domain/model/cars/filter_model.dart';
+import 'package:domain/model/cars/my_car_model.dart';
 import 'package:domain/model/location/gps_model.dart';
 import 'package:domain/repository/auth_repository.dart';
 import 'package:domain/repository/cars_repository.dart';
@@ -90,5 +91,9 @@ class CarsUseCase {
       processNumber: processNumber,
       carModel: carModel,
     );
+  }
+
+  Future<BaseResult<List<MyCarModel>>> getMyCars() {
+    return _carsRepository.getMyCars();
   }
 }

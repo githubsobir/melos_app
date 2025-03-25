@@ -7,9 +7,17 @@ import 'package:intent_launcher/intent_launcher.dart';
 import 'package:navigation/my_cars_intents.dart';
 
 class ItemMyCar extends StatefulWidget {
-  const ItemMyCar({super.key, required this.carImage, required this.onEdit});
+  const ItemMyCar({
+    super.key,
+    required this.carImage,
+    required this.onEdit,
+    required this.carName,
+    required this.carAvailable,
+  });
 
   final String carImage;
+  final String carName;
+  final bool carAvailable;
   final VoidCallback onEdit;
 
   @override
@@ -64,7 +72,7 @@ class _ItemMyCarState extends State<ItemMyCar> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  "Chevrolet Captiva",
+                  widget.carName,
                   style: Theme.of(context)
                       .textTheme
                       .bodyMedium
@@ -103,7 +111,9 @@ class _ItemMyCarState extends State<ItemMyCar> {
                     Expanded(
                       child: leftRight(
                         title: "Статус",
-                        icon: PathImages.carStatusEnabled,
+                        icon: widget.carAvailable
+                            ? PathImages.carStatusEnabled
+                            : PathImages.carStatusDisabled,
                         onTap: () {
                           showDialog<String>(
                             context: context,
@@ -128,19 +138,20 @@ class _ItemMyCarState extends State<ItemMyCar> {
                                         child: BaseButton(
                                             onPressed: () {
                                               context.closeActiveScreen();
-                                            }, title: "Нет"),
+                                            },
+                                            title: "Нет"),
                                       ),
                                       const SizedBox(
                                         width: 48,
                                       ),
                                       Expanded(
                                           child: BaseButton(
-                                            onPressed: () {
-                                              context.closeActiveScreen();
-                                            },
-                                            title: "Да",
-                                            background: const Color(0xFFFF3636),
-                                          )),
+                                        onPressed: () {
+                                          context.closeActiveScreen();
+                                        },
+                                        title: "Да",
+                                        background: const Color(0xFFFF3636),
+                                      )),
                                     ],
                                   )
                                 ],
@@ -178,7 +189,8 @@ class _ItemMyCarState extends State<ItemMyCar> {
                                         child: BaseButton(
                                             onPressed: () {
                                               context.closeActiveScreen();
-                                            }, title: "Нет"),
+                                            },
+                                            title: "Нет"),
                                       ),
                                       const SizedBox(
                                         width: 48,

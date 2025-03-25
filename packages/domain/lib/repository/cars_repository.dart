@@ -2,6 +2,7 @@ import 'package:domain/model/cars/car_create_model.dart';
 import 'package:domain/model/cars/car_detail_info_model.dart';
 import 'package:domain/model/cars/car_model.dart';
 import 'package:domain/model/cars/filter_model.dart';
+import 'package:domain/model/cars/my_car_model.dart';
 import 'package:domain/model/location/gps_model.dart';
 import 'package:domain/utils/base_result.dart';
 
@@ -39,4 +40,6 @@ abstract class CarsRepository {
   Future<BaseResult<String>> mapApiKey();
 
   Future<BaseResult<bool>> carCreate({required int processNumber, required CarCreateModel carModel});
+
+  Future<BaseResult<List<MyCarModel>>> getMyCars();
 }

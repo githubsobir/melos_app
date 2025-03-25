@@ -200,4 +200,11 @@ class CarsService {
     );
     return response;
   }
+
+  Future<Response> getMyCars() async {
+    var response = await _netBase.dio.get(
+      'cars/list/owner/',
+    );
+    return response;
+  }
 }
