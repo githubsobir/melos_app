@@ -42,6 +42,9 @@ final _launcher = IntentLauncher()
       (route) => false,
     );
   })
+  ..onNavigationIntent<LoginGoIntent>((context, intent) {
+    return Navigator.pushNamed(context, LoginGoIntent.path      );
+  })
   ..onNavigationIntent<PasswordScreenIntent>((context, intent) {
     return Navigator.pushNamed(
       context,
@@ -146,6 +149,8 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
   } else if (OnboardingIntent.path == settings.name) {
     return _createRoute(OnboardingScreen().wrapWith(_launcher));
   } else if (LoginIntent.path == settings.name) {
+    return _createRoute(LoginScreen().wrapWith(_launcher));
+  } else if (LoginGoIntent.path == settings.name) {
     return _createRoute(LoginScreen().wrapWith(_launcher));
   } else if (PasswordScreenIntent.path == settings.name) {
     return _createRoute(

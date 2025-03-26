@@ -4,6 +4,10 @@ class LoginIntent implements NavigationIntent {
   static String path = "/login";
 }
 
+class LoginGoIntent implements NavigationIntent {
+  static String path = "/login_go";
+}
+
 class PasswordScreenIntent implements NavigationIntent {
   static String path = "/password";
   final String phoneNumber;

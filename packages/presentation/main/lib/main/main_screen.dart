@@ -58,7 +58,7 @@ class _MainScreenState extends State<MainScreen> {
       listenWhen: (previous, current) => current is LogOutState,
       listener: (BuildContext context, Object state) {
         if (state is LogOutState) {
-          context.openScreen(LoginIntent());
+          context.openScreen(LoginGoIntent());
         }
       },
       buildWhen: (previous, current) => current is MenuPositionState,
@@ -147,7 +147,7 @@ class _MainScreenState extends State<MainScreen> {
                     if (cubit.hasUser) {
                       _onItemTapped(2);
                     } else {
-                      context.openScreen(LoginIntent());
+                      context.openScreen(LoginGoIntent());
                     }
                   }),
                   item(
@@ -159,7 +159,7 @@ class _MainScreenState extends State<MainScreen> {
                       if (cubit.hasUser) {
                         _onItemTapped(3);
                       } else {
-                        context.openScreen(LoginIntent());
+                        context.openScreen(LoginGoIntent());
                       }
                     },
                   ),
@@ -172,7 +172,7 @@ class _MainScreenState extends State<MainScreen> {
                       if (cubit.hasUser) {
                         _onItemTapped(4);
                       } else {
-                        context.openScreen(LoginIntent());
+                        context.openScreen(LoginGoIntent());
                       }
                     },
                   ),
