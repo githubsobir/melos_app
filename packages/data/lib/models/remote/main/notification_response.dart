@@ -3,24 +3,24 @@ import 'package:domain/model/main/notification_model.dart';
 class NotificationResponse {
   NotificationResponse({
     this.title,
-    this.content,
+    this.body,
     this.isRead,
   });
 
   NotificationResponse.fromJson(dynamic json) {
     title = json['title'];
-    content = json['content'];
+    body = json['body'];
     isRead = json['is_read'];
   }
 
   String? title;
-  String? content;
+  String? body;
   bool? isRead;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['title'] = title;
-    map['content'] = content;
+    map['body'] = body;
     map['is_read'] = isRead;
     return map;
   }
@@ -34,7 +34,7 @@ extension NotificationMapper on NotificationResponse {
   NotificationModel toDomainModel() {
     return NotificationModel(
       title: title,
-      content: content,
+      body: body,
       isRead: isRead,
     );
   }

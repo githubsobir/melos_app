@@ -18,68 +18,74 @@ class NotificationsScreen extends StatelessWidget {
         title: Text(context.translations.notifications),
       ),
       backgroundColor:
-      Theme
-          .of(context)
-          .colorScheme
-          .brightness == Brightness.light
-          ? const Color(0xFFF6F7F9)
-          : const Color(0xFF061136),
+          Theme.of(context).colorScheme.brightness == Brightness.light
+              ? const Color(0xFFF6F7F9)
+              : const Color(0xFF061136),
       body: BlocBuilder<NotificationCubit, NotificationState>(
-        bloc:cubit,
+        bloc: cubit,
         builder: (context, state) {
-          return ListView.builder(
-            itemCount: 18,
-            padding: const EdgeInsets.only(
-              left: 16,
-              right: 16,
-              top: 8,
-              bottom: 8,
-            ),
-            itemBuilder: (context, index) {
-              return Padding(
-                padding: const EdgeInsets.only(bottom: 4),
-                child: Card(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      SvgPicture.asset(PathImages.unreadNotification),
-                      Padding(
-                        padding: const EdgeInsets.only(
-                          left: 16,
-                          right: 16,
-                          bottom: 16,
-                          top: 2,
+          if (state is NotificationsListState) {
+            return ListView.builder(
+              itemCount: state.notifications.length,
+              padding: const EdgeInsets.only(
+                left: 16,
+                right: 16,
+                top: 8,
+                bottom: 8,
+              ),
+              itemBuilder: (context, index) {
+                return Padding(
+                  padding: const EdgeInsets.only(bottom: 4),
+                  child: Card(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Visibility(
+                          visible: !(state.notifications[index].isRead ?? false),
+                          child: SvgPicture.asset(
+                            PathImages.unreadNotification,
+                          ),
                         ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.stretch,
-                          children: [
-                            Text(
-                              "Car drop off",
-                              style: Theme
-                                  .of(context)
-                                  .textTheme
-                                  .bodyMedium
-                                  ?.copyWith(fontWeight: FontWeight.w700),
-                            ),
-                            const SizedBox(
-                              height: 4,
-                            ),
-                            Text(
-                              "You should be at the pick up location by the end of the day : 24.12.2024, for receiving your car from client.",
-                              style: Theme
-                                  .of(context)
-                                  .textTheme
-                                  .labelMedium,
-                            ),
-                          ],
-                        ),
-                      )
-                    ],
+                        Padding(
+                          padding: const EdgeInsets.only(
+                            left: 16,
+                            right: 16,
+                            bottom: 16,
+                            top: 2,
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.stretch,
+                            children: [
+                              Text(
+                                state.notifications[index].title ?? "",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(fontWeight: FontWeight.w700),
+                              ),
+                              const SizedBox(
+                                height: 4,
+                              ),
+                              Text(
+                                state.notifications[index].body ?? "",
+                                style: Theme.of(context).textTheme.labelMedium,
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
                   ),
-                ),
-              );
-            },
-          );
+                );
+              },
+            );
+          } else if (state is LoaderState) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
+            return const SizedBox();
+          }
         },
       ),
     );

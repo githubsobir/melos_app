@@ -1,12 +1,12 @@
 class NotificationModel {
   NotificationModel({
     this.title,
-    this.content,
+    this.body,
     this.isRead,
   });
 
   String? title;
-  String? content;
+  String? body;
   bool? isRead;
 
 
