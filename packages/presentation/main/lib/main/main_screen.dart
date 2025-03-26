@@ -96,8 +96,7 @@ class _MainScreenState extends State<MainScreen> {
                                   current is NotificationState,
                               builder: (context, state) {
                                 if (state is NotificationState) {
-                                  var notification = state as NotificationState;
-                                  return notification.hasNotification
+                                  return state.hasNotification
                                       ? Align(
                                           alignment: Alignment.topRight,
                                           child: Container(
@@ -127,6 +126,27 @@ class _MainScreenState extends State<MainScreen> {
             child: DrawerWidget(
               onLogOut: () {
                 cubit.logOut();
+              },
+              onBooking: () {
+                if (cubit.hasUser) {
+                  context.openScreen(BookingIntent());
+                } else {
+                  context.openScreen(LoginGoIntent());
+                }
+              },
+              onBookingHistory: () {
+                if (cubit.hasUser) {
+                  context.openScreen(BookingHistoryIntent());
+                } else {
+                  context.openScreen(LoginGoIntent());
+                }
+              },
+              onMyCar: () {
+                if (cubit.hasUser) {
+                  context.openScreen(MyCarsIntent());
+                } else {
+                  context.openScreen(LoginGoIntent());
+                }
               },
             ),
           ),

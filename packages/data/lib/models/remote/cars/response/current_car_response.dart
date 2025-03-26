@@ -24,7 +24,7 @@ class CurrentCarResponse {
   }
 
   num? id;
-  String? photos;
+  List<String>? photos;
   String? startDate;
   String? endDate;
   String? totalAmount;

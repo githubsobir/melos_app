@@ -8,12 +8,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:navigation/main_navigation_intents.dart';
-import 'package:navigation/my_cars_intents.dart';
 
 class DrawerWidget extends StatelessWidget {
   final VoidCallback onLogOut;
+  final VoidCallback onBooking;
+  final VoidCallback onBookingHistory;
+  final VoidCallback onMyCar;
 
-  DrawerWidget({super.key, required this.onLogOut});
+  DrawerWidget({
+    super.key,
+    required this.onLogOut,
+    required this.onBooking,
+    required this.onBookingHistory,
+    required this.onMyCar,
+  });
 
   final AppStateNotifier _appStateNotifier = getIt.get<AppStateNotifier>();
 
@@ -43,7 +51,7 @@ class DrawerWidget extends StatelessWidget {
           title: context.translations.booking,
           context: context,
           onTap: () {
-            context.openScreen(BookingIntent());
+            onBooking();
             Scaffold.of(context).closeDrawer();
           },
         ),
@@ -52,7 +60,7 @@ class DrawerWidget extends StatelessWidget {
           title: context.translations.booking_history,
           context: context,
           onTap: () {
-            context.openScreen(BookingHistoryIntent());
+            onBookingHistory();
             Scaffold.of(context).closeDrawer();
           },
         ),
@@ -61,7 +69,7 @@ class DrawerWidget extends StatelessWidget {
           title: context.translations.my_cars,
           context: context,
           onTap: () {
-            context.openScreen(MyCarsIntent());
+            onMyCar();
             Scaffold.of(context).closeDrawer();
           },
         ),

@@ -9,7 +9,7 @@ class LoginCubit extends Cubit<LoginState> {
 
   Future<void> verifyPhone({required String phone}) async {
     emit(LoaderState());
-    if (phone.isNotEmpty) {
+    if (phone.length == 13) {
       var response = await _authUseCase.verifyPhone(
         phoneNumber: phone,
       );
@@ -42,6 +42,7 @@ class HasUser extends LoginState {
   @override
   List<Object> get props => [];
 }
+
 class UserNotFound extends LoginState {
   @override
   List<Object> get props => [];

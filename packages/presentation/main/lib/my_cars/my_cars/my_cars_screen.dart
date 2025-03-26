@@ -82,7 +82,7 @@ class _MyCarsScreenState extends State<MyCarsScreen>
                     ),
                     itemBuilder: (context, index) {
                       return ItemCurrentBookingCar(
-                        carImage: "$BASE_URL_IMAGE${state.cars[index].photos}",
+                        carImage: "$BASE_URL_IMAGE${state.cars[index].photos?.first}",
                         onConfirmBooking: () {},
                       );
                     },

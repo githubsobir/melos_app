@@ -1,5 +1,6 @@
 import 'package:common/items/item_car_popular.dart';
 import 'package:common/l10n/build_context_extension.dart';
+import 'package:common/navigation/auth_navigation_intents.dart';
 import 'package:common/path_images.dart';
 import 'package:common/widgets/base_button.dart';
 import 'package:common/widgets/date_selector_widget.dart';
@@ -22,7 +23,7 @@ class CarInfoDetailScreen extends StatelessWidget {
 
   final num carId;
 
-  final cubit = CarInfoDetailCubit(inject());
+  final cubit = CarInfoDetailCubit(inject())..hasUserProfile();
 
   DateTime startDateTime = DateTime.now();
   DateTime endDateTime = DateTime.now();
@@ -318,7 +319,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                         var start = dateRange.startDate;
                         var end = dateRange.endDate;
                         if (start != null && end != null) {
-                           startDateTime = DateTime(
+                          startDateTime = DateTime(
                             start.year,
                             start.month,
                             start.day,
@@ -326,10 +327,10 @@ class CarInfoDetailScreen extends StatelessWidget {
                             timeRange.start.minute,
                           );
 
-                           endDateTime = DateTime(
-                             end.year,
-                             end.month,
-                             end.day,
+                          endDateTime = DateTime(
+                            end.year,
+                            end.month,
+                            end.day,
                             timeRange.end.hour,
                             timeRange.end.minute,
                           );
@@ -425,12 +426,17 @@ class CarInfoDetailScreen extends StatelessWidget {
                             ),
                             BaseButton(
                                 onPressed: () {
-                                  print(startDateTime.toString());
-                                  context.openScreen(PaymentDetailsIntent(
-                                    carId: carId,
-                                    startDateTme: startDateTime.toIso8601String(),
-                                    endDateTme: endDateTime.toIso8601String(),
-                                  ));
+                                  if (cubit.hasUser) {
+                                    print(startDateTime.toString());
+                                    context.openScreen(PaymentDetailsIntent(
+                                      carId: carId,
+                                      startDateTme:
+                                          startDateTime.toIso8601String(),
+                                      endDateTme: endDateTime.toIso8601String(),
+                                    ));
+                                  } else {
+                                    context.openScreen(LoginGoIntent());
+                                  }
                                 },
                                 title: context.translations.rent)
                           ],
@@ -457,17 +463,16 @@ class CarInfoDetailScreen extends StatelessWidget {
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(16.0),
-                            child:  Text(
+                            child: Text(
                               context.translations.recommendation_car,
                               style: Theme.of(context)
                                   .textTheme
                                   .bodySmall
                                   ?.copyWith(
-                                color: Theme.of(context)
-                                    .colorScheme
-                                    .secondary,
-                                fontWeight: FontWeight.w700,
-                              ),
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
+                                    fontWeight: FontWeight.w700,
+                                  ),
                             ),
                           ),
                           SizedBox(
@@ -527,10 +532,12 @@ class CarInfoDetailScreen extends StatelessWidget {
                                   isLiked: ((state.carDetail.recommendCars ??
                                               [])[index]
                                           .liked ??
-                                      false), transmission: ((state.carDetail.recommendCars ??
-                                    [])[index]
-                                    .transmission ??
-                                    ""),
+                                      false),
+                                  transmission:
+                                      ((state.carDetail.recommendCars ??
+                                                  [])[index]
+                                              .transmission ??
+                                          ""),
                                 ),
                               ),
                             ),

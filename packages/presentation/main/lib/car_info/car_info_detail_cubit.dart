@@ -1,11 +1,12 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:domain/model/cars/car_detail_info_model.dart';
 import 'package:domain/usecase/cars_usecase.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CarInfoDetailCubit extends Cubit<CarInfoDetailState> {
   CarInfoDetailCubit(this._carsUseCase) : super(CarInfoDetailInitial());
   final CarsUseCase _carsUseCase;
+  var hasUser = false;
 
   Future<void> getCarDetail(num carId) async {
     emit(LoadingState());
@@ -21,8 +22,13 @@ class CarInfoDetailCubit extends Cubit<CarInfoDetailState> {
       // emit(state.copyWith(isLoading: false));
     }
   }
+
   Future<void> likeCar(int id, bool isLiked) async {
     var response = await _carsUseCase.likeCar(id, isLiked);
+  }
+
+  Future<void> hasUserProfile() async {
+    hasUser = await _carsUseCase.hasUser();
   }
 }
 
