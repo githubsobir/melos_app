@@ -1,10 +1,13 @@
+import 'dart:io';
+
+import 'package:data/models/remote/auth/request/fcm_register_register_request.dart';
 import 'package:data/models/remote/main/notification_response.dart';
 import 'package:data/service/main_service.dart';
-import 'package:data/service/profile_service.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/model/main/notification_model.dart';
 import 'package:domain/repository/main_repository.dart';
 import 'package:domain/utils/base_result.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 
 class MainRepositoryImpl extends MainRepository {
   final MainService _mainService;
@@ -22,6 +25,29 @@ class MainRepositoryImpl extends MainRepository {
               (e) => e.toDomainModel(),
             )
             .toList(),
+      );
+    } on DioException catch (error) {
+      return BaseResult(
+          success: false, exceptionBody: error.response?.data['error_note']);
+    } catch (exception) {
+      return BaseResult(success: false, exceptionBody: exception);
+    }
+  }
+
+  @override
+  Future<BaseResult<bool>> readNotification({required num id}) async {
+    try {
+      var token = await FirebaseMessaging.instance.getToken();
+      var response = await _mainService.readNotification(
+        id: id,
+        request: FcmRegisterRegisterRequest(
+          platform: Platform.isAndroid ? "android" : "ios",
+          token: token,
+        ),
+      );
+      return BaseResult(
+        success: true,
+        body: true,
       );
     } on DioException catch (error) {
       return BaseResult(

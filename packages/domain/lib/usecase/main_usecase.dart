@@ -10,4 +10,10 @@ class MainUseCase {
   Future<BaseResult<List<NotificationModel>>> getNotifications() {
     return _mainRepository.getNotifications();
   }
+
+  Future<BaseResult<bool>> readNotification({required num id}) {
+    return _mainRepository.readNotification(
+      id: id,
+    );
+  }
 }

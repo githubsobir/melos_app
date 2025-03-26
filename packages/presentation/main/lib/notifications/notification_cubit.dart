@@ -17,6 +17,16 @@ class NotificationCubit extends Cubit<NotificationState> {
       }
     }
   }
+
+  Future<void> readNotification(num id) async {
+    emit(LoaderState());
+    var response = await _mainUseCase.readNotification(
+      id: id,
+    );
+    if (response.success) {
+      getNotifications();
+    }
+  }
 }
 
 sealed class NotificationState extends Equatable {
