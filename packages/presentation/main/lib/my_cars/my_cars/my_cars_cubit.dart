@@ -10,7 +10,7 @@ class MyCarsCubit extends Cubit<MyCarsState> {
   MyCarsCubit(this._carsUseCase) : super(MyCarsInitial());
 
   getMyCars() async {
-    emit(LoadingState());
+    // emit(LoadingState());
     var response = await _carsUseCase.getMyCars();
     if (response.success) {
       var cars = response.body;
@@ -23,7 +23,7 @@ class MyCarsCubit extends Cubit<MyCarsState> {
   }
 
   currentCarsOwners() async {
-    emit(LoadingState());
+    // emit(LoadingState());
     var response = await _carsUseCase.currentCarsOwners();
     if (response.success) {
       var cars = response.body;
@@ -35,8 +35,8 @@ class MyCarsCubit extends Cubit<MyCarsState> {
     }
   }
 
-  Future<void> changeCarStatus(num carId) async {
-    emit(LoadingState());
+  changeCarStatus(num carId) async {
+    // emit(LoadingState());
     var response = await _carsUseCase.changeCarStatus(carId: carId);
     if (response.success) {
       getMyCars();

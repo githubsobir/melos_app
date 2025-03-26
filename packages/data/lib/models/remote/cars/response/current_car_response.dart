@@ -14,7 +14,7 @@ class CurrentCarResponse {
 
   CurrentCarResponse.fromJson(dynamic json) {
     id = json['id'];
-    photos = json['photos'];
+    photos = json['photos'] != null ? json['photos'].cast<String>() : [];
     startDate = json['start_date'];
     endDate = json['end_date'];
     totalAmount = json['total_amount'];

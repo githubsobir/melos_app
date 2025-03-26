@@ -72,6 +72,7 @@ class _MyCarsScreenState extends State<MyCarsScreen>
               bloc: cubit,
               buildWhen: (previous, current) => current is CurrentCarsState,
               builder: (context, state) {
+                print("state birinchisi ${state}");
                 if (state is CurrentCarsState) {
                   return ListView.builder(
                     itemCount: state.cars.length,
@@ -108,6 +109,7 @@ class _MyCarsScreenState extends State<MyCarsScreen>
               bloc: cubit,
               buildWhen: (previous, current) => current is CarsState,
               builder: (context, state) {
+                print("state ikkinchisi ${state}");
                 if (state is CarsState) {
                   return ListView.builder(
                     itemCount: state.cars.length,
