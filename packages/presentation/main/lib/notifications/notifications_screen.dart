@@ -34,17 +34,19 @@ class NotificationsScreen extends StatelessWidget {
                 bottom: 8,
               ),
               itemBuilder: (context, index) {
+                if (state.notifications[index].isRead == false) {
+                  cubit.readNotification(state.notifications[index].id ?? 0);
+                }
                 return Padding(
                   padding: const EdgeInsets.only(bottom: 4),
                   child: Card(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Visibility(
-                          visible: !(state.notifications[index].isRead ?? false),
-                          child: SvgPicture.asset(
-                            PathImages.unreadNotification,
-                          ),
+                        SvgPicture.asset(
+                          state.notifications[index].isRead == true
+                              ? PathImages.readNotification
+                              : PathImages.unreadNotification,
                         ),
                         Padding(
                           padding: const EdgeInsets.only(
