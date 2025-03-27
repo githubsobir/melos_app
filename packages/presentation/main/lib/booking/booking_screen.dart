@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:main/booking/booking_cubit.dart';
 import 'package:main/booking/item_booking.dart';
+import 'package:main/booking/item_current_booking.dart';
 
 class BookingScreen extends StatefulWidget {
   const BookingScreen({super.key});
@@ -61,38 +62,30 @@ class _BookingScreenState extends State<BookingScreen>
           ],
         ),
       ),
-      body: TabBarView(
-        controller: tabController,
-        children: [
-          BlocBuilder<BookingCubit, BookingState>(
-            bloc: cubit,
-            builder: (context, state) {
-              return ListView.separated(
-                itemBuilder: (context, index) => ItemBooking(
+      body:   BlocBuilder<BookingCubit, BookingState>(
+        bloc: cubit,
+        builder: (context, state) {
+          return TabBarView(
+            controller: tabController,
+            children: [
+              ListView.separated(
+                itemBuilder: (context, index) => ItemCurrentBooking(
                   images: state.bookingCurrent[index].photos ?? [],
-                  carName: "carName",
-                  registrationNumber: "registrationNumber",
                   dailyRate: state.bookingCurrent[index].dailyRate ?? "",
                   securityDeposit:
                       state.bookingCurrent[index].securityDeposit ?? "",
-                  totalAmount: state.bookingCurrent[index].totalAmount ?? "",
+                  totalAmount:
+                      state.bookingCurrent[index].totalAmount ?? "",
                   status: state.bookingCurrent[index].status ?? "",
                   startDate: state.bookingCurrent[index].startDate ?? "",
                   endDate: state.bookingCurrent[index].endDate ?? "",
-                  ownerPhoneNumber: '',
-                  profilePage: "", carOwner: '',
                 ),
                 separatorBuilder: (context, index) => const Divider(
                   color: Color(0xFF658DF1),
                 ),
                 itemCount: state.bookingCurrent.length,
-              );
-            },
-          ),
-          BlocBuilder<BookingCubit, BookingState>(
-            bloc: cubit,
-            builder: (context, state) {
-              return ListView.separated(
+              ),
+              ListView.separated(
                 itemBuilder: (context, index) => ItemBooking(
                   images: state.bookingList[index].photos ?? [],
                   carName:
@@ -108,16 +101,17 @@ class _BookingScreenState extends State<BookingScreen>
                   endDate: state.bookingList[index].endDate ?? "",
                   ownerPhoneNumber:
                       state.bookingList[index].ownerPhoneNumber ?? "",
-                  profilePage: state.bookingList[index].profilePage ?? "", carOwner: state.bookingList[index].carOwner ?? "",
+                  profilePage: state.bookingList[index].profilePage ?? "",
+                  carOwner: state.bookingList[index].carOwner ?? "",
                 ),
                 separatorBuilder: (context, index) => const Divider(
                   color: Color(0xFF658DF1),
                 ),
                 itemCount: state.bookingList.length,
-              );
-            },
-          )
-        ],
+              )
+            ],
+          );
+        },
       ),
     );
   }
