@@ -3,7 +3,7 @@ import 'package:domain/model/cars/current_car_model.dart';
 class CurrentCarResponse {
   CurrentCarResponse({
     this.id,
-    this.photos,
+    this.photo,
     this.startDate,
     this.endDate,
     this.totalAmount,
@@ -14,7 +14,7 @@ class CurrentCarResponse {
 
   CurrentCarResponse.fromJson(dynamic json) {
     id = json['id'];
-    photos = json['photos'] != null ? json['photos'].cast<String>() : [];
+    photo = json['photo'];
     startDate = json['start_date'];
     endDate = json['end_date'];
     totalAmount = json['total_amount'];
@@ -24,7 +24,7 @@ class CurrentCarResponse {
   }
 
   num? id;
-  List<String>? photos;
+  String? photo;
   String? startDate;
   String? endDate;
   String? totalAmount;
@@ -35,7 +35,7 @@ class CurrentCarResponse {
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
     map['id'] = id;
-    map['photos'] = photos;
+    map['photo'] = photo;
     map['start_date'] = startDate;
     map['end_date'] = endDate;
     map['total_amount'] = totalAmount;
@@ -54,7 +54,7 @@ extension CurrentCarMapper on CurrentCarResponse {
   CurrentCarModel toDomainModel() {
     return CurrentCarModel(
       id: id,
-      photos: photos,
+      photo: photo,
       startDate: startDate,
       endDate: endDate,
       totalAmount: totalAmount,

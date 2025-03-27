@@ -35,6 +35,12 @@ class ReceivingTheCarScreen extends StatelessWidget {
                 : const Color(0xFF061136),
         appBar: AppBar(
           title: const Text("Получение автомобиля"),
+          leading: IconButton(
+            icon: Icon(Icons.close),
+            onPressed: () {
+              context.openScreen(MainIntent());
+            },
+          ),
         ),
         body: BlocConsumer<ReceivingTheCarCubit, ReceivingTheCarState>(
           bloc: cubit,

@@ -86,7 +86,7 @@ class _MyCarsScreenState extends State<MyCarsScreen>
                     itemBuilder: (context, index) {
                       return ItemCurrentBookingCar(
                         carImage:
-                            "$BASE_URL_IMAGE${state.cars[index].photos?.first}",
+                            "$BASE_URL_IMAGE${state.cars[index].photo}",
                         onConfirmBooking: () {
                           context.openScreen(ReceivingTheCarScreenIntent(
                               bookingId: state.cars[index].id ?? 0));

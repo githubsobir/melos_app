@@ -1,7 +1,7 @@
 class CurrentCarModel {
   CurrentCarModel({
     this.id,
-    this.photos,
+    this.photo,
     this.startDate,
     this.endDate,
     this.dailyRate,
@@ -11,7 +11,7 @@ class CurrentCarModel {
   });
 
   num? id;
-  List<String>? photos;
+  String? photo;
   String? startDate;
   String? endDate;
   String? dailyRate;
