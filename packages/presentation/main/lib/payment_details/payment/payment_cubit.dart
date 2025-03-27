@@ -31,7 +31,7 @@ class PaymentCubit extends Cubit<PaymentState> {
     if (response.success) {
       var invoice = response.body;
       if (invoice != null) {
-        if (invoice.status == 0) {
+        if (invoice.status == 1) {
           emit(state.copyWith(status: invoice));
           timer?.cancel();
         }

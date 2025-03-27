@@ -23,6 +23,8 @@ class CarDetailInfoModel {
     this.url,
     this.recommendCars,
     this.reviewsCount,
+    this.address,
+    this.addressLink,
   });
 
   num? id;
@@ -39,6 +41,8 @@ class CarDetailInfoModel {
   String? originalPrice;
   String? description;
   String? createdAt;
+  String? address;
+  String? addressLink;
   List<String>? photos;
   bool? liked;
   List<ReviewsModel>? reviews;
@@ -57,27 +61,9 @@ class ReviewsModel {
     this.clientImage,
   });
 
-  ReviewsModel.fromJson(dynamic json) {
-    clientName = json['client_name'];
-    comment = json['comment'];
-    rating = json['rating'];
-    reviewDate = json['review_date'];
-    clientImage = json['client_image'];
-  }
-
   String? clientName;
   String? comment;
   num? rating;
   String? reviewDate;
   String? clientImage;
-
-  Map<String, dynamic> toJson() {
-    final map = <String, dynamic>{};
-    map['client_name'] = clientName;
-    map['comment'] = comment;
-    map['rating'] = rating;
-    map['review_date'] = reviewDate;
-    map['client_image'] = clientImage;
-    return map;
-  }
 }

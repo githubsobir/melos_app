@@ -34,7 +34,7 @@ class PaymentBottomSheet extends StatelessWidget {
           builder: (context, state) {
             return SizedBox(
                 height: 300,
-                child: state.status.status == 0
+                child: state.status.status == 1
                     ? Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [

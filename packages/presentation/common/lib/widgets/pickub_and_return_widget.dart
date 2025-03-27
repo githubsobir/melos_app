@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class PickupAndReturnWidget extends StatelessWidget {
-  const PickupAndReturnWidget({super.key});
+  final String location;
+
+  const PickupAndReturnWidget({super.key, required this.location});
 
   @override
   Widget build(BuildContext context) {
     return Card(
       elevation: 0,
-      margin: EdgeInsets.all(0),
+      margin: const EdgeInsets.all(0),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(0.0), // Adjust radius as needed
       ),
@@ -54,18 +56,12 @@ class PickupAndReturnWidget extends StatelessWidget {
                 ),
                 Expanded(
                   child: Text(
-                    "Tashkent, Shayk...",
+                    location,
                     style: Theme.of(context)
                         .textTheme
                         .bodySmall
                         ?.copyWith(fontSize: 12),
                   ),
-                ),
-                Text(
-                  "Изменять",
-                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
                 ),
               ],
             )

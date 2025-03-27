@@ -339,13 +339,15 @@ class CarInfoDetailScreen extends StatelessWidget {
                     ),
                   ),
                   ////////////////////////
-                  const Padding(
-                    padding: EdgeInsets.only(
+                  Padding(
+                    padding: const EdgeInsets.only(
                       left: 24,
                       right: 24,
                       top: 4,
                     ),
-                    child: PickupAndReturnWidget(),
+                    child: PickupAndReturnWidget(
+                      location: (state.carDetail.address ?? ""),
+                    ),
                   ),
                   ////////////////////////
                   Padding(
@@ -383,15 +385,17 @@ class CarInfoDetailScreen extends StatelessWidget {
                                   Row(
                                     children: [
                                       Text(
-                                        "${(state.carDetail.originalPrice ?? 0)}",
+                                        "${(state.carDetail.dailyRate ?? 0)}",
                                         style: Theme.of(context)
                                             .textTheme
-                                            .labelMedium
+                                            .bodyLarge
                                             ?.copyWith(
                                               fontWeight: FontWeight.w700,
                                             ),
                                       ),
-                                      SizedBox(width: 2,),
+                                      const SizedBox(
+                                        width: 2,
+                                      ),
                                       Text(
                                         "сум/день",
                                         style: Theme.of(context)
@@ -407,7 +411,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                                     ],
                                   ),
                                   Text(
-                                    "${(state.carDetail.dailyRate ?? 0)} сум",
+                                    "${(state.carDetail.originalPrice ?? 0)} сум",
                                     style: Theme.of(context)
                                         .textTheme
                                         .labelMedium
