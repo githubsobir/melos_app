@@ -36,7 +36,7 @@ class PaymentDetailCubit extends Cubit<PaymentDetailState> {
   }
 
   Future<void> sendInvoice({
-    required num amount,
+    required String amount,
     required num carId,
     required String paymentMethod,
     required String startDateTme,

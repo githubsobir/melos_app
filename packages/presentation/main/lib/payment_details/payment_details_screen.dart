@@ -725,7 +725,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                                         cubit.sendInvoice(
                                           amount: state.paymentProcessModel
                                                   .totalAmount ??
-                                              0,
+                                              "",
                                           carId: carId,
                                           paymentMethod: state.selectedMethod,
                                           startDateTme: startDateTme,

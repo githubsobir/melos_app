@@ -35,7 +35,7 @@ class PaymentProcessResponse {
   num? year;
   String? dailyRate;
   String? photo;
-  num? totalAmount;
+  String? totalAmount;
   String? securityDeposit;
   String? url;
   num? day;

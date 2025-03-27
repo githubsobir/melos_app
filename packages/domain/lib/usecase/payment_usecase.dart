@@ -23,7 +23,7 @@ class PaymentUseCase {
 
   Future<BaseResult<InvoiceModel>> sendInvoice({
     required num carId,
-    required num amount,
+    required String amount,
     required String paymentMethod,
     required String startDateTme,
     required String endDateTme,

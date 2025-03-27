@@ -15,7 +15,7 @@ class SendInvoiceRequest {
     endDateTime = json['end_date_time'];
   }
 
-  num? amount;
+  String? amount;
   num? carId;
   String? paymentMethod;
   String? startDateTime;
