@@ -1,5 +1,3 @@
-import 'package:domain/model/booking/booking_model.dart';
-
 class BookingResponse {
   BookingResponse({
     this.id,
@@ -79,33 +77,5 @@ class BookingResponse {
     map['contract'] = contract;
     map['insurance'] = insurance;
     return map;
-  }
-
-  static List<BookingResponse> listFromJson(dynamic json) {
-    return (json as List).map((i) => BookingResponse.fromJson(i)).toList();
-  }
-}
-
-extension BookingMapper on BookingResponse {
-  BookingModel toDomainModel() {
-    return BookingModel(
-      id: id,
-      make: make,
-      model: model,
-      registrationNumber: registrationNumber,
-      photos: photos,
-      dailyRate: dailyRate,
-      securityDeposit: securityDeposit,
-      totalAmount: totalAmount,
-      startDate: startDate,
-      endDate: endDate,
-      status: status,
-      powerOfAttorney: powerOfAttorney,
-      contract: contract,
-      insurance: insurance,
-      carOwner: carOwner,
-      ownerPhoneNumber: ownerPhoneNumber,
-      profilePage: profilePage,
-    );
   }
 }

@@ -3,8 +3,10 @@ import 'package:dependency/dependencies.dart';
 import 'package:domain/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intent_launcher/intent_launcher.dart';
 import 'package:main/my_cars/my_cars/item_my_car.dart';
 import 'package:main/my_cars/my_cars/my_cars_cubit.dart';
+import 'package:navigation/main_navigation_intents.dart';
 
 import 'item_current_booking_car.dart';
 
@@ -83,13 +85,17 @@ class _MyCarsScreenState extends State<MyCarsScreen>
                     ),
                     itemBuilder: (context, index) {
                       return ItemCurrentBookingCar(
-                        carImage: "$BASE_URL_IMAGE${state.cars[index].photos?.first}",
-                        onConfirmBooking: () {},
+                        carImage:
+                            "$BASE_URL_IMAGE${state.cars[index].photos?.first}",
+                        onConfirmBooking: () {
+                          context.openScreen(ReceivingTheCarScreenIntent(
+                              bookingId: state.cars[index].id ?? 0));
+                        },
                       );
                     },
                   );
                 } else {
-                 return SizedBox(
+                  return SizedBox(
                     height: MediaQuery.sizeOf(context).height,
                     width: MediaQuery.sizeOf(context).width,
                     child: const SingleChildScrollView(
@@ -134,7 +140,7 @@ class _MyCarsScreenState extends State<MyCarsScreen>
                     },
                   );
                 } else {
-                 return SizedBox(
+                  return SizedBox(
                     height: MediaQuery.sizeOf(context).height,
                     width: MediaQuery.sizeOf(context).width,
                     child: const SingleChildScrollView(

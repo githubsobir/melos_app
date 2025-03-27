@@ -1,3 +1,4 @@
+import 'package:domain/model/booking/booking_current_model.dart';
 import 'package:domain/model/booking/booking_history_model.dart';
 import 'package:domain/model/booking/booking_model.dart';
 import 'package:domain/repository/booking_repository.dart';
@@ -14,5 +15,9 @@ class BookingUseCase {
 
   Future<BaseResult<List<BookingModel>>> bookingList() {
     return _bookingRepository.bookingList();
+  }
+
+  Future<BaseResult<List<BookingCurrentModel>>> bookingCurrent() {
+    return _bookingRepository.bookingCurrent();
   }
 }

@@ -1,9 +1,12 @@
 import 'package:common/l10n/build_context_extension.dart';
+import 'package:dependency/dependencies/injector.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:main/booking/booking_cubit.dart';
 import 'package:main/booking/item_booking.dart';
 
 class BookingScreen extends StatefulWidget {
-  BookingScreen({super.key});
+  const BookingScreen({super.key});
 
   @override
   State<BookingScreen> createState() => _BookingScreenState();
@@ -12,6 +15,10 @@ class BookingScreen extends StatefulWidget {
 class _BookingScreenState extends State<BookingScreen>
     with SingleTickerProviderStateMixin {
   late TabController tabController;
+
+  final cubit = BookingCubit(inject())
+    ..bookingList()
+    ..bookingCurrent();
 
   @override
   void initState() {
@@ -57,19 +64,58 @@ class _BookingScreenState extends State<BookingScreen>
       body: TabBarView(
         controller: tabController,
         children: [
-          ListView.separated(
-            itemBuilder: (context, index) => const ItemBooking(),
-            separatorBuilder: (context, index) => const Divider(
-              color: Color(0xFF658DF1),
-            ),
-            itemCount: 3,
+          BlocBuilder<BookingCubit, BookingState>(
+            bloc: cubit,
+            builder: (context, state) {
+              return ListView.separated(
+                itemBuilder: (context, index) => ItemBooking(
+                  images: state.bookingCurrent[index].photos ?? [],
+                  carName: "carName",
+                  registrationNumber: "registrationNumber",
+                  dailyRate: state.bookingCurrent[index].dailyRate ?? "",
+                  securityDeposit:
+                      state.bookingCurrent[index].securityDeposit ?? "",
+                  totalAmount: state.bookingCurrent[index].totalAmount ?? "",
+                  status: state.bookingCurrent[index].status ?? "",
+                  startDate: state.bookingCurrent[index].startDate ?? "",
+                  endDate: state.bookingCurrent[index].endDate ?? "",
+                  ownerPhoneNumber: '',
+                  profilePage: "", carOwner: '',
+                ),
+                separatorBuilder: (context, index) => const Divider(
+                  color: Color(0xFF658DF1),
+                ),
+                itemCount: state.bookingCurrent.length,
+              );
+            },
           ),
-          ListView.separated(
-            itemBuilder: (context, index) => const ItemBooking(),
-            separatorBuilder: (context, index) => const Divider(
-              color: Color(0xFF658DF1),
-            ),
-            itemCount: 3,
+          BlocBuilder<BookingCubit, BookingState>(
+            bloc: cubit,
+            builder: (context, state) {
+              return ListView.separated(
+                itemBuilder: (context, index) => ItemBooking(
+                  images: state.bookingList[index].photos ?? [],
+                  carName:
+                      "${state.bookingList[index].make} ${state.bookingList[index].model}",
+                  registrationNumber:
+                      state.bookingList[index].registrationNumber ?? "",
+                  dailyRate: state.bookingList[index].dailyRate ?? "",
+                  securityDeposit:
+                      state.bookingList[index].securityDeposit ?? "",
+                  totalAmount: state.bookingList[index].totalAmount ?? "",
+                  status: state.bookingList[index].status ?? "",
+                  startDate: state.bookingList[index].startDate ?? "",
+                  endDate: state.bookingList[index].endDate ?? "",
+                  ownerPhoneNumber:
+                      state.bookingList[index].ownerPhoneNumber ?? "",
+                  profilePage: state.bookingList[index].profilePage ?? "", carOwner: state.bookingList[index].carOwner ?? "",
+                ),
+                separatorBuilder: (context, index) => const Divider(
+                  color: Color(0xFF658DF1),
+                ),
+                itemCount: state.bookingList.length,
+              );
+            },
           )
         ],
       ),

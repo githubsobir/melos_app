@@ -19,4 +19,11 @@ class BookingService {
     );
     return response;
   }
+
+  Future<Response> bookingCurrent() async {
+    var response = await _netBase.dio.get(
+      'booking/current/',
+    );
+    return response;
+  }
 }

@@ -170,21 +170,24 @@ class _ItemCurrentBookingCarState extends State<ItemCurrentBookingCar> {
           const SizedBox(
             height: 8,
           ),
-          Container(
-            decoration: BoxDecoration(
-              borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(12),
-                bottomRight: Radius.circular(12),
+          GestureDetector(
+            onTap: widget.onConfirmBooking,
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: const BorderRadius.only(
+                  bottomLeft: Radius.circular(12),
+                  bottomRight: Radius.circular(12),
+                ),
+                color: Theme.of(context).colorScheme.primary,
               ),
-              color: Theme.of(context).colorScheme.primary,
-            ),
-            padding: const EdgeInsets.all(12),
-            child: Center(
-              child: Text(
-                "Подтвердить бронь",
-                style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                      color: Colors.white,
-                    ),
+              padding: const EdgeInsets.all(12),
+              child: Center(
+                child: Text(
+                  "Подтвердить бронь",
+                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                        color: Colors.white,
+                      ),
+                ),
               ),
             ),
           ),

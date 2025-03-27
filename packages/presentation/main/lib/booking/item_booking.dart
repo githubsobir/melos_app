@@ -9,7 +9,36 @@ import 'package:main/booking/item_top_bottom.dart';
 import 'package:main/car_info/car_image_selector_widget.dart';
 
 class ItemBooking extends StatelessWidget {
-  const ItemBooking({super.key});
+  final List<String> images;
+  final String carName;
+  final String registrationNumber;
+  final String dailyRate;
+  final String securityDeposit;
+  final String totalAmount;
+  final String status;
+  final String startDate;
+  final String endDate;
+  final String ownerPhoneNumber;
+  final String profilePage;
+  final String carOwner;
+
+  const ItemBooking({
+    super.key,
+    required this.images,
+    required this.carName,
+    required this.registrationNumber,
+    required this.dailyRate,
+    required this.securityDeposit,
+    required this.totalAmount,
+    required this.status,
+    required this.startDate,
+    required this.endDate,
+    required this.ownerPhoneNumber,
+    required this.profilePage,
+    required this.carOwner,
+  });
+
+  // return NumberFormat("#,##0", "ru").format(price);
 
   @override
   Widget build(BuildContext context) {
@@ -17,20 +46,14 @@ class ItemBooking extends StatelessWidget {
       padding: const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 16),
       child: Column(
         children: [
-          const Card(
+          Card(
             child: Padding(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                 top: 16,
                 bottom: 16,
               ),
               child: CarImageSelectorWidget(
-                images: [
-                  "/backend/media/car_photos/db/cars_image/photo141.jpg",
-                  "/backend/media/car_photos/db/cars_image/photo216.jpg",
-                  "/backend/media/car_photos/db/cars_image/photo141.jpg",
-                  "/backend/media/car_photos/db/cars_image/photo141.jpg",
-                  "/backend/media/car_photos/db/cars_image/photo141.jpg",
-                ],
+                images: images,
               ),
             ),
           ),
@@ -58,14 +81,14 @@ class ItemBooking extends StatelessWidget {
                             ),
                             ItemTopBottom(
                               leftText: context.translations.model,
-                              rightText: "Malibu 2 Turbo",
+                              rightText: carName,
                             ),
                             const SizedBox(
                               height: 12,
                             ),
                             ItemTopBottom(
                               leftText: "Гос. номер",
-                              rightText: "01/A123BC/UZ",
+                              rightText: registrationNumber,
                             ),
                           ],
                         ),
@@ -96,7 +119,7 @@ class ItemBooking extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(24.0),
                                   child: CachedNetworkImage(
                                     imageUrl:
-                                        "$BASE_URL_IMAGE/backend/media/car_photos/db/cars_image/photo73_kvkGvlK.jpg",
+                                        "$BASE_URL_IMAGE$profilePage",
                                     width: 24,
                                     height: 24,
                                     fit: BoxFit.cover,
@@ -133,7 +156,7 @@ class ItemBooking extends StatelessWidget {
                                   width: 8,
                                 ),
                                 Text(
-                                  "Azizbek Karimov",
+                                  carOwner,
                                   style: Theme.of(context)
                                       .textTheme
                                       .labelLarge
@@ -153,7 +176,7 @@ class ItemBooking extends StatelessWidget {
                                   width: 8,
                                 ),
                                 Text(
-                                  "+998 93 935 0321",
+                                  ownerPhoneNumber,
                                   style: Theme.of(context)
                                       .textTheme
                                       .labelLarge
@@ -191,21 +214,21 @@ class ItemBooking extends StatelessWidget {
                   ),
                   ItemTopBottom(
                     leftText: "Стоимость за день",
-                    rightText: "99 000 сум",
+                    rightText: "$dailyRate сум",
                   ),
                   const SizedBox(
                     height: 12,
                   ),
                   ItemTopBottom(
                     leftText: "Залог",
-                    rightText: "9900 сум",
+                    rightText: "$securityDeposit сум",
                   ),
                   const SizedBox(
                     height: 12,
                   ),
                   ItemTopBottom(
                     leftText: "Итоговая стоимость",
-                    rightText: "109 990 сум",
+                    rightText: "$totalAmount сум",
                   ),
                 ],
               ),
@@ -227,17 +250,22 @@ class ItemBooking extends StatelessWidget {
                   const SizedBox(
                     height: 12,
                   ),
-                  ItemTopBottom(
-                    leftText: "Дата получения",
-                    rightText: "12 нояб. 2025 г.",
-                  ),
-                  const SizedBox(
-                    height: 12,
-                  ),
-                  ItemTopBottom(
-                    leftText: "Число",
-                    rightText: "18 нояб. 2025 г.",
-                  ),
+                  Row(
+                    children: [
+                      Expanded(
+                        child: ItemTopBottom(
+                          leftText: "Дата получения",
+                          rightText: startDate,
+                        ),
+                      ),
+                      Expanded(
+                        child: ItemTopBottom(
+                          leftText: "Дата возврата",
+                          rightText: endDate,
+                        ),
+                      ),
+                    ],
+                  )
                 ],
               ),
             ),
