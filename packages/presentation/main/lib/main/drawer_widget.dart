@@ -57,7 +57,7 @@ class DrawerWidget extends StatelessWidget {
         ),
         item(
           icon: PathImages.bookingHistory,
-          title: context.translations.booking_history,
+          title: context.translations.history,
           context: context,
           onTap: () {
             onBookingHistory();

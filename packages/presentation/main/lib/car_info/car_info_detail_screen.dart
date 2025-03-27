@@ -378,37 +378,39 @@ class CarInfoDetailScreen extends StatelessWidget {
                           children: [
                             Expanded(
                               child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
-                                  Text(
-                                    "${(state.carDetail.originalPrice ?? 0)}",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyLarge
-                                        ?.copyWith(
-                                          fontWeight: FontWeight.w700,
-                                        ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "${(state.carDetail.originalPrice ?? 0)}",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .labelMedium
+                                            ?.copyWith(
+                                              fontWeight: FontWeight.w700,
+                                            ),
+                                      ),
+                                      SizedBox(width: 2,),
+                                      Text(
+                                        "сум/день",
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .labelMedium
+                                            ?.copyWith(
+                                              fontWeight: FontWeight.w700,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .secondary,
+                                            ),
+                                      ),
+                                    ],
                                   ),
                                   Text(
-                                    "сум/день",
+                                    "${(state.carDetail.dailyRate ?? 0)} сум",
                                     style: Theme.of(context)
                                         .textTheme
-                                        .bodySmall
-                                        ?.copyWith(
-                                          fontWeight: FontWeight.w700,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .secondary,
-                                        ),
-                                  ),
-                                  const SizedBox(
-                                    height: 4,
-                                  ),
-                                  Text(
-                                    "${(state.carDetail.dailyRate ?? 0)}",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall
+                                        .labelMedium
                                         ?.copyWith(
                                           fontWeight: FontWeight.w700,
                                           decoration:

@@ -490,6 +490,12 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Открыть'**
   String get open;
+
+  /// No description provided for @history.
+  ///
+  /// In ru, this message translates to:
+  /// **'Tarix'**
+  String get history;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

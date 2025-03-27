@@ -203,4 +203,7 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get open => 'Ochiq';
+
+  @override
+  String get history => 'Tarix';
 }

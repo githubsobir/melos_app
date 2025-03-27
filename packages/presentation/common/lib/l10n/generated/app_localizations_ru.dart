@@ -203,4 +203,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get open => 'Открыть';
+
+  @override
+  String get history => 'Tarix';
 }
