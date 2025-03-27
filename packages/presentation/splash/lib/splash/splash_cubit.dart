@@ -10,7 +10,11 @@ class SplashCubit extends Cubit<SplashState> {
   SplashCubit(this._authUseCase) : super(SplashInitialState());
 
   Future<void> openNextScreen() async {
-    await _authUseCase.sendFirebaseToken();
+    try{
+      await _authUseCase.sendFirebaseToken();
+    }catch(e){
+      print(e);
+    }
     var hasUser = await _authUseCase.hasUser();
     if (hasUser) {
       emit(MainScreenState());

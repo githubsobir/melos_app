@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:common/date_formats.dart';
 import 'package:common/decorations.dart';
 import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/path_images.dart';
@@ -255,13 +256,13 @@ class ItemBooking extends StatelessWidget {
                       Expanded(
                         child: ItemTopBottom(
                           leftText: "Дата получения",
-                          rightText: startDate,
+                          rightText: DateFormats.dateFormat(startDate, context),
                         ),
                       ),
                       Expanded(
                         child: ItemTopBottom(
                           leftText: "Дата возврата",
-                          rightText: endDate,
+                          rightText: DateFormats.dateFormat(endDate, context),
                         ),
                       ),
                     ],
