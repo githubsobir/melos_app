@@ -46,9 +46,12 @@ class PickupAndReturnWidget extends StatelessWidget {
                     ),
                   ),
                   child: SvgPicture.asset(
-                    PathImages.calendar,
+                    PathImages.locationRed,
                     height: 26,
                     width: 26,
+                    colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.secondary,
+                      BlendMode.srcIn,
+                    ),
                   ),
                 ),
                 const SizedBox(
