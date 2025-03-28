@@ -52,17 +52,17 @@ class EditProfileScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       BaseTextField(
+                        controller: firstNameController
+                          ..text = info.firstName ?? "",
+                        title: context.translations.name,
+                        hint: context.translations.name,
+                      ),
+                      const SizedBox(height: 8),
+                      BaseTextField(
                         controller: lastNameController
                           ..text = info.lastName ?? "",
                         title: context.translations.surname,
                         hint: context.translations.surname,
-                      ),
-                      const SizedBox(height: 8),
-                      BaseTextField(
-                        controller: firstNameController
-                          ..text = info.lastName ?? "",
-                        title: context.translations.name,
-                        hint: context.translations.name,
                       ),
                       const SizedBox(height: 8),
                       BaseTextField(

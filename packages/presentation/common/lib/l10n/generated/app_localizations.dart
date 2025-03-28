@@ -320,7 +320,7 @@ abstract class AppLocalizations {
   /// No description provided for @drivers_license.
   ///
   /// In ru, this message translates to:
-  /// **'Вод Прав'**
+  /// **'Водительское удостоверение'**
   String get drivers_license;
 
   /// No description provided for @i_have_an_account.

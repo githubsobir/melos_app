@@ -118,7 +118,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get pinfl => 'ПИНФЛ';
 
   @override
-  String get drivers_license => 'Вод Прав';
+  String get drivers_license => 'Водительское удостоверение';
 
   @override
   String get i_have_an_account => 'У меня есть аккаунт. ';

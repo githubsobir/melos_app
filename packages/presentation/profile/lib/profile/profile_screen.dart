@@ -11,10 +11,21 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:profile/profile/profile_cubit.dart';
 
-class ProfileScreen extends StatelessWidget {
-  ProfileScreen({super.key});
+class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({super.key});
 
+  @override
+  State<ProfileScreen> createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
   final cubit = ProfileCubit(inject())..userInformation();
+
+  @override
+  void initState() {
+    cubit.userInformation();
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +49,7 @@ class ProfileScreen extends StatelessWidget {
           return Future<void>.delayed(const Duration(seconds: 1));
         },
         child: BlocBuilder<ProfileCubit, ProfileState>(
-          bloc: cubit,
+          bloc: cubit..userInformation(),
           builder: (context, state) {
             if (state is UserInfoState) {
               return SingleChildScrollView(
@@ -187,14 +198,14 @@ class ProfileScreen extends StatelessWidget {
                     height: 8,
                   ),
                   Text(
-                    middleName,
+                    lastName,
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                   const SizedBox(
                     height: 8,
                   ),
                   Text(
-                    lastName,
+                    middleName,
                     style: Theme.of(context).textTheme.bodyMedium,
                   )
                 ],
@@ -306,12 +317,6 @@ class ProfileScreen extends StatelessWidget {
   }
 
   // Future<double> getFileSize(File file) async {
-  //   int bytes = await file.length();
-  //   if (bytes <= 0) return 0;
-  //   // var i = (log(bytes) / log(1024)).floor();
-  //   return (bytes*10 / pow(1024, 2));
-  // }
-
   _imgFromCamera() async {
     final ImagePicker picker = ImagePicker();
     var img = await picker.pickImage(

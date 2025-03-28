@@ -7,12 +7,21 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:navigation/my_cars_intents.dart';
 
-class FavouritesScreen extends StatelessWidget {
-  FavouritesScreen({super.key});
+class FavouritesScreen extends StatefulWidget {
+  const FavouritesScreen({super.key});
 
+  @override
+  State<FavouritesScreen> createState() => _FavouritesScreenState();
+}
+
+class _FavouritesScreenState extends State<FavouritesScreen> {
   final cubit = FavouriteCubit(inject())..likedCars();
 
-  // final cubit = FavouriteCubit(inject());
+  @override
+  void initState() {
+    cubit.likedCars(isRefreshed: true);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
