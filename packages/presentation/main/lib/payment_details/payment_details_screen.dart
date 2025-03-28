@@ -70,13 +70,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                             Row(
                               children: [
                                 Expanded(
-                                  child: Text(
-                                    "Резюме аренды",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodyMedium
-                                        ?.copyWith(fontWeight: FontWeight.w700),
-                                  ),
+                                  child: Container(),
                                 ),
                                 SvgPicture.asset(
                                   PathImages.share,
@@ -238,7 +232,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                               children: [
                                 Expanded(
                                   child: Text(
-                                    "Общая стоимость аренды",
+                                    "Общая сумма аренды",
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyMedium
@@ -247,7 +241,10 @@ class PaymentDetailsScreen extends StatelessWidget {
                                 ),
                                 Text(
                                   "${state.paymentProcessModel.totalAmount} сум",
-                                  style: Theme.of(context).textTheme.titleSmall,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium
+                                      ?.copyWith(fontWeight: FontWeight.w700),
                                 ),
                               ],
                             ),
