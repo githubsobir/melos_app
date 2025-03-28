@@ -46,7 +46,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get home => 'Главная';
 
   @override
-  String get next_to_me => 'Рядом со мной';
+  String get next_to_me => 'Рядом';
 
   @override
   String get saved => 'Сохранено';

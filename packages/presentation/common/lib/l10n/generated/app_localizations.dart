@@ -176,7 +176,7 @@ abstract class AppLocalizations {
   /// No description provided for @next_to_me.
   ///
   /// In ru, this message translates to:
-  /// **'Рядом со мной'**
+  /// **'Рядом'**
   String get next_to_me;
 
   /// No description provided for @saved.

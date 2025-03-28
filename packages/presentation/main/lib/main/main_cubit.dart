@@ -16,6 +16,7 @@ class MainCubit extends Cubit<MainState> {
   }
 
   logOut() async {
+    if (!hasUser) return;
     var logOut = await _authUseCase.logOut();
     if (logOut) {
       emit(LogOutState());

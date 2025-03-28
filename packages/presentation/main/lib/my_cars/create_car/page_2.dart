@@ -213,7 +213,7 @@ class _Page2State extends State<Page2> {
                 GestureDetector(
                   onTap: () {
                     if (allImages.length < 6) {
-                      _showPicker(context);
+                      _imgFromSelector();
                     }
                   },
                   child: SvgPicture.asset(PathImages.upload),
@@ -269,6 +269,20 @@ class _Page2State extends State<Page2> {
         allImages.add(img);
       });
     }
+  }
+
+  _imgFromSelector() async {
+    final ImagePicker picker = ImagePicker();
+    var img = await picker.pickMultiImage(
+      maxHeight: 640,
+      maxWidth: 320,
+      imageQuality: 50,
+      limit: 6,
+    );
+    widget.onChangedPhotos(allImages.map((e) => e.path).toList());
+    setState(() {
+      allImages = img;
+    });
   }
 
   _imgFromCamera() async {

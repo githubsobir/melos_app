@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:domain/utils/constants.dart';
 import 'package:flutter/material.dart';
 
 class ItemBookingHistory extends StatefulWidget {
@@ -48,7 +49,7 @@ class _ItemBookingHistoryState extends State<ItemBookingHistory> {
                       fit: BoxFit.fill,
                       height: 48,
                       width: 78,
-                      imageUrl: widget.carImage,
+                      imageUrl: "$BASE_URL_IMAGE${widget.carImage}",
                       progressIndicatorBuilder:
                           (context, url, downloadProgress) => SizedBox(
                         height: 48,
