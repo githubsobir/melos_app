@@ -150,7 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: ItemCarPopular(
                               onPressed: () {
                                 context.openScreen(CarInfoDetailIntent(
-                                  carId: state.recommended[index].id ?? 0,
+                                  carId: state.popular[index].id ?? 0,
                                 ));
                               },
                               carImage:
