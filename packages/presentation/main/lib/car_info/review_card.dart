@@ -1,3 +1,4 @@
+import 'package:common/widgets/base_button.dart';
 import 'package:domain/model/cars/car_detail_info_model.dart';
 import 'package:flutter/material.dart';
 import 'package:main/car_info/item_review.dart';
@@ -27,11 +28,18 @@ class _ReviewCardState extends State<ReviewCard> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Text(
-              "Рейтинги и отзывы",
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                    fontWeight: FontWeight.w700,
+            Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    "Рейтинги и отзывы",
+                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
+                          fontWeight: FontWeight.w700,
+                        ),
                   ),
+                ),
+                BaseButton(onPressed: () {}, title: "${widget.reviews.length}")
+              ],
             ),
             ListView.builder(
               itemCount: showAll

@@ -96,11 +96,7 @@ class ItemReview extends StatelessWidget {
                 width: 8,
               ),
               Text(
-                DateFormats.dateFormat(date, context),
-                style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                      fontWeight: FontWeight.w500,
-                      color: Theme.of(context).colorScheme.secondary,
-                    ),
+                date,
               ),
             ],
           ),

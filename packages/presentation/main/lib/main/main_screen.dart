@@ -1,3 +1,4 @@
+import 'package:common/font_family.dart';
 import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/navigation/auth_navigation_intents.dart';
 import 'package:common/path_images.dart';
@@ -275,8 +276,13 @@ class _MainScreenState extends State<MainScreen> {
   Widget _getTitleFromPosition(int currentMenuPosition, BuildContext context) {
     switch (currentMenuPosition) {
       case 0:
-        return SvgPicture.asset(
-          PathImages.logo,
+        return Text(
+          "CarBNB",
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.primary,
+            fontFamily: FontFamily.BOLD.name,
+            fontSize: 24,
+          ),
         );
       case 1:
         return Container();
