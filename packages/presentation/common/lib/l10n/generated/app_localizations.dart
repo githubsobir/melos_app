@@ -494,7 +494,7 @@ abstract class AppLocalizations {
   /// No description provided for @history.
   ///
   /// In ru, this message translates to:
-  /// **'Tarix'**
+  /// **'История'**
   String get history;
 }
 

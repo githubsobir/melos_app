@@ -138,7 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       SizedBox(
-                        height: 336,
+                        height: 326,
                         child: ListView.builder(
                           shrinkWrap: true,
                           padding: const EdgeInsets.only(right: 24),
@@ -208,13 +208,14 @@ class _HomeScreenState extends State<HomeScreen> {
                             child: ItemCarBase(
                               carImage:
                                   "$BASE_URL_IMAGE${state.recommended[index].photo}",
-                              carName: "${state.recommended[index].make}",
+                              carMake: "${state.recommended[index].make}",
+                              carModel: "${state.recommended[index].model}",
                               carType: "${state.recommended[index].category}",
-                              price: (state.recommended[index].originalPrice ??
-                                  ""),
-                              fullPrice:
+                              dailyRate:
                                   (state.recommended[index].originalPrice ??
                                       ""),
+                              originalPrice:
+                                  (state.recommended[index].originalPrice),
                               onPressed: () {
                                 context.openScreen(CarInfoDetailIntent(
                                   carId: state.recommended[index].id ?? 0,

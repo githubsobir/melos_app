@@ -42,10 +42,11 @@ class FavouritesScreen extends StatelessWidget {
                           ));
                         },
                         carImage: "$BASE_URL_IMAGE${state.liked[index].photo}",
-                        carName: "${state.liked[index].make}",
+                        carMake: "${state.liked[index].make}",
+                        carModel: "${state.liked[index].model}",
                         carType: "${state.liked[index].category}",
-                        price: (state.liked[index].originalPrice ?? ""),
-                        fullPrice: (state.liked[index].originalPrice ?? ""),
+                        dailyRate: (state.liked[index].dailyRate ?? ""),
+                        originalPrice: (state.liked[index].originalPrice),
                         passengerCapacity:
                             (state.liked[index].passengerCapacity ?? 0).toInt(),
                         fuelCapacity:
