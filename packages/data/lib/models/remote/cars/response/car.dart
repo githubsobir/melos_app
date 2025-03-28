@@ -4,6 +4,7 @@ class Car {
   Car({
     this.id,
     this.make,
+    this.model,
     this.category,
     this.fuelCapacity,
     this.transmission,
@@ -17,6 +18,7 @@ class Car {
   Car.fromJson(dynamic json) {
     id = json['id'];
     make = json['make'];
+    model = json['model'];
     category = json['category'];
     fuelCapacity = json['fuel_capacity'];
     transmission = json['transmission'];
@@ -29,6 +31,7 @@ class Car {
 
   num? id;
   String? make;
+  String? model;
   String? category;
   num? fuelCapacity;
   String? transmission;
@@ -42,6 +45,7 @@ class Car {
     final map = <String, dynamic>{};
     map['id'] = id;
     map['make'] = make;
+    map['model'] = model;
     map['category'] = category;
     map['fuel_capacity'] = fuelCapacity;
     map['transmission'] = transmission;
@@ -67,6 +71,7 @@ extension CarMapper on Car {
       photo: photo,
       fuelCapacity: fuelCapacity,
       make: make,
+      model: model,
       originalPrice: originalPrice,
       passengerCapacity: passengerCapacity,
       transmission: transmission,

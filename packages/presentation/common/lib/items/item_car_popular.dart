@@ -7,10 +7,11 @@ class ItemCarPopular extends StatefulWidget {
   final VoidCallback onPressed;
   final Function(bool isKed) onLike;
   final String carImage;
-  final String carName;
+  final String carMake;
+  final String carModel;
   final String carType;
-  final String price;
-  final String fullPrice;
+  final String dailyRate;
+  final String? originalPrice;
   final String transmission;
   final int passengerCapacity;
   final int fuelCapacity;
@@ -20,15 +21,16 @@ class ItemCarPopular extends StatefulWidget {
     super.key,
     required this.onPressed,
     required this.carImage,
-    required this.carName,
+    required this.carMake,
     required this.carType,
-    required this.price,
-    required this.fullPrice,
+    required this.dailyRate,
+    required this.originalPrice,
     required this.transmission,
     required this.passengerCapacity,
     required this.fuelCapacity,
     required this.onLike,
     required this.isLiked,
+    required this.carModel,
   });
 
   @override
@@ -111,6 +113,7 @@ class _ItemCarPopularState extends State<ItemCarPopular> {
                   padding:
                       const EdgeInsets.only(left: 16, right: 16, bottom: 16),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(top: 8),
@@ -119,7 +122,7 @@ class _ItemCarPopularState extends State<ItemCarPopular> {
                           children: [
                             Expanded(
                               child: Text(
-                                widget.carName,
+                                widget.carMake,
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium
@@ -143,6 +146,14 @@ class _ItemCarPopularState extends State<ItemCarPopular> {
                             ),
                           ],
                         ),
+                      ),
+                      Text(
+                        widget.carModel,
+                        style: Theme.of(context)
+                            .textTheme
+                            .bodyMedium
+                            ?.copyWith(fontWeight: FontWeight.w700),
+                        maxLines: 2,
                       ),
                       const Expanded(
                         child: SizedBox(),
@@ -227,7 +238,7 @@ class _ItemCarPopularState extends State<ItemCarPopular> {
                               children: [
                                 RichText(
                                   text: TextSpan(
-                                    text: '${widget.price} ',
+                                    text: '${widget.dailyRate} ',
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyMedium
@@ -249,9 +260,10 @@ class _ItemCarPopularState extends State<ItemCarPopular> {
                                     ],
                                   ),
                                 ),
-                                widget.price != widget.fullPrice
+                                widget.dailyRate != widget.originalPrice ||
+                                        widget.originalPrice != null
                                     ? Text(
-                                        "${widget.fullPrice} сум/день",
+                                        "${widget.originalPrice} сум/день",
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyMedium

@@ -494,18 +494,18 @@ class CarInfoDetailScreen extends StatelessWidget {
                                 child: ItemCarPopular(
                                   carImage:
                                       "$BASE_URL_IMAGE${(state.carDetail.recommendCars ?? [])[index].photo}",
-                                  carName:
+                                  carMake:
                                       "${(state.carDetail.recommendCars ?? [])[index].make}",
                                   carType:
                                       "${(state.carDetail.recommendCars ?? [])[index].category}",
-                                  price: ((state.carDetail.recommendCars ??
+                                  dailyRate: ((state.carDetail.recommendCars ??
                                               [])[index]
                                           .originalPrice ??
                                       ""),
-                                  fullPrice: ((state.carDetail.recommendCars ??
+                                  originalPrice:
+                                      ((state.carDetail.recommendCars ??
                                               [])[index]
-                                          .originalPrice ??
-                                      ""),
+                                          .originalPrice),
                                   onPressed: () {
                                     context.openScreen(CarInfoDetailIntent(
                                       carId: (state.carDetail.recommendCars ??
@@ -544,6 +544,8 @@ class CarInfoDetailScreen extends StatelessWidget {
                                                   [])[index]
                                               .transmission ??
                                           ""),
+                                  carModel:
+                                      "${(state.carDetail.recommendCars ?? [])[index].model}",
                                 ),
                               ),
                             ),

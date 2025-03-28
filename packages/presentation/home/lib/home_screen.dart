@@ -155,11 +155,11 @@ class _HomeScreenState extends State<HomeScreen> {
                               },
                               carImage:
                                   "$BASE_URL_IMAGE${state.popular[index].photo}",
-                              carName: "${state.popular[index].make}",
+                              carMake: "${state.popular[index].make}",
+                              carModel: "${state.popular[index].model}",
                               carType: "${state.popular[index].category}",
-                              price: (state.popular[index].originalPrice ?? ""),
-                              fullPrice:
-                                  (state.popular[index].originalPrice ?? ""),
+                              dailyRate: (state.popular[index].dailyRate ?? ""),
+                              originalPrice: state.popular[index].originalPrice,
                               passengerCapacity:
                                   (state.popular[index].passengerCapacity ?? 0)
                                       .toInt(),

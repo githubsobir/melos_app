@@ -2,6 +2,7 @@ class CarModel {
   CarModel({
     this.id,
     this.make,
+    this.model,
     this.category,
     this.fuelCapacity,
     this.transmission,
@@ -14,6 +15,7 @@ class CarModel {
 
   num? id;
   String? make;
+  String? model;
   String? category;
   num? fuelCapacity;
   String? transmission;
