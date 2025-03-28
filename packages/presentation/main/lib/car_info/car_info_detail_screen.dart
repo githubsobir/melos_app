@@ -215,8 +215,8 @@ class CarInfoDetailScreen extends StatelessWidget {
                                 ),
                                 Expanded(
                                   child: Text(
-                                    context.translations.capacity,
-                                    textAlign: TextAlign.center,
+                                    "Колчество мест",
+                                    textAlign: TextAlign.start,
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodySmall
@@ -275,7 +275,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                                 Expanded(
                                   child: Text(
                                     "Бензин",
-                                    textAlign: TextAlign.center,
+                                    textAlign: TextAlign.start,
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodySmall
