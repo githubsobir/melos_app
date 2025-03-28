@@ -13,6 +13,8 @@ class CreateCarCubit extends Cubit<CreateCarState> {
             position: 0,
             carModel: CarCreateModel(),
             isLoading: false,
+            error: '',
+            isEmpty: false,
           ),
         );
 
@@ -37,6 +39,9 @@ class CreateCarCubit extends Cubit<CreateCarState> {
         if (await carCreateProcess(1)) {
           emit(state.copyWith(position: 2));
         } else {}
+      } else {
+        emit(state.copyWith(isEmpty: true));
+        emit(state.copyWith(isEmpty: false));
       }
     } else if (state.position == 2) {
       if ((state.carModel.year ?? 0) > 0 &&
@@ -46,6 +51,9 @@ class CreateCarCubit extends Cubit<CreateCarState> {
         if (await carCreateProcess(2)) {
           emit(state.copyWith(position: 3));
         } else {}
+      }else {
+        emit(state.copyWith(isEmpty: true));
+        emit(state.copyWith(isEmpty: false));
       }
     } else if (state.position == 3) {
       if ((state.carModel.dailyRate ?? 0) > 0 &&
@@ -53,6 +61,9 @@ class CreateCarCubit extends Cubit<CreateCarState> {
         if (await carCreateProcess(3)) {
           emit(state.copyWith(position: 4));
         } else {}
+      }else {
+        emit(state.copyWith(isEmpty: true));
+        emit(state.copyWith(isEmpty: false));
       }
     } else if (state.position == 4) {
       if ((state.carModel.port ?? "").isNotEmpty &&
@@ -60,6 +71,9 @@ class CreateCarCubit extends Cubit<CreateCarState> {
         if (await carCreateProcess(4)) {
           emit(state.copyWith(position: 5));
         }
+      }else {
+        emit(state.copyWith(isEmpty: true));
+        emit(state.copyWith(isEmpty: false));
       }
     }
   }
@@ -168,22 +182,30 @@ class CreateCarState extends Equatable {
   final int position;
   final bool isLoading;
   final CarCreateModel carModel;
+  final String error;
+  final bool isEmpty;
 
   const CreateCarState({
     required this.position,
     required this.carModel,
     required this.isLoading,
+    required this.error,
+    required this.isEmpty,
   });
 
   CreateCarState copyWith({
     int? position,
     bool? isLoading,
+    bool? isEmpty,
     CarCreateModel? carModel,
+    String? error,
   }) {
     return CreateCarState(
       position: position ?? this.position,
       carModel: carModel ?? this.carModel,
       isLoading: isLoading ?? this.isLoading,
+      isEmpty: isEmpty ?? this.isEmpty,
+      error: error ?? this.error,
     );
   }
 
@@ -192,5 +214,7 @@ class CreateCarState extends Equatable {
         position,
         carModel,
         isLoading,
+        error,
+        isEmpty,
       ];
 }

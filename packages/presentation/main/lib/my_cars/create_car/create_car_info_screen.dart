@@ -28,7 +28,12 @@ class CreateCarInfoScreen extends StatelessWidget {
       body: BlocConsumer<CreateCarCubit, CreateCarState>(
         listener: (context, state) {
           print(state.position);
-          if (state.position == 0) {
+          if (state.isEmpty) {
+            showToast("Пожалуйста, заполните все поля.");
+          }else
+          if (state.error.isNotEmpty) {
+            showToast(state.error);
+          } else if (state.position == 0) {
             context.closeActiveScreen();
           } else if (state.position <= 5) {
             controller.animateToPage(

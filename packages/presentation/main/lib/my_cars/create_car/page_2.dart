@@ -279,10 +279,9 @@ class _Page2State extends State<Page2> {
       imageQuality: 50,
       limit: 6,
     );
+    allImages = img;
     widget.onChangedPhotos(allImages.map((e) => e.path).toList());
-    setState(() {
-      allImages = img;
-    });
+    setState(() {});
   }
 
   _imgFromCamera() async {
