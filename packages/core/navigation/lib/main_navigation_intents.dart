@@ -12,10 +12,6 @@ class BookingHistoryIntent implements NavigationIntent {
   static String path = "/booking_history";
 }
 
-class HelpIntent implements NavigationIntent {
-  static String path = "/help";
-}
-
 class PaymentDetailsIntent implements NavigationIntent {
   static String path = "/payment_details";
   final num carId;

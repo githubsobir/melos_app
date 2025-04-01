@@ -6,8 +6,7 @@ import 'package:dependency/dependencies/injector.dart';
 import 'package:domain/utils/app_state_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:intent_launcher/intent_launcher.dart';
-import 'package:navigation/main_navigation_intents.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DrawerWidget extends StatelessWidget {
   final bool hasUser;
@@ -81,15 +80,6 @@ class DrawerWidget extends StatelessWidget {
           height: 16,
         ),
         const Divider(),
-        item(
-          icon: PathImages.help,
-          title: context.translations.help,
-          context: context,
-          onTap: () {
-            context.openScreen(HelpIntent());
-            Scaffold.of(context).closeDrawer();
-          },
-        ),
         itemTheme(
           context: context,
           onTap: () {
@@ -102,6 +92,17 @@ class DrawerWidget extends StatelessWidget {
           context: context,
           onTap: (langCode) {
             _appStateNotifier.setLanguageValue(languageCode: langCode);
+          },
+        ),
+        itemHelp(
+          context: context,
+          onTap: (isTelegram) async {
+            if (isTelegram) {
+              await launchUrl(Uri.parse("https://t.me/j_abubakr"));
+            } else {
+              await launchUrl(Uri.parse("tel:+998972000055"));
+            }
+            // Scaffold.of(context).closeDrawer();
           },
         ),
         hasUser
@@ -243,6 +244,66 @@ class DrawerWidget extends StatelessWidget {
             ),
             Text(
               context.translations.language_text,
+              style: Theme.of(context).textTheme.headlineMedium,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget itemHelp({
+    required BuildContext context,
+    required Function(bool isTelegram) onTap,
+  }) {
+    return GestureDetector(
+      onTapDown: (details) {
+        final RenderBox overlay =
+            Overlay.of(context).context.findRenderObject() as RenderBox;
+        showMenu(
+          context: context,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(8.0), // Adjust radius as needed
+          ),
+          position: RelativeRect.fromLTRB(
+            details.globalPosition.dx,
+            details.globalPosition.dy,
+            overlay.size.width - details.globalPosition.dx,
+            overlay.size.height - details.globalPosition.dy,
+          ),
+          items: [
+            const PopupMenuItem(
+                value: true,
+                child: SizedBox(
+                    width: 120, child: Center(child: Text('Телеграм')))),
+            const PopupMenuItem(
+                value: false,
+                child: SizedBox(
+                    width: 120, child: Center(child: Text('Позвонить')))),
+          ],
+        ).then((value) {
+          if (value != null) {
+            Timer(
+              const Duration(milliseconds: 100),
+              () {
+                onTap(value);
+              },
+            );
+          }
+        });
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
+        child: Row(
+          children: [
+            SvgPicture.asset(
+              PathImages.help,
+            ),
+            const SizedBox(
+              width: 16,
+            ),
+            Text(
+              context.translations.help,
               style: Theme.of(context).textTheme.headlineMedium,
             ),
           ],
