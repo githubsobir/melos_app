@@ -6,6 +6,13 @@ class MyCarsIntent implements NavigationIntent {
 
 class MyCarLocationIntent implements NavigationIntent {
   static String path = "/my_car_location";
+  final double latitude;
+  final double longitude;
+
+  MyCarLocationIntent({
+    required this.latitude,
+    required this.longitude,
+  });
 }
 
 class CreateCarInfoIntent implements NavigationIntent {

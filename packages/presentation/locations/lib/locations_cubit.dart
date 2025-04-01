@@ -62,7 +62,7 @@ class LocationsCubit extends Cubit<LocationsState> {
       var gps = response.body;
       if (gps != null) {
         await init.initMapkit(apiKey: gps);
-        await init.initMapkit(apiKey: "973005bb-3cfc-4e46-81d2-26939d2b8c3c");
+        // await init.initMapkit(apiKey: "973005bb-3cfc-4e46-81d2-26939d2b8c3c");
       }
     }
   }

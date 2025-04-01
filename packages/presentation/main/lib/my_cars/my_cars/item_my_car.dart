@@ -4,7 +4,6 @@ import 'package:common/widgets/base_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intent_launcher/intent_launcher.dart';
-import 'package:navigation/my_cars_intents.dart';
 
 class ItemMyCar extends StatefulWidget {
   const ItemMyCar({
@@ -14,6 +13,7 @@ class ItemMyCar extends StatefulWidget {
     required this.carName,
     required this.carAvailable,
     required this.onChangeStatus,
+    required this.onCarLocation,
   });
 
   final String carImage;
@@ -21,6 +21,7 @@ class ItemMyCar extends StatefulWidget {
   final bool carAvailable;
   final VoidCallback onEdit;
   final VoidCallback onChangeStatus;
+  final VoidCallback onCarLocation;
 
   @override
   State<ItemMyCar> createState() => _ItemMyCarState();
@@ -89,9 +90,7 @@ class _ItemMyCarState extends State<ItemMyCar> {
                       child: leftRight(
                         title: "Местоположение",
                         icon: PathImages.nearbyCircled,
-                        onTap: () {
-                          context.openScreen(MyCarLocationIntent());
-                        },
+                        onTap: widget.onCarLocation,
                       ),
                     ),
                     Expanded(
@@ -99,7 +98,7 @@ class _ItemMyCarState extends State<ItemMyCar> {
                         title: "Замок ",
                         icon: PathImages.lockDoors,
                         onTap: () {
-                          context.openScreen(MyCarLocationIntent());
+                          // context.openScreen(MyCarLocationIntent());
                         },
                       ),
                     ),

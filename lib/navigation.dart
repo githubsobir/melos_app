@@ -10,13 +10,13 @@ import 'package:domain/model/profile/user_information_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:locations/locations_screen.dart';
+import 'package:locations/my_car_location_screen.dart';
 import 'package:locations/select_location_screen.dart';
 import 'package:main/booking/booking_screen.dart';
 import 'package:main/booking_history/booking_history_screen.dart';
 import 'package:main/car_info/car_info_detail_screen.dart';
 import 'package:main/help/help_screen.dart';
 import 'package:main/main/main_screen.dart';
-import 'package:main/my_cars/car_location/my_car_location_screen.dart';
 import 'package:main/my_cars/create_car/create_car_info_screen.dart';
 import 'package:main/my_cars/my_cars/my_cars_screen.dart';
 import 'package:main/notifications/notifications_screen.dart';
@@ -43,7 +43,7 @@ final _launcher = IntentLauncher()
     );
   })
   ..onNavigationIntent<LoginGoIntent>((context, intent) {
-    return Navigator.pushNamed(context, LoginGoIntent.path      );
+    return Navigator.pushNamed(context, LoginGoIntent.path);
   })
   ..onNavigationIntent<PasswordScreenIntent>((context, intent) {
     return Navigator.pushNamed(
@@ -135,7 +135,10 @@ final _launcher = IntentLauncher()
         arguments: intent.carId);
   })
   ..onNavigationIntent<MyCarLocationIntent>((context, intent) {
-    return Navigator.pushNamed(context, MyCarLocationIntent.path);
+    return Navigator.pushNamed(context, MyCarLocationIntent.path, arguments: {
+      "latitude": intent.latitude,
+      "longitude": intent.longitude,
+    });
   })
 //profile
   ..onNavigationIntent<EditProfileIntent>((context, intent) {
@@ -192,7 +195,11 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
   } else if (MyCarsIntent.path == settings.name) {
     return _createRoute(MyCarsScreen().wrapWith(_launcher));
   } else if (MyCarLocationIntent.path == settings.name) {
-    return _createRoute(MyCarLocationScreen().wrapWith(_launcher));
+    var map = settings.arguments as Map;
+    return _createRoute(MyCarLocationScreen(
+      latitude: map["latitude"],
+      longitude: map["longitude"],
+    ).wrapWith(_launcher));
   } else if (CarInfoDetailIntent.path == settings.name) {
     var cardId = settings.arguments as num;
     return _createRoute(CarInfoDetailScreen(
