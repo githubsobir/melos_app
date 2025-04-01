@@ -178,6 +178,10 @@ class _MainScreenState extends State<MainScreen> {
                   context.openScreen(LoginGoIntent());
                 }
               },
+              hasUser: cubit.hasUser,
+              onLogIn: () {
+                context.openScreen(LoginGoIntent());
+              },
             ),
           ),
           body: _mainScreens[menu.pageIndex],

@@ -10,7 +10,9 @@ import 'package:intent_launcher/intent_launcher.dart';
 import 'package:navigation/main_navigation_intents.dart';
 
 class DrawerWidget extends StatelessWidget {
+  final bool hasUser;
   final VoidCallback onLogOut;
+  final VoidCallback onLogIn;
   final VoidCallback onBooking;
   final VoidCallback onBookingHistory;
   final VoidCallback onMyCar;
@@ -21,6 +23,8 @@ class DrawerWidget extends StatelessWidget {
     required this.onBooking,
     required this.onBookingHistory,
     required this.onMyCar,
+    required this.hasUser,
+    required this.onLogIn,
   });
 
   final AppStateNotifier _appStateNotifier = getIt.get<AppStateNotifier>();
@@ -100,14 +104,23 @@ class DrawerWidget extends StatelessWidget {
             _appStateNotifier.setLanguageValue(languageCode: langCode);
           },
         ),
-        item(
-          icon: PathImages.logout,
-          title: context.translations.exit,
-          context: context,
-          onTap: () {
-            onLogOut();
-          },
-        ),
+        hasUser
+            ? item(
+                icon: PathImages.logout,
+                title: context.translations.exit,
+                context: context,
+                onTap: () {
+                  onLogOut();
+                },
+              )
+            : item(
+                icon: PathImages.login,
+                title: context.translations.log_in,
+                context: context,
+                onTap: () {
+                  onLogIn();
+                },
+              ),
       ],
     );
   }

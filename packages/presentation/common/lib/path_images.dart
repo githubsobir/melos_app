@@ -56,6 +56,7 @@ class PathImages {
   static var lightMode = "packages/common/assets/main/light_mode.svg";
   static var help = "packages/common/assets/main/help.svg";
   static var logout = "packages/common/assets/main/logout.svg";
+  static var login = "packages/common/assets/main/login.svg";
   static var myCars = "packages/common/assets/main/my_cars.svg";
   static var paymentDetails = "packages/common/assets/main/payment_details.svg";
   static var notification = "packages/common/assets/main/notification.svg";
