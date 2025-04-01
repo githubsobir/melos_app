@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:common/font_family.dart';
 import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/navigation/auth_navigation_intents.dart';
@@ -9,7 +11,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:home/home_screen.dart';
 import 'package:intent_launcher/intent_launcher.dart';
+import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
 import 'package:locations/locations_screen.dart';
+import 'package:main/main/connection_bottom_sheet.dart';
 import 'package:main/main/drawer_widget.dart';
 import 'package:main/main/main_cubit.dart';
 import 'package:navigation/main_navigation_intents.dart';
@@ -24,6 +28,7 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  StreamSubscription<InternetStatus>? _subscription;
   final cubit = MainCubit(inject(), inject())
     ..hasUserProfile()
     ..unreadNotification();
@@ -41,7 +46,34 @@ class _MainScreenState extends State<MainScreen> {
       FavouritesScreen(),
       ProfileScreen(),
     ]);
+
+    _subscription =
+        InternetConnection().onStatusChange.listen((InternetStatus status) {
+      switch (status) {
+        case InternetStatus.connected:
+          print("status->>> The internet is now connected");
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            ConnectionBottomSheet.show(
+              context: context,
+            );
+          });
+
+          break;
+        case InternetStatus.disconnected:
+          print("status->>> The internet is now disconnected");
+          ConnectionBottomSheet.show(
+            context: context,
+          );
+          break;
+      }
+    });
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _subscription?.cancel();
+    super.dispose();
   }
 
   @override

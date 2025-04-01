@@ -17,6 +17,7 @@ dependencies:
   flutter_map: ^7.0.2
   latlong2: ^0.9.1
   image_picker: ^1.1.2
+  internet_connection_checker_plus: ^2.7.1
   domain:
     path: ../../domain
   common:
