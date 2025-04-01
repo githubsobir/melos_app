@@ -1,4 +1,6 @@
 PODS:
+  - connectivity_plus (0.0.1):
+    - Flutter
   - Firebase/CoreOnly (11.8.0):
     - FirebaseCore (~> 11.8.0)
   - Firebase/Messaging (11.8.0):
@@ -90,12 +92,15 @@ PODS:
     - Flutter
     - FlutterMacOS
   - Toast (4.1.1)
+  - url_launcher_ios (0.0.1):
+    - Flutter
   - yandex_maps_mapkit_lite (1.0.0):
     - Flutter
     - YandexMapsMobile (= 4.11.0-beta-lite-flutter)
   - YandexMapsMobile (4.11.0-beta-lite-flutter)
 
 DEPENDENCIES:
+  - connectivity_plus (from `.symlinks/plugins/connectivity_plus/ios`)
   - firebase_core (from `.symlinks/plugins/firebase_core/ios`)
   - firebase_messaging (from `.symlinks/plugins/firebase_messaging/ios`)
   - Flutter (from `Flutter`)
@@ -109,6 +114,7 @@ DEPENDENCIES:
   - share_plus (from `.symlinks/plugins/share_plus/ios`)
   - shared_preferences_foundation (from `.symlinks/plugins/shared_preferences_foundation/darwin`)
   - sqflite_darwin (from `.symlinks/plugins/sqflite_darwin/darwin`)
+  - url_launcher_ios (from `.symlinks/plugins/url_launcher_ios/ios`)
   - yandex_maps_mapkit_lite (from `.symlinks/plugins/yandex_maps_mapkit_lite/ios`)
 
 SPEC REPOS:
@@ -126,6 +132,8 @@ SPEC REPOS:
     - YandexMapsMobile
 
 EXTERNAL SOURCES:
+  connectivity_plus:
+    :path: ".symlinks/plugins/connectivity_plus/ios"
   firebase_core:
     :path: ".symlinks/plugins/firebase_core/ios"
   firebase_messaging:
@@ -152,10 +160,13 @@ EXTERNAL SOURCES:
     :path: ".symlinks/plugins/shared_preferences_foundation/darwin"
   sqflite_darwin:
     :path: ".symlinks/plugins/sqflite_darwin/darwin"
+  url_launcher_ios:
+    :path: ".symlinks/plugins/url_launcher_ios/ios"
   yandex_maps_mapkit_lite:
     :path: ".symlinks/plugins/yandex_maps_mapkit_lite/ios"
 
 SPEC CHECKSUMS:
+  connectivity_plus: 2a701ffec2c0ae28a48cf7540e279787e77c447d
   Firebase: d80354ed7f6df5f9aca55e9eb47cc4b634735eaf
   firebase_core: ac395f994af4e28f6a38b59e05a88ca57abeb874
   firebase_messaging: 7e223f4ee7ca053bf4ce43748e84a6d774ec9728
@@ -179,6 +190,7 @@ SPEC CHECKSUMS:
   shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
   sqflite_darwin: 5a7236e3b501866c1c9befc6771dfd73ffb8702d
   Toast: 1f5ea13423a1e6674c4abdac5be53587ae481c4e
+  url_launcher_ios: 5334b05cef931de560670eeae103fd3e431ac3fe
   yandex_maps_mapkit_lite: eb971aebd353c7eb7dd3616d035c6afb1df7551e
   YandexMapsMobile: 8125c330bef4e951ac548010e88026f9ad1dfc72
 
