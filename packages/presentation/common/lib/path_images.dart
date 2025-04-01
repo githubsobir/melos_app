@@ -63,6 +63,7 @@ class PathImages {
   static var upload = "packages/common/assets/main/upload.svg";
   static var langRu = "packages/common/assets/main/lang_ru.svg";
   static var langUz = "packages/common/assets/main/lang_uz.svg";
+  static var noConnection = "packages/common/assets/main/no_connection.svg";
 
 //---------------- profile ----------------//
   static var chat = "packages/common/assets/profile/chat.svg";

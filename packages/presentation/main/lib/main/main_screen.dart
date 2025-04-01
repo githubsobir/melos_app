@@ -52,18 +52,15 @@ class _MainScreenState extends State<MainScreen> {
       switch (status) {
         case InternetStatus.connected:
           print("status->>> The internet is now connected");
+
+          break;
+        case InternetStatus.disconnected:
+          print("status->>> The internet is now disconnected");
           WidgetsBinding.instance.addPostFrameCallback((_) {
             ConnectionBottomSheet.show(
               context: context,
             );
           });
-
-          break;
-        case InternetStatus.disconnected:
-          print("status->>> The internet is now disconnected");
-          ConnectionBottomSheet.show(
-            context: context,
-          );
           break;
       }
     });
