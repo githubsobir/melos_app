@@ -22,13 +22,6 @@ class RegisterIntent implements NavigationIntent {
   RegisterIntent({required this.phoneNumber});
 }
 
-class PhoneNumberIntent implements NavigationIntent {
-  static String path = "/phone_number";
-  final bool isRegister;
-
-  PhoneNumberIntent(this.isRegister);
-}
-
 class OtpCodeIntent implements NavigationIntent {
   static String path = "/otp_code";
   final String phoneNumber;

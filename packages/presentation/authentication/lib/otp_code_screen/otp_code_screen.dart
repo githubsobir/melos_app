@@ -37,7 +37,12 @@ class OtpCodeScreen extends StatelessWidget {
           } else if (state is ErrorState) {
             showToast(state.message);
           } else if (state is SuccessfullyVerifiedState) {
-            context.openScreen(RegisterIntent(phoneNumber: phoneNumber));
+            if (isRegister) {
+              context.openScreen(RegisterIntent(phoneNumber: phoneNumber));
+            } else {
+              context
+                  .openScreen(ForgotPasswordIntent(phoneNumber: phoneNumber));
+            }
           }
         },
         builder: (context, state) {

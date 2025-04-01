@@ -62,8 +62,10 @@ class PasswordScreen extends StatelessWidget {
                     const SizedBox(height: 16),
                     GestureDetector(
                       onTap: () {
-                        context.openScreen(
-                            ForgotPasswordIntent(phoneNumber: phoneNumber));
+                        context.openScreen(OtpCodeIntent(
+                          phoneNumber: phoneNumber,
+                          isRegister: false,
+                        ));
                       },
                       child: Text(
                         context.translations.forgot_your_password,

@@ -2,7 +2,6 @@ import 'package:authentication/forgot_password/forgot_password_screen.dart';
 import 'package:authentication/login/login_screen.dart';
 import 'package:authentication/otp_code_screen/otp_code_screen.dart';
 import 'package:authentication/password/password_screen.dart';
-import 'package:authentication/phone_number/phone_number_screen.dart';
 import 'package:authentication/register/register_screen.dart';
 import 'package:common/navigation/auth_navigation_intents.dart';
 import 'package:common/navigation/profile_navigation_intents.dart';
@@ -58,10 +57,6 @@ final _launcher = IntentLauncher()
       RegisterIntent.path,
       arguments: intent.phoneNumber,
     );
-  })
-  ..onNavigationIntent<PhoneNumberIntent>((context, intent) {
-    return Navigator.pushNamed(context, PhoneNumberIntent.path,
-        arguments: intent.isRegister);
   })
   ..onNavigationIntent<OtpCodeIntent>((context, intent) {
     return Navigator.pushNamed(
@@ -162,11 +157,6 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
   } else if (RegisterIntent.path == settings.name) {
     return _createRoute(RegisterScreen(
       phoneNumber: settings.arguments as String,
-    ).wrapWith(_launcher));
-  } else if (PhoneNumberIntent.path == settings.name) {
-    var isRegister = settings.arguments as bool;
-    return _createRoute(PhoneNumberScreen(
-      isRegister: isRegister,
     ).wrapWith(_launcher));
   } else if (OtpCodeIntent.path == settings.name) {
     var map = settings.arguments as Map;
