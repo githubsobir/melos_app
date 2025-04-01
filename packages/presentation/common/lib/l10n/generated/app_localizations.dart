@@ -194,7 +194,7 @@ abstract class AppLocalizations {
   /// No description provided for @please_fill_in_all_fields.
   ///
   /// In ru, this message translates to:
-  /// **'Пожалуйста, заполните все поля'**
+  /// **'Пожалуйста, заполните все поля правильно'**
   String get please_fill_in_all_fields;
 
   /// No description provided for @new_password_difference.

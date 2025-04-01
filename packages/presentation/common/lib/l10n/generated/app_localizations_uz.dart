@@ -55,7 +55,7 @@ class AppLocalizationsUz extends AppLocalizations {
   String get profile => 'Profil';
 
   @override
-  String get please_fill_in_all_fields => 'Iltimos, barcha maydonlarni to‘ldiring';
+  String get please_fill_in_all_fields => 'Iltimos, barcha maydonlarni to‘g‘ri to‘ldiring';
 
   @override
   String get new_password_difference => 'Yangi parolingiz avval ishlatilgan paroldan farq qilishi kerak.';

@@ -55,7 +55,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get profile => 'Профиль';
 
   @override
-  String get please_fill_in_all_fields => 'Пожалуйста, заполните все поля';
+  String get please_fill_in_all_fields => 'Пожалуйста, заполните все поля правильно';
 
   @override
   String get new_password_difference => 'Ваш новый пароль должен отличаться от ранее использованного пароля.';

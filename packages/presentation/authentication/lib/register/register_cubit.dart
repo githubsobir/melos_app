@@ -21,6 +21,7 @@ class RegisterCubit extends Cubit<RegisterState> {
     if (firstName.isNotEmpty &&
         phoneNumber.isNotEmpty &&
         password.isNotEmpty &&
+        RegExp(r'^(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$').hasMatch(password) &&
         confirmPassword.isNotEmpty &&
         lastName.isNotEmpty &&
         driverLicense.isNotEmpty &&

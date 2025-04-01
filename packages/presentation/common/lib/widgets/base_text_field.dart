@@ -1,7 +1,8 @@
 import 'package:common/masked_text_input_formatter.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
-enum TextFieldType { BASE, PHONE, PASSWORD, NUMBER }
+enum TextFieldType { BASE, PHONE, PASSWORD, NUMBER, NAME, NUMBER_TEXT }
 
 class BaseTextField extends StatefulWidget {
   const BaseTextField({
@@ -70,6 +71,82 @@ class _BaseTextFieldState extends State<BaseTextField> {
               ),
             ),
           )
+        else if (widget.type == TextFieldType.NAME)
+          TextField(
+            controller: widget.controller,
+            maxLines: 1,
+            keyboardType: TextInputType.name,
+            textCapitalization: TextCapitalization.words,
+            inputFormatters: [
+              FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),
+            ],
+            style: Theme.of(context).textTheme.labelMedium,
+            decoration: InputDecoration(
+              contentPadding:
+                  const EdgeInsets.only(left: 12, top: 0, bottom: 0, right: 12),
+              hintText: widget.hint,
+              hintStyle: Theme.of(context)
+                  .textTheme
+                  .labelMedium
+                  ?.copyWith(color: Theme.of(context).hintColor),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+                borderSide: BorderSide(
+                  color: Color(0xFFC0D8FF),
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+                borderSide: BorderSide(
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+                borderSide: BorderSide(
+                  color: Color(0xFFC0D8FF),
+                ),
+              ),
+            ),
+          )
+        else if (widget.type == TextFieldType.NUMBER_TEXT)
+          TextField(
+            controller: widget.controller,
+            maxLines: 1,
+            keyboardType: TextInputType.name,
+            textCapitalization: TextCapitalization.words,
+            inputFormatters: [
+              FilteringTextInputFormatter.allow(RegExp("[a-zA-Z1-9]")),
+            ],
+            style: Theme.of(context).textTheme.labelMedium,
+            decoration: InputDecoration(
+              contentPadding:
+                  const EdgeInsets.only(left: 12, top: 0, bottom: 0, right: 12),
+              hintText: widget.hint,
+              hintStyle: Theme.of(context)
+                  .textTheme
+                  .labelMedium
+                  ?.copyWith(color: Theme.of(context).hintColor),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+                borderSide: BorderSide(
+                  color: Color(0xFFC0D8FF),
+                ),
+              ),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+                borderSide: BorderSide(
+                  color: Theme.of(context).colorScheme.primary,
+                ),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(8.0),
+                borderSide: BorderSide(
+                  color: Color(0xFFC0D8FF),
+                ),
+              ),
+            ),
+          )
         else if (widget.type == TextFieldType.NUMBER)
           TextField(
             controller: widget.controller,
@@ -77,8 +154,8 @@ class _BaseTextFieldState extends State<BaseTextField> {
             style: Theme.of(context).textTheme.labelMedium,
             keyboardType: TextInputType.number,
             inputFormatters: [
-              MaskedTextInputFormatter(
-                  mask: "xxxxxxxxxxxxxx", separator: ""),
+              MaskedTextInputFormatter(mask: "xxxxxxxxxxxxxx", separator: ""),
+              FilteringTextInputFormatter.allow(RegExp("[1-9]")),
             ],
             decoration: InputDecoration(
               contentPadding:
