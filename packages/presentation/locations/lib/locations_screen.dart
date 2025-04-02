@@ -1,6 +1,7 @@
 import 'package:common/items/item_car_map.dart';
 import 'package:common/path_images.dart';
 import 'package:common/widgets/base_loader_builder.dart';
+import 'package:common/widgets/custom_functions.dart';
 import 'package:dependency/dependencies.dart';
 import 'package:domain/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -10,10 +11,11 @@ import 'package:geolocator/geolocator.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:locations/locations_cubit.dart';
 import 'package:navigation/my_cars_intents.dart';
-import 'package:yandex_maps_mapkit_lite/image.dart' as image_provider;
-import 'package:yandex_maps_mapkit_lite/mapkit.dart';
-import 'package:yandex_maps_mapkit_lite/mapkit_factory.dart';
-import 'package:yandex_maps_mapkit_lite/yandex_map.dart';
+import 'package:yandex_mapkit/yandex_mapkit.dart';
+// import 'package:yandex_maps_mapkit_lite/image.dart' as image_provider;
+// import 'package:yandex_maps_mapkit_lite/mapkit.dart';
+// import 'package:yandex_maps_mapkit_lite/mapkit_factory.dart';
+// import 'package:yandex_maps_mapkit_lite/yandex_map.dart';
 
 class LocationsScreen extends StatefulWidget {
   LocationsScreen({super.key});
@@ -28,17 +30,15 @@ class LocationsScreen extends StatefulWidget {
 }
 
 class _LocationsScreenState extends State<LocationsScreen> {
-  MapWindow? _mapWindow;
+  // MapWindow? _mapWindow;
 
   @override
   void initState() {
-    mapkit.onStart();
     super.initState();
   }
 
   @override
   void dispose() {
-    mapkit.onStop();
     super.dispose();
   }
 
@@ -68,30 +68,37 @@ class _LocationsScreenState extends State<LocationsScreen> {
             child: Stack(
               children: [
                 YandexMap(
-                  onMapCreated: (mapWindow) {
-                    _mapWindow = mapWindow;
-                    _mapWindow?.map.move(
-                      CameraPosition(
-                        Point(
-                          latitude: state.point.latitude,
-                          longitude: state.point.longitude,
-                        ),
-                        zoom: 17.0,
-                        azimuth: 150.0,
-                        tilt: 30.0,
-                      ),
-                    );
-                    for (var e in state.gps) {
-                      _mapWindow?.map.mapObjects.addPlacemarkWithImage(
-                        Point(
-                            latitude: (e.latitude ?? 0).toDouble(),
-                            longitude: (e.longitude ?? 0).toDouble()),
-                        image_provider.ImageProvider.fromImageProvider(
-                          AssetImage(PathImages.locationPinPng),
-                        ),
-                      );
-                    }
-                  },
+                  // onMapCreated: (mapWindow) {
+                  //   try {
+                  //     mapkit.onStart();
+                  //     setState(() {
+                  //       _mapWindow = mapWindow;
+                  //     });
+                  //     _mapWindow?.map.move(
+                  //       CameraPosition(
+                  //         Point(
+                  //           latitude: state.point.latitude,
+                  //           longitude: state.point.longitude,
+                  //         ),
+                  //         zoom: 17.0,
+                  //         azimuth: 150.0,
+                  //         tilt: 30.0,
+                  //       ),
+                  //     );
+                  //     for (var e in state.gps) {
+                  //       _mapWindow?.map.mapObjects.addPlacemarkWithImage(
+                  //         Point(
+                  //             latitude: (e.latitude ?? 0).toDouble(),
+                  //             longitude: (e.longitude ?? 0).toDouble()),
+                  //         image_provider.ImageProvider.fromImageProvider(
+                  //           AssetImage(PathImages.locationPinPng),
+                  //         ),
+                  //       );
+                  //     }
+                  //   } catch (e) {
+                  //     showToast("xato: ${e.toString()}");
+                  //   }
+                  // },
                 ),
                 Align(
                   alignment: Alignment.bottomRight,
@@ -127,17 +134,17 @@ class _LocationsScreenState extends State<LocationsScreen> {
                           try {
                             Geolocator.requestPermission().then((value) async {
                               if (await Geolocator.isLocationServiceEnabled()) {
-                                _mapWindow?.map.move(
-                                  CameraPosition(
-                                    Point(
-                                      latitude: state.point.latitude,
-                                      longitude: state.point.longitude,
-                                    ),
-                                    zoom: 17.0,
-                                    azimuth: 150.0,
-                                    tilt: 30.0,
-                                  ),
-                                );
+                                // _mapWindow?.map.move(
+                                //   CameraPosition(
+                                //     Point(
+                                //       latitude: state.point.latitude,
+                                //       longitude: state.point.longitude,
+                                //     ),
+                                //     zoom: 17.0,
+                                //     azimuth: 150.0,
+                                //     tilt: 30.0,
+                                //   ),
+                                // );
                                 widget.cubit.gpsList();
                               } else {
                                 await Geolocator.openLocationSettings();

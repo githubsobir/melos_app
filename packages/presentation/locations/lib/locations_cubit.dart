@@ -1,10 +1,13 @@
+import 'dart:math';
+
 import 'package:domain/model/location/gps_model.dart';
 import 'package:domain/usecase/cars_usecase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:yandex_maps_mapkit_lite/init.dart' as init;
-import 'package:yandex_maps_mapkit_lite/mapkit.dart';
+
+// import 'package:yandex_maps_mapkit_lite/init.dart' as init;
+// import 'package:yandex_maps_mapkit_lite/mapkit.dart';
 
 class LocationsCubit extends Cubit<LocationsState> {
   LocationsCubit(this._carsUseCase)
@@ -13,8 +16,8 @@ class LocationsCubit extends Cubit<LocationsState> {
             isLoading: false,
             gps: [],
             point: Point(
-              latitude: 41.313755,
-              longitude: 69.248912,
+              41.313755,
+              69.248912,
             ),
             locationName: '',
           ),
@@ -29,8 +32,8 @@ class LocationsCubit extends Cubit<LocationsState> {
         emit(
           state.copyWith(
             point: Point(
-              latitude: position.latitude,
-              longitude: position.longitude,
+              position.latitude,
+             position.longitude,
             ),
           ),
         );
@@ -39,21 +42,21 @@ class LocationsCubit extends Cubit<LocationsState> {
       print(e);
     }
 
-    var response = await _carsUseCase.gpsList(
-      latitude: state.point.latitude,
-      longitude: state.point.longitude,
-    );
-    if (response.success) {
-      var gps = response.body;
-      if (gps != null) {
-        emit(state.copyWith(
-          isLoading: false,
-          gps: gps,
-        ));
-      }
-    } else {
-      emit(state.copyWith(isLoading: false));
-    }
+    // var response = await _carsUseCase.gpsList(
+    //   latitude: state.point.x,
+    //   longitude: state.point.longitude,
+    // );
+    // if (response.success) {
+    //   var gps = response.body;
+    //   if (gps != null) {
+    //     emit(state.copyWith(
+    //       isLoading: false,
+    //       gps: gps,
+    //     ));
+    //   }
+    // } else {
+    //   emit(state.copyWith(isLoading: false));
+    // }
   }
 
   Future<void> mapInitial() async {
@@ -61,23 +64,23 @@ class LocationsCubit extends Cubit<LocationsState> {
     if (response.success) {
       var gps = response.body;
       if (gps != null) {
-        await init.initMapkit(apiKey: gps);
+        // await init.initMapkit(apiKey: gps);
         // await init.initMapkit(apiKey: "973005bb-3cfc-4e46-81d2-26939d2b8c3c");
       }
     }
   }
 
   Future<void> geocoder() async {
-    var response = await _carsUseCase.geocoder(
-      latitude: state.point.latitude,
-      longitude: state.point.longitude,
-    );
-    if (response.success) {
-      var place = response.body;
-      if (place != null) {
-        emit(state.copyWith(locationName: place));
-      }
-    }
+    // var response = await _carsUseCase.geocoder(
+    //   latitude: state.point.latitude,
+    //   longitude: state.point.longitude,
+    // );
+    // if (response.success) {
+    //   var place = response.body;
+    //   if (place != null) {
+    //     emit(state.copyWith(locationName: place));
+    //   }
+    // }
   }
 }
 
