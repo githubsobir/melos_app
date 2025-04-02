@@ -83,9 +83,9 @@ class AuthRepositoryImpl extends AuthRepository {
           confirmPassword: confirmPassword));
 
       var isSaved = await MySharedPref.instance.setAccessToken(
-              RegisterResponse.fromJson(response.data).token?.access ?? "") &&
+              RegisterResponse.fromJson(response.data).access ?? "") &&
           await MySharedPref.instance.setRefreshToken(
-              RegisterResponse.fromJson(response.data).token?.refresh ?? "");
+              RegisterResponse.fromJson(response.data).refresh ?? "");
       return BaseResult(success: true, body: isSaved);
     } on DioException catch (error) {
       return BaseResult(
