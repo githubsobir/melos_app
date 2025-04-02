@@ -43,9 +43,22 @@ class ItemCarMap extends StatelessWidget {
                       SizedBox(
                     width: 24,
                     height: 24,
-                    child: CircularProgressIndicator(
-                      value: downloadProgress.progress,
-                    ),
+                        child: Stack(
+                          children: [
+                            Align(
+                              alignment: Alignment.center,
+                              child: SizedBox(
+                                width: 24,
+                                height: 24,
+                                child: CircularProgressIndicator(
+                                  value: downloadProgress.progress,
+                                  color: Theme.of(context).colorScheme.primary,
+                                  strokeWidth: 1,
+                                ),
+                              ),
+                            )
+                          ],
+                        ),
                   ),
                   errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
