@@ -54,5 +54,5 @@ final class BookingState extends Equatable {
   }
 
   @override
-  List<Object?> get props => [bookingList];
+  List<Object?> get props => [bookingList, bookingCurrent];
 }

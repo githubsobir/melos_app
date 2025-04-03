@@ -107,13 +107,13 @@ class ItemCurrentBooking extends StatelessWidget {
                       Expanded(
                         child: ItemTopBottom(
                           leftText: "Дата получения",
-                          rightText: DateFormats.dateFormat(startDate, context),
+                          rightText: startDate,
                         ),
                       ),
                       Expanded(
                         child: ItemTopBottom(
                           leftText: "Дата возврата",
-                          rightText: DateFormats.dateFormat(endDate, context),
+                          rightText: endDate,
                         ),
                       ),
                     ],

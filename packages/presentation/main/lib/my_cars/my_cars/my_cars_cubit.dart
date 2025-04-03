@@ -7,36 +7,34 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class MyCarsCubit extends Cubit<MyCarsState> {
   final CarsUseCase _carsUseCase;
 
-  MyCarsCubit(this._carsUseCase) : super(MyCarsInitial());
+  MyCarsCubit(this._carsUseCase)
+      : super(const MyCarsState(myCars: [], currentCars: []));
 
   getMyCars() async {
-    // emit(LoadingState());
     var response = await _carsUseCase.getMyCars();
     if (response.success) {
       var cars = response.body;
       if (cars != null) {
-        emit(CarsState(cars));
+        emit(state.copyWith(myCars: cars));
       }
     } else {
-      emit(const CarsState([]));
+      emit(state.copyWith(myCars: []));
     }
   }
 
   currentCarsOwners() async {
-    // emit(LoadingState());
     var response = await _carsUseCase.currentCarsOwners();
     if (response.success) {
       var cars = response.body;
       if (cars != null) {
-        emit(CurrentCarsState(cars));
+        emit(state.copyWith(currentCars: cars));
       }
     } else {
-      emit(const CurrentCarsState([]));
+      emit(state.copyWith(currentCars: []));
     }
   }
 
   changeCarStatus(num carId) async {
-    // emit(LoadingState());
     var response = await _carsUseCase.changeCarStatus(carId: carId);
     if (response.success) {
       getMyCars();
@@ -44,34 +42,25 @@ class MyCarsCubit extends Cubit<MyCarsState> {
   }
 }
 
-sealed class MyCarsState extends Equatable {
-  const MyCarsState();
-}
+final class MyCarsState extends Equatable {
+  final List<MyCarModel> myCars;
+  final List<CurrentCarModel> currentCars;
 
-final class MyCarsInitial extends MyCarsState {
-  @override
-  List<Object> get props => [];
-}
+  const MyCarsState({
+    required this.myCars,
+    required this.currentCars,
+  });
 
-final class LoadingState extends MyCarsState {
-  @override
-  List<Object> get props => [];
-}
-
-final class CarsState extends MyCarsState {
-  final List<MyCarModel> cars;
-
-  const CarsState(this.cars);
-
-  @override
-  List<Object> get props => [cars];
-}
-
-final class CurrentCarsState extends MyCarsState {
-  final List<CurrentCarModel> cars;
-
-  const CurrentCarsState(this.cars);
+  MyCarsState copyWith({
+    List<MyCarModel>? myCars,
+    List<CurrentCarModel>? currentCars,
+  }) {
+    return MyCarsState(
+      myCars: myCars ?? this.myCars,
+      currentCars: currentCars ?? this.currentCars,
+    );
+  }
 
   @override
-  List<Object> get props => [cars];
+  List<Object?> get props => [currentCars, myCars];
 }

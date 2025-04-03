@@ -62,7 +62,7 @@ class _BookingScreenState extends State<BookingScreen>
           ],
         ),
       ),
-      body:   BlocBuilder<BookingCubit, BookingState>(
+      body: BlocBuilder<BookingCubit, BookingState>(
         bloc: cubit,
         builder: (context, state) {
           return TabBarView(
@@ -74,8 +74,7 @@ class _BookingScreenState extends State<BookingScreen>
                   dailyRate: state.bookingCurrent[index].dailyRate ?? "",
                   securityDeposit:
                       state.bookingCurrent[index].securityDeposit ?? "",
-                  totalAmount:
-                      state.bookingCurrent[index].totalAmount ?? "",
+                  totalAmount: state.bookingCurrent[index].totalAmount ?? "",
                   status: state.bookingCurrent[index].status ?? "",
                   startDate: state.bookingCurrent[index].startDate ?? "",
                   endDate: state.bookingCurrent[index].endDate ?? "",
