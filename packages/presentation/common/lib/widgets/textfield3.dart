@@ -59,6 +59,8 @@ class TextField3 extends StatelessWidget {
                 },
                 child: Container(
                   padding: const EdgeInsets.only(right: 8),
+                  width: 24,
+                  height: 24,
                   child: const Icon(
                     Icons.keyboard_arrow_down,
                     color: Color(0xff7498F2),

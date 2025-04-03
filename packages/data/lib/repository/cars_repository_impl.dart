@@ -229,7 +229,7 @@ class CarsRepositoryImpl extends CarsRepository {
       );
     } on DioException catch (error) {
       return BaseResult(
-          success: false, exceptionBody: error.response?.data['error_note']);
+          success: false, exceptionBody: error.response?.data['errors']);
     } catch (exception) {
       return BaseResult(success: false, exceptionBody: exception);
     }

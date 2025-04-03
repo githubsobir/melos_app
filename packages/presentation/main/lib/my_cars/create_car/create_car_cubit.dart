@@ -1,3 +1,4 @@
+import 'package:common/widgets/custom_functions.dart';
 import 'package:domain/model/cars/car_create_model.dart';
 import 'package:domain/usecase/cars_usecase.dart';
 import 'package:equatable/equatable.dart';
@@ -51,7 +52,7 @@ class CreateCarCubit extends Cubit<CreateCarState> {
         if (await carCreateProcess(2)) {
           emit(state.copyWith(position: 3));
         } else {}
-      }else {
+      } else {
         emit(state.copyWith(isEmpty: true));
         emit(state.copyWith(isEmpty: false));
       }
@@ -61,7 +62,7 @@ class CreateCarCubit extends Cubit<CreateCarState> {
         if (await carCreateProcess(3)) {
           emit(state.copyWith(position: 4));
         } else {}
-      }else {
+      } else {
         emit(state.copyWith(isEmpty: true));
         emit(state.copyWith(isEmpty: false));
       }
@@ -71,7 +72,7 @@ class CreateCarCubit extends Cubit<CreateCarState> {
         if (await carCreateProcess(4)) {
           emit(state.copyWith(position: 5));
         }
-      }else {
+      } else {
         emit(state.copyWith(isEmpty: true));
         emit(state.copyWith(isEmpty: false));
       }
@@ -85,7 +86,12 @@ class CreateCarCubit extends Cubit<CreateCarState> {
       carModel: state.carModel,
     );
     emit(state.copyWith(isLoading: false));
-    return response.success;
+    if (response.success == false) {
+      showToast(response.exceptionBody.toString());
+      return false;
+    } else {
+      return true;
+    }
   }
 
   carCreateProcessFinal() async {
@@ -96,6 +102,8 @@ class CreateCarCubit extends Cubit<CreateCarState> {
     );
     if (response.success) {
       emit(state.copyWith(isLoading: false, position: 6));
+    } else {
+      showToast(response.exceptionBody.toString());
     }
   }
 

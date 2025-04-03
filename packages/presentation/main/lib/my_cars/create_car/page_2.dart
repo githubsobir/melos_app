@@ -167,16 +167,37 @@ class _Page2State extends State<Page2> {
                 spacing: 8.0, // gap between adjacent chips
                 runSpacing: 8.0,
                 children: allImages.map((image) {
-                  return Container(
-                    padding: const EdgeInsets.all(2),
+                  return SizedBox(
                     width: MediaQuery.sizeOf(context).width / 3 - 32,
                     height: 64,
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: Image.file(
-                        File(image.path),
-                        fit: BoxFit.cover,
-                      ),
+                    child: Stack(
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(2),
+                          width: MediaQuery.sizeOf(context).width / 3 - 32,
+                          height: 64,
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8.0),
+                            child: Image.file(
+                              File(image.path),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                        Align(
+                          alignment: Alignment.topRight,
+                          child: GestureDetector(
+                            child: Icon(Icons.close),
+                            onTap: () {
+                             setState(() {
+                               allImages.removeWhere(
+                                     (element) => element.path == image.path,
+                               );
+                             });
+                            },
+                          ),
+                        )
+                      ],
                     ),
                   );
                 }).toList(),
