@@ -71,6 +71,7 @@ class HomeCubit extends Cubit<HomeState> {
         latitude: position?.latitude != null ? "${position?.latitude}" : null,
         longitude: position?.longitude != null ? "${position?.latitude}" : null,
         search: state.search,
+        maxPrice: state.filter.maxPrice,
         category: state.filter.categoryCounts
             .where((element) => element.isSelected)
             .toList()

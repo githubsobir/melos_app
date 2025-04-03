@@ -17,6 +17,7 @@ class CarsUseCase {
 
   Future<BaseResult<List<CarModel>>> recommendedCars({
     required int page,
+    required int maxPrice,
     String? startDataTime,
     String? endDataTime,
     String? latitude,
@@ -28,6 +29,7 @@ class CarsUseCase {
   }) {
     return _carsRepository.recommendedCars(
       page: page,
+      maxPrice: maxPrice,
       startDataTime: startDataTime,
       endDataTime: endDataTime,
       latitude: latitude,

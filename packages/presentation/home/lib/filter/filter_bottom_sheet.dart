@@ -296,6 +296,38 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                       ),
                     ],
                   ),
+                  Text(
+                    "Цена",
+                    style: Theme.of(context)
+                        .textTheme
+                        .labelMedium
+                        ?.copyWith(color: Theme.of(context).hintColor),
+                    textAlign: TextAlign.center,
+                  ),
+                  const SizedBox(
+                    height: 16,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 16, right: 16),
+                    child: Text(
+                      "Макс. ${state.filter.maxPrice} сум",
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleSmall
+                          ?.copyWith(color: Theme.of(context).hintColor),
+                    ),
+                  ),
+                  Slider(
+                    inactiveColor: Theme.of(context).colorScheme.secondary,
+                    value: state.filter.maxPrice.toDouble(),
+                    min: 100000,
+                    max: 5000000,
+                    onChanged: (value) {
+                      setState(() {
+                        state.filter.maxPrice = value.toInt();
+                      });
+                    },
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [

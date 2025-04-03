@@ -28,6 +28,7 @@ class CarsRepositoryImpl extends CarsRepository {
   @override
   Future<BaseResult<List<CarModel>>> recommendedCars({
     required int page,
+    required int maxPrice,
     String? startDataTime,
     String? endDataTime,
     String? latitude,
@@ -40,6 +41,7 @@ class CarsRepositoryImpl extends CarsRepository {
     try {
       var response = await _carsService.recommendedCars(
         page: page,
+        maxPrice:maxPrice,
         startDataTime: startDataTime,
         endDataTime: endDataTime,
         latitude: latitude,

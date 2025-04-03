@@ -2,6 +2,7 @@ class FilterModel {
   final List<Filter> categoryCounts;
   final List<Filter> passengerCapacityCounts;
   final List<Filter> cityCounts;
+  int maxPrice = 100000;
 
   FilterModel({
     required this.categoryCounts,

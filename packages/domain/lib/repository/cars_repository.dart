@@ -10,6 +10,7 @@ import 'package:domain/utils/base_result.dart';
 abstract class CarsRepository {
   Future<BaseResult<List<CarModel>>> recommendedCars({
     required int page,
+    required int maxPrice,
     String? startDataTime,
     String? endDataTime,
     String? latitude,
