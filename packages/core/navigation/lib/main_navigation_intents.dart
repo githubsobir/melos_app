@@ -35,3 +35,10 @@ class ReceivingTheCarScreenIntent implements NavigationIntent {
 
   ReceivingTheCarScreenIntent({required this.bookingId});
 }
+
+class ConfirmBookingScreenIntent implements NavigationIntent {
+  static String path = "/ConfirmBookingScreenIntent";
+  num contractId;
+
+  ConfirmBookingScreenIntent({required this.contractId});
+}

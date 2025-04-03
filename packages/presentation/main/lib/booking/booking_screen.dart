@@ -2,9 +2,11 @@ import 'package:common/l10n/build_context_extension.dart';
 import 'package:dependency/dependencies/injector.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intent_launcher/intent_launcher.dart';
 import 'package:main/booking/booking_cubit.dart';
 import 'package:main/booking/item_booking.dart';
 import 'package:main/booking/item_current_booking.dart';
+import 'package:navigation/main_navigation_intents.dart';
 
 class BookingScreen extends StatefulWidget {
   const BookingScreen({super.key});
@@ -78,6 +80,12 @@ class _BookingScreenState extends State<BookingScreen>
                   status: state.bookingCurrent[index].status ?? "",
                   startDate: state.bookingCurrent[index].startDate ?? "",
                   endDate: state.bookingCurrent[index].endDate ?? "",
+                  isPending: state.bookingCurrent[index].status == "pending",
+                  cancel: () {},
+                  booking: () {
+                    context.openScreen(ReceivingTheCarScreenIntent(
+                        bookingId: state.bookingCurrent[index].id ?? 0));
+                  },
                 ),
                 separatorBuilder: (context, index) => const Divider(
                   color: Color(0xFF658DF1),
@@ -102,6 +110,8 @@ class _BookingScreenState extends State<BookingScreen>
                       state.bookingList[index].ownerPhoneNumber ?? "",
                   profilePage: state.bookingList[index].profilePage ?? "",
                   carOwner: state.bookingList[index].carOwner ?? "",
+                  isPending: state.bookingList[index].status == "pending",
+                  finishBooking: () {},
                 ),
                 separatorBuilder: (context, index) => const Divider(
                   color: Color(0xFF658DF1),

@@ -13,7 +13,15 @@ class ContractsService {
     return response;
   }
 
-  Future<Response> uploadContract({required num bookingId, required String path}) async {
+  Future<Response> contractsOwner({required num bookingId}) async {
+    var response = await _netBase.dio.get(
+      'contracts/owner/$bookingId/',
+    );
+    return response;
+  }
+
+  Future<Response> uploadContract(
+      {required num bookingId, required String path}) async {
     var image = await MultipartFile.fromFile(path,
         filename: path.substring(path.lastIndexOf("/") + 1));
     var formData = FormData.fromMap({
@@ -22,6 +30,21 @@ class ContractsService {
     });
     var response = await _netBase.dio.post(
       "contracts/upload/client/",
+      data: formData,
+    );
+    return response;
+  }
+
+  Future<Response> uploadContractOwner(
+      {required num bookingId, required String path}) async {
+    var image = await MultipartFile.fromFile(path,
+        filename: path.substring(path.lastIndexOf("/") + 1));
+    var formData = FormData.fromMap({
+      "booking_id": bookingId,
+      "owner_document": image,
+    });
+    var response = await _netBase.dio.post(
+      "contracts/upload/owner/",
       data: formData,
     );
     return response;

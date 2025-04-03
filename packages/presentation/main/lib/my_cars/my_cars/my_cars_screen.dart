@@ -83,10 +83,20 @@ class _MyCarsScreenState extends State<MyCarsScreen>
                   ),
                   itemBuilder: (context, index) {
                     return ItemCurrentBookingCar(
-                      carImage: "$BASE_URL_IMAGE${state.currentCars[index].photo}",
+                      carImage:
+                          "$BASE_URL_IMAGE${state.currentCars[index].photo}",
                       onConfirmBooking: () {
-                        context.openScreen(ReceivingTheCarScreenIntent(
-                            bookingId: state.currentCars[index].id ?? 0));
+                        context
+                            .openScreen(ConfirmBookingScreenIntent(
+                                contractId: state.currentCars[index].id ?? 0))
+                            .then(
+                          (value) {
+                            if (value != null && value == true) {
+                              cubit.currentCarsOwners();
+                              cubit.getMyCars();
+                            }
+                          },
+                        );
                       },
                     );
                   },

@@ -1,11 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:common/date_formats.dart';
 import 'package:common/decorations.dart';
 import 'package:common/l10n/build_context_extension.dart';
-import 'package:common/path_images.dart';
-import 'package:domain/utils/constants.dart';
+import 'package:common/widgets/base_button.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:main/booking/item_top_bottom.dart';
 import 'package:main/car_info/car_image_selector_widget.dart';
 
@@ -17,6 +13,9 @@ class ItemCurrentBooking extends StatelessWidget {
   final String status;
   final String startDate;
   final String endDate;
+  final bool isPending;
+  final VoidCallback cancel;
+  final VoidCallback booking;
 
   const ItemCurrentBooking({
     super.key,
@@ -27,6 +26,9 @@ class ItemCurrentBooking extends StatelessWidget {
     required this.status,
     required this.startDate,
     required this.endDate,
+    required this.isPending,
+    required this.cancel,
+    required this.booking,
   });
 
   // return NumberFormat("#,##0", "ru").format(price);
@@ -125,53 +127,71 @@ class ItemCurrentBooking extends StatelessWidget {
           Card(
             child: Padding(
               padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                mainAxisSize: MainAxisSize.min,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Text(
-                    "Статус бронирования",
-                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          fontWeight: FontWeight.w700,
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Статус оплаты",
+                          style:
+                              Theme.of(context).textTheme.titleSmall?.copyWith(
+                                    fontWeight: FontWeight.w700,
+                                  ),
                         ),
+                        SizedBox(
+                          height: 12,
+                        ),
+                        Container(
+                          decoration: Decorations.basicDecoration(
+                            background: const Color(0xFF16ED38),
+                            radius: 20,
+                          ),
+                          padding: const EdgeInsets.only(
+                            left: 24,
+                            right: 24,
+                            top: 8,
+                            bottom: 8,
+                          ),
+                          child: Text(
+                            context.translations.completed,
+                            style: Theme.of(context)
+                                .textTheme
+                                .labelMedium
+                                ?.copyWith(color: Colors.white),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  SizedBox(
-                    height: 12,
-                  ),
-                  Row(
-                    children: [
-                      Text(
-                        context.translations.status,
-                        style: Theme.of(context)
-                            .textTheme
-                            .labelMedium
-                            ?.copyWith(
-                                color: Theme.of(context).colorScheme.secondary),
-                      ),
-                      SizedBox(
-                        width: 48,
-                      ),
-                      Container(
-                        decoration: Decorations.basicDecoration(
-                          background: const Color(0xFF16ED38),
-                          radius: 4,
-                        ),
-                        padding: const EdgeInsets.only(
-                          left: 24,
-                          right: 24,
-                          top: 8,
-                          bottom: 8,
-                        ),
-                        child: Text(
-                          context.translations.completed,
-                          style: Theme.of(context)
-                              .textTheme
-                              .labelMedium
-                              ?.copyWith(color: Colors.white),
-                        ),
-                      ),
-                    ],
-                  ),
+                  !isPending
+                      ? GestureDetector(
+                          onTap: cancel,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                            children: [
+                              const Icon(
+                                Icons.delete,
+                                color: Color(0xffF90707),
+                              ),
+                              Text(
+                                "Отменить заказ",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodyMedium
+                                    ?.copyWith(
+                                        color: const Color(0xffF90707)),
+                              ),
+                            ],
+                          ),
+                        )
+                      : BaseButton(
+                          onPressed: booking,
+                          title: "Готово к передаче",
+                          fontSize: 10,
+                        )
                 ],
               ),
             ),

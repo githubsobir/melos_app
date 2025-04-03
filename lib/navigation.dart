@@ -18,6 +18,7 @@ import 'package:main/main/main_screen.dart';
 import 'package:main/my_cars/create_car/create_car_info_screen.dart';
 import 'package:main/my_cars/my_cars/my_cars_screen.dart';
 import 'package:main/notifications/notifications_screen.dart';
+import 'package:main/payment_details/confirm_booking/confirm_booking_screen.dart';
 import 'package:main/payment_details/payment_details_screen.dart';
 import 'package:main/payment_details/receiving_the_car/receiving_the_car_screen.dart';
 import 'package:navigation/main_navigation_intents.dart';
@@ -121,6 +122,13 @@ final _launcher = IntentLauncher()
       (route) => false,
     );
   })
+  ..onNavigationIntent<ConfirmBookingScreenIntent>((context, intent) {
+    return Navigator.pushNamed(
+      context,
+      ConfirmBookingScreenIntent.path,
+      arguments: intent.contractId,
+    );
+  })
   ..onNavigationIntent<CarInfoDetailIntent>((context, intent) {
     return Navigator.pushNamed(context, CarInfoDetailIntent.path,
         arguments: intent.carId);
@@ -202,6 +210,10 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     var bookingId = settings.arguments as num;
     return _createRoute(
         ReceivingTheCarScreen(bookingId: bookingId).wrapWith(_launcher));
+  } else if (ConfirmBookingScreenIntent.path == settings.name) {
+    var bookingId = settings.arguments as num;
+    return _createRoute(
+        ConfirmBookingScreen(bookingId: bookingId).wrapWith(_launcher));
   } else if (EditProfileIntent.path == settings.name) {
     var info = settings.arguments as UserInformationModel;
     return _createRoute(EditProfileScreen(
