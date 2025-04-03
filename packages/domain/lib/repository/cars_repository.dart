@@ -52,4 +52,6 @@ abstract class CarsRepository {
   Future<BaseResult<List<CurrentCarModel>>> currentCarsOwners();
 
   Future<BaseResult<bool>> changeCarStatus({required num carId});
+
+  Future<BaseResult<bool>> onCompleteCar({required num id});
 }

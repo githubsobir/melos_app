@@ -310,4 +310,22 @@ class CarsRepositoryImpl extends CarsRepository {
       return BaseResult(success: false, exceptionBody: exception);
     }
   }
+
+  @override
+  Future<BaseResult<bool>> onCompleteCar({required num id}) async {
+    try {
+      var response = await _carsService.onCompleteCar(
+        id: id,
+      );
+      return BaseResult(
+        success: true,
+        body: true,
+      );
+    } on DioException catch (error) {
+      return BaseResult(
+          success: false, exceptionBody: error.response?.data['error_note']);
+    } catch (exception) {
+      return BaseResult(success: false, exceptionBody: exception);
+    }
+  }
 }

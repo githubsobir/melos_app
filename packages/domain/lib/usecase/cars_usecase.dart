@@ -115,4 +115,8 @@ class CarsUseCase {
   Future<BaseResult<bool>> changeCarStatus({required num carId}) {
     return _carsRepository.changeCarStatus(carId: carId);
   }
+
+  Future<BaseResult<bool>> onCompleteCar({required num id}) {
+    return _carsRepository.onCompleteCar(id: id);
+  }
 }

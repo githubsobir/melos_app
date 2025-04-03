@@ -6,11 +6,18 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:main/my_cars/my_cars/item_top_bottom_center.dart';
 
 class ItemCurrentBookingCar extends StatefulWidget {
-  const ItemCurrentBookingCar(
-      {super.key, required this.carImage, required this.onConfirmBooking});
+  const ItemCurrentBookingCar({
+    super.key,
+    required this.carImage,
+    required this.onConfirmBooking,
+    required this.onComplete,
+    required this.carStatus,
+  });
 
   final String carImage;
+  final String carStatus;
   final VoidCallback onConfirmBooking;
+  final VoidCallback onComplete;
 
   @override
   State<ItemCurrentBookingCar> createState() => _ItemCurrentBookingCarState();
@@ -170,30 +177,82 @@ class _ItemCurrentBookingCarState extends State<ItemCurrentBookingCar> {
           const SizedBox(
             height: 8,
           ),
-          GestureDetector(
-            onTap: widget.onConfirmBooking,
-            child: Container(
-              decoration: BoxDecoration(
-                borderRadius: const BorderRadius.only(
-                  bottomLeft: Radius.circular(12),
-                  bottomRight: Radius.circular(12),
-                ),
-                color: Theme.of(context).colorScheme.primary,
-              ),
-              padding: const EdgeInsets.all(12),
-              child: Center(
-                child: Text(
-                  "Подтвердить бронь",
-                  style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                        color: Colors.white,
-                      ),
-                ),
-              ),
-            ),
-          ),
+          status(widget.carStatus),
         ],
       ),
     );
+  }
+
+  status(String status) {
+    switch (status) {
+      case "pending":
+        return GestureDetector(
+          onTap: widget.onConfirmBooking,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(12),
+                bottomRight: Radius.circular(12),
+              ),
+              color: Theme.of(context).colorScheme.primary,
+            ),
+            padding: const EdgeInsets.all(12),
+            child: Center(
+              child: Text(
+                "Подтвердить бронь",
+                style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                      color: Colors.white,
+                    ),
+              ),
+            ),
+          ),
+        );
+      case "confirmed":
+        return GestureDetector(
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(12),
+                bottomRight: Radius.circular(12),
+              ),
+              color: Theme.of(context).colorScheme.secondary,
+            ),
+            padding: const EdgeInsets.all(12),
+            child: Center(
+              child: Text(
+                "Автомобиль в аренде",
+                style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                      color: Colors.white,
+                    ),
+              ),
+            ),
+          ),
+        );
+      case "completed":
+        return GestureDetector(
+          onTap: widget.onComplete,
+          child: Container(
+            decoration: BoxDecoration(
+              borderRadius: const BorderRadius.only(
+                bottomLeft: Radius.circular(12),
+                bottomRight: Radius.circular(12),
+              ),
+              color: Theme.of(context).colorScheme.primary,
+            ),
+            padding: const EdgeInsets.all(12),
+            child: Center(
+              child: Text(
+                "Подтвердить бронь",
+                style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                      color: Colors.white,
+                    ),
+              ),
+            ),
+          ),
+        );
+      default:
+        return Container();
+    }
   }
 
   leftRight({

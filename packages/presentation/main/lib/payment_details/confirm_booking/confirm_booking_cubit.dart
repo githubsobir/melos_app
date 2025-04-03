@@ -8,9 +8,9 @@ class ConfirmBookingCubit extends Cubit<ConfirmBookingState> {
   final ContractsUseCase _paymentUseCase;
 
   ConfirmBookingCubit(this._paymentUseCase)
-      : super(ConfirmBookingState(
+      : super(const ConfirmBookingState(
           imageFile: null,
-          contract: ContractOwnerModel(),
+          contract: null,
           successfullySent: false,
           isButtonLoading: false,
         ));
@@ -57,7 +57,7 @@ class ConfirmBookingState extends Equatable {
   final XFile? imageFile;
   final bool isButtonLoading;
   final bool successfullySent;
-  final ContractOwnerModel contract;
+  final ContractOwnerModel? contract;
 
   const ConfirmBookingState({
     required this.imageFile,

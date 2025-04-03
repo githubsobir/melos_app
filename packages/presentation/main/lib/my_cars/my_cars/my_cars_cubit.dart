@@ -40,6 +40,16 @@ class MyCarsCubit extends Cubit<MyCarsState> {
       getMyCars();
     }
   }
+
+  Future<void> onCompleteCar(num id) async {
+    var response = await _carsUseCase.onCompleteCar(
+      id:id
+    );
+    if (response.success) {
+      currentCarsOwners();
+      getMyCars();
+    }
+  }
 }
 
 final class MyCarsState extends Equatable {

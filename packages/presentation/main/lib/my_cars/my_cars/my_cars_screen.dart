@@ -98,6 +98,10 @@ class _MyCarsScreenState extends State<MyCarsScreen>
                           },
                         );
                       },
+                      onComplete: () {
+                        cubit.onCompleteCar(state.currentCars[index].id ?? 0);
+                      },
+                      carStatus: "${state.currentCars[index].status}",
                     );
                   },
                 ),
