@@ -14,12 +14,14 @@ class ItemMyCar extends StatefulWidget {
     required this.carAvailable,
     required this.onChangeStatus,
     required this.onCarLocation,
+    required this.onDelete,
   });
 
   final String carImage;
   final String carName;
   final bool carAvailable;
   final VoidCallback onEdit;
+  final VoidCallback onDelete;
   final VoidCallback onChangeStatus;
   final VoidCallback onCarLocation;
 
@@ -200,6 +202,7 @@ class _ItemMyCarState extends State<ItemMyCar> {
                                       Expanded(
                                           child: BaseButton(
                                         onPressed: () {
+                                          widget.onDelete();
                                           context.closeActiveScreen();
                                         },
                                         title: "Да",

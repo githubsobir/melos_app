@@ -42,9 +42,15 @@ class MyCarsCubit extends Cubit<MyCarsState> {
   }
 
   Future<void> onCompleteCar(num id) async {
-    var response = await _carsUseCase.onCompleteCar(
-      id:id
-    );
+    var response = await _carsUseCase.onCompleteCar(id: id);
+    if (response.success) {
+      currentCarsOwners();
+      getMyCars();
+    }
+  }
+
+  Future<void> deleteCar(num id) async {
+    var response = await _carsUseCase.deleteCar(id: id);
     if (response.success) {
       currentCarsOwners();
       getMyCars();

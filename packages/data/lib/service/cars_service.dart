@@ -239,4 +239,11 @@ class CarsService {
     );
     return response;
   }
+
+  Future<Response> deleteCar({required num id}) async {
+    var response = await _netBase.dio.delete(
+      'cars/delete/$id/',
+    );
+    return response;
+  }
 }

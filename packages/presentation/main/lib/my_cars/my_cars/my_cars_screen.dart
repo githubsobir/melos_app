@@ -136,6 +136,9 @@ class _MyCarsScreenState extends State<MyCarsScreen>
                           longitude: 69.251670,
                         ));
                       },
+                      onDelete: () {
+                        cubit.deleteCar(state.myCars[index].id ?? 0);
+                      },
                     );
                   },
                 ),

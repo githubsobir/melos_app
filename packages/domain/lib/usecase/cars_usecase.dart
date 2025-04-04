@@ -121,4 +121,8 @@ class CarsUseCase {
   Future<BaseResult<bool>> onCompleteCar({required num id}) {
     return _carsRepository.onCompleteCar(id: id);
   }
+
+  Future<BaseResult<bool>> deleteCar({required num id}) {
+    return _carsRepository.deleteCar(id: id);
+  }
 }

@@ -41,7 +41,7 @@ class CarsRepositoryImpl extends CarsRepository {
     try {
       var response = await _carsService.recommendedCars(
         page: page,
-        maxPrice:maxPrice,
+        maxPrice: maxPrice,
         startDataTime: startDataTime,
         endDataTime: endDataTime,
         latitude: latitude,
@@ -317,6 +317,24 @@ class CarsRepositoryImpl extends CarsRepository {
   Future<BaseResult<bool>> onCompleteCar({required num id}) async {
     try {
       var response = await _carsService.onCompleteCar(
+        id: id,
+      );
+      return BaseResult(
+        success: true,
+        body: true,
+      );
+    } on DioException catch (error) {
+      return BaseResult(
+          success: false, exceptionBody: error.response?.data['error_note']);
+    } catch (exception) {
+      return BaseResult(success: false, exceptionBody: exception);
+    }
+  }
+
+  @override
+  Future<BaseResult<bool>> deleteCar({required num id}) async {
+    try {
+      var response = await _carsService.deleteCar(
         id: id,
       );
       return BaseResult(
