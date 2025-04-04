@@ -14,6 +14,36 @@ class NotificationCubit extends Cubit<NotificationState> {
       var info = response.body;
       if (info != null) {
         emit(NotificationsListState(info));
+      } else {
+        emit(const NotificationsListState([]));
+        // emit(
+        //   NotificationsListState(
+        //     [
+        //       NotificationModel(
+        //         title: "Notification title",
+        //         body: "Notification body text here",
+        //         image: "/backend/media/car_photos/db/cars_image/photo216.jpg",
+        //         id: 1233,
+        //         isRead: false,
+        //       ),
+        //       NotificationModel(
+        //         title: "Notification title 1",
+        //         body: "Notification body text here",
+        //         image: "/backend/media/car_photos/db/cars_image/photo193.jpg",
+        //         id: 12333,
+        //         isRead: false,
+        //       ),
+        //       NotificationModel(
+        //         title: "Notification title 2",
+        //         body:
+        //             "Notification body text here Notification body text here Notification body text here Notification body text here Notification body text here Notification body text here Notification body text here Notification body text here v Notification body text here Notification body text here Notification body text here Notification body text hereNotification body text here Notification body text here Notification body text here Notification body text here Notification body text here Notification body text here Notification body text here Notification body text here Notification body text here v Notification body text here Notification body text here Notification body text here Notification body text hereNotification body text here Notification body text here Notification body text here Notification body text here Notification body text here Notification body text here Notification body text here Notification body text here Notification body text here v Notification body text here Notification body text here Notification body text here Notification body text hereNotification body text here Notification body text here Notification body text here Notification body text here Notification body text here Notification body text here Notification body text here Notification body text here Notification body text here v Notification body text here Notification body text here Notification body text here Notification body text hereNotification body text here Notification body text here Notification body text here Notification body text here Notification body text here Notification body text here Notification body text here Notification body text here Notification body text here v Notification body text here Notification body text here Notification body text here Notification body text hereNotification body text here Notification body text here Notification body text here Notification body text here Notification body text here Notification body text here Notification body text here Notification body text here Notification body text here v Notification body text here Notification body text here Notification body text here Notification body text hereNotification body text here Notification body text here Notification body text here Notification body text here Notification body text here Notification body text here Notification body text here Notification body text here Notification body text here v Notification body text here Notification body text here Notification body text here Notification body text hereNotification body text here ",
+        //         image: "/backend/media/car_photos/db/cars_image/photo80.jpg",
+        //         id: 132223,
+        //         isRead: false,
+        //       ),
+        //     ],
+        //   ),
+        // );
       }
     }
   }
