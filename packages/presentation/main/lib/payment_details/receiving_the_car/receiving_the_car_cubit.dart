@@ -8,9 +8,9 @@ class ReceivingTheCarCubit extends Cubit<ReceivingTheCarState> {
   final ContractsUseCase _paymentUseCase;
 
   ReceivingTheCarCubit(this._paymentUseCase)
-      : super(ReceivingTheCarState(
+      : super(const ReceivingTheCarState(
           imageFile: null,
-          contract: ContractModel(),
+          contract: null,
           successfullySent: false,
           isButtonLoading: false,
         ));
@@ -57,7 +57,7 @@ class ReceivingTheCarState extends Equatable {
   final XFile? imageFile;
   final bool isButtonLoading;
   final bool successfullySent;
-  final ContractModel contract;
+  final ContractModel? contract;
 
   const ReceivingTheCarState({
     required this.imageFile,
