@@ -16,12 +16,13 @@ import 'package:main/payment_details/receiving_the_car/receiving_the_car_cubit.d
 import 'package:navigation/main_navigation_intents.dart';
 
 class ReceivingTheCarScreen extends StatelessWidget {
-  ReceivingTheCarScreen({super.key, required this.bookingId}) {
+  ReceivingTheCarScreen(
+      {super.key, required this.bookingId, required this.hasBack}) {
     cubit.contractsInfo(bookingId: bookingId);
   }
 
   final ReceivingTheCarCubit cubit = ReceivingTheCarCubit(inject());
-
+  final bool hasBack;
   final num bookingId;
 
   @override
@@ -33,15 +34,25 @@ class ReceivingTheCarScreen extends StatelessWidget {
             Theme.of(context).colorScheme.brightness == Brightness.light
                 ? const Color(0xFFF6F7F9)
                 : const Color(0xFF061136),
-        appBar: AppBar(
-          title: const Text("Получение автомобиля"),
-          leading: IconButton(
-            icon: Icon(Icons.close),
-            onPressed: () {
-              context.openScreen(MainIntent());
-            },
-          ),
-        ),
+        appBar: hasBack
+            ? AppBar(
+                title: const Text("Получение автомобиля"),
+                leading: IconButton(
+                  icon: Icon(Icons.close),
+                  onPressed: () {
+                    context.closeActiveScreen();
+                  },
+                ),
+              )
+            : AppBar(
+                title: const Text("Получение автомобиля"),
+                leading: IconButton(
+                  icon: const Icon(Icons.close),
+                  onPressed: () {
+                    context.openScreen(MainIntent());
+                  },
+                ),
+              ),
         body: BlocConsumer<ReceivingTheCarCubit, ReceivingTheCarState>(
           bloc: cubit,
           builder: (context, state) {
@@ -358,7 +369,11 @@ class ReceivingTheCarScreen extends StatelessWidget {
           },
           listener: (BuildContext context, ReceivingTheCarState state) {
             if (state.successfullySent) {
-              context.openScreen(MainIntent());
+              if (hasBack) {
+                context.closeActiveScreen(true);
+              } else {
+                context.openScreen(MainIntent());
+              }
             }
           },
         ),

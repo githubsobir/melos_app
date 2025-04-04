@@ -122,6 +122,13 @@ final _launcher = IntentLauncher()
       (route) => false,
     );
   })
+  ..onNavigationIntent<ReceivingTheCarGoScreenIntent>((context, intent) {
+    return Navigator.pushNamed(
+      context,
+      ReceivingTheCarGoScreenIntent.path,
+      arguments: intent.bookingId,
+    );
+  })
   ..onNavigationIntent<ConfirmBookingScreenIntent>((context, intent) {
     return Navigator.pushNamed(
       context,
@@ -208,8 +215,16 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     ).wrapWith(_launcher));
   } else if (ReceivingTheCarScreenIntent.path == settings.name) {
     var bookingId = settings.arguments as num;
-    return _createRoute(
-        ReceivingTheCarScreen(bookingId: bookingId).wrapWith(_launcher));
+    return _createRoute(ReceivingTheCarScreen(
+      bookingId: bookingId,
+      hasBack: false,
+    ).wrapWith(_launcher));
+  } else if (ReceivingTheCarGoScreenIntent.path == settings.name) {
+    var bookingId = settings.arguments as num;
+    return _createRoute(ReceivingTheCarScreen(
+      bookingId: bookingId,
+      hasBack: true,
+    ).wrapWith(_launcher));
   } else if (ConfirmBookingScreenIntent.path == settings.name) {
     var bookingId = settings.arguments as num;
     return _createRoute(

@@ -83,8 +83,16 @@ class _BookingScreenState extends State<BookingScreen>
                   isPending: state.bookingCurrent[index].status == "pending",
                   cancel: () {},
                   booking: () {
-                    context.openScreen(ReceivingTheCarScreenIntent(
-                        bookingId: state.bookingCurrent[index].id ?? 0));
+                    context
+                        .openScreen(ReceivingTheCarGoScreenIntent(
+                            bookingId: state.bookingCurrent[index].id ?? 0))
+                        .then(
+                      (value) {
+                        if (value is bool && value == true) {
+                          cubit.bookingCurrent();
+                        }
+                      },
+                    );
                   },
                 ),
                 separatorBuilder: (context, index) => const Divider(

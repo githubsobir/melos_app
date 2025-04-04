@@ -235,7 +235,7 @@ class CarsService {
 
   Future<Response> onCompleteCar({required num id}) async {
     var response = await _netBase.dio.put(
-      'cars/$id/complete/',
+      'booking/owner/completed/$id/',
     );
     return response;
   }

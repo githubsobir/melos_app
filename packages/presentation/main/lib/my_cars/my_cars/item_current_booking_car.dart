@@ -242,7 +242,7 @@ class _ItemCurrentBookingCarState extends State<ItemCurrentBookingCar> {
             padding: const EdgeInsets.all(12),
             child: Center(
               child: Text(
-                "Подтвердить бронь",
+                "Принять машину",
                 style: Theme.of(context).textTheme.labelMedium?.copyWith(
                       color: Colors.white,
                     ),
