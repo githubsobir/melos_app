@@ -89,4 +89,28 @@ class BookingRepositoryImpl extends BookingRepository {
       return BaseResult(success: false, exceptionBody: exception);
     }
   }
+
+  @override
+  Future<BaseResult<bool>> createReview({
+    required num bookingId,
+    required int rating,
+    required String comment,
+  }) async {
+    try {
+      var response = await _bookingService.createReview(
+        bookingId: bookingId,
+        rating: rating,
+        comment: comment,
+      );
+      return BaseResult(
+        success: true,
+        body: true,
+      );
+    } on DioException catch (error) {
+      return BaseResult(
+          success: false, exceptionBody: error.response?.data['error_note']);
+    } catch (exception) {
+      return BaseResult(success: false, exceptionBody: exception);
+    }
+  }
 }

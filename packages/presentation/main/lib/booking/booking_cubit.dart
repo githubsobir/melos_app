@@ -6,7 +6,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class BookingCubit extends Cubit<BookingState> {
   BookingCubit(this._bookingUseCase)
-      : super(const BookingState(bookingList: [], bookingCurrent: []));
+      : super(const BookingState(
+          bookingList: [],
+          bookingCurrent: [],
+          bookingIsFinished: false,
+        ));
   final BookingUseCase _bookingUseCase;
 
   Future<void> bookingList() async {
@@ -38,29 +42,51 @@ class BookingCubit extends Cubit<BookingState> {
     if (response.success) {
       bookingList();
       bookingCurrent();
+      emit(state.copyWith(bookingIsFinished: true));
+      state.copyWith(bookingIsFinished: false);
     }
+  }
+
+  Future<void> createReview({
+    required num bookingId,
+    required int rating,
+    required String comment,
+  }) async {
+    var response = await _bookingUseCase.createReview(
+      bookingId: bookingId,
+      rating: rating,
+      comment: comment,
+    );
   }
 }
 
 final class BookingState extends Equatable {
   final List<BookingModel> bookingList;
   final List<BookingCurrentModel> bookingCurrent;
+  final bool bookingIsFinished;
 
   const BookingState({
     required this.bookingList,
     required this.bookingCurrent,
+    required this.bookingIsFinished,
   });
 
   BookingState copyWith({
     List<BookingModel>? bookingList,
     List<BookingCurrentModel>? bookingCurrent,
+    bool? bookingIsFinished,
   }) {
     return BookingState(
       bookingList: bookingList ?? this.bookingList,
       bookingCurrent: bookingCurrent ?? this.bookingCurrent,
+      bookingIsFinished: bookingIsFinished ?? this.bookingIsFinished,
     );
   }
 
   @override
-  List<Object?> get props => [bookingList, bookingCurrent];
+  List<Object?> get props => [
+        bookingList,
+        bookingCurrent,
+        bookingIsFinished,
+      ];
 }

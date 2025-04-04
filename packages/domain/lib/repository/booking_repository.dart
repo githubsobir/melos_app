@@ -11,4 +11,10 @@ abstract class BookingRepository {
   Future<BaseResult<List<BookingCurrentModel>>> bookingCurrent();
 
   Future<BaseResult<bool>> finishBooking({required num bookingId});
+
+  Future<BaseResult<bool>> createReview({
+    required num bookingId,
+    required int rating,
+    required String comment,
+  });
 }

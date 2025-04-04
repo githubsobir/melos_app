@@ -24,4 +24,16 @@ class BookingUseCase {
   Future<BaseResult<bool>> finishBooking({required num bookingId}) {
     return _bookingRepository.finishBooking(bookingId: bookingId);
   }
+
+  Future<BaseResult<bool>> createReview({
+    required num bookingId,
+    required int rating,
+    required String comment,
+  }) {
+    return _bookingRepository.createReview(
+      bookingId: bookingId,
+      rating: rating,
+      comment: comment,
+    );
+  }
 }

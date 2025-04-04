@@ -6,6 +6,7 @@ import 'package:intent_launcher/intent_launcher.dart';
 import 'package:main/booking/booking_cubit.dart';
 import 'package:main/booking/item_booking.dart';
 import 'package:main/booking/item_current_booking.dart';
+import 'package:main/booking/review_bottom_sheet.dart';
 import 'package:navigation/main_navigation_intents.dart';
 
 class BookingScreen extends StatefulWidget {
@@ -36,6 +37,7 @@ class _BookingScreenState extends State<BookingScreen>
           Theme.of(context).colorScheme.brightness == Brightness.light
               ? const Color(0xFFF6F7F9)
               : const Color(0xFF061136),
+      resizeToAvoidBottomInset: true,
       appBar: AppBar(
         title: Text(context.translations.booking),
         toolbarHeight: 72,
@@ -64,7 +66,7 @@ class _BookingScreenState extends State<BookingScreen>
           ],
         ),
       ),
-      body: BlocBuilder<BookingCubit, BookingState>(
+      body: BlocConsumer<BookingCubit, BookingState>(
         bloc: cubit,
         builder: (context, state) {
           return TabBarView(
@@ -131,7 +133,43 @@ class _BookingScreenState extends State<BookingScreen>
             ],
           );
         },
+        listener: (BuildContext context, BookingState state) {
+          if (state.bookingIsFinished) {
+            _showReviewBottomSheet(
+              context: context,
+              onReview: (rating, comment) {
+                print("rating $rating comment $comment");
+                cubit.createReview(
+                  bookingId: state.bookingList[0].id ?? 0,
+                  rating: rating,
+                  comment: comment,
+                );
+              },
+            );
+          }
+        },
       ),
+    );
+  }
+
+  void _showReviewBottomSheet({
+    required BuildContext context,
+    required Function(int rating, String comment) onReview,
+  }) {
+    showModalBottomSheet(
+      context: context,
+      isScrollControlled: true,
+      useSafeArea: true,
+      builder: (BuildContext bc) {
+        return Padding(
+          padding: EdgeInsets.only(
+            bottom: MediaQuery.of(context).viewInsets.bottom,
+          ),
+          child: ReviewBottomSheetContent(
+            onReview: onReview,
+          ),
+        );
+      },
     );
   }
 }

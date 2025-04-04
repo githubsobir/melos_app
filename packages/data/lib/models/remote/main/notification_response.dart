@@ -6,6 +6,7 @@ class NotificationResponse {
     this.title,
     this.body,
     this.isRead,
+    this.image,
   });
 
   NotificationResponse.fromJson(dynamic json) {
@@ -13,11 +14,13 @@ class NotificationResponse {
     title = json['title'];
     body = json['body'];
     isRead = json['is_read'];
+    image = json['image'];
   }
 
   num? id;
   String? title;
   String? body;
+  String? image;
   bool? isRead;
 
   Map<String, dynamic> toJson() {
@@ -26,6 +29,7 @@ class NotificationResponse {
     map['title'] = title;
     map['body'] = body;
     map['is_read'] = isRead;
+    map['image'] = image;
     return map;
   }
 
@@ -41,6 +45,7 @@ extension NotificationMapper on NotificationResponse {
       title: title,
       body: body,
       isRead: isRead,
+      image: image,
     );
   }
 }

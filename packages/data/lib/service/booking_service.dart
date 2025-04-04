@@ -33,4 +33,16 @@ class BookingService {
     );
     return response;
   }
+
+  Future<Response> createReview(
+      {required num bookingId,
+      required int rating,
+      required String comment}) async {
+    var response = await _netBase.dio.post('review/create/', data: {
+      "booking_id": bookingId,
+      "rating": rating,
+      "comment": comment,
+    });
+    return response;
+  }
 }
