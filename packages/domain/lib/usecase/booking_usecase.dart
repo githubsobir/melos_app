@@ -20,4 +20,8 @@ class BookingUseCase {
   Future<BaseResult<List<BookingCurrentModel>>> bookingCurrent() {
     return _bookingRepository.bookingCurrent();
   }
+
+  Future<BaseResult<bool>> finishBooking({required num bookingId}) {
+    return _bookingRepository.finishBooking(bookingId: bookingId);
+  }
 }

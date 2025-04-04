@@ -9,4 +9,6 @@ abstract class BookingRepository {
   Future<BaseResult<List<BookingModel>>> bookingList();
 
   Future<BaseResult<List<BookingCurrentModel>>> bookingCurrent();
+
+  Future<BaseResult<bool>> finishBooking({required num bookingId});
 }

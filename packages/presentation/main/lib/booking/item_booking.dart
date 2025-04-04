@@ -339,54 +339,55 @@ class ItemBooking extends StatelessWidget {
               ),
             ),
           ),
-          BaseButton(
-              onPressed: () {
-                showDialog<String>(
-                  context: context,
-                  builder: (BuildContext context) => AlertDialog(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(
-                          10.0), // Adjust radius as needed
-                    ),
-                    content: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        const Text(
-                          'Вы уверены, что хотите изменить статус машину ?',
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(
-                          height: 24,
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: BaseButton(
-                                  onPressed: () {
-                                    context.closeActiveScreen();
-                                  },
-                                  title: "Нет"),
-                            ),
-                            const SizedBox(
-                              width: 48,
-                            ),
-                            Expanded(
+          if (!isPending)
+            BaseButton(
+                onPressed: () {
+                  showDialog<String>(
+                    context: context,
+                    builder: (BuildContext context) => AlertDialog(
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(
+                            10.0), // Adjust radius as needed
+                      ),
+                      content: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          const Text(
+                            'Вы уверены, что хотите изменить статус машину ?',
+                            textAlign: TextAlign.center,
+                          ),
+                          const SizedBox(
+                            height: 24,
+                          ),
+                          Row(
+                            children: [
+                              Expanded(
                                 child: BaseButton(
-                              onPressed: () {
-                                finishBooking();
-                                context.closeActiveScreen();
-                              },
-                              title: "Да",
-                              background: const Color(0xFFFF3636),
-                            )),
-                          ],
-                        )
-                      ],
+                                    onPressed: () {
+                                      context.closeActiveScreen();
+                                    },
+                                    title: "Нет"),
+                              ),
+                              const SizedBox(
+                                width: 48,
+                              ),
+                              Expanded(
+                                  child: BaseButton(
+                                onPressed: () {
+                                  finishBooking();
+                                  context.closeActiveScreen();
+                                },
+                                title: "Да",
+                                background: const Color(0xFFFF3636),
+                              )),
+                            ],
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                );
-              },
-              title: "Завершить")
+                  );
+                },
+                title: "Завершить")
         ],
       ),
     );

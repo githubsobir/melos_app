@@ -111,7 +111,9 @@ class _BookingScreenState extends State<BookingScreen>
                   profilePage: state.bookingList[index].profilePage ?? "",
                   carOwner: state.bookingList[index].carOwner ?? "",
                   isPending: state.bookingList[index].status == "pending",
-                  finishBooking: () {},
+                  finishBooking: () {
+                    cubit.finishBooking(state.bookingList[index].id ?? 0);
+                  },
                 ),
                 separatorBuilder: (context, index) => const Divider(
                   color: Color(0xFF658DF1),

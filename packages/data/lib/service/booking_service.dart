@@ -26,4 +26,11 @@ class BookingService {
     );
     return response;
   }
+
+  Future<Response> finishBooking({required num bookingId}) async {
+    var response = await _netBase.dio.put(
+      'booking/finish/client/$bookingId/',
+    );
+    return response;
+  }
 }

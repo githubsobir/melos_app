@@ -32,6 +32,14 @@ class BookingCubit extends Cubit<BookingState> {
       // emit(const HistoryState([]));
     }
   }
+
+  Future<void> finishBooking(num bookingId) async {
+    var response = await _bookingUseCase.finishBooking(bookingId: bookingId);
+    if (response.success) {
+      bookingList();
+      bookingCurrent();
+    }
+  }
 }
 
 final class BookingState extends Equatable {
