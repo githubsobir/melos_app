@@ -228,7 +228,7 @@ class _ItemCarPopularState extends State<ItemCarPopular> {
                         ],
                       ),
                       const SizedBox(
-                        height: 16,
+                        height: 8,
                       ),
                       Row(
                         children: [
