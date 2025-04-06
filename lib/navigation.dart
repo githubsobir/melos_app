@@ -8,8 +8,8 @@ import 'package:common/navigation/profile_navigation_intents.dart';
 import 'package:domain/model/profile/user_information_model.dart';
 import 'package:flutter/material.dart';
 import 'package:intent_launcher/intent_launcher.dart';
-import 'package:locations/locations_screen.dart';
-import 'package:locations/my_car_location_screen.dart';
+import 'package:locations/locations/locations_screen.dart';
+import 'package:locations/my_car/my_car_location_screen.dart';
 import 'package:locations/select_location_screen.dart';
 import 'package:main/booking/booking_screen.dart';
 import 'package:main/booking_history/booking_history_screen.dart';
@@ -141,10 +141,8 @@ final _launcher = IntentLauncher()
         arguments: intent.carId);
   })
   ..onNavigationIntent<MyCarLocationIntent>((context, intent) {
-    return Navigator.pushNamed(context, MyCarLocationIntent.path, arguments: {
-      "latitude": intent.latitude,
-      "longitude": intent.longitude,
-    });
+    return Navigator.pushNamed(context, MyCarLocationIntent.path,
+        arguments: intent.id);
   })
 //profile
   ..onNavigationIntent<EditProfileIntent>((context, intent) {
@@ -192,12 +190,10 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
   } else if (NotificationsScreenIntent.path == settings.name) {
     return _createRoute(NotificationsScreen().wrapWith(_launcher));
   } else if (MyCarsIntent.path == settings.name) {
-    return _createRoute(MyCarsScreen().wrapWith(_launcher));
+    return _createRoute(const MyCarsScreen().wrapWith(_launcher));
   } else if (MyCarLocationIntent.path == settings.name) {
-    var map = settings.arguments as Map;
     return _createRoute(MyCarLocationScreen(
-      latitude: map["latitude"],
-      longitude: map["longitude"],
+      id: settings.arguments as num,
     ).wrapWith(_launcher));
   } else if (CarInfoDetailIntent.path == settings.name) {
     var cardId = settings.arguments as num;

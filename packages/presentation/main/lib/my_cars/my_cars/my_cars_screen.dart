@@ -131,10 +131,11 @@ class _MyCarsScreenState extends State<MyCarsScreen>
                         }
                       },
                       onCarLocation: () {
-                        context.openScreen(MyCarLocationIntent(
-                          latitude: 41.316734,
-                          longitude: 69.251670,
-                        ));
+                        context.openScreen(
+                          MyCarLocationIntent(
+                            id: state.myCars[index].id ?? 0,
+                          ),
+                        );
                       },
                       onDelete: () {
                         cubit.deleteCar(state.myCars[index].id ?? 0);

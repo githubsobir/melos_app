@@ -46,7 +46,9 @@ class PathImages {
   static var locationFilled =
       "packages/common/assets/locations/location_filled.svg";
   static var locationRed = "packages/common/assets/locations/location_red.svg";
-  static var locationPinPng = "packages/common/assets/locations/location_pin_png.png";
+  static var locationPinPng =
+      "packages/common/assets/locations/location_pin_png.png";
+  static var speedometer = "packages/common/assets/locations/speedometer.svg";
 
 //---------------- main ----------------//
   static var logo = "packages/common/assets/main/logo.svg";
@@ -75,8 +77,10 @@ class PathImages {
 
 //---------------- my cars ----------------//
   static var closedType = "packages/common/assets/my_cars/closed_type.svg";
-  static var carStatusEnabled = "packages/common/assets/my_cars/car_status_enabled.svg";
-  static var carStatusDisabled = "packages/common/assets/my_cars/car_status_disabled.svg";
+  static var carStatusEnabled =
+      "packages/common/assets/my_cars/car_status_enabled.svg";
+  static var carStatusDisabled =
+      "packages/common/assets/my_cars/car_status_disabled.svg";
   static var lockDoors = "packages/common/assets/my_cars/lock_doors.svg";
   static var nearbyCircled =
       "packages/common/assets/my_cars/nearby_circled.svg";
@@ -87,8 +91,11 @@ class PathImages {
   static var click = "packages/common/assets/payment/click.png";
   static var humoUzcard = "packages/common/assets/payment/humo_uzcard.png";
   static var payme = "packages/common/assets/payment/payme.png";
-  static var securitySafety = "packages/common/assets/payment/security_safety.svg";
-  static var paymentSuccessfully = "packages/common/assets/payment/payment_successfully.svg";
-  static var nearbyCircledGrey = "packages/common/assets/payment/nearby_circled_grey.svg";
+  static var securitySafety =
+      "packages/common/assets/payment/security_safety.svg";
+  static var paymentSuccessfully =
+      "packages/common/assets/payment/payment_successfully.svg";
+  static var nearbyCircledGrey =
+      "packages/common/assets/payment/nearby_circled_grey.svg";
   static var uploadImage = "packages/common/assets/payment/upload_image.svg";
 }

@@ -12,7 +12,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:home/home_screen.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:internet_connection_checker_plus/internet_connection_checker_plus.dart';
-import 'package:locations/locations_screen.dart';
+import 'package:locations/locations/locations_screen.dart';
 import 'package:main/main/connection_bottom_sheet.dart';
 import 'package:main/main/drawer_widget.dart';
 import 'package:main/main/main_cubit.dart';

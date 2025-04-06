@@ -4,6 +4,7 @@ import 'package:domain/model/cars/car_model.dart';
 import 'package:domain/model/cars/current_car_model.dart';
 import 'package:domain/model/cars/filter_model.dart';
 import 'package:domain/model/cars/my_car_model.dart';
+import 'package:domain/model/location/current_gps_model.dart';
 import 'package:domain/model/location/gps_model.dart';
 import 'package:domain/utils/base_result.dart';
 
@@ -57,4 +58,6 @@ abstract class CarsRepository {
   Future<BaseResult<bool>> onCompleteCar({required num id});
 
   Future<BaseResult<bool>> deleteCar({required num id});
+
+  Future<BaseResult<CurrentGpsModel>> gpsLocation({required num id});
 }

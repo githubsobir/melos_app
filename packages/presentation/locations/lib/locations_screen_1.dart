@@ -10,7 +10,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:latlong2/latlong.dart';
-import 'package:locations/locations_cubit.dart';
+import 'package:locations/locations/locations_cubit.dart';
 import 'package:navigation/my_cars_intents.dart';
 
 class LocationsScreen extends StatelessWidget {

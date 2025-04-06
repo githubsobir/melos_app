@@ -246,4 +246,11 @@ class CarsService {
     );
     return response;
   }
+
+  Future<Response> gpsLocation({required num id}) async {
+    var response = await _netBase.dio.get(
+      'gps/$id/',
+    );
+    return response;
+  }
 }

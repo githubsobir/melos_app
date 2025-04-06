@@ -6,6 +6,7 @@ import 'package:data/models/remote/cars/response/current_car_response.dart';
 import 'package:data/models/remote/cars/response/filter_response.dart';
 import 'package:data/models/remote/cars/response/liked_cars_response.dart';
 import 'package:data/models/remote/cars/response/my_car_response.dart';
+import 'package:data/models/remote/location/current_gps_response.dart';
 import 'package:data/models/remote/location/gps_response.dart';
 import 'package:data/models/remote/location/map_api_key_response.dart';
 import 'package:data/service/cars_service.dart';
@@ -16,6 +17,7 @@ import 'package:domain/model/cars/car_model.dart';
 import 'package:domain/model/cars/current_car_model.dart';
 import 'package:domain/model/cars/filter_model.dart';
 import 'package:domain/model/cars/my_car_model.dart';
+import 'package:domain/model/location/current_gps_model.dart';
 import 'package:domain/model/location/gps_model.dart';
 import 'package:domain/repository/cars_repository.dart';
 import 'package:domain/utils/base_result.dart';
@@ -340,6 +342,22 @@ class CarsRepositoryImpl extends CarsRepository {
       return BaseResult(
         success: true,
         body: true,
+      );
+    } on DioException catch (error) {
+      return BaseResult(
+          success: false, exceptionBody: error.response?.data['error_note']);
+    } catch (exception) {
+      return BaseResult(success: false, exceptionBody: exception);
+    }
+  }
+
+  @override
+  Future<BaseResult<CurrentGpsModel>> gpsLocation({required num id}) async {
+    try {
+      var response = await _carsService.gpsLocation(id: id);
+      return BaseResult(
+        success: true,
+        body: CurrentGpsResponse.fromJson(response.data).toDomainModel(),
       );
     } on DioException catch (error) {
       return BaseResult(
