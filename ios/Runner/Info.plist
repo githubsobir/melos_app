@@ -34,6 +34,8 @@
 	<string>This app needs access to location when in the background.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>This app needs access to location when open.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+    <string>This app needs access to location when open.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Allow access to photo library</string>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
@@ -60,12 +62,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>com.apple.security.network.client</key>
-    <true/>
-    <key>NSAppTransportSecurity</key>
-    <dict>
-        <key>NSAllowsArbitraryLoads</key>
-        <true/>
-    </dict>
 </dict>
 </plist>
