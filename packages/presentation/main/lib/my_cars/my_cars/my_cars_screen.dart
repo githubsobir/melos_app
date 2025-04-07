@@ -4,6 +4,7 @@ import 'package:domain/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intent_launcher/intent_launcher.dart';
+import 'package:main/my_cars/my_cars/edit_car_bottom_sheet.dart';
 import 'package:main/my_cars/my_cars/item_my_car.dart';
 import 'package:main/my_cars/my_cars/my_cars_cubit.dart';
 import 'package:navigation/main_navigation_intents.dart';
@@ -65,7 +66,7 @@ class _MyCarsScreenState extends State<MyCarsScreen>
       ),
       body: BlocBuilder<MyCarsCubit, MyCarsState>(
         bloc: cubit,
-        builder: (context, state) {
+        builder: (ctx, state) {
           return TabBarView(
             controller: tabController,
             children: [
@@ -118,10 +119,29 @@ class _MyCarsScreenState extends State<MyCarsScreen>
                     right: 16,
                     bottom: 24,
                   ),
-                  itemBuilder: (context, index) {
+                  itemBuilder: (ctx, index) {
                     return ItemMyCar(
                       carImage: "$BASE_URL_IMAGE${state.myCars[index].photo}",
-                      onEdit: () {},
+                      onEdit: () {
+                        EditCarBottomSheet.show(
+                          context: context,
+                          onEdit: ({
+                            required dailyRate,
+                            required latitude,
+                            required longitude,
+                          }) {
+                            cubit.updateCar(
+                              id: state.myCars[index].id ?? 0,
+                              dailyRate: dailyRate,
+                              latitude: latitude,
+                              longitude: longitude,
+                            );
+                          },
+                          carName:
+                              "${state.myCars[index].make} ${state.myCars[index].model}",
+                          image: "${state.myCars[index].photo}",
+                        );
+                      },
                       carName:
                           "${state.myCars[index].model} ${state.myCars[index].make}",
                       carAvailable: state.myCars[index].status == "available",
@@ -139,13 +159,14 @@ class _MyCarsScreenState extends State<MyCarsScreen>
                       },
                       onDelete: () {
                         cubit.deleteCar(state.myCars[index].id ?? 0);
-                      }, onLock: () {
+                      },
+                      onLock: () {
                         context.openScreen(
                           LockScreenIntent(
                             id: state.myCars[index].id ?? 0,
                           ),
                         );
-                    },
+                      },
                     );
                   },
                 ),

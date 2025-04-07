@@ -56,6 +56,26 @@ class MyCarsCubit extends Cubit<MyCarsState> {
       getMyCars();
     }
   }
+
+  Future<void> updateCar({
+    required num id,
+    required String dailyRate,
+    required double latitude,
+    required double longitude,
+  }) async {
+    var response = await _carsUseCase.updateCar(
+      id: id,
+      dailyRate: dailyRate,
+      latitude: latitude,
+      longitude: longitude,
+    );
+    if (response.success) {
+      var cars = response.body;
+      if (cars != null) {
+        getMyCars();
+      }
+    }
+  }
 }
 
 final class MyCarsState extends Equatable {

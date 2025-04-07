@@ -253,4 +253,16 @@ class CarsService {
     );
     return response;
   }
+
+  Future<Response> updateCar({
+    required num id,
+    required String dailyRate,
+    required double latitude,
+    required double longitude,
+  }) async {
+    var response = await _netBase.dio.put(
+      'cars/update/$id/?longitude=$longitude&latitude=$latitude&daily_rate=$dailyRate',
+    );
+    return response;
+  }
 }

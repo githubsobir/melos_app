@@ -130,7 +130,9 @@ class _MyCarLocationScreenState extends State<MyCarLocationScreen> {
             ),
           );
         } else if (state is CarLocationLoadingState) {
-          return const CircularProgressIndicator();
+          return const Scaffold(
+            body: Center(child: CircularProgressIndicator()),
+          );
         } else {
           return Container();
         }

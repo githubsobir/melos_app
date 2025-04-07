@@ -60,4 +60,11 @@ abstract class CarsRepository {
   Future<BaseResult<bool>> deleteCar({required num id});
 
   Future<BaseResult<CurrentGpsModel>> gpsLocation({required num id});
+
+  Future<BaseResult<bool>> updateCar({
+    required num id,
+    required String dailyRate,
+    required double latitude,
+    required double longitude,
+  });
 }

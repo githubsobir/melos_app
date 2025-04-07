@@ -130,4 +130,17 @@ class CarsUseCase {
   Future<BaseResult<CurrentGpsModel>> gpsLocation({required num id}) {
     return _carsRepository.gpsLocation(id: id);
   }
+
+  Future<BaseResult<bool>> updateCar(
+      {required num id,
+      required String dailyRate,
+      required double latitude,
+      required double longitude}) {
+    return _carsRepository.updateCar(
+      id: id,
+      dailyRate: dailyRate,
+      latitude: latitude,
+      longitude: longitude,
+    );
+  }
 }

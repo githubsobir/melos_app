@@ -366,4 +366,30 @@ class CarsRepositoryImpl extends CarsRepository {
       return BaseResult(success: false, exceptionBody: exception);
     }
   }
+
+  @override
+  Future<BaseResult<bool>> updateCar({
+    required num id,
+    required String dailyRate,
+    required double latitude,
+    required double longitude,
+  }) async {
+    try {
+      var response = await _carsService.updateCar(
+        id: id,
+        dailyRate: dailyRate,
+        latitude: latitude,
+        longitude: longitude,
+      );
+      return BaseResult(
+        success: true,
+        body: true,
+      );
+    } on DioException catch (error) {
+      return BaseResult(
+          success: false, exceptionBody: error.response?.data['error_note']);
+    } catch (exception) {
+      return BaseResult(success: false, exceptionBody: exception);
+    }
+  }
 }
