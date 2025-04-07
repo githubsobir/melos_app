@@ -15,6 +15,7 @@ class ItemMyCar extends StatefulWidget {
     required this.onChangeStatus,
     required this.onCarLocation,
     required this.onDelete,
+    required this.onLock,
   });
 
   final String carImage;
@@ -24,6 +25,7 @@ class ItemMyCar extends StatefulWidget {
   final VoidCallback onDelete;
   final VoidCallback onChangeStatus;
   final VoidCallback onCarLocation;
+  final VoidCallback onLock;
 
   @override
   State<ItemMyCar> createState() => _ItemMyCarState();
@@ -99,9 +101,7 @@ class _ItemMyCarState extends State<ItemMyCar> {
                       child: leftRight(
                         title: "Замок ",
                         icon: PathImages.lockDoors,
-                        onTap: () {
-                          // context.openScreen(MyCarLocationIntent());
-                        },
+                        onTap: widget.onLock,
                       ),
                     ),
                   ],

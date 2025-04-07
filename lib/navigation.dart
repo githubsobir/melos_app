@@ -16,6 +16,7 @@ import 'package:main/booking_history/booking_history_screen.dart';
 import 'package:main/car_info/car_info_detail_screen.dart';
 import 'package:main/main/main_screen.dart';
 import 'package:main/my_cars/create_car/create_car_info_screen.dart';
+import 'package:main/my_cars/my_cars/lock_screen.dart';
 import 'package:main/my_cars/my_cars/my_cars_screen.dart';
 import 'package:main/notifications/notifications_screen.dart';
 import 'package:main/payment_details/confirm_booking/confirm_booking_screen.dart';
@@ -95,6 +96,10 @@ final _launcher = IntentLauncher()
   })
   ..onNavigationIntent<LocationsScreenIntent>((context, intent) {
     return Navigator.pushNamed(context, LocationsScreenIntent.path);
+  })
+  ..onNavigationIntent<LockScreenIntent>((context, intent) {
+    return Navigator.pushNamed(context, LockScreenIntent.path,
+        arguments: intent.id);
   })
   ..onNavigationIntent<SelectLocationScreenIntent>((context, intent) {
     return Navigator.pushNamed(context, SelectLocationScreenIntent.path);
@@ -178,13 +183,17 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
       phoneNumber: settings.arguments as String,
     ).wrapWith(_launcher));
   } else if (MainIntent.path == settings.name) {
-    return _createRoute(MainScreen().wrapWith(_launcher));
+    return _createRoute(const MainScreen().wrapWith(_launcher));
   } else if (BookingIntent.path == settings.name) {
-    return _createRoute(BookingScreen().wrapWith(_launcher));
+    return _createRoute(const BookingScreen().wrapWith(_launcher));
   } else if (BookingHistoryIntent.path == settings.name) {
     return _createRoute(BookingHistoryScreen().wrapWith(_launcher));
   } else if (LocationsScreenIntent.path == settings.name) {
     return _createRoute(LocationsScreen().wrapWith(_launcher));
+  } else if (LockScreenIntent.path == settings.name) {
+    return _createRoute(LockScreen(
+      id: settings.arguments as num,
+    ).wrapWith(_launcher));
   } else if (SelectLocationScreenIntent.path == settings.name) {
     return _createRoute(const SelectLocationScreen().wrapWith(_launcher));
   } else if (NotificationsScreenIntent.path == settings.name) {

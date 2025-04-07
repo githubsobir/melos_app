@@ -139,7 +139,13 @@ class _MyCarsScreenState extends State<MyCarsScreen>
                       },
                       onDelete: () {
                         cubit.deleteCar(state.myCars[index].id ?? 0);
-                      },
+                      }, onLock: () {
+                        context.openScreen(
+                          LockScreenIntent(
+                            id: state.myCars[index].id ?? 0,
+                          ),
+                        );
+                    },
                     );
                   },
                 ),

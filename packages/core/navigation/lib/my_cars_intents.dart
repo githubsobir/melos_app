@@ -21,6 +21,13 @@ class LocationsScreenIntent implements NavigationIntent {
   static String path = "/LocationsScreenIntent";
 }
 
+class LockScreenIntent implements NavigationIntent {
+  static String path = "/LockScreenIntent";
+  num id;
+
+  LockScreenIntent({required this.id});
+}
+
 class SelectLocationScreenIntent implements NavigationIntent {
   static String path = "/SelectLocationScreenIntent";
 }
