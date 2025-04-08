@@ -17,6 +17,7 @@ import 'package:main/car_info/car_info_detail_cubit.dart';
 import 'package:main/car_info/review_card.dart';
 import 'package:navigation/main_navigation_intents.dart';
 import 'package:navigation/my_cars_intents.dart';
+import 'package:share_plus/share_plus.dart';
 
 class CarInfoDetailScreen extends StatelessWidget {
   CarInfoDetailScreen({super.key, required this.carId});
@@ -91,10 +92,15 @@ class CarInfoDetailScreen extends StatelessWidget {
                                         Theme.of(context).textTheme.titleSmall,
                                   ),
                                 ),
-                                SvgPicture.asset(
-                                  PathImages.share,
-                                  height: 24,
-                                  width: 24,
+                                GestureDetector(
+                                  onTap: () {
+                                    Share.share("${state.carDetail.url}");
+                                  },
+                                  child: SvgPicture.asset(
+                                    PathImages.share,
+                                    height: 24,
+                                    width: 24,
+                                  ),
                                 ),
                                 const SizedBox(
                                   width: 16,
@@ -138,7 +144,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                                   width: 8,
                                 ),
                                 Text(
-                                  "440+ рецензентов",
+                                  "${(state.carDetail.reviewsCount ?? 0)} рецензентов",
                                   style: Theme.of(context)
                                       .textTheme
                                       .labelMedium
