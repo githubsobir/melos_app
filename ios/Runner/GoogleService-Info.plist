@@ -9,7 +9,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>uz.micro.star.carbnb</string>
+	<string>uz.micro.star.carbnb1</string>
 	<key>PROJECT_ID</key>
 	<string>carbnb-1a5e4</string>
 	<key>STORAGE_BUCKET</key>
@@ -25,6 +25,6 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:447961271413:ios:3e7b12149a03289d447c3c</string>
+	<string>1:447961271413:ios:a45c79a5c561aab5447c3c</string>
 </dict>
 </plist>

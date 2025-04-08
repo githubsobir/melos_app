@@ -12,3 +12,5 @@
 https://carbnb.uz/backend/swagger/
 
 https://pub.dev/packages/flutter_navigation_generator/example
+
+https://firebase.google.com/docs/flutter/setup?hl=ru&platform=ios

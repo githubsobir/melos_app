@@ -59,10 +59,11 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyBOf0U8BkL6cjS_b0def5gewXcnLw_loA4',
-    appId: '1:447961271413:ios:3e7b12149a03289d447c3c',
+    appId: '1:447961271413:ios:a45c79a5c561aab5447c3c',
     messagingSenderId: '447961271413',
     projectId: 'carbnb-1a5e4',
     storageBucket: 'carbnb-1a5e4.firebasestorage.app',
-    iosBundleId: 'uz.micro.star.carbnb',
+    iosBundleId: 'uz.micro.star.carbnb1',
   );
+
 }
