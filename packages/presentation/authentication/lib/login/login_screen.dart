@@ -27,6 +27,7 @@ class LoginScreen extends StatelessWidget {
       body: BlocConsumer(
         bloc: cubit,
         listener: (context, state) {
+          FocusManager.instance.primaryFocus?.unfocus();
           if (state is EmptyFieldsErrorState) {
             showToast(context.translations.please_fill_in_all_fields);
           } else if (state is UserNotFound) {
