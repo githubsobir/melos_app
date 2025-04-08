@@ -33,6 +33,10 @@ class BookingHistoryScreen extends StatelessWidget {
                     itemBuilder: (context, index) {
                       return ItemBookingHistory(
                         carImage: state.histories[index].photo ?? "",
+                        carName:
+                            "${state.histories[index].make} ${state.histories[index].model}",
+                        fromDate: state.histories[index].startDate ?? "",
+                        toDate: state.histories[index].endDate ?? "",
                       );
                     },
                   )
