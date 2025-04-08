@@ -178,7 +178,7 @@ class _LocationsScreenState extends State<LocationsScreen> {
                               },
                               carImage:
                                   "$BASE_URL_IMAGE${state.gps[index].photo}",
-                              carName: "${state.gps[index].make}",
+                              carName: "${state.gps[index].make} ${state.gps[index].model}",
                               carRating:
                                   (state.gps[index].rating ?? 0).toDouble(),
                               carLocation: "${state.gps[index].address}",
