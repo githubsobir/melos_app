@@ -152,16 +152,27 @@ class NotificationsScreen extends StatelessWidget {
                           // color: Theme.of(context).colorScheme.primary,
                         ),
                   ),
-                  const SizedBox(
-                    height: 16,
+                  Visibility(
+                    visible: image.isNotEmpty,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        const SizedBox(
+                          height: 16,
+                        ),
+                        ItemCarImage(imagePath: "$BASE_URL_IMAGE$image"),
+                      ],
+                    ),
                   ),
-                  ItemCarImage(imagePath: "$BASE_URL_IMAGE$image"),
                   const SizedBox(
                     height: 16,
                   ),
                   Text(
                     body,
                     style: Theme.of(context).textTheme.labelMedium,
+                  ),
+                  const SizedBox(
+                    height: 24,
                   ),
                 ],
               ),
