@@ -268,10 +268,13 @@ class _ItemCarPopularState extends State<ItemCarPopular> {
                                             .textTheme
                                             .bodyMedium
                                             ?.copyWith(
-                                                color: Theme.of(context)
-                                                    .colorScheme
-                                                    .secondary,
-                                                fontSize: 14),
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .secondary,
+                                              fontSize: 14,
+                                              decoration:
+                                                  TextDecoration.lineThrough,
+                                            ),
                                       )
                                     : Container(
                                         height: 8,
