@@ -30,7 +30,7 @@ class CarsRepositoryImpl extends CarsRepository {
   @override
   Future<BaseResult<List<CarModel>>> recommendedCars({
     required int page,
-    required int maxPrice,
+    required int? maxPrice,
     String? startDataTime,
     String? endDataTime,
     String? latitude,

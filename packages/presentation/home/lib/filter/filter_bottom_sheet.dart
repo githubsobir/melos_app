@@ -310,7 +310,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                   Padding(
                     padding: const EdgeInsets.only(left: 16, right: 16),
                     child: Text(
-                      "Макс. ${state.filter.maxPrice} сум",
+                      "Макс. ${state.filter.maxPrice ?? 5000000} сум",
                       style: Theme.of(context)
                           .textTheme
                           .titleSmall
@@ -319,7 +319,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                   ),
                   Slider(
                     inactiveColor: Theme.of(context).colorScheme.secondary,
-                    value: state.filter.maxPrice.toDouble(),
+                    value: (state.filter.maxPrice ?? 5000000).toDouble(),
                     min: 100000,
                     max: 5000000,
                     onChanged: (value) {

@@ -10,7 +10,7 @@ class CarsService {
 
   Future<Response> recommendedCars({
     required int page,
-    required int maxPrice,
+    required int? maxPrice,
     String? startDataTime,
     String? endDataTime,
     String? latitude,
@@ -66,7 +66,9 @@ class CarsService {
       query += "&cities=$citiesList";
     }
 
-    query += "&max_price=$maxPrice";
+    if (maxPrice != null) {
+      query += "&max_price=$maxPrice";
+    }
 
     var response = await _netBase.dio.get(
       'cars/list/recommended/?page=$page$query',
