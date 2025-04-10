@@ -506,7 +506,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                                       "${(state.carDetail.recommendCars ?? [])[index].category}",
                                   dailyRate: ((state.carDetail.recommendCars ??
                                               [])[index]
-                                          .originalPrice ??
+                                          .dailyRate ??
                                       ""),
                                   originalPrice:
                                       ((state.carDetail.recommendCars ??

@@ -212,7 +212,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               carModel: "${state.recommended[index].model}",
                               carType: "${state.recommended[index].category}",
                               dailyRate:
-                                  (state.recommended[index].originalPrice ??
+                                  (state.recommended[index].dailyRate ??
                                       ""),
                               originalPrice:
                                   (state.recommended[index].originalPrice),
