@@ -421,9 +421,11 @@ class _Page1State extends State<Page1> {
                   (value) {
                     if (value is PointModel) {
                       widget.onChangedLocations(
-                          value.latitude, value.longitude);
+                        value.latitude,
+                        value.longitude,
+                      );
                       setState(() {
-                        location = "${value.latitude}, ${value.longitude}";
+                        location = value.address;
                       });
                     }
                   },

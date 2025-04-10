@@ -10,7 +10,7 @@ import 'package:flutter/material.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:locations/locations/locations_screen.dart';
 import 'package:locations/my_car/my_car_location_screen.dart';
-import 'package:locations/select_location_screen.dart';
+import 'package:locations/select_location/select_location_screen.dart';
 import 'package:main/booking/booking_screen.dart';
 import 'package:main/booking_history/booking_history_screen.dart';
 import 'package:main/car_info/car_info_detail_screen.dart';
@@ -195,7 +195,7 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
       id: settings.arguments as num,
     ).wrapWith(_launcher));
   } else if (SelectLocationScreenIntent.path == settings.name) {
-    return _createRoute(const SelectLocationScreen().wrapWith(_launcher));
+    return _createRoute(SelectLocationScreen().wrapWith(_launcher));
   } else if (NotificationsScreenIntent.path == settings.name) {
     return _createRoute(NotificationsScreen().wrapWith(_launcher));
   } else if (MyCarsIntent.path == settings.name) {
