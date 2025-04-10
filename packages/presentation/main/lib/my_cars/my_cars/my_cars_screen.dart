@@ -103,6 +103,16 @@ class _MyCarsScreenState extends State<MyCarsScreen>
                         cubit.onCompleteCar(state.currentCars[index].id ?? 0);
                       },
                       carStatus: "${state.currentCars[index].status}",
+                      carName:
+                          "${state.currentCars[index].make} ${state.currentCars[index].model}",
+                      startDate: "${state.currentCars[index].startDate}",
+                      endDate: "${state.currentCars[index].endDate}",
+                      clientProfileImage:
+                          "${state.currentCars[index].clientProfileImage}",
+                      clientProfileName:
+                          "${state.currentCars[index].clientFirstName} ${state.currentCars[index].clientLastName}",
+                      clientProfilePhone:
+                          "${state.currentCars[index].clientPhoneNumber}",
                     );
                   },
                 ),

@@ -11,6 +11,7 @@ class ContractResponse {
     this.securityDeposit,
     this.totalAmount,
     this.rentalDays,
+    this.address,
     this.addressLink,
   });
 
@@ -25,6 +26,7 @@ class ContractResponse {
     totalAmount = json['total_amount'];
     rentalDays = json['rental_days'];
     addressLink = json['address_link'];
+    address = json['address'];
   }
 
   num? id;
@@ -36,6 +38,7 @@ class ContractResponse {
   String? securityDeposit;
   String? totalAmount;
   num? rentalDays;
+  String? address;
   String? addressLink;
 
   Map<String, dynamic> toJson() {
@@ -49,6 +52,7 @@ class ContractResponse {
     map['security_deposit'] = securityDeposit;
     map['total_amount'] = totalAmount;
     map['rental_days'] = rentalDays;
+    map['address'] = address;
     map['address_link'] = addressLink;
     return map;
   }
@@ -66,6 +70,7 @@ extension ContactMapper on ContractResponse {
       securityDeposit: securityDeposit,
       totalAmount: totalAmount,
       rentalDays: rentalDays,
+      address: address,
       addressLink: addressLink,
     );
   }

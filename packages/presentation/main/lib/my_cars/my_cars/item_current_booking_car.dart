@@ -12,10 +12,22 @@ class ItemCurrentBookingCar extends StatefulWidget {
     required this.onConfirmBooking,
     required this.onComplete,
     required this.carStatus,
+    required this.carName,
+    required this.startDate,
+    required this.endDate,
+    required this.clientProfileImage,
+    required this.clientProfileName,
+    required this.clientProfilePhone,
   });
 
   final String carImage;
+  final String carName;
+  final String startDate;
+  final String endDate;
   final String carStatus;
+  final String clientProfileImage;
+  final String clientProfileName;
+  final String clientProfilePhone;
   final VoidCallback onConfirmBooking;
   final VoidCallback onComplete;
 
@@ -71,7 +83,7 @@ class _ItemCurrentBookingCarState extends State<ItemCurrentBookingCar> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 Text(
-                  "Chevrolet Captiva",
+                  widget.carName,
                   style: Theme.of(context)
                       .textTheme
                       .bodyMedium
@@ -88,7 +100,7 @@ class _ItemCurrentBookingCarState extends State<ItemCurrentBookingCar> {
                           borderRadius: BorderRadius.circular(24.0),
                           child: CachedNetworkImage(
                             imageUrl:
-                                "$BASE_URL_IMAGE/backend/media/car_photos/db/cars_image/photo73_kvkGvlK.jpg",
+                                "$BASE_URL_IMAGE${widget.clientProfileImage}",
                             width: 24,
                             height: 24,
                             fit: BoxFit.cover,
@@ -123,7 +135,7 @@ class _ItemCurrentBookingCarState extends State<ItemCurrentBookingCar> {
                           width: 8,
                         ),
                         Text(
-                          "Azizbek Karimov",
+                          widget.clientProfileName,
                           style:
                               Theme.of(context).textTheme.labelLarge?.copyWith(
                                     fontWeight: FontWeight.w700,
@@ -140,7 +152,7 @@ class _ItemCurrentBookingCarState extends State<ItemCurrentBookingCar> {
                           width: 8,
                         ),
                         Text(
-                          "+998 93 935 0321",
+                          widget.clientProfilePhone,
                           style:
                               Theme.of(context).textTheme.labelLarge?.copyWith(
                                     fontWeight: FontWeight.w700,
@@ -155,18 +167,18 @@ class _ItemCurrentBookingCarState extends State<ItemCurrentBookingCar> {
                   height: 12,
                 ),
                 //////
-                const Row(
+                Row(
                   children: [
                     Expanded(
                       child: ItemTopBottomCenter(
                         leftText: "Дата получения",
-                        rightText: "12 нояб. 2024 г.",
+                        rightText: widget.startDate,
                       ),
                     ),
                     Expanded(
                       child: ItemTopBottomCenter(
                         leftText: "Дата возврата",
-                        rightText: "12 нояб. 2024 г.",
+                        rightText: widget.endDate,
                       ),
                     ),
                   ],

@@ -189,7 +189,7 @@ class ConfirmBookingScreen extends StatelessWidget {
                                             BorderRadius.circular(100.0),
                                         child: CachedNetworkImage(
                                           imageUrl:
-                                              "$BASE_URL_IMAGE/${contract.clientProfileImage}",
+                                              "$BASE_URL_IMAGE${contract.clientProfileImage}",
                                           width: 44,
                                           height: 44,
                                           fit: BoxFit.cover,

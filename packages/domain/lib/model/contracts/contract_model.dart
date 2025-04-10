@@ -9,6 +9,7 @@ class ContractModel {
     this.securityDeposit,
     this.totalAmount,
     this.rentalDays,
+    this.address,
     this.addressLink,
   });
 
@@ -21,5 +22,6 @@ class ContractModel {
   String? securityDeposit;
   String? totalAmount;
   num? rentalDays;
+  String? address;
   String? addressLink;
 }

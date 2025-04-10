@@ -214,7 +214,7 @@ class ReceivingTheCarScreen extends StatelessWidget {
                                               BorderRadius.circular(100.0),
                                           child: CachedNetworkImage(
                                             imageUrl:
-                                                "$BASE_URL_IMAGE/${state.contract?.profilePage}",
+                                                "$BASE_URL_IMAGE${state.contract?.profilePage}",
                                             width: 44,
                                             height: 44,
                                             fit: BoxFit.cover,
@@ -297,7 +297,7 @@ class ReceivingTheCarScreen extends StatelessWidget {
                                           width: 8,
                                         ),
                                         Text(
-                                          "${state.contract?.addressLink}",
+                                          "${state.contract?.address}",
                                           style: Theme.of(context)
                                               .textTheme
                                               .labelMedium

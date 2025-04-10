@@ -148,7 +148,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                                 ),
                                 Expanded(
                                   child: Text(
-                                    state.paymentProcessModel.make ?? "",
+                                    "${state.paymentProcessModel.make} ${state.paymentProcessModel.model}",
                                     style:
                                         Theme.of(context).textTheme.bodyLarge,
                                   ),
