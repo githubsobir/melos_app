@@ -76,4 +76,12 @@ class AuthUseCase {
   Future<BaseResult<bool>> sendFirebaseToken() {
     return _authRepository.sendFirebaseToken();
   }
+
+  Future<bool> isFirsTime() {
+    return _authRepository.isFirsTime();
+  }
+
+  Future<bool> setFirstTime(bool isFirsTime) {
+    return _authRepository.setFirstTime(isFirsTime);
+  }
 }

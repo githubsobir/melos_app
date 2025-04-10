@@ -32,4 +32,8 @@ abstract class AuthRepository {
   Future<BaseResult<bool>> forgotPassword({required String phoneNumber, required String newPassword, required String confirmPassword});
 
   Future<BaseResult<bool>> sendFirebaseToken();
+
+  Future<bool> isFirsTime();
+
+  Future<bool> setFirstTime(bool isFirsTime);
 }

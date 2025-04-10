@@ -31,7 +31,8 @@ class _MainScreenState extends State<MainScreen> {
   StreamSubscription<InternetStatus>? _subscription;
   final cubit = MainCubit(inject(), inject())
     ..hasUserProfile()
-    ..unreadNotification();
+    ..unreadNotification()
+    ..sendFirebaseToken();
 
   static final List<Widget> _mainScreens = <Widget>[];
 
@@ -43,8 +44,8 @@ class _MainScreenState extends State<MainScreen> {
       Container(
         color: Colors.greenAccent,
       ),
-      FavouritesScreen(),
-      ProfileScreen(),
+      const FavouritesScreen(),
+      const ProfileScreen(),
     ]);
 
     _subscription =

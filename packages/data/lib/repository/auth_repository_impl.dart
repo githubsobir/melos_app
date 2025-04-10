@@ -149,10 +149,11 @@ class AuthRepositoryImpl extends AuthRepository {
   }
 
   @override
-  Future<BaseResult<bool>> forgotPassword(
-      {required String phoneNumber,
-      required String newPassword,
-      required String confirmPassword}) async {
+  Future<BaseResult<bool>> forgotPassword({
+    required String phoneNumber,
+    required String newPassword,
+    required String confirmPassword,
+  }) async {
     try {
       var response = await _authServices.forgotPassword(ForgotPasswordRequest(
         phoneNumber: phoneNumber,
@@ -185,5 +186,16 @@ class AuthRepositoryImpl extends AuthRepository {
     } catch (exception) {
       return BaseResult(success: false, exceptionBody: exception);
     }
+  }
+
+  @override
+  Future<bool> isFirsTime() async {
+    var isFirstTime = await MySharedPref.instance.isFirstTime();
+    return isFirstTime;
+  }
+
+  @override
+  Future<bool> setFirstTime(bool isFirsTime) async {
+    return await MySharedPref.instance.setFirstTime(isFirsTime);
   }
 }

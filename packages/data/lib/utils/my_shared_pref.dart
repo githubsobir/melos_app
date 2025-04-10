@@ -69,4 +69,16 @@ class MySharedPref {
     String name = prefs.getString('THEME_MODE') ?? ThemeMode.system.name;
     return name;
   }
+
+  Future<bool> setFirstTime(bool isFirstTime) async {
+    SharedPreferences prefs = await _getInstance();
+    myPrint("setFirstTime: $isFirstTime");
+    return prefs.setBool('FIRST_TIME', isFirstTime);
+  }
+
+  Future<bool> isFirstTime() async {
+    SharedPreferences prefs = await _getInstance();
+    bool name = prefs.getBool('FIRST_TIME') ?? true;
+    return name;
+  }
 }

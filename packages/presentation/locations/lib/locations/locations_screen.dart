@@ -16,7 +16,7 @@ class LocationsScreen extends StatefulWidget {
   LocationsScreen({super.key});
 
   final cubit = LocationsCubit(inject())
-    ..mapInitial()
+    // ..mapInitial()
     ..geocoder()
     ..gpsList();
 

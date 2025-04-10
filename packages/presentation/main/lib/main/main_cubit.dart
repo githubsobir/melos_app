@@ -23,10 +23,24 @@ class MainCubit extends Cubit<MainState> {
     }
   }
 
+  sendFirebaseToken() async {
+    try {
+      bool isFirstTime = await _authUseCase.isFirsTime();
+      if (isFirstTime) {
+        _authUseCase.sendFirebaseToken();
+        _authUseCase.setFirstTime(false);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
   unreadNotification() async {
-    var response = await _profileUseCase.unreadNotification();
-    if (response.success) {
-      emit(NotificationState(response.body != 0));
+    if (await _authUseCase.hasUser()) {
+      var response = await _profileUseCase.unreadNotification();
+      if (response.success) {
+        emit(NotificationState(response.body != 0));
+      }
     }
   }
 

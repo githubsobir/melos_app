@@ -55,16 +55,16 @@ class LocationsCubit extends Cubit<LocationsState> {
     }
   }
 
-  Future<void> mapInitial() async {
-    var response = await _carsUseCase.mapApiKey();
-    if (response.success) {
-      var gps = response.body;
-      if (gps != null) {
-        // await init.initMapkit(apiKey: gps);
-        // await init.initMapkit(apiKey: "973005bb-3cfc-4e46-81d2-26939d2b8c3c");
-      }
-    }
-  }
+  // Future<void> mapInitial() async {
+  //   var response = await _carsUseCase.mapApiKey();
+  //   if (response.success) {
+  //     var gps = response.body;
+  //     if (gps != null) {
+  //       // await init.initMapkit(apiKey: gps);
+  //       // await init.initMapkit(apiKey: "973005bb-3cfc-4e46-81d2-26939d2b8c3c");
+  //     }
+  //   }
+  // }
 
   Future<void> geocoder() async {
     var response = await _carsUseCase.geocoder(
