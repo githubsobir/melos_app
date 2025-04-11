@@ -10,6 +10,7 @@ class BookingCubit extends Cubit<BookingState> {
           bookingList: [],
           bookingCurrent: [],
           bookingIsFinished: false,
+          finishedBookingId: 0,
         ));
   final BookingUseCase _bookingUseCase;
 
@@ -38,25 +39,37 @@ class BookingCubit extends Cubit<BookingState> {
   }
 
   Future<void> finishBooking(num bookingId) async {
+    emit(state.copyWith(bookingIsFinished: true));
     var response = await _bookingUseCase.finishBooking(bookingId: bookingId);
     if (response.success) {
       bookingList();
       bookingCurrent();
-      emit(state.copyWith(bookingIsFinished: true));
-      state.copyWith(bookingIsFinished: false);
+      emit(
+        state.copyWith(
+          finishedBookingId: bookingId,
+          bookingIsFinished: false,
+        ),
+      );
     }
   }
 
   Future<void> createReview({
-    required num bookingId,
     required int rating,
     required String comment,
   }) async {
     var response = await _bookingUseCase.createReview(
-      bookingId: bookingId,
+      bookingId: state.finishedBookingId,
       rating: rating,
       comment: comment,
     );
+  }
+
+  Future<void> cancelBooking(num bookingId) async {
+    var response = await _bookingUseCase.cancelBooking(bookingId: bookingId);
+    if (response.success) {
+      bookingList();
+      bookingCurrent();
+    }
   }
 }
 
@@ -64,22 +77,26 @@ final class BookingState extends Equatable {
   final List<BookingModel> bookingList;
   final List<BookingCurrentModel> bookingCurrent;
   final bool bookingIsFinished;
+  final num finishedBookingId;
 
   const BookingState({
     required this.bookingList,
     required this.bookingCurrent,
     required this.bookingIsFinished,
+    required this.finishedBookingId,
   });
 
   BookingState copyWith({
     List<BookingModel>? bookingList,
     List<BookingCurrentModel>? bookingCurrent,
     bool? bookingIsFinished,
+    num? finishedBookingId,
   }) {
     return BookingState(
       bookingList: bookingList ?? this.bookingList,
       bookingCurrent: bookingCurrent ?? this.bookingCurrent,
       bookingIsFinished: bookingIsFinished ?? this.bookingIsFinished,
+      finishedBookingId: finishedBookingId ?? this.finishedBookingId,
     );
   }
 
@@ -88,5 +105,6 @@ final class BookingState extends Equatable {
         bookingList,
         bookingCurrent,
         bookingIsFinished,
+        finishedBookingId,
       ];
 }

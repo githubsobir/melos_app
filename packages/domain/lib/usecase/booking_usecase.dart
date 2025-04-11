@@ -36,4 +36,8 @@ class BookingUseCase {
       comment: comment,
     );
   }
+
+  Future<BaseResult<bool>> cancelBooking({required num bookingId}) {
+    return _bookingRepository.cancelBooking(bookingId: bookingId);
+  }
 }

@@ -17,4 +17,6 @@ abstract class BookingRepository {
     required int rating,
     required String comment,
   });
+
+  Future<BaseResult<bool>> cancelBooking({required num bookingId});
 }

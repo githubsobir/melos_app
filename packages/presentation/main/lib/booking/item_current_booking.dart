@@ -144,29 +144,49 @@ class ItemCurrentBooking extends StatelessWidget {
                         SizedBox(
                           height: 12,
                         ),
-                        Container(
-                          decoration: Decorations.basicDecoration(
-                            background: const Color(0xFF16ED38),
-                            radius: 20,
-                          ),
-                          padding: const EdgeInsets.only(
-                            left: 24,
-                            right: 24,
-                            top: 8,
-                            bottom: 8,
-                          ),
-                          child: Text(
-                            context.translations.completed,
-                            style: Theme.of(context)
-                                .textTheme
-                                .labelMedium
-                                ?.copyWith(color: Colors.white),
-                          ),
-                        ),
+                        isPending
+                            ? Container(
+                                decoration: Decorations.basicDecoration(
+                                  background: const Color(0xFFFFAA17),
+                                  radius: 20,
+                                ),
+                                padding: const EdgeInsets.only(
+                                  left: 24,
+                                  right: 24,
+                                  top: 8,
+                                  bottom: 8,
+                                ),
+                                child: Text(
+                                  "Не оплачен",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelMedium
+                                      ?.copyWith(color: Colors.white),
+                                ),
+                              )
+                            : Container(
+                                decoration: Decorations.basicDecoration(
+                                  background: const Color(0xFF16ED38),
+                                  radius: 20,
+                                ),
+                                padding: const EdgeInsets.only(
+                                  left: 24,
+                                  right: 24,
+                                  top: 8,
+                                  bottom: 8,
+                                ),
+                                child: Text(
+                                  context.translations.completed,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelMedium
+                                      ?.copyWith(color: Colors.white),
+                                ),
+                              ),
                       ],
                     ),
                   ),
-                  !isPending
+                  isPending
                       ? GestureDetector(
                           onTap: cancel,
                           child: Row(
@@ -181,8 +201,7 @@ class ItemCurrentBooking extends StatelessWidget {
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium
-                                    ?.copyWith(
-                                        color: const Color(0xffF90707)),
+                                    ?.copyWith(color: const Color(0xffF90707)),
                               ),
                             ],
                           ),

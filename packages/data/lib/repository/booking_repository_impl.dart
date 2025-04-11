@@ -113,4 +113,20 @@ class BookingRepositoryImpl extends BookingRepository {
       return BaseResult(success: false, exceptionBody: exception);
     }
   }
+
+  @override
+  Future<BaseResult<bool>> cancelBooking({required num bookingId}) async {
+    try {
+      var response = await _bookingService.cancelBooking(bookingId: bookingId);
+      return BaseResult(
+        success: true,
+        body: true,
+      );
+    } on DioException catch (error) {
+      return BaseResult(
+          success: false, exceptionBody: error.response?.data['error_note']);
+    } catch (exception) {
+      return BaseResult(success: false, exceptionBody: exception);
+    }
+  }
 }

@@ -45,4 +45,11 @@ class BookingService {
     });
     return response;
   }
+
+  Future<Response> cancelBooking({required num bookingId}) async {
+    var response = await _netBase.dio.post(
+      'booking/cancel/$bookingId/',
+    );
+    return response;
+  }
 }

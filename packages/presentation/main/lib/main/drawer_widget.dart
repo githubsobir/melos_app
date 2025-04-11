@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:common/font_family.dart';
 import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/path_images.dart';
 import 'package:dependency/dependencies/injector.dart';
@@ -38,7 +39,15 @@ class DrawerWidget extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              SvgPicture.asset(PathImages.logo),
+              // SvgPicture.asset(PathImages.logo),
+              Text(
+                "CarBNB",
+                style: TextStyle(
+                  color: Theme.of(context).colorScheme.primary,
+                  fontFamily: FontFamily.BOLD.name,
+                  fontSize: 24,
+                ),
+              ),
               IconButton(
                 onPressed: () {
                   Scaffold.of(context).closeDrawer();

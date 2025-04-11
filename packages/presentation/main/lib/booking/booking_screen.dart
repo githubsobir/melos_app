@@ -83,7 +83,9 @@ class _BookingScreenState extends State<BookingScreen>
                   startDate: state.bookingCurrent[index].startDate ?? "",
                   endDate: state.bookingCurrent[index].endDate ?? "",
                   isPending: state.bookingCurrent[index].status == "pending",
-                  cancel: () {},
+                  cancel: () {
+                    cubit.cancelBooking(state.bookingCurrent[index].id ?? 0);
+                  },
                   booking: () {
                     context
                         .openScreen(ReceivingTheCarGoScreenIntent(
@@ -140,7 +142,6 @@ class _BookingScreenState extends State<BookingScreen>
               onReview: (rating, comment) {
                 print("rating $rating comment $comment");
                 cubit.createReview(
-                  bookingId: state.bookingList[0].id ?? 0,
                   rating: rating,
                   comment: comment,
                 );

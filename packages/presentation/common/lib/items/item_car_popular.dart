@@ -261,6 +261,7 @@ class _ItemCarPopularState extends State<ItemCarPopular> {
                                   ),
                                 ),
                                 widget.dailyRate != widget.originalPrice &&
+                                        widget.originalPrice != "0" &&
                                         widget.originalPrice != null
                                     ? Text(
                                         "${widget.originalPrice} сум/день",
