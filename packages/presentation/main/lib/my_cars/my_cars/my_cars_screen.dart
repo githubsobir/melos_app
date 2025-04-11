@@ -153,7 +153,7 @@ class _MyCarsScreenState extends State<MyCarsScreen>
                         );
                       },
                       carName:
-                          "${state.myCars[index].model} ${state.myCars[index].make}",
+                          "${state.myCars[index].make} ${state.myCars[index].model}",
                       carAvailable: state.myCars[index].isActive ?? false,
                       onChangeStatus: () {
                         if (state.myCars[index].id != null) {
@@ -177,6 +177,8 @@ class _MyCarsScreenState extends State<MyCarsScreen>
                           ),
                         );
                       },
+                      dailyRate:
+                          "${state.myCars[index].dailyRate}",
                     );
                   },
                 ),

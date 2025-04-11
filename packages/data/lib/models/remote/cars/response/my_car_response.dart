@@ -8,6 +8,7 @@ class MyCarResponse {
     this.year,
     this.isActive,
     this.photo,
+    this.dailyRate,
   });
 
   MyCarResponse.fromJson(dynamic json) {
@@ -17,6 +18,7 @@ class MyCarResponse {
     year = json['year'];
     isActive = json['is_active'];
     photo = json['photo'];
+    dailyRate = json['daily_rate'];
   }
 
   num? id;
@@ -25,6 +27,7 @@ class MyCarResponse {
   num? year;
   bool? isActive;
   String? photo;
+  String? dailyRate;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -34,6 +37,7 @@ class MyCarResponse {
     map['year'] = year;
     map['is_active'] = isActive;
     map['photo'] = photo;
+    map['daily_rate'] = dailyRate;
     return map;
   }
 
@@ -51,6 +55,7 @@ extension MyCarMapper on MyCarResponse {
       year: year,
       isActive: isActive,
       photo: photo,
+      dailyRate: dailyRate,
     );
   }
 }

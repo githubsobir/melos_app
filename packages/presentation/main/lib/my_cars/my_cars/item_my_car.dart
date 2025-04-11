@@ -16,10 +16,12 @@ class ItemMyCar extends StatefulWidget {
     required this.onCarLocation,
     required this.onDelete,
     required this.onLock,
+    required this.dailyRate,
   });
 
   final String carImage;
   final String carName;
+  final String dailyRate;
   final bool carAvailable;
   final VoidCallback onEdit;
   final VoidCallback onDelete;
@@ -226,7 +228,7 @@ class _ItemMyCarState extends State<ItemMyCar> {
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     Text(
-                      "12000",
+                      widget.dailyRate,
                       style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                             fontWeight: FontWeight.w700,
                           ),

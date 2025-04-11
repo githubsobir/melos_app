@@ -6,6 +6,7 @@ class MyCarModel {
     this.year,
     this.isActive,
     this.photo,
+    this.dailyRate,
   });
 
   num? id;
@@ -14,4 +15,5 @@ class MyCarModel {
   num? year;
   bool? isActive;
   String? photo;
+  String? dailyRate;
 }
