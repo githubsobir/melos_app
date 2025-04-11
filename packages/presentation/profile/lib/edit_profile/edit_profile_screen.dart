@@ -76,7 +76,10 @@ class EditProfileScreen extends StatelessWidget {
                       BaseTextField(
                         controller: phoneController
                           ..text =
-                              (info.phoneNumber ?? "").replaceAll("+998", ""),
+                              (info.phoneNumber ?? "").replaceAll("+998", "").replaceAllMapped(
+                                RegExp(r'^(\d{2})(\d{3})(\d{2})(\d{2})$'),
+                                    (final Match m) => '${m[1]} ${m[2]} ${m[3]} ${m[4]}',
+                              ),
                         title: context.translations.contact_phone,
                         hint: "__ ___ __ __",
                         type: TextFieldType.PHONE,
