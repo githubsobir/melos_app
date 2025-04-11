@@ -6,7 +6,7 @@ class MyCarResponse {
     this.make,
     this.model,
     this.year,
-    this.status,
+    this.isActive,
     this.photo,
   });
 
@@ -15,7 +15,7 @@ class MyCarResponse {
     make = json['make'];
     model = json['model'];
     year = json['year'];
-    status = json['status'];
+    isActive = json['is_active'];
     photo = json['photo'];
   }
 
@@ -23,7 +23,7 @@ class MyCarResponse {
   String? make;
   String? model;
   num? year;
-  String? status;
+  bool? isActive;
   String? photo;
 
   Map<String, dynamic> toJson() {
@@ -32,7 +32,7 @@ class MyCarResponse {
     map['make'] = make;
     map['model'] = model;
     map['year'] = year;
-    map['status'] = status;
+    map['is_active'] = isActive;
     map['photo'] = photo;
     return map;
   }
@@ -49,7 +49,7 @@ extension MyCarMapper on MyCarResponse {
       make: make,
       model: model,
       year: year,
-      status: status,
+      isActive: isActive,
       photo: photo,
     );
   }

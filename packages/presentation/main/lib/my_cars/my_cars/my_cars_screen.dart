@@ -154,7 +154,7 @@ class _MyCarsScreenState extends State<MyCarsScreen>
                       },
                       carName:
                           "${state.myCars[index].model} ${state.myCars[index].make}",
-                      carAvailable: state.myCars[index].status == "available",
+                      carAvailable: state.myCars[index].isActive ?? false,
                       onChangeStatus: () {
                         if (state.myCars[index].id != null) {
                           cubit.changeCarStatus(state.myCars[index].id!);

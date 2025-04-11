@@ -13,6 +13,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:main/booking/item_car_image.dart';
 import 'package:main/payment_details/confirm_booking/confirm_booking_cubit.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ConfirmBookingScreen extends StatelessWidget {
   ConfirmBookingScreen({super.key, required this.bookingId}) {
@@ -279,6 +280,53 @@ class ConfirmBookingScreen extends StatelessWidget {
                                     ],
                                   ),
                                 ],
+                              ),
+                            ),
+                          ),
+                          Visibility(
+                            visible: state.contract?.clientDocument != null,
+                            child: Card(
+                              child: Padding(
+                                padding: const EdgeInsets.all(16.0),
+                                child: Column(
+                                  crossAxisAlignment:
+                                      CrossAxisAlignment.stretch,
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    GestureDetector(
+                                      child: Padding(
+                                        padding:
+                                            const EdgeInsets.only(bottom: 16),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              "Загрузить страховку",
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .bodySmall
+                                                  ?.copyWith(
+                                                    fontWeight: FontWeight.w700,
+                                                  ),
+                                            ),
+                                            const Icon(
+                                              Icons.file_download_outlined,
+                                              color: Colors.black,
+                                            )
+                                          ],
+                                        ),
+                                      ),
+                                      onTap: () {
+                                        launchUrl(
+                                          Uri.parse(
+                                              "$BASE_URL_IMAGE${state.contract?.clientDocument}"),
+                                          mode: LaunchMode.externalApplication,
+                                        );
+                                      },
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
                           ),

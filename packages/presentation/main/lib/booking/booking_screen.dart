@@ -122,6 +122,10 @@ class _BookingScreenState extends State<BookingScreen>
                       state.bookingList[index].ownerPhoneNumber ?? "",
                   profilePage: state.bookingList[index].profilePage ?? "",
                   carOwner: state.bookingList[index].carOwner ?? "",
+                  powerOfAttorney:
+                      state.bookingList[index].powerOfAttorney ?? "",
+                  contract: state.bookingList[index].contract ?? "",
+                  insurance: state.bookingList[index].insurance ?? "",
                   isPending: state.bookingList[index].status == "pending",
                   finishBooking: () {
                     cubit.finishBooking(state.bookingList[index].id ?? 0);

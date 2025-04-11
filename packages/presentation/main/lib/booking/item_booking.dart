@@ -9,6 +9,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:main/booking/item_top_bottom.dart';
 import 'package:main/car_info/car_image_selector_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ItemBooking extends StatelessWidget {
   final List<String> images;
@@ -23,6 +24,9 @@ class ItemBooking extends StatelessWidget {
   final String ownerPhoneNumber;
   final String profilePage;
   final String carOwner;
+  final String powerOfAttorney;
+  final String contract;
+  final String insurance;
   final bool isPending;
   final VoidCallback finishBooking;
 
@@ -42,6 +46,9 @@ class ItemBooking extends StatelessWidget {
     required this.carOwner,
     required this.isPending,
     required this.finishBooking,
+    required this.powerOfAttorney,
+    required this.contract,
+    required this.insurance,
   });
 
   // return NumberFormat("#,##0", "ru").format(price);
@@ -339,6 +346,116 @@ class ItemBooking extends StatelessWidget {
               ),
             ),
           ),
+          Visibility(
+            visible: !isPending,
+            child: Card(
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Visibility(
+                      visible: powerOfAttorney.isNotEmpty,
+                      child: GestureDetector(
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Загрузить доверенность",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                              ),
+                              const Icon(
+                                Icons.file_download_outlined,
+                                color: Colors.black,
+                              )
+                            ],
+                          ),
+                        ),
+                        onTap: () {
+                          launchUrl(
+                            Uri.parse("$BASE_URL_IMAGE$powerOfAttorney"),
+                            mode: LaunchMode.externalApplication,
+                          );
+                        },
+                      ),
+                    ),
+                    Visibility(
+                      visible: contract.isNotEmpty,
+                      child: GestureDetector(
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Загрузить договор",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                              ),
+                              const Icon(
+                                Icons.file_download_outlined,
+                                color: Colors.black,
+                              )
+                            ],
+                          ),
+                        ),
+                        onTap: () {
+                          launchUrl(
+                            Uri.parse("$BASE_URL_IMAGE$contract"),
+                            mode: LaunchMode.externalApplication,
+                          );
+                        },
+                      ),
+                    ),
+                    Visibility(
+                      visible: insurance.isNotEmpty,
+                      child: GestureDetector(
+                        child: Padding(
+                          padding: const EdgeInsets.only(bottom: 16),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Загрузить страховку",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .bodySmall
+                                    ?.copyWith(
+                                      fontWeight: FontWeight.w700,
+                                    ),
+                              ),
+                              const Icon(
+                                Icons.file_download_outlined,
+                                color: Colors.black,
+                              )
+                            ],
+                          ),
+                        ),
+                        onTap: () {
+                          launchUrl(
+                            Uri.parse("$BASE_URL_IMAGE$insurance"),
+                            mode: LaunchMode.externalApplication,
+                          );
+                        },
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
           if (!isPending)
             BaseButton(
                 onPressed: () {
@@ -353,7 +470,7 @@ class ItemBooking extends StatelessWidget {
                         mainAxisSize: MainAxisSize.min,
                         children: [
                           const Text(
-                            'Вы уверены, что хотите изменить статус машину ?',
+                            'Вы уверены, что хотите завершить аренду?',
                             textAlign: TextAlign.center,
                           ),
                           const SizedBox(

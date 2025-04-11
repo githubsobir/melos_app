@@ -4,7 +4,7 @@ class MyCarModel {
     this.make,
     this.model,
     this.year,
-    this.status,
+    this.isActive,
     this.photo,
   });
 
@@ -12,6 +12,6 @@ class MyCarModel {
   String? make;
   String? model;
   num? year;
-  String? status;
+  bool? isActive;
   String? photo;
 }
