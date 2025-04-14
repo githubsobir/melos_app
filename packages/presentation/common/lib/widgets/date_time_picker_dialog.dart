@@ -60,6 +60,19 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
                 selectionMode: DateRangePickerSelectionMode.range,
                 backgroundColor: Colors.transparent,
                 enablePastDates: false,
+                // selectableDayPredicate: (DateTime date) {
+                //   List<DateTime> days = [];
+                //   for (int i = 0; i < 5; i++) {
+                //     var d = DateTime.now().add(Duration(days: i * 2));
+                //     days.add(d);
+                //   }
+                //   return !days.any(
+                //     (element) =>
+                //         element.year == date.year &&
+                //         element.month == date.month &&
+                //         element.day == date.day,
+                //   );
+                // },
                 endRangeSelectionColor: Theme.of(context).colorScheme.primary,
                 selectionTextStyle: const TextStyle(color: Colors.white),
                 monthCellStyle: DateRangePickerMonthCellStyle(
