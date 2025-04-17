@@ -154,6 +154,9 @@ class _MainScreenState extends State<MainScreen> {
                 )
               : null,
           drawer: Drawer(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(0.0),
+            ),
             child: DrawerWidget(
               onLogOut: () {
                 cubit.logOut();

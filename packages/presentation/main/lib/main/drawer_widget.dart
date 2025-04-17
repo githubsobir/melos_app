@@ -7,9 +7,10 @@ import 'package:dependency/dependencies/injector.dart';
 import 'package:domain/utils/app_state_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class DrawerWidget extends StatelessWidget {
+class DrawerWidget extends StatefulWidget {
   final bool hasUser;
   final VoidCallback onLogOut;
   final VoidCallback onLogIn;
@@ -17,7 +18,7 @@ class DrawerWidget extends StatelessWidget {
   final VoidCallback onBookingHistory;
   final VoidCallback onMyCar;
 
-  DrawerWidget({
+  const DrawerWidget({
     super.key,
     required this.onLogOut,
     required this.onBooking,
@@ -27,110 +28,151 @@ class DrawerWidget extends StatelessWidget {
     required this.onLogIn,
   });
 
+  @override
+  State<DrawerWidget> createState() => _DrawerWidgetState();
+}
+
+class _DrawerWidgetState extends State<DrawerWidget> {
   final AppStateNotifier _appStateNotifier = getIt.get<AppStateNotifier>();
+
+  String appVersion = "";
+
+  @override
+  void initState() {
+    PackageInfo.fromPlatform().then(
+      (value) {
+        setState(() {
+          appVersion = value.version;
+        });
+      },
+    );
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      padding: EdgeInsets.zero,
+    return Column(
       children: [
-        Padding(
-          padding: const EdgeInsets.only(left: 16, top: 60),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        Expanded(
+          child: ListView(
+            padding: EdgeInsets.zero,
             children: [
-              // SvgPicture.asset(PathImages.logo),
-              Text(
-                "CarBNB",
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.primary,
-                  fontFamily: FontFamily.BOLD.name,
-                  fontSize: 24,
+              Padding(
+                padding: const EdgeInsets.only(left: 16, top: 60),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    // SvgPicture.asset(PathImages.logo),
+                    Text(
+                      "CarBNB",
+                      style: TextStyle(
+                        color: Theme.of(context).colorScheme.primary,
+                        fontFamily: FontFamily.BOLD.name,
+                        fontSize: 24,
+                      ),
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Scaffold.of(context).closeDrawer();
+                      },
+                      icon: const Icon(Icons.close),
+                    )
+                  ],
                 ),
               ),
-              IconButton(
-                onPressed: () {
+              const Divider(),
+              item(
+                icon: PathImages.booking,
+                title: context.translations.booking,
+                context: context,
+                onTap: () {
+                  widget.onBooking();
                   Scaffold.of(context).closeDrawer();
                 },
-                icon: const Icon(Icons.close),
-              )
+              ),
+              item(
+                icon: PathImages.bookingHistory,
+                title: context.translations.history,
+                context: context,
+                onTap: () {
+                  widget.onBookingHistory();
+                  Scaffold.of(context).closeDrawer();
+                },
+              ),
+              item(
+                icon: PathImages.myCars,
+                title: context.translations.my_cars,
+                context: context,
+                onTap: () {
+                  widget.onMyCar();
+                  Scaffold.of(context).closeDrawer();
+                },
+              ),
+              const SizedBox(
+                height: 16,
+              ),
+              const Divider(),
+              itemTheme(
+                context: context,
+                onTap: () {
+                  _appStateNotifier.setThemeValue(
+                      isNightMode: (Theme.of(context).colorScheme.brightness ==
+                          Brightness.light));
+                },
+              ),
+              itemLanguage(
+                context: context,
+                onTap: (langCode) {
+                  _appStateNotifier.setLanguageValue(languageCode: langCode);
+                },
+              ),
+              itemHelp(
+                context: context,
+                onTap: (isTelegram) async {
+                  if (isTelegram) {
+                    await launchUrl(Uri.parse("https://t.me/j_abubakr"));
+                  } else {
+                    await launchUrl(Uri.parse("tel:+998972000055"));
+                  }
+                  // Scaffold.of(context).closeDrawer();
+                },
+              ),
+              widget.hasUser
+                  ? item(
+                      icon: PathImages.logout,
+                      title: context.translations.exit,
+                      context: context,
+                      onTap: () {
+                        widget.onLogOut();
+                      },
+                    )
+                  : item(
+                      icon: PathImages.login,
+                      title: context.translations.log_in,
+                      context: context,
+                      onTap: () {
+                        widget.onLogIn();
+                      },
+                    ),
             ],
           ),
         ),
-        const Divider(),
-        item(
-          icon: PathImages.booking,
-          title: context.translations.booking,
-          context: context,
-          onTap: () {
-            onBooking();
-            Scaffold.of(context).closeDrawer();
-          },
-        ),
-        item(
-          icon: PathImages.bookingHistory,
-          title: context.translations.history,
-          context: context,
-          onTap: () {
-            onBookingHistory();
-            Scaffold.of(context).closeDrawer();
-          },
-        ),
-        item(
-          icon: PathImages.myCars,
-          title: context.translations.my_cars,
-          context: context,
-          onTap: () {
-            onMyCar();
-            Scaffold.of(context).closeDrawer();
-          },
-        ),
-        const SizedBox(
-          height: 16,
-        ),
-        const Divider(),
-        itemTheme(
-          context: context,
-          onTap: () {
-            _appStateNotifier.setThemeValue(
-                isNightMode: (Theme.of(context).colorScheme.brightness ==
-                    Brightness.light));
-          },
-        ),
-        itemLanguage(
-          context: context,
-          onTap: (langCode) {
-            _appStateNotifier.setLanguageValue(languageCode: langCode);
-          },
-        ),
-        itemHelp(
-          context: context,
-          onTap: (isTelegram) async {
-            if (isTelegram) {
-              await launchUrl(Uri.parse("https://t.me/j_abubakr"));
-            } else {
-              await launchUrl(Uri.parse("tel:+998972000055"));
-            }
-            // Scaffold.of(context).closeDrawer();
-          },
-        ),
-        hasUser
-            ? item(
-                icon: PathImages.logout,
-                title: context.translations.exit,
-                context: context,
-                onTap: () {
-                  onLogOut();
-                },
-              )
-            : item(
-                icon: PathImages.login,
-                title: context.translations.log_in,
-                context: context,
-                onTap: () {
-                  onLogIn();
-                },
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "Версия:",
+                style: Theme.of(context).textTheme.headlineMedium,
               ),
+              Text(
+                " $appVersion",
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+            ],
+          ),
+        )
       ],
     );
   }

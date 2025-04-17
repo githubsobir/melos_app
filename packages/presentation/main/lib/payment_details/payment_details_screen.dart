@@ -735,7 +735,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                                         );
                                       }
                                     : null,
-                                title: "Арендовать сейчас"),
+                                title: "Арендовать"),
                           ],
                         ),
                       ),
