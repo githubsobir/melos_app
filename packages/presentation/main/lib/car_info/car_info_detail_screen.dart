@@ -1,3 +1,4 @@
+import 'package:common/font_family.dart';
 import 'package:common/items/item_car_popular.dart';
 import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/navigation/auth_navigation_intents.dart';
@@ -37,8 +38,13 @@ class CarInfoDetailScreen extends StatelessWidget {
               ? const Color(0xFFF6F7F9)
               : const Color(0xFF061136),
       appBar: AppBar(
-        title: SvgPicture.asset(
-          PathImages.logo,
+        title: Text(
+          "CarBNB",
+          style: TextStyle(
+            color: Theme.of(context).colorScheme.primary,
+            fontFamily: FontFamily.BOLD.name,
+            fontSize: 24,
+          ),
         ),
       ),
       body: BlocBuilder(
