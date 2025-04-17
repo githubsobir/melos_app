@@ -206,4 +206,27 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get history => 'Tarix';
+
+  @override
+  String get version => 'Versiya:';
+
+  @override
+  String get registration => 'Roʻyxatdan oʻtish';
+
+  @override
+  String get body_type => 'Kuzov turi';
+
+  @override
+  String get number_of_seats => 'O\'rindiqlar soni';
+
+  @override
+  String get city => 'Shahar';
+
+  @override
+  String get price => 'Narxi';
+
+  @override
+  String max_price_sum(Object max_price) {
+    return 'Maks. $max_price soʻm';
+  }
 }

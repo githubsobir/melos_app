@@ -34,7 +34,7 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Регистрация"),
+        title:  Text(context.translations.registration),
       ),
       body: BlocConsumer(
         bloc: cubit,

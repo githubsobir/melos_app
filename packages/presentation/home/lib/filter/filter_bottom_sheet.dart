@@ -1,3 +1,4 @@
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/widgets/base_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -57,7 +58,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        "Тип кузова",
+                        context.translations.body_type,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: Theme.of(context).colorScheme.secondary),
                       ),
@@ -136,7 +137,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        "Количество мест",
+                        context.translations.number_of_seats,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: Theme.of(context).colorScheme.secondary),
                       ),
@@ -223,7 +224,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Text(
-                        "Город",
+                        context.translations.city,
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: Theme.of(context).colorScheme.secondary),
                       ),
@@ -297,7 +298,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                     ],
                   ),
                   Text(
-                    "Цена",
+                    context.translations.price,
                     style: Theme.of(context)
                         .textTheme
                         .labelMedium
@@ -310,7 +311,8 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                   Padding(
                     padding: const EdgeInsets.only(left: 16, right: 16),
                     child: Text(
-                      "Макс. ${state.filter.maxPrice ?? 5000000} сум",
+                      context.translations.max_price_sum("${state.filter.maxPrice ?? 5000000}"),
+                      // "Макс. ${state.filter.maxPrice ?? 5000000} сум",
                       style: Theme.of(context)
                           .textTheme
                           .titleSmall
@@ -336,7 +338,7 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                           context.closeActiveScreen();
                           widget.cubit.recommendedCars(isRefreshed: true);
                         },
-                        title: "Сохранить",
+                        title: context.translations.save,
                       ),
                     ],
                   )

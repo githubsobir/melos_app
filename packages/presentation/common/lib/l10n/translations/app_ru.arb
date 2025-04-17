@@ -65,5 +65,17 @@
   "your_account": "Ваш аккаунт",
   "notifications": "Уведомления",
   "open": "Открыть",
-  "history": "История"
+  "history": "История",
+  "version": "Версия:",
+  "registration": "Регистрация",
+  "body_type": "Тип кузова",
+  "number_of_seats": "Количество мест",
+  "city": "Город",
+  "price": "Цена",
+  "max_price_sum": "Макс. {max_price} сум",
+  "@max_price_sum": {
+    "placeholders": {
+      "max_price": {}
+    }
+  }
 }

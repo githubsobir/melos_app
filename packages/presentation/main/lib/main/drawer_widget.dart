@@ -163,7 +163,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-                "Версия:",
+                context.translations.version,
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
               Text(

@@ -206,4 +206,27 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get history => 'История';
+
+  @override
+  String get version => 'Версия:';
+
+  @override
+  String get registration => 'Регистрация';
+
+  @override
+  String get body_type => 'Тип кузова';
+
+  @override
+  String get number_of_seats => 'Количество мест';
+
+  @override
+  String get city => 'Город';
+
+  @override
+  String get price => 'Цена';
+
+  @override
+  String max_price_sum(Object max_price) {
+    return 'Макс. $max_price сум';
+  }
 }

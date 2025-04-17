@@ -65,5 +65,17 @@
   "your_account": "Sizning hisobingiz",
   "notifications": "Bildirishnomalar",
   "open": "Ochiq",
-  "history": "Tarix"
+  "history": "Tarix",
+  "version": "Versiya:",
+  "registration": "Roʻyxatdan oʻtish",
+  "body_type": "Kuzov turi",
+  "number_of_seats": "O'rindiqlar soni",
+  "city": "Shahar",
+  "price": "Narxi",
+  "max_price_sum": "Maks. {max_price} soʻm",
+  "@max_price_sum": {
+    "placeholders": {
+      "max_price": {}
+    }
+  }
 }

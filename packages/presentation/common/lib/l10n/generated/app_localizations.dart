@@ -496,6 +496,48 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'История'**
   String get history;
+
+  /// No description provided for @version.
+  ///
+  /// In ru, this message translates to:
+  /// **'Версия:'**
+  String get version;
+
+  /// No description provided for @registration.
+  ///
+  /// In ru, this message translates to:
+  /// **'Регистрация'**
+  String get registration;
+
+  /// No description provided for @body_type.
+  ///
+  /// In ru, this message translates to:
+  /// **'Тип кузова'**
+  String get body_type;
+
+  /// No description provided for @number_of_seats.
+  ///
+  /// In ru, this message translates to:
+  /// **'Количество мест'**
+  String get number_of_seats;
+
+  /// No description provided for @city.
+  ///
+  /// In ru, this message translates to:
+  /// **'Город'**
+  String get city;
+
+  /// No description provided for @price.
+  ///
+  /// In ru, this message translates to:
+  /// **'Цена'**
+  String get price;
+
+  /// No description provided for @max_price_sum.
+  ///
+  /// In ru, this message translates to:
+  /// **'Макс. {max_price} сум'**
+  String max_price_sum(Object max_price);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
