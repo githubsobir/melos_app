@@ -77,5 +77,30 @@
     "placeholders": {
       "max_price": {}
     }
-  }
+  },
+  "choose": "Выбрать",
+  "current": "ТЕКУЩИЕ",
+  "all": "ВСЕ",
+  "state_number": "Гос. номер",
+  "car_owner": "Владелец автомобиля",
+  "reports": "Отчеты",
+  "cost_per_day": "Стоимость за день",
+  "security_deposit": "Залог",
+  "total_cost": "Итоговая стоимость",
+  "in_progress": "В ходе выполнения",
+  "upload_power_of_attorney": "Загрузить доверенность",
+  "download_contract": "Загрузить договор",
+  "download_insurance": "Загрузить страховку",
+  "end_your_lease": "Вы уверены, что хотите завершить аренду?",
+  "no": "Нет",
+  "yes": "Да",
+  "finish": "Завершить",
+  "payment_status": "Статус оплаты",
+  "not_paid": "Не оплачен",
+  "cancel_order": "Отменить заказ",
+  "ready_to_transfer": "Готово к передаче",
+  "did_you_like_the_car": "Вам понравилась машина?",
+  "description": "Описание",
+  "select": "Подобрать:",
+  "landing": "Высадка:"
 }

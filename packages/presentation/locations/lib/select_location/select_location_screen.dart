@@ -1,3 +1,4 @@
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/path_images.dart';
 import 'package:common/widgets/base_button.dart';
 import 'package:dependency/dependencies.dart';
@@ -81,7 +82,7 @@ class SelectLocationScreen extends StatelessWidget {
                       context.closeActiveScreen(state.point);
                     }
                   },
-                  title: "Выбрать",
+                  title: context.translations.choose,
                 ),
               ),
             ],

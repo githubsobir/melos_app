@@ -229,4 +229,79 @@ class AppLocalizationsRu extends AppLocalizations {
   String max_price_sum(Object max_price) {
     return 'Макс. $max_price сум';
   }
+
+  @override
+  String get choose => 'Выбрать';
+
+  @override
+  String get current => 'ТЕКУЩИЕ';
+
+  @override
+  String get all => 'ВСЕ';
+
+  @override
+  String get state_number => 'Гос. номер';
+
+  @override
+  String get car_owner => 'Владелец автомобиля';
+
+  @override
+  String get reports => 'Отчеты';
+
+  @override
+  String get cost_per_day => 'Стоимость за день';
+
+  @override
+  String get security_deposit => 'Залог';
+
+  @override
+  String get total_cost => 'Итоговая стоимость';
+
+  @override
+  String get in_progress => 'В ходе выполнения';
+
+  @override
+  String get upload_power_of_attorney => 'Загрузить доверенность';
+
+  @override
+  String get download_contract => 'Загрузить договор';
+
+  @override
+  String get download_insurance => 'Загрузить страховку';
+
+  @override
+  String get end_your_lease => 'Вы уверены, что хотите завершить аренду?';
+
+  @override
+  String get no => 'Нет';
+
+  @override
+  String get yes => 'Да';
+
+  @override
+  String get finish => 'Завершить';
+
+  @override
+  String get payment_status => 'Статус оплаты';
+
+  @override
+  String get not_paid => 'Не оплачен';
+
+  @override
+  String get cancel_order => 'Отменить заказ';
+
+  @override
+  String get ready_to_transfer => 'Готово к передаче';
+
+  @override
+  String get did_you_like_the_car => 'Вам понравилась машина?';
+
+  @override
+  String get description => 'Описание';
+
+  @override
+  String get select => 'Подобрать:';
+
+  @override
+  String get landing => 'Высадка:';
 }

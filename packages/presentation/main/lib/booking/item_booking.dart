@@ -101,7 +101,7 @@ class ItemBooking extends StatelessWidget {
                               height: 12,
                             ),
                             ItemTopBottom(
-                              leftText: "Гос. номер",
+                              leftText: context.translations.state_number,
                               rightText: registrationNumber,
                             ),
                           ],
@@ -115,7 +115,7 @@ class ItemBooking extends StatelessWidget {
                               height: 12,
                             ),
                             Text(
-                              "Владелец",
+                              context.translations.car_owner,
                               style: Theme.of(context)
                                   .textTheme
                                   .labelMedium
@@ -217,7 +217,7 @@ class ItemBooking extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    "Отчеты",
+                    context.translations.reports,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           fontWeight: FontWeight.w700,
                         ),
@@ -226,21 +226,21 @@ class ItemBooking extends StatelessWidget {
                     height: 12,
                   ),
                   ItemTopBottom(
-                    leftText: "Стоимость за день",
+                    leftText: context.translations.cost_per_day,
                     rightText: "$dailyRate сум",
                   ),
                   const SizedBox(
                     height: 12,
                   ),
                   ItemTopBottom(
-                    leftText: "Залог",
+                    leftText: context.translations.security_deposit,
                     rightText: "$securityDeposit сум",
                   ),
                   const SizedBox(
                     height: 12,
                   ),
                   ItemTopBottom(
-                    leftText: "Итоговая стоимость",
+                    leftText: context.translations.total_cost,
                     rightText: "$totalAmount сум",
                   ),
                 ],
@@ -255,7 +255,7 @@ class ItemBooking extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    "Подробности аренды",
+                    context.translations.rental_details,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           fontWeight: FontWeight.w700,
                         ),
@@ -267,15 +267,13 @@ class ItemBooking extends StatelessWidget {
                     children: [
                       Expanded(
                         child: ItemTopBottom(
-                          leftText: "Дата получения",
-                          // rightText: DateFormats.dateFormat(startDate, context),
+                          leftText: context.translations.date_of_receipt,
                           rightText: startDate,
                         ),
                       ),
                       Expanded(
                         child: ItemTopBottom(
-                          leftText: "Дата возврата",
-                          // rightText: DateFormats.dateFormat(endDate, context),
+                          leftText: context.translations.return_date,
                           rightText: endDate,
                         ),
                       ),
@@ -314,7 +312,7 @@ class ItemBooking extends StatelessWidget {
                                 bottom: 8,
                               ),
                               child: Text(
-                                "В ходе выполнения",
+                                context.translations.in_progress,
                                 style: Theme.of(context)
                                     .textTheme
                                     .labelMedium
@@ -364,7 +362,7 @@ class ItemBooking extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Загрузить доверенность",
+                                context.translations.upload_power_of_attorney,
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodySmall
@@ -396,7 +394,7 @@ class ItemBooking extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Загрузить договор",
+                                context.translations.download_contract,
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodySmall
@@ -428,7 +426,7 @@ class ItemBooking extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Text(
-                                "Загрузить страховку",
+                                context.translations.download_insurance,
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodySmall
@@ -469,8 +467,8 @@ class ItemBooking extends StatelessWidget {
                       content: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          const Text(
-                            'Вы уверены, что хотите завершить аренду?',
+                           Text(
+                            context.translations.end_your_lease,
                             textAlign: TextAlign.center,
                           ),
                           const SizedBox(
@@ -483,7 +481,7 @@ class ItemBooking extends StatelessWidget {
                                     onPressed: () {
                                       context.closeActiveScreen();
                                     },
-                                    title: "Нет"),
+                                    title: context.translations.no),
                               ),
                               const SizedBox(
                                 width: 48,
@@ -494,7 +492,7 @@ class ItemBooking extends StatelessWidget {
                                   finishBooking();
                                   context.closeActiveScreen();
                                 },
-                                title: "Да",
+                                title: context.translations.yes,
                                 background: const Color(0xFFFF3636),
                               )),
                             ],
@@ -504,7 +502,7 @@ class ItemBooking extends StatelessWidget {
                     ),
                   );
                 },
-                title: "Завершить")
+                title: context.translations.finish)
         ],
       ),
     );

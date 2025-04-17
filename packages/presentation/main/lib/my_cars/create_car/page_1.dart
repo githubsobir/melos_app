@@ -1,3 +1,4 @@
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/widgets/base_button.dart';
 import 'package:common/widgets/textfield3.dart';
 import 'package:domain/model/location/point_model.dart';
@@ -192,7 +193,7 @@ class _Page1State extends State<Page1> {
               children: [
                 Expanded(
                   child: Text(
-                    'Госномер',
+                    context.translations.state_number,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           color: Theme.of(context).colorScheme.primary,
                         ),

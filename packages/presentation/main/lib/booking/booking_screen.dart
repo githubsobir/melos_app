@@ -56,12 +56,12 @@ class _BookingScreenState extends State<BookingScreen>
                     fontWeight: FontWeight.w700,
                     fontSize: 12,
                   ),
-          tabs: const [
+          tabs:  [
             Tab(
-              text: "ТЕКУЩИЕ",
+              text: context.translations.current,
             ),
             Tab(
-              text: "ВСЕ",
+              text: context.translations.all,
             ),
           ],
         ),

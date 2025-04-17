@@ -77,5 +77,30 @@
     "placeholders": {
       "max_price": {}
     }
-  }
+  },
+  "choose": "Tanlash",
+  "current": "JORIY",
+  "all": "HAMMASI",
+  "state_number": "Davlat raqami",
+  "car_owner": "Avtomobil egasi",
+  "reports": "Hisobotlar",
+  "cost_per_day": "Kunlik narx",
+  "security_deposit": "Garov puli",
+  "total_cost": "Umumiy narx",
+  "in_progress": "Jarayonda",
+  "upload_power_of_attorney": "Ishonchnomani yuklash",
+  "download_contract": "Shartnomani yuklash",
+  "download_insurance": "Sug‘urtani yuklash",
+  "end_your_lease": "Ijarani yakunlamoqchimisiz?",
+  "no": "Yo‘q",
+  "yes": "Ha",
+  "finish": "Yakunlash",
+  "payment_status": "To‘lov holati",
+  "not_paid": "To‘lanmagan",
+  "cancel_order": "Buyurtmani bekor qilish",
+  "ready_to_transfer": "Topshiruvga tayyor",
+  "did_you_like_the_car": "Mashina yoqdimi?",
+  "description": "Tavsif",
+  "select": "Tanlang:",
+  "landing": "Tushish:"
 }

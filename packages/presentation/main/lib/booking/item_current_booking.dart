@@ -58,7 +58,7 @@ class ItemCurrentBooking extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    "Отчеты",
+                    context.translations.reports,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           fontWeight: FontWeight.w700,
                         ),
@@ -67,21 +67,21 @@ class ItemCurrentBooking extends StatelessWidget {
                     height: 12,
                   ),
                   ItemTopBottom(
-                    leftText: "Стоимость за день",
+                    leftText: context.translations.cost_per_day,
                     rightText: "$dailyRate сум",
                   ),
                   const SizedBox(
                     height: 12,
                   ),
                   ItemTopBottom(
-                    leftText: "Залог",
+                    leftText: context.translations.security_deposit,
                     rightText: "$securityDeposit сум",
                   ),
                   const SizedBox(
                     height: 12,
                   ),
                   ItemTopBottom(
-                    leftText: "Итоговая стоимость",
+                    leftText: context.translations.total_cost,
                     rightText: "$totalAmount сум",
                   ),
                 ],
@@ -96,7 +96,7 @@ class ItemCurrentBooking extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
-                    "Подробности аренды",
+                    context.translations.rental_details,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           fontWeight: FontWeight.w700,
                         ),
@@ -108,13 +108,13 @@ class ItemCurrentBooking extends StatelessWidget {
                     children: [
                       Expanded(
                         child: ItemTopBottom(
-                          leftText: "Дата получения",
+                          leftText: context.translations.date_of_receipt,
                           rightText: startDate,
                         ),
                       ),
                       Expanded(
                         child: ItemTopBottom(
-                          leftText: "Дата возврата",
+                          leftText: context.translations.return_date,
                           rightText: endDate,
                         ),
                       ),
@@ -135,7 +135,7 @@ class ItemCurrentBooking extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Статус оплаты",
+                          context.translations.payment_status,
                           style:
                               Theme.of(context).textTheme.titleSmall?.copyWith(
                                     fontWeight: FontWeight.w700,
@@ -157,7 +157,7 @@ class ItemCurrentBooking extends StatelessWidget {
                                   bottom: 8,
                                 ),
                                 child: Text(
-                                  "Не оплачен",
+                                  context.translations.not_paid,
                                   style: Theme.of(context)
                                       .textTheme
                                       .labelMedium
@@ -197,7 +197,7 @@ class ItemCurrentBooking extends StatelessWidget {
                                 color: Color(0xffF90707),
                               ),
                               Text(
-                                "Отменить заказ",
+                                context.translations.cancel_order,
                                 style: Theme.of(context)
                                     .textTheme
                                     .bodyMedium
@@ -208,7 +208,7 @@ class ItemCurrentBooking extends StatelessWidget {
                         )
                       : BaseButton(
                           onPressed: booking,
-                          title: "Готово к передаче",
+                          title: context.translations.ready_to_transfer,
                           fontSize: 10,
                         )
                 ],

@@ -82,7 +82,7 @@ class Page5 extends StatelessWidget {
                         ),
                         Expanded(
                           child: ItemTopBottom(
-                            leftText: "Госномер",
+                            leftText: context.translations.state_number,
                             rightText: "${carModel.registrationNumber}",
                           ),
                         ),

@@ -45,7 +45,7 @@ class _ReviewBottomSheetContentState extends State<ReviewBottomSheetContent> {
               height: 8,
             ),
             Text(
-              "Вам понравилась машина?",
+              context.translations.did_you_like_the_car,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     fontWeight: FontWeight.w700,
                     // color: Theme.of(context).colorScheme.primary,
@@ -86,7 +86,7 @@ class _ReviewBottomSheetContentState extends State<ReviewBottomSheetContent> {
                   bottom: 8,
                 ),
                 filled: true,
-                hintText: "Описание",
+                hintText: context.translations.description,
                 hintStyle: Theme.of(context).textTheme.labelMedium?.copyWith(
                       color: Theme.of(context).colorScheme.secondary,
                     ),

@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:domain/utils/constants.dart';
 import 'package:flutter/material.dart';
 
@@ -96,7 +97,7 @@ class ItemBookingHistory extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Подобрать:",
+                                context.translations.select,
                                 style: Theme.of(context)
                                     .textTheme
                                     .labelMedium
@@ -120,7 +121,7 @@ class ItemBookingHistory extends StatelessWidget {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "Высадка:",
+                                context.translations.landing,
                                 style: Theme.of(context)
                                     .textTheme
                                     .labelMedium

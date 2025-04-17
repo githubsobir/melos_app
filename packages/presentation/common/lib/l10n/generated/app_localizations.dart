@@ -538,6 +538,156 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Макс. {max_price} сум'**
   String max_price_sum(Object max_price);
+
+  /// No description provided for @choose.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выбрать'**
+  String get choose;
+
+  /// No description provided for @current.
+  ///
+  /// In ru, this message translates to:
+  /// **'ТЕКУЩИЕ'**
+  String get current;
+
+  /// No description provided for @all.
+  ///
+  /// In ru, this message translates to:
+  /// **'ВСЕ'**
+  String get all;
+
+  /// No description provided for @state_number.
+  ///
+  /// In ru, this message translates to:
+  /// **'Гос. номер'**
+  String get state_number;
+
+  /// No description provided for @car_owner.
+  ///
+  /// In ru, this message translates to:
+  /// **'Владелец автомобиля'**
+  String get car_owner;
+
+  /// No description provided for @reports.
+  ///
+  /// In ru, this message translates to:
+  /// **'Отчеты'**
+  String get reports;
+
+  /// No description provided for @cost_per_day.
+  ///
+  /// In ru, this message translates to:
+  /// **'Стоимость за день'**
+  String get cost_per_day;
+
+  /// No description provided for @security_deposit.
+  ///
+  /// In ru, this message translates to:
+  /// **'Залог'**
+  String get security_deposit;
+
+  /// No description provided for @total_cost.
+  ///
+  /// In ru, this message translates to:
+  /// **'Итоговая стоимость'**
+  String get total_cost;
+
+  /// No description provided for @in_progress.
+  ///
+  /// In ru, this message translates to:
+  /// **'В ходе выполнения'**
+  String get in_progress;
+
+  /// No description provided for @upload_power_of_attorney.
+  ///
+  /// In ru, this message translates to:
+  /// **'Загрузить доверенность'**
+  String get upload_power_of_attorney;
+
+  /// No description provided for @download_contract.
+  ///
+  /// In ru, this message translates to:
+  /// **'Загрузить договор'**
+  String get download_contract;
+
+  /// No description provided for @download_insurance.
+  ///
+  /// In ru, this message translates to:
+  /// **'Загрузить страховку'**
+  String get download_insurance;
+
+  /// No description provided for @end_your_lease.
+  ///
+  /// In ru, this message translates to:
+  /// **'Вы уверены, что хотите завершить аренду?'**
+  String get end_your_lease;
+
+  /// No description provided for @no.
+  ///
+  /// In ru, this message translates to:
+  /// **'Нет'**
+  String get no;
+
+  /// No description provided for @yes.
+  ///
+  /// In ru, this message translates to:
+  /// **'Да'**
+  String get yes;
+
+  /// No description provided for @finish.
+  ///
+  /// In ru, this message translates to:
+  /// **'Завершить'**
+  String get finish;
+
+  /// No description provided for @payment_status.
+  ///
+  /// In ru, this message translates to:
+  /// **'Статус оплаты'**
+  String get payment_status;
+
+  /// No description provided for @not_paid.
+  ///
+  /// In ru, this message translates to:
+  /// **'Не оплачен'**
+  String get not_paid;
+
+  /// No description provided for @cancel_order.
+  ///
+  /// In ru, this message translates to:
+  /// **'Отменить заказ'**
+  String get cancel_order;
+
+  /// No description provided for @ready_to_transfer.
+  ///
+  /// In ru, this message translates to:
+  /// **'Готово к передаче'**
+  String get ready_to_transfer;
+
+  /// No description provided for @did_you_like_the_car.
+  ///
+  /// In ru, this message translates to:
+  /// **'Вам понравилась машина?'**
+  String get did_you_like_the_car;
+
+  /// No description provided for @description.
+  ///
+  /// In ru, this message translates to:
+  /// **'Описание'**
+  String get description;
+
+  /// No description provided for @select.
+  ///
+  /// In ru, this message translates to:
+  /// **'Подобрать:'**
+  String get select;
+
+  /// No description provided for @landing.
+  ///
+  /// In ru, this message translates to:
+  /// **'Высадка:'**
+  String get landing;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -229,4 +229,79 @@ class AppLocalizationsUz extends AppLocalizations {
   String max_price_sum(Object max_price) {
     return 'Maks. $max_price soʻm';
   }
+
+  @override
+  String get choose => 'Tanlash';
+
+  @override
+  String get current => 'JORIY';
+
+  @override
+  String get all => 'HAMMASI';
+
+  @override
+  String get state_number => 'Davlat raqami';
+
+  @override
+  String get car_owner => 'Avtomobil egasi';
+
+  @override
+  String get reports => 'Hisobotlar';
+
+  @override
+  String get cost_per_day => 'Kunlik narx';
+
+  @override
+  String get security_deposit => 'Garov puli';
+
+  @override
+  String get total_cost => 'Umumiy narx';
+
+  @override
+  String get in_progress => 'Jarayonda';
+
+  @override
+  String get upload_power_of_attorney => 'Ishonchnomani yuklash';
+
+  @override
+  String get download_contract => 'Shartnomani yuklash';
+
+  @override
+  String get download_insurance => 'Sug‘urtani yuklash';
+
+  @override
+  String get end_your_lease => 'Ijarani yakunlamoqchimisiz?';
+
+  @override
+  String get no => 'Yo‘q';
+
+  @override
+  String get yes => 'Ha';
+
+  @override
+  String get finish => 'Yakunlash';
+
+  @override
+  String get payment_status => 'To‘lov holati';
+
+  @override
+  String get not_paid => 'To‘lanmagan';
+
+  @override
+  String get cancel_order => 'Buyurtmani bekor qilish';
+
+  @override
+  String get ready_to_transfer => 'Topshiruvga tayyor';
+
+  @override
+  String get did_you_like_the_car => 'Mashina yoqdimi?';
+
+  @override
+  String get description => 'Tavsif';
+
+  @override
+  String get select => 'Tanlang:';
+
+  @override
+  String get landing => 'Tushish:';
 }

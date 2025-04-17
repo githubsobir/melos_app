@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/path_images.dart';
 import 'package:common/widgets/base_button.dart';
 import 'package:common/widgets/base_loader_builder.dart';
@@ -302,7 +303,7 @@ class ConfirmBookingScreen extends StatelessWidget {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
-                                              "Загрузить страховку",
+                                              context.translations.download_insurance,
                                               style: Theme.of(context)
                                                   .textTheme
                                                   .bodySmall
