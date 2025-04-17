@@ -12,6 +12,7 @@ import 'package:intent_launcher/intent_launcher.dart';
 import 'package:main/payment_details/payment/payment_bottom_sheet.dart';
 import 'package:main/payment_details/payment_detail_cubit.dart';
 import 'package:navigation/main_navigation_intents.dart';
+import 'package:share_plus/share_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class PaymentDetailsScreen extends StatelessWidget {
@@ -73,10 +74,16 @@ class PaymentDetailsScreen extends StatelessWidget {
                                 Expanded(
                                   child: Container(),
                                 ),
-                                SvgPicture.asset(
-                                  PathImages.share,
-                                  height: 24,
-                                  width: 24,
+                                GestureDetector(
+                                  onTap: () {
+                                    Share.share(
+                                        "${state.paymentProcessModel.url}");
+                                  },
+                                  child: SvgPicture.asset(
+                                    PathImages.share,
+                                    height: 24,
+                                    width: 24,
+                                  ),
                                 ),
                                 const SizedBox(
                                   width: 8,
@@ -652,7 +659,8 @@ class PaymentDetailsScreen extends StatelessWidget {
                                       checkColor: Colors.white,
                                       onChanged: (value) {
                                         launchUrl(
-                                          Uri.parse("https://carbnb.uz/backend/media/%D0%9F%D0%A3%D0%91%D0%9B%D0%98%D0%A7%D0%9D%D0%90%D0%AF%20%D0%9E%D0%A4%D0%95%D0%A0%D0%A2%D0%90.pdf"),
+                                          Uri.parse(
+                                              "https://carbnb.uz/backend/media/%D0%9F%D0%A3%D0%91%D0%9B%D0%98%D0%A7%D0%9D%D0%90%D0%AF%20%D0%9E%D0%A4%D0%95%D0%A0%D0%A2%D0%90.pdf"),
                                           mode: LaunchMode.externalApplication,
                                         );
                                         cubit.setSecondAgreement(

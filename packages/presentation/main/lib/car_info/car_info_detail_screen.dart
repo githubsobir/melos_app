@@ -136,6 +136,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                                   minRating: 1,
                                   itemCount: 5,
                                   itemSize: 18,
+                                  ignoreGestures: true,
                                   itemPadding: const EdgeInsets.symmetric(
                                       horizontal: 1.0),
                                   itemBuilder: (context, _) => const Icon(

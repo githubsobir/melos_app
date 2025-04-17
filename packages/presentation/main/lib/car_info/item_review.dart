@@ -80,6 +80,7 @@ class ItemReview extends StatelessWidget {
                       minRating: 1,
                       itemCount: 5,
                       itemSize: 12,
+                      ignoreGestures: true,
                       itemPadding: const EdgeInsets.symmetric(horizontal: 1.0),
                       itemBuilder: (context, _) => const Icon(
                         Icons.star,
