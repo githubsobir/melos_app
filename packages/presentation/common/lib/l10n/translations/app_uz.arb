@@ -102,5 +102,25 @@
   "did_you_like_the_car": "Mashina yoqdimi?",
   "description": "Tavsif",
   "select": "Tanlang:",
-  "landing": "Tushish:"
+  "landing": "Tushish:",
+  "reviewers": "{reviews_count} sharhlovchilar",
+  "@reviewers": {
+    "placeholders": {
+      "reviews_count": {}
+    }
+  },
+  "sum_day": "so'm/kun",
+  "internet_connection_is_unavailable": "Internetga ulanish mavjud emas",
+  "please_check_connection": "Wi-Fi yoki mobil tarmoq ulanishini tekshirib, qayta urinib ko‘ring.",
+  "try_again": "Qayta urinib ko‘rish",
+  "telegram": "Telegram",
+  "call": "Qo‘ng‘iroq qilish",
+  "the_car_created": "Avtomobil muvaffaqiyatli yaratildi",
+  "leave": "Chiqish",
+  "back": "Orqaga",
+  "review": "Ko‘rib chiqish",
+  "rent_out_your_car_with_ease": "Avtomobilingizni osonlik bilan ijaraga bering!",
+  "earn_extra_income_text": "Avtomobilingizni bizning platformamiz orqali baham ko‘rib, qo‘shimcha daromad oling! Shunchaki avtomobilingiz haqidagi kerakli ma'lumotlarni taqdim eting: marka, model, ishlab chiqarilgan yili, holati, mavjudligi va narxi. Avtomobilingizda GPS qurilmasi o‘rnatilganligiga ishonch hosil qiling — bu ijara vaqtida kuzatuv va xavfsizlikni ta'minlaydi.",
+  "what_you_will_need_to_get_started": "Boshlash uchun nimalar kerak bo‘ladi:",
+  "what_you_will_need_to_get_started_text": "1. Avtomobil haqida to‘liq ma'lumot (markasi, modeli, ishlab chiqarilgan yili, davlat raqami va boshqalar).\n2. Avtomobilingizning rasmlari (ichki va tashqi ko‘rinishi).\n3. Sug‘urta va ro‘yxatdan o‘tganligini tasdiqlovchi hujjatlar.\n4. Avtomobilga o‘rnatilgan GPS kuzatuv qurilmasi.\n5. Avtomobilingiz xavfsizligi va sizning xotirjamligingiz — bizning asosiy ustuvorligimiz!"
 }

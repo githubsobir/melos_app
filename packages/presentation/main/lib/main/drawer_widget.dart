@@ -323,14 +323,14 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             overlay.size.height - details.globalPosition.dy,
           ),
           items: [
-            const PopupMenuItem(
+             PopupMenuItem(
                 value: true,
                 child: SizedBox(
-                    width: 120, child: Center(child: Text('Телеграм')))),
-            const PopupMenuItem(
+                    width: 120, child: Center(child: Text(context.translations.telegram)))),
+             PopupMenuItem(
                 value: false,
                 child: SizedBox(
-                    width: 120, child: Center(child: Text('Позвонить')))),
+                    width: 120, child: Center(child: Text(context.translations.call)))),
           ],
         ).then((value) {
           if (value != null) {

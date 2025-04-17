@@ -1,3 +1,4 @@
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/widgets/base_button.dart';
 import 'package:common/widgets/base_loader_builder.dart';
 import 'package:common/widgets/custom_functions.dart';
@@ -29,7 +30,7 @@ class CreateCarInfoScreen extends StatelessWidget {
         listener: (context, state) {
           print(state.position);
           if (state.isEmpty) {
-            showToast("Пожалуйста, заполните все поля.");
+            showToast(context.translations.please_fill_in_all_fields);
           }else
           if (state.error.isNotEmpty) {
             showToast(state.error);
@@ -42,7 +43,7 @@ class CreateCarInfoScreen extends StatelessWidget {
               curve: Curves.linear,
             );
           } else {
-            showToast("Автомобиль успешно создан");
+            showToast(context.translations.the_car_created);
             context.closeActiveScreen();
           }
         },
@@ -131,7 +132,7 @@ class CreateCarInfoScreen extends StatelessWidget {
                                     bottom: 8,
                                   ),
                                   child: Text(
-                                    state.position == 1 ? "Оставлять" : "Назад",
+                                    state.position == 1 ? context.translations.leave : context.translations.back,
                                     textAlign: TextAlign.center,
                                     style: Theme.of(context)
                                         .textTheme
@@ -152,7 +153,7 @@ class CreateCarInfoScreen extends StatelessWidget {
                                   cubit.changePositionToRight();
                                 },
                                 title:
-                                    state.position < 4 ? "Следующий" : "Обзор")
+                                    state.position < 4 ? context.translations.next : context.translations.review)
                           ],
                         ),
                       ),

@@ -688,6 +688,96 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Высадка:'**
   String get landing;
+
+  /// No description provided for @reviewers.
+  ///
+  /// In ru, this message translates to:
+  /// **'{reviews_count} рецензентов'**
+  String reviewers(Object reviews_count);
+
+  /// No description provided for @sum_day.
+  ///
+  /// In ru, this message translates to:
+  /// **'сум/день'**
+  String get sum_day;
+
+  /// No description provided for @internet_connection_is_unavailable.
+  ///
+  /// In ru, this message translates to:
+  /// **'Подключение к Интернету недоступно'**
+  String get internet_connection_is_unavailable;
+
+  /// No description provided for @please_check_connection.
+  ///
+  /// In ru, this message translates to:
+  /// **'Проверьте подключение к Wi-Fi или мобильной сети и повторите попытку.'**
+  String get please_check_connection;
+
+  /// No description provided for @try_again.
+  ///
+  /// In ru, this message translates to:
+  /// **'Повторить попытку'**
+  String get try_again;
+
+  /// No description provided for @telegram.
+  ///
+  /// In ru, this message translates to:
+  /// **'Телеграм'**
+  String get telegram;
+
+  /// No description provided for @call.
+  ///
+  /// In ru, this message translates to:
+  /// **'Позвонить'**
+  String get call;
+
+  /// No description provided for @the_car_created.
+  ///
+  /// In ru, this message translates to:
+  /// **'Автомобиль успешно создан'**
+  String get the_car_created;
+
+  /// No description provided for @leave.
+  ///
+  /// In ru, this message translates to:
+  /// **'Оставлять'**
+  String get leave;
+
+  /// No description provided for @back.
+  ///
+  /// In ru, this message translates to:
+  /// **'Назад'**
+  String get back;
+
+  /// No description provided for @review.
+  ///
+  /// In ru, this message translates to:
+  /// **'Обзор'**
+  String get review;
+
+  /// No description provided for @rent_out_your_car_with_ease.
+  ///
+  /// In ru, this message translates to:
+  /// **'Сдавайте автомобиль в аренду с легкостью!'**
+  String get rent_out_your_car_with_ease;
+
+  /// No description provided for @earn_extra_income_text.
+  ///
+  /// In ru, this message translates to:
+  /// **'Получайте дополнительный доход, делясь своим автомобилем через нашу платформу! Просто предоставьте необходимые данные о вашем автомобиле, включая марку, модель, год, состояние, доступность и цену. Убедитесь, что ваш автомобиль оснащен устройством GPS для бесперебойного отслеживания и безопасности во время аренды.'**
+  String get earn_extra_income_text;
+
+  /// No description provided for @what_you_will_need_to_get_started.
+  ///
+  /// In ru, this message translates to:
+  /// **'Что вам понадобится для начала:'**
+  String get what_you_will_need_to_get_started;
+
+  /// No description provided for @what_you_will_need_to_get_started_text.
+  ///
+  /// In ru, this message translates to:
+  /// **'1. Полные данные об автомобиле (марка, модель, год выпуска, номерной знак и т. д.).\"\n            \"\\n2. Фотографии вашего автомобиля (внутри и снаружи).\"\n            \"\\n3. Подтверждение страховки и регистрации.\"\n            \"\\n4. Устройство GPS-слежения, установленное в вашем автомобиле.\"\n            \"\\n5. Безопасность вашего автомобиля и ваше спокойствие — наши главные приоритеты!'**
+  String get what_you_will_need_to_get_started_text;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

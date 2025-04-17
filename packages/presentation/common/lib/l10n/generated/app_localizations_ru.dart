@@ -304,4 +304,51 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get landing => 'Высадка:';
+
+  @override
+  String reviewers(Object reviews_count) {
+    return '$reviews_count рецензентов';
+  }
+
+  @override
+  String get sum_day => 'сум/день';
+
+  @override
+  String get internet_connection_is_unavailable => 'Подключение к Интернету недоступно';
+
+  @override
+  String get please_check_connection => 'Проверьте подключение к Wi-Fi или мобильной сети и повторите попытку.';
+
+  @override
+  String get try_again => 'Повторить попытку';
+
+  @override
+  String get telegram => 'Телеграм';
+
+  @override
+  String get call => 'Позвонить';
+
+  @override
+  String get the_car_created => 'Автомобиль успешно создан';
+
+  @override
+  String get leave => 'Оставлять';
+
+  @override
+  String get back => 'Назад';
+
+  @override
+  String get review => 'Обзор';
+
+  @override
+  String get rent_out_your_car_with_ease => 'Сдавайте автомобиль в аренду с легкостью!';
+
+  @override
+  String get earn_extra_income_text => 'Получайте дополнительный доход, делясь своим автомобилем через нашу платформу! Просто предоставьте необходимые данные о вашем автомобиле, включая марку, модель, год, состояние, доступность и цену. Убедитесь, что ваш автомобиль оснащен устройством GPS для бесперебойного отслеживания и безопасности во время аренды.';
+
+  @override
+  String get what_you_will_need_to_get_started => 'Что вам понадобится для начала:';
+
+  @override
+  String get what_you_will_need_to_get_started_text => '1. Полные данные об автомобиле (марка, модель, год выпуска, номерной знак и т. д.).\"\n            \"\\n2. Фотографии вашего автомобиля (внутри и снаружи).\"\n            \"\\n3. Подтверждение страховки и регистрации.\"\n            \"\\n4. Устройство GPS-слежения, установленное в вашем автомобиле.\"\n            \"\\n5. Безопасность вашего автомобиля и ваше спокойствие — наши главные приоритеты!';
 }

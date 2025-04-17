@@ -1,3 +1,4 @@
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/path_images.dart';
 import 'package:common/widgets/base_button.dart';
 import 'package:flutter/material.dart';
@@ -52,7 +53,7 @@ class ConnectionBottomSheet extends StatelessWidget {
                   height: 8,
                 ),
                 Text(
-                  "Подключение к Интернету недоступно",
+                  context.translations.internet_connection_is_unavailable,
                   style: Theme.of(context)
                       .textTheme
                       .titleSmall
@@ -63,7 +64,7 @@ class ConnectionBottomSheet extends StatelessWidget {
                   height: 22,
                 ),
                 Text(
-                  "Проверьте подключение к Wi-Fi или мобильной сети и повторите попытку.",
+                  context.translations.please_check_connection,
                   style: Theme.of(context).textTheme.bodySmall,
                   textAlign: TextAlign.center,
                 ),
@@ -82,7 +83,7 @@ class ConnectionBottomSheet extends StatelessWidget {
                         },
                       );
                     },
-                    title: "Повторить попытку")
+                    title: context.translations.try_again)
               ],
             ),
           ),

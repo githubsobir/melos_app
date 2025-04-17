@@ -151,7 +151,8 @@ class CarInfoDetailScreen extends StatelessWidget {
                                   width: 8,
                                 ),
                                 Text(
-                                  "${(state.carDetail.reviewsCount ?? 0)} рецензентов",
+                                  context.translations.reviewers(
+                                      "${(state.carDetail.reviewsCount ?? 0)}"),
                                   style: Theme.of(context)
                                       .textTheme
                                       .labelMedium
@@ -228,7 +229,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                                 ),
                                 Expanded(
                                   child: Text(
-                                    "Колчество мест",
+                                    context.translations.number_of_seats,
                                     textAlign: TextAlign.start,
                                     style: Theme.of(context)
                                         .textTheme
@@ -410,7 +411,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                                         width: 2,
                                       ),
                                       Text(
-                                        "сум/день",
+                                        context.translations.sum_day,
                                         style: Theme.of(context)
                                             .textTheme
                                             .labelMedium

@@ -304,4 +304,51 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get landing => 'Tushish:';
+
+  @override
+  String reviewers(Object reviews_count) {
+    return '$reviews_count sharhlovchilar';
+  }
+
+  @override
+  String get sum_day => 'so\'m/kun';
+
+  @override
+  String get internet_connection_is_unavailable => 'Internetga ulanish mavjud emas';
+
+  @override
+  String get please_check_connection => 'Wi-Fi yoki mobil tarmoq ulanishini tekshirib, qayta urinib ko‘ring.';
+
+  @override
+  String get try_again => 'Qayta urinib ko‘rish';
+
+  @override
+  String get telegram => 'Telegram';
+
+  @override
+  String get call => 'Qo‘ng‘iroq qilish';
+
+  @override
+  String get the_car_created => 'Avtomobil muvaffaqiyatli yaratildi';
+
+  @override
+  String get leave => 'Chiqish';
+
+  @override
+  String get back => 'Orqaga';
+
+  @override
+  String get review => 'Ko‘rib chiqish';
+
+  @override
+  String get rent_out_your_car_with_ease => 'Avtomobilingizni osonlik bilan ijaraga bering!';
+
+  @override
+  String get earn_extra_income_text => 'Avtomobilingizni bizning platformamiz orqali baham ko‘rib, qo‘shimcha daromad oling! Shunchaki avtomobilingiz haqidagi kerakli ma\'lumotlarni taqdim eting: marka, model, ishlab chiqarilgan yili, holati, mavjudligi va narxi. Avtomobilingizda GPS qurilmasi o‘rnatilganligiga ishonch hosil qiling — bu ijara vaqtida kuzatuv va xavfsizlikni ta\'minlaydi.';
+
+  @override
+  String get what_you_will_need_to_get_started => 'Boshlash uchun nimalar kerak bo‘ladi:';
+
+  @override
+  String get what_you_will_need_to_get_started_text => '1. Avtomobil haqida to‘liq ma\'lumot (markasi, modeli, ishlab chiqarilgan yili, davlat raqami va boshqalar).\n2. Avtomobilingizning rasmlari (ichki va tashqi ko‘rinishi).\n3. Sug‘urta va ro‘yxatdan o‘tganligini tasdiqlovchi hujjatlar.\n4. Avtomobilga o‘rnatilgan GPS kuzatuv qurilmasi.\n5. Avtomobilingiz xavfsizligi va sizning xotirjamligingiz — bizning asosiy ustuvorligimiz!';
 }
