@@ -776,8 +776,74 @@ abstract class AppLocalizations {
   /// No description provided for @what_you_will_need_to_get_started_text.
   ///
   /// In ru, this message translates to:
-  /// **'1. Полные данные об автомобиле (марка, модель, год выпуска, номерной знак и т. д.).\"\n            \"\\n2. Фотографии вашего автомобиля (внутри и снаружи).\"\n            \"\\n3. Подтверждение страховки и регистрации.\"\n            \"\\n4. Устройство GPS-слежения, установленное в вашем автомобиле.\"\n            \"\\n5. Безопасность вашего автомобиля и ваше спокойствие — наши главные приоритеты!'**
+  /// **'1. Полные данные об автомобиле (марка, модель, год выпуска, номерной знак и т. д.).\n2. Фотографии вашего автомобиля (внутри и снаружи).\n3. Подтверждение страховки и регистрации.\n4. Устройство GPS-слежения, установленное в вашем автомобиле.\n5. Безопасность вашего автомобиля и ваше спокойствие — наши главные приоритеты!'**
   String get what_you_will_need_to_get_started_text;
+
+  /// No description provided for @fill_in_the_details_below.
+  ///
+  /// In ru, this message translates to:
+  /// **'Заполните данные ниже'**
+  String get fill_in_the_details_below;
+
+  /// No description provided for @brand.
+  ///
+  /// In ru, this message translates to:
+  /// **'Марка'**
+  String get brand;
+
+  /// No description provided for @transmission.
+  ///
+  /// In ru, this message translates to:
+  /// **'Коробка передач'**
+  String get transmission;
+
+  /// No description provided for @machine.
+  ///
+  /// In ru, this message translates to:
+  /// **'Автомат'**
+  String get machine;
+
+  /// No description provided for @mechanics.
+  ///
+  /// In ru, this message translates to:
+  /// **'Механика'**
+  String get mechanics;
+
+  /// No description provided for @passenger_capacity.
+  ///
+  /// In ru, this message translates to:
+  /// **'Вместимость пассажиров'**
+  String get passenger_capacity;
+
+  /// No description provided for @location.
+  ///
+  /// In ru, this message translates to:
+  /// **'Локация'**
+  String get location;
+
+  /// No description provided for @vehicle_condition.
+  ///
+  /// In ru, this message translates to:
+  /// **'Состояние транспортного средства'**
+  String get vehicle_condition;
+
+  /// No description provided for @year_of_issue.
+  ///
+  /// In ru, this message translates to:
+  /// **'Год выпуска'**
+  String get year_of_issue;
+
+  /// No description provided for @mileage.
+  ///
+  /// In ru, this message translates to:
+  /// **'Пробег'**
+  String get mileage;
+
+  /// No description provided for @capacity_passengers.
+  ///
+  /// In ru, this message translates to:
+  /// **'Вместимость пассажиров'**
+  String get capacity_passengers;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

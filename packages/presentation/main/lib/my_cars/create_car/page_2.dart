@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/path_images.dart';
 import 'package:common/widgets/textfield3.dart';
 import 'package:flutter/material.dart';
@@ -75,7 +76,7 @@ class _Page2State extends State<Page2> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Text(
-                          'Состояние транспортного средства',
+                          context.translations.vehicle_condition,
                           textAlign: TextAlign.end,
                           style: Theme.of(context)
                               .textTheme
@@ -96,7 +97,7 @@ class _Page2State extends State<Page2> {
               children: [
                 Expanded(
                   child: Text(
-                    "Год выпуска",
+                    context.translations.year_of_issue,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           color: Theme.of(context).colorScheme.primary,
                         ),
@@ -119,7 +120,7 @@ class _Page2State extends State<Page2> {
               children: [
                 Expanded(
                   child: Text(
-                    "Пробег",
+                    context.translations.mileage,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           color: Theme.of(context).colorScheme.primary,
                         ),
@@ -142,7 +143,7 @@ class _Page2State extends State<Page2> {
               children: [
                 Expanded(
                   child: Text(
-                    "Объем топливного бака",
+                    context.translations.capacity_passengers,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           color: Theme.of(context).colorScheme.primary,
                         ),

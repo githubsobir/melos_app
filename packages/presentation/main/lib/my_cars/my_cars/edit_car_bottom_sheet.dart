@@ -157,7 +157,7 @@ class _EditCarBottomSheetState extends State<EditCarBottomSheet> {
                             },
                           );
                         },
-                        title: "Локация",
+                        title: context.translations.location,
                       ),
                     )
                   ],

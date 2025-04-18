@@ -49,8 +49,8 @@ class _Page1State extends State<Page1> {
   void initState() {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       transmissions.addAll([
-        TypeName(1, "Автомат"),
-        TypeName(2, "Механика"),
+        TypeName(1, context.translations.machine),
+        TypeName(2, context.translations.mechanics),
       ]);
 
       passengerCapacity.addAll([
@@ -129,7 +129,7 @@ class _Page1State extends State<Page1> {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       children: [
                         Text(
-                          'Заполните данные ниже',
+                          context.translations.fill_in_the_details_below,
                           style: Theme.of(context)
                               .textTheme
                               .bodyMedium
@@ -147,7 +147,7 @@ class _Page1State extends State<Page1> {
               children: [
                 Expanded(
                   child: Text(
-                    'Марка',
+                    context.translations.brand,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           color: Theme.of(context).colorScheme.primary,
                         ),
@@ -170,7 +170,7 @@ class _Page1State extends State<Page1> {
               children: [
                 Expanded(
                   child: Text(
-                    'Модель',
+                    context.translations.model,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           color: Theme.of(context).colorScheme.primary,
                         ),
@@ -216,7 +216,7 @@ class _Page1State extends State<Page1> {
               children: [
                 Expanded(
                   child: Text(
-                    'Город',
+                    context.translations.city,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           color: Theme.of(context).colorScheme.primary,
                         ),
@@ -284,7 +284,7 @@ class _Page1State extends State<Page1> {
               children: [
                 Expanded(
                   child: Text(
-                    'Коробка передач',
+                    context.translations.transmission,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           color: Theme.of(context).colorScheme.primary,
                         ),
@@ -293,7 +293,7 @@ class _Page1State extends State<Page1> {
                 SizedBox(
                   width: 170,
                   child: TextField3(
-                    hint: "Автомат",
+                    hint: context.translations.machine,
                     controller: transmissionController,
                     onTap: (details) {
                       final RenderBox overlay = Overlay.of(context)
@@ -351,7 +351,7 @@ class _Page1State extends State<Page1> {
               children: [
                 Expanded(
                   child: Text(
-                    'Вместимость пассажиров',
+                    context.translations.passenger_capacity,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           color: Theme.of(context).colorScheme.primary,
                         ),
@@ -432,7 +432,7 @@ class _Page1State extends State<Page1> {
                   },
                 );
               },
-              title: "Локация",
+              title: context.translations.location,
             ),
             const SizedBox(
               height: 16,

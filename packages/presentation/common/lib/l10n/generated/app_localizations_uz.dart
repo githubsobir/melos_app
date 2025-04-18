@@ -351,4 +351,37 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get what_you_will_need_to_get_started_text => '1. Avtomobil haqida to‘liq ma\'lumot (markasi, modeli, ishlab chiqarilgan yili, davlat raqami va boshqalar).\n2. Avtomobilingizning rasmlari (ichki va tashqi ko‘rinishi).\n3. Sug‘urta va ro‘yxatdan o‘tganligini tasdiqlovchi hujjatlar.\n4. Avtomobilga o‘rnatilgan GPS kuzatuv qurilmasi.\n5. Avtomobilingiz xavfsizligi va sizning xotirjamligingiz — bizning asosiy ustuvorligimiz!';
+
+  @override
+  String get fill_in_the_details_below => 'Quyidagi ma\'lumotlarni to\'ldiring';
+
+  @override
+  String get brand => 'Brend';
+
+  @override
+  String get transmission => 'Transport qutisi';
+
+  @override
+  String get machine => 'Avtomatik';
+
+  @override
+  String get mechanics => 'Mexanika';
+
+  @override
+  String get passenger_capacity => 'Yo\'lovchi sig\'imi';
+
+  @override
+  String get location => 'Joylashuv';
+
+  @override
+  String get vehicle_condition => 'Avtomobil holati';
+
+  @override
+  String get year_of_issue => 'Chiqarilgan yili';
+
+  @override
+  String get mileage => 'mileage';
+
+  @override
+  String get capacity_passengers => 'Yo\'lovchilar sig\'imi';
 }

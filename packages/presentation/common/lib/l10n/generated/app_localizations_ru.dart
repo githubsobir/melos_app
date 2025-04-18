@@ -350,5 +350,38 @@ class AppLocalizationsRu extends AppLocalizations {
   String get what_you_will_need_to_get_started => 'Что вам понадобится для начала:';
 
   @override
-  String get what_you_will_need_to_get_started_text => '1. Полные данные об автомобиле (марка, модель, год выпуска, номерной знак и т. д.).\"\n            \"\\n2. Фотографии вашего автомобиля (внутри и снаружи).\"\n            \"\\n3. Подтверждение страховки и регистрации.\"\n            \"\\n4. Устройство GPS-слежения, установленное в вашем автомобиле.\"\n            \"\\n5. Безопасность вашего автомобиля и ваше спокойствие — наши главные приоритеты!';
+  String get what_you_will_need_to_get_started_text => '1. Полные данные об автомобиле (марка, модель, год выпуска, номерной знак и т. д.).\n2. Фотографии вашего автомобиля (внутри и снаружи).\n3. Подтверждение страховки и регистрации.\n4. Устройство GPS-слежения, установленное в вашем автомобиле.\n5. Безопасность вашего автомобиля и ваше спокойствие — наши главные приоритеты!';
+
+  @override
+  String get fill_in_the_details_below => 'Заполните данные ниже';
+
+  @override
+  String get brand => 'Марка';
+
+  @override
+  String get transmission => 'Коробка передач';
+
+  @override
+  String get machine => 'Автомат';
+
+  @override
+  String get mechanics => 'Механика';
+
+  @override
+  String get passenger_capacity => 'Вместимость пассажиров';
+
+  @override
+  String get location => 'Локация';
+
+  @override
+  String get vehicle_condition => 'Состояние транспортного средства';
+
+  @override
+  String get year_of_issue => 'Год выпуска';
+
+  @override
+  String get mileage => 'Пробег';
+
+  @override
+  String get capacity_passengers => 'Вместимость пассажиров';
 }
