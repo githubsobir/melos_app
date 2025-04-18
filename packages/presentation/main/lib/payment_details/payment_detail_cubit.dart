@@ -1,13 +1,15 @@
 import 'package:domain/model/payment/payment_process_model.dart';
 import 'package:domain/model/payment/send_invoice_model.dart';
+import 'package:domain/usecase/cars_usecase.dart';
 import 'package:domain/usecase/payment_usecase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PaymentDetailCubit extends Cubit<PaymentDetailState> {
   final PaymentUseCase _paymentUseCase;
+  final CarsUseCase _carsUseCase;
 
-  PaymentDetailCubit(this._paymentUseCase)
+  PaymentDetailCubit(this._paymentUseCase,this._carsUseCase)
       : super(PaymentDetailState(
           selectedMethod: "Payme",
           firstAgreement: false,
@@ -80,6 +82,10 @@ class PaymentDetailCubit extends Cubit<PaymentDetailState> {
 
   Future<void> setCardDate(String cardDate) async {
     emit(state.copyWith(cardDate: cardDate));
+  }
+
+  Future<void> likeCar(int id, bool isLiked) async {
+    var response = await _carsUseCase.likeCar(id, isLiked);
   }
 }
 

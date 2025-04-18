@@ -15,6 +15,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:main/car_info/car_image_selector_widget.dart';
 import 'package:main/car_info/car_info_detail_cubit.dart';
+import 'package:main/car_info/favourite_widget.dart';
 import 'package:main/car_info/review_card.dart';
 import 'package:navigation/main_navigation_intents.dart';
 import 'package:navigation/my_cars_intents.dart';
@@ -111,23 +112,15 @@ class CarInfoDetailScreen extends StatelessWidget {
                                 const SizedBox(
                                   width: 16,
                                 ),
-                                GestureDetector(
-                                  onTap: () {
+                                FavouriteWidget(
+                                  isLiked: (state.carDetail.liked ?? false),
+                                  onLike: (isLiked) {
                                     cubit.likeCar(
-                                        (state.carDetail.id ?? 0).toInt(), !(state.carDetail.liked ?? false));
+                                      (state.carDetail.id ?? 0).toInt(),
+                                      (isLiked),
+                                    );
                                   },
-                                  child: (state.carDetail.liked ?? false)
-                                      ? SvgPicture.asset(
-                                          PathImages.favouriteOn,
-                                          height: 24,
-                                          width: 24,
-                                        )
-                                      : SvgPicture.asset(
-                                          PathImages.favouriteOff,
-                                          height: 24,
-                                          width: 24,
-                                        ),
-                                ),
+                                )
                               ],
                             ),
                             const SizedBox(

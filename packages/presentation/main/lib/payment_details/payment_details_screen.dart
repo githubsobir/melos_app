@@ -9,6 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intent_launcher/intent_launcher.dart';
+import 'package:main/car_info/favourite_widget.dart';
 import 'package:main/payment_details/payment/payment_bottom_sheet.dart';
 import 'package:main/payment_details/payment_detail_cubit.dart';
 import 'package:navigation/main_navigation_intents.dart';
@@ -33,7 +34,7 @@ class PaymentDetailsScreen extends StatelessWidget {
   final String startDateTme;
   final String endDateTme;
 
-  final PaymentDetailCubit cubit = PaymentDetailCubit(inject());
+  final PaymentDetailCubit cubit = PaymentDetailCubit(inject(), inject());
   final TextEditingController cardNumberController = TextEditingController();
   final TextEditingController cardDateController = TextEditingController();
 
@@ -88,17 +89,15 @@ class PaymentDetailsScreen extends StatelessWidget {
                                 const SizedBox(
                                   width: 8,
                                 ),
-                                state.paymentProcessModel.liked ?? false
-                                    ? SvgPicture.asset(
-                                        PathImages.favouriteOn,
-                                        height: 24,
-                                        width: 24,
-                                      )
-                                    : SvgPicture.asset(
-                                        PathImages.favouriteOff,
-                                        height: 24,
-                                        width: 24,
-                                      ),
+                                FavouriteWidget(
+                                  isLiked: (state.paymentProcessModel.liked ?? false),
+                                  onLike: (isLiked) {
+                                    cubit.likeCar(
+                                      (state.paymentProcessModel.id ?? 0).toInt(),
+                                      (isLiked),
+                                    );
+                                  },
+                                ),
                               ],
                             ),
                             const SizedBox(
