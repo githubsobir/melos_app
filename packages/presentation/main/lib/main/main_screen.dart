@@ -89,7 +89,7 @@ class _MainScreenState extends State<MainScreen> {
       listenWhen: (previous, current) => current is LogOutState,
       listener: (BuildContext context, Object state) {
         if (state is LogOutState) {
-          context.openScreen(LoginIntent());
+          context.openScreen(MainIntent());
         }
       },
       buildWhen: (previous, current) => current is MenuPositionState,
