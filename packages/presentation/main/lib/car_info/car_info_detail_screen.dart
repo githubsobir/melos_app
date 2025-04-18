@@ -111,17 +111,23 @@ class CarInfoDetailScreen extends StatelessWidget {
                                 const SizedBox(
                                   width: 16,
                                 ),
-                                (state.carDetail.liked ?? false)
-                                    ? SvgPicture.asset(
-                                        PathImages.favouriteOn,
-                                        height: 24,
-                                        width: 24,
-                                      )
-                                    : SvgPicture.asset(
-                                        PathImages.favouriteOff,
-                                        height: 24,
-                                        width: 24,
-                                      ),
+                                GestureDetector(
+                                  onTap: () {
+                                    cubit.likeCar(
+                                        (state.carDetail.id ?? 0).toInt(), !(state.carDetail.liked ?? false));
+                                  },
+                                  child: (state.carDetail.liked ?? false)
+                                      ? SvgPicture.asset(
+                                          PathImages.favouriteOn,
+                                          height: 24,
+                                          width: 24,
+                                        )
+                                      : SvgPicture.asset(
+                                          PathImages.favouriteOff,
+                                          height: 24,
+                                          width: 24,
+                                        ),
+                                ),
                               ],
                             ),
                             const SizedBox(
