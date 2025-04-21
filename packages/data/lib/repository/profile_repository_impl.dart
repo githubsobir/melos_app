@@ -12,13 +12,13 @@ class ProfileRepositoryImpl extends ProfileRepository {
   ProfileRepositoryImpl(this._profileService);
 
   @override
-  Future<BaseResult<bool>> updateUser(
-      {required String firstName,
-      required String lastName,
-      required String middleName,
-      required String passportPinfl,
-      required String driverLicense,
-      required String phoneNumber}) async {
+  Future<BaseResult<bool>> updateUser({
+    required String firstName,
+    required String lastName,
+    required String middleName,
+    required String passportPinfl,
+    required String phoneNumber,
+  }) async {
     try {
       var response = await _profileService.updateUser(
           request: ProfileUpdateRequest(
@@ -27,7 +27,6 @@ class ProfileRepositoryImpl extends ProfileRepository {
         lastName: lastName,
         middleName: middleName,
         passportPinfl: passportPinfl,
-        driverLicense: driverLicense,
       ));
       return BaseResult(
         success: true,

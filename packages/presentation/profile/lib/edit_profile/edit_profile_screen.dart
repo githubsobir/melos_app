@@ -20,7 +20,6 @@ class EditProfileScreen extends StatelessWidget {
       TextEditingController();
   final TextEditingController phoneController = TextEditingController();
   final TextEditingController passportPinflController = TextEditingController();
-  final TextEditingController driverLicenseController = TextEditingController();
 
   final cubit = EditCubit(inject());
 
@@ -92,13 +91,6 @@ class EditProfileScreen extends StatelessWidget {
                         hint: context.translations.pinfl,
                         type: TextFieldType.NUMBER,
                       ),
-                      const SizedBox(height: 8),
-                      BaseTextField(
-                        controller: driverLicenseController
-                          ..text = "info.driverLicense ?? """,
-                        title: context.translations.drivers_license,
-                        hint: context.translations.drivers_license,
-                      ),
                     ],
                   ),
                 ),
@@ -114,7 +106,6 @@ class EditProfileScreen extends StatelessWidget {
                       cubit.updateUser(
                         phoneNumber:
                             "+998${phoneController.text.replaceAll(" ", "")}",
-                        driverLicense: driverLicenseController.text,
                         passportPinfl: passportPinflController.text,
                         middleName: middleNameLicenseController.text,
                         lastName: lastNameController.text,

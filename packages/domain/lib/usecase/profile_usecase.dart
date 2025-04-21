@@ -9,19 +9,18 @@ class ProfileUseCase {
 
   ProfileUseCase(this._profileRepository, this._authRepository);
 
-  Future<BaseResult<bool>> updateUser(
-      {required String firstName,
-      required String lastName,
-      required String middleName,
-      required String passportPinfl,
-      required String driverLicense,
-      required String phoneNumber}) {
+  Future<BaseResult<bool>> updateUser({
+    required String firstName,
+    required String lastName,
+    required String middleName,
+    required String passportPinfl,
+    required String phoneNumber,
+  }) {
     return _profileRepository.updateUser(
       firstName: firstName,
       lastName: lastName,
       middleName: middleName,
       passportPinfl: passportPinfl,
-      driverLicense: driverLicense,
       phoneNumber: phoneNumber,
     );
   }

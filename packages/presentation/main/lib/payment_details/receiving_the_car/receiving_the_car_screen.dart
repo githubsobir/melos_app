@@ -144,7 +144,8 @@ class ReceivingTheCarScreen extends StatelessWidget {
                                       children: [
                                         Expanded(
                                           child: Text(
-                                            context.translations.security_deposit,
+                                            context
+                                                .translations.security_deposit,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .labelMedium
@@ -169,7 +170,8 @@ class ReceivingTheCarScreen extends StatelessWidget {
                                       children: [
                                         Expanded(
                                           child: Text(
-                                            context.translations.total_rent_amount,
+                                            context
+                                                .translations.total_rent_amount,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyMedium
@@ -400,32 +402,33 @@ class ReceivingTheCarScreen extends StatelessWidget {
     );
   }
 
-  void _showPicker(context) {
+  void _showPicker(BuildContext context) {
     showModalBottomSheet(
-        context: context,
-        builder: (BuildContext bc) {
-          return SafeArea(
-            child: Wrap(
-              children: <Widget>[
-                ListTile(
-                    leading: Icon(Icons.photo_library),
-                    title: Text('Photo Library'),
-                    onTap: () {
-                      _imgFromGallery();
-                      Navigator.of(context).pop();
-                    }),
-                ListTile(
-                  leading: Icon(Icons.photo_camera),
-                  title: Text('Camera'),
+      context: context,
+      builder: (BuildContext bc) {
+        return SafeArea(
+          child: Wrap(
+            children: <Widget>[
+              ListTile(
+                  leading: Icon(Icons.photo_library),
+                  title: Text(context.translations.photo_library),
                   onTap: () {
-                    _imgFromCamera();
+                    _imgFromGallery();
                     Navigator.of(context).pop();
-                  },
-                ),
-              ],
-            ),
-          );
-        });
+                  }),
+              ListTile(
+                leading: Icon(Icons.photo_camera),
+                title: Text(context.translations.camera),
+                onTap: () {
+                  _imgFromCamera();
+                  Navigator.of(context).pop();
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
   }
 
   _imgFromGallery() async {

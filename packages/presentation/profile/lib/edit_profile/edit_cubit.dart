@@ -11,7 +11,6 @@ class EditCubit extends Cubit<EditState> {
     required String lastName,
     required String middleName,
     required String passportPinfl,
-    required String driverLicense,
     required String phoneNumber,
   }) async {
     emit(LoaderState());
@@ -19,14 +18,12 @@ class EditCubit extends Cubit<EditState> {
         lastName.isNotEmpty &&
         middleName.isNotEmpty &&
         passportPinfl.length == 14 &&
-        driverLicense.isNotEmpty &&
         phoneNumber.isNotEmpty) {
       var response = await _profileUseCase.updateUser(
         firstName: firstName,
         lastName: lastName,
         middleName: middleName,
         passportPinfl: passportPinfl,
-        driverLicense: driverLicense,
         phoneNumber: phoneNumber,
       );
       if (response.success) {
