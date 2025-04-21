@@ -371,7 +371,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get passenger_capacity => 'Вместимость пассажиров';
 
   @override
-  String get location => 'Локация';
+  String get location => 'Местоположение';
 
   @override
   String get vehicle_condition => 'Состояние транспортного средства';
@@ -423,4 +423,82 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get sum => 'сум';
+
+  @override
+  String get confirm_your_reservation => 'Подтвердить бронь';
+
+  @override
+  String get car_for_rent => 'Автомобиль в аренде';
+
+  @override
+  String get accept_the_car => 'Принять машину';
+
+  @override
+  String get lock => 'Замок';
+
+  @override
+  String get you_want_to_change_status => 'Вы уверены, что хотите изменить статус машину ?';
+
+  @override
+  String get delete => 'Удалить';
+
+  @override
+  String get remove_the_vehicle => 'Вы уверены, что хотите удалить автомобиль из своей учетной записи?';
+
+  @override
+  String get the_process_of_getting_car => 'Процесс получения автомобиля';
+
+  @override
+  String get rental_period => 'Срок аренды';
+
+  @override
+  String get total_rent_amount => 'Общая сумма аренды';
+
+  @override
+  String get client_information => 'Информация о клиенте';
+
+  @override
+  String get upload_the_power_of_attorney_file => 'Загрузите файл доверенности';
+
+  @override
+  String get accept => 'Принять';
+
+  @override
+  String get payment_successfully_made => 'Платеж успешно произведен';
+
+  @override
+  String get payment_is_being_processed => 'Платеж обрабатывается';
+
+  @override
+  String get receiving_the_car => 'Получение автомобиля';
+
+  @override
+  String get payment_method => 'Способ оплаты';
+
+  @override
+  String get please_enter_payment_method => 'Пожалуйста, введите способ оплаты';
+
+  @override
+  String get confirmation => 'Подтверждение';
+
+  @override
+  String get we_are_approaching_the_end => 'Мы приближаемся к концу. Всего несколько кликов и ваша аренда готова!';
+
+  @override
+  String get i_agree_to_receive_sms_notifications => 'Я согласен на отправку СМС-уведомлений.';
+
+  @override
+  String get agreement_privacy_policy => 'Я согласен с нашими условиями и политикой конфиденциальности!';
+
+  @override
+  String get all_your_data_is_safe => 'Все ваши данные в безопасности';
+
+  @override
+  String get advanced_security_experience => 'Мы используем самые передовые средства безопасности, чтобы обеспечить вам наилучшие впечатления.';
+
+  @override
+  String get ratings_and_reviews => 'Рейтинги и отзывы';
+
+  @override
+  String get show_all => 'Показать все';
 }

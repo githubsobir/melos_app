@@ -1,3 +1,4 @@
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/path_images.dart';
 import 'package:common/widgets/base_button.dart';
 import 'package:dependency/dependencies.dart';
@@ -33,67 +34,68 @@ class PaymentBottomSheet extends StatelessWidget {
           bloc: cubit,
           builder: (context, state) {
             return SizedBox(
-                height: 300,
-                child: state.status.status == 1
-                    ? Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          const SizedBox(
-                            height: 24,
-                          ),
-                          SizedBox(
-                            width: 64,
-                            height: 64,
-                            child: Column(
-                              children: [
-                                SvgPicture.asset(
-                                    PathImages.paymentSuccessfully),
-                              ],
-                            ),
-                          ),
-                          const Text(
-                            "Платеж успешно произведен",
-                            textAlign: TextAlign.center,
-                          ),
-                          Expanded(child: Container()),
-                          Column(
+              height: 300,
+              child: state.status.status == 1
+                  ? Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        const SizedBox(
+                          height: 24,
+                        ),
+                        SizedBox(
+                          width: 64,
+                          height: 64,
+                          child: Column(
                             children: [
-                              SizedBox(
-                                width: 200,
-                                child: BaseButton(
-                                    onPressed: () {
-                                      print("bookingId: ${state.status.bookingId}");
-                                      context.closeActiveScreen(
-                                        state.status.bookingId,
-                                      );
-                                    },
-                                    title: "Дальше"),
-                              ),
+                              SvgPicture.asset(PathImages.paymentSuccessfully),
                             ],
-                          )
-                        ],
-                      )
-                    : const Column(
-                        crossAxisAlignment: CrossAxisAlignment.stretch,
-                        children: [
-                          SizedBox(
-                            height: 24,
                           ),
-                          SizedBox(
-                            width: 64,
-                            height: 64,
-                            child: Column(
-                              children: [
-                                CircularProgressIndicator(),
-                              ],
+                        ),
+                        Text(
+                          context.translations.payment_successfully_made,
+                          textAlign: TextAlign.center,
+                        ),
+                        Expanded(child: Container()),
+                        Column(
+                          children: [
+                            SizedBox(
+                              width: 200,
+                              child: BaseButton(
+                                  onPressed: () {
+                                    print(
+                                        "bookingId: ${state.status.bookingId}");
+                                    context.closeActiveScreen(
+                                      state.status.bookingId,
+                                    );
+                                  },
+                                  title: context.translations.next),
                             ),
+                          ],
+                        )
+                      ],
+                    )
+                  : Column(
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        const SizedBox(
+                          height: 24,
+                        ),
+                        const SizedBox(
+                          width: 64,
+                          height: 64,
+                          child: Column(
+                            children: [
+                              CircularProgressIndicator(),
+                            ],
                           ),
-                          Text(
-                            "Платеж обрабатывается",
-                            textAlign: TextAlign.center,
-                          )
-                        ],
-                      ));
+                        ),
+                        Text(
+                          context.translations.payment_is_being_processed,
+                          textAlign: TextAlign.center,
+                        )
+                      ],
+                    ),
+            );
           },
         ),
       ),

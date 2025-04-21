@@ -58,7 +58,7 @@ class ItemReview extends StatelessWidget {
                   errorWidget: (context, url, error) => const Icon(Icons.error),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 8,
               ),
               Expanded(
@@ -72,7 +72,7 @@ class ItemReview extends StatelessWidget {
                           .bodyMedium
                           ?.copyWith(fontWeight: FontWeight.w600),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 4,
                     ),
                     RatingBar.builder(
@@ -93,7 +93,7 @@ class ItemReview extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 width: 8,
               ),
               Text(
@@ -103,7 +103,7 @@ class ItemReview extends StatelessWidget {
           ),
           Row(
             children: [
-              SizedBox(
+              const SizedBox(
                 width: 44,
                 height: 44,
               ),

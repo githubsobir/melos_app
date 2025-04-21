@@ -37,7 +37,7 @@ class ReceivingTheCarScreen extends StatelessWidget {
                 : const Color(0xFF061136),
         appBar: hasBack
             ? AppBar(
-                title: const Text("Получение автомобиля"),
+                title: Text(context.translations.receiving_the_car),
                 leading: IconButton(
                   icon: Icon(Icons.close),
                   onPressed: () {
@@ -46,7 +46,7 @@ class ReceivingTheCarScreen extends StatelessWidget {
                 ),
               )
             : AppBar(
-                title: const Text("Получение автомобиля"),
+                title: Text(context.translations.receiving_the_car),
                 leading: IconButton(
                   icon: const Icon(Icons.close),
                   onPressed: () {
@@ -83,7 +83,7 @@ class ReceivingTheCarScreen extends StatelessWidget {
                                       CrossAxisAlignment.stretch,
                                   children: [
                                     Text(
-                                      "Отчет",
+                                      context.translations.reports,
                                       style: Theme.of(context)
                                           .textTheme
                                           .bodyMedium
@@ -94,7 +94,7 @@ class ReceivingTheCarScreen extends StatelessWidget {
                                       children: [
                                         Expanded(
                                           child: Text(
-                                            "Срок аренды",
+                                            context.translations.rental_period,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .labelMedium
@@ -119,7 +119,7 @@ class ReceivingTheCarScreen extends StatelessWidget {
                                       children: [
                                         Expanded(
                                           child: Text(
-                                            "Стоимость за день",
+                                            context.translations.cost_per_day,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .labelMedium
@@ -144,7 +144,7 @@ class ReceivingTheCarScreen extends StatelessWidget {
                                       children: [
                                         Expanded(
                                           child: Text(
-                                            "Залог",
+                                            context.translations.security_deposit,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .labelMedium
@@ -169,7 +169,7 @@ class ReceivingTheCarScreen extends StatelessWidget {
                                       children: [
                                         Expanded(
                                           child: Text(
-                                            "Общая сумма аренды",
+                                            context.translations.total_rent_amount,
                                             style: Theme.of(context)
                                                 .textTheme
                                                 .bodyMedium

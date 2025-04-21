@@ -423,4 +423,82 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get sum => 'so‘m';
+
+  @override
+  String get confirm_your_reservation => 'Bandlovni tasdiqlang';
+
+  @override
+  String get car_for_rent => 'Ijaraga berilgan avtomobil';
+
+  @override
+  String get accept_the_car => 'Avtomobilni qabul qiling';
+
+  @override
+  String get lock => 'Qulf';
+
+  @override
+  String get you_want_to_change_status => 'Avtomobil holatini o‘zgartirmoqchi ekanligingizga ishonchingiz komilmi?';
+
+  @override
+  String get delete => 'O‘chirish';
+
+  @override
+  String get remove_the_vehicle => 'Avtomobilni akkauntingizdan o‘chirmoqchi ekanligingizga ishonchingiz komilmi?';
+
+  @override
+  String get the_process_of_getting_car => 'Avtomobilni olish jarayoni';
+
+  @override
+  String get rental_period => 'Ijaraga olish muddati';
+
+  @override
+  String get total_rent_amount => 'Umumiy ijara summasi';
+
+  @override
+  String get client_information => 'Mijoz haqida ma’lumot';
+
+  @override
+  String get upload_the_power_of_attorney_file => 'Ishonchnoma faylini yuklang';
+
+  @override
+  String get accept => 'Qabul qilish';
+
+  @override
+  String get payment_successfully_made => 'To‘lov muvaffaqiyatli amalga oshirildi';
+
+  @override
+  String get payment_is_being_processed => 'To‘lov qayta ishlanmoqda';
+
+  @override
+  String get receiving_the_car => 'Avtomobilni qabul qilish';
+
+  @override
+  String get payment_method => 'To‘lov usuli';
+
+  @override
+  String get please_enter_payment_method => 'Iltimos, to‘lov usulini kiriting';
+
+  @override
+  String get confirmation => 'Tasdiqlash';
+
+  @override
+  String get we_are_approaching_the_end => 'Tugashiga oz qoldi. Faqat bir necha bosqich va ijarangiz tayyor!';
+
+  @override
+  String get i_agree_to_receive_sms_notifications => 'SMS xabarnomalarni olishga roziman.';
+
+  @override
+  String get agreement_privacy_policy => 'Men shartlar va maxfiylik siyosatiga roziman!';
+
+  @override
+  String get all_your_data_is_safe => 'Barcha ma’lumotlaringiz xavfsiz';
+
+  @override
+  String get advanced_security_experience => 'Biz sizga eng yaxshi tajribani taqdim etish uchun ilg‘or xavfsizlik choralaridan foydalanamiz.';
+
+  @override
+  String get ratings_and_reviews => 'Reytinglar va fikrlar';
+
+  @override
+  String get show_all => 'Barchasini ko‘rsatish';
 }

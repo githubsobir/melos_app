@@ -33,7 +33,7 @@ class ConfirmBookingScreen extends StatelessWidget {
               ? const Color(0xFFF6F7F9)
               : const Color(0xFF061136),
       appBar: AppBar(
-        title: const Text("Процесс получения автомобиля"),
+        title:  Text(context.translations.the_process_of_getting_car),
       ),
       body: BlocConsumer<ConfirmBookingCubit, ConfirmBookingState>(
         bloc: cubit,
@@ -63,7 +63,7 @@ class ConfirmBookingScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
                                   Text(
-                                    "Отчет",
+                                    context.translations.reports,
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyMedium
@@ -73,7 +73,7 @@ class ConfirmBookingScreen extends StatelessWidget {
                                     children: [
                                       Expanded(
                                         child: Text(
-                                          "Срок аренды",
+                                          context.translations.rental_period,
                                           style: Theme.of(context)
                                               .textTheme
                                               .labelMedium
@@ -98,7 +98,7 @@ class ConfirmBookingScreen extends StatelessWidget {
                                     children: [
                                       Expanded(
                                         child: Text(
-                                          "Стоимость за день",
+                                          context.translations.cost_per_day,
                                           style: Theme.of(context)
                                               .textTheme
                                               .labelMedium
@@ -123,7 +123,7 @@ class ConfirmBookingScreen extends StatelessWidget {
                                     children: [
                                       Expanded(
                                         child: Text(
-                                          "Залог",
+                                          context.translations.security_deposit,
                                           style: Theme.of(context)
                                               .textTheme
                                               .labelMedium
@@ -148,7 +148,7 @@ class ConfirmBookingScreen extends StatelessWidget {
                                     children: [
                                       Expanded(
                                         child: Text(
-                                          "Общая сумма аренды",
+                                          context.translations.total_rent_amount,
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium
@@ -175,7 +175,7 @@ class ConfirmBookingScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
                                   Text(
-                                    "Информация о клиенте",
+                                    context.translations.client_information,
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyMedium
@@ -338,7 +338,7 @@ class ConfirmBookingScreen extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
                                 children: [
                                   Text(
-                                    "Загрузите файл доверенности",
+                                    context.translations.upload_the_power_of_attorney_file,
                                     textAlign: TextAlign.center,
                                     style: Theme.of(context)
                                         .textTheme
@@ -352,7 +352,7 @@ class ConfirmBookingScreen extends StatelessWidget {
                                     padding: const EdgeInsets.only(
                                         left: 24, right: 24),
                                     child: Text(
-                                      "Поддерживаемые форматы: JPEG, PNG, PDG (до 10 МБ)",
+                                      context.translations.supported_formats,
                                       textAlign: TextAlign.center,
                                       style: Theme.of(context)
                                           .textTheme
@@ -392,7 +392,7 @@ class ConfirmBookingScreen extends StatelessWidget {
                                     : () {
                                         cubit.uploadContractOwner(bookingId);
                                       },
-                                title: "Принять"),
+                                title: context.translations.accept),
                           )
                         ],
                       ),
@@ -410,7 +410,7 @@ class ConfirmBookingScreen extends StatelessWidget {
     );
   }
 
-  void _showPicker(context) {
+  void _showPicker(BuildContext context) {
     showModalBottomSheet(
         context: context,
         builder: (BuildContext bc) {
@@ -419,14 +419,14 @@ class ConfirmBookingScreen extends StatelessWidget {
               children: <Widget>[
                 ListTile(
                     leading: Icon(Icons.photo_library),
-                    title: Text('Photo Library'),
+                    title: Text(context.translations.photo_library),
                     onTap: () {
                       _imgFromGallery();
                       Navigator.of(context).pop();
                     }),
                 ListTile(
                   leading: Icon(Icons.photo_camera),
-                  title: Text('Camera'),
+                  title: Text(context.translations.camera),
                   onTap: () {
                     _imgFromCamera();
                     Navigator.of(context).pop();

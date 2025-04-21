@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/path_images.dart';
 import 'package:domain/utils/constants.dart';
 import 'package:flutter/material.dart';
@@ -171,13 +172,13 @@ class _ItemCurrentBookingCarState extends State<ItemCurrentBookingCar> {
                   children: [
                     Expanded(
                       child: ItemTopBottomCenter(
-                        leftText: "Дата получения",
+                        leftText: context.translations.date_of_receipt,
                         rightText: widget.startDate,
                       ),
                     ),
                     Expanded(
                       child: ItemTopBottomCenter(
-                        leftText: "Дата возврата",
+                        leftText: context.translations.return_date,
                         rightText: widget.endDate,
                       ),
                     ),
@@ -211,7 +212,7 @@ class _ItemCurrentBookingCarState extends State<ItemCurrentBookingCar> {
             padding: const EdgeInsets.all(12),
             child: Center(
               child: Text(
-                "Подтвердить бронь",
+                context.translations.confirm_your_reservation,
                 style: Theme.of(context).textTheme.labelMedium?.copyWith(
                       color: Colors.white,
                     ),
@@ -232,7 +233,7 @@ class _ItemCurrentBookingCarState extends State<ItemCurrentBookingCar> {
             padding: const EdgeInsets.all(12),
             child: Center(
               child: Text(
-                "Автомобиль в аренде",
+                context.translations.car_for_rent,
                 style: Theme.of(context).textTheme.labelMedium?.copyWith(
                       color: Colors.white,
                     ),
@@ -254,7 +255,7 @@ class _ItemCurrentBookingCarState extends State<ItemCurrentBookingCar> {
             padding: const EdgeInsets.all(12),
             child: Center(
               child: Text(
-                "Принять машину",
+                context.translations.accept_the_car,
                 style: Theme.of(context).textTheme.labelMedium?.copyWith(
                       color: Colors.white,
                     ),

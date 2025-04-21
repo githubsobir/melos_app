@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/path_images.dart';
 import 'package:common/widgets/base_button.dart';
 import 'package:flutter/material.dart';
@@ -94,14 +95,14 @@ class _ItemMyCarState extends State<ItemMyCar> {
                   children: [
                     Expanded(
                       child: leftRight(
-                        title: "Местоположение",
+                        title: context.translations.location,
                         icon: PathImages.nearbyCircled,
                         onTap: widget.onCarLocation,
                       ),
                     ),
                     Expanded(
                       child: leftRight(
-                        title: "Замок ",
+                        title: context.translations.lock,
                         icon: PathImages.lockDoors,
                         onTap: widget.onLock,
                       ),
@@ -115,7 +116,7 @@ class _ItemMyCarState extends State<ItemMyCar> {
                   children: [
                     Expanded(
                       child: leftRight(
-                        title: "Статус",
+                        title: context.translations.status,
                         icon: widget.carAvailable
                             ? PathImages.carStatusEnabled
                             : PathImages.carStatusDisabled,
@@ -130,8 +131,9 @@ class _ItemMyCarState extends State<ItemMyCar> {
                               content: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  const Text(
-                                    'Вы уверены, что хотите изменить статус машину ?',
+                                  Text(
+                                    context
+                                        .translations.you_want_to_change_status,
                                     textAlign: TextAlign.center,
                                   ),
                                   const SizedBox(
@@ -144,7 +146,7 @@ class _ItemMyCarState extends State<ItemMyCar> {
                                             onPressed: () {
                                               context.closeActiveScreen();
                                             },
-                                            title: "Нет"),
+                                            title: context.translations.no),
                                       ),
                                       const SizedBox(
                                         width: 48,
@@ -155,7 +157,7 @@ class _ItemMyCarState extends State<ItemMyCar> {
                                           widget.onChangeStatus();
                                           context.closeActiveScreen();
                                         },
-                                        title: "Да",
+                                        title: context.translations.yes,
                                         background: const Color(0xFFFF3636),
                                       )),
                                     ],
@@ -169,7 +171,7 @@ class _ItemMyCarState extends State<ItemMyCar> {
                     ),
                     Expanded(
                       child: leftRight(
-                        title: "Удалить ",
+                        title: context.translations.delete,
                         icon: PathImages.removeCircledIcon,
                         onTap: () {
                           showDialog<String>(
@@ -182,8 +184,8 @@ class _ItemMyCarState extends State<ItemMyCar> {
                               content: Column(
                                 mainAxisSize: MainAxisSize.min,
                                 children: [
-                                  const Text(
-                                    'Вы уверены, что хотите удалить автомобиль из своей учетной записи?',
+                                  Text(
+                                    context.translations.remove_the_vehicle,
                                     textAlign: TextAlign.center,
                                   ),
                                   const SizedBox(
@@ -193,10 +195,11 @@ class _ItemMyCarState extends State<ItemMyCar> {
                                     children: [
                                       Expanded(
                                         child: BaseButton(
-                                            onPressed: () {
-                                              context.closeActiveScreen();
-                                            },
-                                            title: "Нет"),
+                                          onPressed: () {
+                                            context.closeActiveScreen();
+                                          },
+                                          title: context.translations.no,
+                                        ),
                                       ),
                                       const SizedBox(
                                         width: 48,
@@ -207,7 +210,7 @@ class _ItemMyCarState extends State<ItemMyCar> {
                                           widget.onDelete();
                                           context.closeActiveScreen();
                                         },
-                                        title: "Да",
+                                        title: context.translations.yes,
                                         background: const Color(0xFFFF3636),
                                       )),
                                     ],
@@ -237,7 +240,7 @@ class _ItemMyCarState extends State<ItemMyCar> {
                       width: 4,
                     ),
                     Text(
-                      "сум/день",
+                      context.translations.sum_day,
                       style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             fontWeight: FontWeight.w700,
                             color: Theme.of(context).colorScheme.secondary,

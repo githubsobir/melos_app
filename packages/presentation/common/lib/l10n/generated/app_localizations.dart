@@ -818,7 +818,7 @@ abstract class AppLocalizations {
   /// No description provided for @location.
   ///
   /// In ru, this message translates to:
-  /// **'Локация'**
+  /// **'Местоположение'**
   String get location;
 
   /// No description provided for @vehicle_condition.
@@ -922,6 +922,162 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'сум'**
   String get sum;
+
+  /// No description provided for @confirm_your_reservation.
+  ///
+  /// In ru, this message translates to:
+  /// **'Подтвердить бронь'**
+  String get confirm_your_reservation;
+
+  /// No description provided for @car_for_rent.
+  ///
+  /// In ru, this message translates to:
+  /// **'Автомобиль в аренде'**
+  String get car_for_rent;
+
+  /// No description provided for @accept_the_car.
+  ///
+  /// In ru, this message translates to:
+  /// **'Принять машину'**
+  String get accept_the_car;
+
+  /// No description provided for @lock.
+  ///
+  /// In ru, this message translates to:
+  /// **'Замок'**
+  String get lock;
+
+  /// No description provided for @you_want_to_change_status.
+  ///
+  /// In ru, this message translates to:
+  /// **'Вы уверены, что хотите изменить статус машину ?'**
+  String get you_want_to_change_status;
+
+  /// No description provided for @delete.
+  ///
+  /// In ru, this message translates to:
+  /// **'Удалить'**
+  String get delete;
+
+  /// No description provided for @remove_the_vehicle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Вы уверены, что хотите удалить автомобиль из своей учетной записи?'**
+  String get remove_the_vehicle;
+
+  /// No description provided for @the_process_of_getting_car.
+  ///
+  /// In ru, this message translates to:
+  /// **'Процесс получения автомобиля'**
+  String get the_process_of_getting_car;
+
+  /// No description provided for @rental_period.
+  ///
+  /// In ru, this message translates to:
+  /// **'Срок аренды'**
+  String get rental_period;
+
+  /// No description provided for @total_rent_amount.
+  ///
+  /// In ru, this message translates to:
+  /// **'Общая сумма аренды'**
+  String get total_rent_amount;
+
+  /// No description provided for @client_information.
+  ///
+  /// In ru, this message translates to:
+  /// **'Информация о клиенте'**
+  String get client_information;
+
+  /// No description provided for @upload_the_power_of_attorney_file.
+  ///
+  /// In ru, this message translates to:
+  /// **'Загрузите файл доверенности'**
+  String get upload_the_power_of_attorney_file;
+
+  /// No description provided for @accept.
+  ///
+  /// In ru, this message translates to:
+  /// **'Принять'**
+  String get accept;
+
+  /// No description provided for @payment_successfully_made.
+  ///
+  /// In ru, this message translates to:
+  /// **'Платеж успешно произведен'**
+  String get payment_successfully_made;
+
+  /// No description provided for @payment_is_being_processed.
+  ///
+  /// In ru, this message translates to:
+  /// **'Платеж обрабатывается'**
+  String get payment_is_being_processed;
+
+  /// No description provided for @receiving_the_car.
+  ///
+  /// In ru, this message translates to:
+  /// **'Получение автомобиля'**
+  String get receiving_the_car;
+
+  /// No description provided for @payment_method.
+  ///
+  /// In ru, this message translates to:
+  /// **'Способ оплаты'**
+  String get payment_method;
+
+  /// No description provided for @please_enter_payment_method.
+  ///
+  /// In ru, this message translates to:
+  /// **'Пожалуйста, введите способ оплаты'**
+  String get please_enter_payment_method;
+
+  /// No description provided for @confirmation.
+  ///
+  /// In ru, this message translates to:
+  /// **'Подтверждение'**
+  String get confirmation;
+
+  /// No description provided for @we_are_approaching_the_end.
+  ///
+  /// In ru, this message translates to:
+  /// **'Мы приближаемся к концу. Всего несколько кликов и ваша аренда готова!'**
+  String get we_are_approaching_the_end;
+
+  /// No description provided for @i_agree_to_receive_sms_notifications.
+  ///
+  /// In ru, this message translates to:
+  /// **'Я согласен на отправку СМС-уведомлений.'**
+  String get i_agree_to_receive_sms_notifications;
+
+  /// No description provided for @agreement_privacy_policy.
+  ///
+  /// In ru, this message translates to:
+  /// **'Я согласен с нашими условиями и политикой конфиденциальности!'**
+  String get agreement_privacy_policy;
+
+  /// No description provided for @all_your_data_is_safe.
+  ///
+  /// In ru, this message translates to:
+  /// **'Все ваши данные в безопасности'**
+  String get all_your_data_is_safe;
+
+  /// No description provided for @advanced_security_experience.
+  ///
+  /// In ru, this message translates to:
+  /// **'Мы используем самые передовые средства безопасности, чтобы обеспечить вам наилучшие впечатления.'**
+  String get advanced_security_experience;
+
+  /// No description provided for @ratings_and_reviews.
+  ///
+  /// In ru, this message translates to:
+  /// **'Рейтинги и отзывы'**
+  String get ratings_and_reviews;
+
+  /// No description provided for @show_all.
+  ///
+  /// In ru, this message translates to:
+  /// **'Показать все'**
+  String get show_all;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -1,3 +1,4 @@
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/widgets/base_button.dart';
 import 'package:domain/model/cars/car_detail_info_model.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,7 @@ class _ReviewCardState extends State<ReviewCard> {
               children: [
                 Expanded(
                   child: Text(
-                    "Рейтинги и отзывы",
+                    context.translations.ratings_and_reviews,
                     style: Theme.of(context).textTheme.bodyLarge?.copyWith(
                           fontWeight: FontWeight.w700,
                         ),
@@ -71,7 +72,7 @@ class _ReviewCardState extends State<ReviewCard> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Показать все",
+                        context.translations.show_all,
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,
                         style: Theme.of(context)
