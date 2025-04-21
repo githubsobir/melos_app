@@ -7,6 +7,7 @@ import 'package:dependency/dependencies.dart';
 import 'package:domain/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:profile/profile/profile_cubit.dart';
@@ -34,15 +35,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
           Theme.of(context).colorScheme.brightness == Brightness.light
               ? const Color(0xFFF6F7F9)
               : const Color(0xFF061136),
-      // floatingActionButton: FloatingActionButton(
-      //   shape: RoundedRectangleBorder(
-      //     borderRadius: BorderRadius.circular(100.0),
-      //   ),
-      //   backgroundColor: Colors.white,
-      //   elevation: 0,
-      //   child: SvgPicture.asset(PathImages.chat),
-      //   onPressed: () {},
-      // ),
       body: RefreshIndicator(
         onRefresh: () {
           cubit.userInformation();
@@ -262,6 +254,44 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                           ],
                         ),
+                      ),
+                      const SizedBox(
+                        height: 24,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          item(
+                              context: context,
+                              image: PathImages.changeProfile,
+                              title: "Изменить профиль",
+                              onTap: () {
+                                context
+                                    .openScreen(EditProfileIntent(state.info))
+                                    .then(
+                                      (value) {
+                                    if (value is bool && value == true) {
+                                      cubit.userInformation();
+                                    }
+                                  },
+                                );
+                              }),
+                          item(
+                              context: context,
+                              image: PathImages.check,
+                              title: "Счет",
+                              onTap: () {}),
+                          item(
+                              context: context,
+                              image: PathImages.report,
+                              title: "Снятие денег",
+                              onTap: () {}),
+                          item(
+                              context: context,
+                              image: PathImages.withdrawingMoney,
+                              title: "Отчет",
+                              onTap: () {}),
+                        ],
                       )
                     ],
                   ),
@@ -372,40 +402,48 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Widget item({
     required BuildContext context,
+    required String image,
     required String title,
-    required String content,
+    required VoidCallback onTap,
   }) {
-    return Card(
-      elevation: 0,
-      margin: const EdgeInsets.all(0),
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(0.0), // Adjust radius as needed
-      ),
-      child: Padding(
-        padding: const EdgeInsets.only(
-          left: 36,
-          right: 36,
-          top: 16,
-          bottom: 16,
-        ),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              title,
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyMedium
-                  ?.copyWith(fontWeight: FontWeight.w700),
+    return GestureDetector(
+      onTap: onTap,
+      child: SizedBox(
+        height: 90,
+        width: 90,
+        child: Card(
+          shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(
+                20.0,
+              ),
+              side: const BorderSide(color: Color(0xff3671D9))),
+          child: Padding(
+            padding: const EdgeInsets.only(
+              top: 16,
+              left: 8,
+              right: 8,
+              bottom: 8,
             ),
-            const SizedBox(
-              height: 8,
+            child: Column(
+              children: [
+                SvgPicture.asset(image),
+                SizedBox(
+                  height: 8,
+                ),
+                Expanded(
+                  child: Text(
+                    title,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                          fontWeight: FontWeight.w400,
+                          fontSize: 10,
+                          color: const Color(0xff3671D9),
+                        ),
+                  ),
+                ),
+              ],
             ),
-            Text(
-              content,
-              style: Theme.of(context).textTheme.bodyMedium,
-            )
-          ],
+          ),
         ),
       ),
     );
