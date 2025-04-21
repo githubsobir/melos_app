@@ -57,26 +57,26 @@ class Page5 extends StatelessWidget {
                       children: [
                         Expanded(
                           child: ItemTopBottom(
-                            leftText: "Модель",
+                            leftText: context.translations.model,
                             rightText: "${carModel.model}",
                           ),
                         ),
                         Expanded(
                           child: ItemTopBottom(
-                            leftText: "Пробег",
+                            leftText: context.translations.mileage,
                             rightText: "${carModel.mileage}",
                           ),
                         ),
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 8,
                     ),
                     Row(
                       children: [
                         Expanded(
                           child: ItemTopBottom(
-                            leftText: "Год",
+                            leftText: context.translations.year_of_issue,
                             rightText: "${carModel.year}",
                           ),
                         ),
@@ -100,7 +100,7 @@ class Page5 extends StatelessWidget {
                   children: [
                     Expanded(
                       child: Text(
-                        "Цена",
+                        context.translations.price,
                         style: Theme.of(context)
                             .textTheme
                             .bodyMedium
@@ -108,7 +108,7 @@ class Page5 extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "${carModel.dailyRate} сум",
+                      "${carModel.dailyRate} ${context.translations.sum}",
                       style: Theme.of(context)
                           .textTheme
                           .bodyMedium
@@ -128,7 +128,7 @@ class Page5 extends StatelessWidget {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       Text(
-                        "Страхование и документы",
+                        context.translations.insurance_and_documents,
                         style: Theme.of(context)
                             .textTheme
                             .bodyMedium

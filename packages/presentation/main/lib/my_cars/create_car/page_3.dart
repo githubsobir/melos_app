@@ -1,3 +1,4 @@
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/widgets/textfield3.dart';
 import 'package:flutter/material.dart';
 
@@ -58,7 +59,7 @@ class Page3 extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Text(
-                          "Оплата и цены",
+                          context.translations.payment_and_prices,
                           textAlign: TextAlign.end,
                           style: Theme.of(context)
                               .textTheme
@@ -79,7 +80,7 @@ class Page3 extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    "Цена",
+                    context.translations.price,
                     style: Theme.of(context).textTheme.titleSmall?.copyWith(
                           color: Theme.of(context).colorScheme.primary,
                         ),
@@ -98,7 +99,7 @@ class Page3 extends StatelessWidget {
               height: 16,
             ),
             Text(
-              "Описание",
+              context.translations.description,
               style: Theme.of(context).textTheme.titleSmall?.copyWith(
                     color: Theme.of(context).colorScheme.primary,
                   ),
@@ -117,7 +118,7 @@ class Page3 extends StatelessWidget {
                   bottom: 8,
                 ),
                 filled: true,
-                hintText: "Описание",
+                hintText: context.translations.description,
                 hintStyle: Theme.of(context).textTheme.labelMedium?.copyWith(
                       color: Theme.of(context).colorScheme.secondary,
                     ),

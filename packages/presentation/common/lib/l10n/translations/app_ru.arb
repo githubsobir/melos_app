@@ -133,5 +133,18 @@
   "vehicle_condition": "Состояние транспортного средства",
   "year_of_issue": "Год выпуска",
   "mileage": "Пробег",
-  "capacity_passengers": "Вместимость пассажиров"
+  "capacity_passengers": "Вместимость пассажиров",
+  "upload_photo_of_your_vehicle": "Загрузите фото автомобиля",
+  "supported_formats": "Поддерживаемые форматы: JPEG, PNG, PDG (до 10 МБ)",
+  "payment_and_prices": "Оплата и цены",
+  "insurance_and_documents": "Страхование и документы",
+  "gps_installation_is_required": "Для сдачи автомобиля в аренду необходима установка GPS!",
+  "gps_data": "GPS-данные",
+  "port": "Порт",
+  "unique_id": "Уникальный ID",
+  "do_you_have_car_insurance": "У вас есть страховка автомобиля?",
+  "upload_your_registration_confirmation": "Загрузить подтверждение регистрации",
+  "photo_library": "Фотобиблиотека",
+  "camera": "Камера",
+  "sum": "сум"
 }

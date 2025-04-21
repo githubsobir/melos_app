@@ -312,7 +312,6 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                     padding: const EdgeInsets.only(left: 16, right: 16),
                     child: Text(
                       context.translations.max_price_sum("${state.filter.maxPrice ?? 5000000}"),
-                      // "Макс. ${state.filter.maxPrice ?? 5000000} сум",
                       style: Theme.of(context)
                           .textTheme
                           .titleSmall

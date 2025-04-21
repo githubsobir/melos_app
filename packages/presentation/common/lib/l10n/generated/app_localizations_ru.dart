@@ -384,4 +384,43 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get capacity_passengers => 'Вместимость пассажиров';
+
+  @override
+  String get upload_photo_of_your_vehicle => 'Загрузите фото автомобиля';
+
+  @override
+  String get supported_formats => 'Поддерживаемые форматы: JPEG, PNG, PDG (до 10 МБ)';
+
+  @override
+  String get payment_and_prices => 'Оплата и цены';
+
+  @override
+  String get insurance_and_documents => 'Страхование и документы';
+
+  @override
+  String get gps_installation_is_required => 'Для сдачи автомобиля в аренду необходима установка GPS!';
+
+  @override
+  String get gps_data => 'GPS-данные';
+
+  @override
+  String get port => 'Порт';
+
+  @override
+  String get unique_id => 'Уникальный ID';
+
+  @override
+  String get do_you_have_car_insurance => 'У вас есть страховка автомобиля?';
+
+  @override
+  String get upload_your_registration_confirmation => 'Загрузить подтверждение регистрации';
+
+  @override
+  String get photo_library => 'Фотобиблиотека';
+
+  @override
+  String get camera => 'Камера';
+
+  @override
+  String get sum => 'сум';
 }

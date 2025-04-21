@@ -384,4 +384,43 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get capacity_passengers => 'Yo\'lovchilar sig\'imi';
+
+  @override
+  String get upload_photo_of_your_vehicle => 'Avtomobilingiz fotosuratini yuklang';
+
+  @override
+  String get supported_formats => 'Qo‘llab-quvvatlanadigan formatlar: JPEG, PNG, PDG (10 MB gacha)';
+
+  @override
+  String get payment_and_prices => 'To‘lov va narxlar';
+
+  @override
+  String get insurance_and_documents => 'Sug‘urta va hujjatlar';
+
+  @override
+  String get gps_installation_is_required => 'Avtomobilni ijaraga berish uchun GPS o‘rnatilishi shart!';
+
+  @override
+  String get gps_data => 'GPS maʼlumotlari';
+
+  @override
+  String get port => 'Port';
+
+  @override
+  String get unique_id => 'Unikal ID';
+
+  @override
+  String get do_you_have_car_insurance => 'Sizda avtomobil sug‘urtasi bormi?';
+
+  @override
+  String get upload_your_registration_confirmation => 'Ro‘yxatdan o‘tganingizni tasdiqlovchi hujjatni yuklang';
+
+  @override
+  String get photo_library => 'Foto kutubxona';
+
+  @override
+  String get camera => 'Kamera';
+
+  @override
+  String get sum => 'so‘m';
 }

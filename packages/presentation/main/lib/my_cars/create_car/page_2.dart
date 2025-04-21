@@ -208,7 +208,7 @@ class _Page2State extends State<Page2> {
               height: 24,
             ),
             Text(
-              "Загрузите фото автомобиля",
+              context.translations.upload_photo_of_your_vehicle,
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: Theme.of(context).colorScheme.primary,
@@ -219,7 +219,7 @@ class _Page2State extends State<Page2> {
               height: 8,
             ),
             Text(
-              "Поддерживаемые форматы: JPEG, PNG, PDG (до 10 МБ)",
+              context.translations.supported_formats,
               textAlign: TextAlign.center,
               style: Theme.of(context)
                   .textTheme

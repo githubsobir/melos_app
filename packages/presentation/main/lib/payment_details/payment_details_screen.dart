@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:common/decorations.dart';
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/path_images.dart';
 import 'package:common/widgets/base_button.dart';
 import 'package:common/widgets/base_loader_builder.dart';
@@ -204,7 +205,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  "${state.paymentProcessModel.dailyRate} сум",
+                                  "${state.paymentProcessModel.dailyRate} ${context.translations.sum}",
                                   style: Theme.of(context).textTheme.bodyMedium,
                                 ),
                               ],
@@ -227,7 +228,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  "${state.paymentProcessModel.securityDeposit} сум",
+                                  "${state.paymentProcessModel.securityDeposit} ${context.translations.sum}",
                                   style: Theme.of(context).textTheme.bodyMedium,
                                 ),
                               ],
@@ -247,7 +248,7 @@ class PaymentDetailsScreen extends StatelessWidget {
                                   ),
                                 ),
                                 Text(
-                                  "${state.paymentProcessModel.totalAmount} сум",
+                                  "${state.paymentProcessModel.totalAmount} ${context.translations.sum}",
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyMedium

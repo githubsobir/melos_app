@@ -109,7 +109,7 @@ class ConfirmBookingScreen extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        "${contract.dailyRate} сум",
+                                        "${contract.dailyRate} ${context.translations.sum}",
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyMedium,
@@ -134,7 +134,7 @@ class ConfirmBookingScreen extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        "${contract.securityDeposit} сум",
+                                        "${contract.securityDeposit} ${context.translations.sum}",
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyMedium,
@@ -157,7 +157,7 @@ class ConfirmBookingScreen extends StatelessWidget {
                                         ),
                                       ),
                                       Text(
-                                        "${contract.totalAmount} сум",
+                                        "${contract.totalAmount} ${context.translations.sum}",
                                         style: Theme.of(context)
                                             .textTheme
                                             .titleSmall,

@@ -844,6 +844,84 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Вместимость пассажиров'**
   String get capacity_passengers;
+
+  /// No description provided for @upload_photo_of_your_vehicle.
+  ///
+  /// In ru, this message translates to:
+  /// **'Загрузите фото автомобиля'**
+  String get upload_photo_of_your_vehicle;
+
+  /// No description provided for @supported_formats.
+  ///
+  /// In ru, this message translates to:
+  /// **'Поддерживаемые форматы: JPEG, PNG, PDG (до 10 МБ)'**
+  String get supported_formats;
+
+  /// No description provided for @payment_and_prices.
+  ///
+  /// In ru, this message translates to:
+  /// **'Оплата и цены'**
+  String get payment_and_prices;
+
+  /// No description provided for @insurance_and_documents.
+  ///
+  /// In ru, this message translates to:
+  /// **'Страхование и документы'**
+  String get insurance_and_documents;
+
+  /// No description provided for @gps_installation_is_required.
+  ///
+  /// In ru, this message translates to:
+  /// **'Для сдачи автомобиля в аренду необходима установка GPS!'**
+  String get gps_installation_is_required;
+
+  /// No description provided for @gps_data.
+  ///
+  /// In ru, this message translates to:
+  /// **'GPS-данные'**
+  String get gps_data;
+
+  /// No description provided for @port.
+  ///
+  /// In ru, this message translates to:
+  /// **'Порт'**
+  String get port;
+
+  /// No description provided for @unique_id.
+  ///
+  /// In ru, this message translates to:
+  /// **'Уникальный ID'**
+  String get unique_id;
+
+  /// No description provided for @do_you_have_car_insurance.
+  ///
+  /// In ru, this message translates to:
+  /// **'У вас есть страховка автомобиля?'**
+  String get do_you_have_car_insurance;
+
+  /// No description provided for @upload_your_registration_confirmation.
+  ///
+  /// In ru, this message translates to:
+  /// **'Загрузить подтверждение регистрации'**
+  String get upload_your_registration_confirmation;
+
+  /// No description provided for @photo_library.
+  ///
+  /// In ru, this message translates to:
+  /// **'Фотобиблиотека'**
+  String get photo_library;
+
+  /// No description provided for @camera.
+  ///
+  /// In ru, this message translates to:
+  /// **'Камера'**
+  String get camera;
+
+  /// No description provided for @sum.
+  ///
+  /// In ru, this message translates to:
+  /// **'сум'**
+  String get sum;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

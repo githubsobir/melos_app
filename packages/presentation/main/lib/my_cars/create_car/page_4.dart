@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/path_images.dart';
 import 'package:common/widgets/textfield3.dart';
 import 'package:flutter/material.dart';
@@ -78,7 +79,7 @@ class _Page4State extends State<Page4> {
                       crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Text(
-                          "Страхование и документы",
+                          context.translations.insurance_and_documents,
                           textAlign: TextAlign.end,
                           style: Theme.of(context)
                               .textTheme
@@ -96,7 +97,7 @@ class _Page4State extends State<Page4> {
                 SvgPicture.asset(PathImages.lampOn),
                 Expanded(
                   child: Text(
-                    "Для сдачи автомобиля в аренду необходима установка GPS!",
+                    context.translations.gps_installation_is_required,
                     style: Theme.of(context).textTheme.labelMedium?.copyWith(
                         color: Theme.of(context).colorScheme.secondary),
                   ),
@@ -107,7 +108,7 @@ class _Page4State extends State<Page4> {
               height: 16,
             ),
             Text(
-              "GPS-данные",
+              context.translations.gps_data,
               style: Theme.of(context).textTheme.titleSmall?.copyWith(
                     color: Theme.of(context).colorScheme.primary,
                   ),
@@ -119,7 +120,7 @@ class _Page4State extends State<Page4> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Порт",
+                  context.translations.port,
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         color: Theme.of(context).colorScheme.primary,
                       ),
@@ -140,7 +141,7 @@ class _Page4State extends State<Page4> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  "Уникальный ID",
+                  context.translations.unique_id,
                   style: Theme.of(context).textTheme.titleSmall?.copyWith(
                         color: Theme.of(context).colorScheme.primary,
                       ),
@@ -158,7 +159,7 @@ class _Page4State extends State<Page4> {
               height: 16,
             ),
             Text(
-              "У вас есть страховка автомобиля?",
+              context.translations.do_you_have_car_insurance,
               style: Theme.of(context).textTheme.titleSmall?.copyWith(
                     color: Theme.of(context).colorScheme.primary,
                   ),
@@ -171,7 +172,7 @@ class _Page4State extends State<Page4> {
                     contentPadding: EdgeInsets.zero,
                     dense: true,
                     title: Text(
-                      "Да",
+                      context.translations.yes,
                       style: Theme.of(context).textTheme.labelMedium,
                     ),
                     groupValue: selectedRadio,
@@ -189,7 +190,7 @@ class _Page4State extends State<Page4> {
                     contentPadding: EdgeInsets.zero,
                     dense: true,
                     title: Text(
-                      "Нет",
+                      context.translations.no,
                       style: Theme.of(context).textTheme.labelMedium,
                     ),
                     groupValue: selectedRadio,
@@ -211,7 +212,7 @@ class _Page4State extends State<Page4> {
                     height: 8,
                   ),
                   Text(
-                    "Загрузить подтверждение регистрации",
+                    context.translations.upload_your_registration_confirmation,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: Theme.of(context).colorScheme.primary,
@@ -222,7 +223,7 @@ class _Page4State extends State<Page4> {
                     height: 8,
                   ),
                   Text(
-                    "Поддерживаемые форматы: JPEG, PNG, PDG (до 10 МБ)",
+                    context.translations.supported_formats,
                     textAlign: TextAlign.center,
                     style: Theme.of(context)
                         .textTheme
@@ -267,7 +268,7 @@ class _Page4State extends State<Page4> {
     );
   }
 
-  void _showPicker(context) {
+  void _showPicker(BuildContext context) {
     showModalBottomSheet(
         context: context,
         builder: (BuildContext bc) {
@@ -276,14 +277,14 @@ class _Page4State extends State<Page4> {
               children: <Widget>[
                 ListTile(
                     leading: const Icon(Icons.photo_library),
-                    title: const Text('Photo Library'),
+                    title:  Text(context.translations.photo_library),
                     onTap: () {
                       _imgFromGallery();
                       Navigator.of(context).pop();
                     }),
                 ListTile(
                   leading: const Icon(Icons.photo_camera),
-                  title: const Text('Camera'),
+                  title: Text(context.translations.camera),
                   onTap: () {
                     _imgFromCamera();
                     Navigator.of(context).pop();

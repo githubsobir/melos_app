@@ -227,21 +227,21 @@ class ItemBooking extends StatelessWidget {
                   ),
                   ItemTopBottom(
                     leftText: context.translations.cost_per_day,
-                    rightText: "$dailyRate сум",
+                    rightText: "$dailyRate ${context.translations.sum}",
                   ),
                   const SizedBox(
                     height: 12,
                   ),
                   ItemTopBottom(
                     leftText: context.translations.security_deposit,
-                    rightText: "$securityDeposit сум",
+                    rightText: "$securityDeposit ${context.translations.sum}",
                   ),
                   const SizedBox(
                     height: 12,
                   ),
                   ItemTopBottom(
                     leftText: context.translations.total_cost,
-                    rightText: "$totalAmount сум",
+                    rightText: "$totalAmount ${context.translations.sum}",
                   ),
                 ],
               ),

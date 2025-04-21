@@ -424,7 +424,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                                     ],
                                   ),
                                   Text(
-                                    "${(state.carDetail.originalPrice ?? 0)} сум",
+                                    "${(state.carDetail.originalPrice ?? 0)} ${context.translations.sum}",
                                     style: Theme.of(context)
                                         .textTheme
                                         .labelMedium

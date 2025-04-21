@@ -133,5 +133,18 @@
   "vehicle_condition": "Avtomobil holati",
   "year_of_issue": "Chiqarilgan yili",
   "mileage": "mileage",
-  "capacity_passengers": "Yo'lovchilar sig'imi"
+  "capacity_passengers": "Yo'lovchilar sig'imi",
+  "upload_photo_of_your_vehicle": "Avtomobilingiz fotosuratini yuklang",
+  "supported_formats": "Qo‘llab-quvvatlanadigan formatlar: JPEG, PNG, PDG (10 MB gacha)",
+  "payment_and_prices": "To‘lov va narxlar",
+  "insurance_and_documents": "Sug‘urta va hujjatlar",
+  "gps_installation_is_required": "Avtomobilni ijaraga berish uchun GPS o‘rnatilishi shart!",
+  "gps_data": "GPS maʼlumotlari",
+  "port": "Port",
+  "unique_id": "Unikal ID",
+  "do_you_have_car_insurance": "Sizda avtomobil sug‘urtasi bormi?",
+  "upload_your_registration_confirmation": "Ro‘yxatdan o‘tganingizni tasdiqlovchi hujjatni yuklang",
+  "photo_library": "Foto kutubxona",
+  "camera": "Kamera",
+  "sum": "so‘m"
 }

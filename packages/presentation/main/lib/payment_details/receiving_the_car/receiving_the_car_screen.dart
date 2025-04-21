@@ -130,7 +130,7 @@ class ReceivingTheCarScreen extends StatelessWidget {
                                           ),
                                         ),
                                         Text(
-                                          "${state.contract?.dailyRate} сум",
+                                          "${state.contract?.dailyRate} ${context.translations.sum}",
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium,
@@ -155,7 +155,7 @@ class ReceivingTheCarScreen extends StatelessWidget {
                                           ),
                                         ),
                                         Text(
-                                          "${state.contract?.securityDeposit} сум",
+                                          "${state.contract?.securityDeposit} ${context.translations.sum}",
                                           style: Theme.of(context)
                                               .textTheme
                                               .bodyMedium,
@@ -179,7 +179,7 @@ class ReceivingTheCarScreen extends StatelessWidget {
                                           ),
                                         ),
                                         Text(
-                                          "${state.contract?.totalAmount} сум",
+                                          "${state.contract?.totalAmount} ${context.translations.sum}",
                                           style: Theme.of(context)
                                               .textTheme
                                               .titleSmall,
