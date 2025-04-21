@@ -18,7 +18,9 @@ class UserInformationResponse {
     photo = json['photo'];
     phoneNumber = json['phone_number'];
     passportPinfl = json['passport_pinfl'];
-    driverLicense = json['driver_license'];
+    driverLicense = json['driver_license'] != null
+        ? DriverLicenseResponse.fromJson(json['driver_license'])
+        : null;
   }
 
   String? firstName;
@@ -27,7 +29,7 @@ class UserInformationResponse {
   String? photo;
   String? phoneNumber;
   String? passportPinfl;
-  String? driverLicense;
+  DriverLicenseResponse? driverLicense;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};
@@ -37,7 +39,31 @@ class UserInformationResponse {
     map['photo'] = photo;
     map['phone_number'] = phoneNumber;
     map['passport_pinfl'] = passportPinfl;
-    map['driver_license'] = driverLicense;
+    if (driverLicense != null) {
+      map['driver_license'] = driverLicense?.toJson();
+    }
+    return map;
+  }
+}
+
+class DriverLicenseResponse {
+  DriverLicenseResponse({
+    this.text,
+    this.photo,
+  });
+
+  DriverLicenseResponse.fromJson(dynamic json) {
+    text = json['text'] != null ? json['text'].cast<String>() : [];
+    photo = json['photo'];
+  }
+
+  List<String>? text;
+  String? photo;
+
+  Map<String, dynamic> toJson() {
+    final map = <String, dynamic>{};
+    map['text'] = text;
+    map['photo'] = photo;
     return map;
   }
 }
@@ -45,7 +71,10 @@ class UserInformationResponse {
 extension UserInformationMapper on UserInformationResponse {
   UserInformationModel toDomainModel() {
     return UserInformationModel(
-      driverLicense: driverLicense,
+      driverLicense: DriverLicense(
+        text: driverLicense?.text,
+        photo: driverLicense?.photo,
+      ),
       firstName: firstName,
       lastName: lastName,
       middleName: middleName,

@@ -101,7 +101,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     item(
                       context: context,
                       title: context.translations.drivers_license,
-                      content: state.info.driverLicense ?? "",
+                      content: "state.info.driverLicense ?? """,
                     ),
                   ],
                 ),

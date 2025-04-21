@@ -15,5 +15,15 @@ class UserInformationModel {
   String? photo;
   String? phoneNumber;
   String? passportPinfl;
-  String? driverLicense;
+  DriverLicense? driverLicense;
+}
+
+class DriverLicense {
+  DriverLicense({
+    this.text,
+    this.photo,
+  });
+
+  List<String>? text;
+  String? photo;
 }

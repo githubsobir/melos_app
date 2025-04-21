@@ -95,7 +95,7 @@ class EditProfileScreen extends StatelessWidget {
                       const SizedBox(height: 8),
                       BaseTextField(
                         controller: driverLicenseController
-                          ..text = info.driverLicense ?? "",
+                          ..text = "info.driverLicense ?? """,
                         title: context.translations.drivers_license,
                         hint: context.translations.drivers_license,
                       ),
