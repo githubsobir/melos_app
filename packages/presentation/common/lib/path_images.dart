@@ -76,6 +76,10 @@ class PathImages {
   static var check = "packages/common/assets/profile/check.svg";
   static var report = "packages/common/assets/profile/report.svg";
   static var withdrawingMoney = "packages/common/assets/profile/withdrawing_money.svg";
+  static var moneyIcon = "packages/common/assets/profile/money_icon.svg";
+  static var walletIcon = "packages/common/assets/profile/wallet_icon.svg";
+  static var applyIcon = "packages/common/assets/profile/apply_icon.svg";
+  static var cancelIcon = "packages/common/assets/profile/cancel_icon.svg";
 
   //---------------- booking ----------------//
   static var phoneCircled =
