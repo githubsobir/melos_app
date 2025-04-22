@@ -7,3 +7,15 @@ class EditProfileIntent implements NavigationIntent {
 
   EditProfileIntent(this.info);
 }
+
+class CheckScreenIntent implements NavigationIntent {
+  static String path = "/CheckScreen";
+}
+
+class ReportsScreenIntent implements NavigationIntent {
+  static String path = "/ReportsScreen";
+}
+
+class WithdrawingMoneyScreenIntent implements NavigationIntent {
+  static String path = "/WithdrawingMoneyScreen";
+}

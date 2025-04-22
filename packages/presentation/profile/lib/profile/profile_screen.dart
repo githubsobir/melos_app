@@ -269,7 +269,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 context
                                     .openScreen(EditProfileIntent(state.info))
                                     .then(
-                                      (value) {
+                                  (value) {
                                     if (value is bool && value == true) {
                                       cubit.userInformation();
                                     }
@@ -280,17 +280,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               context: context,
                               image: PathImages.check,
                               title: "Счет",
-                              onTap: () {}),
+                              onTap: () {
+                                context.openScreen(CheckScreenIntent());
+                              }),
                           item(
                               context: context,
                               image: PathImages.report,
                               title: "Снятие денег",
-                              onTap: () {}),
+                              onTap: () {
+                                context.openScreen(WithdrawingMoneyScreenIntent());
+                              }),
                           item(
                               context: context,
                               image: PathImages.withdrawingMoney,
                               title: "Отчет",
-                              onTap: () {}),
+                              onTap: () {
+                                context.openScreen(ReportsScreenIntent());
+                              }),
                         ],
                       )
                     ],

@@ -25,7 +25,10 @@ import 'package:main/payment_details/receiving_the_car/receiving_the_car_screen.
 import 'package:navigation/main_navigation_intents.dart';
 import 'package:navigation/my_cars_intents.dart';
 import 'package:navigation/splash_navigation_intents.dart';
+import 'package:profile/check/check_screen.dart';
 import 'package:profile/edit_profile/edit_profile_screen.dart';
+import 'package:profile/reports/reports_screen.dart';
+import 'package:profile/withdrawing_money/withdrawing_money_screen.dart';
 import 'package:splash/onboarding/onboarding_screen.dart';
 import 'package:splash/splash/splash_screen.dart';
 
@@ -153,6 +156,15 @@ final _launcher = IntentLauncher()
   ..onNavigationIntent<EditProfileIntent>((context, intent) {
     return Navigator.pushNamed(context, EditProfileIntent.path,
         arguments: intent.info);
+  })
+  ..onNavigationIntent<CheckScreenIntent>((context, intent) {
+    return Navigator.pushNamed(context, CheckScreenIntent.path);
+  })
+  ..onNavigationIntent<ReportsScreenIntent>((context, intent) {
+    return Navigator.pushNamed(context, ReportsScreenIntent.path);
+  })
+  ..onNavigationIntent<WithdrawingMoneyScreenIntent>((context, intent) {
+    return Navigator.pushNamed(context, WithdrawingMoneyScreenIntent.path);
   });
 
 Route<dynamic>? onGenerateRoute(RouteSettings settings) {
@@ -239,6 +251,12 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
     return _createRoute(EditProfileScreen(
       info: info,
     ).wrapWith(_launcher));
+  } else if (CheckScreenIntent.path == settings.name) {
+    return _createRoute(const CheckScreen().wrapWith(_launcher));
+  } else if (ReportsScreenIntent.path == settings.name) {
+    return _createRoute(const ReportsScreen().wrapWith(_launcher));
+  } else if (WithdrawingMoneyScreenIntent.path == settings.name) {
+    return _createRoute(const WithdrawingMoneyScreen().wrapWith(_launcher));
   }
   return null;
 }
