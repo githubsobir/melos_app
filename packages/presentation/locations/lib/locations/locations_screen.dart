@@ -74,14 +74,17 @@ class _LocationsScreenState extends State<LocationsScreen> {
                       var mapObject = PlacemarkMapObject(
                         mapId: MapObjectId("${e.id}"),
                         point: Point(
-                            latitude: (e.latitude ?? 0).toDouble(),
-                            longitude: (e.longitude ?? 0).toDouble()),
-                        icon: PlacemarkIcon.single(PlacemarkIconStyle(
-                          image: BitmapDescriptor.fromAssetImage(
-                            PathImages.locationPinPng,
+                          latitude: (e.latitude ?? 0).toDouble(),
+                          longitude: (e.longitude ?? 0).toDouble(),
+                        ),
+                        icon: PlacemarkIcon.single(
+                          PlacemarkIconStyle(
+                            image: BitmapDescriptor.fromAssetImage(
+                              PathImages.locationPinPng,
+                            ),
+                            rotationType: RotationType.noRotation,
                           ),
-                          rotationType: RotationType.noRotation,
-                        )),
+                        ),
                         text: const PlacemarkText(
                           text: "",
                           style: PlacemarkTextStyle(
@@ -178,7 +181,8 @@ class _LocationsScreenState extends State<LocationsScreen> {
                               },
                               carImage:
                                   "$BASE_URL_IMAGE${state.gps[index].photo}",
-                              carName: "${state.gps[index].make} ${state.gps[index].model}",
+                              carName:
+                                  "${state.gps[index].make} ${state.gps[index].model}",
                               carRating:
                                   (state.gps[index].rating ?? 0).toDouble(),
                               carLocation: "${state.gps[index].address}",
