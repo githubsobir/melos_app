@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:common/extension.dart';
 import 'package:common/l10n/build_context_extension.dart';
@@ -20,11 +22,14 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  final cubit = ProfileCubit(inject())..userInformation();
+  final cubit = ProfileCubit(inject());
 
   @override
   void initState() {
     cubit.userInformation();
+   // Timer(Duration(seconds: 1), () {
+   //   context.openScreen(ReportsScreenIntent());
+   // },);
     super.initState();
   }
 
@@ -41,7 +46,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           return Future<void>.delayed(const Duration(seconds: 1));
         },
         child: BlocBuilder<ProfileCubit, ProfileState>(
-          bloc: cubit..userInformation(),
+          bloc: cubit,
           builder: (context, state) {
             if (state is UserInfoState) {
               return SingleChildScrollView(
