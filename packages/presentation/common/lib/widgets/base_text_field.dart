@@ -155,7 +155,7 @@ class _BaseTextFieldState extends State<BaseTextField> {
             keyboardType: TextInputType.number,
             inputFormatters: [
               MaskedTextInputFormatter(mask: "xxxxxxxxxxxxxx", separator: ""),
-              FilteringTextInputFormatter.allow(RegExp("[1-9]")),
+              FilteringTextInputFormatter.allow(RegExp("[0-9]")),
             ],
             decoration: InputDecoration(
               contentPadding:

@@ -1,10 +1,9 @@
 import 'package:common/extension.dart';
-import 'package:common/l10n/build_context_extension.dart';
 import 'package:flutter/material.dart';
 import 'package:profile/reports/item_report.dart';
 
 class ReportsScreen extends StatefulWidget {
-  const ReportsScreen({super.key});
+  ReportsScreen({super.key});
 
   @override
   State<ReportsScreen> createState() => _ReportsScreenState();

@@ -1,3 +1,5 @@
+import 'package:domain/model/profile/balance_model.dart';
+import 'package:domain/model/profile/check_model.dart';
 import 'package:domain/model/profile/user_information_model.dart';
 import 'package:domain/utils/base_result.dart';
 
@@ -15,4 +17,10 @@ abstract class ProfileRepository {
   Future<BaseResult<bool>> uploadImage(String path);
 
   Future<BaseResult<int>> unreadNotification();
+
+  Future<BaseResult<CheckModel>> checkInvoice();
+
+  Future<BaseResult<BalanceModel>> balance();
+
+  Future<BaseResult<bool>> withdraw({required String amount});
 }

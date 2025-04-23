@@ -41,4 +41,24 @@ class ProfileService {
     );
     return response;
   }
+
+  Future<Response> checkInvoice() async {
+    var response = await _netBase.dio.get(
+      'payments/invoice/list/',
+    );
+    return response;
+  }
+
+  Future<Response> withdraw({required String amount}) async {
+    var response =
+        await _netBase.dio.post('payments/withdraw/', data: {"amount": amount});
+    return response;
+  }
+
+  Future<Response> balance() async {
+    var response = await _netBase.dio.get(
+      'payments/withdraw/',
+    );
+    return response;
+  }
 }

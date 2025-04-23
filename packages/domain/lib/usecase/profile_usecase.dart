@@ -1,3 +1,5 @@
+import 'package:domain/model/profile/balance_model.dart';
+import 'package:domain/model/profile/check_model.dart';
 import 'package:domain/model/profile/user_information_model.dart';
 import 'package:domain/repository/auth_repository.dart';
 import 'package:domain/repository/profile_repository.dart';
@@ -39,5 +41,19 @@ class ProfileUseCase {
 
   Future<BaseResult<int>> unreadNotification() {
     return _profileRepository.unreadNotification();
+  }
+
+  Future<BaseResult<CheckModel>> checkInvoice() {
+    return _profileRepository.checkInvoice();
+  }
+
+  Future<BaseResult<bool>> withdraw({required String amount}) {
+    return _profileRepository.withdraw(
+      amount: amount,
+    );
+  }
+
+  Future<BaseResult<BalanceModel>> balance() {
+    return _profileRepository.balance();
   }
 }

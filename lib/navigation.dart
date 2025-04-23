@@ -252,11 +252,11 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
       info: info,
     ).wrapWith(_launcher));
   } else if (CheckScreenIntent.path == settings.name) {
-    return _createRoute(const CheckScreen().wrapWith(_launcher));
+    return _createRoute(CheckScreen().wrapWith(_launcher));
   } else if (ReportsScreenIntent.path == settings.name) {
-    return _createRoute(const ReportsScreen().wrapWith(_launcher));
+    return _createRoute(ReportsScreen().wrapWith(_launcher));
   } else if (WithdrawingMoneyScreenIntent.path == settings.name) {
-    return _createRoute(const WithdrawingMoneyScreen().wrapWith(_launcher));
+    return _createRoute(WithdrawingMoneyScreen().wrapWith(_launcher));
   }
   return null;
 }
