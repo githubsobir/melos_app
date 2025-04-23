@@ -26,6 +26,7 @@ class CarDetailInfoResponse {
     this.reviewsCount,
     this.address,
     this.addressLink,
+    this.bookedDates,
   });
 
   CarDetailInfoResponse.fromJson(dynamic json) {
@@ -60,6 +61,7 @@ class CarDetailInfoResponse {
       });
     }
     reviewsCount = json['reviews_count'];
+    bookedDates = json['booked_dates'] != null ? json['booked_dates'].cast<String>() : [];
     address = json['address'];
     addressLink = json['address_link'];
   }
@@ -86,6 +88,7 @@ class CarDetailInfoResponse {
   num? averageRating;
   String? url;
   List<Car>? recommendCars;
+  List<String>? bookedDates;
   num? reviewsCount;
 
   Map<String, dynamic> toJson() {
@@ -106,6 +109,7 @@ class CarDetailInfoResponse {
     map['created_at'] = createdAt;
     map['photos'] = photos;
     map['liked'] = liked;
+    map['booked_dates'] = bookedDates;
     if (reviews != null) {
       map['reviews'] = reviews?.map((v) => v.toJson()).toList();
     }
@@ -147,6 +151,7 @@ extension CarDetailMapper on CarDetailInfoResponse {
       reviewsCount: reviewsCount,
       address: address,
       addressLink: addressLink,
+      booked_dates: bookedDates,
     );
   }
 }

@@ -6,18 +6,21 @@ import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 import 'package:time_range/time_range.dart';
 
 class DateTimePickerBottomSheet extends StatefulWidget {
-  const DateTimePickerBottomSheet({super.key});
+  const DateTimePickerBottomSheet({super.key, required this.bookedDates});
+
+  final List<DateTime>? bookedDates;
 
   static Future<void> show({
     required BuildContext context,
     required Function(PickerDateRange, TimeRangeResult) onRangeSelected,
+    required List<DateTime>? bookedDates,
   }) async {
     var result = await showModalBottomSheet(
       context: context,
       isScrollControlled: true,
       backgroundColor: Colors.transparent,
       builder: (context) {
-        return const DateTimePickerBottomSheet();
+        return DateTimePickerBottomSheet(bookedDates: bookedDates);
       },
     );
     if (result != null) {
@@ -60,19 +63,14 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
                 selectionMode: DateRangePickerSelectionMode.range,
                 backgroundColor: Colors.transparent,
                 enablePastDates: false,
-                // selectableDayPredicate: (DateTime date) {
-                //   List<DateTime> days = [];
-                //   for (int i = 0; i < 5; i++) {
-                //     var d = DateTime.now().add(Duration(days: i * 2));
-                //     days.add(d);
-                //   }
-                //   return !days.any(
-                //     (element) =>
-                //         element.year == date.year &&
-                //         element.month == date.month &&
-                //         element.day == date.day,
-                //   );
-                // },
+                selectableDayPredicate: (date) => widget.bookedDates != null
+                    ? !widget.bookedDates!.any(
+                        (element) =>
+                            element.year == date.year &&
+                            element.month == date.month &&
+                            element.day == date.day,
+                      )
+                    : false,
                 endRangeSelectionColor: Theme.of(context).colorScheme.primary,
                 selectionTextStyle: const TextStyle(color: Colors.white),
                 monthCellStyle: DateRangePickerMonthCellStyle(

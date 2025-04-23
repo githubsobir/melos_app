@@ -11,8 +11,10 @@ class DateSelectorWidget extends StatefulWidget {
   const DateSelectorWidget({
     super.key,
     required this.onRangeSelected,
+    this.bookedDates,
   });
 
+  final List<DateTime>? bookedDates;
   final Function(
     PickerDateRange dateRange,
     TimeRangeResult timeRange,
@@ -113,6 +115,7 @@ class _DateSelectorWidgetState extends State<DateSelectorWidget> {
                           this.timeRange = timeRange;
                         });
                       },
+                      bookedDates: widget.bookedDates,
                     );
                   },
                   child: Text(

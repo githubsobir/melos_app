@@ -25,6 +25,7 @@ class CarDetailInfoModel {
     this.reviewsCount,
     this.address,
     this.addressLink,
+    this.booked_dates,
   });
 
   num? id;
@@ -49,6 +50,7 @@ class CarDetailInfoModel {
   num? averageRating;
   String? url;
   List<CarModel>? recommendCars;
+  List<String>? booked_dates;
   num? reviewsCount;
 }
 

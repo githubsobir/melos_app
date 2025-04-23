@@ -206,7 +206,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                                     textAlign: TextAlign.start,
                                     style: Theme.of(context)
                                         .textTheme
-                                        .labelMedium
+                                        .bodySmall
                                         ?.copyWith(
                                           color: Theme.of(context)
                                               .colorScheme
@@ -220,7 +220,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                                     textAlign: TextAlign.center,
                                     style: Theme.of(context)
                                         .textTheme
-                                        .labelMedium
+                                        .bodySmall
                                         ?.copyWith(
                                           fontWeight: FontWeight.w700,
                                         ),
@@ -246,7 +246,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                                     textAlign: TextAlign.end,
                                     style: Theme.of(context)
                                         .textTheme
-                                        .labelMedium
+                                        .bodySmall
                                         ?.copyWith(
                                           fontWeight: FontWeight.w700,
                                         ),
@@ -265,7 +265,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                                     textAlign: TextAlign.start,
                                     style: Theme.of(context)
                                         .textTheme
-                                        .labelMedium
+                                        .bodySmall
                                         ?.copyWith(
                                           color: Theme.of(context)
                                               .colorScheme
@@ -279,7 +279,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                                     textAlign: TextAlign.center,
                                     style: Theme.of(context)
                                         .textTheme
-                                        .labelMedium
+                                        .bodySmall
                                         ?.copyWith(
                                           fontWeight: FontWeight.w700,
                                         ),
@@ -287,7 +287,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                                 ),
                                 Expanded(
                                   child: Text(
-                                    "Бензин",
+                                    context.translations.capacity,
                                     textAlign: TextAlign.start,
                                     style: Theme.of(context)
                                         .textTheme
@@ -305,7 +305,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                                     textAlign: TextAlign.end,
                                     style: Theme.of(context)
                                         .textTheme
-                                        .labelMedium
+                                        .bodySmall
                                         ?.copyWith(
                                           fontWeight: FontWeight.w700,
                                         ),
@@ -326,6 +326,9 @@ class CarInfoDetailScreen extends StatelessWidget {
                       top: 4,
                     ),
                     child: DateSelectorWidget(
+                      bookedDates: state.carDetail.booked_dates
+                          ?.map((e) => DateTime.parse(e))
+                          .toList(),
                       onRangeSelected: (dateRange, timeRange) {
                         print(
                             "xaxaaxa ${dateRange.toString()} - ${timeRange.toString()}");
