@@ -25,7 +25,8 @@ class DateSelectorWidget extends StatefulWidget {
 }
 
 class _DateSelectorWidgetState extends State<DateSelectorWidget> {
-  PickerDateRange dateRange = PickerDateRange(DateTime.now(), DateTime.now());
+  PickerDateRange dateRange = PickerDateRange(DateTime.now(), DateTime(
+      DateTime.now().year, DateTime.now().month, DateTime.now().day + 1));
   TimeRangeResult timeRange = TimeRangeResult(
       const TimeOfDay(hour: 6, minute: 0), const TimeOfDay(hour: 6, minute: 0));
 

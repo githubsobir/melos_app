@@ -2,6 +2,7 @@ import 'package:data/models/remote/cars/request/car_like_request.dart';
 import 'package:data/models/remote/cars/response/car.dart';
 import 'package:data/models/remote/cars/response/car_detail_info_response.dart';
 import 'package:data/models/remote/cars/response/car_response.dart';
+import 'package:data/models/remote/cars/response/check_date_reponse.dart';
 import 'package:data/models/remote/cars/response/current_car_response.dart';
 import 'package:data/models/remote/cars/response/filter_response.dart';
 import 'package:data/models/remote/cars/response/liked_cars_response.dart';
@@ -14,6 +15,7 @@ import 'package:dio/dio.dart';
 import 'package:domain/model/cars/car_create_model.dart';
 import 'package:domain/model/cars/car_detail_info_model.dart';
 import 'package:domain/model/cars/car_model.dart';
+import 'package:domain/model/cars/check_date_model.dart';
 import 'package:domain/model/cars/current_car_model.dart';
 import 'package:domain/model/cars/filter_model.dart';
 import 'package:domain/model/cars/my_car_model.dart';
@@ -384,6 +386,30 @@ class CarsRepositoryImpl extends CarsRepository {
       return BaseResult(
         success: true,
         body: true,
+      );
+    } on DioException catch (error) {
+      return BaseResult(
+          success: false, exceptionBody: error.response?.data['error_note']);
+    } catch (exception) {
+      return BaseResult(success: false, exceptionBody: exception);
+    }
+  }
+
+  @override
+  Future<BaseResult<CheckDateModel>> checkDate({
+    required num carId,
+    required String startDate,
+    required String endDate,
+  }) async {
+    try {
+      var response = await _carsService.checkDate(
+        id: carId,
+        startDate: startDate,
+        endDate: endDate,
+      );
+      return BaseResult(
+        success: true,
+        body: CheckDateReponse.fromJson(response.data).toDomainModel(),
       );
     } on DioException catch (error) {
       return BaseResult(

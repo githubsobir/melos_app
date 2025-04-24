@@ -56,7 +56,7 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
           margin: EdgeInsets.all(0),
           child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 24,
               ),
               SfDateRangePicker(
@@ -70,7 +70,7 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
                             element.month == date.month &&
                             element.day == date.day,
                       )
-                    : false,
+                    : true,
                 endRangeSelectionColor: Theme.of(context).colorScheme.primary,
                 selectionTextStyle: const TextStyle(color: Colors.white),
                 monthCellStyle: DateRangePickerMonthCellStyle(
@@ -180,12 +180,12 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
                       ),
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 16,
                   ),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
               TimeRange(
@@ -224,12 +224,12 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
                   });
                 },
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
               Row(
                 children: [
-                  SizedBox(
+                  const SizedBox(
                     width: 16,
                   ),
                   Expanded(

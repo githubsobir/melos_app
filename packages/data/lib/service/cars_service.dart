@@ -267,4 +267,15 @@ class CarsService {
     );
     return response;
   }
+
+  Future<Response> checkDate({
+    required num id,
+    required String startDate,
+    required String endDate,
+  }) async {
+    var response = await _netBase.dio.get(
+      'payments/check-date/$id/?start_date_time=$startDate&end_date_time=$endDate',
+    );
+    return response;
+  }
 }

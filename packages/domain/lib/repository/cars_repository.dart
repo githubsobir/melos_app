@@ -1,6 +1,7 @@
 import 'package:domain/model/cars/car_create_model.dart';
 import 'package:domain/model/cars/car_detail_info_model.dart';
 import 'package:domain/model/cars/car_model.dart';
+import 'package:domain/model/cars/check_date_model.dart';
 import 'package:domain/model/cars/current_car_model.dart';
 import 'package:domain/model/cars/filter_model.dart';
 import 'package:domain/model/cars/my_car_model.dart';
@@ -67,4 +68,6 @@ abstract class CarsRepository {
     required double latitude,
     required double longitude,
   });
+
+  Future<BaseResult<CheckDateModel>> checkDate({required num carId, required String startDate, required String endDate});
 }
