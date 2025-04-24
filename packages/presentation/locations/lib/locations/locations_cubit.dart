@@ -1,4 +1,3 @@
-import 'package:domain/model/location/gps_model.dart';
 import 'package:domain/model/location/nearest_cars_model.dart';
 import 'package:domain/usecase/cars_usecase.dart';
 import 'package:equatable/equatable.dart';
@@ -11,7 +10,7 @@ class LocationsCubit extends Cubit<LocationsState> {
       : super(
           LocationsState(
             isLoading: false,
-            gps: const [],
+            // gps: const [],
             point: const Point(
               latitude: 41.313755,
               longitude: 69.248912,
@@ -21,41 +20,6 @@ class LocationsCubit extends Cubit<LocationsState> {
           ),
         );
   final CarsUseCase _carsUseCase;
-
-  Future<void> gpsList() async {
-    emit(state.copyWith(isLoading: true));
-    try {
-      var position = await Geolocator.getLastKnownPosition();
-      if (position != null) {
-        emit(
-          state.copyWith(
-            point: Point(
-              latitude: position.latitude,
-              longitude: position.longitude,
-            ),
-          ),
-        );
-      }
-    } catch (e) {
-      print(e);
-    }
-
-    var response = await _carsUseCase.gpsList(
-      latitude: state.point.latitude,
-      longitude: state.point.longitude,
-    );
-    if (response.success) {
-      var gps = response.body;
-      if (gps != null) {
-        emit(state.copyWith(
-          isLoading: false,
-          gps: gps,
-        ));
-      }
-    } else {
-      emit(state.copyWith(isLoading: false));
-    }
-  }
 
   Future<void> nearestCars() async {
     emit(state.copyWith(isLoading: true));
@@ -94,17 +58,6 @@ class LocationsCubit extends Cubit<LocationsState> {
     }
   }
 
-  // Future<void> mapInitial() async {
-  //   var response = await _carsUseCase.mapApiKey();
-  //   if (response.success) {
-  //     var gps = response.body;
-  //     if (gps != null) {
-  //       // await init.initMapkit(apiKey: gps);
-  //       // await init.initMapkit(apiKey: "973005bb-3cfc-4e46-81d2-26939d2b8c3c");
-  //     }
-  //   }
-  // }
-
   Future<void> geocoder() async {
     var response = await _carsUseCase.geocoder(
       latitude: state.point.latitude,
@@ -121,14 +74,12 @@ class LocationsCubit extends Cubit<LocationsState> {
 
 class LocationsState extends Equatable {
   final bool isLoading;
-  final List<GpsModel> gps;
   final Point point;
   final NearestCarsModel nearestCar;
   final String locationName;
 
   const LocationsState({
     required this.isLoading,
-    required this.gps,
     required this.point,
     required this.locationName,
     required this.nearestCar,
@@ -136,14 +87,12 @@ class LocationsState extends Equatable {
 
   LocationsState copyWith({
     bool? isLoading,
-    List<GpsModel>? gps,
     Point? point,
     NearestCarsModel? nearestCar,
     String? locationName,
   }) {
     return LocationsState(
       isLoading: isLoading ?? this.isLoading,
-      gps: gps ?? this.gps,
       point: point ?? this.point,
       locationName: locationName ?? this.locationName,
       nearestCar: nearestCar ?? this.nearestCar,
@@ -152,7 +101,7 @@ class LocationsState extends Equatable {
 
   @override
   List<Object> get props => [
-        gps,
+        // gps,
         isLoading,
         point,
         locationName,

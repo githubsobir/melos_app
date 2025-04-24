@@ -2,6 +2,7 @@ import 'package:common/items/item_car_map.dart';
 import 'package:common/path_images.dart';
 import 'package:common/widgets/base_loader_builder.dart';
 import 'package:dependency/dependencies.dart';
+import 'package:domain/model/location/gps_model.dart';
 import 'package:domain/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,9 +17,8 @@ class LocationsScreen extends StatefulWidget {
   LocationsScreen({super.key});
 
   final cubit = LocationsCubit(inject())
-    // ..mapInitial()
     ..geocoder()
-    ..gpsList();
+    ..nearestCars();
 
   @override
   State<LocationsScreen> createState() => _LocationsScreenState();
@@ -27,12 +27,18 @@ class LocationsScreen extends StatefulWidget {
 class _LocationsScreenState extends State<LocationsScreen> {
   YandexMapController? mapController;
   final List<MapObject> mapObjects = [];
+  GpsModel? selectedCar;
+  Point? selectedCarPoint;
+  bool isSelectedCarVisible = false;
 
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<LocationsCubit, LocationsState>(
       bloc: widget.cubit,
       builder: (context, state) {
+        var allCars = [];
+        allCars.addAll(state.nearestCar.nearest ?? []);
+        allCars.addAll(state.nearestCar.others ?? []);
         return Scaffold(
           appBar: AppBar(
             title: Row(
@@ -42,9 +48,12 @@ class _LocationsScreenState extends State<LocationsScreen> {
                 const SizedBox(
                   width: 4,
                 ),
-                Text(
-                  state.locationName,
-                  style: Theme.of(context).textTheme.bodyMedium,
+                Expanded(
+                  child: Text(
+                    state.locationName,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                    maxLines: 2,
+                  ),
                 )
               ],
             ),
@@ -55,23 +64,59 @@ class _LocationsScreenState extends State<LocationsScreen> {
               children: [
                 YandexMap(
                   mapObjects: mapObjects,
+                  onCameraPositionChanged:
+                      (CameraPosition cameraPosition, reason, finished) {
+                    print(selectedCarPoint?.latitude.toStringAsFixed(4));
+                    print(cameraPosition.target.latitude.toStringAsFixed(4));
+                    print(selectedCarPoint?.longitude.toStringAsFixed(4));
+                    print(cameraPosition.target.longitude.toStringAsFixed(4));
+                    if (finished &&
+                        selectedCarPoint?.latitude.toStringAsFixed(4) ==
+                            cameraPosition.target.latitude.toStringAsFixed(4) &&
+                        selectedCarPoint?.longitude.toStringAsFixed(4) ==
+                            cameraPosition.target.longitude
+                                .toStringAsFixed(4)) {
+                      setState(() {
+                        isSelectedCarVisible = true;
+                      });
+                    } else {
+                      setState(() {
+                        isSelectedCarVisible = false;
+                      });
+                    }
+                  },
                   onMapCreated: (YandexMapController controller) {
                     mapController = controller;
                     mapController?.moveCamera(
                       CameraUpdate.newCameraPosition(
                         CameraPosition(
-                          target: Point(
-                            latitude: state.point.latitude,
-                            longitude: state.point.longitude,
-                          ),
+                          target: state.point,
                           zoom: 14.0,
                           azimuth: 150.0,
                           tilt: 30.0,
                         ),
                       ),
                     );
-                    for (var e in state.gps) {
+                    for (var e in allCars) {
                       var mapObject = PlacemarkMapObject(
+                        onTap: (mapObject, point) {
+                          mapController?.moveCamera(
+                            CameraUpdate.newCameraPosition(
+                              CameraPosition(
+                                target: point,
+                                zoom: 14.0,
+                                azimuth: 150.0,
+                                tilt: 30.0,
+                              ),
+                            ),
+                            animation: const MapAnimation(
+                              type: MapAnimationType.smooth,
+                              duration: 1.0,
+                            ),
+                          );
+                          selectedCarPoint = point;
+                          selectedCar = e;
+                        },
                         mapId: MapObjectId("${e.id}"),
                         point: Point(
                           latitude: (e.latitude ?? 0).toDouble(),
@@ -134,10 +179,7 @@ class _LocationsScreenState extends State<LocationsScreen> {
                                 mapController?.moveCamera(
                                   CameraUpdate.newCameraPosition(
                                     CameraPosition(
-                                      target: Point(
-                                        latitude: state.point.latitude,
-                                        longitude: state.point.longitude,
-                                      ),
+                                      target: state.point,
                                       zoom: 14.0,
                                       azimuth: 150.0,
                                       tilt: 30.0,
@@ -148,7 +190,8 @@ class _LocationsScreenState extends State<LocationsScreen> {
                                     duration: 1.0,
                                   ),
                                 );
-                                widget.cubit.gpsList();
+                                widget.cubit.geocoder();
+                                widget.cubit.nearestCars();
                               } else {
                                 await Geolocator.openLocationSettings();
                               }
@@ -169,23 +212,46 @@ class _LocationsScreenState extends State<LocationsScreen> {
                           shrinkWrap: true,
                           padding: const EdgeInsets.only(right: 24, left: 12),
                           scrollDirection: Axis.horizontal,
-                          itemCount: state.gps.length,
+                          itemCount: state.nearestCar.nearest?.length,
                           itemBuilder: (BuildContext context, int index) =>
                               Padding(
                             padding: const EdgeInsets.only(left: 12),
                             child: ItemCarMap(
                               onPressed: () {
-                                context.openScreen(CarInfoDetailIntent(
-                                  carId: state.gps[index].id ?? 0,
-                                ));
+                                var camera = CameraPosition(
+                                  target: Point(
+                                    latitude: (state.nearestCar.nearest?[index]
+                                                .latitude ??
+                                            0)
+                                        .toDouble(),
+                                    longitude: (state.nearestCar.nearest?[index]
+                                                .longitude ??
+                                            0)
+                                        .toDouble(),
+                                  ),
+                                  zoom: 14.0,
+                                  azimuth: 150.0,
+                                  tilt: 30.0,
+                                );
+                                mapController?.moveCamera(
+                                  CameraUpdate.newCameraPosition(camera),
+                                  animation: const MapAnimation(
+                                    type: MapAnimationType.smooth,
+                                    duration: 1.0,
+                                  ),
+                                );
+                                selectedCarPoint = camera.target;
+                                selectedCar = state.nearestCar.nearest?[index];
                               },
                               carImage:
-                                  "$BASE_URL_IMAGE${state.gps[index].photo}",
+                                  "$BASE_URL_IMAGE${state.nearestCar.nearest?[index].photo}",
                               carName:
-                                  "${state.gps[index].make} ${state.gps[index].model}",
+                                  "${state.nearestCar.nearest?[index].make} ${state.nearestCar.nearest?[index].model}",
                               carRating:
-                                  (state.gps[index].rating ?? 0).toDouble(),
-                              carLocation: "${state.gps[index].address}",
+                                  (state.nearestCar.nearest?[index].rating ?? 0)
+                                      .toDouble(),
+                              carLocation:
+                                  "${state.nearestCar.nearest?[index].address}",
                             ),
                           ),
                         ),
@@ -193,6 +259,25 @@ class _LocationsScreenState extends State<LocationsScreen> {
                     ],
                   ),
                 ),
+                if (isSelectedCarVisible)
+                  Align(
+                    alignment: Alignment.center,
+                    child: Container(
+                      height: 160,
+                      margin: const EdgeInsets.only(bottom: 200),
+                      child: ItemCarMap(
+                        onPressed: () {
+                          context.openScreen(CarInfoDetailIntent(
+                            carId: selectedCar?.id ?? 0,
+                          ));
+                        },
+                        carImage: "$BASE_URL_IMAGE${selectedCar?.photo}",
+                        carName: "${selectedCar?.make} ${selectedCar?.model}",
+                        carRating: (selectedCar?.rating ?? 0).toDouble(),
+                        carLocation: "${selectedCar?.address}",
+                      ),
+                    ),
+                  )
               ],
             ),
           ),
