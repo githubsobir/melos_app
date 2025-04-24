@@ -111,7 +111,7 @@ class _LocationsScreenState extends State<LocationsScreen> {
                             ),
                             animation: const MapAnimation(
                               type: MapAnimationType.smooth,
-                              duration: 1.0,
+                              duration: 0.5,
                             ),
                           );
                           selectedCarPoint = point;
@@ -187,7 +187,7 @@ class _LocationsScreenState extends State<LocationsScreen> {
                                   ),
                                   animation: const MapAnimation(
                                     type: MapAnimationType.smooth,
-                                    duration: 1.0,
+                                    duration: 0.5,
                                   ),
                                 );
                                 widget.cubit.geocoder();
@@ -237,7 +237,7 @@ class _LocationsScreenState extends State<LocationsScreen> {
                                   CameraUpdate.newCameraPosition(camera),
                                   animation: const MapAnimation(
                                     type: MapAnimationType.smooth,
-                                    duration: 1.0,
+                                    duration: 0.5,
                                   ),
                                 );
                                 selectedCarPoint = camera.target;
