@@ -278,4 +278,12 @@ class CarsService {
     );
     return response;
   }
+
+  Future<Response> nearestCars(
+      {required double latitude, required double longitude}) async {
+    var response = await _netBase.dio.get(
+      'v2/nearest-cars/?latitude=$latitude&longitude=$longitude',
+    );
+    return response;
+  }
 }

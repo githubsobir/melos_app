@@ -4,6 +4,7 @@ class GpsModel {
     this.photo,
     this.make,
     this.model,
+    this.price,
     this.address,
     this.rating,
     this.longitude,
@@ -14,6 +15,7 @@ class GpsModel {
   String? photo;
   String? make;
   String? model;
+  String? price;
   String? address;
   num? rating;
   num? longitude;

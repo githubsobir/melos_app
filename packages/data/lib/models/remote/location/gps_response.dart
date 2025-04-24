@@ -7,6 +7,7 @@ class GpsResponse {
     this.make,
     this.model,
     this.address,
+    this.price,
     this.rating,
     this.longitude,
     this.latitude,
@@ -18,6 +19,7 @@ class GpsResponse {
     make = json['make'];
     model = json['model'];
     address = json['address'];
+    price = json['price'];
     rating = json['rating'];
     longitude = json['longitude'];
     latitude = json['latitude'];
@@ -28,6 +30,7 @@ class GpsResponse {
   String? make;
   String? model;
   String? address;
+  String? price;
   num? rating;
   num? longitude;
   num? latitude;
@@ -39,6 +42,7 @@ class GpsResponse {
     map['make'] = make;
     map['model'] = model;
     map['address'] = address;
+    map['price'] = price;
     map['rating'] = rating;
     map['longitude'] = longitude;
     map['latitude'] = latitude;
@@ -61,6 +65,7 @@ extension GpsMapper on GpsResponse {
       rating: rating,
       latitude: latitude,
       longitude: longitude,
+      price: price
     );
   }
 }

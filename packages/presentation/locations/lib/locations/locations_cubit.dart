@@ -1,4 +1,5 @@
 import 'package:domain/model/location/gps_model.dart';
+import 'package:domain/model/location/nearest_cars_model.dart';
 import 'package:domain/usecase/cars_usecase.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -8,14 +9,15 @@ import 'package:yandex_mapkit/yandex_mapkit.dart';
 class LocationsCubit extends Cubit<LocationsState> {
   LocationsCubit(this._carsUseCase)
       : super(
-          const LocationsState(
+          LocationsState(
             isLoading: false,
-            gps: [],
-            point: Point(
+            gps: const [],
+            point: const Point(
               latitude: 41.313755,
               longitude: 69.248912,
             ),
             locationName: '',
+            nearestCar: NearestCarsModel(),
           ),
         );
   final CarsUseCase _carsUseCase;
@@ -55,6 +57,43 @@ class LocationsCubit extends Cubit<LocationsState> {
     }
   }
 
+  Future<void> nearestCars() async {
+    emit(state.copyWith(isLoading: true));
+    try {
+      var position = await Geolocator.getLastKnownPosition();
+      if (position != null) {
+        emit(
+          state.copyWith(
+            point: Point(
+              latitude: position.latitude,
+              longitude: position.longitude,
+            ),
+          ),
+        );
+      }
+    } catch (e) {
+      print(e);
+    }
+
+    var response = await _carsUseCase.nearestCars(
+      latitude: state.point.latitude,
+      longitude: state.point.longitude,
+    );
+    if (response.success) {
+      var nearestCars = response.body;
+      if (nearestCars != null) {
+        emit(
+          state.copyWith(
+            isLoading: false,
+            nearestCar: nearestCars,
+          ),
+        );
+      }
+    } else {
+      emit(state.copyWith(isLoading: false));
+    }
+  }
+
   // Future<void> mapInitial() async {
   //   var response = await _carsUseCase.mapApiKey();
   //   if (response.success) {
@@ -84,6 +123,7 @@ class LocationsState extends Equatable {
   final bool isLoading;
   final List<GpsModel> gps;
   final Point point;
+  final NearestCarsModel nearestCar;
   final String locationName;
 
   const LocationsState({
@@ -91,12 +131,14 @@ class LocationsState extends Equatable {
     required this.gps,
     required this.point,
     required this.locationName,
+    required this.nearestCar,
   });
 
   LocationsState copyWith({
     bool? isLoading,
     List<GpsModel>? gps,
     Point? point,
+    NearestCarsModel? nearestCar,
     String? locationName,
   }) {
     return LocationsState(
@@ -104,9 +146,16 @@ class LocationsState extends Equatable {
       gps: gps ?? this.gps,
       point: point ?? this.point,
       locationName: locationName ?? this.locationName,
+      nearestCar: nearestCar ?? this.nearestCar,
     );
   }
 
   @override
-  List<Object> get props => [gps, isLoading, point, locationName];
+  List<Object> get props => [
+        gps,
+        isLoading,
+        point,
+        locationName,
+        nearestCar,
+      ];
 }
