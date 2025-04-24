@@ -47,6 +47,7 @@ class CarInfoDetailCubit extends Cubit<CarDetailState> {
       var info = response.body;
       if (info != null) {
         if (info.isAvailable == true) {
+          //
           emit(state.copyWith(
             hasError: false,
             errorMessage: "",
