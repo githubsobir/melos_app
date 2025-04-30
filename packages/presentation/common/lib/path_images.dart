@@ -67,15 +67,22 @@ class PathImages {
   static var langRu = "packages/common/assets/main/lang_ru.svg";
   static var langUz = "packages/common/assets/main/lang_uz.svg";
   static var noConnection = "packages/common/assets/main/no_connection.svg";
+  static var capacityRounded =
+      "packages/common/assets/main/capacity_rounded.svg";
+  static var carType = "packages/common/assets/main/car_type.svg";
+  static var gasoline = "packages/common/assets/main/gasoline.svg";
+  static var transmission = "packages/common/assets/main/transmission.svg";
 
 //---------------- profile ----------------//
   static var chat = "packages/common/assets/profile/chat.svg";
   static var emblem = "packages/common/assets/profile/emblem.png";
   static var flag = "packages/common/assets/profile/flag.png";
-  static var changeProfile = "packages/common/assets/profile/change_profile.svg";
+  static var changeProfile =
+      "packages/common/assets/profile/change_profile.svg";
   static var check = "packages/common/assets/profile/check.svg";
   static var report = "packages/common/assets/profile/report.svg";
-  static var withdrawingMoney = "packages/common/assets/profile/withdrawing_money.svg";
+  static var withdrawingMoney =
+      "packages/common/assets/profile/withdrawing_money.svg";
   static var moneyIcon = "packages/common/assets/profile/money_icon.svg";
   static var walletIcon = "packages/common/assets/profile/wallet_icon.svg";
   static var applyIcon = "packages/common/assets/profile/apply_icon.svg";

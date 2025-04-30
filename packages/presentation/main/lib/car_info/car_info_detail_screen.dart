@@ -64,7 +64,7 @@ class CarInfoDetailScreen extends StatelessWidget {
           }
         },
         builder: (context, state) {
-          if(state.carDetail.id != null){
+          if (state.carDetail.id != null) {
             return SingleChildScrollView(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -89,7 +89,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                   ////////////////////////
                   Padding(
                     padding:
-                    const EdgeInsets.only(left: 24, right: 24, top: 16),
+                        const EdgeInsets.only(left: 24, right: 24, top: 16),
                     child: Card(
                       elevation: 0,
                       margin: const EdgeInsets.all(0),
@@ -109,7 +109,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                                   child: Text(
                                     "${state.carDetail.make} ${state.carDetail.model}",
                                     style:
-                                    Theme.of(context).textTheme.titleSmall,
+                                        Theme.of(context).textTheme.titleSmall,
                                   ),
                                 ),
                                 GestureDetector(
@@ -143,8 +143,8 @@ class CarInfoDetailScreen extends StatelessWidget {
                               children: [
                                 RatingBar.builder(
                                   initialRating:
-                                  (state.carDetail.averageRating ?? 0)
-                                      .toDouble(),
+                                      (state.carDetail.averageRating ?? 0)
+                                          .toDouble(),
                                   minRating: 1,
                                   itemCount: 5,
                                   itemSize: 18,
@@ -169,9 +169,9 @@ class CarInfoDetailScreen extends StatelessWidget {
                                       .textTheme
                                       .labelMedium
                                       ?.copyWith(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .secondary),
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .secondary),
                                 ),
                               ],
                             ),
@@ -184,9 +184,9 @@ class CarInfoDetailScreen extends StatelessWidget {
                                   .textTheme
                                   .bodySmall
                                   ?.copyWith(
-                                color:
-                                Theme.of(context).colorScheme.secondary,
-                              ),
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
+                                  ),
                             ),
                           ],
                         ),
@@ -214,57 +214,58 @@ class CarInfoDetailScreen extends StatelessWidget {
                             Row(
                               children: [
                                 Expanded(
-                                  child: Text(
-                                    context.translations.car_type,
-                                    textAlign: TextAlign.start,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall
-                                        ?.copyWith(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .secondary,
-                                    ),
+                                  child: Row(
+                                    children: [
+                                      SvgPicture.asset(PathImages.carType),
+                                      const SizedBox(
+                                        width: 16,
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          (state.carDetail.category ?? ""),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodySmall
+                                              ?.copyWith(
+                                                fontWeight: FontWeight.w700,
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .secondary,
+                                              ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
+                                ),
+                                SizedBox(
+                                  width: 24,
                                 ),
                                 Expanded(
-                                  child: Text(
-                                    (state.carDetail.category ?? ""),
-                                    textAlign: TextAlign.center,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall
-                                        ?.copyWith(
-                                      fontWeight: FontWeight.w700,
-                                    ),
+                                  child: Row(
+                                    children: [
+                                      SvgPicture.asset(
+                                        PathImages.capacityRounded,
+                                      ),
+                                      const SizedBox(
+                                        width: 16,
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          "${(state.carDetail.passengerCapacity ?? 0)}",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodySmall
+                                              ?.copyWith(
+                                                fontWeight: FontWeight.w700,
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .secondary,
+                                              ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
-                                ),
-                                Expanded(
-                                  child: Text(
-                                    context.translations.number_of_seats,
-                                    textAlign: TextAlign.start,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall
-                                        ?.copyWith(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .secondary,
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Text(
-                                    "${(state.carDetail.passengerCapacity ?? 0)}",
-                                    textAlign: TextAlign.end,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall
-                                        ?.copyWith(
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
-                                ),
+                                )
                               ],
                             ),
                             const SizedBox(
@@ -273,55 +274,54 @@ class CarInfoDetailScreen extends StatelessWidget {
                             Row(
                               children: [
                                 Expanded(
-                                  child: Text(
-                                    context.translations.steering,
-                                    textAlign: TextAlign.start,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall
-                                        ?.copyWith(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .secondary,
-                                    ),
+                                  child: Row(
+                                    children: [
+                                      SvgPicture.asset(PathImages.transmission),
+                                      const SizedBox(
+                                        width: 16,
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          (state.carDetail.transmission ?? ""),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodySmall
+                                              ?.copyWith(
+                                                fontWeight: FontWeight.w700,
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .secondary,
+                                              ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                                Expanded(
-                                  child: Text(
-                                    (state.carDetail.transmission ?? ""),
-                                    textAlign: TextAlign.center,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall
-                                        ?.copyWith(
-                                      fontWeight: FontWeight.w700,
-                                    ),
-                                  ),
+                                SizedBox(
+                                  width: 24,
                                 ),
                                 Expanded(
-                                  child: Text(
-                                    context.translations.capacity,
-                                    textAlign: TextAlign.start,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall
-                                        ?.copyWith(
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .secondary,
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Text(
-                                    "${(state.carDetail.fuelCapacity ?? 0)}",
-                                    textAlign: TextAlign.end,
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .bodySmall
-                                        ?.copyWith(
-                                      fontWeight: FontWeight.w700,
-                                    ),
+                                  child: Row(
+                                    children: [
+                                      SvgPicture.asset(PathImages.gasoline),
+                                      const SizedBox(
+                                        width: 16,
+                                      ),
+                                      Expanded(
+                                        child: Text(
+                                          "${(state.carDetail.fuelCapacity ?? 0)}",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodySmall
+                                              ?.copyWith(
+                                                fontWeight: FontWeight.w700,
+                                                color: Theme.of(context)
+                                                    .colorScheme
+                                                    .secondary,
+                                              ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ],
@@ -419,8 +419,8 @@ class CarInfoDetailScreen extends StatelessWidget {
                                             .textTheme
                                             .bodyLarge
                                             ?.copyWith(
-                                          fontWeight: FontWeight.w700,
-                                        ),
+                                              fontWeight: FontWeight.w700,
+                                            ),
                                       ),
                                       const SizedBox(
                                         width: 2,
@@ -431,11 +431,11 @@ class CarInfoDetailScreen extends StatelessWidget {
                                             .textTheme
                                             .labelMedium
                                             ?.copyWith(
-                                          fontWeight: FontWeight.w700,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .secondary,
-                                        ),
+                                              fontWeight: FontWeight.w700,
+                                              color: Theme.of(context)
+                                                  .colorScheme
+                                                  .secondary,
+                                            ),
                                       ),
                                     ],
                                   ),
@@ -445,13 +445,13 @@ class CarInfoDetailScreen extends StatelessWidget {
                                         .textTheme
                                         .labelMedium
                                         ?.copyWith(
-                                      fontWeight: FontWeight.w700,
-                                      decoration:
-                                      TextDecoration.lineThrough,
-                                      color: Theme.of(context)
-                                          .colorScheme
-                                          .secondary,
-                                    ),
+                                          fontWeight: FontWeight.w700,
+                                          decoration:
+                                              TextDecoration.lineThrough,
+                                          color: Theme.of(context)
+                                              .colorScheme
+                                              .secondary,
+                                        ),
                                   ),
                                 ],
                               ),
@@ -466,7 +466,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                                     cubit.checkDate(
                                       carId: carId,
                                       startDate:
-                                      startDateTime.toIso8601String(),
+                                          startDateTime.toIso8601String(),
                                       endDate: endDateTime.toIso8601String(),
                                     );
                                   } else {
@@ -504,17 +504,17 @@ class CarInfoDetailScreen extends StatelessWidget {
                                   .textTheme
                                   .bodySmall
                                   ?.copyWith(
-                                color:
-                                Theme.of(context).colorScheme.secondary,
-                                fontWeight: FontWeight.w700,
-                              ),
+                                    color:
+                                        Theme.of(context).colorScheme.secondary,
+                                    fontWeight: FontWeight.w700,
+                                  ),
                             ),
                           ),
                           SizedBox(
                             height: 336,
                             child: ListView.builder(
                               itemCount:
-                              (state.carDetail.recommendCars ?? []).length,
+                                  (state.carDetail.recommendCars ?? []).length,
                               shrinkWrap: true,
                               padding: const EdgeInsets.only(right: 24),
                               scrollDirection: Axis.horizontal,
@@ -522,59 +522,59 @@ class CarInfoDetailScreen extends StatelessWidget {
                                 padding: const EdgeInsets.only(left: 24),
                                 child: ItemCarPopular(
                                   carImage:
-                                  "$BASE_URL_IMAGE${(state.carDetail.recommendCars ?? [])[index].photo}",
+                                      "$BASE_URL_IMAGE${(state.carDetail.recommendCars ?? [])[index].photo}",
                                   carMake:
-                                  "${(state.carDetail.recommendCars ?? [])[index].make}",
+                                      "${(state.carDetail.recommendCars ?? [])[index].make}",
                                   carType:
-                                  "${(state.carDetail.recommendCars ?? [])[index].category}",
+                                      "${(state.carDetail.recommendCars ?? [])[index].category}",
                                   dailyRate: ((state.carDetail.recommendCars ??
-                                      [])[index]
-                                      .dailyRate ??
+                                              [])[index]
+                                          .dailyRate ??
                                       ""),
                                   originalPrice:
-                                  ((state.carDetail.recommendCars ??
-                                      [])[index]
-                                      .originalPrice),
+                                      ((state.carDetail.recommendCars ??
+                                              [])[index]
+                                          .originalPrice),
                                   onPressed: () {
                                     context.openScreen(CarInfoDetailIntent(
                                       carId: (state.carDetail.recommendCars ??
-                                          [])[index]
-                                          .id ??
+                                                  [])[index]
+                                              .id ??
                                           0,
                                     ));
                                   },
                                   passengerCapacity:
-                                  ((state.carDetail.recommendCars ??
-                                      [])[index]
-                                      .passengerCapacity ??
-                                      0)
-                                      .toInt(),
+                                      ((state.carDetail.recommendCars ??
+                                                      [])[index]
+                                                  .passengerCapacity ??
+                                              0)
+                                          .toInt(),
                                   fuelCapacity:
-                                  ((state.carDetail.recommendCars ??
-                                      [])[index]
-                                      .fuelCapacity ??
-                                      0)
-                                      .toInt(),
+                                      ((state.carDetail.recommendCars ??
+                                                      [])[index]
+                                                  .fuelCapacity ??
+                                              0)
+                                          .toInt(),
                                   onLike: (isLiked) {
                                     cubit.likeCar(
                                         ((state.carDetail.recommendCars ??
-                                            [])[index]
-                                            .id ??
-                                            0)
+                                                        [])[index]
+                                                    .id ??
+                                                0)
                                             .toInt(),
                                         isLiked);
                                   },
                                   isLiked: ((state.carDetail.recommendCars ??
-                                      [])[index]
-                                      .liked ??
+                                              [])[index]
+                                          .liked ??
                                       false),
                                   transmission:
-                                  ((state.carDetail.recommendCars ??
-                                      [])[index]
-                                      .transmission ??
-                                      ""),
+                                      ((state.carDetail.recommendCars ??
+                                                  [])[index]
+                                              .transmission ??
+                                          ""),
                                   carModel:
-                                  "${(state.carDetail.recommendCars ?? [])[index].model}",
+                                      "${(state.carDetail.recommendCars ?? [])[index].model}",
                                 ),
                               ),
                             ),
@@ -584,7 +584,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                 ],
               ),
             );
-          }else{
+          } else {
             return const Center(child: CircularProgressIndicator());
           }
         },

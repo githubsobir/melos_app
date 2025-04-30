@@ -20,8 +20,6 @@ class RegisterScreen extends StatelessWidget {
 
   final TextEditingController firstNameController = TextEditingController();
   final TextEditingController lastNameController = TextEditingController();
-
-  // final TextEditingController phoneController = TextEditingController();
   final TextEditingController driverLicenseController = TextEditingController();
   final TextEditingController middleNameLicenseController =
       TextEditingController();
@@ -34,7 +32,7 @@ class RegisterScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:  Text(context.translations.registration),
+        title: Text(context.translations.registration),
       ),
       body: BlocConsumer(
         bloc: cubit,
@@ -114,7 +112,7 @@ class RegisterScreen extends StatelessWidget {
                     onPressed: () {
                       cubit.register(
                         firstName: firstNameController.text,
-                        phoneNumber: phoneNumber,
+                        phoneNumber: "+998$phoneNumber",
                         password: passwordController.text,
                         confirmPassword: confirmPasswordController.text,
                         lastName: lastNameController.text,
