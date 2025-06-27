@@ -7,7 +7,7 @@
 
 # https://www.appicon.co/
 
-# flutter_3_24_4
+# flutter_3_24_4 stable
 
 https://carbnb.uz/backend/swagger/
 
