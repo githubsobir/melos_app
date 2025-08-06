@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -55,10 +57,12 @@ class AppLocalizationsRu extends AppLocalizations {
   String get profile => 'Профиль';
 
   @override
-  String get please_fill_in_all_fields => 'Пожалуйста, заполните все поля правильно';
+  String get please_fill_in_all_fields =>
+      'Пожалуйста, заполните все поля правильно';
 
   @override
-  String get new_password_difference => 'Ваш новый пароль должен отличаться от ранее использованного пароля.';
+  String get new_password_difference =>
+      'Ваш новый пароль должен отличаться от ранее использованного пароля.';
 
   @override
   String get password => 'Пароль';
@@ -82,7 +86,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get authentication => 'Аутентификация';
 
   @override
-  String get enter_the_code => 'Введите код аутентификации, отправленный на ваш телефон.';
+  String get enter_the_code =>
+      'Введите код аутентификации, отправленный на ваш телефон.';
 
   @override
   String get send => 'Отправлять';
@@ -100,7 +105,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get forgot_your_password => 'Забыли пароль?';
 
   @override
-  String get enter_your_number => 'Введите свой номер, чтобы получить проверочный код!';
+  String get enter_your_number =>
+      'Введите свой номер, чтобы получить проверочный код!';
 
   @override
   String get contact_phone => 'Контактный телефон';
@@ -314,10 +320,12 @@ class AppLocalizationsRu extends AppLocalizations {
   String get sum_day => 'сум/день';
 
   @override
-  String get internet_connection_is_unavailable => 'Подключение к Интернету недоступно';
+  String get internet_connection_is_unavailable =>
+      'Подключение к Интернету недоступно';
 
   @override
-  String get please_check_connection => 'Проверьте подключение к Wi-Fi или мобильной сети и повторите попытку.';
+  String get please_check_connection =>
+      'Проверьте подключение к Wi-Fi или мобильной сети и повторите попытку.';
 
   @override
   String get try_again => 'Повторить попытку';
@@ -341,16 +349,20 @@ class AppLocalizationsRu extends AppLocalizations {
   String get review => 'Обзор';
 
   @override
-  String get rent_out_your_car_with_ease => 'Сдавайте автомобиль в аренду с легкостью!';
+  String get rent_out_your_car_with_ease =>
+      'Сдавайте автомобиль в аренду с легкостью!';
 
   @override
-  String get earn_extra_income_text => 'Получайте дополнительный доход, делясь своим автомобилем через нашу платформу! Просто предоставьте необходимые данные о вашем автомобиле, включая марку, модель, год, состояние, доступность и цену. Убедитесь, что ваш автомобиль оснащен устройством GPS для бесперебойного отслеживания и безопасности во время аренды.';
+  String get earn_extra_income_text =>
+      'Получайте дополнительный доход, делясь своим автомобилем через нашу платформу! Просто предоставьте необходимые данные о вашем автомобиле, включая марку, модель, год, состояние, доступность и цену. Убедитесь, что ваш автомобиль оснащен устройством GPS для бесперебойного отслеживания и безопасности во время аренды.';
 
   @override
-  String get what_you_will_need_to_get_started => 'Что вам понадобится для начала:';
+  String get what_you_will_need_to_get_started =>
+      'Что вам понадобится для начала:';
 
   @override
-  String get what_you_will_need_to_get_started_text => '1. Полные данные об автомобиле (марка, модель, год выпуска, номерной знак и т. д.).\n2. Фотографии вашего автомобиля (внутри и снаружи).\n3. Подтверждение страховки и регистрации.\n4. Устройство GPS-слежения, установленное в вашем автомобиле.\n5. Безопасность вашего автомобиля и ваше спокойствие — наши главные приоритеты!';
+  String get what_you_will_need_to_get_started_text =>
+      '1. Полные данные об автомобиле (марка, модель, год выпуска, номерной знак и т. д.).\n2. Фотографии вашего автомобиля (внутри и снаружи).\n3. Подтверждение страховки и регистрации.\n4. Устройство GPS-слежения, установленное в вашем автомобиле.\n5. Безопасность вашего автомобиля и ваше спокойствие — наши главные приоритеты!';
 
   @override
   String get fill_in_the_details_below => 'Заполните данные ниже';
@@ -389,7 +401,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get upload_photo_of_your_vehicle => 'Загрузите фото автомобиля';
 
   @override
-  String get supported_formats => 'Поддерживаемые форматы: JPEG, PNG, PDG (до 10 МБ)';
+  String get supported_formats =>
+      'Поддерживаемые форматы: JPEG, PNG, PDG (до 10 МБ)';
 
   @override
   String get payment_and_prices => 'Оплата и цены';
@@ -398,7 +411,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get insurance_and_documents => 'Страхование и документы';
 
   @override
-  String get gps_installation_is_required => 'Для сдачи автомобиля в аренду необходима установка GPS!';
+  String get gps_installation_is_required =>
+      'Для сдачи автомобиля в аренду необходима установка GPS!';
 
   @override
   String get gps_data => 'GPS-данные';
@@ -413,7 +427,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get do_you_have_car_insurance => 'У вас есть страховка автомобиля?';
 
   @override
-  String get upload_your_registration_confirmation => 'Загрузить подтверждение регистрации';
+  String get upload_your_registration_confirmation =>
+      'Загрузить подтверждение регистрации';
 
   @override
   String get photo_library => 'Фотобиблиотека';
@@ -437,13 +452,15 @@ class AppLocalizationsRu extends AppLocalizations {
   String get lock => 'Замок';
 
   @override
-  String get you_want_to_change_status => 'Вы уверены, что хотите изменить статус машину ?';
+  String get you_want_to_change_status =>
+      'Вы уверены, что хотите изменить статус машину ?';
 
   @override
   String get delete => 'Удалить';
 
   @override
-  String get remove_the_vehicle => 'Вы уверены, что хотите удалить автомобиль из своей учетной записи?';
+  String get remove_the_vehicle =>
+      'Вы уверены, что хотите удалить автомобиль из своей учетной записи?';
 
   @override
   String get the_process_of_getting_car => 'Процесс получения автомобиля';
@@ -482,23 +499,143 @@ class AppLocalizationsRu extends AppLocalizations {
   String get confirmation => 'Подтверждение';
 
   @override
-  String get we_are_approaching_the_end => 'Мы приближаемся к концу. Всего несколько кликов и ваша аренда готова!';
+  String get we_are_approaching_the_end =>
+      'Мы приближаемся к концу. Всего несколько кликов и ваша аренда готова!';
 
   @override
-  String get i_agree_to_receive_sms_notifications => 'Я согласен на отправку СМС-уведомлений.';
+  String get i_agree_to_receive_sms_notifications =>
+      'Я согласен на отправку СМС-уведомлений.';
 
   @override
-  String get agreement_privacy_policy => 'Я согласен с нашими условиями и политикой конфиденциальности!';
+  String get agreement_privacy_policy =>
+      'Я согласен с нашими условиями и политикой конфиденциальности!';
 
   @override
   String get all_your_data_is_safe => 'Все ваши данные в безопасности';
 
   @override
-  String get advanced_security_experience => 'Мы используем самые передовые средства безопасности, чтобы обеспечить вам наилучшие впечатления.';
+  String get advanced_security_experience =>
+      'Мы используем самые передовые средства безопасности, чтобы обеспечить вам наилучшие впечатления.';
 
   @override
   String get ratings_and_reviews => 'Рейтинги и отзывы';
 
   @override
   String get show_all => 'Показать все';
+
+  @override
+  String get return_lang => 'Возврат';
+
+  @override
+  String get receive => 'Получение';
+
+  @override
+  String get cancel => 'Отмена';
+
+  @override
+  String get set => 'Установить';
+
+  @override
+  String get changeLanguage => 'Изменить язык';
+
+  @override
+  String get exitAccount => 'Вы уверены что хотите выйти из аккаунта ?';
+
+  @override
+  String get passwordLength => 'Пароль из 8 и более символов';
+
+  @override
+  String get enterNumber => 'Введите номер';
+
+  @override
+  String get enterSpecialSymbols => '!~* Введите специальный символ';
+
+  @override
+  String get enterCapitalLatter => 'Введите заглавную букву';
+
+  @override
+  String get enterLowerCase => 'Введите строчную букву';
+
+  @override
+  String get more2Name => 'должно быть длиннее 2 букв';
+
+  @override
+  String get more2LastName => 'должна быть длиннее 2 букв';
+
+  @override
+  String get more2Firstname => 'должно быть длиннее двух букв';
+
+  @override
+  String get pnfl => 'Должен состоять из 14 цифр';
+
+  @override
+  String get driverLicense =>
+      'Длина водительского удостоверения должна быть не менее 9 символов';
+
+  @override
+  String get human => 'Люди';
+
+  @override
+  String get daySum => 'сум/день';
+
+  @override
+  String get pickUpAndReturn => 'Самовывоз и возврат';
+
+  @override
+  String get to => 'до';
+
+  @override
+  String get dateReturn => 'Выберите дату получения и возврата';
+
+  @override
+  String get dateTimeReturn => 'Выберите время получения и возврата';
+
+  @override
+  String get acquainted => 'Я ознакомился с офертой';
+
+  @override
+  String get scrollDown => 'Прокрутите вниз';
+
+  @override
+  String get paymentNotSuccess =>
+      'Платеж не прошел,\nПлатеж был выведен из состояния ожидания';
+
+  @override
+  String get cost => 'Оплата';
+
+  @override
+  String get pleaseWait => 'Пожалуйста, подождите';
+
+  @override
+  String get send2 => 'Отправить';
+
+  @override
+  String get cancel_order2 => 'Вы хотите отменить заказ?';
+
+  @override
+  String get select2 => 'Выбирать';
+
+  @override
+  String get checkInfo => 'Проверить информацию';
+
+  @override
+  String get chooseBrand => 'Выбрать марку автомобиля';
+
+  @override
+  String get chooseModel => 'Выбрать модель автомобиля';
+
+  @override
+  String get chooseCity => 'Выбрать город';
+
+  @override
+  String get chooseCarTransmission => 'Выбрать коробка передач';
+
+  @override
+  String get enterCarNumber => 'Введите номер автомобиля';
+
+  @override
+  String get clear => 'Очищать';
+
+  @override
+  String get chooseAnOtherDate => 'Выберите другую дату';
 }

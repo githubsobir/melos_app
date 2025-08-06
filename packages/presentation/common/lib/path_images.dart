@@ -13,6 +13,7 @@ class PathImages {
 
   //--------------------------------------------//
   static var carLogin = "packages/common/assets/images/car_login.png";
+  static var car2025 = "packages/common/assets/images/car_2025.png";
   static var carRegister = "packages/common/assets/images/car_register.png";
   static var forgotPassword =
       "packages/common/assets/images/forgot_password.png";
@@ -48,6 +49,8 @@ class PathImages {
   static var locationRed = "packages/common/assets/locations/location_red.svg";
   static var locationPinPng =
       "packages/common/assets/locations/location_pin_png.png";
+  static var locationRedPng1 =
+      "packages/common/assets/locations/red_location1.png";
   static var speedometer = "packages/common/assets/locations/speedometer.svg";
 
 //---------------- main ----------------//

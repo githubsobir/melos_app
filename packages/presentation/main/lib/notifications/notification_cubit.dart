@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bloc/bloc.dart';
 import 'package:domain/model/main/notification_model.dart';
 import 'package:domain/usecase/main_usecase.dart';
@@ -6,14 +8,17 @@ import 'package:equatable/equatable.dart';
 class NotificationCubit extends Cubit<NotificationState> {
   NotificationCubit(this._mainUseCase) : super(NotificationInitial());
   final MainUseCase _mainUseCase;
+  List<NotificationModel> listNotification = [];
 
   Future<void> getNotifications() async {
     emit(LoaderState());
-    var response = await _mainUseCase.getNotifications();
-    if (response.success) {
-      var info = response.body;
-      if (info != null) {
-        emit(NotificationsListState(info));
+
+    try {
+      var response = await _mainUseCase.getNotifications();
+      if (response.success) {
+        listNotification.clear();
+        listNotification = response.body!;
+        emit(NotificationsListState(listNotification));
       } else {
         emit(const NotificationsListState([]));
         // emit(
@@ -45,17 +50,40 @@ class NotificationCubit extends Cubit<NotificationState> {
         //   ),
         // );
       }
+    } catch (e) {
+      emit(const NotificationsListState([]));
     }
   }
 
-  Future<void> readNotification(num id) async {
-    emit(LoaderState());
-    var response = await _mainUseCase.readNotification(
-      id: id,
-    );
-    if (response.success) {
-      getNotifications();
+  readNotification(int index) {
+    final updatedList = [...listNotification];
+    for (int i = 0; i < updatedList.length; i++) {
+      if (index == i) {
+        updatedList[index] = NotificationModel(
+            title: updatedList[index].title,
+            body: updatedList[index].body,
+            id: updatedList[index].id,
+            isRead: true);
+        listNotification[index] = NotificationModel(
+            title: updatedList[index].title,
+            body: updatedList[index].body,
+            id: updatedList[index].id,
+            isRead: true);
+      } else {
+        updatedList[i] = NotificationModel(
+            title: updatedList[i].title,
+            body: updatedList[i].body,
+            id: updatedList[i].id,
+            isRead: updatedList[i].isRead);
+        listNotification[i] = NotificationModel(
+            title: updatedList[i].title,
+            body: updatedList[i].body,
+            id: updatedList[i].id,
+            isRead: updatedList[i].isRead);
+      }
     }
+
+    emit(NotificationsListState(updatedList));
   }
 }
 

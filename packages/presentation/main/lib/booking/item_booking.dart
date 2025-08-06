@@ -64,6 +64,8 @@ class ItemBooking extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(
                 top: 16,
+                left: 3,
+                right: 3,
                 bottom: 16,
               ),
               child: CarImageSelectorWidget(
@@ -73,7 +75,7 @@ class ItemBooking extends StatelessWidget {
           ),
           Card(
             child: Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(15.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 mainAxisSize: MainAxisSize.min,
@@ -124,9 +126,7 @@ class ItemBooking extends StatelessWidget {
                                           .colorScheme
                                           .secondary),
                             ),
-                            SizedBox(
-                              height: 12,
-                            ),
+                            const SizedBox(height: 12),
                             Row(
                               children: [
                                 ClipRRect(
@@ -467,7 +467,7 @@ class ItemBooking extends StatelessWidget {
                       content: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                           Text(
+                          Text(
                             context.translations.end_your_lease,
                             textAlign: TextAlign.center,
                           ),

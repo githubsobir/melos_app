@@ -5,19 +5,90 @@ import 'package:dependency/dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:locations/select_location/select_location_cubit.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
-class SelectLocationScreen extends StatelessWidget {
+class SelectLocationScreen extends StatefulWidget {
   SelectLocationScreen({super.key});
 
+  @override
+  State<SelectLocationScreen> createState() => _SelectLocationScreenState();
+}
+
+class _SelectLocationScreenState extends State<SelectLocationScreen> {
   final cubit = SelectLocationCubit(inject())
     ..geocoder(
       latitude: 41.313755,
       longitude: 69.248912,
     );
+
+  Point? userLocation;
+
   YandexMapController? mapController;
+
+  @override
+  initState() {
+    super.initState();
+    _requestLocationPermission();
+  }
+
+  Future<void> _requestLocationPermission() async {
+    var status = await Permission.location.status;
+    if (!status.isGranted) {
+      await Permission.location.request();
+    }
+    _getUserLocation();
+  }
+
+  Future<void> _getUserLocation() async {
+    try {
+      Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high,
+      );
+
+
+      setState(() {
+        userLocation = Point(
+          latitude: position.latitude,
+          longitude: position.longitude,
+        );
+      });
+
+      // User location-ni mapga qo'shish
+      _addUserLocationToMap();
+    } catch (e) {
+      print('Location olishda xato: $e');
+    }
+  }
+
+
+
+  void _addUserLocationToMap() {
+    if (userLocation != null) {
+      var userLocationMarker = PlacemarkMapObject(
+        mapId: const MapObjectId('user_location'),
+        point: userLocation!,
+        opacity: 0.8,
+
+        icon: PlacemarkIcon.single(PlacemarkIconStyle(
+            image: BitmapDescriptor.fromAssetImage(PathImages.locationRedPng1),
+            scale: 2
+
+        )),
+      );
+
+      mapObjects.add(userLocationMarker);
+      setState(() {
+
+      });
+
+    }
+  }
+
+  final List<MapObject> mapObjects = [];
 
   @override
   Widget build(BuildContext context) {
@@ -46,6 +117,7 @@ class SelectLocationScreen extends StatelessWidget {
           body: Stack(
             children: [
               YandexMap(
+                mapObjects: mapObjects,
                 onMapCreated: (mapWindow) {
                   mapController = mapWindow;
                   mapController?.moveCamera(
@@ -63,9 +135,36 @@ class SelectLocationScreen extends StatelessWidget {
                   );
                 },
                 onCameraPositionChanged: (cameraPosition, reason, finished) {
-                  cubit.geocoder(
-                    latitude: cameraPosition.target.latitude,
-                    longitude: cameraPosition.target.longitude,
+               if(finished) {
+                    cubit.geocoder(
+                      latitude: cameraPosition.target.latitude,
+                      longitude: cameraPosition.target.longitude,
+                    );
+                  }
+                },
+                onUserLocationAdded: (UserLocationView view) async {
+                  // User location view sozlamalari
+                  return view.copyWith(
+                    pin: view.pin.copyWith(
+                      icon: PlacemarkIcon.single(
+                        PlacemarkIconStyle(
+                          image: BitmapDescriptor.fromAssetImage(
+                            'assets/user_location.png',
+                          ),
+                          scale: 0.8,
+                        ),
+                      ),
+                    ),
+                    arrow: view.arrow.copyWith(
+                      icon: PlacemarkIcon.single(
+                        PlacemarkIconStyle(
+                          image: BitmapDescriptor.fromAssetImage(
+                            'assets/arrow.png',
+                          ),
+                          scale: 0.8,
+                        ),
+                      ),
+                    ),
                   );
                 },
               ),
@@ -73,18 +172,23 @@ class SelectLocationScreen extends StatelessWidget {
                 alignment: Alignment.center,
                 child: SvgPicture.asset(PathImages.locationRed),
               ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: BaseButton(
-                  width: double.maxFinite,
-                  onPressed: () {
-                    if (context.mounted) {
-                      context.closeActiveScreen(state.point);
-                    }
-                  },
-                  title: context.translations.choose,
+
+              Padding(
+                padding: const EdgeInsets.only(bottom: 20, left: 10, right: 10),
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: BaseButton(
+                    width: double.maxFinite,
+                    onPressed: () {
+                      if (context.mounted) {
+                        context.closeActiveScreen(state.point);
+                      }
+                    },
+                    title: context.translations.choose,
+                  ),
                 ),
               ),
+              const SizedBox(height: 20),
             ],
           ),
         );

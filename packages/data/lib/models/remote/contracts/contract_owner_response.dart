@@ -48,7 +48,7 @@ class ContractOwnerResponse {
     map['security_deposit'] = securityDeposit;
     map['total_amount'] = totalAmount;
     map['client_name'] = clientName;
-    map['client_profile_image'] = clientProfileImage;
+    map['profile_page'] = clientProfileImage;
     map['client_phone_number'] = clientPhoneNumber;
     map['payment_method'] = paymentMethod;
     map['client_document'] = clientDocument;

@@ -87,6 +87,7 @@ class _MyCarsScreenState extends State<MyCarsScreen>
                       carImage:
                           "$BASE_URL_IMAGE${state.currentCars[index].photo}",
                       onConfirmBooking: () {
+
                         context
                             .openScreen(ConfirmBookingScreenIntent(
                                 contractId: state.currentCars[index].id ?? 0))
@@ -190,3 +191,4 @@ class _MyCarsScreenState extends State<MyCarsScreen>
     );
   }
 }
+//

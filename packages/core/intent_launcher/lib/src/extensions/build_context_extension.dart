@@ -8,6 +8,10 @@ extension BuildContextExtension on BuildContext {
     return IntentLauncher.openScreen(this, intent);
   }
 
+  Future<T?> replaceScreen<T>(NavigationIntent intent) {
+    return IntentLauncher.replaceScreen(this, intent);
+  }
+
   closeActiveScreen<T extends Object?>([T? result]) {
     Navigator.pop(this, result);
   }

@@ -8,15 +8,13 @@ class BookingService {
 
   Future<Response> bookingHistory() async {
     var response = await _netBase.dio.get(
-      'booking/history/',
+      'booking/list/',
     );
     return response;
   }
 
   Future<Response> bookingList() async {
-    var response = await _netBase.dio.get(
-      'booking/list/',
-    );
+    var response = await _netBase.dio.get('booking/list/');
     return response;
   }
 

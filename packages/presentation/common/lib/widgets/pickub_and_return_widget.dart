@@ -1,11 +1,14 @@
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/path_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class PickupAndReturnWidget extends StatelessWidget {
   final String location;
+  final String urlLink;
 
-  const PickupAndReturnWidget({super.key, required this.location});
+  const PickupAndReturnWidget({super.key, required this.location, required this.urlLink});
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +29,7 @@ class PickupAndReturnWidget extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Text(
-              "Самовывоз и возврат",
+              context.translations.pickUpAndReturn,
               style: Theme.of(context).textTheme.bodySmall?.copyWith(
                     fontWeight: FontWeight.w700,
                     color: Theme.of(context).colorScheme.primary,
@@ -49,7 +52,8 @@ class PickupAndReturnWidget extends StatelessWidget {
                     PathImages.locationRed,
                     height: 26,
                     width: 26,
-                    colorFilter: ColorFilter.mode(Theme.of(context).colorScheme.secondary,
+                    colorFilter: ColorFilter.mode(
+                      Theme.of(context).colorScheme.secondary,
                       BlendMode.srcIn,
                     ),
                   ),
@@ -58,12 +62,22 @@ class PickupAndReturnWidget extends StatelessWidget {
                   width: 8,
                 ),
                 Expanded(
-                  child: Text(
-                    location,
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall
-                        ?.copyWith(fontSize: 12),
+                  child: TextButton.icon(
+                      label: Text(    location,    style: TextStyle(
+                        // decoration: TextDecoration.underline,
+                        // decorationStyle: TextDecorationStyle.solid,
+                        // decorationColor: Colors.blueAccent.shade700,
+                          fontSize: 12,
+                          decorationThickness: 0.5,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.blueAccent.shade700)),
+                      icon: const Icon(Icons.map), onPressed: () {
+                    openMapsSheet(context);
+                  },
+                    iconAlignment: IconAlignment.end,
+
+
+
                   ),
                 ),
               ],
@@ -73,4 +87,41 @@ class PickupAndReturnWidget extends StatelessWidget {
       ),
     );
   }
+
+
+
+  openMapsSheet(context) async {
+    try {
+
+
+
+      try {
+        final Uri url = Uri.parse(urlLink);
+
+        if (await canLaunchUrl(url)) {
+          await launchUrl(
+            url,
+            mode: LaunchMode.externalApplication, // Tashqi ilovada ochish
+          );
+        } else {
+          throw 'Could not launch $urlLink';
+        }
+      } catch (e) {
+        print('Error opening map: $e');
+        // Xatolik bo'lsa browser da ochish
+        await _openInBrowser(urlLink);
+      }
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  static Future<void> _openInBrowser(String url) async {
+    final Uri uri = Uri.parse(url);
+    await launchUrl(
+      uri,
+      mode: LaunchMode.inAppWebView, // Ilova ichida web view
+    );
+  }
+
 }

@@ -34,10 +34,10 @@ class OtpCodeScreen extends StatelessWidget {
         listener: (context, state) {
           if (state is EmptyFieldsErrorState) {
             FocusManager.instance.primaryFocus?.unfocus();
-            showToast(context.translations.please_fill_in_all_fields);
+            showToastSms(context.translations.please_fill_in_all_fields);
           } else if (state is ErrorState) {
             FocusManager.instance.primaryFocus?.unfocus();
-            showToast(state.message);
+            showToastSms(state.message);
           } else if (state is SuccessfullyVerifiedState) {
             FocusManager.instance.primaryFocus?.unfocus();
             if (isRegister) {
@@ -53,12 +53,13 @@ class OtpCodeScreen extends StatelessWidget {
             hasLoading: state is LoaderState,
             child: SingleChildScrollView(
               child: Padding(
-                padding: const EdgeInsets.all(24.0),
+                padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const SizedBox(
-                      height: 150,
+                      height: 100,
                     ),
                     Text(
                       context.translations.authentication,
@@ -71,19 +72,34 @@ class OtpCodeScreen extends StatelessWidget {
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
-                    const SizedBox(height: 32),
+                    const SizedBox(height: 42),
                     CustomOtp(
                       onPinEntered: (String code) {
                         smsCode = code;
                       },
                     ),
                     const SizedBox(height: 32),
-                    BaseButton(
+                    // BaseButton(onPressed: onPressed, title: title)
+                    MaterialButton(
+                      minWidth: double.infinity,
+                      color: Theme.of(context).colorScheme.primary,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                      ),
+                      height: 45,
                       onPressed: () {
                         cubit.verifySmsCode(
                             phone: "+998$phoneNumber", smsCode: smsCode);
                       },
-                      title: context.translations.send,
+                      child: Text(context.translations.send,
+                        style:
+                        Theme.of(context).textTheme.bodyMedium!.copyWith(
+                        fontSize: 18,
+                        color: Theme.of(context).colorScheme.brightness ==
+                            Brightness.light
+                            ? Colors.white
+                            : Colors.white,
+                      ),),
                     ),
                     const SizedBox(height: 32),
                     GestureDetector(

@@ -16,14 +16,17 @@ class CarInfoDetailCubit extends Cubit<CarDetailState> {
   final CarsUseCase _carsUseCase;
   var hasUser = false;
 
+  setHasError(){
+
+  emit(state.copyWith(hasError: false));
+}
+
   Future<void> getCarDetail(num carId) async {
-    var response = await _carsUseCase.getCarDetail(
-      carId: carId,
-    );
+    var response = await _carsUseCase.getCarDetail(carId: carId);
     if (response.success) {
       var info = response.body;
       if (info != null) {
-        emit(state.copyWith(carDetail: info));
+        emit(state.copyWith(carDetail: info,goNextPage: false),);
       }
     }
   }
@@ -69,6 +72,10 @@ class CarInfoDetailCubit extends Cubit<CarDetailState> {
 
   Future<void> hasUserProfile() async {
     hasUser = await _carsUseCase.hasUser();
+  }
+
+  void resetGoNextPage() {
+    emit(state.copyWith(goNextPage: false));
   }
 }
 

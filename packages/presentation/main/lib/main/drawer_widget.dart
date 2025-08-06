@@ -143,7 +143,91 @@ class _DrawerWidgetState extends State<DrawerWidget> {
                       title: context.translations.exit,
                       context: context,
                       onTap: () {
-                        widget.onLogOut();
+                        showDialog<bool>(
+                          context: context,
+                          barrierDismissible: false,
+                          // Dialog tashqarisiga bosganda yopilmasin
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(16),
+                              ),
+                              title: Text(
+                                context.translations.exit,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                              content: Text(
+                                context.translations.exitAccount,
+                                style: const TextStyle(fontSize: 16),
+                                textAlign: TextAlign.center,
+                              ),
+                              actions: [
+                                Row(
+                                  children: [
+                                    Expanded(
+                                      child: TextButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop(
+                                              false); // "Yo'q" javob qaytaradi
+                                        },
+                                        style: TextButton.styleFrom(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 12),
+                                          backgroundColor: Colors.blueAccent,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            side: const BorderSide(
+                                                color: Colors.grey),
+                                          ),
+                                        ),
+                                        child: Text(
+                                          context.translations.no,
+                                          style: const TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    const SizedBox(width: 12),
+                                    Expanded(
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          Navigator.of(context).pop(
+                                              true); // "Ha" javob qaytaradi
+                                          widget.onLogOut();
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.grey.shade200,
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 12),
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                          ),
+                                        ),
+                                        child: Text(
+                                          context.translations.yes,
+                                          style: TextStyle(
+                                            fontSize: 16,
+                                            color: Colors.grey.shade800,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            );
+                          },
+                        );
+
+                        //
                       },
                     )
                   : item(
@@ -246,64 +330,194 @@ class _DrawerWidgetState extends State<DrawerWidget> {
     required Function(String langCode) onTap,
   }) {
     return GestureDetector(
-      onTapDown: (details) {
-        final RenderBox overlay =
-            Overlay.of(context).context.findRenderObject() as RenderBox;
-        showMenu(
-          context: context,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(8.0), // Adjust radius as needed
+        onTapDown: (details) {
+          // final RenderBox overlay =
+          //     Overlay.of(context).context.findRenderObject() as RenderBox;
+          // showMenu(
+          //   context: context,
+          //   shape: RoundedRectangleBorder(
+          //     borderRadius: BorderRadius.circular(8.0), // Adjust radius as needed
+          //   ),
+          //   position: RelativeRect.fromLTRB(
+          //     details.globalPosition.dx,
+          //     details.globalPosition.dy,
+          //     overlay.size.width - details.globalPosition.dx,
+          //     overlay.size.height - details.globalPosition.dy,
+          //   ),
+          //   items: [
+          //     const PopupMenuItem(
+          //         value: 'ru',
+          //         child: SizedBox(
+          //             width: 120, child: Center(child: Text('Русский')))),
+          //     const PopupMenuItem(
+          //         value: 'uz',
+          //         child:
+          //             SizedBox(width: 120, child: Center(child: Text('O`zbek')))),
+          //   ],
+          // ).then((value) {
+          //   if (value != null) {
+          //     Timer(
+          //       const Duration(milliseconds: 100),
+          //       () {
+          //         onTap(value);
+          //       },
+          //     );
+          //   }
+          // });
+        },
+        child: ExpansionTile(
+          shape: const Border(),
+          // Chiziqlarni olib tashlash
+          collapsedShape: const Border(),
+          title: Row(
+            children: [
+              Icon(Icons.language, color: Colors.grey.shade800, size: 24),
+              const SizedBox(width: 16),
+              Text(
+                context.translations.changeLanguage,
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+            ],
           ),
-          position: RelativeRect.fromLTRB(
-            details.globalPosition.dx,
-            details.globalPosition.dy,
-            overlay.size.width - details.globalPosition.dx,
-            overlay.size.height - details.globalPosition.dy,
-          ),
-          items: [
-            const PopupMenuItem(
-                value: 'ru',
-                child: SizedBox(
-                    width: 120, child: Center(child: Text('Русский')))),
-            const PopupMenuItem(
-                value: 'uz',
-                child:
-                    SizedBox(width: 120, child: Center(child: Text('O`zbek')))),
-          ],
-        ).then((value) {
-          if (value != null) {
-            Timer(
-              const Duration(milliseconds: 100),
-              () {
-                onTap(value);
-              },
-            );
-          }
-        });
-      },
-      child: Padding(
-        padding: const EdgeInsets.only(top: 16, left: 16, right: 16),
-        child: Row(
+          expandedAlignment: Alignment.centerLeft,
+          childrenPadding: const EdgeInsets.fromLTRB(30, 0, 0, 0),
           children: [
-            SvgPicture.asset(
-              Localizations.localeOf(context).languageCode == "uz"
-                  ? PathImages.langUz
-                  : PathImages.langRu,
+            Theme(
+              data: ThemeData(textTheme: TextTheme()),
+              child: ListTile(
+                leading: SvgPicture.asset(
+                  PathImages.langUz,
+                ),
+                title: Text(
+                  "O'zbek",
+                  style: TextTheme(
+                      displayMedium: TextStyle(
+                    fontWeight: FontWeight.w500,
+                    color: Theme.of(context).colorScheme.brightness ==
+                            Brightness.light
+                        ? const Color(0xFF050E2B)
+                        : Colors.white,
+                  )).displayMedium,
+                ),
+                onTap: () {
+                  Timer(
+                    const Duration(milliseconds: 100),
+                    () {
+                      onTap('uz');
+                    },
+                  );
+                },
+              ),
             ),
-            const SizedBox(
-              width: 16,
-            ),
-            Text(
-              context.translations.language_text,
-              style: Theme.of(context).textTheme.headlineMedium,
+            ListTile(
+              leading: SvgPicture.asset(
+                PathImages.langRu,
+              ),
+              title: const Text(
+                'Русский',
+              ),
+              onTap: () {
+                Timer(
+                  const Duration(milliseconds: 100),
+                  () {
+                    onTap('ru');
+                  },
+                );
+              },
             ),
           ],
-        ),
-      ),
-    );
+        ));
   }
 
   Widget itemHelp({
+    required BuildContext context,
+    required Function(bool isTelegram) onTap,
+  }) {
+    return GestureDetector(
+        onTapDown: (details) {
+          // final RenderBox overlay =
+          //     Overlay.of(context).context.findRenderObject() as RenderBox;
+          // showMenu(
+          //   context: context,
+          //   shape: RoundedRectangleBorder(
+          //     borderRadius: BorderRadius.circular(8.0), // Adjust radius as needed
+          //   ),
+          //   position: RelativeRect.fromLTRB(
+          //     details.globalPosition.dx,
+          //     details.globalPosition.dy,
+          //     overlay.size.width - details.globalPosition.dx,
+          //     overlay.size.height - details.globalPosition.dy,
+          //   ),
+          //   items: [
+          //     const PopupMenuItem(
+          //         value: 'ru',
+          //         child: SizedBox(
+          //             width: 120, child: Center(child: Text('Русский')))),
+          //     const PopupMenuItem(
+          //         value: 'uz',
+          //         child:
+          //             SizedBox(width: 120, child: Center(child: Text('O`zbek')))),
+          //   ],
+          // ).then((value) {
+          //   if (value != null) {
+          //     Timer(
+          //       const Duration(milliseconds: 100),
+          //       () {
+          //         onTap(value);
+          //       },
+          //     );
+          //   }
+          // });
+        },
+        child: ExpansionTile(
+          shape: const Border(),
+          // Chiziqlarni olib tashlash
+          collapsedShape: const Border(),
+          title: Row(
+            children: [
+              SvgPicture.asset(
+                PathImages.help,
+              ),
+              const SizedBox(
+                width: 16,
+              ),
+              Text(
+                context.translations.help,
+                style: Theme.of(context).textTheme.headlineMedium,
+              ),
+            ],
+          ),
+          expandedAlignment: Alignment.centerLeft,
+          childrenPadding: const EdgeInsets.fromLTRB(30, 0, 0, 0),
+          children: [
+            ListTile(
+              leading:
+                  Icon(Icons.telegram, color: Colors.blue.shade800, size: 24),
+              title: Text(context.translations.telegram),
+              onTap: () {
+                onTap(true);
+              },
+            ),
+            ListTile(
+              leading: Icon(
+                Icons.phone,
+                color: Colors.green.shade800,
+              ),
+              title: Text(context.translations.call),
+              onTap: () {
+                Timer(
+                  const Duration(milliseconds: 100),
+                  () {
+                    onTap(false);
+                  },
+                );
+              },
+            ),
+          ],
+        ));
+  }
+
+  Widget itemHelp123({
     required BuildContext context,
     required Function(bool isTelegram) onTap,
   }) {
@@ -323,14 +537,16 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             overlay.size.height - details.globalPosition.dy,
           ),
           items: [
-             PopupMenuItem(
+            PopupMenuItem(
                 value: true,
                 child: SizedBox(
-                    width: 120, child: Center(child: Text(context.translations.telegram)))),
-             PopupMenuItem(
+                    width: 120,
+                    child: Center(child: Text(context.translations.telegram)))),
+            PopupMenuItem(
                 value: false,
                 child: SizedBox(
-                    width: 120, child: Center(child: Text(context.translations.call)))),
+                    width: 120,
+                    child: Center(child: Text(context.translations.call)))),
           ],
         ).then((value) {
           if (value != null) {

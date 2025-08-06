@@ -1,12 +1,11 @@
 import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/path_images.dart';
 import 'package:dependency/dependencies/injector.dart';
-import 'package:domain/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:main/booking/item_car_image.dart';
 import 'package:main/notifications/notification_cubit.dart';
+import 'package:main/notifications/notification_view_screen.dart';
 
 class NotificationsScreen extends StatelessWidget {
   NotificationsScreen({super.key});
@@ -23,30 +22,24 @@ class NotificationsScreen extends StatelessWidget {
           Theme.of(context).colorScheme.brightness == Brightness.light
               ? const Color(0xFFF6F7F9)
               : const Color(0xFF061136),
-      body: BlocBuilder<NotificationCubit, NotificationState>(
-        bloc: cubit,
+      body: BlocProvider(
+
+        create: (context) =>cubit,
+      child: BlocBuilder<NotificationCubit, NotificationState>(
         builder: (context, state) {
           if (state is NotificationsListState) {
             return ListView.builder(
               itemCount: state.notifications.length,
-              padding: const EdgeInsets.only(
-                left: 16,
-                right: 16,
-                top: 8,
-                bottom: 8,
-              ),
+              padding:
+              const EdgeInsets.only(left: 16, right: 16, top: 8, bottom: 8),
               itemBuilder: (context, index) {
                 return GestureDetector(
                   onTap: () {
-                    if (state.notifications[index].isRead == false) {
-                      cubit
-                          .readNotification(state.notifications[index].id ?? 0);
-                    }
+
+                    cubit.readNotification(index);
                     _showNotification(
                       context: context,
-                      title: state.notifications[index].title ?? "",
-                      body: state.notifications[index].body ?? "",
-                      image: state.notifications[index].image ?? "",
+                      id: (state.notifications[index].id ?? 0).toString(),
                     );
                   },
                   child: Padding(
@@ -87,7 +80,7 @@ class NotificationsScreen extends StatelessWidget {
                                   maxLines: 3,
                                   overflow: TextOverflow.ellipsis,
                                   style:
-                                      Theme.of(context).textTheme.labelMedium,
+                                  Theme.of(context).textTheme.labelMedium,
                                 ),
                               ],
                             ),
@@ -108,77 +101,28 @@ class NotificationsScreen extends StatelessWidget {
           }
         },
       ),
+      )
     );
   }
 
-  void _showNotification({
-    required BuildContext context,
-    required String title,
-    required String body,
-    required String image,
-  }) {
+  void _showNotification({required BuildContext context, required String id}) {
+    /// cubit.readNotification(state.notifications[index].id ?? 0);
+
     showModalBottomSheet(
       context: context,
-      backgroundColor: Colors.transparent,
+      // backgroundColor: Colors.transparent,
       isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topRight: Radius.circular(12),
+          topLeft: Radius.circular(12),
+        ),
+      ),
       builder: (BuildContext bc) {
-        return SingleChildScrollView(
-          child: Card(
-            elevation: 0,
-            margin: const EdgeInsets.all(0),
-            shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                topRight: Radius.circular(12),
-                topLeft: Radius.circular(12),
-              ), // Adjust radius as needed
-            ),
-            child: Padding(
-              padding: const EdgeInsets.only(
-                left: 20,
-                right: 20,
-                top: 16,
-                bottom: 16,
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  const SizedBox(
-                    height: 24,
-                  ),
-                  Text(
-                    title,
-                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          fontWeight: FontWeight.w700,
-                          // color: Theme.of(context).colorScheme.primary,
-                        ),
-                  ),
-                  Visibility(
-                    visible: image.isNotEmpty,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        const SizedBox(
-                          height: 16,
-                        ),
-                        ItemCarImage(imagePath: "$BASE_URL_IMAGE$image"),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 16,
-                  ),
-                  Text(
-                    body,
-                    style: Theme.of(context).textTheme.labelMedium,
-                  ),
-                  const SizedBox(
-                    height: 24,
-                  ),
-                ],
-              ),
-            ),
-          ),
-        );
+        return Container(
+            margin: const EdgeInsets.only(top: 10),
+            height: MediaQuery.of(context).size.height * 0.65,
+            child: NotificationDetailModal(notificationId: id));
       },
     );
   }

@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:data/models/remote/contracts/contract_owner_response.dart';
 import 'package:data/models/remote/contracts/contract_response.dart';
 import 'package:data/service/contracts_service.dart';
@@ -18,6 +21,8 @@ class ContractsRepositoryImpl extends ContractsRepository {
     try {
       var response =
           await _contractsService.contractsInfo(bookingId: bookingId);
+      log("7777");
+
       return BaseResult(
         success: true,
         body: ContractResponse.fromJson(response.data).toDomainModel(),

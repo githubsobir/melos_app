@@ -32,9 +32,9 @@ class PasswordScreen extends StatelessWidget {
         listener: (context, state) {
           FocusManager.instance.primaryFocus?.unfocus();
           if (state is EmptyFieldsErrorState) {
-            showToast(context.translations.please_fill_in_all_fields);
+            showToastSms(context.translations.please_fill_in_all_fields);
           } else if (state is LoginErrorState) {
-            showToast(state.message);
+            showToastSms(state.message);
           } else if (state is SuccessfullyLoginState) {
             context.openScreen(MainIntent());
           }

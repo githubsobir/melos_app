@@ -27,8 +27,9 @@ class PaymentUseCase {
     required String paymentMethod,
     required String startDateTme,
     required String endDateTme,
-  }) {
-    return _paymentRepository.sendInvoice(
+  })  async{
+
+    return  _paymentRepository.sendInvoice(
       carId: carId,
       amount: amount,
       paymentMethod: paymentMethod,
@@ -37,8 +38,13 @@ class PaymentUseCase {
     );
   }
 
-  Future<BaseResult<PaymentStatusModel>>  paymentStatus({required num paymentId}) {
-    return _paymentRepository.paymentStatus(
+  Future<BaseResult<String>> getHtml() async {
+    return await _paymentRepository.getHtml();
+  }
+
+  Future<BaseResult<PaymentStatusModel>> paymentStatus(
+      {required num paymentId}) async{
+    return await _paymentRepository.paymentStatus(
       paymentId: paymentId,
     );
   }

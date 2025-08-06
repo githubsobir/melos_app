@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:data/models/remote/cars/request/car_like_request.dart';
 import 'package:data/network/net_base.dart';
 import 'package:dio/dio.dart';
@@ -70,6 +73,17 @@ class CarsService {
       query += "&max_price=$maxPrice";
     }
 
+    if (startDataTime != null &&
+    endDataTime != null) {
+      query += "&start_date=$startDataTime&end_date=$endDataTime";
+    }
+
+    log("link");
+    log('#4444');
+    log('cars/list/recommended/?page=$page$query');
+
+    log("header");
+    log(jsonEncode(headers));
     var response = await _netBase.dio.get(
       'cars/list/recommended/?page=$page$query',
       options: Options(
@@ -274,16 +288,24 @@ class CarsService {
     required String endDate,
   }) async {
     var response = await _netBase.dio.get(
-      'payments/check-date/$id/?start_date_time=$startDate&end_date_time=$endDate',
+      'cars/check-date/$id/?start_date_time=$startDate&end_date_time=$endDate',
     );
     return response;
   }
 
   Future<Response> nearestCars(
       {required double latitude, required double longitude}) async {
-    var response = await _netBase.dio.get(
-      'v2/nearest-cars/?latitude=$latitude&longitude=$longitude',
-    );
+    var response = await _netBase.dio
+        .get('/gps/list/?latitude=$latitude&longitude=$longitude');
+    log('/gps/list/?latitude=$latitude&longitude=$longitude');
     return response;
   }
+
+
+  Future<Response> carStep1() async {
+    var response = await _netBase.dio
+        .get("/cars/step/1/");
+    return response;
+  }
+
 }

@@ -1,3 +1,5 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
 import 'app_localizations.dart';
 
 // ignore_for_file: type=lint
@@ -55,10 +57,12 @@ class AppLocalizationsUz extends AppLocalizations {
   String get profile => 'Profil';
 
   @override
-  String get please_fill_in_all_fields => 'Iltimos, barcha maydonlarni to‘g‘ri to‘ldiring';
+  String get please_fill_in_all_fields =>
+      'Iltimos, barcha maydonlarni to‘g‘ri to‘ldiring';
 
   @override
-  String get new_password_difference => 'Yangi parolingiz avval ishlatilgan paroldan farq qilishi kerak.';
+  String get new_password_difference =>
+      'Yangi parolingiz avval ishlatilgan paroldan farq qilishi kerak.';
 
   @override
   String get password => 'Parol';
@@ -82,7 +86,8 @@ class AppLocalizationsUz extends AppLocalizations {
   String get authentication => 'Tasdiqlash';
 
   @override
-  String get enter_the_code => 'Telefoningizga yuborilgan tasdiqlash kodini kiriting.';
+  String get enter_the_code =>
+      'Telefoningizga yuborilgan tasdiqlash kodini kiriting.';
 
   @override
   String get send => 'Yuborish';
@@ -100,7 +105,8 @@ class AppLocalizationsUz extends AppLocalizations {
   String get forgot_your_password => 'Parolingizni unutdingizmi?';
 
   @override
-  String get enter_your_number => 'Tasdiqlash kodini olish uchun raqamingizni kiriting!';
+  String get enter_your_number =>
+      'Tasdiqlash kodini olish uchun raqamingizni kiriting!';
 
   @override
   String get contact_phone => 'Aloqa telefoni';
@@ -314,10 +320,12 @@ class AppLocalizationsUz extends AppLocalizations {
   String get sum_day => 'so\'m/kun';
 
   @override
-  String get internet_connection_is_unavailable => 'Internetga ulanish mavjud emas';
+  String get internet_connection_is_unavailable =>
+      'Internetga ulanish mavjud emas';
 
   @override
-  String get please_check_connection => 'Wi-Fi yoki mobil tarmoq ulanishini tekshirib, qayta urinib ko‘ring.';
+  String get please_check_connection =>
+      'Wi-Fi yoki mobil tarmoq ulanishini tekshirib, qayta urinib ko‘ring.';
 
   @override
   String get try_again => 'Qayta urinib ko‘rish';
@@ -341,16 +349,20 @@ class AppLocalizationsUz extends AppLocalizations {
   String get review => 'Ko‘rib chiqish';
 
   @override
-  String get rent_out_your_car_with_ease => 'Avtomobilingizni osonlik bilan ijaraga bering!';
+  String get rent_out_your_car_with_ease =>
+      'Avtomobilingizni osonlik bilan ijaraga bering!';
 
   @override
-  String get earn_extra_income_text => 'Avtomobilingizni bizning platformamiz orqali baham ko‘rib, qo‘shimcha daromad oling! Shunchaki avtomobilingiz haqidagi kerakli ma\'lumotlarni taqdim eting: marka, model, ishlab chiqarilgan yili, holati, mavjudligi va narxi. Avtomobilingizda GPS qurilmasi o‘rnatilganligiga ishonch hosil qiling — bu ijara vaqtida kuzatuv va xavfsizlikni ta\'minlaydi.';
+  String get earn_extra_income_text =>
+      'Avtomobilingizni bizning platformamiz orqali baham ko‘rib, qo‘shimcha daromad oling! Shunchaki avtomobilingiz haqidagi kerakli ma\'lumotlarni taqdim eting: marka, model, ishlab chiqarilgan yili, holati, mavjudligi va narxi. Avtomobilingizda GPS qurilmasi o‘rnatilganligiga ishonch hosil qiling — bu ijara vaqtida kuzatuv va xavfsizlikni ta\'minlaydi.';
 
   @override
-  String get what_you_will_need_to_get_started => 'Boshlash uchun nimalar kerak bo‘ladi:';
+  String get what_you_will_need_to_get_started =>
+      'Boshlash uchun nimalar kerak bo‘ladi:';
 
   @override
-  String get what_you_will_need_to_get_started_text => '1. Avtomobil haqida to‘liq ma\'lumot (markasi, modeli, ishlab chiqarilgan yili, davlat raqami va boshqalar).\n2. Avtomobilingizning rasmlari (ichki va tashqi ko‘rinishi).\n3. Sug‘urta va ro‘yxatdan o‘tganligini tasdiqlovchi hujjatlar.\n4. Avtomobilga o‘rnatilgan GPS kuzatuv qurilmasi.\n5. Avtomobilingiz xavfsizligi va sizning xotirjamligingiz — bizning asosiy ustuvorligimiz!';
+  String get what_you_will_need_to_get_started_text =>
+      '1. Avtomobil haqida to‘liq ma\'lumot (markasi, modeli, ishlab chiqarilgan yili, davlat raqami va boshqalar).\n2. Avtomobilingizning rasmlari (ichki va tashqi ko‘rinishi).\n3. Sug‘urta va ro‘yxatdan o‘tganligini tasdiqlovchi hujjatlar.\n4. Avtomobilga o‘rnatilgan GPS kuzatuv qurilmasi.\n5. Avtomobilingiz xavfsizligi va sizning xotirjamligingiz — bizning asosiy ustuvorligimiz!';
 
   @override
   String get fill_in_the_details_below => 'Quyidagi ma\'lumotlarni to\'ldiring';
@@ -386,10 +398,12 @@ class AppLocalizationsUz extends AppLocalizations {
   String get capacity_passengers => 'Yo\'lovchilar sig\'imi';
 
   @override
-  String get upload_photo_of_your_vehicle => 'Avtomobilingiz fotosuratini yuklang';
+  String get upload_photo_of_your_vehicle =>
+      'Avtomobilingiz fotosuratini yuklang';
 
   @override
-  String get supported_formats => 'Qo‘llab-quvvatlanadigan formatlar: JPEG, PNG, PDG (10 MB gacha)';
+  String get supported_formats =>
+      'Qo‘llab-quvvatlanadigan formatlar: JPEG, PNG, PDG (10 MB gacha)';
 
   @override
   String get payment_and_prices => 'To‘lov va narxlar';
@@ -398,7 +412,8 @@ class AppLocalizationsUz extends AppLocalizations {
   String get insurance_and_documents => 'Sug‘urta va hujjatlar';
 
   @override
-  String get gps_installation_is_required => 'Avtomobilni ijaraga berish uchun GPS o‘rnatilishi shart!';
+  String get gps_installation_is_required =>
+      'Avtomobilni ijaraga berish uchun GPS o‘rnatilishi shart!';
 
   @override
   String get gps_data => 'GPS maʼlumotlari';
@@ -413,7 +428,8 @@ class AppLocalizationsUz extends AppLocalizations {
   String get do_you_have_car_insurance => 'Sizda avtomobil sug‘urtasi bormi?';
 
   @override
-  String get upload_your_registration_confirmation => 'Ro‘yxatdan o‘tganingizni tasdiqlovchi hujjatni yuklang';
+  String get upload_your_registration_confirmation =>
+      'Ro‘yxatdan o‘tganingizni tasdiqlovchi hujjatni yuklang';
 
   @override
   String get photo_library => 'Foto kutubxona';
@@ -437,13 +453,15 @@ class AppLocalizationsUz extends AppLocalizations {
   String get lock => 'Qulf';
 
   @override
-  String get you_want_to_change_status => 'Avtomobil holatini o‘zgartirmoqchi ekanligingizga ishonchingiz komilmi?';
+  String get you_want_to_change_status =>
+      'Avtomobil holatini o‘zgartirmoqchi ekanligingizga ishonchingiz komilmi?';
 
   @override
   String get delete => 'O‘chirish';
 
   @override
-  String get remove_the_vehicle => 'Avtomobilni akkauntingizdan o‘chirmoqchi ekanligingizga ishonchingiz komilmi?';
+  String get remove_the_vehicle =>
+      'Avtomobilni akkauntingizdan o‘chirmoqchi ekanligingizga ishonchingiz komilmi?';
 
   @override
   String get the_process_of_getting_car => 'Avtomobilni olish jarayoni';
@@ -464,7 +482,8 @@ class AppLocalizationsUz extends AppLocalizations {
   String get accept => 'Qabul qilish';
 
   @override
-  String get payment_successfully_made => 'To‘lov muvaffaqiyatli amalga oshirildi';
+  String get payment_successfully_made =>
+      'To‘lov muvaffaqiyatli amalga oshirildi';
 
   @override
   String get payment_is_being_processed => 'To‘lov qayta ishlanmoqda';
@@ -482,23 +501,143 @@ class AppLocalizationsUz extends AppLocalizations {
   String get confirmation => 'Tasdiqlash';
 
   @override
-  String get we_are_approaching_the_end => 'Tugashiga oz qoldi. Faqat bir necha bosqich va ijarangiz tayyor!';
+  String get we_are_approaching_the_end =>
+      'Tugashiga oz qoldi. Faqat bir necha bosqich va ijarangiz tayyor!';
 
   @override
-  String get i_agree_to_receive_sms_notifications => 'SMS xabarnomalarni olishga roziman.';
+  String get i_agree_to_receive_sms_notifications =>
+      'SMS xabarnomalarni olishga roziman.';
 
   @override
-  String get agreement_privacy_policy => 'Men shartlar va maxfiylik siyosatiga roziman!';
+  String get agreement_privacy_policy =>
+      'Men shartlar va maxfiylik siyosatiga roziman!';
 
   @override
   String get all_your_data_is_safe => 'Barcha ma’lumotlaringiz xavfsiz';
 
   @override
-  String get advanced_security_experience => 'Biz sizga eng yaxshi tajribani taqdim etish uchun ilg‘or xavfsizlik choralaridan foydalanamiz.';
+  String get advanced_security_experience =>
+      'Biz sizga eng yaxshi tajribani taqdim etish uchun ilg‘or xavfsizlik choralaridan foydalanamiz.';
 
   @override
   String get ratings_and_reviews => 'Reytinglar va fikrlar';
 
   @override
   String get show_all => 'Barchasini ko‘rsatish';
+
+  @override
+  String get return_lang => 'Qaytish';
+
+  @override
+  String get receive => 'Qabul qilish';
+
+  @override
+  String get cancel => 'Bekor qilish';
+
+  @override
+  String get set => 'O\'rnatish';
+
+  @override
+  String get changeLanguage => 'Til o\'zgartirish';
+
+  @override
+  String get exitAccount => 'Akkauntdan chiqmoqchimisiz ?';
+
+  @override
+  String get passwordLength => 'Parol uzunligi 8 birlikdan ko‘p bo‘lishi kerak';
+
+  @override
+  String get enterNumber => 'Raqam kiriting';
+
+  @override
+  String get enterSpecialSymbols => '!~* Maxsus belgi kiriting';
+
+  @override
+  String get enterCapitalLatter => 'Bosh harf kiriting';
+
+  @override
+  String get enterLowerCase => 'Kichik harf kiriting';
+
+  @override
+  String get more2Name => '2 harfdan uzun bo\'lishi kerak';
+
+  @override
+  String get more2LastName => '2 harfdan ko\'p bo\'lishi kerak';
+
+  @override
+  String get more2Firstname => '2 harfdan ko\'p bo\'lishi kerak';
+
+  @override
+  String get pnfl => '14 ta raqam bo\'lishi kerak';
+
+  @override
+  String get driverLicense =>
+      'Haydovchilik guvohnomasi kamida 9 belgidan iborat bo\'lishi kerak';
+
+  @override
+  String get human => 'Odam';
+
+  @override
+  String get daySum => 'so\'m/kun';
+
+  @override
+  String get pickUpAndReturn => 'Olib ketish va qaytarish';
+
+  @override
+  String get to => 'gacha';
+
+  @override
+  String get dateReturn => 'Qabul qilish va qaytarish sanasini tanlang';
+
+  @override
+  String get dateTimeReturn => 'Qabul qilish va qaytarish vaqtini tanlang';
+
+  @override
+  String get acquainted => 'Men oferta bilan tanishdim';
+
+  @override
+  String get scrollDown => 'Pastga suring';
+
+  @override
+  String get paymentNotSuccess =>
+      'To\'lov amalga oshmadi,\nTo\'lov kutish xolatidan chiqarildi';
+
+  @override
+  String get cost => 'To\'lov';
+
+  @override
+  String get pleaseWait => 'Iltimos kuting';
+
+  @override
+  String get send2 => 'Yuborish';
+
+  @override
+  String get cancel_order2 => 'Buyurtmani bekor qilmoqchimisiz?';
+
+  @override
+  String get select2 => 'Tanlang';
+
+  @override
+  String get checkInfo => 'Ma\'lumotni tekshiring';
+
+  @override
+  String get chooseBrand => 'Mashina brendini tanlang';
+
+  @override
+  String get chooseModel => 'Mashina modelini tanlang';
+
+  @override
+  String get chooseCity => 'Shaharni tanlang';
+
+  @override
+  String get chooseCarTransmission => 'Mashina o\'rindiqlar sonini tanlang';
+
+  @override
+  String get enterCarNumber => 'Mashina raqamini kiriting';
+
+  @override
+  String get clear => 'Tozalash';
+
+  @override
+  String get chooseAnOtherDate => 'Boshqa kunni tanlang';
 }

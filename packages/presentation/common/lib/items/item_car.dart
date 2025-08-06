@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/path_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -50,7 +51,7 @@ class _ItemCarBaseState extends State<ItemCarBase> {
             Stack(
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(12.0),
+                  borderRadius:const BorderRadius.only(topRight: Radius.circular(12), topLeft: Radius.circular(12)),
                   child: CachedNetworkImage(
                     height: 150,
                     width: double.maxFinite,
@@ -85,6 +86,8 @@ class _ItemCarBaseState extends State<ItemCarBase> {
                   alignment: Alignment.topRight,
                   child: GestureDetector(
                     onTap: () {
+
+
                       setState(() {
                         widget.isLiked = !widget.isLiked;
                       });
@@ -145,7 +148,7 @@ class _ItemCarBaseState extends State<ItemCarBase> {
                     height: 8,
                   ),
                   Row(
-                    // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       Row(
                         mainAxisSize: MainAxisSize.min,
@@ -200,7 +203,7 @@ class _ItemCarBaseState extends State<ItemCarBase> {
                             width: 4,
                           ),
                           Text(
-                            "${widget.passengerCapacity} Люди",
+                            "${widget.passengerCapacity}",
                             style: Theme.of(context)
                                 .textTheme
                                 .labelMedium
@@ -233,7 +236,7 @@ class _ItemCarBaseState extends State<ItemCarBase> {
                                         fontSize: 14),
                                 children: [
                                   TextSpan(
-                                    text: "сум/день",
+                                    text:  context.translations.sum_day,
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyMedium
@@ -250,7 +253,7 @@ class _ItemCarBaseState extends State<ItemCarBase> {
                                     widget.originalPrice != "0" &&
                                     widget.originalPrice != null
                                 ? Text(
-                                    "${widget.originalPrice} сум/день",
+                                    "${widget.originalPrice} ${context.translations.sum_day}",
                                     style: Theme.of(context)
                                         .textTheme
                                         .bodyMedium

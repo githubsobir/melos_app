@@ -1,6 +1,7 @@
 import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/path_images.dart';
 import 'package:common/widgets/base_button.dart';
+import 'package:common/widgets/custom_functions.dart';
 import 'package:dependency/dependencies.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -33,69 +34,131 @@ class PaymentBottomSheet extends StatelessWidget {
         child: BlocBuilder<PaymentCubit, PaymentState>(
           bloc: cubit,
           builder: (context, state) {
-            return SizedBox(
-              height: 300,
-              child: state.status.status == 1
-                  ? Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        const SizedBox(
-                          height: 24,
-                        ),
-                        SizedBox(
-                          width: 64,
-                          height: 64,
-                          child: Column(
-                            children: [
-                              SvgPicture.asset(PathImages.paymentSuccessfully),
-                            ],
-                          ),
-                        ),
-                        Text(
-                          context.translations.payment_successfully_made,
-                          textAlign: TextAlign.center,
-                        ),
-                        Expanded(child: Container()),
-                        Column(
+            if (state.status.status == 1) {
+              return SizedBox(
+                  height: 300,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      const SizedBox(
+                        height: 24,
+                      ),
+                      SizedBox(
+                        width: 64,
+                        height: 64,
+                        child: Column(
                           children: [
-                            SizedBox(
-                              width: 200,
-                              child: BaseButton(
-                                  onPressed: () {
-                                    print(
-                                        "bookingId: ${state.status.bookingId}");
-                                    context.closeActiveScreen(
-                                      state.status.bookingId,
-                                    );
-                                  },
-                                  title: context.translations.next),
-                            ),
+                            SvgPicture.asset(PathImages.paymentSuccessfully),
                           ],
-                        )
-                      ],
-                    )
-                  : Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        const SizedBox(
-                          height: 24,
                         ),
-                        const SizedBox(
-                          width: 64,
-                          height: 64,
-                          child: Column(
-                            children: [
-                              CircularProgressIndicator(),
-                            ],
+                      ),
+                      Text(
+                        context.translations.payment_successfully_made,
+                        textAlign: TextAlign.center,
+                      ),
+                      Expanded(child: Container()),
+                      Column(
+                        children: [
+                          SizedBox(
+                            width: 200,
+                            child: BaseButton(
+                                onPressed: () {
+                                  print("bookingId: ${state.status.bookingId}");
+                                  context.closeActiveScreen(
+                                    state.status.bookingId,
+                                  );
+                                },
+                                title: context.translations.next),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 20),
+                    ],
+                  ));
+            } else if (state.status.status == 0) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          context.closeActiveScreen();
+                        },
+                        child: const Padding(
+                          padding: EdgeInsets.only(right: 16),
+                          child: Icon(
+                            Icons.close,
                           ),
                         ),
-                        Text(
-                          context.translations.payment_is_being_processed,
-                          textAlign: TextAlign.center,
-                        )
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    width: 64,
+                    height: 64,
+                    child: Column(
+                      children: [
+                        CircularProgressIndicator(),
                       ],
                     ),
-            );
+                  ),
+                  Text(
+                    context.translations.payment_is_being_processed,
+                    textAlign: TextAlign.center,
+                  )
+                ],
+              );
+            } else if (state.status.status.toString() == "-1") {
+              Navigator.pop(context);
+              showToastSms(context.translations.paymentNotSuccess);
+
+              return const SizedBox.shrink();
+            } else {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  const SizedBox(
+                    height: 24,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      InkWell(
+                        onTap: () {
+                          context.closeActiveScreen();
+                        },
+                        child: const Padding(
+                          padding: EdgeInsets.only(right: 16),
+                          child: Icon(
+                            Icons.close,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(
+                    width: 64,
+                    height: 64,
+                    child: Column(
+                      children: [
+                        CircularProgressIndicator(),
+                      ],
+                    ),
+                  ),
+                  Text(
+                    context.translations.pleaseWait,
+                    textAlign: TextAlign.center,
+                  )
+                ],
+              );
+            }
           },
         ),
       ),

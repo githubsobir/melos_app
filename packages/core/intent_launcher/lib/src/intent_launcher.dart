@@ -15,7 +15,10 @@ abstract class IntentLauncher {
       BuildContext context, NavigationIntent navigationIntent) {
     return IntentLauncherImpl.launchNavigationIntent(context, navigationIntent);
   }
-
+  static Future<T?> replaceScreen<T>(
+      BuildContext context, NavigationIntent navigationIntent) {
+    return IntentLauncherImpl.launchNavigationIntent(context, navigationIntent, );
+  }
   void onNavigationIntent<T extends NavigationIntent>(
       NavigationIntentHandler<T> handler);
 

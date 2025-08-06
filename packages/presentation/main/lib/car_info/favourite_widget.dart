@@ -21,6 +21,7 @@ class _FavouriteWidgetState extends State<FavouriteWidget> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
+
         widget.isLiked = !widget.isLiked;
         widget.onLike(widget.isLiked);
         setState(() {});

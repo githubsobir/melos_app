@@ -35,13 +35,16 @@ class _BaseTextFieldState extends State<BaseTextField> {
           widget.title,
           style: Theme.of(context).textTheme.bodyMedium,
         ),
-        SizedBox(
+        const   SizedBox(
           height: 4,
         ),
         if (widget.type == TextFieldType.BASE)
           TextField(
             controller: widget.controller,
             maxLines: 1,
+            onTapOutside: (val){
+              FocusScope.of(context).unfocus();
+            },
             style: Theme.of(context).textTheme.labelMedium,
             decoration: InputDecoration(
               contentPadding:
@@ -53,7 +56,7 @@ class _BaseTextFieldState extends State<BaseTextField> {
                   ?.copyWith(color: Theme.of(context).hintColor),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.0),
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Color(0xFFC0D8FF),
                 ),
               ),
@@ -65,7 +68,7 @@ class _BaseTextFieldState extends State<BaseTextField> {
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.0),
-                borderSide: BorderSide(
+                borderSide:const  BorderSide(
                   color: Color(0xFFC0D8FF),
                 ),
               ),
@@ -75,11 +78,14 @@ class _BaseTextFieldState extends State<BaseTextField> {
           TextField(
             controller: widget.controller,
             maxLines: 1,
-            keyboardType: TextInputType.name,
+            onTapOutside: (val){
+              FocusScope.of(context).unfocus();
+            },
+            // keyboardType: TextInputType.text,
             textCapitalization: TextCapitalization.words,
-            inputFormatters: [
-              FilteringTextInputFormatter.allow(RegExp("[a-zA-Z]")),
-            ],
+            // inputFormatters: [
+            //   FilteringTextInputFormatter.allow(RegExp("[a-zA-Z\\' -]")),
+            // ],
             style: Theme.of(context).textTheme.labelMedium,
             decoration: InputDecoration(
               contentPadding:
@@ -91,7 +97,7 @@ class _BaseTextFieldState extends State<BaseTextField> {
                   ?.copyWith(color: Theme.of(context).hintColor),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.0),
-                borderSide: BorderSide(
+                borderSide:const  BorderSide(
                   color: Color(0xFFC0D8FF),
                 ),
               ),
@@ -103,7 +109,7 @@ class _BaseTextFieldState extends State<BaseTextField> {
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.0),
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Color(0xFFC0D8FF),
                 ),
               ),
@@ -113,6 +119,9 @@ class _BaseTextFieldState extends State<BaseTextField> {
           TextField(
             controller: widget.controller,
             maxLines: 1,
+            onTapOutside: (val){
+              FocusScope.of(context).unfocus();
+            },
             keyboardType: TextInputType.name,
             textCapitalization: TextCapitalization.words,
             inputFormatters: [
@@ -129,7 +138,7 @@ class _BaseTextFieldState extends State<BaseTextField> {
                   ?.copyWith(color: Theme.of(context).hintColor),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.0),
-                borderSide: BorderSide(
+                borderSide:const BorderSide(
                   color: Color(0xFFC0D8FF),
                 ),
               ),
@@ -141,7 +150,7 @@ class _BaseTextFieldState extends State<BaseTextField> {
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.0),
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Color(0xFFC0D8FF),
                 ),
               ),
@@ -151,6 +160,9 @@ class _BaseTextFieldState extends State<BaseTextField> {
           TextField(
             controller: widget.controller,
             maxLines: 1,
+            onTapOutside: (val){
+              FocusScope.of(context).unfocus();
+            },
             style: Theme.of(context).textTheme.labelMedium,
             keyboardType: TextInputType.number,
             inputFormatters: [
@@ -167,7 +179,7 @@ class _BaseTextFieldState extends State<BaseTextField> {
                   ?.copyWith(color: Theme.of(context).hintColor),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.0),
-                borderSide: BorderSide(
+                borderSide: const BorderSide(
                   color: Color(0xFFC0D8FF),
                 ),
               ),
@@ -191,6 +203,9 @@ class _BaseTextFieldState extends State<BaseTextField> {
             obscureText: isSecured,
             obscuringCharacter: "*",
             maxLines: 1,
+            onTapOutside: (val){
+              FocusScope.of(context).unfocus();
+            },
             style: Theme.of(context).textTheme.labelMedium,
             decoration: InputDecoration(
               contentPadding:
@@ -202,7 +217,7 @@ class _BaseTextFieldState extends State<BaseTextField> {
                   ?.copyWith(color: Theme.of(context).hintColor),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.0),
-                borderSide: BorderSide(
+                borderSide:const BorderSide(
                   color: Color(0xFFC0D8FF),
                 ),
               ),
@@ -237,13 +252,13 @@ class _BaseTextFieldState extends State<BaseTextField> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.0),
               border: Border.all(
-                color: Color(0xFFC0D8FF),
+                color: const Color(0xFFC0D8FF),
               ),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(
+               const SizedBox(
                   width: 16,
                 ),
                 Text(
@@ -256,11 +271,18 @@ class _BaseTextFieldState extends State<BaseTextField> {
                     maxLines: 1,
                     style: Theme.of(context).textTheme.labelMedium,
                     keyboardType: TextInputType.phone,
+                    maxLength: 9,
+
+                    onTapOutside: (val){
+                      FocusScope.of(context).unfocus();
+                    },
                     inputFormatters: [
+                      FilteringTextInputFormatter.allow(RegExp("[0-9]")),
                       MaskedTextInputFormatter(
                           mask: "xx xxx xx xx", separator: " "),
                     ],
                     decoration: InputDecoration(
+                      counter: const SizedBox.shrink(),
                       contentPadding: const EdgeInsets.only(
                           left: 2, top: 0, bottom: 0, right: 12),
                       hintText: widget.hint,

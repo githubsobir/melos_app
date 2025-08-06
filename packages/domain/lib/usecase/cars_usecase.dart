@@ -1,13 +1,16 @@
+import 'dart:developer';
+
 import 'package:domain/model/cars/car_create_model.dart';
 import 'package:domain/model/cars/car_detail_info_model.dart';
 import 'package:domain/model/cars/car_model.dart';
+import 'package:domain/model/cars/car_step.dart';
 import 'package:domain/model/cars/check_date_model.dart';
 import 'package:domain/model/cars/current_car_model.dart';
 import 'package:domain/model/cars/filter_model.dart';
 import 'package:domain/model/cars/my_car_model.dart';
-import 'package:domain/model/location/nearest_cars_model.dart';
 import 'package:domain/model/location/current_gps_model.dart';
 import 'package:domain/model/location/gps_model.dart';
+import 'package:domain/model/location/nearest_cars_model.dart';
 import 'package:domain/repository/auth_repository.dart';
 import 'package:domain/repository/cars_repository.dart';
 import 'package:domain/utils/base_result.dart';
@@ -62,8 +65,9 @@ class CarsUseCase {
     return _authRepository.hasUser();
   }
 
-  Future<BaseResult<FilterModel>> filter() {
-    return _carsRepository.filter();
+  Future<BaseResult<FilterModel>> filter() async {
+    var data = await _carsRepository.filter();
+    return data;
   }
 
   Future<BaseResult<List<CarModel>>> popularCars({
@@ -155,10 +159,26 @@ class CarsUseCase {
   }
 
   Future<BaseResult<NearestCarsModel>> nearestCars(
-      {required double latitude, required double longitude}) {
-    return _carsRepository.nearestCars(
-      latitude: latitude,
-      longitude: longitude,
-    );
+      {required double latitude, required double longitude}) async {
+    try {
+      var data = await _carsRepository.nearestCars(
+        latitude: latitude,
+        longitude: longitude,
+      );
+      return data;
+    } catch (e) {
+      log(e.toString());
+      throw Exception();
+    }
+  }
+
+  Future<BaseResult<CarStep1Entities>> carStep1() async {
+    try {
+      var data = await _carsRepository.carStep1();
+      return data;
+    } catch (e) {
+      log(e.toString());
+      throw Exception();
+    }
   }
 }

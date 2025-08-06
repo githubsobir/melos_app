@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -15,6 +16,7 @@ import 'package:intent_launcher/intent_launcher.dart';
 import 'package:main/car_info/car_image_selector_widget.dart';
 import 'package:main/payment_details/receiving_the_car/receiving_the_car_cubit.dart';
 import 'package:navigation/main_navigation_intents.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class ReceivingTheCarScreen extends StatelessWidget {
   ReceivingTheCarScreen(
@@ -217,7 +219,7 @@ class ReceivingTheCarScreen extends StatelessWidget {
                                               BorderRadius.circular(100.0),
                                           child: CachedNetworkImage(
                                             imageUrl:
-                                                "$BASE_URL_IMAGE${state.contract?.profilePage}",
+                                                "$BASE_URL_IMAGE_NEW${state.contract?.profilePage}",
                                             width: 44,
                                             height: 44,
                                             fit: BoxFit.cover,
@@ -278,11 +280,19 @@ class ReceivingTheCarScreen extends StatelessWidget {
                                         const SizedBox(
                                           width: 8,
                                         ),
-                                        Text(
-                                          "${state.contract?.ownerPhoneNumber}",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyMedium,
+
+
+                                        GestureDetector(
+                                          onTap: (){
+                                           // #123tel
+                                            launchUrl(Uri.parse("tel:${state.contract?.ownerPhoneNumber}"));
+                                          },
+                                          child: Text(
+                                            "${state.contract?.ownerPhoneNumber}",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .bodyMedium,
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -299,16 +309,30 @@ class ReceivingTheCarScreen extends StatelessWidget {
                                         const SizedBox(
                                           width: 8,
                                         ),
-                                        Text(
-                                          "${state.contract?.address}",
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .labelMedium
-                                              ?.copyWith(
-                                                decoration:
-                                                    TextDecoration.underline,
-                                                color: const Color(0xff0404B9),
-                                              ),
+                                        GestureDetector(
+                                          onTap: (){
+                                            try{
+                                              Uri url = Uri.parse(state
+                                                  .contract!.addressLink
+                                                  .toString());
+                                              log(state
+                                                  .contract!.addressLink
+                                                  .toString());
+                                              _launchInBrowser(url);
+
+                                            }catch(e){}
+                                          },
+                                          child: Text(
+                                            "${state.contract?.address}",
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .labelMedium
+                                                ?.copyWith(
+                                                  decoration:
+                                                      TextDecoration.underline,
+                                                  color: const Color(0xff0404B9),
+                                                ),
+                                          ),
                                         ),
                                       ],
                                     ),
@@ -324,7 +348,7 @@ class ReceivingTheCarScreen extends StatelessWidget {
                                       CrossAxisAlignment.stretch,
                                   children: [
                                     Text(
-                                      "Загрузите файл доверенности",
+                                      context.translations.upload_the_power_of_attorney_file,
                                       textAlign: TextAlign.center,
                                       style: Theme.of(context)
                                           .textTheme
@@ -339,7 +363,7 @@ class ReceivingTheCarScreen extends StatelessWidget {
                                       padding: const EdgeInsets.only(
                                           left: 24, right: 24),
                                       child: Text(
-                                        "Поддерживаемые форматы: JPEG, PNG, PDG (до 10 МБ)",
+                                        context.translations.supported_formats,
                                         textAlign: TextAlign.center,
                                         style: Theme.of(context)
                                             .textTheme
@@ -379,7 +403,7 @@ class ReceivingTheCarScreen extends StatelessWidget {
                                       : () {
                                           cubit.uploadContract(bookingId);
                                         },
-                                  title: "Отправить"),
+                                  title: context.translations.send2),
                             )
                           ],
                         ),
@@ -450,6 +474,15 @@ class ReceivingTheCarScreen extends StatelessWidget {
   //   // var i = (log(bytes) / log(1024)).floor();
   //   return (bytes*10 / pow(1024, 2));
   // }
+
+  Future<void> _launchInBrowser(Uri url) async {
+    if (!await launchUrl(
+      url,
+      mode: LaunchMode.externalApplication,
+    )) {
+      throw Exception('Could not launch $url');
+    }
+  }
 
   _imgFromCamera() async {
     final ImagePicker picker = ImagePicker();

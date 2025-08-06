@@ -4,18 +4,19 @@ import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/path_images.dart';
 import 'package:common/widgets/base_button.dart';
 import 'package:common/widgets/base_loader_builder.dart';
+import 'package:common/widgets/custom_functions.dart';
 import 'package:dependency/dependencies.dart';
 import 'package:domain/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intent_launcher/intent_launcher.dart';
+import 'package:main/booking/booking_screen.dart';
 import 'package:main/car_info/favourite_widget.dart';
-import 'package:main/payment_details/payment/payment_bottom_sheet.dart';
+import 'package:main/payment_details/botton_sheet_confirm.dart';
 import 'package:main/payment_details/payment_detail_cubit.dart';
 import 'package:navigation/main_navigation_intents.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class PaymentDetailsScreen extends StatelessWidget {
   PaymentDetailsScreen({
@@ -47,7 +48,7 @@ class PaymentDetailsScreen extends StatelessWidget {
               ? const Color(0xFFF6F7F9)
               : const Color(0xFF061136),
       appBar: AppBar(
-        title: const Text("Оплата"),
+        title: Text(context.translations.cost),
         backgroundColor:
             Theme.of(context).colorScheme.brightness == Brightness.light
                 ? const Color(0xFFF6F7F9)
@@ -56,7 +57,7 @@ class PaymentDetailsScreen extends StatelessWidget {
       body: BlocConsumer<PaymentDetailCubit, PaymentDetailState>(
         bloc: cubit,
         builder: (context, state) {
-          print("photo: ${state.paymentProcessModel.photo}");
+          // print("photo: ${state.paymentProcessModel.photo}");
           return BaseLoaderBuilder(
             hasLoading: state.isButtonLoading,
             child: SingleChildScrollView(
@@ -511,11 +512,13 @@ class PaymentDetailsScreen extends StatelessWidget {
                                       value: cubit.state.secondAgreement,
                                       checkColor: Colors.white,
                                       onChanged: (value) {
-                                        launchUrl(
-                                          Uri.parse(
-                                              "https://carbnb.uz/backend/media/%D0%9F%D0%A3%D0%91%D0%9B%D0%98%D0%A7%D0%9D%D0%90%D0%AF%20%D0%9E%D0%A4%D0%95%D0%A0%D0%A2%D0%90.pdf"),
-                                          mode: LaunchMode.externalApplication,
-                                        );
+                                        showHtmlBottomDialog(
+                                            context, "jsonData");
+                                        // launchUrl(
+                                        //   Uri.parse(
+                                        //       "https://carbnb.uz/backend/media/%D0%9F%D0%A3%D0%91%D0%9B%D0%98%D0%A7%D0%9D%D0%90%D0%AF%20%D0%9E%D0%A4%D0%95%D0%A0%D0%A2%D0%90.pdf"),
+                                        //   mode: LaunchMode.externalApplication,
+                                        // );
                                         cubit.setSecondAgreement(
                                             (value ?? false));
                                       },
@@ -612,34 +615,49 @@ class PaymentDetailsScreen extends StatelessWidget {
             ),
           );
         },
+        // listenWhen: (prev, curr) =>
+        // prev.invoice.paymentId != curr.invoice.paymentId &&
+        //     curr.invoice.errorCode == 0 &&
+        //     (curr.invoice.paymentId ?? 0) != 0,
         listener: (BuildContext context, PaymentDetailState state) async {
-          if (state.invoice.paymentId != null) {
-            print("invoice ${state.invoice.paymentId}");
-            showModalBottomSheet(
-              context: context,
-              isScrollControlled: false,
-              isDismissible: false,
-              enableDrag: false,
-              backgroundColor: Colors.transparent,
-              builder: (context) {
-                return PaymentBottomSheet(
-                  paymentId: state.invoice.paymentId ?? 0,
-                );
-              },
-            ).then(
-              (value) {
-                print("value : ${value}");
-                if (value is num) {
-                  if (context.mounted) {
-                    context.openScreen(
-                        ReceivingTheCarScreenIntent(bookingId: value));
-                  }
-                }
-              },
-            );
+          if (state.invoice.errorCode == 0 && state.invoice.paymentId != 0) {
+            // showModalBottomSheet(
+            //   context: context,
+            //   isScrollControlled: false,
+            //   isDismissible: false,
+            //   enableDrag: false,
+            //   backgroundColor: Colors.transparent,
+            //   builder: (context) {
+            //     return PaymentBottomSheet(
+            //       paymentId: state.invoice.paymentId ?? 0,
+            //     );
+            //   },
+            // ).then(
+            //   (value) {
+            //     log("message");
+            //     if (value is num) {
+            //       if (context.mounted) {
+            //         context.openScreen(
+            //             ReceivingTheCarScreenIntent(bookingId: value));
+            //       }
+            //     }
+            //   },
+            // );
+
+            if (checkNum == 0) {
+              checkNum = 1;
+
+              context.openScreen(BookingIntent());
+            } else {
+              checkNum = 0;
+            }
+          } else if (state.invoice.errorCode == 1) {
+            showToastSms(state.invoice.errorNote.toString());
           }
         },
       ),
     );
   }
+
+  int checkNum = 0;
 }

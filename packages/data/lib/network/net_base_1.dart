@@ -16,6 +16,7 @@ class NetBase {
 
   final BaseOptions _baseOptions = BaseOptions(
     baseUrl: "$BASE_URL/api/",
+
     sendTimeout: const Duration(seconds: 60000),
     receiveTimeout: const Duration(seconds: 60000),
     connectTimeout: const Duration(seconds: 60000),

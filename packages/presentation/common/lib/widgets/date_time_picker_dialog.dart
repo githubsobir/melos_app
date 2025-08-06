@@ -1,4 +1,6 @@
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/widgets/base_button.dart';
+import 'package:common/widgets/custom_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:intl/intl.dart';
@@ -53,7 +55,7 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
               topLeft: Radius.circular(12),
             ), // Adjust radius as needed
           ),
-          margin: EdgeInsets.all(0),
+          margin: const EdgeInsets.all(0),
           child: Column(
             children: [
               const SizedBox(
@@ -61,6 +63,7 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
               ),
               SfDateRangePicker(
                 selectionMode: DateRangePickerSelectionMode.range,
+                maxDate: DateTime(DateTime.now().year, DateTime.now().month+3 ),
                 backgroundColor: Colors.transparent,
                 enablePastDates: false,
                 selectableDayPredicate: (date) => widget.bookedDates != null
@@ -94,9 +97,7 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
               ),
               Row(
                 children: [
-                  SizedBox(
-                    width: 16,
-                  ),
+                  const SizedBox(width: 16),
                   Expanded(
                     child: Card(
                       elevation: 1,
@@ -135,12 +136,12 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
                       ),
                     ),
                   ),
-                  const Padding(
-                    padding: EdgeInsets.only(
+                  Padding(
+                    padding: const EdgeInsets.only(
                       left: 8,
                       right: 8,
                     ),
-                    child: Text("до"),
+                    child: Text(context.translations.to),
                   ),
                   Expanded(
                     child: Card(
@@ -192,14 +193,14 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
                 fromTitle: Padding(
                   padding: const EdgeInsets.only(left: 16),
                   child: Text(
-                    'PICKUP',
+                    context.translations.receive,
                     style: Theme.of(context).textTheme.labelMedium,
                   ),
                 ),
                 toTitle: Padding(
                   padding: const EdgeInsets.only(left: 16),
                   child: Text(
-                    'RETURN',
+                    context.translations.return_lang,
                     style: Theme.of(context).textTheme.labelMedium,
                   ),
                 ),
@@ -229,9 +230,7 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
               ),
               Row(
                 children: [
-                  const SizedBox(
-                    width: 16,
-                  ),
+                  const SizedBox(width: 16),
                   Expanded(
                     child: GestureDetector(
                       onTap: () {
@@ -252,7 +251,7 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
                             bottom: 8,
                           ),
                           child: Text(
-                            "Отмена",
+                            context.translations.cancel,
                             textAlign: TextAlign.center,
                             style: Theme.of(context)
                                 .textTheme
@@ -284,9 +283,14 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
                               "dateRange": dateRange,
                               "timeRange": timeRange
                             });
+                          } else if (dateRange?.startDate == null ||
+                              dateRange?.endDate == null) {
+                            showToastSms(context.translations.dateReturn);
+                          } else if (timeRange == null) {
+                            showToastSms(context.translations.dateTimeReturn);
                           }
                         },
-                        title: "Установить"),
+                        title: context.translations.set),
                   ),
                   const SizedBox(
                     width: 16,

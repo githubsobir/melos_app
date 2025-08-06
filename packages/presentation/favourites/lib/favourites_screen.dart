@@ -1,3 +1,4 @@
+import 'package:common/bloc/date_time_cubit.dart';
 import 'package:common/items/item_car.dart';
 import 'package:dependency/dependencies.dart';
 import 'package:domain/utils/constants.dart';
@@ -25,28 +26,39 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor:
-          Theme.of(context).colorScheme.brightness == Brightness.light
-              ? const Color(0xFFF6F7F9)
-              : const Color(0xFF061136),
-      body: RefreshIndicator(
-        onRefresh: () {
-          cubit.likedCars(isRefreshed: true);
-          return Future<void>.delayed(const Duration(seconds: 1));
-        },
-        child: BlocBuilder(
-          bloc: cubit,
-          builder: (context, state) {
-            return (state is CarsState)
-                ? ListView.builder(
+    return BlocProvider(
+      create: (context) => cubit,
+      child: BlocBuilder<FavouriteCubit, FavouriteState>(
+        builder: (context, state) {
+          return Scaffold(
+            backgroundColor:
+            Theme.of(context).colorScheme.brightness == Brightness.light
+                ? const Color(0xFFF6F7F9)
+                : const Color(0xFF061136),
+            body: RefreshIndicator(
+              onRefresh: () {
+                cubit.likedCars(isRefreshed: true);
+                return Future<void>.delayed(const Duration(seconds: 1));
+              },
+              child: BlocBuilder(
+                bloc: cubit,
+                builder: (context, state) {
+                  return (state is CarsState)
+                      ? ListView.builder(
                     itemCount: state.liked.length,
                     padding:
-                        const EdgeInsets.only(top: 16, left: 24, right: 24),
+                    const EdgeInsets.only(top: 16, left: 24, right: 24),
                     itemBuilder: (context, index) {
                       return ItemCarBase(
                         onPressed: () {
                           context.openScreen(CarInfoDetailIntent(
+                            startDateTime:
+                            context
+                                .read<DateTimeCubit>()
+                                .state!
+                                .startTime!.toString(),
+                            endDateTime:
+                            context.read<DateTimeCubit>().state!.endTime!.toString(),
                             carId: state.liked[index].id ?? 0,
                           ));
                         },
@@ -57,9 +69,9 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                         dailyRate: (state.liked[index].dailyRate ?? ""),
                         originalPrice: (state.liked[index].originalPrice),
                         passengerCapacity:
-                            (state.liked[index].passengerCapacity ?? 0).toInt(),
+                        (state.liked[index].passengerCapacity ?? 0).toInt(),
                         fuelCapacity:
-                            (state.liked[index].fuelCapacity ?? 0).toInt(),
+                        (state.liked[index].fuelCapacity ?? 0).toInt(),
                         onLike: (isLiked) {
                           cubit.likeCar(
                               (state.liked[index].id ?? 0).toInt(), isLiked);
@@ -69,18 +81,23 @@ class _FavouritesScreenState extends State<FavouritesScreen> {
                       );
                     },
                   )
-                : (state is LoadingState)
-                    ? const Center(child: CircularProgressIndicator())
-                    : SizedBox(
-                        height: MediaQuery.sizeOf(context).height,
-                        width: MediaQuery.sizeOf(context).width,
-                        child: const SingleChildScrollView(
-                          physics: AlwaysScrollableScrollPhysics(),
-                        ),
-                      );
-          },
-        ),
+                      : (state is LoadingState)
+                      ? const Center(child: CircularProgressIndicator())
+                      : SizedBox(
+                    height: MediaQuery.sizeOf(context).height,
+                    width: MediaQuery.sizeOf(context).width,
+                    child: const SingleChildScrollView(
+                      physics: AlwaysScrollableScrollPhysics(),
+                    ),
+                  );
+                },
+              ),
+            ),
+          );
+
+        }
       ),
+
     );
   }
 }

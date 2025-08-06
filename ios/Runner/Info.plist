@@ -62,5 +62,15 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>https</string>
+        <string>http</string>
+        <string>yandexmaps</string>
+        <string>yandexnavi</string>
+        <string>comgooglemaps</string>
+        <string>maps</string>
+        <string>tel</string>
+    </array>
 </dict>
 </plist>

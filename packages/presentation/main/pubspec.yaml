@@ -14,13 +14,15 @@ dependencies:
   cached_network_image: ^3.4.1
   skeletonizer: ^1.4.2
   flutter_rating_bar: ^4.0.1
-  flutter_map: ^7.0.2
+#  flutter_map: ^7.0.2
   latlong2: ^0.9.1
   image_picker: ^1.1.2
   package_info_plus: ^8.3.0
   internet_connection_checker_plus: ^2.7.1
   url_launcher: ^6.3.1
   share_plus: ^10.1.4
+  flutter_html: ^3.0.0
+  intl:
   domain:
     path: ../../domain
   common:

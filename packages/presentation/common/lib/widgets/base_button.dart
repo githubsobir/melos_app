@@ -18,7 +18,8 @@ class BaseButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
+    return InkWell(
+      borderRadius: BorderRadius.circular(8.0),
       onTap: onPressed,
       child: Card(
         color: onPressed == null ? Colors.grey : background,

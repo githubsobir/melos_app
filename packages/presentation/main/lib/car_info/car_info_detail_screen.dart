@@ -1,3 +1,4 @@
+import 'package:common/bloc/date_time_cubit.dart';
 import 'package:common/font_family.dart';
 import 'package:common/items/item_car_popular.dart';
 import 'package:common/l10n/build_context_extension.dart';
@@ -22,16 +23,39 @@ import 'package:navigation/main_navigation_intents.dart';
 import 'package:navigation/my_cars_intents.dart';
 import 'package:share_plus/share_plus.dart';
 
-class CarInfoDetailScreen extends StatelessWidget {
-  CarInfoDetailScreen({super.key, required this.carId});
+class CarInfoDetailScreen extends StatefulWidget {
+  CarInfoDetailScreen(
+      {super.key,
+      required this.carId,
+      required this.startDateTime,
+      required this.endDateTime});
 
   final num carId;
+  String startDateTime;
+  String endDateTime;
 
+  @override
+  State<CarInfoDetailScreen> createState() => _CarInfoDetailScreenState();
+}
+
+class _CarInfoDetailScreenState extends State<CarInfoDetailScreen> {
   final cubit = CarInfoDetailCubit(inject())..hasUserProfile();
 
-  DateTime startDateTime = DateTime.now();
-  DateTime endDateTime = DateTime(
-      DateTime.now().year, DateTime.now().month, DateTime.now().day + 1);
+  // DateTime startDateTime = DateTime.now();
+  //
+  // DateTime endDateTime = DateTime(
+  //     DateTime.now().year, DateTime.now().month, DateTime.now().day + 1);
+
+  int a = 1;
+
+  @override
+  void initState() {
+    super.initState();
+    cubit.checkDate(
+        carId: widget.carId,
+        startDate: widget.startDateTime,
+        endDate: widget.endDateTime);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -51,16 +75,21 @@ class CarInfoDetailScreen extends StatelessWidget {
         ),
       ),
       body: BlocConsumer<CarInfoDetailCubit, CarDetailState>(
-        bloc: cubit..getCarDetail(carId),
+        bloc: cubit..getCarDetail(widget.carId),
         listener: (context, state) {
           if (state.hasError) {
             showToast(state.errorMessage);
           } else if (state.goNextPage) {
-            context.openScreen(PaymentDetailsIntent(
-              carId: carId,
-              startDateTme: startDateTime.toIso8601String(),
-              endDateTme: endDateTime.toIso8601String(),
-            ));
+            if (a == 1) {
+              cubit.resetGoNextPage();
+              a = 0;
+            } else if (a == 0) {
+              context.openScreen(PaymentDetailsIntent(
+                carId: widget.carId,
+                startDateTme: widget.startDateTime,
+                endDateTme: widget.endDateTime,
+              ));
+            }
           }
         },
         builder: (context, state) {
@@ -163,8 +192,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                                   width: 8,
                                 ),
                                 Text(
-                                  context.translations.reviewers(
-                                      "${(state.carDetail.reviewsCount ?? 0)}"),
+                                  "${(state.carDetail.reviewsCount ?? 0)}",
                                   style: Theme.of(context)
                                       .textTheme
                                       .labelMedium
@@ -237,9 +265,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                                SizedBox(
-                                  width: 24,
-                                ),
+                                const SizedBox(width: 24),
                                 Expanded(
                                   child: Row(
                                     children: [
@@ -297,7 +323,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                                     ],
                                   ),
                                 ),
-                                SizedBox(
+                                const SizedBox(
                                   width: 24,
                                 ),
                                 Expanded(
@@ -339,6 +365,8 @@ class CarInfoDetailScreen extends StatelessWidget {
                       top: 4,
                     ),
                     child: DateSelectorWidget(
+                      startDateTime: widget.startDateTime,
+                      endDateTime: widget.endDateTime,
                       bookedDates: state.carDetail.booked_dates
                           ?.map((e) => DateTime.parse(e))
                           .toList(),
@@ -347,22 +375,25 @@ class CarInfoDetailScreen extends StatelessWidget {
                             "xaxaaxa ${dateRange.toString()} - ${timeRange.toString()}");
                         var start = dateRange.startDate;
                         var end = dateRange.endDate;
+
+                        cubit.setHasError();
+
                         if (start != null && end != null) {
-                          startDateTime = DateTime(
+                          widget.startDateTime = DateTime(
                             start.year,
                             start.month,
                             start.day,
                             timeRange.start.hour,
                             timeRange.start.minute,
-                          );
+                          ).toIso8601String();
 
-                          endDateTime = DateTime(
+                          widget.endDateTime = DateTime(
                             end.year,
                             end.month,
                             end.day,
                             timeRange.end.hour,
                             timeRange.end.minute,
-                          );
+                          ).toIso8601String();
                         }
                       },
                     ),
@@ -376,6 +407,7 @@ class CarInfoDetailScreen extends StatelessWidget {
                     ),
                     child: PickupAndReturnWidget(
                       location: (state.carDetail.address ?? ""),
+                      urlLink: state.carDetail.addressLink ?? "",
                     ),
                   ),
                   ////////////////////////
@@ -390,89 +422,86 @@ class CarInfoDetailScreen extends StatelessWidget {
                       margin: const EdgeInsets.all(0),
                       shape: const RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
-                          bottomLeft: Radius.circular(
-                            10.0,
-                          ),
-                          bottomRight: Radius.circular(
-                            10.0,
-                          ),
+                          bottomLeft: Radius.circular(10.0),
+                          bottomRight: Radius.circular(10.0),
                         ), // Adjust radius as needed
                       ),
                       child: Padding(
                         padding: const EdgeInsets.only(
-                          left: 20,
+                          left: 30,
                           right: 20,
                           top: 16,
                           bottom: 16,
                         ),
                         child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.stretch,
-                                children: [
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "${(state.carDetail.dailyRate ?? 0)}",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyLarge
-                                            ?.copyWith(
-                                              fontWeight: FontWeight.w700,
-                                            ),
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "${(state.carDetail.dailyRate ?? 0)}",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .headlineMedium
+                                      ?.copyWith(
+                                        fontWeight: FontWeight.w700,
                                       ),
-                                      const SizedBox(
-                                        width: 2,
+                                ),
+                                const SizedBox(
+                                  width: 2,
+                                ),
+                                Text(
+                                  context.translations.sum_day,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .labelMedium
+                                      ?.copyWith(
+                                        fontWeight: FontWeight.w700,
+                                        color: Theme.of(context)
+                                            .colorScheme
+                                            .secondary,
                                       ),
-                                      Text(
-                                        context.translations.sum_day,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .labelMedium
-                                            ?.copyWith(
-                                              fontWeight: FontWeight.w700,
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .secondary,
-                                            ),
-                                      ),
-                                    ],
-                                  ),
-                                  Text(
-                                    "${(state.carDetail.originalPrice ?? 0)} ${context.translations.sum}",
-                                    style: Theme.of(context)
-                                        .textTheme
-                                        .labelMedium
-                                        ?.copyWith(
-                                          fontWeight: FontWeight.w700,
-                                          decoration:
-                                              TextDecoration.lineThrough,
-                                          color: Theme.of(context)
-                                              .colorScheme
-                                              .secondary,
-                                        ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(
-                              height: 16,
+                                ),
+
+                                // Text(
+                                //   "${(state.carDetail.originalPrice ?? 0)} ${context.translations.sum}",
+                                //   style: Theme.of(context)
+                                //       .textTheme
+                                //       .labelMedium
+                                //       ?.copyWith(
+                                //     fontWeight: FontWeight.w700,
+                                //     decoration:
+                                //     TextDecoration.lineThrough,
+                                //     color: Theme.of(context)
+                                //         .colorScheme
+                                //         .secondary,
+                                //   ),
+                                // ),
+                              ],
                             ),
                             BaseButton(
                                 onPressed: () {
                                   if (cubit.hasUser) {
-                                    print(startDateTime.toString());
-                                    cubit.checkDate(
-                                      carId: carId,
-                                      startDate:
-                                          startDateTime.toIso8601String(),
-                                      endDate: endDateTime.toIso8601String(),
-                                    );
+                                    !state.hasError
+                                        ? {
+                                            cubit.checkDate(
+                                              carId: widget.carId,
+                                              startDate: widget.startDateTime,
+                                              endDate: widget.endDateTime,
+                                            )
+                                          }
+                                        : {
+                                            showToastSms(context
+                                                .translations.chooseAnOtherDate)
+                                          };
                                   } else {
                                     context.openScreen(LoginGoIntent());
                                   }
                                 },
+                                background: state.hasError
+                                    ? Colors.grey
+                                    : Theme.of(context).colorScheme.primary,
                                 title: context.translations.rent)
                           ],
                         ),
@@ -537,6 +566,16 @@ class CarInfoDetailScreen extends StatelessWidget {
                                           .originalPrice),
                                   onPressed: () {
                                     context.openScreen(CarInfoDetailIntent(
+                                      startDateTime: context
+                                          .read<DateTimeCubit>()
+                                          .state!
+                                          .startTime!
+                                          .toString(),
+                                      endDateTime: context
+                                          .read<DateTimeCubit>()
+                                          .state!
+                                          .endTime!
+                                          .toString(),
                                       carId: (state.carDetail.recommendCars ??
                                                   [])[index]
                                               .id ??
@@ -556,13 +595,17 @@ class CarInfoDetailScreen extends StatelessWidget {
                                               0)
                                           .toInt(),
                                   onLike: (isLiked) {
-                                    cubit.likeCar(
-                                        ((state.carDetail.recommendCars ??
-                                                        [])[index]
-                                                    .id ??
-                                                0)
-                                            .toInt(),
-                                        isLiked);
+                                    try {
+                                      cubit.likeCar(
+                                          ((state.carDetail.recommendCars ??
+                                                          [])[index]
+                                                      .id ??
+                                                  0)
+                                              .toInt(),
+                                          isLiked);
+                                    } catch (e) {
+                                      // context.openScreen(LoginGoIntent());
+                                    }
                                   },
                                   isLiked: ((state.carDetail.recommendCars ??
                                               [])[index]

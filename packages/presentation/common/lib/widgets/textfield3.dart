@@ -19,6 +19,8 @@ class TextField3 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      maxLines: 1,
+
       controller: controller,
       onChanged: onChanged,
       keyboardType: keyboardType,
@@ -26,12 +28,11 @@ class TextField3 extends StatelessWidget {
       style: Theme.of(context).textTheme.labelMedium,
       decoration: InputDecoration(
         isDense: true,
-
         contentPadding: const EdgeInsets.only(
           left: 8,
           right: 8,
-          top: 8,
-          bottom: 8,
+          top: 12,
+          bottom: 12,
         ),
         // fillColor:
         // Theme.of(context).colorScheme.brightness == Brightness.light

@@ -25,15 +25,15 @@ class GpsResponse {
     latitude = json['latitude'];
   }
 
-  num? id;
+  int? id;
   String? photo;
   String? make;
   String? model;
   String? address;
   String? price;
-  num? rating;
-  num? longitude;
-  num? latitude;
+  double? rating;
+  double? longitude;
+  double? latitude;
 
   Map<String, dynamic> toJson() {
     final map = <String, dynamic>{};

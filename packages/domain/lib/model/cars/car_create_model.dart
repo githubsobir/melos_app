@@ -29,7 +29,7 @@ class CarCreateModel {
   num? fuelCapacity;
   num? mileage;
   String? transmission;
-  num? passengerCapacity;
+  String? passengerCapacity;
   String? registrationNumber;
   num? dailyRate;
   String? description;
@@ -50,7 +50,7 @@ class CarCreateModel {
           num? fuelCapacity,
           num? mileage,
           String? transmission,
-          num? passengerCapacity,
+          String? passengerCapacity,
           String? registrationNumber,
           num? dailyRate,
           String? description,

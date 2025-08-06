@@ -1,3 +1,4 @@
+import 'package:common/bloc/date_time_cubit.dart';
 import 'package:common/items/item_car_map.dart';
 import 'package:common/path_images.dart';
 import 'package:common/widgets/base_loader_builder.dart';
@@ -11,6 +12,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:locations/locations/locations_cubit.dart';
 import 'package:navigation/my_cars_intents.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:yandex_mapkit/yandex_mapkit.dart';
 
 class LocationsScreen extends StatefulWidget {
@@ -27,9 +29,60 @@ class LocationsScreen extends StatefulWidget {
 class _LocationsScreenState extends State<LocationsScreen> {
   YandexMapController? mapController;
   final List<MapObject> mapObjects = [];
+  Point? userLocation;
   GpsModel? selectedCar;
   Point? selectedCarPoint;
   bool isSelectedCarVisible = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _requestLocationPermission();
+  }
+
+  Future<void> _requestLocationPermission() async {
+    var status = await Permission.location.status;
+    if (!status.isGranted) {
+      await Permission.location.request();
+    }
+    _getUserLocation();
+  }
+
+  Future<void> _getUserLocation() async {
+    try {
+      Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high,
+      );
+
+      setState(() {
+        userLocation = Point(
+          latitude: position.latitude,
+          longitude: position.longitude,
+        );
+      });
+
+      // User location-ni mapga qo'shish
+      _addUserLocationToMap();
+    } catch (e) {
+      print('Location olishda xato: $e');
+    }
+  }
+
+  void _addUserLocationToMap() {
+    if (userLocation != null) {
+      var userLocationMarker = PlacemarkMapObject(
+        mapId: const MapObjectId('user_location'),
+        point: userLocation!,
+        icon: PlacemarkIcon.single(PlacemarkIconStyle(
+            image: BitmapDescriptor.fromAssetImage(PathImages.locationRedPng1),
+          scale: 2
+        )),
+      );
+
+      mapObjects.add(userLocationMarker);
+      setState(() {});
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -139,7 +192,34 @@ class _LocationsScreenState extends State<LocationsScreen> {
                       );
                       mapObjects.add(mapObject);
                     }
+                    // _showUserLocation();
+
                     setState(() {});
+                  },
+                  onUserLocationAdded: (UserLocationView view) async {
+                    // User location view sozlamalari
+                    return view.copyWith(
+                      pin: view.pin.copyWith(
+                        icon: PlacemarkIcon.single(
+                          PlacemarkIconStyle(
+                            image: BitmapDescriptor.fromAssetImage(
+                              'assets/user_location.png',
+                            ),
+                            scale: 0.8,
+                          ),
+                        ),
+                      ),
+                      arrow: view.arrow.copyWith(
+                        icon: PlacemarkIcon.single(
+                          PlacemarkIconStyle(
+                            image: BitmapDescriptor.fromAssetImage(
+                              'assets/arrow.png',
+                            ),
+                            scale: 0.8,
+                          ),
+                        ),
+                      ),
+                    );
                   },
                 ),
                 Align(
@@ -267,9 +347,20 @@ class _LocationsScreenState extends State<LocationsScreen> {
                       margin: const EdgeInsets.only(bottom: 200),
                       child: ItemCarMap(
                         onPressed: () {
-                          context.openScreen(CarInfoDetailIntent(
+                          context.openScreen(
+                           CarInfoDetailIntent(
                             carId: selectedCar?.id ?? 0,
-                          ));
+                             startDateTime: context
+                                 .read<DateTimeCubit>()
+                                 .state!
+                                 .startTime!.toString(),
+                             endDateTime: context
+                                 .read<DateTimeCubit>()
+                                 .state!
+                                 .endTime!.toString(),
+                          )
+
+                          );
                         },
                         carImage: "$BASE_URL_IMAGE${selectedCar?.photo}",
                         carName: "${selectedCar?.make} ${selectedCar?.model}",

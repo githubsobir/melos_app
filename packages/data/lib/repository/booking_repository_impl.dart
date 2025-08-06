@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:data/models/remote/booking/booking_current_response.dart';
 import 'package:data/models/remote/booking/booking_history_response.dart';
 import 'package:data/models/remote/booking/booking_response.dart';
@@ -38,15 +41,15 @@ class BookingRepositoryImpl extends BookingRepository {
   Future<BaseResult<List<BookingModel>>> bookingList() async {
     try {
       var response = await _bookingService.bookingList();
-      return BaseResult(
-        success: true,
-        body: BookingResponse.listFromJson(response.data)
-            .map(
-              (e) => e.toDomainModel(),
-            )
-            .toList(),
-      );
+      var data = BookingResponse.listFromJson(response.data)
+          .map((e) => e.toDomainModel())
+          .toList();
+      return BaseResult(success: true, body: data);
     } on DioException catch (error) {
+      log("#xxxxx");
+      log(error.response?.data['error_note']);
+      log("#xxxxx");
+
       return BaseResult(
           success: false, exceptionBody: error.response?.data['error_note']);
     } catch (exception) {
@@ -115,12 +118,12 @@ class BookingRepositoryImpl extends BookingRepository {
   }
 
   @override
-  Future<BaseResult<bool>> cancelBooking({required num bookingId}) async {
+  Future<BaseResult<String>> cancelBooking({required num bookingId}) async {
     try {
       var response = await _bookingService.cancelBooking(bookingId: bookingId);
       return BaseResult(
         success: true,
-        body: true,
+        body: jsonEncode(response.data).toString(),
       );
     } on DioException catch (error) {
       return BaseResult(

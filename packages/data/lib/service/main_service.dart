@@ -9,7 +9,7 @@ class MainService {
 
   Future<Response> getNotifications() async {
     var response = await _netBase.dio.get(
-      'notification/',
+      'notification/list/',
     );
     return response;
   }
@@ -18,8 +18,8 @@ class MainService {
     required num id,
     required FcmRegisterRegisterRequest request,
   }) async {
-    var response = await _netBase.dio.post(
-      'notification/read/$id/',
+    var response = await _netBase.dio.get(
+      'notification/detail/$id/',
       data: request.toJson(),
     );
     return response;

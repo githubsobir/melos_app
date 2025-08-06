@@ -13,8 +13,8 @@ class BookingUseCase {
     return _bookingRepository.bookingHistory();
   }
 
-  Future<BaseResult<List<BookingModel>>> bookingList() {
-    return _bookingRepository.bookingList();
+  Future<BaseResult<List<BookingModel>>> bookingList() async{
+    return await _bookingRepository.bookingList();
   }
 
   Future<BaseResult<List<BookingCurrentModel>>> bookingCurrent() {
@@ -37,7 +37,7 @@ class BookingUseCase {
     );
   }
 
-  Future<BaseResult<bool>> cancelBooking({required num bookingId}) {
+  Future<BaseResult<String>> cancelBooking({required num bookingId}) {
     return _bookingRepository.cancelBooking(bookingId: bookingId);
   }
 }

@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/path_images.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -52,7 +53,7 @@ class _ItemCarPopularState extends State<ItemCarPopular> {
               Stack(
                 children: [
                   ClipRRect(
-                    borderRadius: BorderRadius.circular(12.0),
+                    borderRadius: const BorderRadius.only(topLeft: Radius.circular(12), topRight: Radius.circular(12)),
                     child: CachedNetworkImage(
                       height: 160,
                       width: 240,
@@ -131,7 +132,7 @@ class _ItemCarPopularState extends State<ItemCarPopular> {
                               ),
                             ),
                             const SizedBox(
-                              width: 16,
+                              width: 1,
                             ),
                             Text(
                               widget.carType,
@@ -155,11 +156,13 @@ class _ItemCarPopularState extends State<ItemCarPopular> {
                             ?.copyWith(fontWeight: FontWeight.w700),
                         maxLines: 2,
                       ),
-                      const Expanded(
-                        child: SizedBox(),
-                      ),
+                      // const Expanded(
+                      //   child: SizedBox(),
+                      // ),
+                      const SizedBox(height: 20),
+
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
                         children: [
                           Row(
                             mainAxisSize: MainAxisSize.min,
@@ -203,9 +206,7 @@ class _ItemCarPopularState extends State<ItemCarPopular> {
                               ),
                             ],
                           ),
-                          const SizedBox(
-                            height: 8,
-                          ),
+
                           Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -214,7 +215,7 @@ class _ItemCarPopularState extends State<ItemCarPopular> {
                                 width: 4,
                               ),
                               Text(
-                                "${widget.passengerCapacity} Люди",
+                                "${widget.passengerCapacity}",
                                 style: Theme.of(context)
                                     .textTheme
                                     .labelMedium
@@ -225,10 +226,14 @@ class _ItemCarPopularState extends State<ItemCarPopular> {
                               ),
                             ],
                           ),
+                          const SizedBox(
+                            height: 8,
+                          ),
+
                         ],
                       ),
                       const SizedBox(
-                        height: 8,
+                        height: 20,
                       ),
                       Row(
                         children: [
@@ -247,7 +252,7 @@ class _ItemCarPopularState extends State<ItemCarPopular> {
                                             fontSize: 14),
                                     children: [
                                       TextSpan(
-                                        text: "сум/день",
+                                        text: context.translations.sum_day,
                                         style: Theme.of(context)
                                             .textTheme
                                             .bodyMedium
@@ -260,26 +265,27 @@ class _ItemCarPopularState extends State<ItemCarPopular> {
                                     ],
                                   ),
                                 ),
-                                widget.dailyRate != widget.originalPrice &&
-                                        widget.originalPrice != "0" &&
-                                        widget.originalPrice != null
-                                    ? Text(
-                                        "${widget.originalPrice} сум/день",
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .bodyMedium
-                                            ?.copyWith(
-                                              color: Theme.of(context)
-                                                  .colorScheme
-                                                  .secondary,
-                                              fontSize: 14,
-                                              decoration:
-                                                  TextDecoration.lineThrough,
-                                            ),
-                                      )
-                                    : Container(
-                                        height: 8,
-                                      ),
+                                // widget.dailyRate != widget.originalPrice &&
+                                //         widget.originalPrice != "0" &&
+                                //         widget.originalPrice != null
+                                //     ?
+                                // Text(
+                                //         "${widget.originalPrice} ${context.translations.sum_day}",
+                                //         style: Theme.of(context)
+                                //             .textTheme
+                                //             .bodyMedium
+                                //             ?.copyWith(
+                                //               color: Theme.of(context)
+                                //                   .colorScheme
+                                //                   .secondary,
+                                //               fontSize: 14,
+                                //               decoration:
+                                //                   TextDecoration.lineThrough,
+                                //             ),
+                                //       )
+                                //     : Container(
+                                //         height: 8,
+                                //       ),
                               ],
                             ),
                           ),

@@ -24,15 +24,13 @@ class CreateCarInfoScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Мои машины"),
+        title: Text(context.translations.my_cars),
       ),
       body: BlocConsumer<CreateCarCubit, CreateCarState>(
         listener: (context, state) {
-          print(state.position);
           if (state.isEmpty) {
             showToast(context.translations.please_fill_in_all_fields);
-          }else
-          if (state.error.isNotEmpty) {
+          } else if (state.error.isNotEmpty) {
             showToast(state.error);
           } else if (state.position == 0) {
             context.closeActiveScreen();
@@ -49,7 +47,6 @@ class CreateCarInfoScreen extends StatelessWidget {
         },
         bloc: cubit,
         builder: (context, state) {
-          print("state ${state.isLoading}");
           return BaseLoaderBuilder(
             hasLoading: state.isLoading,
             child: Column(
@@ -78,7 +75,7 @@ class CreateCarInfoScreen extends StatelessWidget {
                       Page2(
                         onChangedYear: cubit.onChangedYear,
                         onChangedMileage: cubit.onChangedMileage,
-                        onChangedFuelCapacity: cubit.onChangedFuelCapacity,
+                        // onChangedFuelCapacity: cubit.onChangedFuelCapacity,
                         onChangedPhotos: cubit.onChangedPhotos,
                       ),
                       Page3(
@@ -104,10 +101,7 @@ class CreateCarInfoScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Padding(
-                        padding: const EdgeInsets.only(
-                          left: 16,
-                          right: 16,
-                        ),
+                        padding: const EdgeInsets.only(left: 16, right: 16),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -132,7 +126,9 @@ class CreateCarInfoScreen extends StatelessWidget {
                                     bottom: 8,
                                   ),
                                   child: Text(
-                                    state.position == 1 ? context.translations.leave : context.translations.back,
+                                    state.position == 1
+                                        ? context.translations.leave
+                                        : context.translations.back,
                                     textAlign: TextAlign.center,
                                     style: Theme.of(context)
                                         .textTheme
@@ -152,8 +148,9 @@ class CreateCarInfoScreen extends StatelessWidget {
                                 onPressed: () {
                                   cubit.changePositionToRight();
                                 },
-                                title:
-                                    state.position < 4 ? context.translations.next : context.translations.review)
+                                title: state.position < 4
+                                    ? context.translations.next
+                                    : context.translations.review)
                           ],
                         ),
                       ),

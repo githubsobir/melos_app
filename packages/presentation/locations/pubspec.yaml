@@ -15,6 +15,7 @@ dependencies:
   flutter_bloc: ^8.1.5
   equatable: ^2.0.7
   geolocator: ^13.0.2
+  permission_handler: ^12.0.1
   yandex_mapkit:
     git:
       url: https://github.com/Unact/yandex_mapkit.git

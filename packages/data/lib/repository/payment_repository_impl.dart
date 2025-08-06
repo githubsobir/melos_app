@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:data/models/remote/payment/request/send_invoice_request.dart';
 import 'package:data/models/remote/payment/response/payment_process_response.dart';
 import 'package:data/models/remote/payment/response/payment_status_response.dart';
@@ -74,6 +77,7 @@ class PaymentRepositoryImpl extends PaymentRepository {
       var response = await _paymentService.paymentStatus(
         paymentId: paymentId,
       );
+
       return BaseResult(
         success: true,
         body: PaymentStatusResponse.fromJson(response.data).toDomainModel(),
@@ -83,6 +87,16 @@ class PaymentRepositoryImpl extends PaymentRepository {
           success: false, exceptionBody: error.response?.data['error_note']);
     } catch (exception) {
       return BaseResult(success: false, exceptionBody: exception);
+    }
+  }
+
+  @override
+  Future<BaseResult<String>> getHtml() async {
+    try {
+      var response = await _paymentService.getHtml();
+      return BaseResult(success: true, body: response.toString());
+    } catch (e) {
+      return BaseResult(success: false, body: e.toString());
     }
   }
 }

@@ -1,10 +1,12 @@
 import 'dart:io';
 
 import 'package:data/models/remote/auth/request/fcm_register_register_request.dart';
+import 'package:data/models/remote/main/notificatioin_view_response.dart';
 import 'package:data/models/remote/main/notification_response.dart';
 import 'package:data/service/main_service.dart';
 import 'package:dio/dio.dart';
 import 'package:domain/model/main/notification_model.dart';
+import 'package:domain/model/main/notification_view_model.dart';
 import 'package:domain/repository/main_repository.dart';
 import 'package:domain/utils/base_result.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -35,7 +37,8 @@ class MainRepositoryImpl extends MainRepository {
   }
 
   @override
-  Future<BaseResult<bool>> readNotification({required num id}) async {
+  Future<BaseResult<NotificationViewModel>> readNotification(
+      {required num id}) async {
     try {
       var token = await FirebaseMessaging.instance.getToken();
       var response = await _mainService.readNotification(
@@ -47,7 +50,7 @@ class MainRepositoryImpl extends MainRepository {
       );
       return BaseResult(
         success: true,
-        body: true,
+        body: NotificationViewResponse.fromJson(response.data).toDomainModel(),
       );
     } on DioException catch (error) {
       return BaseResult(

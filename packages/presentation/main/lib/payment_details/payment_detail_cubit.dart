@@ -1,3 +1,6 @@
+import 'dart:developer';
+
+import 'package:common/widgets/custom_functions.dart';
 import 'package:domain/model/payment/payment_process_model.dart';
 import 'package:domain/model/payment/send_invoice_model.dart';
 import 'package:domain/usecase/cars_usecase.dart';
@@ -9,7 +12,8 @@ class PaymentDetailCubit extends Cubit<PaymentDetailState> {
   final PaymentUseCase _paymentUseCase;
   final CarsUseCase _carsUseCase;
 
-  PaymentDetailCubit(this._paymentUseCase,this._carsUseCase)
+  /// ulash kerak bo'gan joyi
+  PaymentDetailCubit(this._paymentUseCase, this._carsUseCase)
       : super(PaymentDetailState(
           selectedMethod: "Payme",
           firstAgreement: false,
@@ -37,6 +41,11 @@ class PaymentDetailCubit extends Cubit<PaymentDetailState> {
     }
   }
 
+  Future<String> getData() async {
+    var response = await _paymentUseCase.getHtml();
+    return response.body ?? "";
+  }
+
   Future<void> sendInvoice({
     required String amount,
     required num carId,
@@ -46,21 +55,24 @@ class PaymentDetailCubit extends Cubit<PaymentDetailState> {
   }) async {
     emit(state.copyWith(isButtonLoading: true));
     var response = await _paymentUseCase.sendInvoice(
-      carId: carId,
-      amount: amount,
-      paymentMethod: paymentMethod,
-      startDateTme: startDateTme,
-      endDateTme: endDateTme,
-    );
+        carId: carId,
+        amount: amount,
+        paymentMethod: paymentMethod,
+        startDateTme: startDateTme,
+        endDateTme: endDateTme);
+
+
     if (response.success) {
       var invoice = response.body;
       if (invoice != null) {
-        emit(state.copyWith(invoice: invoice,isButtonLoading: false));
-      }else{
+        emit(state.copyWith(invoice: invoice, isButtonLoading: false));
+      } else {
         emit(state.copyWith(isButtonLoading: false));
+        // showToastSms(invoice?.errorNote ?? "");
       }
-    }else{
+    } else {
       emit(state.copyWith(isButtonLoading: false));
+      // showToastSms("Error");
     }
   }
 

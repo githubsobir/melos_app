@@ -62,7 +62,8 @@ import 'app_localizations_uz.dart';
 /// be consistent with the languages listed in the AppLocalizations.supportedLocales
 /// property.
 abstract class AppLocalizations {
-  AppLocalizations(String locale) : localeName = intl.Intl.canonicalizedLocale(locale.toString());
+  AppLocalizations(String locale)
+      : localeName = intl.Intl.canonicalizedLocale(locale.toString());
 
   final String localeName;
 
@@ -70,7 +71,8 @@ abstract class AppLocalizations {
     return Localizations.of<AppLocalizations>(context, AppLocalizations)!;
   }
 
-  static const LocalizationsDelegate<AppLocalizations> delegate = _AppLocalizationsDelegate();
+  static const LocalizationsDelegate<AppLocalizations> delegate =
+      _AppLocalizationsDelegate();
 
   /// A list of this localizations delegate along with the default localizations
   /// delegates.
@@ -82,7 +84,8 @@ abstract class AppLocalizations {
   /// Additional delegates can be added by appending to this list in
   /// MaterialApp. This list does not have to be used at all if a custom list
   /// of delegates is preferred or required.
-  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates = <LocalizationsDelegate<dynamic>>[
+  static const List<LocalizationsDelegate<dynamic>> localizationsDelegates =
+      <LocalizationsDelegate<dynamic>>[
     delegate,
     GlobalMaterialLocalizations.delegate,
     GlobalCupertinoLocalizations.delegate,
@@ -1078,9 +1081,238 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Показать все'**
   String get show_all;
+
+  /// No description provided for @return_lang.
+  ///
+  /// In ru, this message translates to:
+  /// **'Возврат'**
+  String get return_lang;
+
+  /// No description provided for @receive.
+  ///
+  /// In ru, this message translates to:
+  /// **'Получение'**
+  String get receive;
+
+  /// No description provided for @cancel.
+  ///
+  /// In ru, this message translates to:
+  /// **'Отмена'**
+  String get cancel;
+
+  /// No description provided for @set.
+  ///
+  /// In ru, this message translates to:
+  /// **'Установить'**
+  String get set;
+
+  /// No description provided for @changeLanguage.
+  ///
+  /// In ru, this message translates to:
+  /// **'Изменить язык'**
+  String get changeLanguage;
+
+  /// No description provided for @exitAccount.
+  ///
+  /// In ru, this message translates to:
+  /// **'Вы уверены что хотите выйти из аккаунта ?'**
+  String get exitAccount;
+
+  /// No description provided for @passwordLength.
+  ///
+  /// In ru, this message translates to:
+  /// **'Пароль из 8 и более символов'**
+  String get passwordLength;
+
+  /// No description provided for @enterNumber.
+  ///
+  /// In ru, this message translates to:
+  /// **'Введите номер'**
+  String get enterNumber;
+
+  /// No description provided for @enterSpecialSymbols.
+  ///
+  /// In ru, this message translates to:
+  /// **'!~* Введите специальный символ'**
+  String get enterSpecialSymbols;
+
+  /// No description provided for @enterCapitalLatter.
+  ///
+  /// In ru, this message translates to:
+  /// **'Введите заглавную букву'**
+  String get enterCapitalLatter;
+
+  /// No description provided for @enterLowerCase.
+  ///
+  /// In ru, this message translates to:
+  /// **'Введите строчную букву'**
+  String get enterLowerCase;
+
+  /// No description provided for @more2Name.
+  ///
+  /// In ru, this message translates to:
+  /// **'должно быть длиннее 2 букв'**
+  String get more2Name;
+
+  /// No description provided for @more2LastName.
+  ///
+  /// In ru, this message translates to:
+  /// **'должна быть длиннее 2 букв'**
+  String get more2LastName;
+
+  /// No description provided for @more2Firstname.
+  ///
+  /// In ru, this message translates to:
+  /// **'должно быть длиннее двух букв'**
+  String get more2Firstname;
+
+  /// No description provided for @pnfl.
+  ///
+  /// In ru, this message translates to:
+  /// **'Должен состоять из 14 цифр'**
+  String get pnfl;
+
+  /// No description provided for @driverLicense.
+  ///
+  /// In ru, this message translates to:
+  /// **'Длина водительского удостоверения должна быть не менее 9 символов'**
+  String get driverLicense;
+
+  /// No description provided for @human.
+  ///
+  /// In ru, this message translates to:
+  /// **'Люди'**
+  String get human;
+
+  /// No description provided for @daySum.
+  ///
+  /// In ru, this message translates to:
+  /// **'сум/день'**
+  String get daySum;
+
+  /// No description provided for @pickUpAndReturn.
+  ///
+  /// In ru, this message translates to:
+  /// **'Самовывоз и возврат'**
+  String get pickUpAndReturn;
+
+  /// No description provided for @to.
+  ///
+  /// In ru, this message translates to:
+  /// **'до'**
+  String get to;
+
+  /// No description provided for @dateReturn.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выберите дату получения и возврата'**
+  String get dateReturn;
+
+  /// No description provided for @dateTimeReturn.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выберите время получения и возврата'**
+  String get dateTimeReturn;
+
+  /// No description provided for @acquainted.
+  ///
+  /// In ru, this message translates to:
+  /// **'Я ознакомился с офертой'**
+  String get acquainted;
+
+  /// No description provided for @scrollDown.
+  ///
+  /// In ru, this message translates to:
+  /// **'Прокрутите вниз'**
+  String get scrollDown;
+
+  /// No description provided for @paymentNotSuccess.
+  ///
+  /// In ru, this message translates to:
+  /// **'Платеж не прошел,\nПлатеж был выведен из состояния ожидания'**
+  String get paymentNotSuccess;
+
+  /// No description provided for @cost.
+  ///
+  /// In ru, this message translates to:
+  /// **'Оплата'**
+  String get cost;
+
+  /// No description provided for @pleaseWait.
+  ///
+  /// In ru, this message translates to:
+  /// **'Пожалуйста, подождите'**
+  String get pleaseWait;
+
+  /// No description provided for @send2.
+  ///
+  /// In ru, this message translates to:
+  /// **'Отправить'**
+  String get send2;
+
+  /// No description provided for @cancel_order2.
+  ///
+  /// In ru, this message translates to:
+  /// **'Вы хотите отменить заказ?'**
+  String get cancel_order2;
+
+  /// No description provided for @select2.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выбирать'**
+  String get select2;
+
+  /// No description provided for @checkInfo.
+  ///
+  /// In ru, this message translates to:
+  /// **'Проверить информацию'**
+  String get checkInfo;
+
+  /// No description provided for @chooseBrand.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выбрать марку автомобиля'**
+  String get chooseBrand;
+
+  /// No description provided for @chooseModel.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выбрать модель автомобиля'**
+  String get chooseModel;
+
+  /// No description provided for @chooseCity.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выбрать город'**
+  String get chooseCity;
+
+  /// No description provided for @chooseCarTransmission.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выбрать коробка передач'**
+  String get chooseCarTransmission;
+
+  /// No description provided for @enterCarNumber.
+  ///
+  /// In ru, this message translates to:
+  /// **'Введите номер автомобиля'**
+  String get enterCarNumber;
+
+  /// No description provided for @clear.
+  ///
+  /// In ru, this message translates to:
+  /// **'Очищать'**
+  String get clear;
+
+  /// No description provided for @chooseAnOtherDate.
+  ///
+  /// In ru, this message translates to:
+  /// **'Выберите другую дату'**
+  String get chooseAnOtherDate;
 }
 
-class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
+class _AppLocalizationsDelegate
+    extends LocalizationsDelegate<AppLocalizations> {
   const _AppLocalizationsDelegate();
 
   @override
@@ -1089,25 +1321,25 @@ class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> 
   }
 
   @override
-  bool isSupported(Locale locale) => <String>['ru', 'uz'].contains(locale.languageCode);
+  bool isSupported(Locale locale) =>
+      <String>['ru', 'uz'].contains(locale.languageCode);
 
   @override
   bool shouldReload(_AppLocalizationsDelegate old) => false;
 }
 
 AppLocalizations lookupAppLocalizations(Locale locale) {
-
-
   // Lookup logic when only language code is specified.
   switch (locale.languageCode) {
-    case 'ru': return AppLocalizationsRu();
-    case 'uz': return AppLocalizationsUz();
+    case 'ru':
+      return AppLocalizationsRu();
+    case 'uz':
+      return AppLocalizationsUz();
   }
 
   throw FlutterError(
-    'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
-    'an issue with the localizations generation tool. Please file an issue '
-    'on GitHub with a reproducible sample app and the gen-l10n configuration '
-    'that was used.'
-  );
+      'AppLocalizations.delegate failed to load unsupported locale "$locale". This is likely '
+      'an issue with the localizations generation tool. Please file an issue '
+      'on GitHub with a reproducible sample app and the gen-l10n configuration '
+      'that was used.');
 }

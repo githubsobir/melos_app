@@ -31,8 +31,6 @@ class ItemCurrentBooking extends StatelessWidget {
     required this.booking,
   });
 
-  // return NumberFormat("#,##0", "ru").format(price);
-
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -43,6 +41,8 @@ class ItemCurrentBooking extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(
                 top: 16,
+                left: 0,
+                right: 0,
                 bottom: 16,
               ),
               child: CarImageSelectorWidget(

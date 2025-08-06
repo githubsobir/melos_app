@@ -16,12 +16,24 @@ class FilterBottomSheet extends StatefulWidget {
   }) async {
     var result = await showModalBottomSheet(
       context: context,
+      // backgroundColor: Colors.transparent,
+      enableDrag: true,
       isScrollControlled: true,
-      isDismissible: true,
-      backgroundColor: Colors.transparent,
+      shape: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(8),
+        borderSide: const BorderSide(color: Colors.transparent),
+      ),
+
       builder: (context) {
-        return FilterBottomSheet(
-          cubit: cubit,
+        return Container(
+          height: MediaQuery.of(context).size.height * 0.9,
+          padding: const EdgeInsets.only(top: 8),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: FilterBottomSheet(
+            cubit: cubit,
+          ),
         );
       },
     );
@@ -35,104 +47,139 @@ class FilterBottomSheet extends StatefulWidget {
 class _FilterBottomSheetState extends State<FilterBottomSheet> {
   @override
   Widget build(BuildContext context) {
-    return DraggableScrollableSheet(
-      builder: (context, scrollController) => Card(
+    return Scaffold(
+      appBar: AppBar(
+        toolbarHeight: 55,
         elevation: 0,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-            topRight: Radius.circular(12),
-            topLeft: Radius.circular(12),
-          ), // Adjust radius as needed
-        ),
-        margin: const EdgeInsets.all(0),
+        actions: [
+          InkWell(
+              onTap: () {
+                setState(() {
+                  widget.cubit.clearFilters();
+                });
+              },
+              child:  Column(
+                children: [
+                  const Icon(
+                    Icons.clear,
+                    size: 32,
+                  ),
+
+                  Text(context.translations.clear),
+                ],
+              )),
+          const SizedBox(width: 20),
+        ],
+        leading: InkWell(
+            onTap: () {
+              context.closeActiveScreen();
+            },
+            child: const Icon(
+              Icons.keyboard_arrow_down_sharp,
+              size: 34,
+            )),
+      ),
+      body: SafeArea(
         child: Container(
-          margin: const EdgeInsets.only(top: 24),
-          padding: const EdgeInsets.all(16.0),
+          // margin: const EdgeInsets.only(top: 24),
+          padding:
+              const EdgeInsets.only(top: 0, bottom: 16, left: 16, right: 16),
           child: BlocBuilder<HomeCubit, HomeState>(
             bloc: widget.cubit,
             builder: (context, state) {
               return ListView(
-                controller: scrollController,
+
+                // controller: scrollController,
+
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
                         context.translations.body_type,
-                        style: Theme.of(context).textTheme.bodySmall?.copyWith(
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: Theme.of(context).colorScheme.secondary),
                       ),
-                      Row(
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: Container(),
-                          ),
-                          Expanded(
-                            flex: 4,
-                            child: ListView.builder(
-                              shrinkWrap: true,
-                              itemCount: state.filter.categoryCounts.length,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemBuilder: (BuildContext context, int index) {
-                                return Row(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    Checkbox(
-                                      value: state.filter.categoryCounts[index]
-                                          .isSelected,
-                                      checkColor: Colors.white,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          state.filter.categoryCounts[index]
-                                              .isSelected = value!;
-                                        });
-                                      },
-                                    ),
-                                    Expanded(
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            state.filter.categoryCounts[index]
-                                                .title,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .titleSmall,
-                                          ),
-                                          Visibility(
-                                            visible: state
-                                                    .filter
-                                                    .categoryCounts[index]
-                                                    .count !=
-                                                0,
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 4),
-                                              child: Text(
-                                                "(${state.filter.categoryCounts[index].count})",
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodySmall
-                                                    ?.copyWith(
-                                                        color: Theme.of(context)
-                                                            .colorScheme
-                                                            .secondary),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
+                      const SizedBox(height: 15),
+                      GridView.builder(
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                                crossAxisCount: 2,
+                                mainAxisExtent: 50,
+                                crossAxisSpacing: 10),
+                        shrinkWrap: true,
+                        itemCount: state.filter.categoryCounts.length,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (BuildContext context, int index) {
+                          return SizedBox(
+                            width: 100,
+                            child: Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Checkbox(
+                                  value: state
+                                      .filter.categoryCounts[index].isSelected,
+                                  checkColor: Colors.white,
+                                  onChanged: (value) {
+                                    setState(() {
+                                      state.filter.categoryCounts[index]
+                                          .isSelected = value!;
+                                    });
+                                  },
+                                ),
+                                Expanded(
+                                  child: Row(
+
+                                    children: [
+                                      SizedBox(
+                                        width: MediaQuery.of(context).size.width*0.3,
+
+                                        child: Text(
+                                          state
+                                              .filter.categoryCounts[index].title,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .titleSmall,
+                                          maxLines: 1,
+
+                                          overflow: TextOverflow.fade,
+                                          softWrap: true,
+                                        ),
                                       ),
-                                    ),
-                                  ],
-                                );
-                              },
+                                      // Visibility(
+                                      //   visible: (state
+                                      //               .filter
+                                      //               .categoryCounts[index]
+                                      //               .count ??
+                                      //           0) !=
+                                      //       0,
+                                      //   child: Padding(
+                                      //     padding:
+                                      //         const EdgeInsets.only(left: 4),
+                                      //     child: Text(
+                                      //       "(${state.filter.categoryCounts[index].count})",
+                                      //       style: Theme.of(context)
+                                      //           .textTheme
+                                      //           .bodySmall
+                                      //           ?.copyWith(
+                                      //               color: Theme.of(context)
+                                      //                   .colorScheme
+                                      //                   .secondary),
+                                      //     ),
+                                      //   ),
+                                      // ),
+                                    ],
+                                  ),
+                                ),
+                              ],
                             ),
-                          ),
-                          Expanded(flex: 1, child: Container()),
-                        ],
+                          );
+                        },
                       ),
                     ],
                   ),
+                  const SizedBox(height: 15),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -141,85 +188,81 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: Theme.of(context).colorScheme.secondary),
                       ),
-                      Row(
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: Container(),
-                          ),
-                          Expanded(
-                            flex: 4,
-                            child: ListView.builder(
-                              shrinkWrap: true,
-                              itemCount:
-                                  state.filter.passengerCapacityCounts.length,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemBuilder: (BuildContext context, int index) {
-                                return Row(
-                                  mainAxisSize: MainAxisSize.min,
+                      const SizedBox(height: 15),
+                      GridView.builder(
+                        gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            mainAxisExtent: 50,
+                            crossAxisSpacing: 10),
+                        shrinkWrap: true,
+                        itemCount:
+                            state.filter.passengerCapacityCounts.length,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (BuildContext context, int index) {
+                          return Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Checkbox(
+                                value: state
+                                    .filter
+                                    .passengerCapacityCounts[index]
+                                    .isSelected,
+                                checkColor: Colors.white,
+                                onChanged: (value) {
+                                  setState(() {
+                                    state
+                                        .filter
+                                        .passengerCapacityCounts[index]
+                                        .isSelected = value!;
+                                  });
+                                },
+                              ),
+                              Expanded(
+                                child: Row(
                                   children: [
-                                    Checkbox(
-                                      value: state
+                                    Text(
+                                      state
                                           .filter
                                           .passengerCapacityCounts[index]
-                                          .isSelected,
-                                      checkColor: Colors.white,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          state
-                                              .filter
-                                              .passengerCapacityCounts[index]
-                                              .isSelected = value!;
-                                        });
-                                      },
+                                          .title,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleSmall,
                                     ),
-                                    Expanded(
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            state
-                                                .filter
-                                                .passengerCapacityCounts[index]
-                                                .title,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .titleSmall,
-                                          ),
-                                          Visibility(
-                                            visible: state
-                                                    .filter
-                                                    .passengerCapacityCounts[
-                                                        index]
-                                                    .count !=
-                                                0,
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 4),
-                                              child: Text(
-                                                "(${state.filter.passengerCapacityCounts[index].count})",
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodySmall
-                                                    ?.copyWith(
-                                                        color: Theme.of(context)
-                                                            .colorScheme
-                                                            .secondary),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
+                                    Visibility(
+                                      visible: (state
+                                                  .filter
+                                                  .passengerCapacityCounts[
+                                                      index]
+                                                  .count ??
+                                              0) !=
+                                          0,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 4),
+                                        child: Text(
+                                          "(${state.filter.passengerCapacityCounts[index].count})",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodySmall
+                                              ?.copyWith(
+                                                  color: Theme.of(context)
+                                                      .colorScheme
+                                                      .secondary),
+                                        ),
                                       ),
                                     ),
                                   ],
-                                );
-                              },
-                            ),
-                          ),
-                          Expanded(flex: 1, child: Container()),
-                        ],
+                                ),
+                              ),
+                            ],
+                          );
+                        },
                       ),
                     ],
                   ),
+                  const SizedBox(height: 15),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
@@ -228,75 +271,73 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                         style: Theme.of(context).textTheme.bodySmall?.copyWith(
                             color: Theme.of(context).colorScheme.secondary),
                       ),
-                      Row(
-                        children: [
-                          Expanded(
-                            flex: 1,
-                            child: Container(),
-                          ),
-                          Expanded(
-                            flex: 4,
-                            child: ListView.builder(
-                              shrinkWrap: true,
-                              itemCount: state.filter.cityCounts.length,
-                              physics: const NeverScrollableScrollPhysics(),
-                              itemBuilder: (BuildContext context, int index) {
-                                return Row(
-                                  mainAxisSize: MainAxisSize.min,
+                      const SizedBox(height: 15),
+                      GridView.builder(
+                        gridDelegate:
+                        const SliverGridDelegateWithFixedCrossAxisCount(
+                            crossAxisCount: 2,
+                            mainAxisExtent: 50,
+                            crossAxisSpacing: 10),
+                        shrinkWrap: true,
+                        itemCount: state.filter.cityCounts.length,
+                        physics: const NeverScrollableScrollPhysics(),
+                        itemBuilder: (BuildContext context, int index) {
+                          return Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              Checkbox(
+                                value: state
+                                    .filter.cityCounts[index].isSelected,
+                                checkColor: Colors.white,
+                                onChanged: (value) {
+                                  setState(() {
+                                    state.filter.cityCounts[index]
+                                        .isSelected = value!;
+                                  });
+                                },
+                              ),
+                              Expanded(
+                                child: Row(
                                   children: [
-                                    Checkbox(
-                                      value: state
-                                          .filter.cityCounts[index].isSelected,
-                                      checkColor: Colors.white,
-                                      onChanged: (value) {
-                                        setState(() {
-                                          state.filter.cityCounts[index]
-                                              .isSelected = value!;
-                                        });
-                                      },
+                                    Text(
+                                      state
+                                          .filter.cityCounts[index].title,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleSmall,
                                     ),
-                                    Expanded(
-                                      child: Row(
-                                        children: [
-                                          Text(
-                                            state
-                                                .filter.cityCounts[index].title,
-                                            style: Theme.of(context)
-                                                .textTheme
-                                                .titleSmall,
-                                          ),
-                                          Visibility(
-                                            visible: state.filter
-                                                    .cityCounts[index].count !=
-                                                0,
-                                            child: Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 4),
-                                              child: Text(
-                                                "(${state.filter.cityCounts[index].count})",
-                                                style: Theme.of(context)
-                                                    .textTheme
-                                                    .bodySmall
-                                                    ?.copyWith(
-                                                        color: Theme.of(context)
-                                                            .colorScheme
-                                                            .secondary),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
+                                    Visibility(
+                                      visible: (state
+                                                  .filter
+                                                  .cityCounts[index]
+                                                  .count ??
+                                              0) !=
+                                          0,
+                                      child: Padding(
+                                        padding: const EdgeInsets.only(
+                                            left: 4),
+                                        child: Text(
+                                          "(${state.filter.cityCounts[index].count})",
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .bodySmall
+                                              ?.copyWith(
+                                                  color: Theme.of(context)
+                                                      .colorScheme
+                                                      .secondary),
+                                        ),
                                       ),
                                     ),
                                   ],
-                                );
-                              },
-                            ),
-                          ),
-                          Expanded(flex: 1, child: Container()),
-                        ],
+                                ),
+                              ),
+                            ],
+                          );
+                        },
                       ),
                     ],
                   ),
+                  const SizedBox(height: 15),
                   Text(
                     context.translations.price,
                     style: Theme.of(context)
@@ -311,7 +352,8 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                   Padding(
                     padding: const EdgeInsets.only(left: 16, right: 16),
                     child: Text(
-                      context.translations.max_price_sum("${state.filter.maxPrice ?? 5000000}"),
+                      context.translations
+                          .max_price_sum("${state.filter.maxPrice ?? 5000000}"),
                       style: Theme.of(context)
                           .textTheme
                           .titleSmall
@@ -323,9 +365,11 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                     value: (state.filter.maxPrice ?? 5000000).toDouble(),
                     min: 100000,
                     max: 5000000,
+                    divisions: 98,
                     onChanged: (value) {
                       setState(() {
-                        state.filter.maxPrice = value.toInt();
+                        // Qiymatni 50,000 ga yaxlitlash
+                        state.filter.maxPrice = (value / 50000).round() * 50000;
                       });
                     },
                   ),

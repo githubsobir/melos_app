@@ -18,6 +18,7 @@ class ItemCarImage extends StatelessWidget {
     return Container(
       width: width,
       height: height,
+
       decoration: const BoxDecoration(
         color: Colors.grey,
         borderRadius: BorderRadius.all(Radius.circular(6)),
@@ -26,7 +27,7 @@ class ItemCarImage extends StatelessWidget {
         borderRadius: BorderRadius.circular(8.0),
         child: CachedNetworkImage(
           imageUrl: imagePath,
-          fit: BoxFit.fill,
+          fit: BoxFit.cover,
           progressIndicatorBuilder: (context, url, downloadProgress) =>
               SizedBox(
             width: width,
@@ -48,7 +49,7 @@ class ItemCarImage extends StatelessWidget {
               ],
             ),
           ),
-          errorWidget: (context, url, error) => const Icon(Icons.error),
+          // errorWidget: (context, url, error) => const Icon(Icons.error),
         ),
       ),
     );

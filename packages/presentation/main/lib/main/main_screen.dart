@@ -192,7 +192,7 @@ class _MainScreenState extends State<MainScreen> {
           bottomNavigationBar: SizedBox(
             height: 80,
             child: Padding(
-              padding: const EdgeInsets.only(left: 12, right: 12),
+              padding: const EdgeInsets.only(left: 12, right: 12, bottom: 27),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [

@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:common/widgets/custom_functions.dart';
 import 'package:domain/model/payment/payment_status_model.dart';
 import 'package:domain/usecase/payment_usecase.dart';
 import 'package:equatable/equatable.dart';
@@ -10,8 +11,7 @@ class PaymentCubit extends Cubit<PaymentState> {
   Timer? timer;
 
   PaymentCubit(this._paymentUseCase)
-      : super(
-            PaymentState(status: PaymentStatusModel()));
+      : super(PaymentState(status: PaymentStatusModel()));
 
   Future<void> checkStatus(num paymentId) async {
     timer = Timer.periodic(
@@ -33,6 +33,15 @@ class PaymentCubit extends Cubit<PaymentState> {
       if (invoice != null) {
         if (invoice.status == 1) {
           emit(state.copyWith(status: invoice));
+          timer?.cancel();
+        } else if (invoice.status == 0) {
+          emit(state.copyWith(
+              status: PaymentStatusModel(status: 0, bookingId: 0)));
+        } else {
+          emit(state.copyWith(
+              status: PaymentStatusModel(status: -1, bookingId: -1)));
+          showToastSms(
+              "To'lov amalga oshmadi,\nTo'lov kutish xolatidan chiqarildi");
           timer?.cancel();
         }
       }

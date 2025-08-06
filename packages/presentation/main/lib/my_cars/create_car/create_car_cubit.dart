@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:common/widgets/custom_functions.dart';
 import 'package:domain/model/cars/car_create_model.dart';
 import 'package:domain/usecase/cars_usecase.dart';
@@ -25,7 +27,10 @@ class CreateCarCubit extends Cubit<CreateCarState> {
   }
 
   changePositionToRight() async {
-    print(state.position);
+    // print(state.position);
+
+
+
     if (state.position == 0) {
       emit(state.copyWith(position: 1));
     } else if (state.position == 1) {
@@ -34,7 +39,7 @@ class CreateCarCubit extends Cubit<CreateCarState> {
           (state.carModel.registrationNumber ?? "").isNotEmpty &&
           (state.carModel.city ?? "").isNotEmpty &&
           (state.carModel.transmission ?? "").isNotEmpty &&
-          (state.carModel.passengerCapacity ?? 0) > 0 &&
+          (state.carModel.passengerCapacity ?? "0").isNotEmpty &&
           (state.carModel.latitude != null) &&
           (state.carModel.longitude != null)) {
         if (await carCreateProcess(1)) {
@@ -47,7 +52,7 @@ class CreateCarCubit extends Cubit<CreateCarState> {
     } else if (state.position == 2) {
       if ((state.carModel.year ?? 0) > 0 &&
           (state.carModel.mileage ?? 0) > 0 &&
-          (state.carModel.fuelCapacity ?? 0) > 0 &&
+          // (state.carModel.fuelCapacity ?? 0) > 0 &&
           (state.carModel.photos ?? []).isNotEmpty) {
         if (await carCreateProcess(2)) {
           emit(state.copyWith(position: 3));
@@ -132,7 +137,7 @@ class CreateCarCubit extends Cubit<CreateCarState> {
   onChangedPassengerCapacity(String value) {
     emit(state.copyWith(
         carModel:
-            state.carModel.copyWith(passengerCapacity: num.parse(value))));
+            state.carModel.copyWith(passengerCapacity:value)));
   }
 
   onChangedLocations(double latitude, double longitude) {

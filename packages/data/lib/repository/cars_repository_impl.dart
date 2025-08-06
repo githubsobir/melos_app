@@ -1,7 +1,11 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:data/models/remote/cars/request/car_like_request.dart';
 import 'package:data/models/remote/cars/response/car.dart';
 import 'package:data/models/remote/cars/response/car_detail_info_response.dart';
 import 'package:data/models/remote/cars/response/car_response.dart';
+import 'package:data/models/remote/cars/response/car_step1_model.dart';
 import 'package:data/models/remote/cars/response/check_date_reponse.dart';
 import 'package:data/models/remote/cars/response/current_car_response.dart';
 import 'package:data/models/remote/cars/response/filter_response.dart';
@@ -16,6 +20,7 @@ import 'package:dio/dio.dart';
 import 'package:domain/model/cars/car_create_model.dart';
 import 'package:domain/model/cars/car_detail_info_model.dart';
 import 'package:domain/model/cars/car_model.dart';
+import 'package:domain/model/cars/car_step.dart';
 import 'package:domain/model/cars/check_date_model.dart';
 import 'package:domain/model/cars/current_car_model.dart';
 import 'package:domain/model/cars/filter_model.dart';
@@ -77,6 +82,7 @@ class CarsRepositoryImpl extends CarsRepository {
   @override
   Future<BaseResult<bool>> likeCar(num id, bool isLiked) async {
     try {
+      log("message 8989");
       if (isLiked) {
         var response = await _carsService.likeCar(CarLikeRequest(carId: id));
       } else {
@@ -136,6 +142,9 @@ class CarsRepositoryImpl extends CarsRepository {
   Future<BaseResult<FilterModel>> filter() async {
     try {
       var response = await _carsService.filter();
+      log("filter()");
+      log(jsonEncode(response.data).toString());
+
       return BaseResult(
         success: true,
         body: FilterResponse.fromJson(response.data).toDomainModel(),
@@ -144,6 +153,8 @@ class CarsRepositoryImpl extends CarsRepository {
       return BaseResult(
           success: false, exceptionBody: error.response?.data['error_note']);
     } catch (exception) {
+      log("xato filter()");
+      log(exception.toString());
       return BaseResult(success: false, exceptionBody: exception);
     }
   }
@@ -431,15 +442,39 @@ class CarsRepositoryImpl extends CarsRepository {
         latitude: latitude,
         longitude: longitude,
       );
+
+      var data = MainNearestCarResponse.fromJson(response.data);
       return BaseResult(
         success: true,
-        body: NearestCarResponse.fromJson(response.data).toDomainModel(),
+        body: data.nearest.toDomainModel(),
       );
     } on DioException catch (error) {
       return BaseResult(
           success: false, exceptionBody: error.response?.data['error_note']);
     } catch (exception) {
+      log(exception.toString());
       return BaseResult(success: false, exceptionBody: exception);
     }
   }
+
+  @override
+  Future<BaseResult<CarStep1Entities>> carStep1() async {
+    try {
+      var response = await _carsService.carStep1();
+
+      var data = CarStep1Model.fromJson(response.data);
+      return BaseResult(
+        success: true,
+        body: data.toDomainModel(),
+      );
+    } on DioException catch (error) {
+      return BaseResult(
+          success: false, exceptionBody: error.response?.data['error_note']);
+    } catch (exception) {
+      log(exception.toString());
+      return BaseResult(success: false, exceptionBody: exception);
+    }
+  }
+
+// CarStep1Model
 }

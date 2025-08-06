@@ -42,7 +42,8 @@ class _ReviewCardState extends State<ReviewCard> {
                 BaseButton(onPressed: () {}, title: "${widget.reviews.length}")
               ],
             ),
-            ListView.builder(
+            ListView.separated(
+              separatorBuilder: (context, index) => Divider(color: Colors.grey, height: 1,),
               itemCount: showAll
                   ? widget.reviews.length
                   : (widget.reviews.length < 2 ? widget.reviews.length : 2),

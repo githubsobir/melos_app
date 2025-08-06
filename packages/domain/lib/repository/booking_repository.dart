@@ -18,5 +18,5 @@ abstract class BookingRepository {
     required String comment,
   });
 
-  Future<BaseResult<bool>> cancelBooking({required num bookingId});
+  Future<BaseResult<String>> cancelBooking({required num bookingId});
 }

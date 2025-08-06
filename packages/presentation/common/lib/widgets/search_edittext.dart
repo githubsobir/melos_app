@@ -62,7 +62,7 @@ class _SearchEdittextState extends State<SearchEdittext> {
                 decoration: InputDecoration(
                   contentPadding: const EdgeInsets.only(
                     left: 12,
-                    top: 0,
+                    top: 10,
                     bottom: 0,
                     right: 12,
                   ),

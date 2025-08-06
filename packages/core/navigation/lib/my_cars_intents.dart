@@ -35,6 +35,11 @@ class SelectLocationScreenIntent implements NavigationIntent {
 class CarInfoDetailIntent implements NavigationIntent {
   static String path = "/car_info";
   num carId;
+  String startDateTime;
+  String endDateTime;
 
-  CarInfoDetailIntent({required this.carId});
+  CarInfoDetailIntent(
+      {required this.carId,
+      required this.startDateTime,
+      required this.endDateTime});
 }

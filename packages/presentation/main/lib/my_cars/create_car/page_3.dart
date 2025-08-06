@@ -92,7 +92,10 @@ class Page3 extends StatelessWidget {
                       hint: "80 000",
                       onChanged: onChangedDailyRate,
                       keyboardType: TextInputType.number,
-                    ))
+                    )
+
+
+                )
               ],
             ),
             const SizedBox(

@@ -80,6 +80,9 @@ class _CustomOtpState extends State<CustomOtp> {
                 FocusScope.of(context).previousFocus();
               }
             },
+            onTapOutside: (event) {
+              FocusScope.of(context).unfocus();
+            },
             showCursor: false,
             readOnly: false,
             textAlign: TextAlign.center,

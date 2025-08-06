@@ -18,5 +18,8 @@ abstract class PaymentRepository {
     required String endDateTme,
   });
 
+
+  Future<BaseResult<String>> getHtml();
+
   Future<BaseResult<PaymentStatusModel>> paymentStatus({required num paymentId});
 }

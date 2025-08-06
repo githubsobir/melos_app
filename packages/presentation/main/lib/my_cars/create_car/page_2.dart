@@ -10,14 +10,14 @@ import 'package:image_picker/image_picker.dart';
 class Page2 extends StatefulWidget {
   final ValueChanged<String> onChangedYear;
   final ValueChanged<String> onChangedMileage;
-  final ValueChanged<String> onChangedFuelCapacity;
+  // final ValueChanged<String> onChangedFuelCapacity;
   final Function(List<String> photos) onChangedPhotos;
 
   const Page2({
     super.key,
     required this.onChangedYear,
     required this.onChangedMileage,
-    required this.onChangedFuelCapacity,
+    // required this.onChangedFuelCapacity,
     required this.onChangedPhotos,
   });
 
@@ -27,6 +27,13 @@ class Page2 extends StatefulWidget {
 
 class _Page2State extends State<Page2> {
   List<XFile> allImages = [];
+
+
+  @override
+  void initState() {
+    // widget.onChangedFuelCapacity("0");
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -138,26 +145,26 @@ class _Page2State extends State<Page2> {
             const SizedBox(
               height: 16,
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Expanded(
-                  child: Text(
-                    context.translations.capacity_passengers,
-                    style: Theme.of(context).textTheme.titleSmall?.copyWith(
-                          color: Theme.of(context).colorScheme.primary,
-                        ),
-                  ),
-                ),
-                SizedBox(
-                    width: 170,
-                    child: TextField3(
-                      hint: "4",
-                      keyboardType: TextInputType.number,
-                      onChanged: widget.onChangedFuelCapacity,
-                    ))
-              ],
-            ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            //   children: [
+            //     Expanded(
+            //       child: Text(
+            //         context.translations.capacity_passengers,
+            //         style: Theme.of(context).textTheme.titleSmall?.copyWith(
+            //               color: Theme.of(context).colorScheme.primary,
+            //             ),
+            //       ),
+            //     ),
+            //     SizedBox(
+            //         width: 170,
+            //         child: TextField3(
+            //           hint: "4",
+            //           keyboardType: TextInputType.number,
+            //           onChanged: widget.onChangedFuelCapacity,
+            //         ))
+            //   ],
+            // ),
             const SizedBox(
               height: 8,
             ),

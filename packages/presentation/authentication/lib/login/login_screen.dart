@@ -1,15 +1,18 @@
+import 'dart:io';
+
 import 'package:authentication/login/login_cubit.dart';
 import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/navigation/auth_navigation_intents.dart';
 import 'package:common/path_images.dart';
-import 'package:common/widgets/base_button.dart';
 import 'package:common/widgets/base_loader_builder.dart';
 import 'package:common/widgets/base_text_field.dart';
 import 'package:common/widgets/custom_functions.dart';
 import 'package:dependency/dependencies.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intent_launcher/intent_launcher.dart';
+import 'package:navigation/main_navigation_intents.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -21,9 +24,6 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(context.translations.enter),
-      ),
       body: BlocConsumer(
         bloc: cubit,
         listener: (context, state) {
@@ -43,36 +43,106 @@ class LoginScreen extends StatelessWidget {
         builder: (context, state) {
           return BaseLoaderBuilder(
             hasLoading: state is LoaderState,
-            child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.all(24.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Image.asset(
-                      PathImages.carLogin,
-                      height: 150,
-                      width: 212,
-                    ),
-                    const SizedBox(height: 72),
-                    BaseTextField(
-                      controller: phoneController,
-                      title: context.translations.enter_number,
-                      hint: "__ ___ __ __",
-                      type: TextFieldType.PHONE,
-                    ),
-                    const SizedBox(height: 100),
-                    BaseButton(
-                        onPressed: () {
-                          cubit.verifyPhone(
-                            phone:
-                                "+998${phoneController.text.replaceAll(" ", "")}",
-                          ); //123
-                        },
-                        title: context.translations.continue_x),
-                  ],
+            child: Column(
+              children: [
+                AppBar(
+                  title: Text(context.translations.enter),
+                  iconTheme: const IconThemeData(color: Colors.black),
+                  leading: IconButton(
+                    icon: Platform.isIOS
+                        ? const Icon(
+                            Icons.arrow_back_ios_new,
+                            color: Colors.black,
+                          )
+                        : const Icon(
+                            Icons.arrow_back,
+                            color: Colors.black,
+                          ),
+                    onPressed: () {
+
+                      context.openScreen(MainIntent());
+
+                    },
+                  ),
                 ),
-              ),
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(24),
+                    child: SingleChildScrollView(
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Image.asset(
+                            PathImages.carLogin,
+                            height: 150,
+                            width: 212,
+                          ),
+                          const SizedBox(height: 65),
+                          BaseTextField(
+                            controller: phoneController,
+                            title: context.translations.enter_number,
+                            hint: "__ ___ __ __",
+                            type: TextFieldType.PHONE,
+                          ),
+                          const SizedBox(height: 45),
+
+                          InkWell(
+                            borderRadius: BorderRadius.circular(8.0),
+                            onTap: () {
+                              cubit.verifyPhone(
+                                phone:
+                                    "+998${phoneController.text.replaceAll(" ", "")}",
+                              );
+                            },
+                            child: Card(
+                              color: const Color(0xFF3563E9),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(
+                                    8.0), // Adjust radius as needed
+                              ),
+                              child: Container(
+                                width: double.infinity,
+                                padding: const EdgeInsets.only(
+                                  left: 16,
+                                  right: 16,
+                                  top: 8,
+                                  bottom: 8,
+                                ),
+                                child: Text(
+                                  context.translations.continue_x,
+                                  textAlign: TextAlign.center,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(
+                                        fontSize: 18,
+                                        color: Theme.of(context)
+                                                    .colorScheme
+                                                    .brightness ==
+                                                Brightness.light
+                                            ? Colors.white
+                                            : Colors.white,
+                                      ),
+                                ),
+                              ),
+                            ),
+                          )
+
+                          // BaseButton(
+                          //     onPressed: () {
+                          //       cubit.verifyPhone(
+                          //         phone:
+                          //             "+998${phoneController.text.replaceAll(" ", "")}",
+                          //       ); //123
+                          //     },
+                          //     title: context.translations.continue_x),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           );
         },

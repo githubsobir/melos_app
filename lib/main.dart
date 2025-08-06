@@ -1,11 +1,14 @@
 import 'dart:io';
 
 import 'package:carbnb/firebase_options.dart';
+import 'package:common/bloc/date_time_cubit.dart';
+import 'package:common/storage/hive_service.dart';
 import 'package:dependency/dependencies.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'app/app.dart';
 import 'dependencies.dart';
@@ -19,8 +22,16 @@ Future<void> main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  await HiveService.init();
   FirebaseMessaging.instance.requestPermission();
-  runApp(const MyApp());
+  runApp(
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(create: (_) => DateTimeCubit()),
+      ],
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyHttpOverrides extends HttpOverrides {

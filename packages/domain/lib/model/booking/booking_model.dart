@@ -34,6 +34,6 @@ class BookingModel {
   String? endDate;
   String? status;
   String? powerOfAttorney;
-  String? contract;
+  List<dynamic>? contract;
   String? insurance;
 }

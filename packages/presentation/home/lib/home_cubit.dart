@@ -10,16 +10,17 @@ import 'package:geolocator/geolocator.dart';
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit(this._carsUseCase)
       : super(HomeState(
-          recommended: [],
-          popular: [],
-          isLoading: false,
-          search: "",
-          filter: FilterModel(
-            cityCounts: [],
-            passengerCapacityCounts: [],
-            categoryCounts: [],
-          ),
-        ));
+            recommended: [],
+            popular: [],
+            isLoading: false,
+            search: "",
+            filter: FilterModel(
+                cityCounts: [],
+                passengerCapacityCounts: [],
+                categoryCounts: [],
+                makeCounts: [],
+                modelCounts: [],
+                transmissionCounts: [])));
   final CarsUseCase _carsUseCase;
   int recommendedCarsPage = 1;
   int popularCarsPage = 1;
@@ -34,6 +35,8 @@ class HomeCubit extends Cubit<HomeState> {
   }) {
     _startDataTime = startDataTime;
     _endDataTime = endDataTime;
+
+
     popularCars(isRefreshed: true);
     recommendedCars(isRefreshed: true);
   }
@@ -46,6 +49,23 @@ class HomeCubit extends Cubit<HomeState> {
         emit(state.copyWith(filter: filter));
       }
     }
+  }
+
+  void clearFilters() {
+    final clearedFilter = state.filter.copyWith(
+      categoryCounts: state.filter.categoryCounts
+          .map((e) => e.copyWith(isSelected: false))
+          .toList(),
+      cityCounts: state.filter.cityCounts
+          .map((e) => e.copyWith(isSelected: false))
+          .toList(),
+      passengerCapacityCounts: state.filter.passengerCapacityCounts
+          .map((e) => e.copyWith(isSelected: false))
+          .toList(),
+      makeCounts: state.filter.makeCounts, // yoki istalgan default qiymat
+    );
+
+    emit(state.copyWith(filter: clearedFilter));
   }
 
   Future<void> recommendedCars({
@@ -75,17 +95,17 @@ class HomeCubit extends Cubit<HomeState> {
         category: state.filter.categoryCounts
             .where((element) => element.isSelected)
             .toList()
-            .map((e) => e.title)
+            .map((e) => e.key)
             .toList(),
         passengers: state.filter.passengerCapacityCounts
             .where((element) => element.isSelected)
             .toList()
-            .map((e) => e.title)
+            .map((e) => e.key)
             .toList(),
         cities: state.filter.cityCounts
             .where((element) => element.isSelected)
             .toList()
-            .map((e) => e.title)
+            .map((e) => e.key)
             .toList(),
       );
       if (response.success) {

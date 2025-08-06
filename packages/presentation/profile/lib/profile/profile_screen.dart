@@ -27,9 +27,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     cubit.userInformation();
-   // Timer(Duration(seconds: 1), () {
-   //   context.openScreen(ReportsScreenIntent());
-   // },);
+    // Timer(Duration(seconds: 1), () {
+    //   context.openScreen(ReportsScreenIntent());
+    // },);
     super.initState();
   }
 
@@ -263,46 +263,54 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       const SizedBox(
                         height: 24,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          item(
-                              context: context,
-                              image: PathImages.changeProfile,
-                              title: "Изменить профиль",
-                              onTap: () {
-                                context
-                                    .openScreen(EditProfileIntent(state.info))
-                                    .then(
-                                  (value) {
-                                    if (value is bool && value == true) {
-                                      cubit.userInformation();
-                                    }
-                                  },
-                                );
-                              }),
-                          item(
-                              context: context,
-                              image: PathImages.check,
-                              title: "Счет",
-                              onTap: () {
-                                context.openScreen(CheckScreenIntent());
-                              }),
-                          item(
-                              context: context,
-                              image: PathImages.report,
-                              title: "Снятие денег",
-                              onTap: () {
-                                context.openScreen(WithdrawingMoneyScreenIntent());
-                              }),
-                          item(
-                              context: context,
-                              image: PathImages.withdrawingMoney,
-                              title: "Отчет",
-                              onTap: () {
-                                context.openScreen(ReportsScreenIntent());
-                              }),
-                        ],
+                      SizedBox(
+                        width: MediaQuery.sizeOf(context).width,
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              item(
+                                  context: context,
+                                  image: PathImages.changeProfile,
+                                  title: "Изменить профиль",
+                                  onTap: () {
+                                    context
+                                        .openScreen(
+                                            EditProfileIntent(state.info))
+                                        .then(
+                                      (value) {
+                                        if (value is bool && value == true) {
+                                          cubit.userInformation();
+                                        }
+                                      },
+                                    );
+                                  }),
+                              item(
+                                  context: context,
+                                  image: PathImages.check,
+                                  title: "Счет",
+                                  onTap: () {
+                                    context.openScreen(CheckScreenIntent());
+                                  }),
+                              item(
+                                  context: context,
+                                  image: PathImages.report,
+                                  title: "Снятие денег",
+                                  onTap: () {
+                                    context.openScreen(
+                                        WithdrawingMoneyScreenIntent());
+                                  }),
+                              item(
+                                  context: context,
+                                  image: PathImages.withdrawingMoney,
+                                  title: "Отчет",
+                                  onTap: () {
+                                    context.openScreen(ReportsScreenIntent());
+                                  }),
+                            ],
+                          ),
+                        ),
                       )
                     ],
                   ),
@@ -424,23 +432,19 @@ class _ProfileScreenState extends State<ProfileScreen> {
         width: 90,
         child: Card(
           shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-                20.0,
-              ),
+              borderRadius: BorderRadius.circular(20.0),
               side: const BorderSide(color: Color(0xff3671D9))),
           child: Padding(
             padding: const EdgeInsets.only(
               top: 16,
-              left: 8,
-              right: 8,
+              left: 7,
+              right: 7,
               bottom: 8,
             ),
             child: Column(
               children: [
                 SvgPicture.asset(image),
-                SizedBox(
-                  height: 8,
-                ),
+                const SizedBox(height: 8),
                 Expanded(
                   child: Text(
                     title,

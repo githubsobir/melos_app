@@ -11,13 +11,13 @@ class GpsModel {
     this.latitude,
   });
 
-  num? id;
+  int? id;
   String? photo;
   String? make;
   String? model;
   String? price;
   String? address;
-  num? rating;
-  num? longitude;
-  num? latitude;
+  double? rating;
+  double? longitude;
+  double? latitude;
 }

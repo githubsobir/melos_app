@@ -22,8 +22,15 @@ class PasswordCubit extends Cubit<LoginState> {
         emit(SuccessfullyLoginState());
       } else {
         emit(LoginErrorState(
-          message: response.exceptionBody.toString(),
-        ));
+            message: response.exceptionBody
+                .toString()
+                .replaceAll("non_field_errors", "")
+                .replaceAll("[", "")
+                .replaceAll("]", "")
+                .replaceAll("'", "")
+                .replaceAll("{", "")
+                .replaceAll("}", "")
+                .replaceAll(":", "")));
       }
     } else {
       emit(EmptyFieldsErrorState());

@@ -35,6 +35,7 @@ class ConfirmBookingScreen extends StatelessWidget {
       appBar: AppBar(
         title:  Text(context.translations.the_process_of_getting_car),
       ),
+
       body: BlocConsumer<ConfirmBookingCubit, ConfirmBookingState>(
         bloc: cubit,
         builder: (context, state) {

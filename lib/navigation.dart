@@ -146,7 +146,13 @@ final _launcher = IntentLauncher()
   })
   ..onNavigationIntent<CarInfoDetailIntent>((context, intent) {
     return Navigator.pushNamed(context, CarInfoDetailIntent.path,
-        arguments: intent.carId);
+      arguments: {
+        'carId': intent.carId,
+        'startDateTime': intent.startDateTime,
+        'endDateTime': intent.endDateTime,
+      },
+
+    );
   })
   ..onNavigationIntent<MyCarLocationIntent>((context, intent) {
     return Navigator.pushNamed(context, MyCarLocationIntent.path,
@@ -217,9 +223,11 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
       id: settings.arguments as num,
     ).wrapWith(_launcher));
   } else if (CarInfoDetailIntent.path == settings.name) {
-    var cardId = settings.arguments as num;
+    var map = settings.arguments as Map;
     return _createRoute(CarInfoDetailScreen(
-      carId: cardId,
+      endDateTime: map["endDateTime"],
+      startDateTime: map["startDateTime"],
+      carId: map["carId"],
     ).wrapWith(_launcher));
   } else if (CreateCarInfoIntent.path == settings.name) {
     return _createRoute(CreateCarInfoScreen().wrapWith(_launcher));
