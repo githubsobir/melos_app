@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:domain/model/cars/car_model.dart';
 import 'package:domain/model/cars/filter_model.dart';
@@ -36,18 +37,25 @@ class HomeCubit extends Cubit<HomeState> {
     _startDataTime = startDataTime;
     _endDataTime = endDataTime;
 
-
     popularCars(isRefreshed: true);
     recommendedCars(isRefreshed: true);
   }
 
   Future<void> filter() async {
+    log("filter");
     var response = await _carsUseCase.filter();
-    if (response.success) {
-      var filter = response.body;
-      if (filter != null) {
-        emit(state.copyWith(filter: filter));
+
+    try {
+      if (response.success) {
+        var filter = response.body;
+        if (filter != null) {
+          log(state.filter.categoryCounts.toString());
+          emit(state.copyWith(filter: filter));
+        }
       }
+    } catch (e) {
+      log("#filter catch");
+      log(e.toString());
     }
   }
 
@@ -62,7 +70,7 @@ class HomeCubit extends Cubit<HomeState> {
       passengerCapacityCounts: state.filter.passengerCapacityCounts
           .map((e) => e.copyWith(isSelected: false))
           .toList(),
-      makeCounts: state.filter.makeCounts, // yoki istalgan default qiymat
+      // makeCounts: state.filter.makeCounts, // yoki istalgan default qiymat
     );
 
     emit(state.copyWith(filter: clearedFilter));

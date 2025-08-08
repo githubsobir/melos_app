@@ -118,7 +118,7 @@ class _SearchEdittextState extends State<SearchEdittext> {
                 },
                 child: Container(
                   decoration: const BoxDecoration(
-                    color: Colors.white,
+                    // color: Colors.white,
                     borderRadius: BorderRadius.all(Radius.circular(6)),
                   ),
                   child: const Icon(

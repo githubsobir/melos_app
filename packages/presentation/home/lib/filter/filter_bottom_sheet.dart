@@ -8,6 +8,7 @@ import 'package:intent_launcher/intent_launcher.dart';
 class FilterBottomSheet extends StatefulWidget {
   final HomeCubit cubit;
 
+
   const FilterBottomSheet({super.key, required this.cubit});
 
   static Future<void> show({
@@ -45,6 +46,13 @@ class FilterBottomSheet extends StatefulWidget {
 }
 
 class _FilterBottomSheetState extends State<FilterBottomSheet> {
+
+  @override
+  void initState() {
+    super.initState();
+    // Serverdan filter ma'lumotlarini olish
+    widget.cubit.filter();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(

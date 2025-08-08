@@ -1,20 +1,31 @@
 import 'package:domain/model/cars/filter_model.dart';
 class FilterResponse {
-  List<Category> categories;
-  List<PassengerCapacity> passengerCapacity;
-  List<Category> transmission;
-  List<City> cities;
-  List<Make> makes;
-  List<Model> models;
+  List<Category>? categories;
+  List<PassengerCapacity>? passengerCapacity;
+  List<Category>? transmission;
+  List<City>? cities;
+  List<Make>? makes;
+  List<Model>? models;
 
   FilterResponse({
-    required this.categories,
-    required this.passengerCapacity,
-    required this.transmission,
-    required this.cities,
-    required this.makes,
-    required this.models,
+    this.categories,
+    this.passengerCapacity,
+    this.transmission,
+    this.cities,
+    this.makes,
+    this.models,
   });
+
+
+
+  Map<String, dynamic> toJson() => {
+    "categories": categories?.map((x) => x.toJson()).toList(),
+    "passenger_capacity": passengerCapacity?.map((x) => x.toJson()).toList(),
+    "transmission": transmission?.map((x) => x.toJson()).toList(),
+    "cities": cities?.map((x) => x.toJson()).toList(),
+    "makes": makes?.map((x) => x.toJson()).toList(),
+    "models": models?.map((x) => x.toJson()).toList(),
+  };
 
   factory FilterResponse.fromJson(Map<String, dynamic> json) => FilterResponse(
     categories: json["categories"] != null
@@ -38,15 +49,6 @@ class FilterResponse {
         : [],
   );
 
-
-  Map<String, dynamic> toJson() => {
-    "categories": List<dynamic>.from(categories.map((x) => x.toJson())),
-    "passenger_capacity": List<dynamic>.from(passengerCapacity.map((x) => x.toJson())),
-    "transmission": List<dynamic>.from(transmission.map((x) => x.toJson())),
-    "cities": List<dynamic>.from(cities.map((x) => x.toJson())),
-    "makes": List<dynamic>.from(makes.map((x) => x.toJson())),
-    "models": List<dynamic>.from(models.map((x) => x.toJson())),
-  };
 }
 
 class Category {

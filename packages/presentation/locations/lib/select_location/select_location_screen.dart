@@ -95,13 +95,14 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
                   child: Text(
                     state.point?.address ?? "Manzilni tanlang",
                     maxLines: 2,
+
                     style: Theme.of(context).textTheme.bodyMedium,
                   ),
                 ),
               ],
             ),
             actions: [
-              if (userLocation != null)
+              // if (userLocation != null)
                 IconButton(
                   icon: const Icon(Icons.my_location),
                   onPressed: () async {
