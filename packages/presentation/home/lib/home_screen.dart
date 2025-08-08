@@ -16,12 +16,13 @@ import 'package:intent_launcher/intent_launcher.dart';
 import 'package:navigation/my_cars_intents.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({super.key});
-
-  final cubit = HomeCubit(inject())
-    ..filter()
-    ..popularCars()
-    ..recommendedCars(isRefreshed: true);
+  final HomeCubit cubit;
+  HomeScreen({super.key, required this.cubit});
+  //
+  // final cubit = HomeCubit(inject())
+  //   ..filter()
+  //   ..popularCars()
+  //   ..recommendedCars(isRefreshed: true);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();

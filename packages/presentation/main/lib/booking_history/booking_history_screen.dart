@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:common/l10n/build_context_extension.dart';
 import 'package:dependency/dependencies.dart';
 import 'package:flutter/material.dart';
@@ -18,6 +20,7 @@ class BookingHistoryScreen extends StatelessWidget {
           context.translations.booking_history,
         ),
       ),
+
       body: RefreshIndicator(
         onRefresh: () {
           cubit.bookingHistory();
@@ -29,8 +32,16 @@ class BookingHistoryScreen extends StatelessWidget {
             return (state is HistoryState)
                 ? ListView.builder(
                     itemCount: state.histories.length,
-                    // itemCount: 4,
+
                     itemBuilder: (context, index) {
+                      log("#######");
+                      log(state.histories.length.toString());
+                      log(state.histories[index].photo.toString());
+                      log(state.histories[index].make.toString());
+                      log(state.histories[index].model.toString());
+                      log(state.histories[index].startDate.toString());
+                      log(state.histories[index].endDate.toString());
+                      log("#######");
                       return ItemBookingHistory(
                         carImage: state.histories[index].photo ?? "",
                         carName:

@@ -47,16 +47,15 @@ class LoginScreen extends StatelessWidget {
               children: [
                 AppBar(
                   title: Text(context.translations.enter),
-                  iconTheme: const IconThemeData(color: Colors.black),
                   leading: IconButton(
                     icon: Platform.isIOS
                         ? const Icon(
                             Icons.arrow_back_ios_new,
-                            color: Colors.black,
+
                           )
                         : const Icon(
                             Icons.arrow_back,
-                            color: Colors.black,
+
                           ),
                     onPressed: () {
 

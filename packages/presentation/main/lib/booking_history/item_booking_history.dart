@@ -31,10 +31,10 @@ class ItemBookingHistory extends StatelessWidget {
             right: 24,
           ),
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                height: 48,
+                height: 53,
                 width: 78,
                 decoration: const BoxDecoration(
                   color: Colors.grey,
@@ -69,12 +69,12 @@ class ItemBookingHistory extends StatelessWidget {
                       ),
                     ),
                     errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
+                    const Icon(Icons.error),
                   ),
                 ),
               ),
               const SizedBox(
-                width: 8,
+                width: 10,
               ),
               Expanded(
                 child: Column(
@@ -102,9 +102,9 @@ class ItemBookingHistory extends StatelessWidget {
                                     .textTheme
                                     .labelMedium
                                     ?.copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .secondary),
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .secondary),
                               ),
                               const SizedBox(
                                 height: 2,
@@ -126,9 +126,9 @@ class ItemBookingHistory extends StatelessWidget {
                                     .textTheme
                                     .labelMedium
                                     ?.copyWith(
-                                        color: Theme.of(context)
-                                            .colorScheme
-                                            .secondary),
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .secondary),
                               ),
                               const SizedBox(
                                 height: 2,
