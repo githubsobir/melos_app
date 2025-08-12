@@ -431,7 +431,7 @@ abstract class AppLocalizations {
   /// No description provided for @recommendation_car.
   ///
   /// In ru, this message translates to:
-  /// **'Рекомендация Автомобиль'**
+  /// **'Рекомендация автомобиль'**
   String get recommendation_car;
 
   /// No description provided for @car_type.
@@ -1309,6 +1309,18 @@ abstract class AppLocalizations {
   /// In ru, this message translates to:
   /// **'Выберите другую дату'**
   String get chooseAnOtherDate;
+
+  /// No description provided for @infoNotFound.
+  ///
+  /// In ru, this message translates to:
+  /// **'Информация не найдена'**
+  String get infoNotFound;
+
+  /// No description provided for @car_dosNotExDate.
+  ///
+  /// In ru, this message translates to:
+  /// **'Автомобиль забронирован на выбранную дату'**
+  String get car_dosNotExDate;
 }
 
 class _AppLocalizationsDelegate

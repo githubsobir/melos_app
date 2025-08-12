@@ -210,6 +210,8 @@
   "chooseCarTransmission": "Mashina o'rindiqlar sonini tanlang",
   "enterCarNumber": "Mashina raqamini kiriting",
   "clear": "Tozalash",
-  "chooseAnOtherDate": "Boshqa kunni tanlang"
+  "chooseAnOtherDate": "Boshqa kunni tanlang",
+  "infoNotFound": "Ma'lumot topilmadi",
+  "car_dosNotExDate": "Tanlagan sanada mashina band qilingan"
 
 }

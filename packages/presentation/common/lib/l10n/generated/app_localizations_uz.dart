@@ -640,4 +640,10 @@ class AppLocalizationsUz extends AppLocalizations {
 
   @override
   String get chooseAnOtherDate => 'Boshqa kunni tanlang';
+
+  @override
+  String get infoNotFound => 'Ma\'lumot topilmadi';
+
+  @override
+  String get car_dosNotExDate => 'Tanlagan sanada mashina band qilingan';
 }

@@ -54,7 +54,7 @@
   "extend_booking_time": "Продлить время бронирования",
   "popular_car": "Популярный автомобиль",
   "view_all": "Посмотреть все",
-  "recommendation_car": "Рекомендация Автомобиль",
+  "recommendation_car": "Рекомендация автомобиль",
   "car_type": "Тип автомобиля",
   "capacity": "Емкость",
   "steering": "Рулевое управление",
@@ -210,5 +210,8 @@
   "chooseCarTransmission": "Выбрать коробка передач",
   "enterCarNumber": "Введите номер автомобиля",
   "clear": "Очищать",
-  "chooseAnOtherDate": "Выберите другую дату"
+  "chooseAnOtherDate": "Выберите другую дату",
+  "infoNotFound": "Информация не найдена",
+
+  "car_dosNotExDate": "Автомобиль забронирован на выбранную дату"
 }

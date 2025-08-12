@@ -78,7 +78,7 @@ class _CarInfoDetailScreenState extends State<CarInfoDetailScreen> {
         bloc: cubit..getCarDetail(widget.carId),
         listener: (context, state) {
           if (state.hasError) {
-            showToast(state.errorMessage);
+         showToast(state.errorMessage);
           } else if (state.goNextPage) {
             if (a == 1) {
               cubit.resetGoNextPage();
@@ -242,6 +242,7 @@ class _CarInfoDetailScreenState extends State<CarInfoDetailScreen> {
                             Row(
                               children: [
                                 Expanded(
+                                  flex: 3,
                                   child: Row(
                                     children: [
                                       SvgPicture.asset(PathImages.carType),
@@ -264,9 +265,11 @@ class _CarInfoDetailScreenState extends State<CarInfoDetailScreen> {
                                       ),
                                     ],
                                   ),
+
                                 ),
                                 const SizedBox(width: 24),
                                 Expanded(
+                                  flex: 2,
                                   child: Row(
                                     children: [
                                       SvgPicture.asset(
@@ -300,6 +303,7 @@ class _CarInfoDetailScreenState extends State<CarInfoDetailScreen> {
                             Row(
                               children: [
                                 Expanded(
+                                  flex: 3,
                                   child: Row(
                                     children: [
                                       SvgPicture.asset(PathImages.transmission),
@@ -327,6 +331,7 @@ class _CarInfoDetailScreenState extends State<CarInfoDetailScreen> {
                                   width: 24,
                                 ),
                                 Expanded(
+                                  flex: 2,
                                   child: Row(
                                     children: [
                                       SvgPicture.asset(PathImages.gasoline),

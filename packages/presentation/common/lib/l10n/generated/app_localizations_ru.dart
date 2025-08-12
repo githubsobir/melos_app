@@ -178,7 +178,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get view_all => 'Посмотреть все';
 
   @override
-  String get recommendation_car => 'Рекомендация Автомобиль';
+  String get recommendation_car => 'Рекомендация автомобиль';
 
   @override
   String get car_type => 'Тип автомобиля';
@@ -638,4 +638,10 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get chooseAnOtherDate => 'Выберите другую дату';
+
+  @override
+  String get infoNotFound => 'Информация не найдена';
+
+  @override
+  String get car_dosNotExDate => 'Автомобиль забронирован на выбранную дату';
 }

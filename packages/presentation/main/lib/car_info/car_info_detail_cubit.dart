@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:domain/model/cars/car_detail_info_model.dart';
 import 'package:domain/usecase/cars_usecase.dart';
 import 'package:equatable/equatable.dart';
@@ -25,6 +28,7 @@ class CarInfoDetailCubit extends Cubit<CarDetailState> {
     var response = await _carsUseCase.getCarDetail(carId: carId);
     if (response.success) {
       var info = response.body;
+      log(info.toString());
       if (info != null) {
         emit(state.copyWith(carDetail: info,goNextPage: false),);
       }
@@ -54,7 +58,9 @@ class CarInfoDetailCubit extends Cubit<CarDetailState> {
             hasError: false,
             errorMessage: "",
             goNextPage: true,
+
           ));
+
         } else {
           emit(state.copyWith(
             hasError: true,

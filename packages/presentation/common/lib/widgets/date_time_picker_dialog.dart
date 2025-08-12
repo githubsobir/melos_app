@@ -1,3 +1,6 @@
+import 'dart:convert';
+import 'dart:developer';
+
 import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/widgets/base_button.dart';
 import 'package:common/widgets/custom_functions.dart';
@@ -39,6 +42,9 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
   PickerDateRange? dateRange;
   TimeRangeResult? timeRange;
 
+  bool isSameDay(DateTime a, DateTime b) =>
+      a.year == b.year && a.month == b.month && a.day == b.day;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -63,17 +69,70 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
               ),
               SfDateRangePicker(
                 selectionMode: DateRangePickerSelectionMode.range,
-                maxDate: DateTime(DateTime.now().year, DateTime.now().month+3 ),
+                // selectableDayPredicate: (date) => widget.bookedDates != null
+                //     ? !widget.bookedDates!.any(
+                //       (element) =>
+                //   element.year == date.year &&
+                //       element.month == date.month &&
+                //       element.day == date.day,
+                // )
+                //     : true,
+                selectableDayPredicate: (date) {
+                  final bookedCheck = widget.bookedDates != null &&
+                      widget.bookedDates!.any((d) => isSameDay(d, date));
+
+                  final blockedCheck = widget.bookedDates!.any((d) => isSameDay(d, date));
+
+                  return !(bookedCheck || blockedCheck);
+                },
+                onSelectionChanged: (DateRangePickerSelectionChangedArgs args) {
+                  if (args.value is PickerDateRange) {
+                    final range = args.value as PickerDateRange;
+                    final start = range.startDate;
+                    final end = range.endDate;
+
+                    if (start != null && end != null) {
+                      // Tanlangan oralig‘dagi sanalarni tekshirish
+                      DateTime current = start;
+                      bool hasBlocked = false;
+
+                      while (!current.isAfter(end)) {
+                        if (widget.bookedDates!.any((d) => isSameDay(d, current))) {
+                          hasBlocked = true;
+                          break;
+                        }
+                        current = current.add(const Duration(days: 1));
+                      }
+
+                      if (hasBlocked) {
+                        // Range'ni bloklangan sanadan oldin kesish
+                        DateTime newEnd = widget.bookedDates!
+                            .where((d) => d.isAfter(start) && d.isBefore(end))
+                            .reduce((a, b) => a.isBefore(b) ? a : b)
+                            .subtract(const Duration(days: 1));
+
+
+                        showToastSms(context.translations.car_dosNotExDate);
+
+                        setState(() {
+                          dateRange = PickerDateRange(start, newEnd);
+                        });
+                        return;
+                      }
+                    }
+
+                    setState(() {
+                      dateRange = range;
+                    });
+                  }
+                },
+
+                ///
+
+                maxDate:
+                    DateTime(DateTime.now().year, DateTime.now().month + 3),
                 backgroundColor: Colors.transparent,
                 enablePastDates: false,
-                selectableDayPredicate: (date) => widget.bookedDates != null
-                    ? !widget.bookedDates!.any(
-                        (element) =>
-                            element.year == date.year &&
-                            element.month == date.month &&
-                            element.day == date.day,
-                      )
-                    : true,
                 endRangeSelectionColor: Theme.of(context).colorScheme.primary,
                 selectionTextStyle: const TextStyle(color: Colors.white),
                 monthCellStyle: DateRangePickerMonthCellStyle(
@@ -89,11 +148,11 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
                         color: const Color(0xFF658DF1),
                       ),
                 ),
-                onSelectionChanged: (DateRangePickerSelectionChangedArgs args) {
-                  setState(() {
-                    dateRange = args.value as PickerDateRange;
-                  });
-                },
+                // onSelectionChanged: (DateRangePickerSelectionChangedArgs args) {
+                //   setState(() {
+                //     dateRange = args.value as PickerDateRange;
+                //   });
+                // },
               ),
               Row(
                 children: [

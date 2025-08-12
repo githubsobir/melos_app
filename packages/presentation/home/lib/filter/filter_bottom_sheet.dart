@@ -1,5 +1,6 @@
 import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/widgets/base_button.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:home/home_cubit.dart';
@@ -95,7 +96,10 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
           child: BlocBuilder<HomeCubit, HomeState>(
             bloc: widget.cubit,
             builder: (context, state) {
-              return ListView(
+              return
+
+                state.filter.categoryCounts.isNotEmpty ?
+                ListView(
 
                 // controller: scrollController,
 
@@ -394,7 +398,9 @@ class _FilterBottomSheetState extends State<FilterBottomSheet> {
                     ],
                   )
                 ],
-              );
+              ):
+              const Center(child: CircularProgressIndicator())
+              ;
             },
           ),
         ),

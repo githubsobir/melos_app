@@ -61,7 +61,15 @@ class CarDetailInfoResponse {
       });
     }
     reviewsCount = json['reviews_count'];
-    bookedDates = json['booked_dates'] != null ? json['booked_dates'].cast<String>() : [];
+    bookedDates = json['booked_dates'] != null
+        ? json['booked_dates'].cast<String>()
+        : [
+            "2025-08-11",
+            "2025-08-12",
+            "2025-08-13",
+            "2025-08-14",
+            "2025-08-19"
+          ];
     address = json['address'];
     addressLink = json['address_link'];
   }
