@@ -36,7 +36,7 @@ class PasswordScreen extends StatelessWidget {
           } else if (state is LoginErrorState) {
             showToastSms(state.message);
           } else if (state is SuccessfullyLoginState) {
-            context.openScreen(MainIntent());
+            context.openScreen(MainIntent(keyLogout: 0));
           }
         },
         builder: (context, state) {

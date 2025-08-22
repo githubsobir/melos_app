@@ -350,6 +350,7 @@
 //   }
 // }
 import 'dart:async';
+import 'dart:developer';
 
 import 'package:common/font_family.dart';
 import 'package:common/l10n/build_context_extension.dart';
@@ -373,7 +374,9 @@ import 'package:navigation/my_cars_intents.dart';
 import 'package:profile/profile/profile_screen.dart';
 
 class MainScreen extends StatefulWidget {
-  const MainScreen({super.key});
+  final int keyLogout;
+
+  const MainScreen({super.key, required this.keyLogout});
 
   @override
   State<MainScreen> createState() => _MainScreenState();
@@ -406,22 +409,21 @@ class _MainScreenState extends State<MainScreen> {
 
     _subscription =
         InternetConnection().onStatusChange.listen((InternetStatus status) {
-          switch (status) {
-            case InternetStatus.connected:
-              print("status->>> The internet is now connected");
-              // Internet ulanganida ma'lumotlarni qayta yuklash
-              _refreshHomeData();
-              break;
-            case InternetStatus.disconnected:
-              print("status->>> The internet is now disconnected");
-              WidgetsBinding.instance.addPostFrameCallback((_) {
-                ConnectionBottomSheet.show(
-                  context: context,
-                );
-              });
-              break;
-          }
-        });
+      switch (status) {
+        case InternetStatus.connected:
+          print("status->>> The internet is now connected");
+          _refreshHomeData();
+          break;
+        case InternetStatus.disconnected:
+          print("status->>> The internet is now disconnected");
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            ConnectionBottomSheet.show(
+              context: context,
+            );
+          });
+          break;
+      }
+    });
   }
 
   void _initializeHomeScreen() {
@@ -445,8 +447,12 @@ class _MainScreenState extends State<MainScreen> {
 
   void _refreshHomeData() {
     // Ma'lumotlarni yangilash
-    homeCubit.popularCars();
-    homeCubit.recommendedCars(isRefreshed: true);
+    if(widget.keyLogout != 0) {
+      log("#popularCars");
+      log("#recommendedCars");
+      homeCubit.popularCars();
+      homeCubit.recommendedCars(isRefreshed: true);
+    }
   }
 
   @override
@@ -469,7 +475,7 @@ class _MainScreenState extends State<MainScreen> {
         listenWhen: (previous, current) => current is LogOutState,
         listener: (BuildContext context, Object state) {
           if (state is LogOutState) {
-            context.openScreen(MainIntent());
+            context.openScreen(MainIntent(keyLogout: 1));
           }
         },
         buildWhen: (previous, current) => current is MenuPositionState,
@@ -478,60 +484,61 @@ class _MainScreenState extends State<MainScreen> {
           return Scaffold(
             appBar: state.pageIndex != 1
                 ? AppBar(
-              title: _getTitleFromPosition(menu.pageIndex, context),
-              actions: [
-                GestureDetector(
-                  onTap: () {
-                    context.openScreen(NotificationsScreenIntent());
-                  },
-                  child: Container(
-                    margin: const EdgeInsets.only(right: 24),
-                    width: 38,
-                    height: 38,
-                    child: Stack(
-                      children: [
-                        Container(
+                    title: _getTitleFromPosition(menu.pageIndex, context),
+                    actions: [
+                      GestureDetector(
+                        onTap: () {
+                          context.openScreen(NotificationsScreenIntent());
+                        },
+                        child: Container(
+                          margin: const EdgeInsets.only(right: 24),
                           width: 38,
                           height: 38,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(18),
-                            border: Border.all(
-                                color: const Color(0xFFC0D8FF)),
-                          ),
-                          padding: const EdgeInsets.all(8),
-                          child: SvgPicture.asset(PathImages.notification),
-                        ),
-                        BlocBuilder<MainCubit, Object>(
-                          bloc: cubit,
-                          buildWhen: (previous, current) =>
-                          current is NotificationState,
-                          builder: (context, state) {
-                            if (state is NotificationState) {
-                              return state.hasNotification
-                                  ? Align(
-                                alignment: Alignment.topRight,
-                                child: Container(
-                                  height: 11,
-                                  width: 11,
-                                  decoration: BoxDecoration(
-                                    borderRadius:
-                                    BorderRadius.circular(11),
-                                    color: const Color(0xFFFF3636),
-                                  ),
+                          child: Stack(
+                            children: [
+                              Container(
+                                width: 38,
+                                height: 38,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(18),
+                                  border: Border.all(
+                                      color: const Color(0xFFC0D8FF)),
                                 ),
+                                padding: const EdgeInsets.all(8),
+                                child:
+                                    SvgPicture.asset(PathImages.notification),
+                              ),
+                              BlocBuilder<MainCubit, Object>(
+                                bloc: cubit,
+                                buildWhen: (previous, current) =>
+                                    current is NotificationState,
+                                builder: (context, state) {
+                                  if (state is NotificationState) {
+                                    return state.hasNotification
+                                        ? Align(
+                                            alignment: Alignment.topRight,
+                                            child: Container(
+                                              height: 11,
+                                              width: 11,
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(11),
+                                                color: const Color(0xFFFF3636),
+                                              ),
+                                            ),
+                                          )
+                                        : Container();
+                                  } else {
+                                    return Container();
+                                  }
+                                },
                               )
-                                  : Container();
-                            } else {
-                              return Container();
-                            }
-                          },
-                        )
-                      ],
-                    ),
-                  ),
-                )
-              ],
-            )
+                            ],
+                          ),
+                        ),
+                      )
+                    ],
+                  )
                 : null,
             drawer: Drawer(
               shape: RoundedRectangleBorder(
@@ -545,7 +552,7 @@ class _MainScreenState extends State<MainScreen> {
                 },
                 onBooking: () {
                   if (cubit.hasUser) {
-                    context.openScreen(BookingIntent());
+                    context.openScreen(BookingIntent(windowId: 0));
                   } else {
                     context.openScreen(LoginGoIntent());
                   }
@@ -583,22 +590,26 @@ class _MainScreenState extends State<MainScreen> {
                   children: [
                     item(context, menu.pageIndex == 0, PathImages.menuHome,
                         context.translations.home, () => _onItemTapped(0)),
-                    item(context, menu.pageIndex == 1, PathImages.menuLocation,
-                        context.translations.next_to_me, () => _onItemTapped(1)),
+                    item(
+                        context,
+                        menu.pageIndex == 1,
+                        PathImages.menuLocation,
+                        context.translations.next_to_me,
+                        () => _onItemTapped(1)),
                     item(context, menu.pageIndex == 2, PathImages.menuAdd, "",
-                            () {
-                          if (cubit.hasUser) {
-                            _onItemTapped(2);
-                          } else {
-                            context.openScreen(LoginGoIntent());
-                          }
-                        }),
+                        () {
+                      if (cubit.hasUser) {
+                        _onItemTapped(2);
+                      } else {
+                        context.openScreen(LoginGoIntent());
+                      }
+                    }),
                     item(
                       context,
                       menu.pageIndex == 3,
                       PathImages.menuFavourite,
                       context.translations.saved,
-                          () {
+                      () {
                         if (cubit.hasUser) {
                           _onItemTapped(3);
                         } else {
@@ -611,7 +622,7 @@ class _MainScreenState extends State<MainScreen> {
                       menu.pageIndex == 4,
                       PathImages.menuProfile,
                       context.translations.profile,
-                          () {
+                      () {
                         if (cubit.hasUser) {
                           _onItemTapped(4);
                         } else {
@@ -646,57 +657,57 @@ class _MainScreenState extends State<MainScreen> {
     return Expanded(
       child: isEnabled
           ? SizedBox(
-        height: 64,
-        width: 64,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            GestureDetector(
+              height: 64,
+              width: 64,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  GestureDetector(
+                    onTap: onPressed,
+                    child: SvgPicture.asset(
+                      path,
+                      width: 24,
+                      height: 24,
+                      colorFilter: ColorFilter.mode(
+                        Theme.of(context).colorScheme.brightness ==
+                                Brightness.light
+                            ? Theme.of(context).colorScheme.primary
+                            : Colors.white,
+                        BlendMode.srcIn,
+                      ),
+                    ),
+                  ),
+                  Text(
+                    title,
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.labelMedium?.copyWith(
+                          color: Theme.of(context).colorScheme.brightness ==
+                                  Brightness.light
+                              ? Theme.of(context).colorScheme.primary
+                              : Colors.white,
+                        ),
+                  ),
+                ],
+              ),
+            )
+          : GestureDetector(
               onTap: onPressed,
-              child: SvgPicture.asset(
-                path,
-                width: 24,
-                height: 24,
-                colorFilter: ColorFilter.mode(
-                  Theme.of(context).colorScheme.brightness ==
-                      Brightness.light
-                      ? Theme.of(context).colorScheme.primary
-                      : Colors.white,
-                  BlendMode.srcIn,
+              child: IconButton(
+                onPressed: onPressed,
+                icon: SvgPicture.asset(
+                  path,
+                  width: 24,
+                  height: 24,
+                  colorFilter: ColorFilter.mode(
+                    Theme.of(context).colorScheme.brightness == Brightness.light
+                        ? const Color(0xFF050E2B)
+                        : Colors.white,
+                    BlendMode.srcIn,
+                  ),
                 ),
               ),
             ),
-            Text(
-              title,
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.labelMedium?.copyWith(
-                color: Theme.of(context).colorScheme.brightness ==
-                    Brightness.light
-                    ? Theme.of(context).colorScheme.primary
-                    : Colors.white,
-              ),
-            ),
-          ],
-        ),
-      )
-          : GestureDetector(
-        onTap: onPressed,
-        child: IconButton(
-          onPressed: onPressed,
-          icon: SvgPicture.asset(
-            path,
-            width: 24,
-            height: 24,
-            colorFilter: ColorFilter.mode(
-              Theme.of(context).colorScheme.brightness == Brightness.light
-                  ? const Color(0xFF050E2B)
-                  : Colors.white,
-              BlendMode.srcIn,
-            ),
-          ),
-        ),
-      ),
     );
   }
 

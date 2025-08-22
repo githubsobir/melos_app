@@ -1,6 +1,3 @@
-import 'dart:convert';
-import 'dart:developer';
-
 import 'package:common/l10n/build_context_extension.dart';
 import 'package:common/widgets/base_button.dart';
 import 'package:common/widgets/custom_functions.dart';
@@ -69,22 +66,15 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
               ),
               SfDateRangePicker(
                 selectionMode: DateRangePickerSelectionMode.range,
-                // selectableDayPredicate: (date) => widget.bookedDates != null
-                //     ? !widget.bookedDates!.any(
-                //       (element) =>
-                //   element.year == date.year &&
-                //       element.month == date.month &&
-                //       element.day == date.day,
-                // )
-                //     : true,
                 selectableDayPredicate: (date) {
                   final bookedCheck = widget.bookedDates != null &&
                       widget.bookedDates!.any((d) => isSameDay(d, date));
 
-                  final blockedCheck = widget.bookedDates!.any((d) => isSameDay(d, date));
-
+                  final blockedCheck =
+                      widget.bookedDates!.any((d) => isSameDay(d, date));
                   return !(bookedCheck || blockedCheck);
                 },
+
                 onSelectionChanged: (DateRangePickerSelectionChangedArgs args) {
                   if (args.value is PickerDateRange) {
                     final range = args.value as PickerDateRange;
@@ -97,7 +87,8 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
                       bool hasBlocked = false;
 
                       while (!current.isAfter(end)) {
-                        if (widget.bookedDates!.any((d) => isSameDay(d, current))) {
+                        if (widget.bookedDates!
+                            .any((d) => isSameDay(d, current))) {
                           hasBlocked = true;
                           break;
                         }
@@ -110,7 +101,6 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
                             .where((d) => d.isAfter(start) && d.isBefore(end))
                             .reduce((a, b) => a.isBefore(b) ? a : b)
                             .subtract(const Duration(days: 1));
-
 
                         showToastSms(context.translations.car_dosNotExDate);
 
@@ -136,6 +126,16 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
                 endRangeSelectionColor: Theme.of(context).colorScheme.primary,
                 selectionTextStyle: const TextStyle(color: Colors.white),
                 monthCellStyle: DateRangePickerMonthCellStyle(
+                    disabledDatesTextStyle: const TextStyle(
+                        decoration: TextDecoration.lineThrough,
+                        decorationColor: Colors.grey
+                        // chiziq
+                        ),
+                    blackoutDateTextStyle: const TextStyle(
+                      color: Colors.red,
+                      fontSize: 8,
+                      decoration: TextDecoration.lineThrough, // chiziq
+                    ),
                     textStyle: Theme.of(context)
                         .textTheme
                         .labelLarge
@@ -221,9 +221,8 @@ class _DateTimePickerBottomSheetState extends State<DateTimePickerBottomSheet> {
                         ),
                         child: Text(
                           maxLines: 1,
-                          DateFormat('dd.MM.yyyy').format(
-                            dateRange?.endDate ?? DateTime.now(),
-                          ),
+                          DateFormat('dd.MM.yyyy')
+                              .format(dateRange?.endDate ?? DateTime.now()),
                           textAlign: TextAlign.center,
                           style: Theme.of(context)
                               .textTheme

@@ -52,7 +52,7 @@ class ReceivingTheCarScreen extends StatelessWidget {
                 leading: IconButton(
                   icon: const Icon(Icons.close),
                   onPressed: () {
-                    context.openScreen(MainIntent());
+                    context.openScreen(MainIntent(keyLogout: 1));
                   },
                 ),
               ),
@@ -417,7 +417,7 @@ class ReceivingTheCarScreen extends StatelessWidget {
               if (hasBack) {
                 context.closeActiveScreen(true);
               } else {
-                context.openScreen(MainIntent());
+                context.openScreen(MainIntent(keyLogout: 0));
               }
             }
           },

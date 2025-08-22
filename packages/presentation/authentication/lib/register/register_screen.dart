@@ -48,7 +48,7 @@ class RegisterScreen extends StatelessWidget {
           } else if (state is RegisterErrorState) {
             showToast(state.message);
           } else if (state is SuccessfullyRegisteredState) {
-            context.openScreen(MainIntent());
+            context.openScreen(MainIntent(keyLogout: 0));
           }
         },
         builder: (context, state) => BaseLoaderBuilder(

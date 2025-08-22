@@ -2,10 +2,16 @@ import 'package:intent_launcher/intent_launcher.dart';
 
 class MainIntent implements NavigationIntent {
   static String path = "/main";
+  final int keyLogout;
+
+  MainIntent({required this.keyLogout});
 }
 
 class BookingIntent implements NavigationIntent {
   static String path = "/booking";
+  final int windowId;
+
+  BookingIntent({required this.windowId});
 }
 
 class BookingHistoryIntent implements NavigationIntent {

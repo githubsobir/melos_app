@@ -21,30 +21,40 @@ class BookingCubit extends Cubit<BookingState> {
 
   Future<void> bookingList() async {
     try {
+      emit(state.copyWith(loading: true));
       var response = await _bookingUseCase.bookingList();
       if (response.success) {
         var booking = response.body;
         if (booking != null) {
-          emit(state.copyWith(bookingList: booking));
+          emit(state.copyWith(bookingList: booking, loading: false));
+        } else {
+          emit(state.copyWith(bookingCurrent: [], loading: false));
         }
       } else {
-        // emit(const HistoryState([]));
+        emit(state.copyWith(bookingList: [], loading: false));
       }
     } catch (e) {
       log(e.toString());
+      emit(state.copyWith(bookingList: [], loading: false));
     }
   }
 
   Future<void> bookingCurrent() async {
-    emit(state.copyWith(loading: true));
-    var response = await _bookingUseCase.bookingCurrent();
-    if (response.success) {
-      var booking = response.body;
-      if (booking != null) {
-        emit(state.copyWith(bookingCurrent: booking, loading: false));
+    try {
+      emit(state.copyWith(loading: true));
+      var response = await _bookingUseCase.bookingCurrent();
+      if (response.success) {
+        var booking = response.body;
+        if (booking != null) {
+          emit(state.copyWith(bookingCurrent: booking, loading: false));
+        } else {
+          emit(state.copyWith(bookingCurrent: [], loading: false));
+        }
+      } else {
+        emit(state.copyWith(bookingCurrent: [], loading: false));
       }
-    } else {
-      // emit(const HistoryState([]));
+    } catch (e) {
+      emit(state.copyWith(bookingCurrent: [], loading: false));
     }
   }
 
@@ -128,6 +138,7 @@ final class BookingState extends Equatable {
         bookingCurrent,
         bookingIsFinished,
         finishedBookingId,
+        loading,
       ];
 }
 

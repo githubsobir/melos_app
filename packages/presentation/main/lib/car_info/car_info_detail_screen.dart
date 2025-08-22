@@ -86,6 +86,7 @@ class _CarInfoDetailScreenState extends State<CarInfoDetailScreen> {
             } else if (a == 0) {
               context.openScreen(PaymentDetailsIntent(
                 carId: widget.carId,
+
                 startDateTme: widget.startDateTime,
                 endDateTme: widget.endDateTime,
               ));

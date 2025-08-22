@@ -59,7 +59,7 @@ class LoginScreen extends StatelessWidget {
                           ),
                     onPressed: () {
 
-                      context.openScreen(MainIntent());
+                      context.openScreen(MainIntent(keyLogout: 0));
 
                     },
                   ),

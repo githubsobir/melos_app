@@ -86,10 +86,11 @@ final _launcher = IntentLauncher()
       context,
       MainIntent.path,
       (route) => false,
+      arguments: intent.keyLogout
     );
   })
   ..onNavigationIntent<BookingIntent>((context, intent) {
-    return Navigator.pushNamed(context, BookingIntent.path);
+    return Navigator.pushNamed(context, BookingIntent.path, arguments: intent.windowId);
   })
   ..onNavigationIntent<BookingHistoryIntent>((context, intent) {
     return Navigator.pushNamed(context, BookingHistoryIntent.path);
@@ -145,13 +146,14 @@ final _launcher = IntentLauncher()
     );
   })
   ..onNavigationIntent<CarInfoDetailIntent>((context, intent) {
-    return Navigator.pushNamed(context, CarInfoDetailIntent.path,
+    return Navigator.pushNamed(
+      context,
+      CarInfoDetailIntent.path,
       arguments: {
         'carId': intent.carId,
         'startDateTime': intent.startDateTime,
         'endDateTime': intent.endDateTime,
       },
-
     );
   })
   ..onNavigationIntent<MyCarLocationIntent>((context, intent) {
@@ -201,9 +203,14 @@ Route<dynamic>? onGenerateRoute(RouteSettings settings) {
       phoneNumber: settings.arguments as String,
     ).wrapWith(_launcher));
   } else if (MainIntent.path == settings.name) {
-    return _createRoute(const MainScreen().wrapWith(_launcher));
+
+    return _createRoute(MainScreen(
+      keyLogout: settings.arguments as int,
+    ).wrapWith(_launcher));
   } else if (BookingIntent.path == settings.name) {
-    return _createRoute(const BookingScreen().wrapWith(_launcher));
+    return _createRoute( BookingScreen(
+      windowId: settings.arguments as int,
+    ).wrapWith(_launcher));
   } else if (BookingHistoryIntent.path == settings.name) {
     return _createRoute(BookingHistoryScreen().wrapWith(_launcher));
   } else if (LocationsScreenIntent.path == settings.name) {

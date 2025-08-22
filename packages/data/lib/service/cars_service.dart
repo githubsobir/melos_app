@@ -42,6 +42,7 @@ class CarsService {
       query += "&search=$search";
     }
 
+
     if (category.isNotEmpty) {
       var categoryList = category
           .toString()
@@ -77,9 +78,15 @@ class CarsService {
     endDataTime != null) {
       query += "&start_date=$startDataTime&end_date=$endDataTime";
     }
+    if (latitude != null) {
+      query +="&latitude=$latitude";
+    }
+    if (longitude != null) {
+      query +="&longitude=$latitude";}
 
     log("link");
     log('#4444');
+    log(jsonEncode(headers));
     log('cars/list/recommended/?page=$page$query');
 
     log("header");

@@ -155,7 +155,7 @@ class _DateSelectorWidgetState extends State<DateSelectorWidget> {
                           timeRange = timeRange;
                         });
                       },
-                      bookedDates: widget.bookedDates,
+                      bookedDates: widget.bookedDates??[],
                     );
 
                   },

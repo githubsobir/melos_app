@@ -1,3 +1,4 @@
+import 'dart:developer';
 
 import 'package:common/l10n/build_context_extension.dart';
 import 'package:dependency/dependencies/injector.dart';
@@ -5,15 +6,19 @@ import 'package:domain/model/booking/booking_current_model.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:home/home_screen.dart';
 import 'package:intent_launcher/intent_launcher.dart';
 import 'package:main/booking/booking_cubit.dart';
 import 'package:main/booking/item_booking.dart';
 import 'package:main/booking/item_current_booking.dart';
 import 'package:main/booking/review_bottom_sheet.dart';
+import 'package:main/main/main_screen.dart';
 import 'package:navigation/main_navigation_intents.dart';
 
 class BookingScreen extends StatefulWidget {
-  const BookingScreen({super.key});
+  final int windowId;
+
+  const BookingScreen({super.key, required this.windowId});
 
   @override
   State<BookingScreen> createState() => _BookingScreenState();
@@ -28,137 +33,186 @@ class _BookingScreenState extends State<BookingScreen>
   @override
   void initState() {
     super.initState();
+    log("SOBIR");
+    log("SOBIR");
+    log("SOBIR");
+    log("SOBIR");
     tabController = TabController(length: 2, vsync: this);
     cubit = BookingCubit(inject());
     cubit.bookingList();
     cubit.bookingCurrent();
   }
 
-
-
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-  create: (context) => cubit,
-  child: Scaffold(
-      backgroundColor:
-          Theme.of(context).colorScheme.brightness == Brightness.light
-              ? const Color(0xFFF6F7F9)
-              : const Color(0xFF061136),
-      resizeToAvoidBottomInset: true,
-      appBar: AppBar(
-        title: Text(context.translations.booking),
-        toolbarHeight: 72,
-
-        bottom: TabBar(
-          controller: tabController,
-          padding: const EdgeInsets.all(16),
-          dividerColor: Colors.transparent,
-          indicatorSize: TabBarIndicatorSize.tab,
-          labelStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
-                fontWeight: FontWeight.w700,
-                color: Theme.of(context).colorScheme.primary,
-                fontSize: 12,
-              ),
-          unselectedLabelStyle:
-              Theme.of(context).textTheme.titleMedium?.copyWith(
-                    fontWeight: FontWeight.w700,
-                    fontSize: 12,
-                  ),
-          tabs: [
-            Tab(
-              text: context.translations.current,
-            ),
-            Tab(
-              text: context.translations.all,
-            ),
-          ],
-        ),
-      ),
-      body: BlocConsumer<BookingCubit, BookingState>(
-        builder: (context, state) {
-          return
-
-            state.loading? const Center(child: CupertinoActivityIndicator()):
-            TabBarView(
-            controller: tabController,
-            children: [
-              AnimatedList.separated(
-                key: _listKey,
-                initialItemCount: state.bookingCurrent.length,
-                removedSeparatorBuilder: (BuildContext context, int index,
-                    Animation<double> animation) {
-                  return  const Divider(
-                    color: Colors.teal,
-                  );
-                },
-                itemBuilder: (context, index, animation) => SlideTransition(
-                    position: animation.drive(
-                      Tween<Offset>(
-                        begin: const Offset(0.1, 0),
-                        end: const Offset(0, 0),
-                      ),
+    return PopScope(
+        canPop: true,
+        onPopInvokedWithResult: (didPop, result) {
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            context.openScreen(MainIntent(keyLogout: 1));
+          });
+          // if (widget.windowId == 0) {
+          //   context.openScreen(MainIntent(keyLogout: 0));
+          // } else {
+          //   context.openScreen(MainIntent(keyLogout: 0));
+          // }
+        },
+        child: BlocProvider(
+          create: (context) => cubit,
+          child: Scaffold(
+            backgroundColor:
+                Theme.of(context).colorScheme.brightness == Brightness.light
+                    ? const Color(0xFFF6F7F9)
+                    : const Color(0xFF061136),
+            resizeToAvoidBottomInset: true,
+            appBar: AppBar(
+              title: Text(context.translations.booking),
+              toolbarHeight: 72,
+              bottom: TabBar(
+                controller: tabController,
+                padding: const EdgeInsets.all(16),
+                dividerColor: Colors.transparent,
+                indicatorSize: TabBarIndicatorSize.tab,
+                labelStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w700,
+                      color: Theme.of(context).colorScheme.primary,
+                      fontSize: 12,
                     ),
-                    child:
-                        _buildItem(state.bookingCurrent[index], index, state)),
-                separatorBuilder: (context, index, animation) => const Divider(
-                  color: Color(0xFF658DF1),
-                ),
+                unselectedLabelStyle:
+                    Theme.of(context).textTheme.titleMedium?.copyWith(
+                          fontWeight: FontWeight.w700,
+                          fontSize: 12,
+                        ),
+                tabs: [
+                  Tab(
+                    text: context.translations.current,
+                  ),
+                  Tab(
+                    text: context.translations.all,
+                  ),
+                ],
               ),
-
-              ListView.separated(
-                itemBuilder: (context, index) =>
-                    ItemBooking(
-                  images: state.bookingList[index].photos ?? [],
-                  carName:
-                      "${state.bookingList[index].make} ${state.bookingList[index].model}",
-                  registrationNumber:
-                      state.bookingList[index].registrationNumber ?? "",
-                  dailyRate: state.bookingList[index].dailyRate ?? "",
-                  securityDeposit:
-                      state.bookingList[index].securityDeposit ?? "",
-                  totalAmount: state.bookingList[index].totalAmount ?? "",
-                  status: state.bookingList[index].status ?? "",
-                  startDate: state.bookingList[index].startDate ?? "",
-                  endDate: state.bookingList[index].endDate ?? "",
-                  ownerPhoneNumber:
-                      state.bookingList[index].ownerPhoneNumber ?? "",
-                  profilePage: state.bookingList[index].profilePage ?? "",
-                  carOwner: state.bookingList[index].carOwner ?? "",
-                  powerOfAttorney:
-                      state.bookingList[index].powerOfAttorney ?? "",
-                  contract: "15",//state.bookingList[index].contract.first ?? "",
-                  insurance: state.bookingList[index].insurance ?? "",
-                  isPending: state.bookingList[index].status == "pending",
-                  finishBooking: () {
-                    cubit.finishBooking(state.bookingList[index].id ?? 0);
-                  },
-                ),
-                separatorBuilder: (context, index) => const Divider(
-                  color: Color(0xFF658DF1),
-                ),
-                itemCount: state.bookingList.length,
-              ),
-            ],
-          );
-        },
-        listener: (BuildContext context, BookingState state) {
-          if (state.bookingIsFinished) {
-            _showReviewBottomSheet(
-              context: context,
-              onReview: (rating, comment) {
-                print("rating $rating comment $comment");
-                cubit.createReview(
-                  rating: rating,
-                  comment: comment,
-                );
+            ),
+            body: BlocConsumer<BookingCubit, BookingState>(
+              builder: (context, state) {
+                return state.loading
+                    ? const Center(child: CupertinoActivityIndicator())
+                    : TabBarView(
+                        controller: tabController,
+                        children: [
+                          state.bookingCurrent.isNotEmpty
+                              ? AnimatedList.separated(
+                                  key: _listKey,
+                                  initialItemCount: state.bookingCurrent.length,
+                                  removedSeparatorBuilder:
+                                      (BuildContext context, int index,
+                                          Animation<double> animation) {
+                                    return const Divider(
+                                      color: Colors.teal,
+                                    );
+                                  },
+                                  itemBuilder: (context, index, animation) =>
+                                      SlideTransition(
+                                          position: animation.drive(
+                                            Tween<Offset>(
+                                              begin: const Offset(0.1, 0),
+                                              end: const Offset(0, 0),
+                                            ),
+                                          ),
+                                          child: _buildItem(
+                                              state.bookingCurrent[index],
+                                              index,
+                                              state)),
+                                  separatorBuilder:
+                                      (context, index, animation) =>
+                                          const Divider(
+                                    color: Color(0xFF658DF1),
+                                  ),
+                                )
+                              : Center(
+                                  child:
+                                      Text(context.translations.infoNotFound),
+                                ),
+                          state.bookingList.isNotEmpty
+                              ? ListView.separated(
+                                  itemBuilder: (context, index) => ItemBooking(
+                                    images:
+                                        state.bookingList[index].photos ?? [],
+                                    carName:
+                                        "${state.bookingList[index].make} ${state.bookingList[index].model}",
+                                    registrationNumber: state.bookingList[index]
+                                            .registrationNumber ??
+                                        "",
+                                    dailyRate:
+                                        state.bookingList[index].dailyRate ??
+                                            "",
+                                    securityDeposit: state.bookingList[index]
+                                            .securityDeposit ??
+                                        "",
+                                    totalAmount:
+                                        state.bookingList[index].totalAmount ??
+                                            "",
+                                    status:
+                                        state.bookingList[index].status ?? "",
+                                    startDate:
+                                        state.bookingList[index].startDate ??
+                                            "",
+                                    endDate:
+                                        state.bookingList[index].endDate ?? "",
+                                    ownerPhoneNumber: state.bookingList[index]
+                                            .ownerPhoneNumber ??
+                                        "",
+                                    profilePage:
+                                        state.bookingList[index].profilePage ??
+                                            "",
+                                    carOwner:
+                                        state.bookingList[index].carOwner ?? "",
+                                    powerOfAttorney: state.bookingList[index]
+                                            .powerOfAttorney ??
+                                        "",
+                                    contract: "15",
+                                    //state.bookingList[index].contract.first ?? "",
+                                    insurance:
+                                        state.bookingList[index].insurance ??
+                                            "",
+                                    isPending:
+                                        state.bookingList[index].status ==
+                                            "pending",
+                                    finishBooking: () {
+                                      cubit.finishBooking(
+                                          state.bookingList[index].id ?? 0);
+                                    },
+                                  ),
+                                  separatorBuilder: (context, index) =>
+                                      const Divider(
+                                    color: Color(0xFF658DF1),
+                                  ),
+                                  itemCount: state.bookingList.length,
+                                )
+                              : Center(
+                                  child:
+                                      Text(context.translations.infoNotFound),
+                                )
+                        ],
+                      );
               },
-            );
-          }
-        },
-      ),
-    ),
-);
+              listener: (BuildContext context, BookingState state) {
+                if (state.bookingIsFinished) {
+                  _showReviewBottomSheet(
+                    context: context,
+                    onReview: (rating, comment) {
+                      print("rating $rating comment $comment");
+                      cubit.createReview(
+                        rating: rating,
+                        comment: comment,
+                      );
+                    },
+                  );
+                }
+              },
+            ),
+          ),
+        ));
   }
 
   void _removeItem(int index, BuildContext context, BookingState state) {

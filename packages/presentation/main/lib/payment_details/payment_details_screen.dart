@@ -647,7 +647,7 @@ class PaymentDetailsScreen extends StatelessWidget {
             if (checkNum == 0) {
               checkNum = 1;
 
-              context.openScreen(BookingIntent());
+              context.openScreen(BookingIntent(windowId: 1));
             } else {
               checkNum = 0;
             }

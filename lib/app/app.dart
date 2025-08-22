@@ -14,26 +14,23 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
-
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<AppCubit, AppState>(
       bloc: AppCubit(inject(), inject()),
       builder: (context, state) {
         return MaterialApp(
-          title: 'CarBNB',
-          debugShowCheckedModeBanner: false,
-          onGenerateRoute: onGenerateRoute,
-          themeMode: state.themeMode,
-          theme: lightThemeData
-            ..textTheme.apply(bodyColor: const Color(0xFF050E2B)),
-          darkTheme: darkThemeData,
-          supportedLocales: AppLocalizations.supportedLocales,
-          locale: Locale(state.languageCode),
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          navigatorKey: getIt.get<GlobalKey<NavigatorState>>(),
-        );
+            title: 'CarBNB',
+            debugShowCheckedModeBanner: false,
+            onGenerateRoute: onGenerateRoute,
+            themeMode: state.themeMode,
+            theme: lightThemeData
+              ..textTheme.apply(bodyColor: const Color(0xFF050E2B)),
+            darkTheme: darkThemeData,
+            supportedLocales: AppLocalizations.supportedLocales,
+            locale: Locale(state.languageCode),
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            navigatorKey: getIt.get<GlobalKey<NavigatorState>>());
       },
     );
   }
